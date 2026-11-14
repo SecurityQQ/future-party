@@ -1,0 +1,30 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;overflow:hidden;background:#0b0b0d}
+    .tw{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+    .big{font-family:'League Gothic',sans-serif;font-size:440px;line-height:1;color:#fff;letter-spacing:.02em;margin-top:-90px}
+    .line{position:absolute;left:0;right:0;top:700px;text-align:center;font:600 56px/1.2 Inter,sans-serif;color:rgba(255,255,255,.92)}
+    .line span{display:inline-block;margin:0 .14em}
+  </style>
+  <div id="root" data-composition-id="intro" data-width="1920" data-height="1080">
+    <div id="intro-tw" class="tw"><div class="big" id="intro-big">2050</div></div>
+    <div id="intro-l1" class="line clip" data-start="0" data-duration="3.5"><span id="intro-l1-w0">The</span><span id="intro-l1-w1">films</span><span id="intro-l1-w2">imagined</span><span id="intro-l1-w3">it.</span></div>
+    <div id="intro-l2" class="line clip" data-start="0" data-duration="3.5"><span id="intro-l2-w0">Here</span><span id="intro-l2-w1">is</span><span id="intro-l2-w2">what</span><span id="intro-l2-w3">already</span><span id="intro-l2-w4">exists.</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo('#intro-l1-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.6);
+    tl.fromTo('#intro-l1-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.667);
+    tl.fromTo('#intro-l1-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.734);
+    tl.fromTo('#intro-l1-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.801);
+    tl.fromTo('#intro-l1',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},1.7);
+    tl.fromTo('#intro-l2-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},1.9);
+    tl.fromTo('#intro-l2-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},1.967);
+    tl.fromTo('#intro-l2-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},2.034);
+    tl.fromTo('#intro-l2-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},2.101);
+    tl.fromTo('#intro-l2-w4',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},2.168);
+    tl.fromTo('#intro-l2',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},2.98);
+    tl.fromTo('#intro-tw',{scale:1},{scale:6,duration:0.35,ease:'power3.in',immediateRender:false},3.15);
+    window.__timelines["intro"] = tl;
+  </script>
+</template>

@@ -1,0 +1,344 @@
+<title>Why Music Changes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a history explainer in the varg look of the party pages. Hero = the forces-by-era matrix (one hue, three steps); then answer tiles, era rows, constants, scenarios, sources. Dark-first, light supported. */
+:root{
+  --bg:#070708; --raised:#0e0e10; --fg:#ffffff; --fg-2:#d6d6d6; --muted:#a1a1a1;
+  --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.20);
+  --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#ff6a33; --accent-soft:rgba(255,83,21,.13); --accent-mid:rgba(255,83,21,.42);
+  --dot:#5c5c62; --pos:#67fc5c; --warn:#ffad31; --idle:#a1a1a1;
+  --font:"Aeonik","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --r:10px; --r-s:6px;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#ffffff; --raised:#f6f6f6; --fg:#070708; --fg-2:#2c2c30; --muted:#737373;
+    --line:#e5e5e5; --line-2:#cfcfcf;
+    --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#c63a05; --accent-soft:rgba(255,83,21,.10); --accent-mid:rgba(255,83,21,.38);
+    --dot:#b9b9bd; --pos:#16883a; --warn:#a35f00; --idle:#737373;
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#ffffff; --raised:#f6f6f6; --fg:#070708; --fg-2:#2c2c30; --muted:#737373;
+  --line:#e5e5e5; --line-2:#cfcfcf;
+  --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#c63a05; --accent-soft:rgba(255,83,21,.10); --accent-mid:rgba(255,83,21,.38);
+  --dot:#b9b9bd; --pos:#16883a; --warn:#a35f00; --idle:#737373;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--font);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:64px;border-top:1px solid var(--line)}
+.eyebrow{font:500 12px/1.3 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0}
+h1{font-size:clamp(46px,9vw,112px);line-height:.92;letter-spacing:-.05em;font-weight:800;margin:18px 0 0;text-wrap:balance}
+h1 .yr{color:var(--accent)}
+h2{font-size:clamp(26px,3.6vw,40px);line-height:1.08;letter-spacing:-.035em;font-weight:700;margin:10px 0 0;text-wrap:balance}
+h3{margin:0;text-wrap:balance}
+.lead{font-size:clamp(18px,2.1vw,22px);line-height:1.5;color:var(--fg-2);max-width:62ch;margin:28px 0 0}
+.lead b{color:var(--fg);font-weight:600}
+.note{color:var(--muted);max-width:68ch;margin:14px 0 0;font-size:15px}
+.sec-head{display:grid;gap:4px;margin-bottom:32px;max-width:760px}
+.sec-head p.note{margin-top:10px}
+nav.top{display:flex;flex-wrap:wrap;gap:6px 18px;padding-block:18px;font:500 13px/1 var(--mono);letter-spacing:.04em}
+nav.top a{text-decoration:none;color:var(--muted)}
+nav.top a:hover{color:var(--fg)}
+nav.top .brand{color:var(--fg);margin-right:auto}
+
+/* Answer */
+.answer{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:48px;margin-top:8px}
+@media (max-width:860px){.answer{grid-template-columns:1fr;gap:36px}}
+.core{list-style:none;margin:18px 0 0;padding:0;display:grid}
+.core li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.core li:first-child{border-top:1px solid var(--line)}
+.core a{font-weight:650;font-size:18px;text-decoration:none;letter-spacing:-.01em}
+.core a:hover{color:var(--accent-ink)}
+.core .why{grid-column:1/-1;color:var(--muted);font-size:14.5px}
+.pb{font:500 13px/1.6 var(--mono);color:var(--fg-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.pb i{font-style:normal;color:var(--muted)}
+.wall-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.wall-list a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line-2);border-radius:999px;text-decoration:none;font-size:14.5px}
+.wall-list a:hover{border-color:var(--fg)}
+.wall-list .sw{display:inline-flex;width:28px;height:10px;border-radius:2px;overflow:hidden}
+.wall-list .sw b{flex:1}
+.method{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:14.5px}
+.method strong{color:var(--fg-2);font-weight:600}
+
+/* Findings */
+.findings{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+@media (max-width:900px){.findings{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.findings{grid-template-columns:1fr}}
+.fd{padding:26px 24px 28px 0;border-bottom:1px solid var(--line);display:grid;gap:10px;align-content:start}
+.fd .num{font-size:clamp(40px,5vw,60px);font-weight:750;letter-spacing:-.045em;line-height:1;font-variant-numeric:tabular-nums}
+.fd.key .num{color:var(--accent)}
+.fd p{margin:0;color:var(--fg-2);font-size:15.5px;max-width:42ch}
+.fd .src{font:400 12px/1.4 var(--mono);color:var(--muted)}
+.fd .src a{color:var(--muted)}
+/* Filters + cards */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.filters button{font:500 14px/1 var(--font);color:var(--fg-2);background:transparent;border:1px solid var(--line-2);border-radius:999px;padding:10px 14px;cursor:pointer}
+.filters button:hover{border-color:var(--fg)}
+.filters button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.filters .count{font:400 12px var(--mono);opacity:.7;margin-left:6px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font:500 11.5px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;padding:6px 8px;border-radius:var(--r-s);border:1px solid var(--line-2);color:var(--fg-2)}
+.tag.gold{border-color:var(--accent);color:var(--accent-ink)}
+.tips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;margin-top:40px}
+@media (max-width:760px){.tips{grid-template-columns:1fr}}
+.tips div{padding:14px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--fg-2)}
+.tips div b{display:block;color:var(--fg);font-weight:600;margin-bottom:4px}
+/* Sources */
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px}
+@media (max-width:860px){.two{grid-template-columns:1fr;gap:32px}}
+.src-list{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:10px;font-size:14px}
+.src-list li{color:var(--muted)}
+.src-list a{color:var(--fg-2);text-underline-offset:3px;text-decoration-color:var(--line-2);word-break:break-word}
+.src-list a:hover{color:var(--accent-ink)}
+.unc{margin:16px 0 0;padding-left:18px;display:grid;gap:10px;font-size:14.5px;color:var(--fg-2)}
+footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12px/1.6 var(--mono);color:var(--muted)}
+
+
+/* Why Music Changes: hero = the forces-by-era matrix; then answer tiles, 13 era rows, constants, scenarios, sources. */
+.hero{padding-block:40px 56px;border-top:0}
+.rel{margin:18px 0 0;font:400 13px/1.6 var(--mono);color:var(--muted)}
+.rel a{color:var(--fg-2);text-underline-offset:3px;text-decoration-color:var(--line-2)}
+.rel a:hover{color:var(--accent-ink)}
+
+.mx-wrap{margin-top:40px}
+.mx-box{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+.mx{border-collapse:separate;border-spacing:4px;width:100%;min-width:900px;font-size:13px;table-layout:fixed}
+.mx thead th:first-child{width:160px}
+.mx th,.mx td{border:0;padding:0;background:transparent}
+.mx thead th{font:500 11.5px/1.3 var(--mono);color:var(--muted);text-align:left;padding:10px 2px 6px;vertical-align:bottom;letter-spacing:.02em;text-transform:none;background:transparent}
+.mx thead th a{color:inherit;text-decoration:none;display:block}
+.mx thead th a:hover{color:var(--fg)}
+.mx thead th b{display:block;color:var(--fg-2);font:600 12px/1.25 var(--font);margin-top:3px;letter-spacing:0}
+.mx tbody th{font:500 12.5px/1.3 var(--mono);color:var(--fg-2);text-align:left;white-space:nowrap;padding:0 12px 0 10px;width:150px}
+.mx tbody th span{display:block;font:400 11px/1.3 var(--font);color:var(--muted);white-space:normal;margin-top:2px}
+.mx td a{display:block;height:34px;border-radius:4px;border:1px solid var(--line-2)}
+.mx td a.l1{background:var(--accent-mid);border-color:transparent}
+.mx td a.l2{background:var(--accent);border-color:transparent}
+.mx td a:hover,.mx td a:focus-visible{outline:2px solid var(--fg);outline-offset:1px}
+.mx-legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin:12px 0 0;font-size:14px;color:var(--fg-2)}
+.mx-legend span{display:inline-flex;align-items:center;gap:8px}
+.mx-legend i{width:14px;height:14px;border-radius:3px;display:inline-block;border:1px solid var(--line-2)}
+.mx-legend .m{color:var(--muted)}
+
+.eras{display:grid;gap:0}
+.era{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:24px 48px;padding:40px 0;border-top:1px solid var(--line);scroll-margin-top:24px;transition:background-color .6s}
+.era:first-child{border-top:0;padding-top:8px}
+.era.flash{background:var(--accent-soft)}
+@media (max-width:860px){.era{grid-template-columns:1fr;gap:20px}}
+.era-yr{font:500 13px/1.3 var(--mono);color:var(--accent-ink);letter-spacing:.04em}
+.era h3{font-size:clamp(24px,2.8vw,32px);letter-spacing:-.03em;line-height:1.1;margin-top:8px}
+.era-n{font:400 12px var(--mono);color:var(--muted);margin-top:8px}
+.fbars{display:grid;gap:7px;margin-top:20px;max-width:280px}
+.fbar{display:grid;grid-template-columns:118px 1fr;align-items:center;gap:10px;font:400 12px var(--mono);color:var(--muted)}
+.fbar i{display:block;height:6px;border-radius:3px;background:var(--line)}
+.fbar i b{display:block;height:100%;border-radius:3px}
+.fbar i b.l1{width:50%;background:var(--accent-mid)}
+.fbar i b.l2{width:100%;background:var(--accent)}
+.fbar.on{color:var(--fg-2)}
+.era-body{min-width:0;display:grid;gap:18px;align-content:start}
+.era-body h4{margin:0;font:500 11.5px/1.3 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.era-body p{margin:6px 0 0;color:var(--fg-2);font-size:16px;max-width:70ch}
+.era-idea{font-size:clamp(20px,2.2vw,25px);line-height:1.3;letter-spacing:-.02em;font-weight:650;color:var(--fg);margin:0;max-width:40ch;text-wrap:balance}
+.era-idea::before{content:"“";color:var(--accent)}
+.era-idea::after{content:"”";color:var(--accent)}
+.works{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:0 24px}
+.works li{padding:10px 0;border-top:1px solid var(--line);font-size:14.5px;min-width:0}
+.works a{color:var(--fg);font-weight:600;text-decoration:none}
+.works a:hover{color:var(--accent-ink)}
+.works span{display:block;color:var(--muted);font-size:13.5px;margin-top:2px}
+.works .by{font:400 12px/1.5 var(--mono);color:var(--fg-2);margin-top:2px}
+.era-src{font:400 12px/1.6 var(--mono);color:var(--muted)}
+.era-src a{color:var(--muted);text-underline-offset:3px}
+.era-src a:hover{color:var(--accent-ink)}
+
+.consts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr));gap:0 28px}
+.consts div{padding:16px 0;border-top:2px solid var(--fg);min-width:0}
+.consts b{display:block;font-size:17px;letter-spacing:-.01em}
+.consts p{margin:6px 0 0;color:var(--fg-2);font-size:14.5px}
+
+.scen{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:20px 48px;padding:36px 0;border-top:1px solid var(--line)}
+.scen:first-child{border-top:0;padding-top:8px}
+@media (max-width:860px){.scen{grid-template-columns:1fr}}
+.scen h3{font-size:clamp(22px,2.6vw,28px);letter-spacing:-.03em;line-height:1.15;margin-top:8px}
+.conf{display:inline-block;font:500 11px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;padding:5px 7px;border-radius:4px;border:1px solid currentColor}
+.conf.high{color:var(--pos)} .conf.medium{color:var(--warn)} .conf.low{color:var(--idle)}
+.scen-n{font:400 12px var(--mono);color:var(--muted);margin-top:10px}
+.scen-body{min-width:0;display:grid;gap:18px}
+.scen-body h4{margin:0;font:500 11.5px/1.3 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.scen-body p{margin:6px 0 0;color:var(--fg-2);font-size:15.5px;max-width:72ch}
+.sig{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:0}
+.sig li{display:grid;grid-template-columns:minmax(84px,auto) minmax(0,1fr);gap:4px 16px;padding:10px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--fg-2)}
+.sig .v{font:650 18px/1.3 var(--font);color:var(--fg);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.sig a{color:var(--muted);font:400 12px var(--mono);text-underline-offset:3px;white-space:nowrap}
+.sig a:hover{color:var(--accent-ink)}
+.next-music{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+.next-music li{color:var(--fg);font-size:15.5px;padding-left:18px;position:relative;max-width:72ch}
+.next-music li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.sketch{max-width:72ch}
+.sketch p{color:var(--fg-2);font-size:17px;margin:14px 0 0}
+.sketch p b{color:var(--fg)}
+@media (prefers-reduced-motion: reduce){.era{transition:none}}
+</style>
+
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <span class="brand">MUSIC / HISTORY</span>
+    <a href="#answer">Answer</a><a href="#eras">Eras</a><a href="#constants">Constants</a><a href="#next">What comes next</a><a href="#sources">Sources</a>
+  </nav>
+
+  <header class="hero">
+    <p class="eyebrow">History of music · 2000 BCE – 2026 · and what may come next</p>
+    <h1>Why music <span class="yr">changes</span></h1>
+    <p class="lead">For four thousand years, new music has appeared when one of five forces shifted: <b>who pays</b> for it, <b>who rules</b>, <b>what people believe</b>, <b>what carries the sound</b> and <b>who meets whom</b>. This page follows those forces through thirteen eras, from temple hymns to AI songs, then reads the early trends of 2025–2026 to sketch what the next era may sound like.</p>
+    <p class="rel">Part of the 2050 party: <a href="https://claude.ai/artifact/WfgPk8RRF5sTM8spzwC1zp" target="_blank" rel="noopener">Soundtrack 2050 ↗</a> · <a href="https://claude.ai/artifact/EX8V3LEzvAEtW2p2y2NLBu" target="_blank" rel="noopener">Projection 2050 ↗</a> · <a href="https://claude.ai/artifact/1P94dXNkbjwjofDd2DzaUi" target="_blank" rel="noopener">Book Projection 2050 ↗</a></p>
+    <div class="mx-wrap">
+      <p class="eyebrow">The five forces, era by era</p>
+      <div class="mx-box"><table class="mx" id="mx" aria-label="Which forces drove new music in each era"></table></div>
+      <div class="mx-legend"><span><i style="background:var(--accent);border-color:transparent"></i>A main cause</span><span><i style="background:var(--accent-mid);border-color:transparent"></i>Present</span><span><i></i>Minor</span><span class="m">Editorial reading of the eras below. Click a cell to read that era.</span></div>
+    </div>
+  </header>
+
+  <section id="answer">
+    <div class="sec-head">
+      <p class="eyebrow">Answer</p>
+      <h2>Music changes when money, power, belief, technology or contact shifts, and the leading force keeps rotating</h2>
+      <p class="note">Before 1600, belief and rulers drive most new music. From the 1600s the paying public grows in weight, and since 1820 every era turns on a new technology. Power never leaves. The next shift is already visible: music is becoming abundant, generated and global, and its centre of gravity is moving south.</p>
+    </div>
+    <div class="findings" id="answerTiles"></div>
+  </section>
+
+  <section id="eras">
+    <div class="sec-head">
+      <p class="eyebrow">Thirteen eras</p>
+      <h2>What was happening, and why people made music</h2>
+      <p class="note">Each era names its context, the reasons music was made, the core idea it carried and three works to hear. The selection leans toward Europe and its descendants because their sources are best documented; it reaches into Mesopotamia, Egypt, India, China, the Islamic world, Africa’s diaspora, Latin America, Korea and the Soviet world where the record allows.</p>
+    </div>
+    <div class="eras" id="eraList"></div>
+  </section>
+
+  <section id="constants">
+    <div class="sec-head">
+      <p class="eyebrow">Constants</p>
+      <h2>What never changed</h2>
+    </div>
+    <div class="consts" id="constList"></div>
+  </section>
+
+  <section id="next">
+    <div class="sec-head">
+      <p class="eyebrow">What comes next</p>
+      <h2>Six contexts already forming, and the music they may produce</h2>
+      <p class="note">Each scenario starts from signals measured in 2024–2026, finds the moment in history it rhymes with, and suggests the music that could follow. Confidence says how strongly the signals already point that way; the music itself is speculation.</p>
+    </div>
+    <div id="scenList"></div>
+    <div class="sketch h-sub-like">
+      <p class="eyebrow" style="margin-top:48px">A sketch</p>
+      <h2>An evening of music in 2050, if these lines hold</h2>
+      <div id="sketch"></div>
+    </div>
+  </section>
+
+  <section id="sources">
+    <div class="two">
+      <div>
+        <p class="eyebrow">Sources</p>
+        <h2>Where the facts come from</h2>
+        <ul class="src-list" id="srcList"></ul>
+      </div>
+      <div>
+        <p class="eyebrow">What was not checked</p>
+        <h2>Where this could be wrong</h2>
+        <ul class="unc">
+          <li>The force scores are an editorial reading, not a measurement. They show which causes the cited sources stress for each era.</li>
+          <li>The eras lean toward Europe and its diaspora because those sources are best preserved and documented. Many musical traditions, oral ones above all, left no written record.</li>
+          <li>Dates before 1000 CE are approximate. Some stories are legends and are marked as such: Palestrina saving polyphony, and the political charge of “Va, pensiero” at its premiere.</li>
+          <li>Trend figures come from company reports and press coverage dated 2024–2026 and may be revised; each one links its source.</li>
+          <li>Scenarios extrapolate from current signals. The music described under each is speculation, labelled as such.</li>
+          <li>Listen links go to a search, not to a specific recording.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>Why Music Changes · compiled 13 November 2026 · force scores and scenarios are editorial, facts are linked</footer>
+</div>
+
+<script>
+(function(){
+const D=__ERAS_JSON__;
+const F=D.forces,FK=Object.keys(F),E=D.eras;
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const yt=q=>'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
+const yr=y=>y<0?(-y)+' BCE':String(y);
+const LV=['minor','present','a main cause'];
+const host=u=>{try{return new URL(u).hostname.replace(/^www\./,'').replace(/^en\.wikipedia\.org$/,'Wikipedia').replace(/^ru\.wikipedia\.org$/,'Russian Wikipedia')}catch(e){return u}};
+
+/* Matrix */
+const mx=document.getElementById('mx');
+mx.innerHTML='<thead><tr><th scope="col">Force</th>'+E.map(e=>'<th scope="col"><a href="#'+e.id+'">'+yr(e.from)+'<b>'+esc(e.short)+'</b></a></th>').join('')+'</tr></thead><tbody>'+
+ FK.map(k=>'<tr><th scope="row">'+esc(F[k].name)+'<span>'+esc(F[k].hint)+'</span></th>'+E.map(e=>{const v=e.forces[k];
+   return '<td><a href="#'+e.id+'" class="l'+v+'" title="'+esc(F[k].name+' · '+e.years+' '+e.name+': '+LV[v])+'" aria-label="'+esc(F[k].name+', '+e.name+': '+LV[v])+'"></a></td>'}).join('')+'</tr>').join('')+'</tbody>';
+
+/* Answer tiles: one computed from the matrix, the rest from the data */
+const early=E.filter(e=>e.to<=1600),late=E.filter(e=>e.from>=1820);
+const bEarly=early.filter(e=>e.forces.belief===2).length,bLate=late.filter(e=>e.forces.belief===2).length,tLate=late.filter(e=>e.forces.tech===2).length;
+const tiles=D.answer.slice();
+tiles.splice(1,0,{num:bEarly+' of '+early.length,text:'eras before 1600 have belief as a main force; after 1820 it is '+bLate+' of '+late.length+'. Technology is a main force in '+tLate+' of the '+late.length+' eras since 1820.',srcLabel:'From the matrix above'});
+document.getElementById('answerTiles').innerHTML=tiles.map((t,i)=>'<div class="fd'+(i===0?' key':'')+'"><div class="num">'+esc(t.num)+'</div><p>'+esc(t.text)+'</p><div class="src">'+(t.src?'<a href="'+esc(t.src)+'" target="_blank" rel="noopener">'+esc(t.srcLabel||host(t.src))+'</a>':esc(t.srcLabel||''))+'</div></div>').join('');
+
+/* Eras */
+document.getElementById('eraList').innerHTML=E.map((e,i)=>
+ '<article class="era" id="'+e.id+'">'+
+  '<div><div class="era-yr">'+esc(e.years)+'</div><h3>'+esc(e.name)+'</h3><div class="era-n">Era '+(i+1)+' of '+E.length+'</div>'+
+   '<div class="fbars" aria-label="Forces in this era">'+FK.map(k=>{const v=e.forces[k];return '<div class="fbar'+(v===2?' on':'')+'"><span>'+esc(F[k].name)+'</span><i title="'+LV[v]+'"><b class="l'+v+'"></b></i></div>'}).join('')+'</div></div>'+
+  '<div class="era-body">'+
+   '<div><h4>What was happening</h4><p>'+esc(e.context)+'</p></div>'+
+   '<div><h4>Why music was made</h4><p>'+esc(e.why)+'</p></div>'+
+   '<p class="era-idea">'+esc(e.idea)+'</p>'+
+   '<div><h4>Listen</h4><ul class="works">'+e.works.map(w=>'<li><a href="'+yt(w.q)+'" target="_blank" rel="noopener">'+esc(w.t)+' ↗</a><div class="by">'+esc(w.by)+'</div><span>'+esc(w.note)+'</span></li>').join('')+'</ul></div>'+
+   '<div class="era-src">Sources: '+e.src.map(u=>'<a href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(decodeURIComponent(u.split('/').pop()).replace(/_/g,' '))+'</a>').join(' · ')+'</div>'+
+  '</div></article>').join('');
+
+/* Constants */
+document.getElementById('constList').innerHTML=D.constants.map(c=>'<div><b>'+esc(c.t)+'</b><p>'+esc(c.x)+'</p></div>').join('');
+
+/* Scenarios */
+const CONF={high:'High confidence',medium:'Medium confidence',low:'Low confidence'};
+document.getElementById('scenList').innerHTML=D.scenarios.map((s,i)=>
+ '<article class="scen" id="'+s.id+'">'+
+  '<div><span class="conf '+s.conf+'">'+CONF[s.conf]+'</span><h3>'+esc(s.title)+'</h3><div class="scen-n">Scenario '+(i+1)+' of '+D.scenarios.length+' · forces: '+s.forces.map(k=>esc(F[k].name.toLowerCase())).join(', ')+'</div></div>'+
+  '<div class="scen-body">'+
+   '<div><h4>Signals now</h4><ul class="sig">'+s.signals.map(g=>'<li><span class="v">'+esc(g.v)+'</span><span>'+esc(g.text)+' <a href="'+esc(g.src)+'" target="_blank" rel="noopener">'+esc(g.label||host(g.src))+' ↗</a></span></li>').join('')+'</ul></div>'+
+   '<div><h4>History rhymes with</h4><p>'+esc(s.rhymes)+'</p></div>'+
+   '<div><h4>Music that may follow · speculation</h4><ul class="next-music">'+s.music.map(m=>'<li>'+esc(m)+'</li>').join('')+'</ul></div>'+
+   '<div><h4>Watch for</h4><p>'+esc(s.watch)+'</p></div>'+
+  '</div></article>').join('');
+document.getElementById('sketch').innerHTML=D.sketch.map(p=>'<p>'+p+'</p>').join('');
+
+/* Sources: every link used on the page, grouped */
+const seen=new Set(),src=[];
+const add=(u,label)=>{if(!u||seen.has(u))return;seen.add(u);src.push([u,label])};
+D.answer.forEach(t=>add(t.src,t.srcLabel));
+E.forEach(e=>e.src.forEach(u=>add(u,e.years+': '+decodeURIComponent(u.split('/').pop()).replace(/_/g,' '))));
+D.scenarios.forEach(s=>s.signals.forEach(g=>add(g.src,s.title+': '+(g.label||host(g.src)))));
+document.getElementById('srcList').innerHTML=src.map(([u,l])=>'<li><a href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(l||host(u))+'</a></li>').join('');
+
+/* Jump + flash */
+document.addEventListener('click',ev=>{
+  const a=ev.target.closest&&ev.target.closest('a[href^="#e"]');if(!a)return;
+  const node=document.getElementById(a.getAttribute('href').slice(1));if(!node||!node.classList.contains('era'))return;
+  node.classList.add('flash');setTimeout(()=>node.classList.remove('flash'),1800);
+});
+})();
+</script>

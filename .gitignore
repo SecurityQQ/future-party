@@ -1,0 +1,16 @@
+.DS_Store
+node_modules/
+
+# HyperFrames local state and caches (hold absolute local paths)
+video/.hyperframes/
+video/.thumbnails/
+
+# Renders are published as GitHub release assets (the 1080p master is over GitHub's 100 MB file limit)
+video/renders/
+
+# QA frames from review passes
+video/snapshots/
+
+# Re-fetchable from Wikimedia Commons: tools/fetch_picks.py and tools/commons_candidates.py
+video/assets/raw/
+video/assets/candidates/

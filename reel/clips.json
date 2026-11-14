@@ -1,0 +1,132 @@
+{
+ "checked": "2026-11-13",
+ "films": {
+  "her": {"fg": null, "sc": "https://shot.cafe/movie/her-2013", "trailer": ["dJTU48_yghs", "Rotten Tomatoes Trailers", true],
+   "clips": [
+    {"id": "her-1", "scene": "The city: Shanghai as Los Angeles, crowds and skyline", "v": "ne6p6MfLBxc", "ch": "Warner Bros.", "off": true, "note": "No scene clip of the city walks turned up. The official trailer carries the skyline and crowd shots."},
+    {"id": "her-2", "scene": "The Moon Song", "v": "CxahbnUCZxY", "ch": "Warner Bros.", "off": true, "note": "Studio upload of the scene."},
+    {"id": "her-3", "scene": "The Moon Song (alternate)", "v": "bVnQmll4kyU", "ch": "arkmario", "off": false, "note": "HD fan upload."},
+    {"id": "her-4", "scene": "Beach day", "v": "S7t4r2G2XCE", "ch": "IsaacamirDesigns", "off": false, "note": ""},
+    {"id": "her-5", "scene": "OS1 boots up", "v": "WOeyLpgjQ5Y", "ch": "That Martian", "off": false, "note": "Mostly dialogue: best as a short insert."}
+   ]},
+  "afteryang": {"fg": "https://film-grab.com/2022/07/04/after-yang/", "sc": null, "trailer": ["Kwp32zLc08c", "A24", true],
+   "clips": [
+    {"id": "ay-1", "scene": "Opening titles: the family dance battle", "v": "dRGU2J8BfvA", "ch": "MovieTitles", "off": false, "note": "The full title sequence. A strong opener for the night."},
+    {"id": "ay-2", "scene": "Dance battle (press clip)", "v": "Aan9ttOVuWU", "ch": "ScreenRant Plus", "off": true, "note": "Press release clip."},
+    {"id": "ay-3", "scene": "Yang's recorded memories", "v": "UTvAnwPd_6Q", "ch": "ComingSoon.net", "off": true, "note": "Press clip from the home release."},
+    {"id": "ay-4", "scene": "Yang's memory (Korean promo)", "v": "ZTS_-oX2Niw", "ch": "Korean distributor channel", "off": true, "note": "Distributor promo."}
+   ]},
+  "gattaca": {"fg": null, "sc": "https://shot.cafe/movie/gattaca-1997-211", "trailer": ["hWjlUj7Czlk", "TrailersPlaygroundHD", false],
+   "clips": [
+    {"id": "g-1", "scene": "Solar plant at sunset", "v": "fn_gUcCO-gM", "ch": "Vito Ciavarella", "off": false, "note": ""},
+    {"id": "g-2", "scene": "Every rocket launch in the film", "v": "iVfoCIx9pA0", "ch": "Saint", "off": false, "note": "A one-film supercut of the launches."},
+    {"id": "g-3", "scene": "Final launch", "v": "jqVHxRVRGDU", "ch": "Alternative Indie Music Hideout", "off": false, "note": "Intercut with a death scene: trim it for the party."},
+    {"id": "g-4", "scene": "Final launch (alternate)", "v": "DjIjCi83t7k", "ch": "Voyage", "off": false, "note": ""}
+   ]},
+  "martian": {"fg": "https://film-grab.com/2017/01/06/the-martian/", "sc": null, "trailer": ["ej3ioOneTy8", "20th Century Studios", true],
+   "clips": [
+    {"id": "m-1", "scene": "Opening on Mars, 4K HDR", "v": "k2Sb7tlMDNs", "ch": "Apex Clips", "off": false, "note": "Landscape and storm. No rover-drive clip turned up."},
+    {"id": "m-2", "scene": "Potato farm in the Hab", "v": "4sY8vLf-vMo", "ch": "Clippy Reels", "off": false, "note": "May be a vertical reel: check the framing."},
+    {"id": "m-3", "scene": "MAV blast-off", "v": "wsr4cymoa8g", "ch": "Alex Movie Clipz", "off": false, "note": ""},
+    {"id": "m-4", "scene": "Hermes rescue, 'Iron Man'", "v": "aD2aykHaz_U", "ch": "Entertainment Access", "off": false, "note": ""},
+    {"id": "m-5", "scene": "Hermes rescue (alternate)", "v": "iWg8GUOBtek", "ch": "Flix & Clips", "off": false, "note": ""}
+   ]},
+  "exmachina": {"fg": null, "sc": "https://shot.cafe/movie/ex-machina-2014-185", "trailer": ["bggUmgeMCdc", "A24", true],
+   "clips": [
+    {"id": "ex-1", "scene": "Nathan and Kyoko tear up the dance floor", "v": "b7C69HqnV8s", "ch": "Movieclips", "off": true, "note": "Licensed clip. The party moment of the night."},
+    {"id": "ex-2", "scene": "Dance scene (alternate)", "v": "ODef-GMF-ek", "ch": "Pascal Nouma", "off": false, "note": ""},
+    {"id": "ex-3", "scene": "Ava is free", "v": "0Gq5R5ffrtE", "ch": "Movieclips", "off": true, "note": "Licensed clip. The glacier and forest arrival is only in the trailer here."}
+   ]},
+  "s2001": {"fg": null, "sc": "https://shot.cafe/movie/2001-a-space-odyssey-1968", "trailer": ["6PJEuVgQE6Y", "The Shape Lurks", false],
+   "clips": [
+    {"id": "o-1", "scene": "Docking to the Blue Danube", "v": "0ZoSYsNADtY", "ch": "Screen Themes", "off": false, "note": "1080p."},
+    {"id": "o-2", "scene": "From bone to satellite", "v": "avjdKTqiVvQ", "ch": "Movieclips", "off": true, "note": "Licensed clip."},
+    {"id": "o-3", "scene": "Star Gate", "v": "zB_h-1U3lCs", "ch": "doagarfieldkartvideo", "off": false, "note": "4K upload. Very long and intense: cut a few minutes."}
+   ]},
+  "minority": {"fg": "https://film-grab.com/2013/09/03/minority-report/", "sc": "https://shot.cafe/movie/minority-report-2007", "trailer": ["lG7DGMgfOb8", "Rotten Tomatoes Classic Trailers", true],
+   "clips": [
+    {"id": "mr-1", "scene": "Precrime: the gesture interface", "v": "vrYKQiyeNv0", "ch": "godfunk", "off": false, "note": ""},
+    {"id": "mr-2", "scene": "Gesture interface (alternate)", "v": "NwVBzx0LMNQ", "ch": "ysnimkim", "off": false, "note": ""},
+    {"id": "mr-3", "scene": "Maglev chase, part 1", "v": "sZQ6p69Kg6c", "ch": "Templar613", "off": false, "note": "Which part holds the vertical highways is not checked."},
+    {"id": "mr-4", "scene": "Maglev chase, part 2", "v": "GCQpMT_iL9U", "ch": "Templar613", "off": false, "note": ""},
+    {"id": "mr-5", "scene": "Personal ads in the mall", "v": "oBaiKsYUdvg", "ch": "fayizaugusto", "off": false, "note": ""},
+    {"id": "mr-6", "scene": "Personal ads (alternate)", "v": "7bXJ_obaiYQ", "ch": "dscmailtest", "off": false, "note": ""}
+   ]},
+  "children": {"fg": "https://film-grab.com/2014/02/27/children-of-men/", "sc": "https://shot.cafe/movie/children-of-men-2006", "trailer": ["3CdJYhtjEns", "TrailersPlaygroundHD", false],
+   "clips": [
+    {"id": "c-1", "scene": "Car ambush in one take", "v": "KE8F9h5Geik", "ch": "Action Picks", "off": false, "note": "Violent. For the talk, not for the wall."},
+    {"id": "c-2", "scene": "Bexhill in one take", "v": "bcp344Yctx8", "ch": "Screen Bites", "off": false, "note": "Violent. For the talk, not for the wall."},
+    {"id": "c-3", "scene": "Bexhill (alternate)", "v": "g2vX7IHg_SE", "ch": "All Action", "off": false, "note": ""}
+   ]},
+  "interstellar": {"fg": "https://film-grab.com/2015/04/17/interstellar/", "sc": null, "trailer": ["0vxOhd4qlnA", "Interstellar Movie", true],
+   "clips": [
+    {"id": "i-1", "scene": "Dust storm on the farm", "v": "MJ9v-0jC4lQ", "ch": "Movie Scenes", "off": false, "note": "1080p."},
+    {"id": "i-2", "scene": "Through the wormhole at Saturn", "v": "69EUgdj7lzI", "ch": "4K HDR Media", "off": false, "note": "4K HDR."},
+    {"id": "i-3", "scene": "Wormhole (alternate)", "v": "RgWB_Fyz0JU", "ch": "Richard Parker", "off": false, "note": ""},
+    {"id": "i-4", "scene": "Miller's planet waves", "v": "DB8i1kyXkWc", "ch": "4K HDR Media", "off": false, "note": "4K HDR."},
+    {"id": "i-5", "scene": "Miller's planet (alternate)", "v": "IgZ3b92YlC0", "ch": "4K Clips HDR", "off": false, "note": ""},
+    {"id": "i-6", "scene": "Docking: no time for caution", "v": "onVhbeY7nLM", "ch": "4K HDR Media", "off": false, "note": "4K HDR."},
+    {"id": "i-7", "scene": "Docking (alternate)", "v": "oF5AmOOFOwQ", "ch": "Instrumental Corner", "off": false, "note": ""},
+    {"id": "i-8", "scene": "Cooper Station", "v": "8LiVGDq01FU", "ch": "4K Clips HDR", "off": false, "note": ""}
+   ]},
+  "br2049": {"fg": "https://film-grab.com/2019/05/24/blade-runner-2049/", "sc": "https://shot.cafe/movie/blade-runner-2049-2017-326", "trailer": ["gCcx85zbxz4", "Warner Bros.", true],
+   "clips": [
+    {"id": "b-1", "scene": "Opening flight over the farms", "v": "gSt2UNe12UA", "ch": "4K HDR Media", "off": false, "note": "4K HDR."},
+    {"id": "b-2", "scene": "Opening (alternate)", "v": "4GdA8d1VWWo", "ch": "Just The Best Scenes", "off": false, "note": ""},
+    {"id": "b-3", "scene": "Ruins of Las Vegas", "v": "4tfxReNqQgg", "ch": "Just The Best Scenes", "off": false, "note": "4K."},
+    {"id": "b-4", "scene": "Giant Joi hologram on the bridge", "v": "pdcWbwsPK5E", "ch": "Recall", "off": false, "note": ""},
+    {"id": "b-5", "scene": "Giant Joi (alternate)", "v": "1SW0dZYsMd0", "ch": "El extranjero", "off": false, "note": ""},
+    {"id": "b-6", "scene": "Joi in the rain", "v": "nL3o4MGY9NQ", "ch": "Movieclips", "off": true, "note": "Licensed clip."}
+   ]},
+  "creator": {"fg": "https://film-grab.com/2024/01/11/the-creator/", "sc": null, "trailer": ["HH0wFh3GAQo", "20th Century Studios AUNZ", true],
+   "clips": [
+    {"id": "cr-1", "scene": "Raid on the village", "v": "ZEGgHKS8b_M", "ch": "MovieGasm", "off": false, "note": "4K Blu-ray source. Temples, monks and rice fields turned up only in trailers."},
+    {"id": "cr-2", "scene": "NOMAD's final strike", "v": "4uvtHbtYUkk", "ch": "GameGasm", "off": false, "note": "4K Blu-ray source."},
+    {"id": "cr-3", "scene": "The city is under attack", "v": "vmmJr9EpOLI", "ch": "Rapid Trailer", "off": false, "note": ""},
+    {"id": "cr-4", "scene": "Final trailer in 4K", "v": "yd5vYmeuLgk", "ch": "MovieGasm", "off": false, "note": "Where the temple and rice-field shots are."}
+   ]},
+  "wildrobot": {"fg": null, "sc": null, "trailer": ["67vbA5ZJdKQ", "Universal Pictures", true],
+   "clips": [
+    {"id": "w-1", "scene": "Roz arrives and switches on", "v": "4NS7L9jH_pg", "ch": "Animation World Network", "off": true, "note": "Press clip."},
+    {"id": "w-2", "scene": "Roz learns the wild (alternate)", "v": "W4isFQE3Xtc", "ch": "Family Movie Picks", "off": false, "note": ""},
+    {"id": "w-3", "scene": "Kiss the Sky: flying lessons", "v": "mf8uM_JxhbA", "ch": "Gui Medina", "off": false, "note": "Fan upload labelled 'movie version': check it is the film cut."},
+    {"id": "w-4", "scene": "Migration over flooded San Francisco", "v": "Iz2duERiP7g", "ch": "JoBlo Animation 4K", "off": true, "note": "Press clip. The flooded city is not confirmed inside it."}
+   ]},
+  "panther": {"fg": "https://film-grab.com/2019/04/29/black-panther/", "sc": null, "trailer": ["ph9_oITIefE", "Marvel Australia & New Zealand", true],
+   "clips": [
+    {"id": "p-1", "scene": "Arrival over Wakanda", "v": "WK_yQD_s8f8", "ch": "Screen Master", "off": false, "note": "IMAX 4K upload."},
+    {"id": "p-2", "scene": "Arrival (alternate)", "v": "ip8o5OtSyv0", "ch": "MovieClipJunction", "off": false, "note": "No market or maglev clip turned up."}
+   ]},
+  "elysium": {"fg": "https://film-grab.com/2018/11/15/elysium/", "sc": null, "trailer": ["oIBtePb-dGY", "Sony Pictures Entertainment", true],
+   "clips": [
+    {"id": "e-1", "scene": "Ships inbound to the ring", "v": "jEuQTgzGPF8", "ch": "Sony Pictures India", "off": true, "note": "Studio clip."}
+   ]},
+  "oblivion": {"fg": "https://film-grab.com/2014/01/24/oblivion/", "sc": "https://shot.cafe/movie/oblivion-2013", "trailer": ["4fDGqL4-wQA", "Universal Pictures UK", true],
+   "clips": [
+    {"id": "ob-1", "scene": "The Sky Tower", "v": "2HePCq0b0yM", "ch": "Universal Pictures Ireland", "off": true, "note": "Studio clip. The ambient loop of the night."},
+    {"id": "ob-2", "scene": "The glass pool", "v": "_efA8cN4FWk", "ch": "DOD Multimedia", "off": false, "note": ""},
+    {"id": "ob-3", "scene": "Bubbleship flyby (deleted scene)", "v": "Q1HcVmmQ6N8", "ch": "E Manic", "off": false, "note": "No dialogue."},
+    {"id": "ob-4", "scene": "Bubbleship takeoff", "v": "Mznwd9I-kM0", "ch": "Matthew Law", "off": false, "note": ""}
+   ]},
+  "wanderers": {"fg": null, "sc": null, "trailer": null,
+   "clips": [
+    {"id": "wa-1", "scene": "The whole film", "v": "YH3c1QZzRK4", "ch": "Erik Wernquist - Digital Artist", "off": true, "note": "The author's own upload."},
+    {"id": "wa-2", "scene": "The whole film in 4K", "v": "TRnmS7s92o4", "ch": "a re-upload channel", "off": false, "note": "4K, but not the author's channel."}
+   ]},
+  "doc2040": {"fg": null, "sc": null, "trailer": ["p-rTQ443akE", "Madman Films", true],
+   "clips": [
+    {"id": "d-1", "scene": "Official trailer", "v": "p-rTQ443akE", "ch": "Madman Films", "off": true, "note": "The visualised 2040 scenes are in here."},
+    {"id": "d-2", "scene": "Solar microgrids segment", "v": "j6oB1UjwY5w", "ch": "SOLshare", "off": false, "note": "Uploaded by the company in the film."},
+    {"id": "d-3", "scene": "US trailer", "v": "McttTvr6eTc", "ch": "Together Films", "off": true, "note": ""}
+   ]},
+  "hyper": {"fg": null, "sc": null, "trailer": null,
+   "clips": [
+    {"id": "h-1", "scene": "The whole film", "v": "YJg02ivYzSs", "ch": "Keiichi Matsuda", "off": true, "note": "The author's own upload."}
+   ]}
+ },
+ "blocks": [
+  {"id": "city", "title": "Morning in 2050: the city", "when": "light frames, early evening", "items": ["ay-1", "her-1", "her-2", "p-1", "g-1", "g-2", "mr-3", "mr-5", "d-1"]},
+  {"id": "machines", "title": "Us and the machines", "when": "the middle, more contrast", "items": ["ex-1", "cr-4", "cr-1", "b-1", "b-3", "b-4", "w-4", "h-1"]},
+  {"id": "space", "title": "Beyond the horizon", "when": "late, dark space frames", "items": ["m-1", "m-3", "i-2", "i-4", "i-6", "o-1", "ob-1", "wa-1"]}
+ ]
+}

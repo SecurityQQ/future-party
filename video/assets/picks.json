@@ -1,0 +1,179 @@
+{
+ "supertrees": {
+  "title": "File:Singapore Supertree-Grove-in-The-Gardens-01.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "skywalk": {
+  "title": "File:Shanghai Lujiazui night skyline 2017 - Flickr.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "solar": {
+  "title": "File:Noor 1 and 2 - Ouarzazate Solar Power Station (48962353822).jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "maglev": {
+  "title": "File:A maglev train coming out, Pudong International Airport, Shanghai.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "waymo": {
+  "title": "File:Waymo Jaguar I-Pace in San Francisco 2023 dllu.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "barrier": {
+  "title": "File:Thames Barrier, London, England - Feb 2010.jpg",
+  "focus": [
+   0.42,
+   0.5
+  ]
+ },
+ "eden": {
+  "title": "File:Eden Project Biomes (9757315094).jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "wind": {
+  "title": "File:Block Island offshore wind farm P6290638m.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "sophia": {
+  "title": "File:Sophia (robot).jpg",
+  "focus": [
+   0.5,
+   0.25
+  ]
+ },
+ "valkyrie": {
+  "title": "File:ISS-29 second onboard tests of Robonaut 2.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "headset": {
+  "title": "File:Apple Vision Pro (M5, 2025) with Dual Knit Band on Display.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "frontier": {
+  "title": "File:Frontier Supercomputer (2).jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "sequencer": {
+  "title": "File:Ion Proton Sequencers, BGI Shenzhen.JPG",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "vfarm": {
+  "title": "File:IFarm.fi Vertical farm Finland.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "ingenuity": {
+  "title": "File:NASA's Ingenuity helicopter on Mars by Perseverance Mastcam-Z, Sol 768 (53475637956).jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "launch": {
+  "title": "File:Artemis I Launch (NHQ202211160029).jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "iss": {
+  "title": "File:The SpaceX Crew Dragon Endeavour approaches the International Space Station (iss065e002231).jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "veggie": {
+  "title": "File:ISS-44 VEGGIE Red Romaine Lettuce.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "perseverance": {
+  "title": "File:PIA24836 Perseverance's Selfie at Rochette.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "torus": {
+  "title": "File:Stanford Torus interior.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "saturn": {
+  "title": "File:Saturn global view from Cassini, rings open.jpg",
+  "focus": [
+   0.5,
+   0.18
+  ],
+  "fit": "contain"
+ },
+ "blackhole": {
+  "title": "File:Black hole - Messier 87.jpg",
+  "focus": [
+   0.5,
+   0.18
+  ],
+  "fit": "contain"
+ },
+ "cliffs": {
+  "title": "File:NASA’s Webb Reveals Cosmic Cliffs, Glittering Landscape of Star Birth.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "orion": {
+  "title": "File:Artemis I Flight Day 13- Orion, Earth, and Moon (art001e000679).jpeg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "earthrise": {
+  "title": "File:Earth-moon.jpg",
+  "focus": [
+   0.5,
+   0.55
+  ]
+ }
+}

@@ -1,0 +1,344 @@
+<title>Why Music Changes</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a history explainer in the varg look of the party pages. Hero = the forces-by-era matrix (one hue, three steps); then answer tiles, era rows, constants, scenarios, sources. Dark-first, light supported. */
+:root{
+  --bg:#070708; --raised:#0e0e10; --fg:#ffffff; --fg-2:#d6d6d6; --muted:#a1a1a1;
+  --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.20);
+  --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#ff6a33; --accent-soft:rgba(255,83,21,.13); --accent-mid:rgba(255,83,21,.42);
+  --dot:#5c5c62; --pos:#67fc5c; --warn:#ffad31; --idle:#a1a1a1;
+  --font:"Aeonik","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --r:10px; --r-s:6px;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#ffffff; --raised:#f6f6f6; --fg:#070708; --fg-2:#2c2c30; --muted:#737373;
+    --line:#e5e5e5; --line-2:#cfcfcf;
+    --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#c63a05; --accent-soft:rgba(255,83,21,.10); --accent-mid:rgba(255,83,21,.38);
+    --dot:#b9b9bd; --pos:#16883a; --warn:#a35f00; --idle:#737373;
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#ffffff; --raised:#f6f6f6; --fg:#070708; --fg-2:#2c2c30; --muted:#737373;
+  --line:#e5e5e5; --line-2:#cfcfcf;
+  --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#c63a05; --accent-soft:rgba(255,83,21,.10); --accent-mid:rgba(255,83,21,.38);
+  --dot:#b9b9bd; --pos:#16883a; --warn:#a35f00; --idle:#737373;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--font);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:64px;border-top:1px solid var(--line)}
+.eyebrow{font:500 12px/1.3 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0}
+h1{font-size:clamp(46px,9vw,112px);line-height:.92;letter-spacing:-.05em;font-weight:800;margin:18px 0 0;text-wrap:balance}
+h1 .yr{color:var(--accent)}
+h2{font-size:clamp(26px,3.6vw,40px);line-height:1.08;letter-spacing:-.035em;font-weight:700;margin:10px 0 0;text-wrap:balance}
+h3{margin:0;text-wrap:balance}
+.lead{font-size:clamp(18px,2.1vw,22px);line-height:1.5;color:var(--fg-2);max-width:62ch;margin:28px 0 0}
+.lead b{color:var(--fg);font-weight:600}
+.note{color:var(--muted);max-width:68ch;margin:14px 0 0;font-size:15px}
+.sec-head{display:grid;gap:4px;margin-bottom:32px;max-width:760px}
+.sec-head p.note{margin-top:10px}
+nav.top{display:flex;flex-wrap:wrap;gap:6px 18px;padding-block:18px;font:500 13px/1 var(--mono);letter-spacing:.04em}
+nav.top a{text-decoration:none;color:var(--muted)}
+nav.top a:hover{color:var(--fg)}
+nav.top .brand{color:var(--fg);margin-right:auto}
+
+/* Answer */
+.answer{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:48px;margin-top:8px}
+@media (max-width:860px){.answer{grid-template-columns:1fr;gap:36px}}
+.core{list-style:none;margin:18px 0 0;padding:0;display:grid}
+.core li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.core li:first-child{border-top:1px solid var(--line)}
+.core a{font-weight:650;font-size:18px;text-decoration:none;letter-spacing:-.01em}
+.core a:hover{color:var(--accent-ink)}
+.core .why{grid-column:1/-1;color:var(--muted);font-size:14.5px}
+.pb{font:500 13px/1.6 var(--mono);color:var(--fg-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.pb i{font-style:normal;color:var(--muted)}
+.wall-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.wall-list a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line-2);border-radius:999px;text-decoration:none;font-size:14.5px}
+.wall-list a:hover{border-color:var(--fg)}
+.wall-list .sw{display:inline-flex;width:28px;height:10px;border-radius:2px;overflow:hidden}
+.wall-list .sw b{flex:1}
+.method{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:14.5px}
+.method strong{color:var(--fg-2);font-weight:600}
+
+/* Findings */
+.findings{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+@media (max-width:900px){.findings{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.findings{grid-template-columns:1fr}}
+.fd{padding:26px 24px 28px 0;border-bottom:1px solid var(--line);display:grid;gap:10px;align-content:start}
+.fd .num{font-size:clamp(40px,5vw,60px);font-weight:750;letter-spacing:-.045em;line-height:1;font-variant-numeric:tabular-nums}
+.fd.key .num{color:var(--accent)}
+.fd p{margin:0;color:var(--fg-2);font-size:15.5px;max-width:42ch}
+.fd .src{font:400 12px/1.4 var(--mono);color:var(--muted)}
+.fd .src a{color:var(--muted)}
+/* Filters + cards */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.filters button{font:500 14px/1 var(--font);color:var(--fg-2);background:transparent;border:1px solid var(--line-2);border-radius:999px;padding:10px 14px;cursor:pointer}
+.filters button:hover{border-color:var(--fg)}
+.filters button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.filters .count{font:400 12px var(--mono);opacity:.7;margin-left:6px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font:500 11.5px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;padding:6px 8px;border-radius:var(--r-s);border:1px solid var(--line-2);color:var(--fg-2)}
+.tag.gold{border-color:var(--accent);color:var(--accent-ink)}
+.tips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;margin-top:40px}
+@media (max-width:760px){.tips{grid-template-columns:1fr}}
+.tips div{padding:14px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--fg-2)}
+.tips div b{display:block;color:var(--fg);font-weight:600;margin-bottom:4px}
+/* Sources */
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px}
+@media (max-width:860px){.two{grid-template-columns:1fr;gap:32px}}
+.src-list{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:10px;font-size:14px}
+.src-list li{color:var(--muted)}
+.src-list a{color:var(--fg-2);text-underline-offset:3px;text-decoration-color:var(--line-2);word-break:break-word}
+.src-list a:hover{color:var(--accent-ink)}
+.unc{margin:16px 0 0;padding-left:18px;display:grid;gap:10px;font-size:14.5px;color:var(--fg-2)}
+footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12px/1.6 var(--mono);color:var(--muted)}
+
+
+/* Why Music Changes: hero = the forces-by-era matrix; then answer tiles, 13 era rows, constants, scenarios, sources. */
+.hero{padding-block:40px 56px;border-top:0}
+.rel{margin:18px 0 0;font:400 13px/1.6 var(--mono);color:var(--muted)}
+.rel a{color:var(--fg-2);text-underline-offset:3px;text-decoration-color:var(--line-2)}
+.rel a:hover{color:var(--accent-ink)}
+
+.mx-wrap{margin-top:40px}
+.mx-box{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+.mx{border-collapse:separate;border-spacing:4px;width:100%;min-width:900px;font-size:13px;table-layout:fixed}
+.mx thead th:first-child{width:160px}
+.mx th,.mx td{border:0;padding:0;background:transparent}
+.mx thead th{font:500 11.5px/1.3 var(--mono);color:var(--muted);text-align:left;padding:10px 2px 6px;vertical-align:bottom;letter-spacing:.02em;text-transform:none;background:transparent}
+.mx thead th a{color:inherit;text-decoration:none;display:block}
+.mx thead th a:hover{color:var(--fg)}
+.mx thead th b{display:block;color:var(--fg-2);font:600 12px/1.25 var(--font);margin-top:3px;letter-spacing:0}
+.mx tbody th{font:500 12.5px/1.3 var(--mono);color:var(--fg-2);text-align:left;white-space:nowrap;padding:0 12px 0 10px;width:150px}
+.mx tbody th span{display:block;font:400 11px/1.3 var(--font);color:var(--muted);white-space:normal;margin-top:2px}
+.mx td a{display:block;height:34px;border-radius:4px;border:1px solid var(--line-2)}
+.mx td a.l1{background:var(--accent-mid);border-color:transparent}
+.mx td a.l2{background:var(--accent);border-color:transparent}
+.mx td a:hover,.mx td a:focus-visible{outline:2px solid var(--fg);outline-offset:1px}
+.mx-legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin:12px 0 0;font-size:14px;color:var(--fg-2)}
+.mx-legend span{display:inline-flex;align-items:center;gap:8px}
+.mx-legend i{width:14px;height:14px;border-radius:3px;display:inline-block;border:1px solid var(--line-2)}
+.mx-legend .m{color:var(--muted)}
+
+.eras{display:grid;gap:0}
+.era{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:24px 48px;padding:40px 0;border-top:1px solid var(--line);scroll-margin-top:24px;transition:background-color .6s}
+.era:first-child{border-top:0;padding-top:8px}
+.era.flash{background:var(--accent-soft)}
+@media (max-width:860px){.era{grid-template-columns:1fr;gap:20px}}
+.era-yr{font:500 13px/1.3 var(--mono);color:var(--accent-ink);letter-spacing:.04em}
+.era h3{font-size:clamp(24px,2.8vw,32px);letter-spacing:-.03em;line-height:1.1;margin-top:8px}
+.era-n{font:400 12px var(--mono);color:var(--muted);margin-top:8px}
+.fbars{display:grid;gap:7px;margin-top:20px;max-width:280px}
+.fbar{display:grid;grid-template-columns:118px 1fr;align-items:center;gap:10px;font:400 12px var(--mono);color:var(--muted)}
+.fbar i{display:block;height:6px;border-radius:3px;background:var(--line)}
+.fbar i b{display:block;height:100%;border-radius:3px}
+.fbar i b.l1{width:50%;background:var(--accent-mid)}
+.fbar i b.l2{width:100%;background:var(--accent)}
+.fbar.on{color:var(--fg-2)}
+.era-body{min-width:0;display:grid;gap:18px;align-content:start}
+.era-body h4{margin:0;font:500 11.5px/1.3 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.era-body p{margin:6px 0 0;color:var(--fg-2);font-size:16px;max-width:70ch}
+.era-idea{font-size:clamp(20px,2.2vw,25px);line-height:1.3;letter-spacing:-.02em;font-weight:650;color:var(--fg);margin:0;max-width:40ch;text-wrap:balance}
+.era-idea::before{content:"“";color:var(--accent)}
+.era-idea::after{content:"”";color:var(--accent)}
+.works{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:0 24px}
+.works li{padding:10px 0;border-top:1px solid var(--line);font-size:14.5px;min-width:0}
+.works a{color:var(--fg);font-weight:600;text-decoration:none}
+.works a:hover{color:var(--accent-ink)}
+.works span{display:block;color:var(--muted);font-size:13.5px;margin-top:2px}
+.works .by{font:400 12px/1.5 var(--mono);color:var(--fg-2);margin-top:2px}
+.era-src{font:400 12px/1.6 var(--mono);color:var(--muted)}
+.era-src a{color:var(--muted);text-underline-offset:3px}
+.era-src a:hover{color:var(--accent-ink)}
+
+.consts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,210px),1fr));gap:0 28px}
+.consts div{padding:16px 0;border-top:2px solid var(--fg);min-width:0}
+.consts b{display:block;font-size:17px;letter-spacing:-.01em}
+.consts p{margin:6px 0 0;color:var(--fg-2);font-size:14.5px}
+
+.scen{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:20px 48px;padding:36px 0;border-top:1px solid var(--line)}
+.scen:first-child{border-top:0;padding-top:8px}
+@media (max-width:860px){.scen{grid-template-columns:1fr}}
+.scen h3{font-size:clamp(22px,2.6vw,28px);letter-spacing:-.03em;line-height:1.15;margin-top:8px}
+.conf{display:inline-block;font:500 11px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;padding:5px 7px;border-radius:4px;border:1px solid currentColor}
+.conf.high{color:var(--pos)} .conf.medium{color:var(--warn)} .conf.low{color:var(--idle)}
+.scen-n{font:400 12px var(--mono);color:var(--muted);margin-top:10px}
+.scen-body{min-width:0;display:grid;gap:18px}
+.scen-body h4{margin:0;font:500 11.5px/1.3 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.scen-body p{margin:6px 0 0;color:var(--fg-2);font-size:15.5px;max-width:72ch}
+.sig{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:0}
+.sig li{display:grid;grid-template-columns:minmax(84px,auto) minmax(0,1fr);gap:4px 16px;padding:10px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--fg-2)}
+.sig .v{font:650 18px/1.3 var(--font);color:var(--fg);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.sig a{color:var(--muted);font:400 12px var(--mono);text-underline-offset:3px;white-space:nowrap}
+.sig a:hover{color:var(--accent-ink)}
+.next-music{margin:6px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+.next-music li{color:var(--fg);font-size:15.5px;padding-left:18px;position:relative;max-width:72ch}
+.next-music li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.sketch{max-width:72ch}
+.sketch p{color:var(--fg-2);font-size:17px;margin:14px 0 0}
+.sketch p b{color:var(--fg)}
+@media (prefers-reduced-motion: reduce){.era{transition:none}}
+</style>
+
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <span class="brand">MUSIC / HISTORY</span>
+    <a href="#answer">Answer</a><a href="#eras">Eras</a><a href="#constants">Constants</a><a href="#next">What comes next</a><a href="#sources">Sources</a>
+  </nav>
+
+  <header class="hero">
+    <p class="eyebrow">History of music · 2000 BCE – 2026 · and what may come next</p>
+    <h1>Why music <span class="yr">changes</span></h1>
+    <p class="lead">For four thousand years, new music has appeared when one of five forces shifted: <b>who pays</b> for it, <b>who rules</b>, <b>what people believe</b>, <b>what carries the sound</b> and <b>who meets whom</b>. This page follows those forces through thirteen eras, from temple hymns to AI songs, then reads the early trends of 2025–2026 to sketch what the next era may sound like.</p>
+    <p class="rel">Part of the 2050 party: <a href="https://claude.ai/artifact/WfgPk8RRF5sTM8spzwC1zp" target="_blank" rel="noopener">Soundtrack 2050 ↗</a> · <a href="https://claude.ai/artifact/EX8V3LEzvAEtW2p2y2NLBu" target="_blank" rel="noopener">Projection 2050 ↗</a> · <a href="https://claude.ai/artifact/1P94dXNkbjwjofDd2DzaUi" target="_blank" rel="noopener">Book Projection 2050 ↗</a></p>
+    <div class="mx-wrap">
+      <p class="eyebrow">The five forces, era by era</p>
+      <div class="mx-box"><table class="mx" id="mx" aria-label="Which forces drove new music in each era"></table></div>
+      <div class="mx-legend"><span><i style="background:var(--accent);border-color:transparent"></i>A main cause</span><span><i style="background:var(--accent-mid);border-color:transparent"></i>Present</span><span><i></i>Minor</span><span class="m">Editorial reading of the eras below. Click a cell to read that era.</span></div>
+    </div>
+  </header>
+
+  <section id="answer">
+    <div class="sec-head">
+      <p class="eyebrow">Answer</p>
+      <h2>Music changes when money, power, belief, technology or contact shifts, and the leading force keeps rotating</h2>
+      <p class="note">Before 1600, belief and rulers drive most new music. From the 1600s the paying public grows in weight, and since 1820 every era turns on a new technology. Power never leaves. The next shift is already visible: music is becoming abundant, generated and global, and its centre of gravity is moving south.</p>
+    </div>
+    <div class="findings" id="answerTiles"></div>
+  </section>
+
+  <section id="eras">
+    <div class="sec-head">
+      <p class="eyebrow">Thirteen eras</p>
+      <h2>What was happening, and why people made music</h2>
+      <p class="note">Each era names its context, the reasons music was made, the core idea it carried and three works to hear. The selection leans toward Europe and its descendants because their sources are best documented; it reaches into Mesopotamia, Egypt, India, China, the Islamic world, Africa’s diaspora, Latin America, Korea and the Soviet world where the record allows.</p>
+    </div>
+    <div class="eras" id="eraList"></div>
+  </section>
+
+  <section id="constants">
+    <div class="sec-head">
+      <p class="eyebrow">Constants</p>
+      <h2>What never changed</h2>
+    </div>
+    <div class="consts" id="constList"></div>
+  </section>
+
+  <section id="next">
+    <div class="sec-head">
+      <p class="eyebrow">What comes next</p>
+      <h2>Six contexts already forming, and the music they may produce</h2>
+      <p class="note">Each scenario starts from signals measured in 2024–2026, finds the moment in history it rhymes with, and suggests the music that could follow. Confidence says how strongly the signals already point that way; the music itself is speculation.</p>
+    </div>
+    <div id="scenList"></div>
+    <div class="sketch h-sub-like">
+      <p class="eyebrow" style="margin-top:48px">A sketch</p>
+      <h2>An evening of music in 2050, if these lines hold</h2>
+      <div id="sketch"></div>
+    </div>
+  </section>
+
+  <section id="sources">
+    <div class="two">
+      <div>
+        <p class="eyebrow">Sources</p>
+        <h2>Where the facts come from</h2>
+        <ul class="src-list" id="srcList"></ul>
+      </div>
+      <div>
+        <p class="eyebrow">What was not checked</p>
+        <h2>Where this could be wrong</h2>
+        <ul class="unc">
+          <li>The force scores are an editorial reading, not a measurement. They show which causes the cited sources stress for each era.</li>
+          <li>The eras lean toward Europe and its diaspora because those sources are best preserved and documented. Many musical traditions, oral ones above all, left no written record.</li>
+          <li>Dates before 1000 CE are approximate. Some stories are legends and are marked as such: Palestrina saving polyphony, and the political charge of “Va, pensiero” at its premiere.</li>
+          <li>Trend figures come from company reports and press coverage dated 2024–2026 and may be revised; each one links its source.</li>
+          <li>Scenarios extrapolate from current signals. The music described under each is speculation, labelled as such.</li>
+          <li>Listen links go to a search, not to a specific recording.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>Why Music Changes · compiled 13 November 2026 · force scores and scenarios are editorial, facts are linked</footer>
+</div>
+
+<script>
+(function(){
+const D={"_about":"Why music changes, 2000 BCE–2026 and next. forces: 0 = minor, 1 = present, 2 = a main cause of the era's new music (editorial). Works: q = search query. scenarios: early trends with sourced signals.","forces":{"money":{"name":"Who pays","hint":"temples, courts, churches, ticket buyers, record buyers, platforms"},"power":{"name":"Who rules","hint":"kings, states, revolutions, censors, law"},"belief":{"name":"What people believe","hint":"religion, philosophy, ideology"},"tech":{"name":"What carries sound","hint":"instruments, notation, print, records, radio, internet, AI"},"contact":{"name":"Who meets whom","hint":"trade, conquest, migration, slavery, globalization"}},"eras":[{"id":"e1","from":-2000,"to":-500,"years":"2000–500 BCE","name":"Temples and kings","context":"The first states of Mesopotamia, Egypt, the Indus and Ganges plains and China are run by priest-kings. Writing serves temples, taxes and laws. Hymns already have named authors: the priestess Enheduanna wrote hymns to Inanna around 2300 BCE.","why":"Music speaks to the gods, keeps the calendar of rituals and shows the ruler’s bond with heaven. Temple singers and palace musicians are trained professionals. Funerals and feasts have songs too: Egyptian tomb walls of the Middle Kingdom show blind harpists, whose songs urge the living to enjoy their days.","idea":"Music keeps the world in order.","forces":{"money":1,"power":2,"belief":2,"tech":1,"contact":1},"works":[{"t":"Hurrian Hymn to Nikkal","by":"Ugarit, c. 1400 BCE","note":"the oldest substantially complete notated music","q":"Hurrian Hymn No. 6"},{"t":"Samaveda chant","by":"Vedic India","note":"the Veda of melodies, chanted in ritual","q":"Samaveda chanting"},{"t":"Harper’s songs","by":"Middle Kingdom Egypt","note":"tomb songs telling the living to enjoy life","q":"Ancient Egyptian harp music reconstruction"}],"src":["https://en.wikipedia.org/wiki/Enheduanna","https://en.wikipedia.org/wiki/Hurrian_songs","https://en.wikipedia.org/wiki/Samaveda","https://en.wikipedia.org/wiki/Harper%27s_Songs"],"short":"Temples"},{"id":"e2","from":-500,"to":400,"years":"500 BCE–400 CE","name":"Philosophers and city festivals","context":"Greek city-states and then the Roman Empire around the Mediterranean; the Warring States and the Han dynasty in China; the Mauryan and Gupta empires in India. Philosophers ask what makes a good citizen.","why":"Music becomes a question of character and law. In Plato’s Republic some modes are banned because they make citizens soft. Confucius treats ritual music as a tool for social harmony. Athens stages tragedies with sung choruses at civic festivals, and Rome pays musicians for spectacle and the army. In China a ruler is buried with 65 bronze bells, each cast to sound two pitches.","idea":"Music shapes character, so the state cares what people hear.","forces":{"money":1,"power":2,"belief":2,"tech":1,"contact":1},"works":[{"t":"Bianzhong of Marquis Yi","by":"China, 433 BCE","note":"65 bronze bells, each sounding two pitches","q":"Marquis Yi of Zeng bianzhong performance"},{"t":"Delphic Hymns","by":"Greece, 128 BCE","note":"hymns to Apollo carved in stone at Delphi","q":"Delphic Hymn to Apollo"},{"t":"Seikilos epitaph","by":"Asia Minor, 1st–2nd century CE","note":"the oldest complete song: “While you live, shine”","q":"Seikilos epitaph"}],"src":["https://en.wikipedia.org/wiki/Bianzhong_of_Marquis_Yi_of_Zeng","https://en.wikipedia.org/wiki/Delphic_Hymns","https://en.wikipedia.org/wiki/Seikilos_epitaph","https://en.wikipedia.org/wiki/Musical_system_of_ancient_Greece"],"short":"Philosophers"},{"id":"e3","from":400,"to":1000,"years":"400–1000","name":"Faith and empire","context":"Christianity becomes the state religion of Rome in 380. The western empire falls; Byzantium, the Frankish kingdoms and, from the 7th century, the Islamic caliphates hold power. Tang China trades along the Silk Road.","why":"Rulers use one shared chant to bind their lands to one church: according to Charlemagne, his father Pepin replaced the local Gallican rites with Roman chant to strengthen ties with Rome. In Baghdad, scholars such as al-Kindi build on Greek theory and write about the oud. Tang court orchestras play instruments such as the pipa that came along the Silk Road.","idea":"One faith, one sound.","forces":{"money":1,"power":2,"belief":2,"tech":1,"contact":2},"works":[{"t":"Gregorian chant","by":"Frankish empire, 9th century","note":"Roman chant spread across an empire","q":"Gregorian chant Puer natus est"},{"t":"Byzantine chant","by":"Constantinople","note":"the eastern church’s sung liturgy","q":"Byzantine chant"},{"t":"Pipa music","by":"Tang China","note":"a lute that arrived along the Silk Road","q":"pipa ancient Chinese music"}],"src":["https://en.wikipedia.org/wiki/Edict_of_Thessalonica","https://en.wikipedia.org/wiki/Gregorian_chant","https://en.wikipedia.org/wiki/Al-Kindi","https://en.wikipedia.org/wiki/Pipa"],"short":"Faith & empire"},{"id":"e4","from":1000,"to":1400,"years":"1000–1400","name":"Cathedrals, courts and towns","context":"Towns and trade revive, universities appear (Bologna, c. 1088), Gothic cathedrals rise, and the Crusades and Muslim Spain bring Europe into contact with Arabic learning. The Black Death (1347–51) kills 30–60% of Europe’s people.","why":"Cathedral choirs compete in splendour with polyphony: Pérotin writes for four voices at Notre-Dame. Noble courts support troubadours, starting with Duke William IX of Aquitaine, who sing of love in the local language instead of Latin. Hildegard of Bingen writes chants from her visions. The Arab oud becomes the European lute.","idea":"Human love is a worthy subject for art.","forces":{"money":1,"power":1,"belief":2,"tech":2,"contact":2},"works":[{"t":"Viderunt omnes","by":"Pérotin, c. 1198","note":"four independent voices at Notre-Dame","q":"Perotin Viderunt omnes"},{"t":"Can vei la lauzeta mover","by":"Bernart de Ventadorn, 12th century","note":"a troubadour love song","q":"Can vei la lauzeta mover"},{"t":"Messe de Nostre Dame","by":"Guillaume de Machaut, c. 1360s","note":"the earliest complete Mass by a single composer","q":"Machaut Messe de Nostre Dame"}],"src":["https://en.wikipedia.org/wiki/University_of_Bologna","https://en.wikipedia.org/wiki/Black_Death","https://en.wikipedia.org/wiki/P%C3%A9rotin","https://en.wikipedia.org/wiki/William_IX_of_Aquitaine","https://en.wikipedia.org/wiki/Oud","https://en.wikipedia.org/wiki/Messe_de_Nostre_Dame"],"short":"Cathedrals"},{"id":"e5","from":1400,"to":1600,"years":"1400–1600","name":"Print, Reformation and humanism","context":"The printing press (c. 1450) spreads books and ideas. Luther’s Reformation (1517) splits the western church, and the Catholic Church answers at the Council of Trent (1545–63). Europe begins to colonize the Americas.","why":"Printed part-books let wealthy amateurs sing madrigals at home. Luther wants whole congregations to sing in German: the first Lutheran hymnal appears in 1524, and he writes “A Mighty Fortress” around 1529. Catholic reformers want the words of the Mass to be heard clearly; the story that Palestrina’s Pope Marcellus Mass saved polyphony is a later legend.","idea":"Everyone sings, in their own language.","forces":{"money":1,"power":1,"belief":2,"tech":2,"contact":1},"works":[{"t":"Ein feste Burg ist unser Gott","by":"Martin Luther, c. 1529","note":"a hymn for the whole congregation","q":"Ein feste Burg ist unser Gott"},{"t":"Missa Papae Marcelli","by":"Palestrina, 1562","note":"polyphony with clear words","q":"Palestrina Missa Papae Marcelli"},{"t":"Spem in alium","by":"Thomas Tallis, c. 1570","note":"a motet for 40 separate voices","q":"Tallis Spem in alium"}],"src":["https://en.wikipedia.org/wiki/Harmonice_Musices_Odhecaton","https://en.wikipedia.org/wiki/First_Lutheran_hymnal","https://en.wikipedia.org/wiki/A_Mighty_Fortress_Is_Our_God","https://en.wikipedia.org/wiki/Missa_Papae_Marcelli","https://en.wikipedia.org/wiki/Spem_in_alium"],"short":"Print & Reform"},{"id":"e6","from":1600,"to":1750,"years":"1600–1750","name":"Absolutism and the Baroque","context":"Absolute monarchs such as Louis XIV centralize power. The Thirty Years’ War devastates central Europe. Trade, including the Atlantic slave trade, makes Venice, Amsterdam and London rich.","why":"Opera starts as court spectacle; in 1637 Venice opens Teatro San Cassiano, the first public opera house, for anyone who buys a ticket. Bach writes weekly cantatas for Leipzig’s churches. Vivaldi teaches the girls of a Venetian orphanage, whose concerts draw visitors from across Europe. Handel sells operas and oratorios to the London public; Messiah premieres in Dublin in 1742 at a charity concert.","idea":"Music moves the passions and displays power.","forces":{"money":2,"power":2,"belief":1,"tech":1,"contact":1},"works":[{"t":"L’Orfeo","by":"Claudio Monteverdi, 1607","note":"an early opera, made for a court","q":"Monteverdi L'Orfeo"},{"t":"The Four Seasons","by":"Antonio Vivaldi, 1725","note":"written while he worked with the Pietà orphanage","q":"Vivaldi Four Seasons"},{"t":"Messiah","by":"George Frideric Handel, 1742","note":"premiered at a charity concert in Dublin","q":"Handel Messiah Hallelujah"}],"src":["https://en.wikipedia.org/wiki/Teatro_San_Cassiano","https://en.wikipedia.org/wiki/Ospedale_della_Piet%C3%A0","https://en.wikipedia.org/wiki/Messiah_(Handel)","https://en.wikipedia.org/wiki/L%27Orfeo"],"short":"Baroque courts"},{"id":"e7","from":1750,"to":1820,"years":"1750–1820","name":"Enlightenment and revolution","context":"The Enlightenment puts its trust in reason, a middle class grows, the American (1776) and French (1789) revolutions overturn old rule, and Napoleon remakes Europe.","why":"Composers move from servants to entrepreneurs. Mozart breaks with his Salzburg employer in 1781 to work freelance in Vienna; Haydn conducts new symphonies in London for the impresario Salomon (1791–95). Revolutions need songs: “La Marseillaise” is written in 1792. Beethoven dedicates his Third Symphony to Napoleon, then scratches out the dedication after Napoleon makes himself emperor.","idea":"The composer is a free citizen, and music speaks to the public.","forces":{"money":2,"power":2,"belief":2,"tech":1,"contact":1},"works":[{"t":"The Marriage of Figaro","by":"Mozart, 1786","note":"servants outwit their count","q":"Mozart Marriage of Figaro overture"},{"t":"Symphony No. 94 “Surprise”","by":"Haydn, 1792","note":"written for London’s paying public","q":"Haydn Surprise Symphony"},{"t":"Symphony No. 3 “Eroica”","by":"Beethoven, 1804","note":"the dedication to Napoleon scratched out","q":"Beethoven Eroica Symphony"}],"src":["https://en.wikipedia.org/wiki/Wolfgang_Amadeus_Mozart","https://en.wikipedia.org/wiki/Joseph_Haydn","https://en.wikipedia.org/wiki/La_Marseillaise","https://en.wikipedia.org/wiki/Symphony_No._3_(Beethoven)"],"short":"Revolution"},{"id":"e8","from":1820,"to":1900,"years":"1820–1900","name":"Industry, nation and the romantic self","context":"Railways, factories and cities spread. Revolutions break out in 1848, Italy and Germany unify, and empires expand overseas. Russia ends serfdom in 1861 and the US abolishes slavery in 1865.","why":"Factory-made pianos enter middle-class homes, and publishers sell sheet music to fill them. Star virtuosos tour by rail; in 1844 Heine coins “Lisztomania” for the fan frenzy around Liszt. New nations want their own sound in Glinka, Smetana and Verdi, though how political “Va, pensiero” was at its premiere is debated. The Fisk Jubilee Singers tour from 1871 to fund their university and bring spirituals to the world. Against the machine age, composers write about nature and longing; Wagner builds a theatre in Bayreuth (1876) for his own total artwork.","idea":"Music expresses the self and the nation.","forces":{"money":2,"power":2,"belief":1,"tech":2,"contact":1},"works":[{"t":"Hungarian Rhapsody No. 2","by":"Franz Liszt, 1847","note":"virtuoso showpiece of a touring star","q":"Liszt Hungarian Rhapsody No. 2"},{"t":"Vltava (The Moldau)","by":"Bedřich Smetana, 1874","note":"a river as a nation’s portrait","q":"Smetana Moldau"},{"t":"Swing Low, Sweet Chariot","by":"Fisk Jubilee Singers","note":"spirituals sung to fund a Black university","q":"Fisk Jubilee Singers Swing Low Sweet Chariot"}],"src":["https://en.wikipedia.org/wiki/Lisztomania","https://en.wikipedia.org/wiki/Va,_pensiero","https://en.wikipedia.org/wiki/Fisk_Jubilee_Singers","https://en.wikipedia.org/wiki/Bayreuth_Festspielhaus"],"short":"Industry & nation"},{"id":"e9","from":1900,"to":1945,"years":"1900–1945","name":"Machines, migration and total war","context":"Electricity, cars and cinema arrive. From 1910 the Great Migration takes millions of Black Americans from the South to northern cities. Two world wars, the Russian Revolution, the Depression and totalitarian states follow.","why":"Blues and jazz carry the African American experience into the cities and, on records and radio, to the world. Artists shaken by modern life break the old rules (The Rite of Spring, 1913). States treat music as a weapon: in 1936 Pravda attacks Shostakovich’s opera as “Muddle instead of music”; in 1938 the Nazis stage a “Degenerate Music” exhibition in Düsseldorf; on 9 August 1942 Shostakovich’s Seventh is played in besieged Leningrad.","idea":"Music is power: states fear it and use it.","forces":{"money":2,"power":2,"belief":1,"tech":2,"contact":2},"works":[{"t":"West End Blues","by":"Louis Armstrong, 1928","note":"improvisation as the main event","q":"Louis Armstrong West End Blues"},{"t":"The Rite of Spring","by":"Igor Stravinsky, 1913","note":"the premiere ended in uproar","q":"Stravinsky Rite of Spring"},{"t":"Symphony No. 7 “Leningrad”","by":"Dmitri Shostakovich, 1941","note":"played in the besieged city in 1942","q":"Shostakovich Symphony 7 Leningrad"}],"src":["https://en.wikipedia.org/wiki/Great_Migration_(African_American)","https://en.wikipedia.org/wiki/Lady_Macbeth_of_Mtsensk_(opera)","https://en.wikipedia.org/wiki/Degenerate_music","https://en.wikipedia.org/wiki/Leningrad_premi%C3%A8re_of_Shostakovich%27s_Symphony_No._7"],"short":"Total war"},{"id":"e10","from":1945,"to":1970,"years":"1945–1970","name":"Youth, rights and the Cold War","context":"A baby boom and rising wages give teenagers money of their own. Colonies win independence. The civil-rights movement, the Cold War and the Vietnam War divide societies.","why":"Record labels sell rock and roll to the new teenage market. Protest songs carry civil-rights marches and anti-war rallies. The US sends jazz musicians abroad as “Jazz Ambassadors” from 1956, while Soviet fans cut banned Western music into discarded X-ray film. Motown, founded in Detroit in 1959, becomes a Black-owned hit factory. Newly independent Jamaica creates ska and reggae; in Brazil, Tropicália (1968) takes on the military regime, and its leaders Caetano Veloso and Gilberto Gil are forced into exile.","idea":"Music is a generation’s identity and a tool of liberation.","forces":{"money":2,"power":2,"belief":1,"tech":2,"contact":2},"works":[{"t":"Johnny B. Goode","by":"Chuck Berry, 1958","note":"rock and roll for the teenage market","q":"Chuck Berry Johnny B. Goode"},{"t":"A Change Is Gonna Come","by":"Sam Cooke, 1964","note":"an anthem of the civil-rights era","q":"Sam Cooke A Change Is Gonna Come"},{"t":"Tropicália","by":"Caetano Veloso, 1968","note":"pop collage under a dictatorship","q":"Caetano Veloso Tropicália"}],"src":["https://en.wikipedia.org/wiki/Jazz_ambassadors","https://en.wikipedia.org/wiki/Ribs_(recordings)","https://en.wikipedia.org/wiki/Motown","https://en.wikipedia.org/wiki/Tropic%C3%A1lia","https://en.wikipedia.org/wiki/Caetano_Veloso"],"short":"Youth & rights"},{"id":"e11","from":1970,"to":1990,"years":"1970–1990","name":"Crisis cities and cheap machines","context":"Oil shocks and deindustrialization hollow out cities such as New York and Detroit. Unemployment rises in Britain. AIDS arrives. The Soviet Union stagnates, then opens up under perestroika.","why":"With little money, people build music from what is at hand: two turntables in the Bronx (hip hop, 1973), three chords in London (punk, 1976–77), cheap drum machines in Detroit (techno). Disco fills Black, Latino and gay clubs until a 1979 “Disco Demolition Night” in Chicago turns the backlash into a riot. Bob Marley takes reggae’s message of liberation worldwide. In the USSR, Kino’s “Khochu peremen!” (“We want change!”), first performed in 1986, becomes an anthem of perestroika.","idea":"Make something from nothing.","forces":{"money":2,"power":2,"belief":1,"tech":2,"contact":1},"works":[{"t":"The Message","by":"Grandmaster Flash and the Furious Five, 1982","note":"life in the broken city","q":"Grandmaster Flash The Message"},{"t":"Redemption Song","by":"Bob Marley, 1980","note":"“Emancipate yourselves from mental slavery”","q":"Bob Marley Redemption Song"},{"t":"Khochu peremen! (We Want Change!)","by":"Kino, 1986","note":"the closing song of the film Assa (1987)","q":"Кино Хочу перемен"}],"src":["https://en.wikipedia.org/wiki/DJ_Kool_Herc","https://en.wikipedia.org/wiki/Disco_Demolition_Night","https://en.wikipedia.org/wiki/Detroit_techno","https://en.wikipedia.org/wiki/Khochu_peremen","https://en.wikipedia.org/wiki/Assa_(film)"],"short":"Crisis cities"},{"id":"e12","from":1990,"to":2010,"years":"1990–2010","name":"Globalization and the internet","context":"The Cold War ends. Trade, travel and the internet connect the world; China and India open their economies. The 9/11 attacks and the wars that follow.","why":"Rave turns warehouses and fields into temporary communities; Britain’s Criminal Justice Act of 1994 even defines the music it restricts as “a succession of repetitive beats”. South Korea builds K-pop, starting with Seo Taiji and Boys in 1992, into an export industry. Napster (1999) and the MP3 make music free to copy, and record sales collapse; laptops turn every bedroom into a studio. Hits now cross continents in weeks.","idea":"Music becomes infinite and placeless.","forces":{"money":2,"power":1,"belief":1,"tech":2,"contact":2},"works":[{"t":"Born Slippy .NUXX","by":"Underworld, 1996","note":"the sound of a rave generation","q":"Underworld Born Slippy"},{"t":"Nan Arayo (I Know)","by":"Seo Taiji and Boys, 1992","note":"the start of modern K-pop","q":"Seo Taiji and Boys Nan Arayo"},{"t":"Paper Planes","by":"M.I.A., 2007","note":"migration and borders in a global hit","q":"M.I.A. Paper Planes"}],"src":["https://en.wikipedia.org/wiki/Criminal_Justice_and_Public_Order_Act_1994","https://en.wikipedia.org/wiki/Seo_Taiji_and_Boys","https://en.wikipedia.org/wiki/Napster","https://en.wikipedia.org/wiki/MP3"],"short":"Internet"},{"id":"e13","from":2010,"to":2026,"years":"2010–2026","name":"Platforms, feeds and machines","context":"Smartphones put the internet in every pocket, and streaming and social video decide what is heard. COVID-19 closes venues in 2020. War returns to Europe in 2022. Generative AI arrives.","why":"Songs are shaped for feeds, with the hook early enough to survive the skip. YouTube and TikTok take K-pop, reggaeton and Afrobeats worldwide: “Gangnam Style” is the first YouTube video to pass a billion views (2012). In lockdown, concerts move into games: Travis Scott plays inside Fortnite in April 2020. Music for sleep and focus becomes its own category. Ukraine’s Kalush Orchestra wins Eurovision in 2022, months into the full-scale invasion. Since 2023 AI models generate whole songs, and the major labels move from suing them to licensing them.","idea":"Music becomes a feed: endless, personal, global, and now generated.","forces":{"money":2,"power":1,"belief":1,"tech":2,"contact":2},"works":[{"t":"Gangnam Style","by":"PSY, 2012","note":"the first billion-view video","q":"PSY Gangnam Style"},{"t":"Calm Down","by":"Rema, 2022","note":"Afrobeats as global pop","q":"Rema Calm Down"},{"t":"Stefania","by":"Kalush Orchestra, 2022","note":"a Eurovision win during a war","q":"Kalush Orchestra Stefania"}],"src":["https://en.wikipedia.org/wiki/Gangnam_Style","https://en.wikipedia.org/wiki/Travis_Scott","https://en.wikipedia.org/wiki/Kalush_Orchestra","https://en.wikipedia.org/wiki/Udio"],"short":"Platforms & AI"}],"constants":[{"t":"For gods and the dead","x":"From the Hurrian hymn to gospel and funeral playlists, people sing to what is beyond them and for those they have lost."},{"t":"For power","x":"Bronze bells as state treasure, royal operas, anthems, banned records: every ruler has cared what people hear."},{"t":"For love","x":"Troubadours, Romantic songs and pop all keep returning to the same subject."},{"t":"For moving together","x":"Dance, marching, chanting crowds: music synchronizes bodies in every era."},{"t":"Old forms survive new media","x":"Recording did not end live concerts, and streaming did not end vinyl. New technology adds layers instead of replacing them."}],"scenarios":[{"id":"s-infinite","title":"Infinite music","conf":"high","forces":["tech","money"],"rhymes":"Printing (1501) and recording (1877) each made music cheap to copy. Both times the value moved to what could not be copied: the performer, the live event, the name. The MP3 and Napster repeated it in 1999, and live music grew while record sales fell.","music":["Endless generated background music for shops, games, work and sleep, priced like a utility.","Human-made and live music sold as the premium layer, with proof of who made it.","New styles built from the machine’s own artefacts, the way distortion and Auto-Tune turned from faults into sounds."],"watch":"Whether streaming services label, demote or pay less for fully generated tracks, and whether listeners pay more for music they know a person made.","signals":[{"v":"90,000","text":"fully AI-generated tracks delivered to Deezer each day by June 2026, more than half of uploads on peak days. They draw only 1–3% of streams.","src":"https://newsroom-deezer.com/2026/07/ai-music-exceeds-50-percent-daily-uploads-deezer/","label":"Deezer, Jul 2026"},{"v":"75M","text":"spam tracks removed by Spotify in twelve months. Imitating an artist’s voice now needs that artist’s permission.","src":"https://newsroom.spotify.com/2025-09-25/spotify-strengthens-ai-protections/","label":"Spotify, Sep 2025"},{"v":"2025–26","text":"Universal and Warner settle with AI song generators and license them; Suno replaces its models with one trained on licensed music, while Sony and Universal still sue it.","src":"https://techcrunch.com/2026/09/09/suno-replaces-its-ai-models-with-a-new-one-trained-on-licensed-music-as-copyright-suits-pile-up/","label":"TechCrunch, Sep 2026"},{"v":"No. 30","text":"Xania Monet, an act made with Suno, becomes the first AI-generated artist on a Billboard radio airplay chart (November 2025).","src":"https://luminatedata.com/wp-content/uploads/2026/01/2025-Year-End-Music-Report-1.2026.pdf","label":"Luminate 2025 report"},{"v":"46.8M","text":"vinyl records sold in the US in 2025, the 19th year of growth in a row. Physical, scarce music gains while copies become free.","src":"https://www.riaa.com/wp-content/uploads/2026/03/RIAA-Year-End-Revenue-2025.pdf","label":"RIAA, Mar 2026"},{"v":"$2.08B","text":"grossed by Taylor Swift’s Eras Tour over 149 shows (2023–24), the highest-grossing tour ever.","src":"https://www.guinnessworldrecords.com/world-records/94243-most-successful-tour-solo-artist","label":"Guinness World Records"}]},{"id":"s-south","title":"The young South sets the beat","conf":"high","forces":["contact","money"],"rhymes":"In the 20th century the music of Black Americans, a minority with little power, became the world’s pop through records, radio and migration. Pop has always followed where the young people and the cities are.","music":["Afrobeats, amapiano, Latin and South Asian pop as the default global sound, with lyrics in Yoruba, Spanish, Hindi or Korean left untranslated.","New hybrids from Lagos, Johannesburg, Kinshasa, Mumbai and Jakarta, spread by phone before radio.","Western labels as partners of local scenes rather than gatekeepers."],"watch":"Where the next global number-one songs are written, and how much of the money stays in the countries that make them.","signals":[{"v":"2.2B","text":"people in sub-Saharan Africa by 2054, up 79%, according to the UN’s World Population Prospects 2024.","src":"https://population.un.org/wpp/assets/Files/WPP2024_Summary-of-Results.pdf","label":"UN WPP 2024"},{"v":"+22.6%","text":"growth of recorded-music revenue in sub-Saharan Africa in 2024, one of the three fastest regions with MENA and Latin America.","src":"https://www.ifpi.org/?p=13686","label":"IFPI, Mar 2025"},{"v":"+17.1%","text":"Latin America’s growth in 2025, the fastest region; sub-Saharan Africa grew 15.2%, against 6.4% for the world.","src":"https://www.ifpi.org/global-music-report-2026-global-recorded-music-revenues-grow-6-4-as-record-companies-drive-innovation/","label":"IFPI, Mar 2026"}]},{"id":"s-old","title":"Older, quieter, lonelier listeners","conf":"medium","forces":["money","tech"],"rhymes":"The 19th-century piano brought music into the private home; the Walkman (1979) made listening personal. Each time, music followed people indoors and into themselves.","music":["Music prescribed for health: sleep, pain, memory and dementia care.","Nostalgia as a market: old catalogues, remasters and “new” songs made from old voices, as with Now and Then.","AI companions that play, hum or sing with the person they live with."],"watch":"Catalogue share of listening, the growth of functional playlists, and music in health-care budgets.","signals":[{"v":"2080","text":"the year people aged 65 or older will outnumber children under 18 worldwide.","src":"https://population.un.org/wpp/assets/Files/WPP2024_Summary-of-Results.pdf","label":"UN WPP 2024"},{"v":"57%","text":"of US on-demand audio streams in 2025 were tracks more than five years old; new releases took the other 43%.","src":"https://luminatedata.com/wp-content/uploads/2026/01/2025-Year-End-Music-Report-1.2026.pdf","label":"Luminate 2025 report"},{"v":"15B","text":"monthly streams of functional music across platforms, by Endel’s own estimate when it signed with Universal (2023). Spotify has since cut what it pays for noise tracks.","src":"https://www.musicbusinessworldwide.com/universal-inks-deal-with-generative-ai-startup-endel-to-create-ai-powered-artist-driven-functional-music/","label":"Music Business Worldwide, May 2023"}]},{"id":"s-climate","title":"Music under climate pressure","conf":"medium","forces":["contact","belief"],"rhymes":"Industrialization pushed the Romantics toward nature; the 1960s environmental movement produced songs like Joni Mitchell’s “Big Yellow Taxi” (1970). Pressure on the land tends to come back as songs about it.","music":["Fewer, longer, lower-carbon tours and stronger local scenes.","Songs about adaptation and repair more than doom.","Field recordings of disappearing places used as instruments."],"watch":"Festival cancellations for heat and storms, and whether audiences reward low-carbon touring.","signals":[{"v":"−59%","text":"direct CO₂e emissions in the first two years of Coldplay’s Music of the Spheres tour against its 2016–17 stadium tour, verified by MIT’s Environmental Solutions Initiative.","src":"https://news.pollstar.com/?p=968507","label":"Pollstar, Jun 2024"},{"v":"159M","text":"fans at Live Nation shows in 2025, up 5%. Touring keeps growing, and so does its footprint.","src":"https://news.livenationentertainment.com/news/live-nation-entertainment-full-year-and-fourth-quarter-2025-results","label":"Live Nation, Feb 2026"}]},{"id":"s-control","title":"Who owns a voice, and who may sing","conf":"high","forces":["power","tech"],"rhymes":"Rulers have always tried to control what people hear: Plato’s banned modes, Pravda’s attack on Shostakovich, the Nazi “Degenerate Music” show, Britain’s 1994 law on “repetitive beats”. Fans answered with bootlegs on X-ray film.","music":["Voices that carry proof of origin, and licences for using a famous voice.","Masked, anonymous or AI-fronted artists, sometimes to escape censorship.","Underground scenes on private networks, and songs as testimony from war zones."],"watch":"Laws on voice and likeness, labelling of generated media, and the lists of banned or “foreign agent” musicians.","signals":[{"v":"Jul 2024","text":"Tennessee’s ELVIS Act takes effect, protecting an artist’s voice from unauthorized AI cloning.","src":"https://www.musicbusinessworldwide.com/elvis-act-signed-into-law-in-tennessee-to-protect-artists-voice-and-likeness-from-the-misuse-of-ai","label":"Music Business Worldwide"},{"v":"Aug 2026","text":"EU AI Act transparency rules for AI-generated content start to apply.","src":"https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai","label":"European Commission"},{"v":"Jan 2027","text":"proposed start of Denmark’s law giving people copyright over their own face and voice; the bill was tabled in October 2026.","src":"https://www.danskerhverv.dk/branche/medier-kreative-erhverv/kulturministeren-har-fremsat-forslag-til-andring-af-ophavsretsloven--se-andringerne-her/","label":"Dansk Erhverv (in Danish)"},{"v":"27+","text":"musicians named “foreign agents” in Russia since 2022, including Zemfira, Monetochka and Oxxxymiron; concerts by Noize MC and Mashina Vremeni were cancelled.","src":"https://re-russia.net/en/analytics/0350/","label":"Re:Russia, Oct 2025"}]},{"id":"s-worlds","title":"Worlds instead of albums","conf":"medium","forces":["tech","money"],"rhymes":"Wagner built Bayreuth (1876) for a total artwork; opera houses, cinemas and stadiums each brought new music made for them. A new kind of venue tends to bring a new kind of music.","music":["Spatial concerts in purpose-built rooms and inside games.","Songs that change with the room, the crowd or the player.","Performances where a living musician, an avatar and the audience share the stage."],"watch":"Attendance at immersive venues and in-game concerts, and whether artists release worlds or apps instead of albums.","signals":[{"v":"12.3M","text":"players watched Travis Scott’s concert inside Fortnite at the same time (April 2020).","src":"https://www.engadget.com/fortnite-travis-scott-astronomical-051908825.html","label":"Engadget, Apr 2020"},{"v":"$244M","text":"grossed by U2’s 40 shows opening the Sphere in Las Vegas (2023–24), a venue built for immersive sound and image.","src":"https://news.pollstar.com/2024/03/14/auf-wiedersehen-baby-u2-wraps-sphere-run/","label":"Pollstar, Mar 2024"},{"v":"4M+","text":"visitors to ABBA Voyage, the avatar concert in London, which is booking into June 2027.","src":"https://theatreweekly.com/abba-voyage-extends-booking-to-june-2027-with-170000-new-tickets-released/","label":"Theatre Weekly, Sep 2026"}]}],"answer":[{"num":"5","text":"forces explain the new music of every era here: who pays, who rules, what people believe, what carries the sound, and who meets whom. No era has only one.","srcLabel":"From the thirteen eras below"},{"num":"1637","text":"Venice opens the first public opera house. From then on, the ticket buyer, not only the patron, decides what music gets made.","src":"https://en.wikipedia.org/wiki/Teatro_San_Cassiano","srcLabel":"Teatro San Cassiano, Wikipedia"},{"num":"1994","text":"Britain’s Criminal Justice Act defines the music it restricts as “a succession of repetitive beats”. After Pravda’s 1936 attack on Shostakovich and the Nazis’ 1938 “Degenerate Music” show, states keep trying to control music.","src":"https://en.wikipedia.org/wiki/Criminal_Justice_and_Public_Order_Act_1994","srcLabel":"Criminal Justice Act 1994, Wikipedia"},{"num":"90,000","text":"fully AI-generated tracks reach Deezer every day (June 2026), more than half of uploads on peak days. The next era begins with abundance.","src":"https://newsroom-deezer.com/2026/07/ai-music-exceeds-50-percent-daily-uploads-deezer/","srcLabel":"Deezer, Jul 2026"},{"num":"2.2B","text":"people will live in sub-Saharan Africa by 2054, up 79%. Recorded-music revenue there grew 22.6% in 2024 and 15.2% in 2025.","src":"https://population.un.org/wpp/assets/Files/WPP2024_Summary-of-Results.pdf","srcLabel":"UN WPP 2024 · IFPI"}],"sketch":["<b>Before the party,<\/b> the room plays music generated for it: tuned to the light, the number of guests and the hour, never repeated and never charted. Nobody asks who made it, the way nobody asks who made the electricity.","<b>The songs people choose<\/b> carry a maker’s mark: made by a person, by a person with a machine, or by a machine, and the credits say which. The biggest of them were written in Lagos, São Paulo or Seoul and are sung in languages most listeners don’t speak.","<b>The best moment is live:<\/b> a person with an instrument, perhaps answered by an AI player, in a room built for sound. It is the one part that cannot be copied, so it is the part people pay for.","<b>At the end,<\/b> someone puts on an old song everyone knows. The forces will have shifted again, but people will still sing to their gods, to power, to each other and to the dead, as they have since the first flute."]};
+const F=D.forces,FK=Object.keys(F),E=D.eras;
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const yt=q=>'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
+const yr=y=>y<0?(-y)+' BCE':String(y);
+const LV=['minor','present','a main cause'];
+const host=u=>{try{return new URL(u).hostname.replace(/^www\./,'').replace(/^en\.wikipedia\.org$/,'Wikipedia').replace(/^ru\.wikipedia\.org$/,'Russian Wikipedia')}catch(e){return u}};
+
+/* Matrix */
+const mx=document.getElementById('mx');
+mx.innerHTML='<thead><tr><th scope="col">Force</th>'+E.map(e=>'<th scope="col"><a href="#'+e.id+'">'+yr(e.from)+'<b>'+esc(e.short)+'</b></a></th>').join('')+'</tr></thead><tbody>'+
+ FK.map(k=>'<tr><th scope="row">'+esc(F[k].name)+'<span>'+esc(F[k].hint)+'</span></th>'+E.map(e=>{const v=e.forces[k];
+   return '<td><a href="#'+e.id+'" class="l'+v+'" title="'+esc(F[k].name+' · '+e.years+' '+e.name+': '+LV[v])+'" aria-label="'+esc(F[k].name+', '+e.name+': '+LV[v])+'"></a></td>'}).join('')+'</tr>').join('')+'</tbody>';
+
+/* Answer tiles: one computed from the matrix, the rest from the data */
+const early=E.filter(e=>e.to<=1600),late=E.filter(e=>e.from>=1820);
+const bEarly=early.filter(e=>e.forces.belief===2).length,bLate=late.filter(e=>e.forces.belief===2).length,tLate=late.filter(e=>e.forces.tech===2).length;
+const tiles=D.answer.slice();
+tiles.splice(1,0,{num:bEarly+' of '+early.length,text:'eras before 1600 have belief as a main force; after 1820 it is '+bLate+' of '+late.length+'. Technology is a main force in '+tLate+' of the '+late.length+' eras since 1820.',srcLabel:'From the matrix above'});
+document.getElementById('answerTiles').innerHTML=tiles.map((t,i)=>'<div class="fd'+(i===0?' key':'')+'"><div class="num">'+esc(t.num)+'</div><p>'+esc(t.text)+'</p><div class="src">'+(t.src?'<a href="'+esc(t.src)+'" target="_blank" rel="noopener">'+esc(t.srcLabel||host(t.src))+'</a>':esc(t.srcLabel||''))+'</div></div>').join('');
+
+/* Eras */
+document.getElementById('eraList').innerHTML=E.map((e,i)=>
+ '<article class="era" id="'+e.id+'">'+
+  '<div><div class="era-yr">'+esc(e.years)+'</div><h3>'+esc(e.name)+'</h3><div class="era-n">Era '+(i+1)+' of '+E.length+'</div>'+
+   '<div class="fbars" aria-label="Forces in this era">'+FK.map(k=>{const v=e.forces[k];return '<div class="fbar'+(v===2?' on':'')+'"><span>'+esc(F[k].name)+'</span><i title="'+LV[v]+'"><b class="l'+v+'"></b></i></div>'}).join('')+'</div></div>'+
+  '<div class="era-body">'+
+   '<div><h4>What was happening</h4><p>'+esc(e.context)+'</p></div>'+
+   '<div><h4>Why music was made</h4><p>'+esc(e.why)+'</p></div>'+
+   '<p class="era-idea">'+esc(e.idea)+'</p>'+
+   '<div><h4>Listen</h4><ul class="works">'+e.works.map(w=>'<li><a href="'+yt(w.q)+'" target="_blank" rel="noopener">'+esc(w.t)+' ↗</a><div class="by">'+esc(w.by)+'</div><span>'+esc(w.note)+'</span></li>').join('')+'</ul></div>'+
+   '<div class="era-src">Sources: '+e.src.map(u=>'<a href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(decodeURIComponent(u.split('/').pop()).replace(/_/g,' '))+'</a>').join(' · ')+'</div>'+
+  '</div></article>').join('');
+
+/* Constants */
+document.getElementById('constList').innerHTML=D.constants.map(c=>'<div><b>'+esc(c.t)+'</b><p>'+esc(c.x)+'</p></div>').join('');
+
+/* Scenarios */
+const CONF={high:'High confidence',medium:'Medium confidence',low:'Low confidence'};
+document.getElementById('scenList').innerHTML=D.scenarios.map((s,i)=>
+ '<article class="scen" id="'+s.id+'">'+
+  '<div><span class="conf '+s.conf+'">'+CONF[s.conf]+'</span><h3>'+esc(s.title)+'</h3><div class="scen-n">Scenario '+(i+1)+' of '+D.scenarios.length+' · forces: '+s.forces.map(k=>esc(F[k].name.toLowerCase())).join(', ')+'</div></div>'+
+  '<div class="scen-body">'+
+   '<div><h4>Signals now</h4><ul class="sig">'+s.signals.map(g=>'<li><span class="v">'+esc(g.v)+'</span><span>'+esc(g.text)+' <a href="'+esc(g.src)+'" target="_blank" rel="noopener">'+esc(g.label||host(g.src))+' ↗</a></span></li>').join('')+'</ul></div>'+
+   '<div><h4>History rhymes with</h4><p>'+esc(s.rhymes)+'</p></div>'+
+   '<div><h4>Music that may follow · speculation</h4><ul class="next-music">'+s.music.map(m=>'<li>'+esc(m)+'</li>').join('')+'</ul></div>'+
+   '<div><h4>Watch for</h4><p>'+esc(s.watch)+'</p></div>'+
+  '</div></article>').join('');
+document.getElementById('sketch').innerHTML=D.sketch.map(p=>'<p>'+p+'</p>').join('');
+
+/* Sources: every link used on the page, grouped */
+const seen=new Set(),src=[];
+const add=(u,label)=>{if(!u||seen.has(u))return;seen.add(u);src.push([u,label])};
+D.answer.forEach(t=>add(t.src,t.srcLabel));
+E.forEach(e=>e.src.forEach(u=>add(u,e.years+': '+decodeURIComponent(u.split('/').pop()).replace(/_/g,' '))));
+D.scenarios.forEach(s=>s.signals.forEach(g=>add(g.src,s.title+': '+(g.label||host(g.src)))));
+document.getElementById('srcList').innerHTML=src.map(([u,l])=>'<li><a href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(l||host(u))+'</a></li>').join('');
+
+/* Jump + flash */
+document.addEventListener('click',ev=>{
+  const a=ev.target.closest&&ev.target.closest('a[href^="#e"]');if(!a)return;
+  const node=document.getElementById(a.getAttribute('href').slice(1));if(!node||!node.classList.contains('era'))return;
+  node.classList.add('flash');setTimeout(()=>node.classList.remove('flash'),1800);
+});
+})();
+</script>

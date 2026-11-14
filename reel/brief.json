@@ -1,0 +1,14 @@
+{
+  "idea": {"value": "A future-night party wall: guests should leave believing 2050 can be beautiful and is already half here.", "status": "said"},
+  "feeling": {"value": ["calm", "awed"], "opposite": "dystopian noise", "status": "assumed"},
+  "subject": {"value": "Scenes from 18 films and shorts about the world around 2050 (see Projection 2050 artifact).", "status": "said"},
+  "world": {"value": "Near and mid future, 2025-2085", "status": "said"},
+  "medium": {"value": "Existing film footage, projected silently to the host's own playlist", "status": "assumed"},
+  "audience": {"value": "Friends at a private party", "status": "assumed"},
+  "platform": {"value": "Projector on a wall, 16:9, mostly 2.39:1 sources letterboxed", "status": "assumed"},
+  "method": {"value": "Curated cuts from legal copies; YouTube clips only to preview and locate scenes", "status": "assumed"},
+  "constraints": {"value": ["no downloading or re-uploading clips", "public screenings need a licence"], "status": "assumed"},
+  "loves": {"value": ["plausible futures", "beautiful frames", "inspiring ideas"], "status": "said"},
+  "hates": {"value": [], "status": "asked"},
+  "language": {"value": "English", "status": "said"}
+}

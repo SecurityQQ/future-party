@@ -1,0 +1,623 @@
+<title>Soundtrack 2050</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a setlist page in the varg look of the party pages. Hero = the whole evening drawn to scale; then answer, running order, bench, a history of music on a log time axis, the data table, sources. Dark-first, light supported. */
+:root{
+  --on-accent:#070708;
+  --bg:#070708; --raised:#0e0e10; --fg:#ffffff; --fg-2:#d6d6d6; --muted:#a1a1a1;
+  --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.20);
+  --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#ff6a33; --accent-soft:rgba(255,83,21,.13);
+  --dot:#5c5c62; --pos:#67fc5c; --warn:#ffad31; --idle:#a1a1a1;
+  --font:"Aeonik","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --r:10px; --r-s:6px;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#ffffff; --raised:#f6f6f6; --fg:#070708; --fg-2:#2c2c30; --muted:#737373;
+    --line:#e5e5e5; --line-2:#cfcfcf;
+    --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#c63a05; --accent-soft:rgba(255,83,21,.10);
+    --dot:#b9b9bd; --pos:#16883a; --warn:#a35f00; --idle:#737373;
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#ffffff; --raised:#f6f6f6; --fg:#070708; --fg-2:#2c2c30; --muted:#737373;
+  --line:#e5e5e5; --line-2:#cfcfcf;
+  --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#c63a05; --accent-soft:rgba(255,83,21,.10);
+  --dot:#b9b9bd; --pos:#16883a; --warn:#a35f00; --idle:#737373;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--font);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:64px;border-top:1px solid var(--line)}
+.eyebrow{font:500 12px/1.3 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0}
+h1{font-size:clamp(46px,9vw,112px);line-height:.92;letter-spacing:-.05em;font-weight:800;margin:18px 0 0;text-wrap:balance}
+h1 .yr{color:var(--accent)}
+h2{font-size:clamp(26px,3.6vw,40px);line-height:1.08;letter-spacing:-.035em;font-weight:700;margin:10px 0 0;text-wrap:balance}
+h3{margin:0;text-wrap:balance}
+.lead{font-size:clamp(18px,2.1vw,22px);line-height:1.5;color:var(--fg-2);max-width:62ch;margin:28px 0 0}
+.lead b{color:var(--fg);font-weight:600}
+.note{color:var(--muted);max-width:68ch;margin:14px 0 0;font-size:15px}
+.sec-head{display:grid;gap:4px;margin-bottom:32px;max-width:760px}
+.sec-head p.note{margin-top:10px}
+nav.top{display:flex;flex-wrap:wrap;gap:6px 18px;padding-block:18px;font:500 13px/1 var(--mono);letter-spacing:.04em}
+nav.top a{text-decoration:none;color:var(--muted)}
+nav.top a:hover{color:var(--fg)}
+nav.top .brand{color:var(--fg);margin-right:auto}
+
+/* Answer */
+.answer{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:48px;margin-top:8px}
+@media (max-width:860px){.answer{grid-template-columns:1fr;gap:36px}}
+.core{list-style:none;margin:18px 0 0;padding:0;display:grid}
+.core li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.core li:first-child{border-top:1px solid var(--line)}
+.core a{font-weight:650;font-size:18px;text-decoration:none;letter-spacing:-.01em}
+.core a:hover{color:var(--accent-ink)}
+.core .why{grid-column:1/-1;color:var(--muted);font-size:14.5px}
+.pb{font:500 13px/1.6 var(--mono);color:var(--fg-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.pb i{font-style:normal;color:var(--muted)}
+.wall-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.wall-list a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line-2);border-radius:999px;text-decoration:none;font-size:14.5px}
+.wall-list a:hover{border-color:var(--fg)}
+.wall-list .sw{display:inline-flex;width:28px;height:10px;border-radius:2px;overflow:hidden}
+.wall-list .sw b{flex:1}
+.method{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:14.5px}
+.method strong{color:var(--fg-2);font-weight:600}
+
+/* Findings */
+.findings{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+@media (max-width:900px){.findings{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.findings{grid-template-columns:1fr}}
+.fd{padding:26px 24px 28px 0;border-bottom:1px solid var(--line);display:grid;gap:10px;align-content:start}
+.fd .num{font-size:clamp(40px,5vw,60px);font-weight:750;letter-spacing:-.045em;line-height:1;font-variant-numeric:tabular-nums}
+.fd.key .num{color:var(--accent)}
+.fd p{margin:0;color:var(--fg-2);font-size:15.5px;max-width:42ch}
+.fd .src{font:400 12px/1.4 var(--mono);color:var(--muted)}
+.fd .src a{color:var(--muted)}
+/* Filters + cards */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.filters button{font:500 14px/1 var(--font);color:var(--fg-2);background:transparent;border:1px solid var(--line-2);border-radius:999px;padding:10px 14px;cursor:pointer}
+.filters button:hover{border-color:var(--fg)}
+.filters button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.filters .count{font:400 12px var(--mono);opacity:.7;margin-left:6px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font:500 11.5px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;padding:6px 8px;border-radius:var(--r-s);border:1px solid var(--line-2);color:var(--fg-2)}
+.tag.gold{border-color:var(--accent);color:var(--accent-ink)}
+.tips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;margin-top:40px}
+@media (max-width:760px){.tips{grid-template-columns:1fr}}
+.tips div{padding:14px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--fg-2)}
+.tips div b{display:block;color:var(--fg);font-weight:600;margin-bottom:4px}
+/* Sources */
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px}
+@media (max-width:860px){.two{grid-template-columns:1fr;gap:32px}}
+.src-list{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:10px;font-size:14px}
+.src-list li{color:var(--muted)}
+.src-list a{color:var(--fg-2);text-underline-offset:3px;text-decoration-color:var(--line-2);word-break:break-word}
+.src-list a:hover{color:var(--accent-ink)}
+.unc{margin:16px 0 0;padding-left:18px;display:grid;gap:10px;font-size:14.5px;color:var(--fg-2)}
+footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12px/1.6 var(--mono);color:var(--muted)}
+
+
+.hero{padding-block:40px 56px;border-top:0}
+@keyframes rise{from{transform:scaleY(.55)}to{transform:scaleY(1)}}
+.s-rel{margin:18px 0 0;font:400 13px/1.6 var(--mono);color:var(--muted)}
+.s-rel a{color:var(--fg-2);text-underline-offset:3px;text-decoration-color:var(--line-2)}
+.s-rel a:hover{color:var(--accent-ink)}
+.s-bh h3 .en{display:block;font:400 12.5px/1.5 var(--mono);color:var(--muted);letter-spacing:0;margin-top:4px}
+
+/* Sound: the evening as a setlist. Signature = a to-scale strip of the whole ~2 h run (width = duration, height = inspiration, orange = plausibility 9–10, white = a voice). */
+.s-lead{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:48px}
+@media (max-width:860px){.s-lead{grid-template-columns:1fr;gap:36px}}
+.s-total{font:500 13px/1.5 var(--mono);color:var(--muted);margin:16px 0 0;font-variant-numeric:tabular-nums}
+.s-total b{color:var(--fg);font-weight:500}
+.s-how{display:grid;gap:14px;align-content:start;min-width:0}
+.s-how h2{margin-top:-4px}
+.s-how ol{margin:4px 0 0;padding-left:20px;display:grid;gap:8px;color:var(--fg-2);font-size:15px}
+.s-how ol a{color:var(--fg);text-underline-offset:3px;text-decoration-color:var(--line-2)}
+.s-how ol a:hover{color:var(--accent-ink)}
+.s-import{width:100%;min-height:150px;resize:vertical;background:var(--raised);color:var(--fg-2);border:1px solid var(--line-2);border-radius:var(--r-s);padding:12px;font:12.5px/1.55 var(--mono)}
+.s-import:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.s-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.s-copy{font:600 14px/1 var(--font);background:var(--accent);color:var(--on-accent);border:0;border-radius:999px;padding:12px 16px;cursor:pointer}
+.s-copy:hover{background:var(--accent-hot)}
+.s-status{font:400 13px/1.4 var(--mono);color:var(--muted)}
+
+.s-strip-wrap{margin-top:36px}
+.s-lanes{position:relative;height:24px;margin-top:14px;font:500 12px/1 var(--mono);letter-spacing:.04em;color:var(--fg-2)}
+.s-lanes span{position:absolute;top:0;height:24px;padding-left:6px;border-left:1px solid var(--line-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.s-lanes span i{font-style:normal;color:var(--muted)}
+.s-strip{position:relative;height:clamp(90px,12vw,130px);border-bottom:1px solid var(--line-2)}
+.s-seg{position:absolute;bottom:0;display:block;background:var(--dot);border-radius:2px 2px 0 0;transform-origin:bottom;animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.s-seg.hi{background:var(--accent)}
+.s-seg.voice{background:var(--fg)}
+.s-seg:hover,.s-seg:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+.s-ticks{position:relative;height:24px;font:400 12px/1 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.s-ticks span{position:absolute;top:8px;transform:translateX(-50%)}
+.s-ticks span:first-child{transform:none}
+.s-legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin:10px 0 0;font-size:14px;color:var(--fg-2)}
+.s-legend span{display:inline-flex;align-items:center;gap:8px}
+.s-legend i{width:12px;height:12px;border-radius:2px;display:inline-block}
+.s-legend .m{color:var(--muted)}
+
+.s-block{margin-top:40px}
+.s-block:first-child{margin-top:0}
+.s-bh{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 24px;border-top:2px solid var(--fg);padding-top:16px}
+.s-bh h3{font-size:24px;letter-spacing:-.025em;line-height:1.15}
+.s-bh .dur{font:400 12.5px/1.4 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.s-sync{color:var(--muted);font-size:14.5px;margin:8px 0 0;max-width:80ch}
+.s-list{list-style:none;margin:10px 0 0;padding:0}
+.s-row{display:grid;grid-template-columns:44px minmax(0,1fr) 190px;gap:6px 20px;padding:16px 0;border-bottom:1px solid var(--line);scroll-margin-top:24px;transition:background-color .6s}
+@media (max-width:720px){.s-row{grid-template-columns:36px minmax(0,1fr);gap:6px 12px}.s-side{grid-column:2}}
+.s-row.flash{background:var(--accent-soft)}
+.s-n{font:400 12px/1.9 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.s-row.voice .s-n{color:var(--accent-ink);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase}
+.s-main{min-width:0}
+.s-t{font-weight:650;font-size:17px;letter-spacing:-.01em;line-height:1.3}
+.s-row.voice .s-t{font-style:italic;font-weight:600}
+.s-a{font:400 13px/1.5 var(--mono);color:var(--muted);margin-top:3px}
+.s-idea{margin:8px 0 0;color:var(--fg-2);font-size:15px;max-width:72ch}
+.s-proof{margin:6px 0 0;color:var(--muted);font-size:14.5px;max-width:72ch}
+.s-proof .tag{margin-right:8px;vertical-align:1px;padding:4px 6px;font-size:10.5px}
+.s-side{display:grid;gap:6px;align-content:start;justify-items:start;min-width:0}
+.s-time{font:500 13px/1.5 var(--mono);color:var(--fg-2);font-variant-numeric:tabular-nums}
+.s-time i{font-style:normal;color:var(--muted)}
+.s-links{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:14px}
+.s-links a{color:var(--fg-2);text-decoration:none}
+.s-links a:hover{color:var(--accent-ink)}
+.s-empty{color:var(--muted);font-size:15px;margin:24px 0 0}
+
+.s-bench-wrap{margin-top:64px}
+.s-bench{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:0 32px;margin-top:20px}
+.s-bench > div{padding:14px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--fg-2);min-width:0}
+.s-bench b{display:block;color:var(--fg);font-weight:600}
+.s-bench .s-a{margin:2px 0 6px}
+.s-bench .s-links{margin-top:8px}
+
+/* History: swimlane timeline on a log time axis (lanes = kind of change, orange = tied to tonight's soundtrack), then ideas, forecasts and the data table. */
+.h-facts{margin-bottom:40px}
+.h-legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin:0 0 14px;font-size:14px;color:var(--fg-2)}
+.h-legend span{display:inline-flex;align-items:center;gap:8px}
+.h-legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.h-legend .m{color:var(--muted)}
+.h-chart{position:relative;overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);padding:8px 4px 4px}
+.h-chart svg{display:block;width:100%;min-width:780px;height:auto}
+.h-lane{fill:var(--fg-2);font:500 12px var(--mono);letter-spacing:.03em}
+.h-sep{stroke:var(--line);stroke-width:1}
+.h-grid{stroke:var(--line);stroke-width:1}
+.h-tick{fill:var(--muted);font:400 11.5px var(--mono)}
+.h-future{fill:var(--accent-soft)}
+.h-future-label{fill:var(--accent-ink);font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.h-lbl{fill:var(--muted);font:500 11.5px var(--font);paint-order:stroke;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round}
+.h-lbl.tie{fill:var(--fg)}
+.h-stem{stroke:var(--line-2);stroke-width:1}
+.h-dot circle{stroke:var(--bg);stroke-width:2}
+.h-dot circle.v{fill:var(--dot)}
+.h-dot.tie circle.v{fill:var(--accent)}
+.h-dot .hit{fill:transparent;stroke:none}
+.h-dot:hover circle.v,.h-dot:focus-visible circle.v{stroke:var(--fg)}
+.h-dot:focus{outline:none}
+.h-tip{position:absolute;pointer-events:none;background:var(--bg);border:1px solid var(--line-2);border-radius:8px;padding:10px 12px;font-size:13.5px;line-height:1.45;max-width:280px;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:2}
+.h-tip b{display:block;font-size:14.5px}
+.h-tip .m{color:var(--muted);font:400 12px/1.5 var(--mono)}
+
+.h-sub{margin-top:64px}
+.h-sub > h3{font-size:clamp(22px,2.6vw,28px);letter-spacing:-.03em;line-height:1.15;margin-top:10px}
+.h-sub > .note{margin-bottom:20px}
+.h-ideas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;counter-reset:i}
+@media (max-width:760px){.h-ideas{grid-template-columns:1fr}}
+.h-ideas li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:4px 10px;padding:14px 0;border-top:1px solid var(--line);counter-increment:i}
+.h-ideas li::before{content:counter(i,decimal-leading-zero);font:400 12px/1.7 var(--mono);color:var(--muted)}
+.h-ideas b{display:block;font-weight:600;color:var(--fg);font-size:15.5px}
+.h-ideas span{color:var(--fg-2);font-size:14.5px}
+.h-ideas .w{display:block;font:400 12px/1.5 var(--mono);color:var(--muted);margin-top:2px}
+.h-ideas a{color:inherit;text-decoration:none}
+.h-ideas a:hover b{color:var(--accent-ink)}
+
+.h-fc{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:0 32px}
+.h-fc > div{padding:16px 0;border-top:2px solid var(--accent);min-width:0}
+.h-fc b{display:block;font-size:17px;letter-spacing:-.01em;color:var(--fg)}
+.h-fc p{margin:6px 0 10px;color:var(--fg-2);font-size:14.5px}
+.h-chips{display:flex;flex-wrap:wrap;gap:6px}
+.h-chips a{font:500 11.5px/1 var(--mono);padding:6px 8px;border:1px solid var(--line-2);border-radius:var(--r-s);color:var(--fg-2);text-decoration:none}
+.h-chips a:hover{border-color:var(--fg);color:var(--fg)}
+
+.h-tablebar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;margin-bottom:16px}
+.h-tablebar .filters{margin-bottom:0}
+.h-copy{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.h-copy button{font:500 14px/1 var(--font);color:var(--fg-2);background:transparent;border:1px solid var(--line-2);border-radius:999px;padding:10px 14px;cursor:pointer}
+.h-copy button:hover{border-color:var(--fg);color:var(--fg)}
+.h-table{min-width:1040px}
+.h-table td{font-size:14px}
+.h-table td.when{font:500 12.5px/1.5 var(--mono);color:var(--fg-2);white-space:nowrap;width:110px}
+.h-table td.ttl{font-weight:600;color:var(--fg);width:170px}
+.h-table td.ttl .tag{display:inline-block;margin-top:6px}
+.h-table td.knd{font:400 12px/1.5 var(--mono);color:var(--muted);white-space:nowrap}
+.h-table td.idea{width:auto;font-weight:400;color:var(--fg-2)}
+.h-table a{color:var(--fg-2);text-decoration:none}
+.h-table a:hover{color:var(--accent-ink)}
+.h-table .sure{font:400 11.5px var(--mono);color:var(--muted)}
+.h-table tr{scroll-margin-top:24px;transition:background-color .6s}
+.h-table tr.flash{background:var(--accent-soft)}
+
+@media (prefers-reduced-motion: reduce){.s-seg{animation:none}.s-row,.h-table tr{transition:none}}
+</style>
+
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <span class="brand">SOUND / 2050</span>
+    <a href="#answer">Answer</a><a href="#order">Running order</a><a href="#bench">Bench</a><a href="#history">History</a><a href="#data">Data</a><a href="#sources">Sources</a>
+  </nav>
+
+  <header class="hero">
+    <p class="eyebrow">Sound for the “Future” party · November 2026</p>
+    <h1>Soundtrack <span class="yr">2050</span></h1>
+    <p class="lead">Twenty-nine tracks and five spoken voices about the future, two hours in all, laid out in the three blocks of the projection. Every track earns its place by being <b>grounded in reality</b>: it played on a real mission, it was made with a technology that will be ordinary by 2050, or its prediction has already come true. It also has to <b>lift the room</b>. Below the soundtrack is a short history of music: 66 changes and the ideas they carried, from bone flutes to 2050.</p>
+    <p class="s-rel">Pictures for these blocks: <a href="https://claude.ai/artifact/EX8V3LEzvAEtW2p2y2NLBu" target="_blank" rel="noopener">Projection 2050 ↗</a> · books: <a href="https://claude.ai/artifact/1P94dXNkbjwjofDd2DzaUi" target="_blank" rel="noopener">Book Projection 2050 ↗</a> · history: <a href="https://claude.ai/artifact/Abby2s8iw3xuiJQX9Qwfph" target="_blank" rel="noopener">Why Music Changes ↗</a></p>
+    <div class="s-strip-wrap">
+      <div class="s-lanes" id="sLanes" aria-hidden="true"></div>
+      <nav class="s-strip" id="sStrip" aria-label="The evening to scale: each bar is a track or a voice"></nav>
+      <div class="s-ticks" id="sTicks" aria-hidden="true"></div>
+      <div class="s-legend"><span><i style="background:var(--accent)"></i>Plausibility 9–10</span><span><i style="background:var(--dot)"></i>Other tracks</span><span><i style="background:var(--fg)"></i>Voice</span><span class="m">Width is duration, height is inspiration</span></div>
+    </div>
+  </header>
+
+  <section id="answer">
+    <div class="s-lead">
+      <div>
+        <p class="eyebrow">Answer</p>
+        <h2>Six tracks, if you need a short list</h2>
+        <ul class="core" id="sTop"></ul>
+        <p class="s-total" id="sTotal"></p>
+      </div>
+      <div class="s-how">
+        <p class="eyebrow">How to play it</p>
+        <h2>A list to import into your player</h2>
+        <ol>
+          <li>Copy the list: every track in running order, without the voices. Russian songs stay in Cyrillic so streaming search finds them.</li>
+          <li>Paste it into <a href="https://www.tunemymusic.com/" target="_blank" rel="noopener">TuneMyMusic</a>, which turns a text list into a playlist on Spotify, Apple Music or Yandex Music, or into <a href="https://music.yandex.ru/import" target="_blank" rel="noopener">Yandex Music’s import page</a>.</li>
+          <li>Play the voices from YouTube between tracks. Moroder’s monologue is the start of the Daft Punk track, so it is on streaming. Wanderers plays with its own sound.</li>
+          <li>Set a 5–8 second crossfade, and turn it off for the voices.</li>
+        </ol>
+        <textarea id="sImport" class="s-import" readonly aria-label="Track list for import"></textarea>
+        <div class="s-actions"><button type="button" id="sCopy" class="s-copy">Copy the list</button><span id="sStatus" class="s-status" aria-live="polite"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="facts">
+    <div class="sec-head">
+      <p class="eyebrow">Why these tracks can be trusted</p>
+      <h2>Three facts about music that guessed the future</h2>
+    </div>
+    <div class="findings">
+      <div class="fd key"><div class="num">1977</div><p>As David Bowie remembered it, Brian Eno came into the studio with “I Feel Love” saying “I have heard the sound of the future”, and said the single would change club music for the next 15 years.</p><div class="src">Bowie, Sound + Vision liner notes (1989) · <a href="https://musicradar.com/artists/this-single-is-going-to-change-the-sound-of-club-music-for-the-next-15-years-how-a-song-intended-to-be-an-album-track-would-leave-a-massive-mark-on-musics-future" target="_blank" rel="noopener">MusicRadar</a></div></div>
+      <div class="fd"><div class="num">39%</div><p>of heterosexual US couples who met in 2017 met online. Kraftwerk sang about a “data date” in 1981, in “Computer Love”.</p><div class="src">Rosenfeld et al. · <a href="https://www.pnas.org/doi/10.1073/pnas.1908630116" target="_blank" rel="noopener">PNAS, 2019</a></div></div>
+      <div class="fd"><div class="num">2025</div><p>is the year “Now and Then” won the Grammy for Best Rock Performance. Lennon’s voice on a 1970s demo was separated from the piano with machine learning.</p><div class="src"><a href="https://en.wikipedia.org/wiki/Now_and_Then_(Beatles_song)" target="_blank" rel="noopener">Now and Then, Wikipedia</a></div></div>
+    </div>
+  </section>
+
+  <section id="order">
+    <div class="sec-head">
+      <p class="eyebrow">Running order</p>
+      <h2>Three blocks, about 40 minutes each</h2>
+      <p class="note">The blocks match the projection blocks, so the wall and the sound change mood together. Each row shows the minute it starts within its block. <b>P</b> is plausibility and <b>I</b> is inspiration; both are editorial scores out of 10.</p>
+    </div>
+    <div class="filters" id="sFilters" role="group" aria-label="Filter the soundtrack"></div>
+    <div id="sBlocks"></div>
+    <div class="tips">
+      <div><b>Before it starts</b>While guests arrive, play Brian Eno’s “Reflection” from the bench. It is a 65-minute generative piece that stays out of the way of conversation.</div>
+      <div><b>Voices</b>Recordings from the 1960s and 1980s are quieter than modern tracks. Turn the volume up for each voice, or the words get lost in the room.</div>
+      <div><b>Sync with 2001</b>To run the docking on the wall under the waltz, swap two tracks in block 3 for “The Blue Danube” from the bench. It lasts about 10 minutes.</div>
+      <div><b>Rights</b>A streaming subscription covers a house party. A public event needs a licence for public performance of music.</div>
+    </div>
+  </section>
+
+  <section id="bench">
+    <div class="sec-head">
+      <p class="eyebrow">Bench</p>
+      <h2 id="sBenchTitle">Substitutes</h2>
+      <p class="note">These fit the theme but were left out of the main order because of length, a harsh sound or an idea already covered.</p>
+    </div>
+    <div class="s-bench" id="sBench"></div>
+  </section>
+
+  <section id="history">
+    <div class="sec-head">
+      <p class="eyebrow">History of music</p>
+      <h2 id="hTitle">How music got here</h2>
+      <p class="note">Each change below altered how music sounds, how it is made, how people hear it, or what it is about. Changes tied to a track in tonight’s soundtrack are marked in orange. The selection is editorial and leans toward Western and recorded music. For the context behind each era, why people made music and what may come next, see <a href="https://claude.ai/artifact/Abby2s8iw3xuiJQX9Qwfph" target="_blank" rel="noopener">Why Music Changes ↗</a>.</p>
+    </div>
+    <div class="findings h-facts">
+      <div class="fd key"><div class="num">43,000</div><p>years: the age of the oldest known instruments, bone flutes from caves in southern Germany. Music is far older than writing, which is about 5,000 years old.</p><div class="src"><a href="https://en.wikipedia.org/wiki/Paleolithic_flute" target="_blank" rel="noopener">Paleolithic flute, Wikipedia</a></div></div>
+      <div class="fd"><div class="num">7</div><p>formats for recorded music in 131 years: cylinder (1877), disc (1887), LP (1948), cassette (1963), CD (1982), MP3 (1993), streaming (2008).</p><div class="src">From the data table below</div></div>
+      <div class="fd"><div class="num">51%</div><p>of US recorded-music revenue came from streaming in 2016, the first time it was the majority.</p><div class="src">RIAA via <a href="https://www.rollingstone.com/music/music-news/streaming-helps-music-industry-rebound-in-2016-after-years-of-decline-113464/" target="_blank" rel="noopener">Rolling Stone</a></div></div>
+    </div>
+    <div class="h-legend"><span><i style="background:var(--accent)"></i>Tied to tonight’s soundtrack</span><span><i style="background:var(--dot)"></i>Other change</span><span class="m">Time runs on a log scale, so recent decades get more room. Hover a dot for details; click it to jump to its row.</span></div>
+    <div class="h-chart" id="hChart"><svg id="hSvg" viewBox="0 0 1000 340" role="img" aria-label="Timeline of core changes in music by kind, on a log time scale from 43,000 years ago to 2050"></svg><div class="h-tip" id="hTip" hidden></div></div>
+
+    <div class="h-sub">
+      <p class="eyebrow">Core ideas</p>
+      <h3 id="hIdeasTitle">What music has been about, in the order the ideas appeared</h3>
+      <p class="note">Each idea is still alive. The newest ones are the questions the 2050 forecasts answer.</p>
+      <ol class="h-ideas" id="hIdeas"></ol>
+    </div>
+
+    <div class="h-sub">
+      <p class="eyebrow">Forecast</p>
+      <h3>Where the lines point by 2050</h3>
+      <p class="note">These are editorial extrapolations, not model output. Each one continues a line already visible in the data; the chips show which changes it builds on.</p>
+      <div class="h-fc" id="hForecasts"></div>
+    </div>
+  </section>
+
+  <section id="data">
+    <div class="sec-head">
+      <p class="eyebrow">Data</p>
+      <h2>Every change, with its source</h2>
+      <p class="note">One row per change. Copy the table as CSV or JSON to reuse it. “Approx.” marks an approximate date; “legend” marks a traditional attribution.</p>
+    </div>
+    <div class="h-tablebar">
+      <div class="filters" id="hFilters" role="group" aria-label="Filter the history table"></div>
+      <div class="h-copy"><button type="button" id="hCopyCsv">Copy CSV</button><button type="button" id="hCopyJson">Copy JSON</button><span class="s-status" id="hStatus" aria-live="polite"></span></div>
+    </div>
+    <textarea id="hBuf" class="s-import" readonly hidden aria-label="Copied data"></textarea>
+    <div class="table-wrap">
+      <table class="h-table">
+        <thead><tr><th>When</th><th>Change</th><th>Kind</th><th>What changed</th><th>Core idea</th><th>Listen</th><th>Source</th></tr></thead>
+        <tbody id="hBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="sources">
+    <div class="two">
+      <div>
+        <p class="eyebrow">Sources</p>
+        <h2>Where the facts come from</h2>
+        <ul class="src-list">
+          <li><a href="https://musicradar.com/artists/this-single-is-going-to-change-the-sound-of-club-music-for-the-next-15-years-how-a-song-intended-to-be-an-album-track-would-leave-a-massive-mark-on-musics-future" target="_blank" rel="noopener">MusicRadar: “I Feel Love” and the sound of the future</a>; <a href="https://en.wikipedia.org/wiki/I_Feel_Love" target="_blank" rel="noopener">I Feel Love</a></li>
+          <li><a href="https://www.pnas.org/doi/10.1073/pnas.1908630116" target="_blank" rel="noopener">Rosenfeld, Thomas, Hausen: Disintermediating your friends (PNAS, 2019)</a>; <a href="https://en.wikipedia.org/wiki/Computer_World" target="_blank" rel="noopener">Computer World</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Now_and_Then_(Beatles_song)" target="_blank" rel="noopener">Now and Then: machine learning and the Grammy</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/ABBA_Voyage" target="_blank" rel="noopener">ABBA Voyage</a>; <a href="https://en.wikipedia.org/wiki/Holly_Herndon" target="_blank" rel="noopener">Holly Herndon: Spawn and Holly+</a>; <a href="https://en.wikipedia.org/wiki/%C3%93lafur_Arnalds" target="_blank" rel="noopener">Ólafur Arnalds: Stratus</a>; <a href="https://en.wikipedia.org/wiki/Hatsune_Miku" target="_blank" rel="noopener">Hatsune Miku</a>; <a href="https://en.wikipedia.org/wiki/Imogen_Heap" target="_blank" rel="noopener">Imogen Heap: MI.MU gloves</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Apollo:_Atmospheres_and_Soundtracks" target="_blank" rel="noopener">Apollo: Atmospheres and Soundtracks</a>; <a href="https://en.wikipedia.org/wiki/The_Race_for_Space_(album)" target="_blank" rel="noopener">The Race for Space</a>; <a href="https://en.wikipedia.org/wiki/Contact_(Daft_Punk_song)" target="_blank" rel="noopener">Contact (Daft Punk)</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Rosetta_(album)" target="_blank" rel="noopener">Rosetta (Vangelis)</a>; <a href="https://en.wikipedia.org/wiki/Mythodea" target="_blank" rel="noopener">Mythodea</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Chris_Hadfield" target="_blank" rel="noopener">Chris Hadfield</a>; <a href="https://en.wikipedia.org/wiki/Higher_Power_(Coldplay_song)" target="_blank" rel="noopener">Higher Power</a>; <a href="https://en.wikipedia.org/wiki/All_Is_Full_of_Love" target="_blank" rel="noopener">All Is Full of Love</a></li>
+          <li><a href="https://ru.sputnik.kz/20211208/baykonur-start-kosmos-raketa-yapontsy-video-18854251.html" target="_blank" rel="noopener">Sputnik (in Russian): “Trava u doma” at Baikonur</a>; <a href="https://ru.wikipedia.org/wiki/%D0%A2%D1%80%D0%B0%D0%B2%D0%B0_%D1%83_%D0%B4%D0%BE%D0%BC%D0%B0" target="_blank" rel="noopener">“Trava u doma”, Russian Wikipedia</a></li>
+          <li><a href="https://www.nbcnews.com/science/space/nasa-mars-life-biosignature-rcna230187" target="_blank" rel="noopener">NBC News: potential biosignature in a Perseverance sample (2025)</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Voyager_Golden_Record" target="_blank" rel="noopener">Voyager Golden Record</a>; <a href="https://en.wikipedia.org/wiki/Pale_Blue_Dot" target="_blank" rel="noopener">Pale Blue Dot</a></li>
+          <li><a href="https://fortune.com/2024/05/29/arthur-c-clarke-space-odyssey-remote-work-ai-predictions-bbc/" target="_blank" rel="noopener">Fortune: Clarke’s 1964 forecast</a>; <a href="https://en.wikipedia.org/wiki/Remote_surgery" target="_blank" rel="noopener">Remote surgery: Operation Lindbergh, 2001</a></li>
+          <li><a href="https://openculture.com/2024/05/isaac-asimov-predicts-the-future-of-online-education-in-1988-and-its-now-coming-true.html" target="_blank" rel="noopener">Open Culture: Asimov on computer learning, 1988</a>; <a href="https://en.wikipedia.org/wiki/We_choose_to_go_to_the_Moon" target="_blank" rel="noopener">We choose to go to the Moon</a></li>
+          <li><a href="https://arxiv.org/abs/2503.23674" target="_blank" rel="noopener">Jones &amp; Bergen: Large Language Models Pass the Turing Test (2025)</a>; <a href="https://www.slashfilm.com/513093/nasa-2012-absurd-scifi-movie-gattaca-plausible/" target="_blank" rel="noopener">/Film: Gattaca and the NASA JPL poll</a></li>
+          <li><a href="https://nukadeti.ru/pesni/do-chego-doshel-progress" target="_blank" rel="noopener">“Do chego doshyol progress”: lyrics (in Russian)</a>; <a href="https://erikwernquist.com/wanderers" target="_blank" rel="noopener">Wanderers: credits, music by Cristian Sandquist</a></li>
+          <li><a href="https://www.musicweek.com/labels/read/warner-music-group-settles-lawsuit-and-signs-ai-licensing-deal-with-suno/093129" target="_blank" rel="noopener">Music Week: Warner settles with Suno and signs a licensing deal (2025)</a>; <a href="https://en.wikipedia.org/wiki/Udio" target="_blank" rel="noopener">Udio and the Universal settlement</a>; <a href="https://www.flow-machines.com/history/events/ai-makes-pop-music/" target="_blank" rel="noopener">Flow Machines: Daddy’s Car</a></li>
+          <li><a href="https://www.tunemymusic.com/" target="_blank" rel="noopener">TuneMyMusic</a>; <a href="https://habr.com/ru/post/655869" target="_blank" rel="noopener">Habr (in Russian): importing lists into Yandex Music</a></li>
+          <li>Every row of the history table links its own source. Track durations and release years were checked against the Apple Music catalog (iTunes Search API) in November 2026.</li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow">What was not checked</p>
+        <h2>Where this could be wrong</h2>
+        <ul class="unc">
+          <li>Scores are editorial. Plausibility here means a link to a real mission, a technology or a prediction that came true, not a guess at how music will sound in 2050.</li>
+          <li>Eno’s words about the “sound of the future” are known only from Bowie’s account (1989), and the second half of the quote varies between sources.</li>
+          <li>Clarke’s and Asimov’s words are paraphrased; the exact wording is in the linked recordings.</li>
+          <li>Some sources call “Trava u doma” the official anthem of Russian cosmonautics since 2009, others an unofficial one. I found no document on its status.</li>
+          <li>The Mars biosignature is only potential: a non-biological explanation is not ruled out, and the sample has to come to Earth.</li>
+          <li>Durations come from the Apple Music catalog, and other services can differ by a few seconds. Durations of the voices and of “Prekrasnoye daleko” are estimates.</li>
+          <li>The history is a selection weighted toward Western and recorded music. Early dates are approximate, and Pythagoras’s discovery is a tradition, not a documented fact.</li>
+          <li>“First” claims, such as the first jazz record or the first electric guitar, follow Wikipedia and are debated by historians.</li>
+          <li>The 2050 forecasts extrapolate from the history; they are not predictions from a model or a survey.</li>
+          <li>Listen links go to a search, not to a specific version of the track.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>Soundtrack 2050 · compiled 13 November 2026 · scores are editorial, facts are linked</footer>
+</div>
+
+<script>
+(function(){
+const DATA=__SOUNDTRACK_JSON__;
+const HIST=__HISTORY_JSON__;
+const S=DATA.tracks,B=DATA.blocks,TOP=DATA.top,BENCH=DATA.bench;
+const TG={mission:'mission',came:'came true',tech:'2050 tech',film:'from the films',ru:'Russian'};
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const mmss=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+const sp=q=>'https://open.spotify.com/search/'+encodeURIComponent(q);
+const ym=q=>'https://music.yandex.ru/search?text='+encodeURIComponent(q);
+const yt=q=>'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
+const isVoice=x=>x.k==='voice';
+const hi=x=>x.p>=9;
+const L=(q,voice,stream)=>'<div class="s-links">'+((!voice||stream)?'<a href="'+sp(q)+'" target="_blank" rel="noopener">Spotify ↗</a><a href="'+ym(q)+'" target="_blank" rel="noopener">Yandex ↗</a>':'')+'<a href="'+yt(q)+'" target="_blank" rel="noopener">YouTube ↗</a></div>';
+const hm=s=>{const m=Math.round(s/60);return m>=60?Math.floor(m/60)+' h '+(m%60)+' min':m+' min'};
+function copyText(text,ta,st,done){
+  const fallback=()=>{ta.hidden=false;ta.value=text;ta.focus();ta.select();st.textContent='Selected: press ⌘C or Ctrl+C'};
+  try{navigator.clipboard.writeText(text).then(()=>{st.textContent=done},fallback)}catch(e){fallback()}
+}
+
+/* ---------- Soundtrack ---------- */
+let t=0;const blockStart={},blockDur={};
+S.forEach(x=>{if(blockStart[x.b]==null)blockStart[x.b]=t;x.start=t;t+=x.d;blockDur[x.b]=(blockDur[x.b]||0)+x.d});
+const total=t;
+const tracks=S.filter(x=>!isVoice(x)),voices=S.filter(isVoice);
+document.getElementById('sTotal').innerHTML='Whole soundtrack: <b>'+tracks.length+'</b> tracks · <b>'+voices.length+'</b> voices · <b>'+hm(total)+'</b>';
+
+const byId=Object.fromEntries(S.map(x=>[x.id,x]));
+document.getElementById('sTop').innerHTML=TOP.map(([id,why])=>{const x=byId[id];
+  return '<li><a href="#t-'+id+'">'+esc(x.a)+' — '+esc(x.t)+'</a><span class="pb"><i>P</i> '+x.p+' · <i>I</i> '+x.v+'</span><span class="why">'+esc(why)+' · '+x.y+'</span></li>'}).join('');
+
+const ta=document.getElementById('sImport');
+ta.value=tracks.map(x=>x.imp||(x.a+' — '+x.t)).join('\n');
+document.getElementById('sCopy').addEventListener('click',()=>{
+  const st=document.getElementById('sStatus');
+  try{navigator.clipboard.writeText(ta.value).then(()=>{st.textContent='Copied: '+tracks.length+' lines'},()=>{ta.focus();ta.select();st.textContent='Selected: press ⌘C or Ctrl+C'})}catch(e){ta.focus();ta.select();st.textContent='Selected: press ⌘C or Ctrl+C'}
+});
+
+const pct=v=>(v/total*100).toFixed(3)+'%';
+document.getElementById('sStrip').innerHTML=S.map((x,i)=>'<a class="s-seg'+(isVoice(x)?' voice':hi(x)?' hi':'')+'" href="#t-'+x.id+'" style="left:'+pct(x.start)+';width:calc('+pct(x.d)+' - 2px);height:'+(40+(x.v-5)*12)+'%;animation-delay:'+(i*22)+'ms" title="'+esc((isVoice(x)?'Voice: ':'')+x.a+' — '+x.t+' · '+mmss(x.d))+'" aria-label="'+esc((isVoice(x)?'Voice: ':'')+x.a+', '+x.t)+'"></a>').join('');
+document.getElementById('sLanes').innerHTML=B.map(b=>'<span style="left:'+pct(blockStart[b.n])+';width:'+pct(blockDur[b.n])+'">'+esc(b.short)+' <i>'+hm(blockDur[b.n])+'</i></span>').join('');
+const ticks=[];for(let m=0;m*60<=total;m+=30)ticks.push('<span style="left:'+pct(m*60)+'">'+Math.floor(m/60)+':'+String(m%60).padStart(2,'0')+'</span>');
+document.getElementById('sTicks').innerHTML=ticks.join('');
+
+const wrap=document.getElementById('sBlocks');
+wrap.innerHTML=B.map(b=>{
+  const items=S.filter(x=>x.b===b.n);let n=0;
+  const nt=items.filter(x=>!isVoice(x)).length,nv=items.length-nt;
+  return '<div class="s-block" data-b="'+b.n+'"><div class="s-bh"><h3>'+b.n+'. '+esc(b.t)+'<span class="en">projection block '+b.n+'</span></h3><span class="dur">'+hm(blockDur[b.n])+' · '+nt+' tracks and '+nv+(nv===1?' voice':' voices')+'</span></div>'+
+   '<p class="s-sync">'+esc(b.sync)+'</p><ol class="s-list">'+items.map(x=>{
+    const v=isVoice(x);if(!v)n++;
+    const rel=x.start-blockStart[b.n];
+    const tags=x.tg.map(k=>'<span class="tag'+(k==='mission'||k==='came'?' gold':'')+'">'+TG[k]+'</span>').join('');
+    const meta=esc(x.a)+' · '+x.y+(x.from?' · from “'+esc(x.from)+'”':'');
+    return '<li class="s-row'+(v?' voice':'')+'" id="t-'+x.id+'" data-tg="'+x.tg.join(' ')+(v?' voice':'')+'">'+
+     '<span class="s-n">'+(v?'voice':String(n).padStart(2,'0'))+'</span>'+
+     '<div class="s-main"><div class="s-t">'+esc(x.t)+'</div><div class="s-a">'+meta+'</div>'+
+     '<p class="s-idea">'+esc(x.idea)+'</p><p class="s-proof">'+tags+esc(x.proof)+'</p></div>'+
+     '<div class="s-side"><span class="pb"><i>P</i> '+x.p+' · <i>I</i> '+x.v+'</span>'+
+     '<span class="s-time">'+(x.approx?'≈':'')+mmss(x.d)+' <i>· from '+mmss(rel)+'</i></span>'+L(x.q||(x.a+' '+x.t),v,x.stream)+'</div></li>'}).join('')+'</ol></div>'}).join('')+
+  '<p class="s-empty" id="sEmpty" hidden>Nothing matches this filter.</p>';
+
+document.getElementById('sBenchTitle').textContent=BENCH.length+' substitutes';
+document.getElementById('sBench').innerHTML=BENCH.map(x=>'<div><b>'+esc(x.t)+'</b><div class="s-a">'+esc(x.a)+' · '+x.y+'</div>'+esc(x.note)+L(x.q||(x.a+' '+x.t))+'</div>').join('');
+
+const FL=[{k:'all',t:'All'},{k:'mission',t:'Real missions'},{k:'came',t:'Came true'},{k:'tech',t:'2050 tech'},{k:'film',t:'From the films'},{k:'ru',t:'Russian'},{k:'voice',t:'Voices'}];
+const rows=[...wrap.querySelectorAll('.s-row')],blocks=[...wrap.querySelectorAll('.s-block')];
+const match=(r,k)=>k==='all'||r.dataset.tg.split(' ').includes(k);
+const fw=document.getElementById('sFilters');
+FL.forEach(o=>{
+  const b=document.createElement('button');b.type='button';b.id='sflt-'+o.k;b.dataset.k=o.k;
+  b.innerHTML=esc(o.t)+'<span class="count">'+rows.filter(r=>match(r,o.k)).length+'</span>';
+  b.setAttribute('aria-pressed',o.k==='all');b.addEventListener('click',()=>setF(o.k));fw.appendChild(b);
+});
+function setF(k){
+  if(!FL.some(o=>o.k===k))k='all';
+  rows.forEach(r=>{r.hidden=!match(r,k)});
+  blocks.forEach(bl=>{bl.hidden=![...bl.querySelectorAll('.s-row')].some(r=>!r.hidden)});
+  document.getElementById('sEmpty').hidden=rows.some(r=>!r.hidden);
+  fw.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k));
+  try{localStorage.setItem('s2050-filter',k)}catch(e){}
+}
+let sv='all';try{sv=localStorage.getItem('s2050-filter')||'all'}catch(e){}
+if(location.hash&&location.hash.indexOf('#t-')===0)sv='all';
+setF(sv);
+
+/* ---------- History ---------- */
+const R=HIST.records.slice().sort((a,b)=>a.year-b.year);
+const KIND=HIST.kinds;const KO=Object.keys(KIND);
+const RB=Object.fromEntries(R.map(r=>[r.id,r]));
+const tieName=id=>{const x=byId[id];return x?x.a+' — '+x.t:''};
+document.getElementById('hTitle').textContent='How music got here: '+R.length+' changes from bone flutes to AI';
+
+/* Chart: x = log10(2060 - year), so each step left is ten times further back */
+const svg=document.getElementById('hSvg'),NS='http://www.w3.org/2000/svg';
+const W=1000,PL=168,PR=16,TOPY=34,LH=66,H=TOPY+KO.length*LH+40;
+svg.setAttribute('viewBox','0 0 '+W+' '+H);
+const A=2060,L0=Math.log10(A+43000),L1=Math.log10(A-2050);
+const X=y=>PL+(L0-Math.log10(A-y))/(L0-L1)*(W-PL-PR);
+const el=(tg,at,txt)=>{const e=document.createElementNS(NS,tg);for(const k in at)e.setAttribute(k,at[k]);if(txt!=null)e.textContent=txt;return e};
+svg.appendChild(el('rect',{class:'h-future',x:X(2026),y:TOPY-22,width:X(2050)-X(2026),height:KO.length*LH+22,rx:4}));
+svg.appendChild(el('text',{class:'h-future-label',x:(X(2026)+X(2050))/2,y:TOPY-8,'text-anchor':'middle'},'to 2050'));
+const TK=[[-40000,'40,000 BCE'],[-10000,'10,000 BCE'],[1,'1 CE'],[1000,'1000'],[1500,'1500'],[1800,'1800'],[1900,'1900'],[1950,'1950'],[2000,'2000'],[2026,'now'],[2050,'2050']];
+const axisY=TOPY+KO.length*LH;
+TK.forEach(([y,l])=>{svg.appendChild(el('line',{class:'h-grid',x1:X(y),x2:X(y),y1:TOPY,y2:axisY}));svg.appendChild(el('text',{class:'h-tick',x:X(y),y:axisY+20,'text-anchor':y===2050?'end':'middle'},l))});
+KO.forEach((k,i)=>{
+  const top=TOPY+i*LH;
+  svg.appendChild(el('line',{class:'h-sep',x1:12,x2:W-PR,y1:top+LH,y2:top+LH}));
+  svg.appendChild(el('text',{class:'h-lane',x:14,y:top+LH/2+4},KIND[k]));
+});
+const tip=document.getElementById('hTip'),box=document.getElementById('hChart');
+KO.forEach((k,i)=>{
+  const top=TOPY+i*LH,cy=top+LH/2+4;
+  const items=R.filter(r=>r.kind===k).map(r=>({r,x:X(r.year)}));
+  const OFF=[0,10,-10,20],last=OFF.map(()=>-1e9);let labelEnd=-1e9;
+  items.forEach(it=>{
+    let s=OFF.findIndex((o,j)=>it.x-last[j]>=12);
+    if(s<0){s=last.indexOf(Math.min(...last))}
+    last[s]=it.x;it.y=cy+OFF[s];
+  });
+  items.forEach(it=>{
+    const r=it.r;
+    if(r.key){const w=r.title.length*6.4;
+      if(it.x-2>labelEnd+8){
+        svg.appendChild(el('line',{class:'h-stem',x1:it.x,x2:it.x,y1:top+14,y2:it.y-6}));
+        svg.appendChild(el('text',{class:'h-lbl'+(r.tie?' tie':''),x:it.x-2,y:top+11},r.title));labelEnd=it.x-2+w}}
+  });
+  items.forEach(it=>{
+    const r=it.r;
+    const g=el('a',{class:'h-dot'+(r.tie?' tie':''),href:'#h-'+r.id,'aria-label':r.when+': '+r.title});
+    g.appendChild(el('circle',{class:'hit',cx:it.x,cy:it.y,r:11}));
+    g.appendChild(el('circle',{class:'v',cx:it.x,cy:it.y,r:5}));
+    const show=()=>{
+      tip.innerHTML='<b>'+esc(r.title)+'</b><span class="m">'+esc(r.when)+' · '+esc(KIND[r.kind])+'</span><br>'+esc(r.change)+(r.tie?'<br><span class="m">Tonight: '+esc(tieName(r.tie))+'</span>':'');
+      tip.hidden=false;
+      const sr=svg.getBoundingClientRect(),br=box.getBoundingClientRect(),kk=sr.width/W;
+      let x=(sr.left-br.left)+box.scrollLeft+it.x*kk+14,y=(sr.top-br.top)+it.y*kk-10;
+      const tw=tip.offsetWidth;if(x+tw>box.scrollLeft+box.clientWidth-8)x=(sr.left-br.left)+box.scrollLeft+it.x*kk-tw-14;
+      tip.style.left=x+'px';tip.style.top=Math.max(6,y)+'px';
+    };
+    const hide=()=>{tip.hidden=true};
+    g.addEventListener('pointerenter',show);g.addEventListener('pointerleave',hide);
+    g.addEventListener('focus',show);g.addEventListener('blur',hide);
+    svg.appendChild(g);
+  });
+});
+
+/* Ideas */
+const ideas=R.filter(r=>r.kind==='idea');
+document.getElementById('hIdeasTitle').textContent=ideas.length+' ideas music has carried, in the order they appeared';
+document.getElementById('hIdeas').innerHTML=ideas.map(r=>'<li><a href="#h-'+r.id+'"><b>'+esc(r.idea)+'</b><span class="w">'+esc(r.when)+' · '+esc(r.title)+'</span></a></li>').join('');
+
+/* Forecasts */
+document.getElementById('hForecasts').innerHTML=HIST.forecasts.map(f=>'<div><b>'+esc(f.title)+'</b><p>'+esc(f.text)+'</p><div class="h-chips">'+f.from.map(id=>{const r=RB[id];return r?'<a href="#h-'+id+'">'+esc(r.when)+' · '+esc(r.title)+'</a>':''}).join('')+'</div></div>').join('');
+
+/* Table */
+const sureLbl={approx:'approx.',legend:'legend'};
+const body=document.getElementById('hBody');
+body.innerHTML=R.map(r=>{
+  const lq=r.q||r.listen;
+  return '<tr id="h-'+r.id+'" data-kind="'+r.kind+'" data-tie="'+(r.tie?1:0)+'"><td class="when">'+esc(r.when)+(sureLbl[r.sure]?'<br><span class="sure">'+sureLbl[r.sure]+'</span>':'')+'</td>'+
+   '<td class="ttl">'+esc(r.title)+(r.tie?'<br><a class="tag gold" href="#t-'+r.tie+'">tonight</a>':'')+'</td>'+
+   '<td class="knd">'+esc(KIND[r.kind])+'</td><td>'+esc(r.change)+'</td><td class="idea">'+esc(r.idea)+'</td>'+
+   '<td>'+(r.listen?'<a href="'+yt(lq)+'" target="_blank" rel="noopener">'+esc(r.listen)+' ↗</a>':'<span class="sure">—</span>')+'</td>'+
+   '<td><a href="'+esc(r.src)+'" target="_blank" rel="noopener">Source ↗</a></td></tr>'}).join('');
+const hrows=[...body.children];
+const HF=[{k:'all',t:'All',fn:()=>true}].concat(KO.map(k=>({k,t:KIND[k],fn:r=>r.dataset.kind===k}))).concat([{k:'tie',t:'In tonight’s soundtrack',fn:r=>r.dataset.tie==='1'}]);
+const hfw=document.getElementById('hFilters');
+HF.forEach(o=>{
+  const b=document.createElement('button');b.type='button';b.id='hflt-'+o.k;b.dataset.k=o.k;
+  b.innerHTML=esc(o.t)+'<span class="count">'+hrows.filter(o.fn).length+'</span>';
+  b.setAttribute('aria-pressed',o.k==='all');b.addEventListener('click',()=>setH(o.k));hfw.appendChild(b);
+});
+function setH(k){
+  const o=HF.find(x=>x.k===k)||HF[0];
+  hrows.forEach(r=>{r.hidden=!o.fn(r)});
+  hfw.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===o.k));
+}
+setH('all');
+
+const COLS=['year','when','title','kind','change','idea','listen','tie','sure','src'];
+const csvCell=v=>{v=v==null?'':String(v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};
+const csv=()=>[COLS.join(',')].concat(R.map(r=>COLS.map(c=>csvCell(c==='kind'?KIND[r.kind]:c==='tie'?tieName(r.tie):r[c])).join(','))).join('\n');
+const buf=document.getElementById('hBuf'),hst=document.getElementById('hStatus');
+document.getElementById('hCopyCsv').addEventListener('click',()=>copyText(csv(),buf,hst,'Copied: '+R.length+' rows as CSV'));
+document.getElementById('hCopyJson').addEventListener('click',()=>copyText(JSON.stringify({records:R.map(r=>Object.fromEntries(COLS.map(c=>[c,r[c]??null]))),forecasts:HIST.forecasts},null,2),buf,hst,'Copied: '+R.length+' rows as JSON'));
+
+/* Jump + flash, for both the soundtrack and the history */
+function flash(node){if(!node)return;node.classList.add('flash');setTimeout(()=>node.classList.remove('flash'),1800)}
+document.addEventListener('click',e=>{
+  const a=e.target.closest&&e.target.closest('a[href^="#t-"],a[href^="#h-"]');if(!a)return;
+  const id=a.getAttribute('href').slice(1),node=document.getElementById(id);if(!node)return;
+  if(node.hidden){id[0]==='t'?setF('all'):setH('all')}
+  flash(node);
+});
+})();
+</script>

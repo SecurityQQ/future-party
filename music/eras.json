@@ -1,0 +1,899 @@
+{
+ "_about": "Why music changes, 2000 BCE–2026 and next. forces: 0 = minor, 1 = present, 2 = a main cause of the era's new music (editorial). Works: q = search query. scenarios: early trends with sourced signals.",
+ "forces": {
+  "money": {
+   "name": "Who pays",
+   "hint": "temples, courts, churches, ticket buyers, record buyers, platforms"
+  },
+  "power": {
+   "name": "Who rules",
+   "hint": "kings, states, revolutions, censors, law"
+  },
+  "belief": {
+   "name": "What people believe",
+   "hint": "religion, philosophy, ideology"
+  },
+  "tech": {
+   "name": "What carries sound",
+   "hint": "instruments, notation, print, records, radio, internet, AI"
+  },
+  "contact": {
+   "name": "Who meets whom",
+   "hint": "trade, conquest, migration, slavery, globalization"
+  }
+ },
+ "eras": [
+  {
+   "id": "e1",
+   "from": -2000,
+   "to": -500,
+   "years": "2000–500 BCE",
+   "name": "Temples and kings",
+   "context": "The first states of Mesopotamia, Egypt, the Indus and Ganges plains and China are run by priest-kings. Writing serves temples, taxes and laws. Hymns already have named authors: the priestess Enheduanna wrote hymns to Inanna around 2300 BCE.",
+   "why": "Music speaks to the gods, keeps the calendar of rituals and shows the ruler’s bond with heaven. Temple singers and palace musicians are trained professionals. Funerals and feasts have songs too: Egyptian tomb walls of the Middle Kingdom show blind harpists, whose songs urge the living to enjoy their days.",
+   "idea": "Music keeps the world in order.",
+   "forces": {
+    "money": 1,
+    "power": 2,
+    "belief": 2,
+    "tech": 1,
+    "contact": 1
+   },
+   "works": [
+    {
+     "t": "Hurrian Hymn to Nikkal",
+     "by": "Ugarit, c. 1400 BCE",
+     "note": "the oldest substantially complete notated music",
+     "q": "Hurrian Hymn No. 6"
+    },
+    {
+     "t": "Samaveda chant",
+     "by": "Vedic India",
+     "note": "the Veda of melodies, chanted in ritual",
+     "q": "Samaveda chanting"
+    },
+    {
+     "t": "Harper’s songs",
+     "by": "Middle Kingdom Egypt",
+     "note": "tomb songs telling the living to enjoy life",
+     "q": "Ancient Egyptian harp music reconstruction"
+    }
+   ],
+   "src": [
+    "https://en.wikipedia.org/wiki/Enheduanna",
+    "https://en.wikipedia.org/wiki/Hurrian_songs",
+    "https://en.wikipedia.org/wiki/Samaveda",
+    "https://en.wikipedia.org/wiki/Harper%27s_Songs"
+   ],
+   "short": "Temples"
+  },
+  {
+   "id": "e2",
+   "from": -500,
+   "to": 400,
+   "years": "500 BCE–400 CE",
+   "name": "Philosophers and city festivals",
+   "context": "Greek city-states and then the Roman Empire around the Mediterranean; the Warring States and the Han dynasty in China; the Mauryan and Gupta empires in India. Philosophers ask what makes a good citizen.",
+   "why": "Music becomes a question of character and law. In Plato’s Republic some modes are banned because they make citizens soft. Confucius treats ritual music as a tool for social harmony. Athens stages tragedies with sung choruses at civic festivals, and Rome pays musicians for spectacle and the army. In China a ruler is buried with 65 bronze bells, each cast to sound two pitches.",
+   "idea": "Music shapes character, so the state cares what people hear.",
+   "forces": {
+    "money": 1,
+    "power": 2,
+    "belief": 2,
+    "tech": 1,
+    "contact": 1
+   },
+   "works": [
+    {
+     "t": "Bianzhong of Marquis Yi",
+     "by": "China, 433 BCE",
+     "note": "65 bronze bells, each sounding two pitches",
+     "q": "Marquis Yi of Zeng bianzhong performance"
+    },
+    {
+     "t": "Delphic Hymns",
+     "by": "Greece, 128 BCE",
+     "note": "hymns to Apollo carved in stone at Delphi",
+     "q": "Delphic Hymn to Apollo"
+    },
+    {
+     "t": "Seikilos epitaph",
+     "by": "Asia Minor, 1st–2nd century CE",
+     "note": "the oldest complete song: “While you live, shine”",
+     "q": "Seikilos epitaph"
+    }
+   ],
+   "src": [
+    "https://en.wikipedia.org/wiki/Bianzhong_of_Marquis_Yi_of_Zeng",
+    "https://en.wikipedia.org/wiki/Delphic_Hymns",
+    "https://en.wikipedia.org/wiki/Seikilos_epitaph",
+    "https://en.wikipedia.org/wiki/Musical_system_of_ancient_Greece"
+   ],
+   "short": "Philosophers"
+  },
+  {
+   "id": "e3",
+   "from": 400,
+   "to": 1000,
+   "years": "400–1000",
+   "name": "Faith and empire",
+   "context": "Christianity becomes the state religion of Rome in 380. The western empire falls; Byzantium, the Frankish kingdoms and, from the 7th century, the Islamic caliphates hold power. Tang China trades along the Silk Road.",
+   "why": "Rulers use one shared chant to bind their lands to one church: according to Charlemagne, his father Pepin replaced the local Gallican rites with Roman chant to strengthen ties with Rome. In Baghdad, scholars such as al-Kindi build on Greek theory and write about the oud. Tang court orchestras play instruments such as the pipa that came along the Silk Road.",
+   "idea": "One faith, one sound.",
+   "forces": {
+    "money": 1,
+    "power": 2,
+    "belief": 2,
+    "tech": 1,
+    "contact": 2
+   },
+   "works": [
+    {
+     "t": "Gregorian chant",
+     "by": "Frankish empire, 9th century",
+     "note": "Roman chant spread across an empire",
+     "q": "Gregorian chant Puer natus est"
+    },
+    {
+     "t": "Byzantine chant",
+     "by": "Constantinople",
+     "note": "the eastern church’s sung liturgy",
+     "q": "Byzantine chant"
+    },
+    {
+     "t": "Pipa music",
+     "by": "Tang China",
+     "note": "a lute that arrived along the Silk Road",
+     "q": "pipa ancient Chinese music"
+    }
+   ],
+   "src": [
+    "https://en.wikipedia.org/wiki/Edict_of_Thessalonica",
+    "https://en.wikipedia.org/wiki/Gregorian_chant",
+    "https://en.wikipedia.org/wiki/Al-Kindi",
+    "https://en.wikipedia.org/wiki/Pipa"
+   ],
+   "short": "Faith & empire"
+  },
+  {
+   "id": "e4",
+   "from": 1000,
+   "to": 1400,
+   "years": "1000–1400",
+   "name": "Cathedrals, courts and towns",
+   "context": "Towns and trade revive, universities appear (Bologna, c. 1088), Gothic cathedrals rise, and the Crusades and Muslim Spain bring Europe into contact with Arabic learning. The Black Death (1347–51) kills 30–60% of Europe’s people.",
+   "why": "Cathedral choirs compete in splendour with polyphony: Pérotin writes for four voices at Notre-Dame. Noble courts support troubadours, starting with Duke William IX of Aquitaine, who sing of love in the local language instead of Latin. Hildegard of Bingen writes chants from her visions. The Arab oud becomes the European lute.",
+   "idea": "Human love is a worthy subject for art.",
+   "forces": {
+    "money": 1,
+    "power": 1,
+    "belief": 2,
+    "tech": 2,
+    "contact": 2
+   },
+   "works": [
+    {
+     "t": "Viderunt omnes",
+     "by": "Pérotin, c. 1198",
+     "note": "four independent voices at Notre-Dame",
+     "q": "Perotin Viderunt omnes"
+    },
+    {
+     "t": "Can vei la lauzeta mover",
+     "by": "Bernart de Ventadorn, 12th century",
+     "note": "a troubadour love song",
+     "q": "Can vei la lauzeta mover"
+    },
+    {
+     "t": "Messe de Nostre Dame",
+     "by": "Guillaume de Machaut, c. 1360s",
+     "note": "the earliest complete Mass by a single composer",
+     "q": "Machaut Messe de Nostre Dame"
+    }
+   ],
+   "src": [
+    "https://en.wikipedia.org/wiki/University_of_Bologna",
+    "https://en.wikipedia.org/wiki/Black_Death",
+    "https://en.wikipedia.org/wiki/P%C3%A9rotin",
+    "https://en.wikipedia.org/wiki/William_IX_of_Aquitaine",
+    "https://en.wikipedia.org/wiki/Oud",
+    "https://en.wikipedia.org/wiki/Messe_de_Nostre_Dame"
+   ],
+   "short": "Cathedrals"
+  },
+  {
+   "id": "e5",
+   "from": 1400,
+   "to": 1600,
+   "years": "1400–1600",
+   "name": "Print, Reformation and humanism",
+   "context": "The printing press (c. 1450) spreads books and ideas. Luther’s Reformation (1517) splits the western church, and the Catholic Church answers at the Council of Trent (1545–63). Europe begins to colonize the Americas.",
+   "why": "Printed part-books let wealthy amateurs sing madrigals at home. Luther wants whole congregations to sing in German: the first Lutheran hymnal appears in 1524, and he writes “A Mighty Fortress” around 1529. Catholic reformers want the words of the Mass to be heard clearly; the story that Palestrina’s Pope Marcellus Mass saved polyphony is a later legend.",
+   "idea": "Everyone sings, in their own language.",
+   "forces": {
+    "money": 1,
+    "power": 1,
+    "belief": 2,
+    "tech": 2,
+    "contact": 1
+   },
+   "works": [
+    {
+     "t": "Ein feste Burg ist unser Gott",
+     "by": "Martin Luther, c. 1529",
+     "note": "a hymn for the whole congregation",
+     "q": "Ein feste Burg ist unser Gott"
+    },
+    {
+     "t": "Missa Papae Marcelli",
+     "by": "Palestrina, 1562",
+     "note": "polyphony with clear words",
+     "q": "Palestrina Missa Papae Marcelli"
+    },
+    {
+     "t": "Spem in alium",
+     "by": "Thomas Tallis, c. 1570",
+     "note": "a motet for 40 separate voices",
+     "q": "Tallis Spem in alium"
+    }
+   ],
+   "src": [
+    "https://en.wikipedia.org/wiki/Harmonice_Musices_Odhecaton",
+    "https://en.wikipedia.org/wiki/First_Lutheran_hymnal",
+    "https://en.wikipedia.org/wiki/A_Mighty_Fortress_Is_Our_God",
+    "https://en.wikipedia.org/wiki/Missa_Papae_Marcelli",
+    "https://en.wikipedia.org/wiki/Spem_in_alium"
+   ],
+   "short": "Print & Reform"
+  },
+  {
+   "id": "e6",
+   "from": 1600,
+   "to": 1750,
+   "years": "1600–1750",
+   "name": "Absolutism and the Baroque",
+   "context": "Absolute monarchs such as Louis XIV centralize power. The Thirty Years’ War devastates central Europe. Trade, including the Atlantic slave trade, makes Venice, Amsterdam and London rich.",
+   "why": "Opera starts as court spectacle; in 1637 Venice opens Teatro San Cassiano, the first public opera house, for anyone who buys a ticket. Bach writes weekly cantatas for Leipzig’s churches. Vivaldi teaches the girls of a Venetian orphanage, whose concerts draw visitors from across Europe. Handel sells operas and oratorios to the London public; Messiah premieres in Dublin in 1742 at a charity concert.",
+   "idea": "Music moves the passions and displays power.",
+   "forces": {
+    "money": 2,
+    "power": 2,
+    "belief": 1,
+    "tech": 1,
+    "contact": 1
+   },
+   "works": [
+    {
+     "t": "L’Orfeo",
+     "by": "Claudio Monteverdi, 1607",
+     "note": "an early opera, made for a court",
+     "q": "Monteverdi L'Orfeo"
+    },
+    {
+     "t": "The Four Seasons",
+     "by": "Antonio Vivaldi, 1725",
+     "note": "written while he worked with the Pietà orphanage",
+     "q": "Vivaldi Four Seasons"
+    },
+    {
+     "t": "Messiah",
+     "by": "George Frideric Handel, 1742",
+     "note": "premiered at a charity concert in Dublin",
+     "q": "Handel Messiah Hallelujah"
+    }
+   ],
+   "src": [
+    "https://en.wikipedia.org/wiki/Teatro_San_Cassiano",
+    "https://en.wikipedia.org/wiki/Ospedale_della_Piet%C3%A0",
+    "https://en.wikipedia.org/wiki/Messiah_(Handel)",
+    "https://en.wikipedia.org/wiki/L%27Orfeo"
+   ],
+   "short": "Baroque courts"
+  },
+  {
+   "id": "e7",
+   "from": 1750,
+   "to": 1820,
+   "years": "1750–1820",
+   "name": "Enlightenment and revolution",
+   "context": "The Enlightenment puts its trust in reason, a middle class grows, the American (1776) and French (1789) revolutions overturn old rule, and Napoleon remakes Europe.",
+   "why": "Composers move from servants to entrepreneurs. Mozart breaks with his Salzburg employer in 1781 to work freelance in Vienna; Haydn conducts new symphonies in London for the impresario Salomon (1791–95). Revolutions need songs: “La Marseillaise” is written in 1792. Beethoven dedicates his Third Symphony to Napoleon, then scratches out the dedication after Napoleon makes himself emperor.",
+   "idea": "The composer is a free citizen, and music speaks to the public.",
+   "forces": {
+    "money": 2,
+    "power": 2,
+    "belief": 2,
+    "tech": 1,
+    "contact": 1
+   },
+   "works": [
+    {
+     "t": "The Marriage of Figaro",
+     "by": "Mozart, 1786",
+     "note": "servants outwit their count",
+     "q": "Mozart Marriage of Figaro overture"
+    },
+    {
+     "t": "Symphony No. 94 “Surprise”",
+     "by": "Haydn, 1792",
+     "note": "written for London’s paying public",
+     "q": "Haydn Surprise Symphony"
+    },
+    {
+     "t": "Symphony No. 3 “Eroica”",
+     "by": "Beethoven, 1804",
+     "note": "the dedication to Napoleon scratched out",
+     "q": "Beethoven Eroica Symphony"
+    }
+   ],
+   "src": [
+    "https://en.wikipedia.org/wiki/Wolfgang_Amadeus_Mozart",
+    "https://en.wikipedia.org/wiki/Joseph_Haydn",
+    "https://en.wikipedia.org/wiki/La_Marseillaise",
+    "https://en.wikipedia.org/wiki/Symphony_No._3_(Beethoven)"
+   ],
+   "short": "Revolution"
+  },
+  {
+   "id": "e8",
+   "from": 1820,
+   "to": 1900,
+   "years": "1820–1900",
+   "name": "Industry, nation and the romantic self",
+   "context": "Railways, factories and cities spread. Revolutions break out in 1848, Italy and Germany unify, and empires expand overseas. Russia ends serfdom in 1861 and the US abolishes slavery in 1865.",
+   "why": "Factory-made pianos enter middle-class homes, and publishers sell sheet music to fill them. Star virtuosos tour by rail; in 1844 Heine coins “Lisztomania” for the fan frenzy around Liszt. New nations want their own sound in Glinka, Smetana and Verdi, though how political “Va, pensiero” was at its premiere is debated. The Fisk Jubilee Singers tour from 1871 to fund their university and bring spirituals to the world. Against the machine age, composers write about nature and longing; Wagner builds a theatre in Bayreuth (1876) for his own total artwork.",
+   "idea": "Music expresses the self and the nation.",
+   "forces": {
+    "money": 2,
+    "power": 2,
+    "belief": 1,
+    "tech": 2,
+    "contact": 1
+   },
+   "works": [
+    {
+     "t": "Hungarian Rhapsody No. 2",
+     "by": "Franz Liszt, 1847",
+     "note": "virtuoso showpiece of a touring star",
+     "q": "Liszt Hungarian Rhapsody No. 2"
+    },
+    {
+     "t": "Vltava (The Moldau)",
+     "by": "Bedřich Smetana, 1874",
+     "note": "a river as a nation’s portrait",
+     "q": "Smetana Moldau"
+    },
+    {
+     "t": "Swing Low, Sweet Chariot",
+     "by": "Fisk Jubilee Singers",
+     "note": "spirituals sung to fund a Black university",
+     "q": "Fisk Jubilee Singers Swing Low Sweet Chariot"
+    }
+   ],
+   "src": [
+    "https://en.wikipedia.org/wiki/Lisztomania",
+    "https://en.wikipedia.org/wiki/Va,_pensiero",
+    "https://en.wikipedia.org/wiki/Fisk_Jubilee_Singers",
+    "https://en.wikipedia.org/wiki/Bayreuth_Festspielhaus"
+   ],
+   "short": "Industry & nation"
+  },
+  {
+   "id": "e9",
+   "from": 1900,
+   "to": 1945,
+   "years": "1900–1945",
+   "name": "Machines, migration and total war",
+   "context": "Electricity, cars and cinema arrive. From 1910 the Great Migration takes millions of Black Americans from the South to northern cities. Two world wars, the Russian Revolution, the Depression and totalitarian states follow.",
+   "why": "Blues and jazz carry the African American experience into the cities and, on records and radio, to the world. Artists shaken by modern life break the old rules (The Rite of Spring, 1913). States treat music as a weapon: in 1936 Pravda attacks Shostakovich’s opera as “Muddle instead of music”; in 1938 the Nazis stage a “Degenerate Music” exhibition in Düsseldorf; on 9 August 1942 Shostakovich’s Seventh is played in besieged Leningrad.",
+   "idea": "Music is power: states fear it and use it.",
+   "forces": {
+    "money": 2,
+    "power": 2,
+    "belief": 1,
+    "tech": 2,
+    "contact": 2
+   },
+   "works": [
+    {
+     "t": "West End Blues",
+     "by": "Louis Armstrong, 1928",
+     "note": "improvisation as the main event",
+     "q": "Louis Armstrong West End Blues"
+    },
+    {
+     "t": "The Rite of Spring",
+     "by": "Igor Stravinsky, 1913",
+     "note": "the premiere ended in uproar",
+     "q": "Stravinsky Rite of Spring"
+    },
+    {
+     "t": "Symphony No. 7 “Leningrad”",
+     "by": "Dmitri Shostakovich, 1941",
+     "note": "played in the besieged city in 1942",
+     "q": "Shostakovich Symphony 7 Leningrad"
+    }
+   ],
+   "src": [
+    "https://en.wikipedia.org/wiki/Great_Migration_(African_American)",
+    "https://en.wikipedia.org/wiki/Lady_Macbeth_of_Mtsensk_(opera)",
+    "https://en.wikipedia.org/wiki/Degenerate_music",
+    "https://en.wikipedia.org/wiki/Leningrad_premi%C3%A8re_of_Shostakovich%27s_Symphony_No._7"
+   ],
+   "short": "Total war"
+  },
+  {
+   "id": "e10",
+   "from": 1945,
+   "to": 1970,
+   "years": "1945–1970",
+   "name": "Youth, rights and the Cold War",
+   "context": "A baby boom and rising wages give teenagers money of their own. Colonies win independence. The civil-rights movement, the Cold War and the Vietnam War divide societies.",
+   "why": "Record labels sell rock and roll to the new teenage market. Protest songs carry civil-rights marches and anti-war rallies. The US sends jazz musicians abroad as “Jazz Ambassadors” from 1956, while Soviet fans cut banned Western music into discarded X-ray film. Motown, founded in Detroit in 1959, becomes a Black-owned hit factory. Newly independent Jamaica creates ska and reggae; in Brazil, Tropicália (1968) takes on the military regime, and its leaders Caetano Veloso and Gilberto Gil are forced into exile.",
+   "idea": "Music is a generation’s identity and a tool of liberation.",
+   "forces": {
+    "money": 2,
+    "power": 2,
+    "belief": 1,
+    "tech": 2,
+    "contact": 2
+   },
+   "works": [
+    {
+     "t": "Johnny B. Goode",
+     "by": "Chuck Berry, 1958",
+     "note": "rock and roll for the teenage market",
+     "q": "Chuck Berry Johnny B. Goode"
+    },
+    {
+     "t": "A Change Is Gonna Come",
+     "by": "Sam Cooke, 1964",
+     "note": "an anthem of the civil-rights era",
+     "q": "Sam Cooke A Change Is Gonna Come"
+    },
+    {
+     "t": "Tropicália",
+     "by": "Caetano Veloso, 1968",
+     "note": "pop collage under a dictatorship",
+     "q": "Caetano Veloso Tropicália"
+    }
+   ],
+   "src": [
+    "https://en.wikipedia.org/wiki/Jazz_ambassadors",
+    "https://en.wikipedia.org/wiki/Ribs_(recordings)",
+    "https://en.wikipedia.org/wiki/Motown",
+    "https://en.wikipedia.org/wiki/Tropic%C3%A1lia",
+    "https://en.wikipedia.org/wiki/Caetano_Veloso"
+   ],
+   "short": "Youth & rights"
+  },
+  {
+   "id": "e11",
+   "from": 1970,
+   "to": 1990,
+   "years": "1970–1990",
+   "name": "Crisis cities and cheap machines",
+   "context": "Oil shocks and deindustrialization hollow out cities such as New York and Detroit. Unemployment rises in Britain. AIDS arrives. The Soviet Union stagnates, then opens up under perestroika.",
+   "why": "With little money, people build music from what is at hand: two turntables in the Bronx (hip hop, 1973), three chords in London (punk, 1976–77), cheap drum machines in Detroit (techno). Disco fills Black, Latino and gay clubs until a 1979 “Disco Demolition Night” in Chicago turns the backlash into a riot. Bob Marley takes reggae’s message of liberation worldwide. In the USSR, Kino’s “Khochu peremen!” (“We want change!”), first performed in 1986, becomes an anthem of perestroika.",
+   "idea": "Make something from nothing.",
+   "forces": {
+    "money": 2,
+    "power": 2,
+    "belief": 1,
+    "tech": 2,
+    "contact": 1
+   },
+   "works": [
+    {
+     "t": "The Message",
+     "by": "Grandmaster Flash and the Furious Five, 1982",
+     "note": "life in the broken city",
+     "q": "Grandmaster Flash The Message"
+    },
+    {
+     "t": "Redemption Song",
+     "by": "Bob Marley, 1980",
+     "note": "“Emancipate yourselves from mental slavery”",
+     "q": "Bob Marley Redemption Song"
+    },
+    {
+     "t": "Khochu peremen! (We Want Change!)",
+     "by": "Kino, 1986",
+     "note": "the closing song of the film Assa (1987)",
+     "q": "Кино Хочу перемен"
+    }
+   ],
+   "src": [
+    "https://en.wikipedia.org/wiki/DJ_Kool_Herc",
+    "https://en.wikipedia.org/wiki/Disco_Demolition_Night",
+    "https://en.wikipedia.org/wiki/Detroit_techno",
+    "https://en.wikipedia.org/wiki/Khochu_peremen",
+    "https://en.wikipedia.org/wiki/Assa_(film)"
+   ],
+   "short": "Crisis cities"
+  },
+  {
+   "id": "e12",
+   "from": 1990,
+   "to": 2010,
+   "years": "1990–2010",
+   "name": "Globalization and the internet",
+   "context": "The Cold War ends. Trade, travel and the internet connect the world; China and India open their economies. The 9/11 attacks and the wars that follow.",
+   "why": "Rave turns warehouses and fields into temporary communities; Britain’s Criminal Justice Act of 1994 even defines the music it restricts as “a succession of repetitive beats”. South Korea builds K-pop, starting with Seo Taiji and Boys in 1992, into an export industry. Napster (1999) and the MP3 make music free to copy, and record sales collapse; laptops turn every bedroom into a studio. Hits now cross continents in weeks.",
+   "idea": "Music becomes infinite and placeless.",
+   "forces": {
+    "money": 2,
+    "power": 1,
+    "belief": 1,
+    "tech": 2,
+    "contact": 2
+   },
+   "works": [
+    {
+     "t": "Born Slippy .NUXX",
+     "by": "Underworld, 1996",
+     "note": "the sound of a rave generation",
+     "q": "Underworld Born Slippy"
+    },
+    {
+     "t": "Nan Arayo (I Know)",
+     "by": "Seo Taiji and Boys, 1992",
+     "note": "the start of modern K-pop",
+     "q": "Seo Taiji and Boys Nan Arayo"
+    },
+    {
+     "t": "Paper Planes",
+     "by": "M.I.A., 2007",
+     "note": "migration and borders in a global hit",
+     "q": "M.I.A. Paper Planes"
+    }
+   ],
+   "src": [
+    "https://en.wikipedia.org/wiki/Criminal_Justice_and_Public_Order_Act_1994",
+    "https://en.wikipedia.org/wiki/Seo_Taiji_and_Boys",
+    "https://en.wikipedia.org/wiki/Napster",
+    "https://en.wikipedia.org/wiki/MP3"
+   ],
+   "short": "Internet"
+  },
+  {
+   "id": "e13",
+   "from": 2010,
+   "to": 2026,
+   "years": "2010–2026",
+   "name": "Platforms, feeds and machines",
+   "context": "Smartphones put the internet in every pocket, and streaming and social video decide what is heard. COVID-19 closes venues in 2020. War returns to Europe in 2022. Generative AI arrives.",
+   "why": "Songs are shaped for feeds, with the hook early enough to survive the skip. YouTube and TikTok take K-pop, reggaeton and Afrobeats worldwide: “Gangnam Style” is the first YouTube video to pass a billion views (2012). In lockdown, concerts move into games: Travis Scott plays inside Fortnite in April 2020. Music for sleep and focus becomes its own category. Ukraine’s Kalush Orchestra wins Eurovision in 2022, months into the full-scale invasion. Since 2023 AI models generate whole songs, and the major labels move from suing them to licensing them.",
+   "idea": "Music becomes a feed: endless, personal, global, and now generated.",
+   "forces": {
+    "money": 2,
+    "power": 1,
+    "belief": 1,
+    "tech": 2,
+    "contact": 2
+   },
+   "works": [
+    {
+     "t": "Gangnam Style",
+     "by": "PSY, 2012",
+     "note": "the first billion-view video",
+     "q": "PSY Gangnam Style"
+    },
+    {
+     "t": "Calm Down",
+     "by": "Rema, 2022",
+     "note": "Afrobeats as global pop",
+     "q": "Rema Calm Down"
+    },
+    {
+     "t": "Stefania",
+     "by": "Kalush Orchestra, 2022",
+     "note": "a Eurovision win during a war",
+     "q": "Kalush Orchestra Stefania"
+    }
+   ],
+   "src": [
+    "https://en.wikipedia.org/wiki/Gangnam_Style",
+    "https://en.wikipedia.org/wiki/Travis_Scott",
+    "https://en.wikipedia.org/wiki/Kalush_Orchestra",
+    "https://en.wikipedia.org/wiki/Udio"
+   ],
+   "short": "Platforms & AI"
+  }
+ ],
+ "constants": [
+  {
+   "t": "For gods and the dead",
+   "x": "From the Hurrian hymn to gospel and funeral playlists, people sing to what is beyond them and for those they have lost."
+  },
+  {
+   "t": "For power",
+   "x": "Bronze bells as state treasure, royal operas, anthems, banned records: every ruler has cared what people hear."
+  },
+  {
+   "t": "For love",
+   "x": "Troubadours, Romantic songs and pop all keep returning to the same subject."
+  },
+  {
+   "t": "For moving together",
+   "x": "Dance, marching, chanting crowds: music synchronizes bodies in every era."
+  },
+  {
+   "t": "Old forms survive new media",
+   "x": "Recording did not end live concerts, and streaming did not end vinyl. New technology adds layers instead of replacing them."
+  }
+ ],
+ "scenarios": [
+  {
+   "id": "s-infinite",
+   "title": "Infinite music",
+   "conf": "high",
+   "forces": [
+    "tech",
+    "money"
+   ],
+   "rhymes": "Printing (1501) and recording (1877) each made music cheap to copy. Both times the value moved to what could not be copied: the performer, the live event, the name. The MP3 and Napster repeated it in 1999, and live music grew while record sales fell.",
+   "music": [
+    "Endless generated background music for shops, games, work and sleep, priced like a utility.",
+    "Human-made and live music sold as the premium layer, with proof of who made it.",
+    "New styles built from the machine’s own artefacts, the way distortion and Auto-Tune turned from faults into sounds."
+   ],
+   "watch": "Whether streaming services label, demote or pay less for fully generated tracks, and whether listeners pay more for music they know a person made.",
+   "signals": [
+    {
+     "v": "90,000",
+     "text": "fully AI-generated tracks delivered to Deezer each day by June 2026, more than half of uploads on peak days. They draw only 1–3% of streams.",
+     "src": "https://newsroom-deezer.com/2026/07/ai-music-exceeds-50-percent-daily-uploads-deezer/",
+     "label": "Deezer, Jul 2026"
+    },
+    {
+     "v": "75M",
+     "text": "spam tracks removed by Spotify in twelve months. Imitating an artist’s voice now needs that artist’s permission.",
+     "src": "https://newsroom.spotify.com/2025-09-25/spotify-strengthens-ai-protections/",
+     "label": "Spotify, Sep 2025"
+    },
+    {
+     "v": "2025–26",
+     "text": "Universal and Warner settle with AI song generators and license them; Suno replaces its models with one trained on licensed music, while Sony and Universal still sue it.",
+     "src": "https://techcrunch.com/2026/09/09/suno-replaces-its-ai-models-with-a-new-one-trained-on-licensed-music-as-copyright-suits-pile-up/",
+     "label": "TechCrunch, Sep 2026"
+    },
+    {
+     "v": "No. 30",
+     "text": "Xania Monet, an act made with Suno, becomes the first AI-generated artist on a Billboard radio airplay chart (November 2025).",
+     "src": "https://luminatedata.com/wp-content/uploads/2026/01/2025-Year-End-Music-Report-1.2026.pdf",
+     "label": "Luminate 2025 report"
+    },
+    {
+     "v": "46.8M",
+     "text": "vinyl records sold in the US in 2025, the 19th year of growth in a row. Physical, scarce music gains while copies become free.",
+     "src": "https://www.riaa.com/wp-content/uploads/2026/03/RIAA-Year-End-Revenue-2025.pdf",
+     "label": "RIAA, Mar 2026"
+    },
+    {
+     "v": "$2.08B",
+     "text": "grossed by Taylor Swift’s Eras Tour over 149 shows (2023–24), the highest-grossing tour ever.",
+     "src": "https://www.guinnessworldrecords.com/world-records/94243-most-successful-tour-solo-artist",
+     "label": "Guinness World Records"
+    }
+   ]
+  },
+  {
+   "id": "s-south",
+   "title": "The young South sets the beat",
+   "conf": "high",
+   "forces": [
+    "contact",
+    "money"
+   ],
+   "rhymes": "In the 20th century the music of Black Americans, a minority with little power, became the world’s pop through records, radio and migration. Pop has always followed where the young people and the cities are.",
+   "music": [
+    "Afrobeats, amapiano, Latin and South Asian pop as the default global sound, with lyrics in Yoruba, Spanish, Hindi or Korean left untranslated.",
+    "New hybrids from Lagos, Johannesburg, Kinshasa, Mumbai and Jakarta, spread by phone before radio.",
+    "Western labels as partners of local scenes rather than gatekeepers."
+   ],
+   "watch": "Where the next global number-one songs are written, and how much of the money stays in the countries that make them.",
+   "signals": [
+    {
+     "v": "2.2B",
+     "text": "people in sub-Saharan Africa by 2054, up 79%, according to the UN’s World Population Prospects 2024.",
+     "src": "https://population.un.org/wpp/assets/Files/WPP2024_Summary-of-Results.pdf",
+     "label": "UN WPP 2024"
+    },
+    {
+     "v": "+22.6%",
+     "text": "growth of recorded-music revenue in sub-Saharan Africa in 2024, one of the three fastest regions with MENA and Latin America.",
+     "src": "https://www.ifpi.org/?p=13686",
+     "label": "IFPI, Mar 2025"
+    },
+    {
+     "v": "+17.1%",
+     "text": "Latin America’s growth in 2025, the fastest region; sub-Saharan Africa grew 15.2%, against 6.4% for the world.",
+     "src": "https://www.ifpi.org/global-music-report-2026-global-recorded-music-revenues-grow-6-4-as-record-companies-drive-innovation/",
+     "label": "IFPI, Mar 2026"
+    }
+   ]
+  },
+  {
+   "id": "s-old",
+   "title": "Older, quieter, lonelier listeners",
+   "conf": "medium",
+   "forces": [
+    "money",
+    "tech"
+   ],
+   "rhymes": "The 19th-century piano brought music into the private home; the Walkman (1979) made listening personal. Each time, music followed people indoors and into themselves.",
+   "music": [
+    "Music prescribed for health: sleep, pain, memory and dementia care.",
+    "Nostalgia as a market: old catalogues, remasters and “new” songs made from old voices, as with Now and Then.",
+    "AI companions that play, hum or sing with the person they live with."
+   ],
+   "watch": "Catalogue share of listening, the growth of functional playlists, and music in health-care budgets.",
+   "signals": [
+    {
+     "v": "2080",
+     "text": "the year people aged 65 or older will outnumber children under 18 worldwide.",
+     "src": "https://population.un.org/wpp/assets/Files/WPP2024_Summary-of-Results.pdf",
+     "label": "UN WPP 2024"
+    },
+    {
+     "v": "57%",
+     "text": "of US on-demand audio streams in 2025 were tracks more than five years old; new releases took the other 43%.",
+     "src": "https://luminatedata.com/wp-content/uploads/2026/01/2025-Year-End-Music-Report-1.2026.pdf",
+     "label": "Luminate 2025 report"
+    },
+    {
+     "v": "15B",
+     "text": "monthly streams of functional music across platforms, by Endel’s own estimate when it signed with Universal (2023). Spotify has since cut what it pays for noise tracks.",
+     "src": "https://www.musicbusinessworldwide.com/universal-inks-deal-with-generative-ai-startup-endel-to-create-ai-powered-artist-driven-functional-music/",
+     "label": "Music Business Worldwide, May 2023"
+    }
+   ]
+  },
+  {
+   "id": "s-climate",
+   "title": "Music under climate pressure",
+   "conf": "medium",
+   "forces": [
+    "contact",
+    "belief"
+   ],
+   "rhymes": "Industrialization pushed the Romantics toward nature; the 1960s environmental movement produced songs like Joni Mitchell’s “Big Yellow Taxi” (1970). Pressure on the land tends to come back as songs about it.",
+   "music": [
+    "Fewer, longer, lower-carbon tours and stronger local scenes.",
+    "Songs about adaptation and repair more than doom.",
+    "Field recordings of disappearing places used as instruments."
+   ],
+   "watch": "Festival cancellations for heat and storms, and whether audiences reward low-carbon touring.",
+   "signals": [
+    {
+     "v": "−59%",
+     "text": "direct CO₂e emissions in the first two years of Coldplay’s Music of the Spheres tour against its 2016–17 stadium tour, verified by MIT’s Environmental Solutions Initiative.",
+     "src": "https://news.pollstar.com/?p=968507",
+     "label": "Pollstar, Jun 2024"
+    },
+    {
+     "v": "159M",
+     "text": "fans at Live Nation shows in 2025, up 5%. Touring keeps growing, and so does its footprint.",
+     "src": "https://news.livenationentertainment.com/news/live-nation-entertainment-full-year-and-fourth-quarter-2025-results",
+     "label": "Live Nation, Feb 2026"
+    }
+   ]
+  },
+  {
+   "id": "s-control",
+   "title": "Who owns a voice, and who may sing",
+   "conf": "high",
+   "forces": [
+    "power",
+    "tech"
+   ],
+   "rhymes": "Rulers have always tried to control what people hear: Plato’s banned modes, Pravda’s attack on Shostakovich, the Nazi “Degenerate Music” show, Britain’s 1994 law on “repetitive beats”. Fans answered with bootlegs on X-ray film.",
+   "music": [
+    "Voices that carry proof of origin, and licences for using a famous voice.",
+    "Masked, anonymous or AI-fronted artists, sometimes to escape censorship.",
+    "Underground scenes on private networks, and songs as testimony from war zones."
+   ],
+   "watch": "Laws on voice and likeness, labelling of generated media, and the lists of banned or “foreign agent” musicians.",
+   "signals": [
+    {
+     "v": "Jul 2024",
+     "text": "Tennessee’s ELVIS Act takes effect, protecting an artist’s voice from unauthorized AI cloning.",
+     "src": "https://www.musicbusinessworldwide.com/elvis-act-signed-into-law-in-tennessee-to-protect-artists-voice-and-likeness-from-the-misuse-of-ai",
+     "label": "Music Business Worldwide"
+    },
+    {
+     "v": "Aug 2026",
+     "text": "EU AI Act transparency rules for AI-generated content start to apply.",
+     "src": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+     "label": "European Commission"
+    },
+    {
+     "v": "Jan 2027",
+     "text": "proposed start of Denmark’s law giving people copyright over their own face and voice; the bill was tabled in October 2026.",
+     "src": "https://www.danskerhverv.dk/branche/medier-kreative-erhverv/kulturministeren-har-fremsat-forslag-til-andring-af-ophavsretsloven--se-andringerne-her/",
+     "label": "Dansk Erhverv (in Danish)"
+    },
+    {
+     "v": "27+",
+     "text": "musicians named “foreign agents” in Russia since 2022, including Zemfira, Monetochka and Oxxxymiron; concerts by Noize MC and Mashina Vremeni were cancelled.",
+     "src": "https://re-russia.net/en/analytics/0350/",
+     "label": "Re:Russia, Oct 2025"
+    }
+   ]
+  },
+  {
+   "id": "s-worlds",
+   "title": "Worlds instead of albums",
+   "conf": "medium",
+   "forces": [
+    "tech",
+    "money"
+   ],
+   "rhymes": "Wagner built Bayreuth (1876) for a total artwork; opera houses, cinemas and stadiums each brought new music made for them. A new kind of venue tends to bring a new kind of music.",
+   "music": [
+    "Spatial concerts in purpose-built rooms and inside games.",
+    "Songs that change with the room, the crowd or the player.",
+    "Performances where a living musician, an avatar and the audience share the stage."
+   ],
+   "watch": "Attendance at immersive venues and in-game concerts, and whether artists release worlds or apps instead of albums.",
+   "signals": [
+    {
+     "v": "12.3M",
+     "text": "players watched Travis Scott’s concert inside Fortnite at the same time (April 2020).",
+     "src": "https://www.engadget.com/fortnite-travis-scott-astronomical-051908825.html",
+     "label": "Engadget, Apr 2020"
+    },
+    {
+     "v": "$244M",
+     "text": "grossed by U2’s 40 shows opening the Sphere in Las Vegas (2023–24), a venue built for immersive sound and image.",
+     "src": "https://news.pollstar.com/2024/03/14/auf-wiedersehen-baby-u2-wraps-sphere-run/",
+     "label": "Pollstar, Mar 2024"
+    },
+    {
+     "v": "4M+",
+     "text": "visitors to ABBA Voyage, the avatar concert in London, which is booking into June 2027.",
+     "src": "https://theatreweekly.com/abba-voyage-extends-booking-to-june-2027-with-170000-new-tickets-released/",
+     "label": "Theatre Weekly, Sep 2026"
+    }
+   ]
+  }
+ ],
+ "answer": [
+  {
+   "num": "5",
+   "text": "forces explain the new music of every era here: who pays, who rules, what people believe, what carries the sound, and who meets whom. No era has only one.",
+   "srcLabel": "From the thirteen eras below"
+  },
+  {
+   "num": "1637",
+   "text": "Venice opens the first public opera house. From then on, the ticket buyer, not only the patron, decides what music gets made.",
+   "src": "https://en.wikipedia.org/wiki/Teatro_San_Cassiano",
+   "srcLabel": "Teatro San Cassiano, Wikipedia"
+  },
+  {
+   "num": "1994",
+   "text": "Britain’s Criminal Justice Act defines the music it restricts as “a succession of repetitive beats”. After Pravda’s 1936 attack on Shostakovich and the Nazis’ 1938 “Degenerate Music” show, states keep trying to control music.",
+   "src": "https://en.wikipedia.org/wiki/Criminal_Justice_and_Public_Order_Act_1994",
+   "srcLabel": "Criminal Justice Act 1994, Wikipedia"
+  },
+  {
+   "num": "90,000",
+   "text": "fully AI-generated tracks reach Deezer every day (June 2026), more than half of uploads on peak days. The next era begins with abundance.",
+   "src": "https://newsroom-deezer.com/2026/07/ai-music-exceeds-50-percent-daily-uploads-deezer/",
+   "srcLabel": "Deezer, Jul 2026"
+  },
+  {
+   "num": "2.2B",
+   "text": "people will live in sub-Saharan Africa by 2054, up 79%. Recorded-music revenue there grew 22.6% in 2024 and 15.2% in 2025.",
+   "src": "https://population.un.org/wpp/assets/Files/WPP2024_Summary-of-Results.pdf",
+   "srcLabel": "UN WPP 2024 · IFPI"
+  }
+ ],
+ "sketch": [
+  "<b>Before the party,</b> the room plays music generated for it: tuned to the light, the number of guests and the hour, never repeated and never charted. Nobody asks who made it, the way nobody asks who made the electricity.",
+  "<b>The songs people choose</b> carry a maker’s mark: made by a person, by a person with a machine, or by a machine, and the credits say which. The biggest of them were written in Lagos, São Paulo or Seoul and are sung in languages most listeners don’t speak.",
+  "<b>The best moment is live:</b> a person with an instrument, perhaps answered by an AI player, in a room built for sound. It is the one part that cannot be copied, so it is the part people pay for.",
+  "<b>At the end,</b> someone puts on an old song everyone knows. The forces will have shifted again, but people will still sing to their gods, to power, to each other and to the dead, as they have since the first flute."
+ ]
+}
