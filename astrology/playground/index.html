@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zodiac Creatures Playground</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #08080e;
+  --panel: #11111b;
+  --panel-2: #181826;
+  --line: #262638;
+  --text: #ecebf5;
+  --muted: #8d8ba6;
+  --accent: #b69cff;
+  --accent-2: #6ee7d8;
+  --pink: #ff8fd1;
+  --star: #ffd36e;
+  --bad: #ff7a7a;
+  --grad: linear-gradient(100deg, #ff8fd1 0%, #b69cff 45%, #6ee7d8 100%);
+  --radius: 14px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: radial-gradient(1200px 700px at 80% -10%, #1d1440 0%, transparent 60%),
+              radial-gradient(900px 600px at -10% 110%, #0d2a33 0%, transparent 55%), var(--bg);
+  color: var(--text);
+  font: 14px/1.45 Inter, system-ui, sans-serif;
+}
+button, input, select, textarea { font: inherit; color: inherit; }
+h1, h2, h3 { font-family: "Space Grotesk", Inter, sans-serif; margin: 0; letter-spacing: -0.01em; }
+
+header {
+  display: flex; align-items: center; gap: 24px; padding: 14px 22px;
+  border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 5;
+  background: rgba(8, 8, 14, 0.82); backdrop-filter: blur(12px);
+}
+header h1 { font-size: 18px; }
+header h1 span { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+nav { display: flex; gap: 4px; }
+nav button {
+  background: none; border: 1px solid transparent; border-radius: 999px; padding: 6px 14px;
+  color: var(--muted); cursor: pointer;
+}
+nav button.on { color: var(--text); border-color: var(--line); background: var(--panel-2); }
+.balance { margin-left: auto; color: var(--muted); font-size: 13px; }
+
+.layout { display: grid; grid-template-columns: 380px 1fr; min-height: calc(100vh - 57px); }
+aside {
+  border-right: 1px solid var(--line); padding: 18px; display: flex; flex-direction: column; gap: 18px;
+  height: calc(100vh - 57px); overflow-y: auto; position: sticky; top: 57px;
+}
+main { padding: 20px 24px 60px; min-width: 0; }
+
+.field { display: flex; flex-direction: column; gap: 7px; }
+.label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.label .right { margin-left: auto; text-transform: none; letter-spacing: 0; font-weight: 500; }
+.label a, .linkbtn { color: var(--accent); cursor: pointer; background: none; border: 0; padding: 0; font-size: 12px; }
+input[type=text], input[type=date], select, textarea {
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 9px 11px; width: 100%;
+  outline: none;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+textarea { resize: vertical; min-height: 70px; }
+#master { min-height: 260px; font: 12.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.row { display: flex; gap: 8px; align-items: center; }
+.row > * { flex: 1; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: 4px 10px;
+  cursor: pointer; font-size: 12.5px; color: var(--muted); user-select: none;
+}
+.chip:hover { color: var(--text); }
+.chip.on { color: #120c22; background: var(--accent); border-color: var(--accent); }
+.chip.sign.on { background: var(--accent-2); border-color: var(--accent-2); }
+.hint { font-size: 12px; color: var(--muted); }
+.sign-card {
+  border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; background: var(--panel);
+  font-size: 13px; display: none;
+}
+.sign-card.show { display: block; }
+.sign-card b { font-family: "Space Grotesk"; font-size: 15px; }
+
+details > summary { cursor: pointer; list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details > summary .label::after { content: "+"; margin-left: auto; font-size: 14px; }
+details[open] > summary .label::after { content: "–"; }
+.collapsible-body { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+
+.refs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.refs h4 { grid-column: 1 / -1; margin: 8px 0 0; font-size: 12px; color: var(--muted); font-weight: 500; }
+.ref { aspect-ratio: 3/4; border-radius: 8px; overflow: hidden; border: 2px solid transparent; cursor: pointer; position: relative; }
+.ref img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.75; }
+.ref.on { border-color: var(--accent-2); }
+.ref.on img { opacity: 1; }
+.check { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; cursor: pointer; }
+.check input { margin-top: 3px; accent-color: var(--accent-2); }
+.picked { display: flex; flex-wrap: wrap; gap: 6px; }
+.picked .pk { width: 54px; height: 72px; border-radius: 8px; overflow: hidden; position: relative; border: 1px solid var(--line); }
+.picked .pk img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.picked .pk button { position: absolute; top: 2px; right: 2px; width: 18px; height: 18px; border-radius: 50%; border: 0; background: rgba(0,0,0,0.7); color: #fff; font-size: 11px; line-height: 18px; padding: 0; cursor: pointer; }
+.drop { border: 1.5px dashed var(--line); border-radius: 12px; padding: 14px; text-align: center; color: var(--muted); font-size: 12.5px; }
+.drop.over, body.dragging .drop { border-color: var(--accent-2); color: var(--text); background: rgba(110,231,216,0.06); }
+.drop label { color: var(--accent); cursor: pointer; }
+.used { display: flex; gap: 6px; flex-wrap: wrap; }
+.used img { width: 64px; height: 84px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); }
+.tag.refs { color: var(--accent-2); border-color: rgba(110,231,216,0.35); }
+
+.go {
+  position: sticky; bottom: -18px; padding: 14px 0 18px; margin-top: auto;
+  background: linear-gradient(to bottom, transparent, var(--bg) 30%);
+}
+.go button {
+  width: 100%; border: 0; border-radius: 12px; padding: 13px; font-weight: 600; cursor: pointer;
+  background: var(--grad); color: #120c22; font-size: 15px;
+}
+.go button:disabled { opacity: 0.5; cursor: wait; }
+.cost { font-size: 12px; color: var(--muted); text-align: center; margin-top: 7px; }
+
+.run-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 16px; margin-bottom: 12px; }
+.run-head h2 { font-size: 22px; }
+.run-head .meta { color: var(--muted); font-size: 13px; }
+.run-head .tools { margin-left: auto; display: flex; gap: 8px; }
+.btn {
+  border: 1px solid var(--line); background: var(--panel); border-radius: 9px; padding: 6px 11px;
+  cursor: pointer; font-size: 12.5px;
+}
+.btn:hover { border-color: var(--accent); }
+#runNote { min-height: 44px; margin-bottom: 16px; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+.card .pic { position: relative; background: var(--panel-2); cursor: zoom-in; }
+.card .pic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card .badge {
+  position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.55); border-radius: 999px;
+  padding: 2px 8px; font-size: 11px; backdrop-filter: blur(6px);
+}
+.card .status { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 16px; color: var(--muted); font-size: 12.5px; }
+.card .status.err { color: var(--bad); }
+.spinner { width: 28px; height: 28px; border-radius: 50%; border: 3px solid var(--line); border-top-color: var(--accent); animation: spin 0.9s linear infinite; margin: 0 auto 8px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.shimmer { position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(182,156,255,0.08) 50%, transparent 70%); background-size: 200% 100%; animation: sh 1.6s linear infinite; }
+@keyframes sh { to { background-position: -200% 0; } }
+.card .body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 7px; }
+.stars { display: flex; gap: 2px; }
+.stars button { background: none; border: 0; padding: 0 1px; cursor: pointer; font-size: 21px; line-height: 1; color: #3a3852; }
+.stars button.on { color: var(--star); }
+.stars:hover button { color: var(--star); }
+.stars button:hover ~ button { color: #3a3852; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.tag { font-size: 11px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; }
+.note-in { font-size: 12.5px; padding: 6px 9px; border-radius: 8px; }
+.card-actions { display: flex; gap: 6px; }
+.card-actions .btn { padding: 4px 8px; font-size: 12px; }
+
+.history { display: flex; flex-direction: column; gap: 6px; }
+.hist {
+  display: grid; grid-template-columns: 40px 1fr auto; gap: 10px; align-items: center; padding: 6px;
+  border-radius: 10px; cursor: pointer; border: 1px solid transparent;
+}
+.hist:hover, .hist.on { background: var(--panel); border-color: var(--line); }
+.hist img, .hist .ph { width: 40px; height: 52px; border-radius: 6px; object-fit: cover; background: var(--panel-2); }
+.hist .t { font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hist .s { font-size: 11.5px; color: var(--muted); }
+.hist .avg { font-size: 12px; color: var(--star); }
+
+.empty { color: var(--muted); padding: 60px 0; text-align: center; }
+.empty h2 { color: var(--text); margin-bottom: 8px; }
+
+/* insights */
+.insights { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 18px; }
+.box { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
+.box h3 { font-size: 15px; margin-bottom: 10px; }
+.bar-row { display: grid; grid-template-columns: 130px 1fr 64px; gap: 10px; align-items: center; font-size: 12.5px; padding: 3px 0; }
+.bar-row .k { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar { height: 8px; border-radius: 4px; background: var(--panel-2); overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--grad); }
+.bar-row .v { text-align: right; color: var(--muted); }
+
+/* lightbox */
+.lb { position: fixed; inset: 0; background: rgba(4,4,8,0.94); z-index: 20; display: none; grid-template-columns: 1fr 360px; }
+.lb.show { display: grid; }
+.lb .stage { display: grid; place-items: center; padding: 24px; min-height: 0; }
+.lb .stage img { max-width: 100%; max-height: calc(100vh - 48px); border-radius: 12px; }
+.lb .side { border-left: 1px solid var(--line); padding: 22px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: var(--panel); }
+.lb .stars button { font-size: 30px; }
+.lb pre { white-space: pre-wrap; font-size: 12px; color: var(--muted); background: var(--bg); padding: 10px; border-radius: 10px; border: 1px solid var(--line); margin: 0; }
+.kbd { font-size: 11.5px; color: var(--muted); }
+.kbd b { border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; color: var(--text); font-weight: 500; }
+.toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--panel-2); border: 1px solid var(--line); padding: 9px 16px; border-radius: 10px; z-index: 30; display: none; }
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  aside { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  .lb { grid-template-columns: 1fr; grid-template-rows: 1fr auto; }
+  .lb .side { max-height: 40vh; }
+  main { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1><span>Zodiac Creatures</span> · playground</h1>
+  <nav>
+    <button data-tab="gen" class="on">Generate</button>
+    <button data-tab="best">Best</button>
+    <button data-tab="insights">Insights</button>
+  </nav>
+  <div class="balance" id="balance"></div>
+</header>
+
+<div class="layout" id="tab-gen">
+  <aside>
+    <div class="field">
+      <div class="label">Birthday <span class="right"><button class="linkbtn" id="clearSign">clear</button></span></div>
+      <input type="date" id="birthday">
+      <div class="chips" id="signs"></div>
+      <div class="sign-card" id="signCard"></div>
+    </div>
+
+    <div class="field">
+      <div class="label">Subject</div>
+      <input type="text" id="subject" placeholder="a baby otter">
+      <div class="chips" id="animals"></div>
+    </div>
+
+    <details>
+      <summary><div class="label">Zodiac fields</div></summary>
+      <div class="collapsible-body">
+        <div class="hint">These fill {sign}, {traits} and {palette} in the master prompt.</div>
+        <input type="text" id="sign" placeholder="sign, e.g. Scorpio">
+        <input type="text" id="traits" placeholder="traits">
+        <input type="text" id="palette" placeholder="palette">
+      </div>
+    </details>
+
+    <div class="field">
+      <div class="label">Master prompt
+        <span class="right"><select id="masterSel" style="width:auto;padding:3px 8px"></select></span>
+      </div>
+      <textarea id="master" spellcheck="false"></textarea>
+      <div class="row" style="gap:6px">
+        <input type="text" id="masterNote" placeholder="what changed (for the new version)">
+        <button class="btn" id="saveMaster" style="flex:0 0 auto">Save as new</button>
+      </div>
+      <textarea id="masterFb" placeholder="Feedback on this master prompt version: what it gets wrong, what's missing, what to cut" style="min-height:54px"></textarea>
+      <div class="hint" id="masterHint">Placeholders: {subject} {sign} {traits} {palette} {style} {scene}. A line whose placeholder is empty is dropped.</div>
+    </div>
+
+    <div class="field">
+      <div class="label">Styles <span class="right"><button class="linkbtn" data-all="styles">all</button> · <button class="linkbtn" data-none="styles">none</button></span></div>
+      <div class="chips" id="styles"></div>
+      <div class="hint">Pick several and the batch spreads across them evenly.</div>
+    </div>
+
+    <div class="field">
+      <div class="label">Scenes <span class="right"><button class="linkbtn" data-all="scenes">all</button> · <button class="linkbtn" data-none="scenes">none</button></span></div>
+      <div class="chips" id="scenes"></div>
+    </div>
+
+    <div class="field">
+      <div class="label">Models <span class="right"><button class="linkbtn" data-all="models">all</button></span></div>
+      <div class="chips" id="models"></div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <div class="label">Images <span class="right" id="nVal">10</span></div>
+        <input type="range" id="n" min="1" max="24" value="10">
+      </div>
+      <div class="field">
+        <div class="label">Aspect</div>
+        <select id="aspect"><option>3:4</option><option>9:16</option><option>4:5</option><option>1:1</option></select>
+      </div>
+    </div>
+
+    <details id="refsBox" open>
+      <summary><div class="label">Reference images <span class="right" id="refCount"></span></div></summary>
+      <div class="collapsible-body">
+        <div class="hint">Images sent to the model together with the prompt, so it copies real detail instead of guessing from words.</div>
+        <select id="refMode"></select>
+        <div class="hint" id="refModeHint"></div>
+        <label class="check"><input type="checkbox" id="autoStyle"> <span>Each style sends its own reference images <span class="hint">(the board picture it came from)</span></span></label>
+        <label class="check"><input type="checkbox" id="autoScene"> <span>Each scene sends its own background image</span></label>
+        <label class="check"><input type="checkbox" id="ab"> <span>A/B: make every combination twice, with and without references <span class="hint">(Insights then compares them)</span></span></label>
+        <div class="label" style="margin-top:6px">Your references <span class="right hint" id="pickedCount"></span></div>
+        <div class="picked" id="picked"></div>
+        <div class="drop" id="drop">Drop images here, paste with ⌘V, or <label>choose files<input type="file" id="fileIn" accept="image/*" multiple hidden></label>
+          <div class="row" style="margin-top:8px;gap:6px"><input type="text" id="refUrl" placeholder="or paste a direct image link"><button class="btn" id="refUrlBtn" style="flex:0 0 auto">Add</button></div>
+        </div>
+        <div class="hint">Or pick from the boards below. Up to 6, sent with every image in the batch. "Use as ref" on any result adds it here.</div>
+        <div class="refs" id="refs"></div>
+      </div>
+    </details>
+
+    <div class="go">
+      <button id="go">Generate</button>
+      <div class="cost" id="cost"></div>
+    </div>
+
+    <div class="field">
+      <div class="label">History</div>
+      <div class="history" id="history"></div>
+    </div>
+  </aside>
+
+  <main id="runView"></main>
+</div>
+
+<div id="tab-best" style="display:none"><main>
+  <div class="run-head"><h2>Best images</h2>
+    <div class="meta">Everything you rated <select id="bestMin" style="width:auto;padding:3px 8px"><option value="5">5 ★</option><option value="4" selected>4 ★ and up</option><option value="3">3 ★ and up</option></select> across all runs</div>
+  </div>
+  <div class="grid" id="bestGrid"></div>
+</main></div>
+
+<div id="tab-insights" style="display:none"><main>
+  <div class="run-head"><h2>Insights</h2><div class="meta">Average rating by style, scene, model, master prompt version and subject. Rate more images to make these meaningful.</div></div>
+  <div class="insights" id="insights"></div>
+</main></div>
+
+<div class="lb" id="lb">
+  <div class="stage" id="lbStage"></div>
+  <div class="side" id="lbSide"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const store = {
+  get(k, d) { try { const v = localStorage.getItem("zc:" + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem("zc:" + k, JSON.stringify(v)); } catch {} },
+};
+const api = async (path, body) => {
+  const res = await fetch(path, body ? { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) } : {});
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || res.statusText);
+  return data;
+};
+function toast(msg) { const t = $("#toast"); t.textContent = msg; t.style.display = "block"; clearTimeout(toast.t); toast.t = setTimeout(() => (t.style.display = "none"), 2600); }
+
+let cfg, run = null, pollTimer = null, prices = {};
+const sel = { styles: new Set(), scenes: new Set(), models: new Set(), refs: new Set() };
+const labelOf = (kind, id) => (cfg[kind].find((x) => x.id === id) || {}).label || id || "—";
+
+// ---------- setup ----------
+async function init() {
+  cfg = await api("/api/config");
+  // signs
+  $("#signs").innerHTML = cfg.zodiac.map((z) => `<span class="chip sign" data-sign="${z.sign}">${z.sign}</span>`).join("");
+  $("#animals").innerHTML = [...new Set([...cfg.zodiac.map((z) => z.animal), ...cfg.extraAnimals])]
+    .map((a) => `<span class="chip" data-animal="${esc(a)}">${esc(a.replace(/^an? /, ""))}</span>`).join("");
+  chipGroup("styles", cfg.styles);
+  chipGroup("scenes", cfg.scenes);
+  chipGroup("models", cfg.models);
+  renderMasters();
+  renderRefs();
+  $("#refMode").innerHTML = cfg.refModes.map((m) => `<option value="${m.id}">${esc(m.label)}</option>`).join("");
+
+  // restore form
+  const f = store.get("form", {});
+  $("#subject").value = f.subject ?? cfg.defaults.subject;
+  $("#sign").value = f.sign ?? ""; $("#traits").value = f.traits ?? ""; $("#palette").value = f.palette ?? "";
+  $("#birthday").value = f.birthday ?? "";
+  $("#n").value = f.n ?? 10; $("#nVal").textContent = $("#n").value;
+  $("#aspect").value = f.aspect ?? "3:4";
+  (f.styles ?? cfg.styles.slice(0, 10).map((s) => s.id)).forEach((id) => sel.styles.add(id));
+  (f.scenes ?? cfg.scenes.map((s) => s.id)).forEach((id) => sel.scenes.add(id));
+  (f.models ?? ["nano_banana_2_1"]).forEach((id) => sel.models.add(id));
+  (f.refs ?? []).forEach((id) => sel.refs.add(id));
+  $("#refMode").value = f.refMode ?? cfg.refModes[0].id;
+  $("#autoStyle").checked = f.autoStyle ?? true;
+  $("#autoScene").checked = f.autoScene ?? false;
+  $("#ab").checked = f.ab ?? false;
+  if (f.masterId && cfg.masters.some((m) => m.id === f.masterId)) $("#masterSel").value = f.masterId;
+  $("#master").value = f.masterText ?? currentMaster().text;
+  syncChips(); markSign(); masterEdited();
+
+  $("#birthday").addEventListener("change", () => { const z = signFor($("#birthday").value); if (z) applySign(z); });
+  $("#signs").addEventListener("click", (e) => { const s = e.target.dataset.sign; if (s) applySign(cfg.zodiac.find((z) => z.sign === s)); });
+  $("#animals").addEventListener("click", (e) => { const a = e.target.dataset.animal; if (a) { $("#subject").value = a; persist(); } });
+  $("#clearSign").onclick = () => { ["#sign", "#traits", "#palette", "#birthday"].forEach((s) => ($(s).value = "")); markSign(); persist(); };
+  $("#masterSel").onchange = () => { $("#master").value = currentMaster().text; $("#masterFb").value = currentMaster().feedback || ""; masterEdited(); persist(); };
+  $("#masterFb").value = currentMaster().feedback || "";
+  $("#masterFb").addEventListener("change", async (e) => {
+    const m = await api(`/api/masters/${currentMaster().id}/feedback`, { feedback: e.target.value.trim() });
+    Object.assign(currentMaster(), m); toast(`Feedback on ${m.id} saved`);
+  });
+  $("#master").addEventListener("input", () => { masterEdited(); persist(); });
+  $("#saveMaster").onclick = saveMaster;
+  $("#n").addEventListener("input", () => { $("#nVal").textContent = $("#n").value; updateCost(); persist(); });
+  $$("input[type=text], select").forEach((el) => el.addEventListener("change", persist));
+  $$("[data-all]").forEach((b) => (b.onclick = () => { const k = b.dataset.all; cfg[k].forEach((x) => sel[k].add(x.id)); syncChips(); persist(); }));
+  $$("[data-none]").forEach((b) => (b.onclick = () => { sel[b.dataset.none].clear(); syncChips(); persist(); }));
+  $("#go").onclick = generate;
+  ["#refMode", "#autoStyle", "#autoScene", "#ab"].forEach((q) => $(q).addEventListener("change", () => { syncChips(); persist(); }));
+  $("#fileIn").addEventListener("change", (e) => { uploadFiles([...e.target.files]); e.target.value = ""; });
+  $("#refUrlBtn").onclick = addRefUrl;
+  $("#refUrl").addEventListener("keydown", (e) => { if (e.key === "Enter") addRefUrl(); });
+  document.addEventListener("paste", (e) => {
+    const files = [...(e.clipboardData?.files || [])].filter((f) => f.type.startsWith("image/"));
+    if (files.length) { e.preventDefault(); uploadFiles(files); }
+  });
+  let dragDepth = 0;
+  document.addEventListener("dragenter", (e) => { if (e.dataTransfer?.types?.includes("Files")) { dragDepth++; document.body.classList.add("dragging"); } });
+  document.addEventListener("dragleave", () => { if (--dragDepth <= 0) { dragDepth = 0; document.body.classList.remove("dragging"); } });
+  document.addEventListener("dragover", (e) => e.preventDefault());
+  document.addEventListener("drop", (e) => {
+    e.preventDefault(); dragDepth = 0; document.body.classList.remove("dragging");
+    const files = [...(e.dataTransfer?.files || [])].filter((f) => f.type.startsWith("image/"));
+    if (files.length) uploadFiles(files);
+  });
+  document.addEventListener("keydown", (e) => { if ((e.metaKey || e.ctrlKey) && e.key === "Enter") generate(); });
+  $$("nav button").forEach((b) => (b.onclick = () => showTab(b.dataset.tab)));
+  $("#bestMin").onchange = renderBest;
+
+  loadBalance();
+  await loadHistory();
+  const last = store.get("run", null);
+  if (last) openRun(last).catch(() => renderRun());
+  else renderRun();
+}
+
+function chipGroup(kind, items) {
+  const el = $("#" + kind);
+  el.innerHTML = items.map((x) => `<span class="chip" data-id="${x.id}" title="${esc((x.text || "") + (x.refs?.length ? `\n\n${x.refs.length} reference image${x.refs.length > 1 ? "s" : ""}` : ""))}">${esc(x.label)}${kind === "models" ? ` <small class="price" data-m="${x.id}"></small>` : ""}</span>`).join("");
+  el.addEventListener("click", (e) => {
+    const c = e.target.closest(".chip"); if (!c) return;
+    const id = c.dataset.id;
+    sel[kind].has(id) ? sel[kind].delete(id) : sel[kind].add(id);
+    if (kind === "models" && !sel.models.size) sel.models.add(id);
+    syncChips(); persist();
+  });
+}
+function syncChips() {
+  for (const k of ["styles", "scenes", "models"]) $$("#" + k + " .chip").forEach((c) => c.classList.toggle("on", sel[k].has(c.dataset.id)));
+  $$("#refs .ref").forEach((r) => r.classList.toggle("on", sel.refs.has(r.dataset.p)));
+  const on = [sel.refs.size && `${sel.refs.size} yours`, $("#autoStyle").checked && "style", $("#autoScene").checked && "scene"].filter(Boolean);
+  $("#refCount").textContent = on.length ? on.join(" + ") + ($("#ab").checked ? " · A/B" : "") : "off";
+  $("#pickedCount").textContent = sel.refs.size ? `${sel.refs.size} of 6` : "";
+  $("#picked").innerHTML = [...sel.refs].map((p) => `<div class="pk" title="${esc(p)}"><img src="${refThumb(p)}"><button data-rm="${esc(p)}">×</button></div>`).join("");
+  $$("#picked [data-rm]").forEach((b) => (b.onclick = () => { sel.refs.delete(b.dataset.rm); syncChips(); persist(); }));
+  const m = cfg.refModes.find((x) => x.id === $("#refMode").value);
+  $("#refModeHint").textContent = m ? m.text : "";
+  updateCost();
+}
+
+function renderMasters() {
+  $("#masterSel").innerHTML = [...cfg.masters].reverse().map((m) => `<option value="${m.id}">${m.id}${m.note ? " · " + esc(m.note.slice(0, 40)) : ""}</option>`).join("");
+}
+const currentMaster = () => cfg.masters.find((m) => m.id === $("#masterSel").value) || cfg.masters.at(-1);
+function masterEdited() {
+  const edited = $("#master").value.trim() !== currentMaster().text.trim();
+  $("#masterHint").innerHTML = edited
+    ? `<span style="color:var(--pink)">Edited from ${currentMaster().id}.</span> Runs record the exact text. Save it as a new version when it works.`
+    : `Placeholders: {subject} {sign} {traits} {palette} {style} {scene}. A line whose placeholder is empty is dropped.`;
+  return edited;
+}
+async function saveMaster() {
+  const m = await api("/api/masters", { text: $("#master").value.trim(), note: $("#masterNote").value.trim() });
+  cfg.masters.push(m); renderMasters(); $("#masterSel").value = m.id; $("#masterFb").value = ""; $("#masterNote").value = ""; masterEdited(); persist();
+  toast(`Saved master prompt ${m.id}`);
+}
+
+function renderRefs() {
+  $("#refs").innerHTML = Object.entries(cfg.refs).map(([dir, files]) =>
+    `<h4>${esc(dir)}</h4>` + files.map((p) => `<div class="ref" data-p="${esc(p)}" title="${esc(p)}"><img loading="lazy" src="/thumb?p=${encodeURIComponent(p)}"></div>`).join("")
+  ).join("");
+  $("#refs").onclick = (e) => {
+    const r = e.target.closest(".ref"); if (!r) return;
+    const p = r.dataset.p;
+    if (sel.refs.has(p)) { sel.refs.delete(p); syncChips(); persist(); }
+    else addRef(p);
+  };
+}
+
+const refThumb = (p) => p.startsWith("run:") ? `/runs/${encodeURIComponent(p.slice(4).split("/")[0])}/${p.slice(4).split("/")[1]}` : `/thumb?p=${encodeURIComponent(p)}`;
+function addRef(p) {
+  if (sel.refs.has(p)) return true;
+  if (sel.refs.size >= 6) { toast("Up to 6 of your own references: remove one first"); return false; }
+  sel.refs.add(p); syncChips(); persist(); return true;
+}
+async function uploadFiles(files) {
+  for (const f of files) {
+    try {
+      const res = await fetch("/api/upload", { method: "POST", headers: { "Content-Type": f.type, "X-Filename": encodeURIComponent(f.name || "pasted") }, body: f });
+      const d = await res.json();
+      if (!res.ok) throw new Error(d.error);
+      await refreshRefs();
+      if (addRef(d.path)) toast("Added as a reference");
+    } catch (e) { toast("Upload failed: " + e.message); }
+  }
+}
+async function addRefUrl() {
+  const url = $("#refUrl").value.trim(); if (!url) return;
+  try {
+    const d = await api("/api/upload-url", { url });
+    $("#refUrl").value = ""; await refreshRefs();
+    if (addRef(d.path)) toast("Added as a reference");
+  } catch (e) { toast(e.message); }
+}
+async function refreshRefs() { const c = await api("/api/config"); cfg.refs = c.refs; renderRefs(); syncChips(); }
+function signFor(date) {
+  if (!date) return null;
+  const md = date.slice(5);
+  return cfg.zodiac.find((z) => (z.from <= z.to ? md >= z.from && md <= z.to : md >= z.from || md <= z.to));
+}
+function applySign(z) {
+  $("#subject").value = z.animal;
+  $("#sign").value = z.sign;
+  $("#traits").value = z.traits;
+  $("#palette").value = cfg.elements[z.element] || "";
+  markSign(); persist();
+}
+function markSign() {
+  const s = $("#sign").value;
+  $$("#signs .chip").forEach((c) => c.classList.toggle("on", c.dataset.sign === s));
+  const z = cfg.zodiac.find((x) => x.sign === s);
+  const card = $("#signCard");
+  card.classList.toggle("show", !!z);
+  if (z) card.innerHTML = `<b>${z.sign}</b> · ${z.element} · ${esc(z.animal)}<br><span class="hint">${esc(z.traits)}</span>`;
+}
+
+function persist() {
+  store.set("form", {
+    subject: $("#subject").value, sign: $("#sign").value, traits: $("#traits").value, palette: $("#palette").value,
+    birthday: $("#birthday").value, n: +$("#n").value, aspect: $("#aspect").value,
+    styles: [...sel.styles], scenes: [...sel.scenes], models: [...sel.models], refs: [...sel.refs],
+    refMode: $("#refMode").value, autoStyle: $("#autoStyle").checked, autoScene: $("#autoScene").checked, ab: $("#ab").checked,
+    masterId: $("#masterSel").value, masterText: $("#master").value,
+  });
+  markSign();
+}
+
+async function updateCost() {
+  const models = [...sel.models];
+  const refs = sel.refs.size > 0 || $("#autoStyle").checked || $("#autoScene").checked;
+  const need = cfg.models.map((m) => m.id).filter((m) => prices[m + refs] === undefined);
+  if (need.length) {
+    const got = await api(`/api/price?models=${need.join(",")}&refs=${refs ? 1 : 0}`).catch(() => ({}));
+    for (const [m, c] of Object.entries(got)) prices[m + refs] = c;
+  }
+  $$(".price").forEach((p) => { const c = prices[p.dataset.m + refs]; p.textContent = c == null ? "" : `${c}¢`; });
+  const n = +$("#n").value;
+  const per = models.map((m) => prices[m + refs]).filter((c) => c != null);
+  if (!per.length) return ($("#cost").textContent = "");
+  const avg = per.reduce((a, b) => a + b, 0) / per.length;
+  $("#cost").textContent = `≈ $${((avg * n) / 100).toFixed(2)} for ${n} image${n > 1 ? "s" : ""}  ·  ⌘↵ to generate`;
+}
+async function loadBalance() {
+  const b = await api("/api/balance").catch(() => null);
+  $("#balance").textContent = b ? `Balance $${Number(b.usd).toFixed(2)}` : "";
+}
+
+// ---------- generate & runs ----------
+async function generate() {
+  const btn = $("#go");
+  if (btn.disabled) return;
+  btn.disabled = true;
+  try {
+    const edited = masterEdited();
+    const r = await api("/api/runs", {
+      subject: $("#subject").value.trim(),
+      sign: $("#sign").value.trim(), traits: $("#traits").value.trim(), palette: $("#palette").value.trim(),
+      master: { id: currentMaster().id, text: $("#master").value.trim(), edited },
+      styles: [...sel.styles], scenes: [...sel.scenes], models: [...sel.models], refs: [...sel.refs],
+      refMode: $("#refMode").value, autoRefs: { style: $("#autoStyle").checked, scene: $("#autoScene").checked }, ab: $("#ab").checked,
+      n: +$("#n").value, aspect: $("#aspect").value,
+    });
+    run = r; store.set("run", r.id);
+    showTab("gen"); renderRun(); loadHistory(); startPolling();
+  } catch (e) { toast("Could not start: " + e.message); }
+  finally { setTimeout(() => (btn.disabled = false), 800); }
+}
+
+async function openRun(id) {
+  run = await api("/api/runs/" + encodeURIComponent(id));
+  store.set("run", id);
+  renderRun(); markHistory(); startPolling();
+}
+function startPolling() {
+  clearTimeout(pollTimer);
+  const pending = run && run.images.some((i) => i.status === "queued" || i.status === "running");
+  if (!pending) { loadBalance(); return; }
+  pollTimer = setTimeout(async () => {
+    try {
+      const fresh = await api("/api/runs/" + encodeURIComponent(run.id));
+      if (run && fresh.id === run.id) { mergeRun(fresh); }
+    } catch {}
+    startPolling();
+  }, 2000);
+}
+function mergeRun(fresh) {
+  // keep local edits to ratings/notes, update statuses
+  const changed = fresh.images.length !== run.images.length || fresh.images.some((img, k) => img.status !== run.images[k]?.status);
+  run = fresh;
+  if (changed) { renderRun(); loadHistory(); } else updateElapsed();
+}
+
+const refsOf = (img, r) => img.refs ?? r?.refs ?? [];
+function refSummary(r) {
+  const parts = [r.refs.length && `${r.refs.length} own refs`, r.autoRefs?.style && "style refs", r.autoRefs?.scene && "scene refs"].filter(Boolean);
+  if (!parts.length) return "";
+  const mode = (cfg.refModes.find((m) => m.id === r.refMode) || {}).label || "";
+  return ` · ${parts.join(" + ")}${mode ? ` (${mode.toLowerCase()})` : ""}${r.ab ? " · A/B" : ""}`;
+}
+let sortByStars = false;
+function renderRun() {
+  const el = $("#runView");
+  if (!run) {
+    el.innerHTML = `<div class="empty"><h2>Pick a birthday or a subject, then Generate</h2>
+      The master prompt on the left is the template. Each batch spreads across the styles and scenes you select,
+      so rating the results tells us which directions work.<br><br>
+      Rate with the stars or open an image and press <b>1</b>–<b>5</b>.</div>`;
+    return;
+  }
+  const order = [...run.images];
+  if (sortByStars) order.sort((a, b) => (b.stars || 0) - (a.stars || 0));
+  const done = run.images.filter((i) => i.status === "done").length;
+  const cost = run.images.reduce((a, i) => a + (i.cost || 0), 0);
+  const [w, h] = run.aspect.split(":").map(Number);
+  el.innerHTML = `
+    <div class="run-head">
+      <h2>${esc(run.subject)}</h2>
+      <div class="meta">${esc(run.sign)} · master ${run.master.id}${run.master.edited ? "*" : ""} · ${done}/${run.images.length} done · ${cost}¢ · ${new Date(run.created).toLocaleString()}${refSummary(run)}</div>
+      <div class="tools">
+        <button class="btn" id="sortBtn">${sortByStars ? "Original order" : "Sort by rating"}</button>
+        <button class="btn" id="reuseBtn" title="Load this run's settings into the form">Reuse settings</button>
+      </div>
+    </div>
+    <textarea id="runNote" placeholder="Overall feedback on this batch: what works, what doesn't, what to try next">${esc(run.note)}</textarea>
+    <div class="grid">${order.map((img) => card(img, w, h)).join("")}</div>`;
+  $("#sortBtn").onclick = () => { sortByStars = !sortByStars; renderRun(); };
+  $("#reuseBtn").onclick = reuseRun;
+  $("#runNote").addEventListener("change", (e) => api(`/api/runs/${run.id}/note`, { note: e.target.value }).then(() => toast("Note saved")));
+  bindCards($("#runView"), run);
+  updateElapsed();
+}
+
+function card(img, w, h, runId) {
+  const src = img.file ? `/runs/${encodeURIComponent(runId || run.id)}/${img.file}` : "";
+  let inner;
+  if (img.status === "done") inner = `<img src="${src}" loading="lazy" alt="">`;
+  else if (img.status === "failed") inner = `<div class="status err"><div>Failed<br>${esc(img.error || "")}${runId ? "" : `<br><br><button class="btn retry">Retry</button>`}</div></div>`;
+  else inner = `<div class="shimmer"></div><div class="status"><div><div class="spinner"></div><span class="elapsed" data-start="${img.started}"></span></div></div>`;
+  return `<div class="card" data-i="${img.i}" data-run="${esc(runId || run.id)}">
+    <div class="pic" style="aspect-ratio:${w}/${h}">${inner}<span class="badge">#${img.i + 1}${img.parent != null ? ` ← #${img.parent + 1}` : ""}</span></div>
+    <div class="body">
+      ${stars(img.stars)}
+      <div class="tags">
+        ${img.style ? `<span class="tag">${esc(labelOf("styles", img.style))}</span>` : ""}
+        ${img.scene ? `<span class="tag">${esc(labelOf("scenes", img.scene))}</span>` : ""}
+        <span class="tag">${esc(labelOf("models", img.model))}</span>
+        ${refTag(img, runId)}
+        ${img.promptNote ? `<span class="tag" title="${esc(img.promptNote)}">prompt ✎</span>` : ""}
+      </div>
+      <input type="text" class="note-in" placeholder="note (optional)" value="${esc(img.note || "")}">
+      ${runId ? "" : `<div class="card-actions"><button class="btn more" ${img.status === "done" ? "" : "disabled"}>+4 like this</button><button class="btn useref" ${img.status === "done" ? "" : "disabled"} title="Send this image as a reference in the next batch">Use as ref</button><button class="btn pfb" ${img.status === "done" ? "" : "disabled"} title="Read the prompt and say how well it is designed">Prompt ✎</button></div>`}
+    </div></div>`;
+}
+function refTag(img, runId) {
+  const r = runId ? null : run;
+  const n = refsOf(img, r).length;
+  const used = r ? (r.refs.length || r.autoRefs?.style || r.autoRefs?.scene) : n;
+  if (!used) return "";
+  return `<span class="tag refs">${n ? `${n} ref${n > 1 ? "s" : ""}` : "no refs"}</span>`;
+}
+const stars = (n) => `<div class="stars">${[1, 2, 3, 4, 5].map((k) => `<button data-s="${k}" class="${(n || 0) >= k ? "on" : ""}">★</button>`).join("")}</div>`;
+
+function bindCards(root, runObj, onRate) {
+  root.querySelectorAll(".card").forEach((c) => {
+    const i = +c.dataset.i, rid = c.dataset.run;
+    const getImg = () => (runObj ? runObj.images[i] : bestList.find((b) => b.run === rid && b.i === i));
+    c.querySelectorAll(".stars button").forEach((b) => (b.onclick = () => rate(rid, i, +b.dataset.s, c, getImg())));
+    c.querySelector(".note-in").addEventListener("change", (e) => { api(`/api/runs/${rid}/rate`, { i, note: e.target.value }); getImg().note = e.target.value; });
+    c.querySelector(".pic").onclick = () => { const img = getImg(); if (img?.status === "done") openLightbox(rid, i, runObj); };
+    const more = c.querySelector(".more");
+    if (more) more.onclick = async () => { run = await api(`/api/runs/${rid}/more`, { i, count: 4 }); renderRun(); startPolling(); };
+    const retry = c.querySelector(".retry");
+    if (retry) retry.onclick = async (e) => { e.stopPropagation(); run = await api(`/api/runs/${rid}/retry`, { i }); renderRun(); startPolling(); };
+    const useref = c.querySelector(".useref");
+    if (useref) useref.onclick = () => { const img = getImg(); if (img?.file && addRef(`run:${rid}/${img.file}`)) toast("Added to your references (left panel)"); };
+    const pfb = c.querySelector(".pfb");
+    if (pfb) pfb.onclick = () => { openLightbox(rid, i, runObj); setTimeout(() => $("#lbPrompt")?.focus(), 50); };
+  });
+}
+async function rate(rid, i, s, cardEl, img) {
+  const stars = img && img.stars === s ? 0 : s; // click same star again to clear
+  if (img) img.stars = stars || undefined;
+  if (cardEl) cardEl.querySelectorAll(".stars button").forEach((b) => b.classList.toggle("on", stars >= +b.dataset.s));
+  await api(`/api/runs/${rid}/rate`, { i, stars });
+  loadHistory();
+}
+function updateElapsed() {
+  $$(".elapsed").forEach((e) => (e.textContent = `${Math.round((Date.now() - +e.dataset.start) / 1000)}s`));
+}
+setInterval(updateElapsed, 1000);
+
+function reuseRun() {
+  $("#subject").value = run.subject;
+  $("#sign").value = run.sign === cfg.defaults.sign ? "" : run.sign;
+  $("#traits").value = run.traits === cfg.defaults.traits ? "" : run.traits;
+  $("#palette").value = run.palette === cfg.defaults.palette ? "" : run.palette;
+  if (cfg.masters.some((m) => m.id === run.master.id)) $("#masterSel").value = run.master.id;
+  $("#master").value = run.master.text;
+  $("#aspect").value = run.aspect;
+  const uniq = (k) => [...new Set(run.images.map((i) => i[k]).filter(Boolean))];
+  sel.styles = new Set(uniq("style")); sel.scenes = new Set(uniq("scene")); sel.models = new Set(uniq("model")); sel.refs = new Set(run.refs);
+  if (run.refMode) $("#refMode").value = run.refMode;
+  $("#autoStyle").checked = !!run.autoRefs?.style; $("#autoScene").checked = !!run.autoRefs?.scene; $("#ab").checked = !!run.ab;
+  syncChips(); masterEdited(); persist(); toast("Settings loaded into the form");
+}
+
+async function loadHistory() {
+  const list = await api("/api/runs");
+  $("#history").innerHTML = list.length ? list.map((r) => `
+    <div class="hist" data-id="${esc(r.id)}">
+      ${r.cover ? `<img src="/runs/${encodeURIComponent(r.id)}/${r.cover}" loading="lazy">` : `<div class="ph"></div>`}
+      <div><div class="t">${esc(r.subject)}</div><div class="s">${esc(r.sign)} · ${r.master} · ${r.done}/${r.n} · ${new Date(r.created).toLocaleDateString(undefined, { month: "short", day: "numeric" })} ${new Date(r.created).toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" })}</div></div>
+      <div class="avg">${r.avg ? r.avg.toFixed(1) + "★" : ""}<div class="s" style="text-align:right">${r.rated ? r.rated + " rated" : ""}</div></div>
+    </div>`).join("") : `<div class="hint">No runs yet.</div>`;
+  $$("#history .hist").forEach((h) => (h.onclick = () => { openRun(h.dataset.id); showTab("gen"); }));
+  markHistory();
+}
+function markHistory() { $$("#history .hist").forEach((h) => h.classList.toggle("on", run && h.dataset.id === run.id)); }
+
+// ---------- lightbox ----------
+let lbState = null;
+function openLightbox(rid, i, runObj) {
+  const list = runObj
+    ? (sortByStars ? [...runObj.images].sort((a, b) => (b.stars || 0) - (a.stars || 0)) : runObj.images).filter((x) => x.status === "done").map((x) => ({ rid, img: x }))
+    : bestList.map((b) => ({ rid: b.run, img: b }));
+  const pos = list.findIndex((x) => x.rid === rid && x.img.i === i);
+  lbState = { list, pos };
+  drawLightbox();
+  $("#lb").classList.add("show");
+}
+function drawLightbox() {
+  const { list, pos } = lbState;
+  const { rid, img } = list[pos];
+  $("#lbStage").innerHTML = `<img src="/runs/${encodeURIComponent(rid)}/${img.file}">`;
+  $("#lbSide").innerHTML = `
+    <div class="row" style="justify-content:space-between"><h3>#${img.i + 1} <span class="hint">${pos + 1} of ${list.length}</span></h3><button class="btn" id="lbClose" style="flex:0">Close</button></div>
+    ${stars(img.stars)}
+    <input type="text" id="lbNote" placeholder="note: what works, what doesn't" value="${esc(img.note || "")}">
+    <div class="tags">
+      ${img.style ? `<span class="tag">${esc(labelOf("styles", img.style))}</span>` : ""}
+      ${img.scene ? `<span class="tag">${esc(labelOf("scenes", img.scene))}</span>` : ""}
+      <span class="tag">${esc(labelOf("models", img.model))}</span>
+      ${img.cost != null ? `<span class="tag">${img.cost}¢</span>` : ""}
+    </div>
+    ${lbRefs(rid, img)}
+    <button class="btn" id="lbUse" style="align-self:flex-start">Use this image as a reference</button>
+    <div class="label">Prompt <span class="right"><button class="linkbtn" id="lbCopy">copy</button></span></div>
+    <pre>${esc(img.prompt)}</pre>
+    <textarea id="lbPrompt" placeholder="How well is this prompt designed? What to add, cut or reword: separate from how the image looks">${esc(img.promptNote || "")}</textarea>
+    <div class="kbd"><b>1</b>–<b>5</b> rate · <b>0</b> clear · <b>←</b> <b>→</b> move · <b>N</b> image note · <b>P</b> prompt feedback · <b>R</b> use as ref · <b>Esc</b> close</div>`;
+  $("#lbCopy").onclick = () => navigator.clipboard.writeText(img.prompt).then(() => toast("Prompt copied"));
+  $("#lbPrompt").addEventListener("change", (e) => { img.promptNote = e.target.value.trim() || undefined; api(`/api/runs/${rid}/rate`, { i: img.i, promptNote: e.target.value.trim() }).then(() => toast("Prompt feedback saved")); });
+  $("#lbUse").onclick = () => { if (addRef(`run:${rid}/${img.file}`)) toast("Added to your references"); };
+  $("#lbClose").onclick = closeLightbox;
+  $$("#lbSide .stars button").forEach((b) => (b.onclick = () => lbRate(+b.dataset.s)));
+  $("#lbNote").addEventListener("change", (e) => { img.note = e.target.value; api(`/api/runs/${rid}/rate`, { i: img.i, note: e.target.value }); });
+}
+function lbRefs(rid, img) {
+  const r = run && run.id === rid ? run : null;
+  const list = img.refs ?? r?.refs ?? [];
+  if (!list.length) return img.refs ? `<div class="hint">Made without reference images.</div>` : "";
+  return `<div class="label">References sent</div><div class="used">${list.map((p) => `<img src="${refThumb(p)}" title="${esc(p)}">`).join("")}</div>`;
+}
+async function lbRate(s) {
+  const { rid, img } = lbState.list[lbState.pos];
+  const v = s === 0 ? 0 : img.stars === s ? 0 : s;
+  img.stars = v || undefined;
+  if (run && run.id === rid && run.images[img.i] !== img) run.images[img.i].stars = img.stars;
+  drawLightbox();
+  await api(`/api/runs/${rid}/rate`, { i: img.i, stars: v });
+}
+function closeLightbox() {
+  $("#lb").classList.remove("show"); lbState = null;
+  if ($("#tab-gen").style.display !== "none") renderRun(); else renderBest();
+  loadHistory();
+}
+document.addEventListener("keydown", (e) => {
+  if (!lbState) return;
+  if (e.target.id === "lbNote") { if (e.key === "Escape" || e.key === "Enter") e.target.blur(); return; }
+  if (e.target.id === "lbPrompt") { if (e.key === "Escape" || (e.key === "Enter" && (e.metaKey || e.ctrlKey))) e.target.blur(); return; }
+  if (e.key === "Escape") closeLightbox();
+  else if (e.key === "ArrowRight") { lbState.pos = (lbState.pos + 1) % lbState.list.length; drawLightbox(); }
+  else if (e.key === "ArrowLeft") { lbState.pos = (lbState.pos - 1 + lbState.list.length) % lbState.list.length; drawLightbox(); }
+  else if (/^[0-5]$/.test(e.key)) lbRate(+e.key);
+  else if (e.key.toLowerCase() === "n") { e.preventDefault(); $("#lbNote").focus(); }
+  else if (e.key.toLowerCase() === "p") { e.preventDefault(); $("#lbPrompt").focus(); }
+  else if (e.key.toLowerCase() === "r") { const { rid, img } = lbState.list[lbState.pos]; if (addRef(`run:${rid}/${img.file}`)) toast("Added to your references"); }
+});
+
+// ---------- tabs ----------
+let bestList = [];
+function showTab(t) {
+  $$("nav button").forEach((b) => b.classList.toggle("on", b.dataset.tab === t));
+  $("#tab-gen").style.display = t === "gen" ? "" : "none";
+  $("#tab-best").style.display = t === "best" ? "" : "none";
+  $("#tab-insights").style.display = t === "insights" ? "" : "none";
+  if (t === "best") renderBest();
+  if (t === "insights") renderInsights();
+}
+async function renderBest() {
+  bestList = await api("/api/best?min=" + $("#bestMin").value);
+  $("#bestGrid").innerHTML = bestList.length
+    ? bestList.map((b) => card(b, ...((runAspect[b.run] || "3:4").split(":").map(Number)), b.run)).join("")
+    : `<div class="empty">Nothing rated this high yet.</div>`;
+  bindCards($("#bestGrid"), null);
+}
+const runAspect = {};
+async function renderInsights() {
+  const s = await api("/api/stats");
+  const names = { style: "Styles", scene: "Scenes", model: "Models", refs: "References", master: "Master prompt versions", subject: "Subjects" };
+  const lab = { style: "styles", scene: "scenes", model: "models" };
+  $("#insights").innerHTML = Object.entries(names).map(([g, title]) => `
+    <div class="box"><h3>${title}</h3>
+      ${(s[g] || []).length ? s[g].map((r) => `
+        <div class="bar-row"><div class="k" title="${esc(r.key)}">${esc(lab[g] ? labelOf(lab[g], r.key) : r.key)}</div>
+        <div class="bar"><i style="width:${(r.avg / 5) * 100}%"></i></div>
+        <div class="v">${r.avg.toFixed(2)}★ · ${r.n}</div></div>`).join("") : `<div class="hint">No ratings yet.</div>`}
+    </div>`).join("");
+}
+
+init();
+</script>
+</body>
+</html>

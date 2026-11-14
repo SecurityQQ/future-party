@@ -1,0 +1,381 @@
+{
+  "masters": [
+    {
+      "id": "v1",
+      "created": "2026-11-14",
+      "note": "First draft from the reference boards: collectible companion creature, one style and one scene slot, zodiac traits and element palette.",
+      "text": "{subject}, a {sign} companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish, never childish.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature."
+    },
+    {
+      "id": "v2",
+      "created": "2026-11-14",
+      "note": "Sign name out of the image prompt (v1 gave every Taurus otter bull horns and a glyph)",
+      "text": "{subject} as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature."
+    }
+  ],
+  "refModes": [
+    {
+      "id": "match",
+      "label": "Match the look",
+      "text": "The attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images."
+    },
+    {
+      "id": "mood",
+      "label": "Mood only",
+      "text": "The attached images are mood and material inspiration only: borrow their light, palette and finish, never copy their subjects or composition."
+    },
+    {
+      "id": "same",
+      "label": "Same character",
+      "text": "The attached image shows this exact character. Keep its design identical: species, proportions, face, colors, materials and outfit. Change only what this prompt describes."
+    }
+  ],
+  "defaults": {
+    "subject": "a baby otter",
+    "sign": "2050 zodiac",
+    "traits": "curious, playful, a little mischievous",
+    "palette": "harmonious accents that suit the scene"
+  },
+  "styles": [
+    {
+      "id": "plush",
+      "label": "Plush glow",
+      "text": "ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ]
+    },
+    {
+      "id": "crystal",
+      "label": "Faceted crystal",
+      "text": "body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate",
+      "refs": [
+        "character ideas/fdb022571d4f32d3f115e49ecec27f47.jpg"
+      ]
+    },
+    {
+      "id": "rhinestone",
+      "label": "Diamond pave",
+      "text": "entirely encrusted with thousands of tiny silver rhinestones and diamonds, glittering macro detail, luxurious fashion editorial",
+      "refs": [
+        "character ideas/c9b0f22a74a634b491b9c3db3eac55ed.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.38 AM.png"
+      ]
+    },
+    {
+      "id": "chrome",
+      "label": "Liquid chrome",
+      "text": "made of polished liquid chrome with soft iridescent reflections of pink, teal and gold, smooth sculptural forms, Y2K designer object",
+      "refs": [
+        "character ideas/Screenshot 2026-11-14 at 11.30.14 AM.png"
+      ]
+    },
+    {
+      "id": "porcelain",
+      "label": "Porcelain robot",
+      "text": "a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot",
+      "refs": [
+        "character ideas/13969f9c58bcb10a78fc7d0848f4e6c9.jpg",
+        "character ideas/4033d1b946aa55bdf4b6c2e81f01a2aa.jpg"
+      ]
+    },
+    {
+      "id": "hologlass",
+      "label": "Holographic glass",
+      "text": "transparent iridescent glass body with glowing fiber-optic veins and soft inner light, holographic sheen, faint technical blueprint annotations floating around it",
+      "refs": [
+        "character ideas/54deea09727aab1618809d6e42dfb05e.jpg"
+      ]
+    },
+    {
+      "id": "wireframe",
+      "label": "Data wireframe",
+      "text": "formed from a glowing blue wireframe mesh and a point cloud of tiny dots, digital hologram aesthetic with thin coordinate lines, 1980s computer graphics",
+      "refs": [
+        "character ideas/f907589d93c1df86bb44fbc6ca34aa31.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.20.39 AM.png"
+      ]
+    },
+    {
+      "id": "cyborg",
+      "label": "Cyborg wildlife",
+      "text": "a realistic young animal with some parts replaced by exposed precision mechanics, tiny circuit boards, brass gears and neat cables, photoreal wildlife photography meets sci-fi",
+      "refs": [
+        "character ideas/7c64e0a4e002517b533679d51a9b0cb6.jpg",
+        "character ideas/34e32f258a0f0f1b7a4e4287be03e457.jpg"
+      ]
+    },
+    {
+      "id": "neonpunk",
+      "label": "Neon cyberpunk",
+      "text": "styled in neon magenta and electric teal, chunky reflective goggles, a metallic armor collar with glowing details, playful cyberpunk attitude",
+      "refs": [
+        "character ideas/a37ecf50b2c2d19bfff8d8d25a835596.jpg"
+      ]
+    },
+    {
+      "id": "deadpan",
+      "label": "Flash film",
+      "text": "the whole photo in black and white: shot on monochrome 35mm film with direct on-camera flash, grainy, deadpan cool attitude with tiny black sunglasses, ironic fashion photography",
+      "refs": [
+        "character ideas/Screenshot 2026-11-14 at 11.26.30 AM.png"
+      ],
+      "palette": false
+    },
+    {
+      "id": "airbrush",
+      "label": "80s airbrush",
+      "text": "painted in 1980s airbrush sci-fi illustration style, chrome highlights, rainbow light beams and a glowing laser grid, retro-futurist album cover",
+      "refs": [
+        "style/36bcb842d45eecaad465887d6dc0a4f9.jpg",
+        "style/90a671da53d764ee787db1d13ad2d07b.jpg"
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "id": "vapor_hills",
+      "label": "Violet hills",
+      "text": "rolling velvet hills covered in glowing violet flowers under a deep blue twilight sky with two thin crescent moons",
+      "refs": [
+        "background refernces/6e6f97a2337760807995373cd9511772.jpg"
+      ]
+    },
+    {
+      "id": "solarpunk",
+      "label": "Solarpunk valley",
+      "text": "a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light",
+      "refs": [
+        "background refernces/3d7878ad5e302a5cd78a1128609e1f9c.jpg"
+      ]
+    },
+    {
+      "id": "portal",
+      "label": "Planet portal",
+      "text": "a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure",
+      "refs": [
+        "background refernces/7ef4acefd7cd74b7397b5d6f0edae185-2.jpg"
+      ]
+    },
+    {
+      "id": "hyperspace",
+      "label": "Hyperspace",
+      "text": "inside a cosmic hyperspace tunnel of rainbow light streaks, swirling stars and prismatic flares",
+      "refs": [
+        "background refernces/Screenshot 2026-11-14 at 11.20.57 AM.png",
+        "background refernces/Screenshot 2026-11-14 at 11.20.16 AM.png"
+      ]
+    },
+    {
+      "id": "clouds",
+      "label": "Cloud sea",
+      "text": "floating above a soft sea of pink and lilac clouds at dusk, a slim crescent moon in a pastel gradient sky",
+      "refs": [
+        "character ideas/Screenshot 2026-11-14 at 11.27.06 AM.png"
+      ]
+    },
+    {
+      "id": "forest",
+      "label": "Endless forest",
+      "text": "an endless corridor of tall trees at deep blue twilight, a faint starry horizon glowing at the end of a tiny winding path",
+      "refs": [
+        "background refernces/b940624d3a2d2bc47ebcfced9c0d1c7e.jpg"
+      ]
+    },
+    {
+      "id": "mars",
+      "label": "Mars colony",
+      "text": "a terracotta Mars desert colony with a white dome city and launch towers, a pale moon in a dusty sky",
+      "refs": [
+        "style/2ebd13d131f4560329d13280a6cf2166.jpg"
+      ]
+    },
+    {
+      "id": "paperback",
+      "label": "Sci-fi paperback",
+      "text": "a vast desert under a giant ringed sphere and drifting spaceships, painted like a 1970s sci-fi paperback cover",
+      "refs": [
+        "background refernces/8d34a8e204743c6184cb3dd18b13d987.jpg"
+      ]
+    },
+    {
+      "id": "citylights",
+      "label": "City of light",
+      "text": "high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh",
+      "refs": [
+        "style/Screenshot 2026-11-14 at 11.20.05 AM.png"
+      ]
+    },
+    {
+      "id": "rings",
+      "label": "Stone rings",
+      "text": "a green canyon floor beneath giant carved stone rings receding into a blue sky",
+      "refs": [
+        "background refernces/5feb5685132a6c7b94cbcbb976c30e94.jpg"
+      ]
+    },
+    {
+      "id": "studio",
+      "label": "Studio color",
+      "text": "a seamless studio backdrop in one bold harmonious color with a soft floor reflection, clean product-shot lighting",
+      "refs": []
+    }
+  ],
+  "zodiac": [
+    {
+      "sign": "Aries",
+      "from": "03-21",
+      "to": "04-19",
+      "element": "fire",
+      "animal": "a baby woodpecker",
+      "traits": "fiery, brave, impatient, always first to act"
+    },
+    {
+      "sign": "Taurus",
+      "from": "04-20",
+      "to": "05-20",
+      "element": "earth",
+      "animal": "a baby otter",
+      "traits": "cozy, loyal, stubborn, loves comfort and snacks"
+    },
+    {
+      "sign": "Gemini",
+      "from": "05-21",
+      "to": "06-20",
+      "element": "air",
+      "animal": "a baby parrot",
+      "traits": "chatty, witty, curious, two moods at once"
+    },
+    {
+      "sign": "Cancer",
+      "from": "06-21",
+      "to": "07-22",
+      "element": "water",
+      "animal": "a baby crab",
+      "traits": "protective, sensitive, a homebody behind a hard shell"
+    },
+    {
+      "sign": "Leo",
+      "from": "07-23",
+      "to": "08-22",
+      "element": "fire",
+      "animal": "a black panther cub",
+      "traits": "proud, dramatic, generous, loves the spotlight"
+    },
+    {
+      "sign": "Virgo",
+      "from": "08-23",
+      "to": "09-22",
+      "element": "earth",
+      "animal": "a bumblebee",
+      "traits": "diligent, precise, helpful, quietly perfectionist"
+    },
+    {
+      "sign": "Libra",
+      "from": "09-23",
+      "to": "10-22",
+      "element": "air",
+      "animal": "a baby rabbit",
+      "traits": "charming, stylish, easygoing, seeks harmony"
+    },
+    {
+      "sign": "Scorpio",
+      "from": "10-23",
+      "to": "11-21",
+      "element": "water",
+      "animal": "a baby snake",
+      "traits": "mysterious, intense, magnetic, fiercely loyal"
+    },
+    {
+      "sign": "Sagittarius",
+      "from": "11-22",
+      "to": "12-21",
+      "element": "fire",
+      "animal": "a foal",
+      "traits": "free-spirited, adventurous, endlessly optimistic"
+    },
+    {
+      "sign": "Capricorn",
+      "from": "12-22",
+      "to": "01-19",
+      "element": "earth",
+      "animal": "a fawn",
+      "traits": "ambitious, patient, a steady climber"
+    },
+    {
+      "sign": "Aquarius",
+      "from": "01-20",
+      "to": "02-18",
+      "element": "air",
+      "animal": "a baby whale",
+      "traits": "visionary, eccentric, kind to everyone"
+    },
+    {
+      "sign": "Pisces",
+      "from": "02-19",
+      "to": "03-20",
+      "element": "water",
+      "animal": "a baby octopus",
+      "traits": "dreamy, intuitive, artistic, a shape-shifter"
+    }
+  ],
+  "elements": {
+    "fire": "ember orange, gold and crimson",
+    "earth": "moss green, terracotta and warm cream",
+    "air": "lilac, sky blue and pearl white",
+    "water": "deep teal, aquamarine and silver"
+  },
+  "extraAnimals": [
+    "a baby hamster",
+    "a baby gecko",
+    "a fluffy puppy",
+    "a tiny spider",
+    "a fox kit",
+    "a baby axolotl",
+    "a baby penguin",
+    "a kitten"
+  ],
+  "models": [
+    {
+      "id": "nano_banana_2_1",
+      "label": "Nano Banana 2.1"
+    },
+    {
+      "id": "gpt_image_2_6",
+      "label": "GPT Image 2.6"
+    },
+    {
+      "id": "seedream_5_5",
+      "label": "Seedream 5.5"
+    },
+    {
+      "id": "nano_banana_pro",
+      "label": "Nano Banana Pro"
+    },
+    {
+      "id": "flux_3_image",
+      "label": "Flux 3"
+    },
+    {
+      "id": "krea_3",
+      "label": "Krea 3"
+    },
+    {
+      "id": "mai_image_2_5",
+      "label": "MAI Image 2.5"
+    },
+    {
+      "id": "seedream_5_pro",
+      "label": "Seedream 5 Pro"
+    },
+    {
+      "id": "qwen_image_3",
+      "label": "Qwen Image 3"
+    },
+    {
+      "id": "grok_imagine_image_2",
+      "label": "Grok Imagine 2"
+    }
+  ]
+}

@@ -10,6 +10,7 @@ Material for a party set in 2050: a looping wall film, the soundtrack, and the r
 | `music/` | **Soundtrack 2050** and **Why Music Changes**: data (`soundtrack.json`, `history.json`, `eras.json`) and the templates that build the two pages in `dist/`. |
 | `reel/` | Research for a film-clip reel: the brief, candidate scenes, links and the rules for rejecting clips. |
 | `soundboard/` | **Contact 2050**, a Makey Makey soundboard: twelve pins, eight kits, and 2,038 sounds from TidalCycles' [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) library. Jam mode keeps everything in time and in key; stage mode is for the projector. A sub-project with its own [README](soundboard/README.md). |
+| `books/` | **Book Projection 2050**: 18 books about the world around 2050, 25 idea slides and 50 verified verbatim quotes, with a fullscreen wall projection. `quotes.json` is the quote list in play order; `template.html` holds the books and ideas. |
 
 ## The film
 
@@ -46,6 +47,15 @@ cd soundboard
 python3 -I build.py             # writes dist/contact2050.html, which streams sounds from the jsDelivr CDN
 python3 -I build.py --offline   # also writes dist/contact2050-offline.html with the sounds built in, for a venue without wifi
 ```
+
+## The book page
+
+```bash
+cd books
+python3 -I build.py   # writes dist/book-projection-2050.html (the published page) and dist/quote-wall.html
+```
+
+`dist/quote-wall.html` opens in any browser without signing in. Add `#quote-wall`, `#projection` or `#mix-wall` to its address to start the quotes, the ideas or both, then press F for fullscreen. Each quote in `quotes.json` records how it was checked (`conf` 3 = against the book text, 2 = two or more matching sources) and its source links.
 
 ## Credits and licences
 
