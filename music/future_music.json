@@ -1,0 +1,49 @@
+{
+  "_about": "Music of the Future: the host's own picks (sent 14 November 2026), in the order of the YouTube playlist. Chapter titles are the host's headings; notes marked host are the host's words, the rest come from each video's own credits. d = seconds on YouTube. embed: false = YouTube will not play it inside another page (age-restricted), so the page links out. The playlist on YouTube must keep this exact order.",
+  "title": "Music of the Future",
+  "playlist": "https://www.youtube.com/playlist?list=PLeCO8iyYgFSo",
+  "parts": [
+    {"id": "evening", "title": "The evening", "note": "Short pieces, nearly all with their own videos: made for the projector."},
+    {"id": "late", "title": "Long sets", "note": "Two albums, a live-coded rave, a live session and a mix, then Arca to close. For later in the night."}
+  ],
+  "chapters": [
+    {"id": "liftoff", "part": "evening", "title": "Lift-off", "note": "The old dream of going out there: Carl Sagan's voice over the planets, mission control during Apollo 11, and Tokyo as a city of machines in 1979."},
+    {"id": "proto", "part": "evening", "title": "Holly Herndon — PROTO", "note": "Music co-written with AI, where you can't tell whether you are hearing the AI or real people.", "host": true},
+    {"id": "aivisual", "part": "evening", "title": "AI as the main visual effect"},
+    {"id": "visuals", "part": "evening", "title": "Futuristic visuals", "note": "Three videos from Oneohtrix Point Never's Tranquilizer (2025), each by a different maker, then Björk."},
+    {"id": "robotics", "part": "evening", "title": "Robotics vibes"},
+    {"id": "minimal", "part": "evening", "title": "Beautiful minimalism"},
+    {"id": "botanica", "part": "evening", "title": "Botanica music"},
+    {"id": "bruxia", "part": "evening", "title": "Bruxia"},
+    {"id": "botanica-long", "part": "late", "title": "Botanica music, long"},
+    {"id": "algorave", "part": "late", "title": "Algo raves", "note": "Live coding: the music and the visuals are written as code in front of the crowd."},
+    {"id": "live", "part": "late", "title": "Angine de Poitrine — Full Performance"},
+    {"id": "bruxia-long", "part": "late", "title": "Bruxia, long"},
+    {"id": "arca", "part": "late", "title": "Arca — @@@@@", "note": "Music as the disintegration of identity, the body, gender and form. Very heavy, yet unexpected.", "host": true}
+  ],
+  "tracks": [
+    {"yt": "YH3c1QZzRK4", "ch": "liftoff", "a": "Erik Wernquist", "t": "Wanderers", "y": 2014, "d": 230, "note": "A short film: people among the moons and rings of the Solar System, with Carl Sagan reading from Pale Blue Dot."},
+    {"yt": "BHIo6qwJarI", "ch": "liftoff", "a": "Public Service Broadcasting", "t": "Go!", "y": 2015, "d": 238, "note": "Built on mission control's go/no-go poll before the Apollo 11 landing."},
+    {"yt": "di_L7O56ZXE", "ch": "liftoff", "a": "Yellow Magic Orchestra", "t": "Technopolis", "y": 1979, "d": 255, "note": "From Solid State Survivor: T-O-K-Y-O spelled out by a vocoder."},
+    {"yt": "ZFe0Bcngp64", "ch": "proto", "a": "Holly Herndon", "t": "Birth", "y": 2019, "d": 74, "note": "The first track of PROTO."},
+    {"yt": "r4sROgbaeOs", "ch": "proto", "a": "Holly Herndon", "t": "Eternal", "y": 2019, "d": 305, "note": "PROTO's official video."},
+    {"yt": "AVu5p2DMIf8", "ch": "aivisual", "a": "Grimes", "t": "ACCELERANDO", "y": 2026, "d": 272},
+    {"yt": "FljbOmsnozU", "ch": "aivisual", "a": "Imogen Heap", "t": "I AM ___", "y": 2025, "d": 860},
+    {"yt": "CEeCziXT2FE", "ch": "visuals", "a": "Oneohtrix Point Never", "t": "D.I.S.", "y": 2025, "d": 215, "note": "By Elliott Elder of the studio UNCANNY, with imagery from Julien Gobled: a strange simulated world built for the video, featured by It's Nice That."},
+    {"yt": "YfjsyKFbyqM", "ch": "visuals", "a": "Oneohtrix Point Never", "t": "Lifeworld", "y": 2025, "d": 252, "note": "Directed by Daniel Lopatin, OPN himself."},
+    {"yt": "fzC-RV1h0gc", "ch": "visuals", "a": "Oneohtrix Point Never", "t": "Measuring Ruins", "y": 2025, "d": 185, "note": "Directed by the video artist Yoshi Sodeoka."},
+    {"yt": "DhlNRRUH--s", "ch": "visuals", "a": "Björk", "t": "Nerve Bloom", "d": 674, "note": "At the National Gallery of Iceland."},
+    {"yt": "FWrptyzLzxI", "ch": "robotics", "a": "Pink Noise", "t": "Sky Cry (ft. Zack Slime Fr)", "y": 2022, "d": 310},
+    {"yt": "06WYi6pCMx0", "ch": "robotics", "a": "Jianbo", "t": "For The Honour (ft. Nix Northwest)", "y": 2025, "d": 229},
+    {"yt": "8uO2JYOhwiY", "ch": "minimal", "a": "Actress", "t": "Overchord", "y": 2026, "d": 306, "note": "On the host's list twice: here and under AI as the main visual effect."},
+    {"yt": "Ob_EDY9Eiis", "ch": "botanica", "a": "Ninajirachi & Porter Robinson", "t": "WannaCry", "y": 2026, "d": 219},
+    {"yt": "Jf9iTqMZHVs", "ch": "botanica", "a": "ickumas, Jcran, Vacatek & vynae", "t": "split-path", "y": 2025, "d": 140, "note": "From Upright Volume 5."},
+    {"yt": "_A7egB6-R3M", "ch": "bruxia", "a": "Moreno & Prieto, Dazed, Val Doering", "t": "Vete de Aquí", "y": 2026, "d": 230, "note": "On SORNE."},
+    {"yt": "rBg05xXjObc", "ch": "botanica-long", "a": "phritz", "t": "しりべつのほとりにて", "y": 2022, "d": 1209, "note": "Four pieces: 透水, せせらぎをみつめて, 源流をたどって, はじまりのしずけさ."},
+    {"yt": "D7MymKtevMM", "ch": "botanica-long", "a": "Alexander Panos", "t": "Nascent (full album)", "y": 2022, "d": 2131, "note": "Ten tracks; in his words, an album about becoming."},
+    {"yt": "7qfCeIgtllY", "ch": "algorave", "a": "DJ_Dave & Char Stiles", "t": "Live-coding at Algowave", "y": 2021, "d": 1388, "note": "Wonderville, Brooklyn, 21 August 2021."},
+    {"yt": "0Ssi-9wS1so", "ch": "live", "a": "Angine de Poitrine", "t": "Full Performance (Live on KEXP)", "y": 2026, "d": 1673},
+    {"yt": "sozBNb4oJIA", "ch": "bruxia-long", "a": "Girl Unit", "t": "FACT Mix 154", "d": 2694},
+    {"yt": "2gjlcSZ9cQE", "ch": "arca", "a": "Arca", "t": "@@@@@", "y": 2020, "d": 3741, "embed": false, "note": "One 62-minute piece. Age-restricted: YouTube plays it only on youtube.com, signed in."}
+  ]
+}

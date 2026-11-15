@@ -107,7 +107,7 @@ count();
 /* Short addresses */
 const WHAT={wall:'the Big Wall',apps:'the Apps on the front page',quotes:'quote wall',ideas:'idea wall',mix:'quotes and ideas',tweets:'tweet wall',
   'tweets-short':'tweet wall, short',art:'Imagined Futures wall',mars:'Mars in 3D',play:'Play: 2050',soundboard:'Play: 2050 (old address)',
-  soundtrack:'the playlist page',resonance:'History of Music 2050','music-history':'Why Music Changes',books:'Book Projection 2050',
+  soundtrack:'Fable 5.2’s playlist page','future-music':'Music of the Future',resonance:'History of Music 2050','music-history':'Why Music Changes',books:'Book Projection 2050',
   further:'Further 2050',films:'Projection 2050',futurists:'Futurists on 2050',programme:'Tea With Tomorrow'};
 $('shortNote').innerHTML=WEB?'Type <code>'+esc(siteName)+'/wall</code> and so on. Each forwards to the page.':'These work on the website, <code>'+esc(siteName)+'/wall</code> and so on. From the folder, the links below open the same pages from disk.';
 $('shorts').innerHTML=Object.keys(D.short).map(k=>{const href=WEB?'/'+k:D.short[k];return '<div><a href="'+esc(href)+'">/'+esc(k)+'</a><span>'+esc(WHAT[k]||D.short[k])+'</span></div>'}).join('')+
@@ -137,7 +137,7 @@ const RB=[
   ['Quote and idea walls, Book Projection','<code>books/quotes.json</code>, <code>books/template.html</code>','cd books && python3 -I build.py'],
   ['Tweet wall and tweet page','<code>tweets/tweets.json</code>, <code>tweets/avatars/</code>','cd tweets && python3 -I build.py'],
   ['Imagined Futures','<code>concept-art/picks.json</code>, <code>concept-art/tweets.json</code>','cd concept-art && python3 -I build.py'],
-  ['Playlist page, Why Music Changes','<code>music/soundtrack.json</code>, <code>music/eras.json</code>','cd music && python3 -I build.py'],
+  ['Fable 5.2’s playlist, Music of the Future, Why Music Changes','<code>music/soundtrack.json</code>, <code>music/future_music.json</code> (keep it in the order of the YouTube playlist), <code>music/eras.json</code>','cd music && python3 -I build.py'],
   ['History of Music 2050','<code>music/resonance/additions.json</code>','cd music/resonance && python3 -I build_resonance.py'],
   ['Play: 2050 soundboard','<code>soundboard/kits.json</code>, <code>soundboard/template.html</code>','cd soundboard && python3 -I build.py'],
   ['Mars in 3D','<code>mars3d/slides.json</code>; the originals in <code>mars3d/raw/</code> are fetched again by <code>mars3d/tools/fetch.py</code>','python3 -I mars3d/tools/build.py'],

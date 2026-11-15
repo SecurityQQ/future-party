@@ -327,7 +327,7 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
     <div class="sec-head">
       <p class="eyebrow">Sound</p>
       <h2>Music</h2>
-      <p class="note">Further and the slide walls are silent, so the room's sound comes from the playlist. Six Facts has its own music; on the Big Wall it starts muted. To play with music, open <a href="#history-of-music">History of Music 2050</a> or <a href="#play">Play: 2050</a> in Apps.</p>
+      <p class="note">Further and the slide walls are silent, so the room's sound comes from a playlist: the host’s Music of the Future, or the running order Fable 5.2 picked. Six Facts has its own music; on the Big Wall it starts muted. To play with music, open <a href="#history-of-music">History of Music 2050</a> or <a href="#play">Play: 2050</a> in Apps.</p>
     </div>
     <div class="list" id="soundList"></div>
   </section>
@@ -406,7 +406,7 @@ const isClaude=u=>/^https:\/\/claude\.ai\//.test(u);
 /* Markdown opens on GitHub from the website, from disk in the folder */
 const doc=p=>WEB?D.repo+'/blob/main/'+p:p;
 const ext=u=>/^https?:/.test(u)?' target="_blank" rel="noopener"':'';
-const P=D.pages,B=D.books,T=D.tweets,S=D.sound,A=D.art,W=D.wall;
+const P=D.pages,B=D.books,T=D.tweets,S=D.sound,F=D.future,A=D.art,W=D.wall;
 
 /* Hero */
 $('lead').innerHTML=WEB
@@ -488,7 +488,7 @@ const APPS=[
 /* The doors */
 const DOORS=[
   ['#wall','On the wall','The Big Wall, Further, Six Facts, and the quote, idea, tweet and art walls.','▶ '+mins(W.total)+' a loop'],
-  ['#music','Music','The playlist for the room, and Why Music Changes: four thousand years in thirteen eras.',S.tracks+' tracks'],
+  ['#music','Music','Music of the Future, the host’s picks; Fable 5.2’s playlist about the future; and Why Music Changes: four thousand years in thirteen eras.','2 playlists · '+(F.tracks+S.tracks)+' videos'],
   ['#apps','Apps','The Future 2050, the NFC game; Mirror 2050, History of Music 2050, Play: 2050, Mars in 3D and Imagined Futures.',APPS.length+' apps'],
   ['#research','2050 Research','The books, the tweets, the films and the effects behind the wall.','7 pages']
 ];
@@ -556,7 +556,9 @@ const item=(h,p,links,pre)=>{
 };
 const loc=(t,p)=>D.exists[p]===false?null:[t,/\.md$/.test(p)?doc(p):p];
 $('soundList').innerHTML=[
-  item('Playlist','Soundtrack 2050, the party’s running order: '+S.tracks+' tracks and spoken voices in three blocks, each scored for plausibility and inspiration, plus '+S.bench+' spares.',
+  item('Music of the Future','The host’s own picks: '+F.tracks+' videos. First '+mins(F.evening)+' of music videos for the projector (lift-off, music written with AI, futuristic visuals, robotics, minimalism, botanica, bruxia), then '+Math.round(F.late/1800)/2+' hours of long sets, with Arca last. '+(WEB?'The page plays them all in order.':'Its player works on the website; from the folder each track opens on YouTube.'),
+    [loc(WEB?'open':'open (no player)',P.future_music),['YouTube playlist ↗',D.playlists.future]]),
+  item('Fable 5.2’s playlist about the future','Soundtrack 2050, the party’s running order picked by Fable 5.2: '+S.tracks+' tracks and spoken voices in three blocks, each scored for plausibility and inspiration, plus '+S.bench+' spares.',
     [['YouTube playlist ↗',D.playlists.soundtrack],loc('the running order',P.soundtrack),['online ↗',D.online.soundtrack]]),
   item('Why Music Changes','Four thousand years in thirteen eras: who paid, who ruled, what people believed, and the technology and contact that changed the sound.',
     [loc('open',P.why),['History of Music playlist ↗',D.playlists.history],['online ↗',D.online.why]],'Research')
