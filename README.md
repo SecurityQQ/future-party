@@ -13,6 +13,7 @@ Start at **`index.html`**, the front page: an index of every resource, the films
 | `video/` | **Further** (v2), a 75-second silent loop for a projector (1920×1080, 30 fps): 16 bold claims for 2030–2050, each with a dated real seed and a film that imagined it, over 37 free images. The first cut, **Already Here** (v1), is kept and can be rebuilt. Built with [HyperFrames](https://hyperframes.heygen.com). See `ROAST.md` for the scene-by-scene roast of v1, `SPEC.md` and `REVIEW.md` for design and QA, and `CREDITS.md` for every image. |
 | `video/dist/further-2050.html` | **The Further page**: both films (720p previews in `video/dist/media/`), the roast with a frame from every v1 slide, the 16 new claims with their sources, and how far to trust them. Opens from disk in any browser. |
 | `roast/` | **The Roast**, a 63-second film with sound that tells how v1 became v2: 11 v1 slides stamped CUT or KEEP, the tally, then the recut. Its own HyperFrames project (`SPEC.md`, `REVIEW.md`). |
+| `showreel/` | **Six Facts**, the show reel: two and a half minutes with music that cut together the six facts about how books guess the future, six quotes from the books, six posts from X, 13 predictions from *Further* and NASA footage (the Artemis I and Saturn V launches, the Sun, Earth and a hurricane from the ISS). Its own HyperFrames project (`SPEC.md`, `STORYLINES.md`, `REVIEW.md`, `CREDITS.md`). |
 | `programme/` | **Tea With Tomorrow**, the programme for the evening: a three-hour Futures Literacy Lab (the UNESCO method) with tea on the tables, in two lengths, with a party clock for the host. |
 | `music/` | **Soundtrack 2050** and **Why Music Changes**: data (`soundtrack.json`, `history.json`, `eras.json`) and the templates that build the two pages in `dist/`. `music/resonance/` is **Resonance**, music history and what comes next, with an in-page YouTube player. |
 | `soundboard/` | **Contact 2050**, a Makey Makey soundboard: twelve pins, eight kits, and 2,038 sounds from TidalCycles' [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) library. Jam mode keeps everything in time and in key; stage mode is for the projector. A sub-project with its own [README](soundboard/README.md). |
@@ -26,7 +27,7 @@ The programme, the two futurist research pages and Projection 2050 were made as 
 
 ## The films
 
-The 1080p masters are on the releases: **Already Here** on [v1.0](../../releases/tag/v1.0), **Further** and **The Roast** on [v2.0](../../releases/tag/v2.0). The repo keeps 720p previews of all three in `video/dist/media/`, which the front page plays when the masters are not in `video/renders/` and `roast/renders/`, and which the website always plays.
+The 1080p masters are on the releases: **Already Here** on [v1.0](../../releases/tag/v1.0), **Further** and **The Roast** on [v2.0](../../releases/tag/v2.0). The repo keeps 720p previews of these three and of **Six Facts** in `video/dist/media/`, which the front page plays when the masters are not in `video/renders/` and `roast/renders/`, and which the website always plays.
 
 To preview or re-render the wall film yourself (Node.js and ffmpeg):
 
@@ -51,6 +52,22 @@ npm run check && npm run render
 ```
 
 The page plays the two films from `video/dist/media/` (720p, in the repo).
+
+## The show reel
+
+**Six Facts** plays the party's material as one film: each of the six facts from the book page arrives as a number over NASA footage, a book answers it, someone on X answers the book, and two slides from *Further* show how far it goes. It is cut on the bars of the score.
+
+```bash
+cd showreel
+python3 -I tools/fetch_footage.py    # downloads the NASA fragments listed in footage.json into assets/footage/
+python3 -I tools/prepare_assets.py   # cuts the Further slides, trims the score, copies photos, sounds and fonts
+python3 -I tools/build.py            # writes index.html, compositions/ and CREDITS.md from reel.json
+npm run check && npm run render      # renders to renders/
+```
+
+`reel.json` holds everything on screen: the facts, the quotes, the posts, which slides and footage each chapter uses, and the downbeat of every bar. The build stops if a quote is not word for word in `books/quotes.json` or a post is not word for word in `tweets/tweets.json`. The footage and the slide cuts are not in the repo (about 250 MB); the two tools above fetch and cut them again. The slides are cut from the *Further* master in `video/renders/`, or from release v2.0 when it is not there. `CREDITS.md` lists every fragment with its NASA page.
+
+The 1080p render is `showreel/renders/six-facts-2050-1080p.mp4`; it is not on a release yet. The repo keeps a 720p preview in `video/dist/media/six-facts-720p.mp4`.
 
 ## The music pages
 

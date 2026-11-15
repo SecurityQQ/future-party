@@ -134,7 +134,7 @@ def soundtrack_numbers():
 
 
 def films_list(web):
-    """The three films. The folder plays the 1080p renders and falls back to the 720p previews kept in the repo;
+    """The films. The folder plays the 1080p renders and falls back to the 720p previews kept in the repo;
     the website always plays the previews and links the 1080p masters on the GitHub releases."""
     films = [
         {"id": "further", "title": "Further", "sub": "the wall film, v2", "t": 8,
@@ -147,6 +147,11 @@ def films_list(web):
          "master": DOWNLOAD + "/v2.0/the-roast-2050-1080p.mp4",
          "about": "62 seconds: the weakest v1 slides as exhibits stamped CUT, then the recut. Made for the gap between loops. Has sound effects.",
          "page": None, "online": None, "rebuild": "cd roast && npm run render"},
+        {"id": "sixfacts", "title": "Six Facts", "sub": "the show reel", "t": 9,
+         "file": "showreel/renders/six-facts-2050-1080p.mp4", "preview": "video/dist/media/six-facts-720p.mp4",
+         "master": None,  # not on a release yet
+         "about": "Two and a half minutes with music: the six facts about how books guess the future, each answered by a book, a post on X and two predictions from Further, over NASA footage.",
+         "page": None, "online": None, "rebuild": "cd showreel && npm run render"},
         {"id": "already", "title": "Already Here", "sub": "the wall film, v1", "t": 30,
          "file": "video/renders/already-here-2050-1080p.mp4", "preview": "video/dist/media/already-here-720p.mp4",
          "master": DOWNLOAD + "/v1.0/already-here-2050-1080p.mp4",
@@ -175,13 +180,14 @@ def resources(web, films, b, t, s):
     film = {f["id"]: f for f in films}
     def play(f):
         links = [["play", f["file"]]] if f["probe"] else []
-        if web or f["is_preview"]:
+        if (web or f["is_preview"]) and f["master"]:
             links.append(["1080p master ↓", f["master"]])
         return links
     return [
         ["On the wall", [
             ["Further", "The wall film, v2. 16 claims for 2030–2050, silent loop.", "", play(film["further"]) + [["page", PAGES["further"]]]],
             ["The Roast", "How v1 became v2, 62 seconds with sound.", "", play(film["roast"])],
+            ["Six Facts", "The show reel: six facts, six quotes, six posts and 13 predictions over NASA footage. Two and a half minutes with music.", "", play(film["sixfacts"])],
             ["Already Here", "The wall film, v1. Three chapters, silent loop.", "", play(film["already"])],
             ["Quote wall", f"{b['quotes']} verbatim quotes from {b['quote_books']} books.", "", [["start", SHORT["quotes"]]]],
             ["Idea wall", f"{b['ideas']} slides of plausible ideas for 2050.", "", [["start", SHORT["ideas"]], ["quotes and ideas", SHORT["mix"]]]],
@@ -240,7 +246,7 @@ def build(web=False):
     page = tpl.replace(slot, "const D=/*DATA*/" + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + ";", 1)
     films_ok = sum(1 for f in films if f["probe"])
     previews = sum(1 for f in films if f["probe"] and f["is_preview"])
-    print(f"{'site' if web else 'folder'} page: {films_ok}/3 films ({previews} as 720p previews), {b['quotes']} quotes, {b['ideas']} ideas, "
+    print(f"{'site' if web else 'folder'} page: {films_ok}/{len(films)} films ({previews} as 720p previews), {b['quotes']} quotes, {b['ideas']} ideas, "
           f"{t['tweets']} tweets, {s['tracks']} tracks" + (f"; missing: {missing}" if missing else ""))
     return page
 

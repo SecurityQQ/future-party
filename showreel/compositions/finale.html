@@ -1,0 +1,73 @@
+<template>
+  <style>
+    @font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;src:url('assets/fonts/InstrumentSerif-Regular.woff2') format('woff2')}
+    #root{position:absolute;inset:0;overflow:hidden;background:#0b0b0d;font-family:Inter,sans-serif;color:#fff}
+    .stage{position:absolute;inset:0;overflow:hidden}
+    .mv{position:absolute;inset:0}
+    video.fill{position:absolute;left:0;top:0;width:1920px;height:1080px;object-fit:cover;display:block}
+    .scrim{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.8) 0%,rgba(0,0,0,.62) 36%,rgba(0,0,0,.18) 66%,rgba(0,0,0,0) 84%),linear-gradient(to bottom,rgba(0,0,0,0) 46%,rgba(0,0,0,.6) 100%)}
+    .scrim.soft{background:linear-gradient(to right,rgba(0,0,0,.62) 0%,rgba(0,0,0,.4) 40%,rgba(0,0,0,0) 72%)}
+    .dim{position:absolute;inset:0;background:rgba(11,11,13,.6)}
+    .dim.deep{background:rgba(11,11,13,.74)}
+    .dip{position:absolute;inset:0}
+    .dipc{position:absolute;inset:0;background:#000}
+    .cap{position:absolute;left:192px;width:1536px;text-shadow:0 2px 16px rgba(0,0,0,.55)}
+    .cap.low{bottom:112px}
+    .cap.mid{top:0;bottom:0;display:flex;flex-direction:column;justify-content:center}
+    .kick{font:800 34px/1.15 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#ff5315}
+    .kick.plain{text-transform:none;letter-spacing:.04em}
+    .num{font-family:'League Gothic',sans-serif;font-size:300px;line-height:.86;letter-spacing:.01em;text-transform:uppercase;margin-top:10px;white-space:nowrap}
+    .num span{display:inline-block}
+    .num small{display:inline-block;font-size:.42em;margin:0 .22em;color:rgba(255,255,255,.66);text-transform:lowercase;vertical-align:.06em}
+    .num small.unit{font-size:.5em;margin:0 0 0 .14em;color:#fff;text-transform:none;vertical-align:0}
+    .ftxt{font:600 46px/1.22 Inter,sans-serif;margin-top:22px;max-width:1160px}
+    .ftxt span,.qtxt span{display:inline-block}
+    .fsrc{font:500 28px/1.2 Inter,sans-serif;color:rgba(255,255,255,.72);margin-top:20px}
+    .qtxt{font-family:'Instrument Serif',serif;font-size:104px;line-height:1.05;letter-spacing:-.005em;margin-top:26px;max-width:1500px}
+    .qtxt.long{font-size:92px}
+    .qby{font:600 34px/1.25 Inter,sans-serif;color:rgba(255,255,255,.86);margin-top:34px}
+    .thead{display:flex;align-items:center;gap:30px}
+    .tav{width:128px;height:128px;border-radius:50%;object-fit:cover;display:block}
+    .tname{font:800 50px/1.1 Inter,sans-serif}
+    .trole{font:500 32px/1.2 Inter,sans-serif;color:rgba(255,255,255,.74);margin-top:8px}
+    .ttxt{font:600 70px/1.16 Inter,sans-serif;margin-top:40px;max-width:1500px;font-feature-settings:'calt' 0}
+    .ttxt.long{font-size:60px}
+    .tcap .kick{margin-top:36px}
+    .dimx{position:absolute;inset:0}
+    .dimc{position:absolute;inset:0;background:#0b0b0d}
+    .card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-shadow:0 2px 18px rgba(0,0,0,.6)}
+    .big{font-family:'League Gothic',sans-serif;font-size:340px;line-height:.86;letter-spacing:.01em}
+    .line{font:600 50px/1.2 Inter,sans-serif;margin-top:26px}
+    .line span{display:inline-block}
+    .cred{position:absolute;left:0;right:0;bottom:112px;text-align:center;font:500 28px/1.5 Inter,sans-serif;color:rgba(255,255,255,.86)}
+    .foot{position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.7) 100%)}
+  </style>
+  <div id="root" data-composition-id="finale" data-width="1920" data-height="1080">
+    <div class="stage" id="finale-p-st" style="z-index:1"><video id="finale-p" class="clip fill" src="assets/further/smiled.mp4" muted playsinline data-hf-media-start-basis="local" data-start="0" data-duration="3.8" data-track-index="1"></video></div>
+    <div class="stage" id="finale-e-st" style="z-index:2">
+      <div class="mv" id="finale-mv"><video id="finale-v" class="clip fill" src="assets/footage/end.mp4" muted playsinline data-hf-media-start-basis="local" data-start="3.65" data-duration="6.2833" data-track-index="1"></video></div>
+      <div id="finale-dim" class="clip dimx" data-start="3.65" data-duration="6.2833" data-track-index="2"><div class="dimc" id="finale-dimc"></div></div>
+      <div id="finale-foot" class="clip foot" data-start="3.65" data-duration="6.2833" data-track-index="2"></div>
+      <div id="finale-card" class="clip card" data-start="3.65" data-duration="6.2833" data-track-index="3">
+        <div class="big" id="finale-big">2050</div>
+        <div class="line" id="finale-line"><span id="finale-w0">Which</span> <span id="finale-w1">one</span> <span id="finale-w2">will</span> <span id="finale-w3">you</span> <span id="finale-w4">build?</span></div>
+        <div class="cred" id="finale-cred" data-layout-ignore><div>Six facts, quotes and tweets: Book Projection 2050 and 2050 in 78 Tweets</div><div>Predictions: Further · Footage: NASA · Music: “Call to Adventure”, Kevin MacLeod, CC BY 4.0</div></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo('#finale-dimc',{opacity:1},{opacity:0.68,duration:0.9,ease:'power2.out'},3.65);
+      tl.fromTo('#finale-mv',{scale:1.08},{scale:1,duration:6.2833,ease:'none'},3.65);
+      tl.fromTo('#finale-big',{opacity:0,filter:'blur(12px)'},{opacity:1,filter:'blur(0px)',duration:0.2,ease:'power4.out'},3.9);
+      tl.fromTo('#finale-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},4.4);
+      tl.fromTo('#finale-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},4.48);
+      tl.fromTo('#finale-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},4.56);
+      tl.fromTo('#finale-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},4.64);
+      tl.fromTo('#finale-w4',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},4.72);
+      tl.fromTo('#finale-cred',{opacity:0},{opacity:1,duration:0.4,ease:'power2.out'},5.35);
+      window.__timelines["finale"] = tl;
+    })();
+  </script>
+</template>

@@ -31,3 +31,15 @@ soundboard/dist/contact2050-offline.html
 # The website: hub/site.py writes it, Vercel builds it from the repo on every deploy
 site/
 .vercel/
+
+# Six Facts, the show reel (HyperFrames project): renders and QA frames, same rules as video/.
+# The NASA footage and the Further slide cuts are re-fetchable: python3 -I showreel/tools/fetch_footage.py
+# and python3 -I showreel/tools/prepare_assets.py. The trimmed score (CC BY 4.0) is committed.
+showreel/.hyperframes/
+showreel/.thumbnails/
+showreel/.waveform-cache/
+showreel/renders/
+showreel/snapshots/
+showreel/assets/footage/
+showreel/assets/further/
+showreel/assets/music/_call-to-adventure-full.mp3
