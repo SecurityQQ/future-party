@@ -26,6 +26,9 @@ export async function takenGuestIds(): Promise<Set<number>> {
 }
 
 export const TAG_RE = /^[A-Za-z0-9_-]{3,40}$/;
+// A traveler's own link for when they have no pass: /app/t/kin-<card number>. It is never a row in tags,
+// so it can't be claimed; it always means "this traveler", like their pass once it is bound.
+export const KIN_LINK = /^kin-(\d{1,6})$/;
 
 export async function recordScan(tag: string, playerId: string | null, kind: string) {
   await db().from("scans").insert({ tag_code: tag, player_id: playerId, kind });

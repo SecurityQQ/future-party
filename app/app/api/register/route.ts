@@ -3,7 +3,7 @@ import { db, type Guest, type Player } from "@/lib/db";
 import { currentPlayer, startSession } from "@/lib/session";
 import { validBirthday } from "@/lib/zodiac";
 import { decide, rankGuests } from "@/lib/match";
-import { loadGuests, recordScan, TAG_RE, takenGuestIds } from "@/lib/guests";
+import { KIN_LINK, loadGuests, recordScan, TAG_RE, takenGuestIds } from "@/lib/guests";
 import { planCharacter, pollUntilSettled, startGeneration } from "@/lib/character";
 import { normEmail, validEmail } from "@/lib/profile";
 import { emailReady, sendEmail, welcomeEmail } from "@/lib/email";
@@ -18,7 +18,7 @@ export async function POST(req: Request) {
   const body: any = await req.json().catch(() => ({}));
   const name = String(body.name ?? "").trim().replace(/\s+/g, " ").slice(0, 60);
   const birthday = body.birthday;
-  const tag = typeof body.tag === "string" && TAG_RE.test(body.tag) ? body.tag : null;
+  const tag = typeof body.tag === "string" && TAG_RE.test(body.tag) && !KIN_LINK.test(body.tag) ? body.tag : null;
   const from = typeof body.from === "string" && TAG_RE.test(body.from) ? body.from : null;
   if (name.length < 2) return fail("The Station needs your name, traveler.");
   if (!validBirthday(birthday)) return fail("Enter your full date of birth.");
@@ -77,7 +77,11 @@ export async function POST(req: Request) {
     await recordScan(tag, player.id, claimed?.length ? "claim" : "busy");
   }
   if (from) {
-    const { data: t } = await db().from("tags").select("player_id").eq("code", from).maybeSingle();
+    // A pass, or a traveler's Kin link (/app/t/kin-<card number>, the QR on their phone).
+    const kin = from.match(KIN_LINK);
+    const { data: t } = kin
+      ? await db().from("players").select("player_id:id").eq("card_no", Number(kin[1])).maybeSingle()
+      : await db().from("tags").select("player_id").eq("code", from).maybeSingle();
     if (t?.player_id && t.player_id !== player.id) {
       await db().from("collections").upsert({ collector_id: player.id, owner_id: t.player_id, tag_code: from }, { ignoreDuplicates: true });
       await recordScan(from, player.id, "collect");

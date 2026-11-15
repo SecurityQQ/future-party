@@ -512,3 +512,43 @@ width: 54px; height: 54px; margin-top: -12px; color: #07132b;
   .flash { display: none; }
   .sky .neb, .sky .planet { opacity: 1; }
 }
+
+/* KinReveal: someone joined your orbit. The glass (components/glass-engine.ts) paints the stage. */
+.kin-reveal { position: fixed; inset: 0; z-index: 80; background: #030817; display: grid; grid-template-rows: minmax(0, 1fr) auto; justify-items: center; padding: max(24px, env(safe-area-inset-top)) 16px max(28px, env(safe-area-inset-bottom)); animation: tune 0.25s ease-out both; }
+.kin-reveal-stage { position: relative; width: min(100%, 520px); height: 100%; min-height: 280px; overflow: hidden; isolation: isolate; display: grid; place-items: center; }
+.kin-reveal-still { width: min(64vw, 300px); aspect-ratio: 1; border-radius: 50%; object-fit: cover; object-position: 50% 30%; animation: kinpop 1.1s cubic-bezier(0.2, 1.2, 0.3, 1) both; box-shadow: 0 0 0 1px #466183, 0 0 60px rgb(67 133 255 / 35%); }
+.kin-reveal-still.glyph { display: grid; place-items: center; font-size: 120px; color: var(--cyan); background: #07132b; }
+@keyframes kinpop { from { opacity: 0; transform: scale(0.4); filter: blur(12px); } to { opacity: 1; transform: none; filter: none; } }
+.kin-reveal-text { width: min(100%, 420px); text-align: center; display: grid; gap: 8px; opacity: 0; transform: translateY(10px); transition: opacity 0.6s ease, transform 0.6s ease; pointer-events: none; }
+.kin-reveal-text.on { opacity: 1; transform: none; pointer-events: auto; }
+.kin-reveal-text .kicker { margin: 0; font-size: 12px; letter-spacing: 0.18em; color: var(--cyan); }
+.kin-reveal-text h2 { margin: 0; font-family: var(--font-display), sans-serif; font-size: clamp(26px, 7vw, 36px); line-height: 1.1; }
+.kin-reveal-text .line { margin: 0 0 8px; color: var(--muted); }
+
+/* Email login on the Station and on a pass: the first thing a phone without a traveler sees. */
+.login-first .or { display: flex; align-items: center; gap: 10px; margin: 4px 0; color: var(--muted); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
+.login-first .or::before, .login-first .or::after { content: ""; flex: 1; height: 1px; background: #466183; }
+a.pilot-chip { text-decoration: none; }
+
+/* Fable: the party's sky in numbers, and a short reading by Fable for every traveler. */
+.sky-bars { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+.sky-bars li { display: grid; grid-template-columns: 26px 92px minmax(0, 1fr) 30px; align-items: center; gap: 8px; font-size: 14px; }
+.sky-bars .g { font-size: 18px; color: var(--cyan); text-align: center; }
+.sky-bars .bar-track { height: 10px; border-radius: 5px; background: #0b1b36; overflow: hidden; }
+.sky-bars .bar-track i { display: block; height: 100%; width: var(--w); border-radius: 5px; background: linear-gradient(90deg, #4385ff, #9dd8ff); }
+.sky-bars .n { text-align: right; font-family: var(--font-mono), monospace; }
+.sky-bars li.top .bar-track i { background: linear-gradient(90deg, #9dd8ff, #fff); box-shadow: 0 0 10px rgb(157 216 255 / 60%); }
+.elements { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 14px; }
+.who-sign { display: grid; gap: 12px; }
+.who-sign h3 { margin: 0 0 4px; font-family: var(--font-display), sans-serif; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cyan); }
+.who-sign p { margin: 0; line-height: 1.6; }
+.who-sign a { color: var(--ink); }
+.fable-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.fable-row { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 12px; align-items: start; padding: 12px; border: 1px solid #2a4468; border-radius: 10px; background: #071328; }
+.fable-row.me { border-color: var(--cyan); }
+.fable-row .face { width: 52px; height: 52px; border-radius: 50%; overflow: hidden; background: #0b1b36; display: grid; place-items: center; color: var(--cyan); font-size: 22px; }
+.fable-row .face img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.fable-row b { display: block; }
+.fable-row .meta { font-size: 12px; color: var(--muted); }
+.fable-row .say { margin: 6px 0 0; min-height: 0; font-size: 15px; }
+.fable-big .say { font-size: 18px; line-height: 1.55; }

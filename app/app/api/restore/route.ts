@@ -1,13 +1,13 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { startSession } from "@/lib/session";
-import { recordScan, TAG_RE } from "@/lib/guests";
+import { KIN_LINK, recordScan, TAG_RE } from "@/lib/guests";
 import { validBirthday } from "@/lib/zodiac";
 
 // "This is my card": on a new phone, the card's owner proves it with their birthday.
 export async function POST(req: Request) {
   const { tag, birthday } = (await req.json().catch(() => ({}))) as { tag?: string; birthday?: string };
-  if (!tag || !TAG_RE.test(tag) || !validBirthday(birthday)) return NextResponse.json({ error: "Enter your date of birth" }, { status: 400 });
+  if (!tag || !TAG_RE.test(tag) || KIN_LINK.test(tag) || !validBirthday(birthday)) return NextResponse.json({ error: "Enter your date of birth" }, { status: 400 });
   const since = new Date(Date.now() - 10 * 60_000).toISOString();
   const { count } = await db().from("scans").select("id", { count: "exact", head: true }).eq("tag_code", tag).eq("kind", "restore-fail").gte("created_at", since);
   if ((count ?? 0) >= 5) return NextResponse.json({ error: "Too many tries. Wait ten minutes." }, { status: 429 });

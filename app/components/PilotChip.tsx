@@ -13,9 +13,15 @@ export default function PilotChip({ initial }: { initial: Pilot }) {
     window.addEventListener("zr:pilot", load);
     return () => window.removeEventListener("zr:pilot", load);
   }, []);
+  if (!me)
+    return (
+      <a className="pilot-chip" href="/app/login">
+        LOG IN<br /><span className="muted">WITH EMAIL</span>
+      </a>
+    );
   return (
     <div className="pilot-chip">
-      {me ? <>{GLYPH[me.sign]} {me.name}<br /><span className="muted">№ {String(me.card_no).padStart(3, "0")}</span></> : <span className="muted">NOT ARRIVED</span>}
+      {GLYPH[me.sign]} {me.name}<br /><span className="muted">№ {String(me.card_no).padStart(3, "0")}</span>
     </div>
   );
 }
