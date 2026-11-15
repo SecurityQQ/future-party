@@ -1,6 +1,17 @@
-# Upload only what hub/site.py reads to write the website
+# Upload only the party app (app/, the Vercel project's root directory) and what hub/site.py reads to write the
+# party site, which `npm run site` copies into app/public/ on every build
 /*
-!/vercel.json
+!/app
+/app/node_modules
+/app/.next
+/app/.vercel
+/app/.env*
+/app/data
+/app/scripts
+/app/supabase
+/app/tsconfig.tsbuildinfo
+/app/public/*
+!/app/public/app
 !/hub
 !/books
 !/tweets

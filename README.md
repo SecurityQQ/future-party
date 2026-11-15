@@ -2,7 +2,7 @@
 
 Material for a party set in 2050: the wall films, the slide walls, the Big Wall that plays them all in one loop, the soundtrack, a soundboard and a camera mirror for the guests, and the research behind them. Everything for the night lives in this one repo.
 
-**Online:** [future-party-2050.vercel.app](https://future-party-2050.vercel.app) lists every resource and opens each one, with no login.
+**Online:** [vargafutureparty.com](https://www.vargafutureparty.com) lists every resource and opens each one, with no login. The party app, The Future 2050, is on the same site at [/app](https://www.vargafutureparty.com/app) (code in `app/`).
 
 ## What is here
 
@@ -89,7 +89,7 @@ python3 -I build_resonance.py   # writes dist/local/index.html, the History of M
 python3 -I wall/build.py   # writes wall/dist/big-wall.html and wall/dist/manifest.json (hub/build.py runs it too)
 ```
 
-`wall/dist/big-wall.html` opens from the folder or at [/wall](https://future-party-2050.vercel.app/wall) on the website. Its start screen lists the six chapters with their lengths; **Start the wall** plays from the top, a chapter starts from that chapter, and F goes fullscreen. Add `#play` to the address to start straight away, or a chapter's id (`#planet`, `#machines`, `#people`, `#power`, `#beyond`, `#finale`). Keys: ← → slides, Space pause, 1 to 6 chapters, M sound, Esc back to the start screen.
+`wall/dist/big-wall.html` opens from the folder or at [/wall](https://www.vargafutureparty.com/wall) on the website. Its start screen lists the six chapters with their lengths; **Start the wall** plays from the top, a chapter starts from that chapter, and F goes fullscreen. Add `#play` to the address to start straight away, or a chapter's id (`#planet`, `#machines`, `#people`, `#power`, `#beyond`, `#finale`). Keys: ← → slides, Space pause, 1 to 6 chapters, M sound, Esc back to the start screen.
 
 The loop opens with **Six Facts** and closes with **Further**, and plays the 1080p renders when they are in `showreel/renders/` and `video/renders/`, otherwise the 720p previews. The films start muted when the wall opens from a link, since a browser lets sound start only after a click; press M. In each chapter the facts, predictions, quotes, tweets and ideas are spread evenly, with a picture from Imagined Futures after every two text slides (after every slide in Beyond). The pictures are dealt in turn by theme, and the page remembers where it stopped, so each loop shows the next ones; it shows the originals from `concept-art/images/` when they are there, otherwise the thumbnails.
 
@@ -97,7 +97,7 @@ The loop opens with **Six Facts** and closes with **Further**, and plays the 108
 
 ## The soundboard
 
-Open `soundboard/dist/contact2050.html` (**Play 2050**) in Chrome, or [/play](https://future-party-2050.vercel.app/play) on the website, plug in the Makey Makey, hold EARTH and touch a pin. Press Enter for stage mode on the projector.
+Open `soundboard/dist/contact2050.html` (**Play 2050**) in Chrome, or [/play](https://www.vargafutureparty.com/play) on the website, plug in the Makey Makey, hold EARTH and touch a pin. Press Enter for stage mode on the projector.
 
 It has eight kits, from Liftoff and Rave 2050 to Magic Keys, a horn section you can't play wrong. Jam mode keeps every touch in time and in key, and the beat builds and falls with how busy the room is. The look is space, kept minimal: a black sky that follows the music, with a planet's rim in the colour of the chord and an animation for each pin.
 
@@ -140,10 +140,10 @@ python3 -I build.py   # writes dist/tweets-2050.html (the published page) and di
 
 ## The website
 
-[future-party-2050.vercel.app](https://future-party-2050.vercel.app) is built from this repo by Vercel. `vercel.json` runs `python3 -I hub/site.py`, which writes `site/`:
+[vargafutureparty.com](https://www.vargafutureparty.com) is one Vercel project, `the-future-2050`, whose root directory is `app/`: the party app (Next.js) serves the whole site. Its build (`npm run build` in `app/`) first runs `npm run site`: `python3 -I hub/site.py` writes `site/`, which is copied into `app/public/` (git-ignored there, except the app's own `public/app/`). The app is at `/app`, its API at `/api`; every other address is a static page of the site. The same project answers at future-party-2050.vercel.app, the-future-2050.vercel.app and zodiac-rangers.vercel.app (the address on the NFC passes); `app/next.config.ts` sends a phone without a traveler from the two old app addresses to vargafutureparty.com, and the app's old paths (`/t/<code>`, `/c/<n>`, `/login` ...) to `/app/...`. `site/` holds:
 
 - `index.html` is the front page in web mode: it plays the 720p previews, links the 1080p master on the release, and opens Markdown files on GitHub.
-- `admin.html` is the host's page, linked from nowhere; `/admin` forwards to it. It is unlisted and marked noindex, not locked.
+- `admin.html` is the host's page, linked from nowhere; `/admin` forwards to it (`/admin?key=…` goes to the app's admin, `/app/admin`). It is unlisted and marked noindex, not locked.
 - Every page keeps its path from the repo, so `/books/dist/quote-wall.html#quote-wall` is the quote wall. A page saved as a claude.ai fragment gets a full document shell, and every link to a claude.ai copy of one of these pages points at the copy on the site. The one left on claude.ai is the tea comparison sheet.
 - Short addresses for typing on the projector laptop: `/wall`, `/quotes`, `/ideas`, `/mix`, `/tweets`, `/tweets-short`, `/art`, `/play` (and the old `/soundboard`), `/soundtrack`, `/resonance`, `/music-history`, `/books`, `/further`, `/films`, `/futurists`, `/programme`. They are listed in `SHORT` in `hub/build.py` and on the admin page.
 - The photos the Big Wall loads are copied from the list in `wall/dist/manifest.json`.
@@ -155,7 +155,7 @@ python3 -I hub/site.py                 # writes site/ (git-ignored)
 python3 -m http.server 4610 -d site    # then open http://localhost:4610
 ```
 
-To add a resource, put its page in the repo, add it to `PAGES` (and, for a claude.ai page, to `ONLINE`) in `hub/build.py` and give it a place on the front page in `hub/template.html` (or on the admin page in `hub/admin.html`), then rebuild. `.vercelignore` limits a `vercel deploy` from this folder to the folders `site.py` reads.
+To add a resource, put its page in the repo, add it to `PAGES` (and, for a claude.ai page, to `ONLINE`) in `hub/build.py` and give it a place on the front page in `hub/template.html` (or on the admin page in `hub/admin.html`), then rebuild. `.vercelignore` limits a `vercel deploy` from this folder to `app/` and the folders `site.py` reads. Deploy from the repo root (a clean `git archive` of `main`), linked to `the-future-2050`; see `app/README.md`.
 
 ## The concept-art wall
 
