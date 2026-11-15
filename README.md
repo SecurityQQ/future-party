@@ -1,8 +1,60 @@
 # Future Party 2050
 
-Material for a party set in 2050: the wall films, the slide walls, the Big Wall that plays them all in one loop, the soundtrack, a soundboard and a camera mirror for the guests, and the research behind them. Everything for the night lives in this one repo.
+**Everything for a party set in the year 2050**: a Big Wall that plays films, quotes, futurists' posts and concept art in one loop on the projector, six apps for the guests, the music, and the research behind all of it. Live, with no login, at **[vargafutureparty.com](https://www.vargafutureparty.com)**.
 
-**Online:** [vargafutureparty.com](https://www.vargafutureparty.com) lists every resource and opens each one, with no login. The party app, The Future 2050, is on the same site at [/app](https://www.vargafutureparty.com/app) (code in `app/`).
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fwww.vargafutureparty.com&label=vargafutureparty.com&up_message=live&style=flat-square)](https://www.vargafutureparty.com)
+[![Release](https://img.shields.io/github/v/release/SecurityQQ/future-party?label=films&style=flat-square)](../../releases)
+
+[![Future Party 2050: Step into 2050. The Big Wall, music, six apps and Mars in 3D for one night.](hub/og/site.jpg)](https://www.vargafutureparty.com)
+
+**[Open the site](https://www.vargafutureparty.com)** · **[The party app](https://www.vargafutureparty.com/app)** · [The Big Wall](https://www.vargafutureparty.com/wall) · [Mars in 3D](https://www.vargafutureparty.com/mars3d/index.html) · [Films (1080p)](../../releases)
+
+## What is Future Party 2050?
+
+A one-night party where the guests step into 2050, and this repository is the whole night as code and data. Guests tap an NFC pass to meet their Kin, play with webcam effects and a Makey Makey soundboard, look at Mars through red/cyan glasses, and watch the Big Wall: two films, 50 quotes and 25 ideas from books about 2050, 78 posts by futurists and 377 pictures of concept art, sorted into six chapters. Every claim on the wall has a source: quotes are checked against the books, posts are verbatim from X, photos come from NASA, ESA and Wikimedia Commons with their licences.
+
+### Six apps for the guests
+
+| App | What it does | Built with |
+| --- | --- | --- |
+| [The Future 2050](https://www.vargafutureparty.com/app) | The party's NFC game: tap your pass, meet your Kin (a zodiac creature from 2050, drawn for you), then tap other guests' passes to collect their Kin and climb a live ranking | Next.js, Supabase, NFC tags, [varg](https://varg.ai) image generation ([`app/`](app/README.md)) |
+| [Mirror 2050](https://www.vargafutureparty.com/mirror/index.html) | Eight camera effects that went viral on X, played with your hands; nothing leaves the browser | MediaPipe hand tracking, WebGL shaders, one HTML file ([`mirror/`](mirror/README.md)) |
+| [History of Music 2050](https://www.vargafutureparty.com/music/resonance/dist/local/index.html) | 60 stops of music history from 1400 BCE, then twelve directions for the music of the future | Python build from JSON, YouTube player (`music/resonance/`) |
+| [Play: 2050](https://www.vargafutureparty.com/soundboard/dist/contact2050.html) | A soundboard you play by touching things: twelve pins, eight kits, a jam mode that keeps every touch in time and in key | Makey Makey, Web Audio, [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) ([`soundboard/`](soundboard/README.md)) |
+| [Mars in 3D](https://www.vargafutureparty.com/mars3d/index.html) | 40 real stereo pictures of Mars from rovers, landers and orbiters, with a live 3D globe | NASA/ESA anaglyphs, three.js ([`mars3d/`](mars3d/README.md)) |
+| [Imagined Futures](https://www.vargafutureparty.com/concept-art/imagined-futures.html) | 377 pictures of concept art about the future, each linked to its post and artist | Python build from public posts on X (`concept-art/`) |
+
+### On the wall and behind it
+
+- **[The Big Wall](https://www.vargafutureparty.com/wall)**: every piece below in one loop of about 49 minutes, in six chapters (Planet, Machines, People, Power, Beyond, 2050).
+- **Films**: *Further* (16 claims about 2030–2050, each with a dated real seed and the film that imagined it) and *Six Facts* (the show reel), made with [HyperFrames](https://hyperframes.heygen.com), HTML rendered to video. 1080p masters are on the [releases](../../releases).
+- **Slide walls**: the [quote wall](https://www.vargafutureparty.com/quotes), the [idea wall](https://www.vargafutureparty.com/ideas), the [tweet wall](https://www.vargafutureparty.com/tweets) and [Imagined Futures](https://www.vargafutureparty.com/art).
+- **Research**: [Book Projection 2050](https://www.vargafutureparty.com/books/dist/book-projection-2050.html) (18 books), [2050 in 78 Tweets](https://www.vargafutureparty.com/tweets/dist/tweets-2050.html), [Futurists on 2050](https://www.vargafutureparty.com/tweets/research/futurists-on-2050.html), [Projection 2050](https://www.vargafutureparty.com/reel/projection-2050.html) (18 films), [Why Music Changes](https://www.vargafutureparty.com/music/dist/why-music-changes.html).
+- **[Party slides](https://www.vargafutureparty.com/slides)**: the host's 26-slide deck with speaker notes.
+
+## FAQ
+
+**Can I use it for my own party?**
+Yes. Open [vargafutureparty.com](https://www.vargafutureparty.com) on the projector laptop and type `/wall`, or clone the repo and open `index.html`: the front page and most pieces run from the folder without internet. The party app needs its own Supabase project and NFC tags; see [`app/README.md`](app/README.md).
+
+**Do guests need an account or an app?**
+No. Nothing on the site needs a login, and the party app opens in the phone's browser from an NFC pass.
+
+**How is it built?**
+Static HTML pages written by small Python scripts from JSON data (`python3 -I hub/build.py`), films in HyperFrames, and the party app in Next.js with Supabase. One Vercel project serves the site and the app; see [The website](#the-website).
+
+**Where do the quotes, posts and pictures come from?**
+Quotes are verbatim and checked against the book text or two matching sources (`books/quotes.json`). Posts are verbatim from the X API (`tweets/tweets.json`). Photos are from NASA, ESA and Wikimedia Commons, credited in [`video/CREDITS.md`](video/CREDITS.md). Concept art links to the original post and names the artist where the post does.
+
+## Run it locally
+
+```bash
+git clone https://github.com/SecurityQQ/future-party.git
+cd future-party
+python3 -I hub/build.py                 # rebuilds index.html (the front page) and admin.html; open index.html
+python3 -I hub/site.py                  # writes site/, the website
+python3 -m http.server 4610 -d site     # then open http://localhost:4610
+```
 
 ## What is here
 
@@ -156,6 +208,7 @@ python3 -I build.py   # writes dist/tweets-2050.html (the published page) and di
 - Every page keeps its path from the repo, so `/books/dist/quote-wall.html#quote-wall` is the quote wall. A page saved as a claude.ai fragment gets a full document shell, and every link to a claude.ai copy of one of these pages points at the copy on the site. The one left on claude.ai is the tea comparison sheet.
 - Short addresses for typing on the projector laptop: `/apps`, `/wall`, `/quotes`, `/ideas`, `/mix`, `/tweets`, `/tweets-short`, `/art`, `/play` (and the old `/soundboard`), `/soundtrack`, `/resonance`, `/music-history`, `/books`, `/further`, `/films`, `/futurists`, `/programme`, `/slides`. They are listed in `SHORT` in `hub/build.py` and on the admin page.
 - The photos the Big Wall loads are copied from the list in `wall/dist/manifest.json`.
+- What a shared link shows: `hub/seo.py` gives every page its title, description, canonical address, Open Graph and Twitter card tags and icons (pages with a picture of their own share it; the rest share the party's card), marks the host pages noindex, and writes `robots.txt`, `sitemap.xml` and `llms.txt`. The cards and icons are in `hub/og/`, drawn by `python3 -I hub/og/make.py` from `hub/og/card.html`; the app's pages take theirs from `app/lib/share.ts`.
 
 To check it locally:
 
