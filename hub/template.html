@@ -45,6 +45,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
 h2{font:500 clamp(23px,2.6vw,34px)/1.25 var(--display);letter-spacing:-.035em;margin-top:8px}
 p{margin:0}
 section{padding-block:56px;border-top:1px solid var(--line);scroll-margin-top:8px}
+#mars{scroll-margin-top:24px}
 .sec-head{display:grid;gap:6px;margin-bottom:28px;max-width:760px}
 .sec-head .note{color:var(--muted);font-size:15px;margin-top:6px}
 
@@ -155,8 +156,8 @@ nav.top .brand svg{width:30px;height:30px;flex:none;color:var(--v-ice)}
 
 /* Mirror 2050, Mars in 3D and the party app */
 .mirror-shot{display:block;width:100%;height:auto;border-radius:var(--r);border:1px solid var(--line-2);background:var(--raised)}
-#guests .how{color:var(--fg-2);font-size:14.5px;margin-top:14px;max-width:62ch}
-#guests .how a{color:var(--fg);text-decoration:underline;text-underline-offset:2px}
+#guests .how,#slides .how{color:var(--fg-2);font-size:14.5px;margin-top:14px;max-width:62ch}
+#guests .how a,#slides .how a{color:var(--fg);text-decoration:underline;text-underline-offset:2px}
 .app{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 24px;align-items:center;margin-top:44px;padding:22px;border:1px solid var(--line-2);border-top-color:#7d9ac0;border-radius:var(--r);background:linear-gradient(145deg,#112441,#07132b 75%);box-shadow:inset 0 1px 0 rgb(220 233 251 / 6%)}
 @media (max-width:640px){.app{grid-template-columns:1fr}}
 .app h3{font:500 clamp(18px,2vw,22px)/1.25 var(--display);letter-spacing:-.03em;text-transform:uppercase}
@@ -211,6 +212,28 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 11px/1.
 .pbar button{font:500 13.5px/1 var(--font);color:#fff;background:#142d52;border:1px solid #617fa6;border-radius:8px;padding:10px 14px;cursor:pointer}
 .pbar button:hover{background:#1b3a66}
 
+/* The party app, The Future 2050, is one tap away. On a phone or tablet the page wears the app's own control deck
+   (app/components/Deck.tsx, styled in app/app/globals.css) with Party lit, so the site and the app share one bottom bar
+   and a guest switches with one tap either way. Wider screens get Open the app in the top bar instead. Web mode only:
+   the folder copy runs offline on the projector laptop. */
+nav.top a.to-app{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;color:var(--v-navy);background:var(--v-chrome-surface);box-shadow:inset 0 0 0 1px #eff8ff,0 0 18px rgb(67 133 255 / 22%);font:600 10px/1 var(--display);letter-spacing:.05em;text-transform:uppercase}
+nav.top a.to-app:hover{color:var(--v-navy);filter:brightness(1.08)}
+nav.top a.to-app svg{width:16px;height:16px;flex:none}
+.deck{display:none}
+@media(max-width:900px){
+  nav.top a.to-app{display:none}
+  body.with-deck{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+  .deck{position:fixed;left:50%;bottom:0;z-index:30;width:min(100%,560px);transform:translateX(-50%);display:flex;justify-content:center;gap:4px;padding:12px max(10px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px));background:linear-gradient(145deg,rgb(24 47 81 / 96%),rgb(4 12 29 / 98%));border:1px solid #617fa6;border-bottom:0;border-radius:22px 22px 0 0;box-shadow:0 -8px 36px rgb(0 0 0 / 35%),inset 0 1px 0 rgb(237 246 255 / 12%);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+  .deck a{flex:1;max-width:150px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:2px 0;text-decoration:none;color:var(--muted);font:600 9px/1.6 var(--display);letter-spacing:.048em;text-transform:uppercase;-webkit-tap-highlight-color:transparent}
+  .deck .knob{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:var(--v-ice);background:radial-gradient(circle at 30% 20%,#395d8d,#0b1b36 70%);box-shadow:inset 0 0 0 1px #91aed2,0 3px 8px rgb(0 0 0 / 30%);transition:box-shadow var(--v-fast),transform var(--v-fast)}
+  .deck .knob svg{width:22px;height:22px}
+  .deck a[aria-current="page"]{color:var(--v-ice)}
+  .deck a[aria-current="page"] .knob{box-shadow:inset 0 0 0 2px #0a0f18,0 0 0 2px var(--v-ice),0 0 16px rgb(157 216 255 / 60%)}
+  .deck a.main .knob{width:54px;height:54px;margin-top:-12px;color:#07132b;background:var(--v-chrome-surface);box-shadow:inset 0 0 0 1px #eff8ff,0 0 0 3px #15335a,0 0 24px rgb(67 133 255 / 32%)}
+  .deck a.main .knob svg{width:26px;height:26px}
+  .deck a:focus-visible{border-radius:12px;outline-offset:1px}
+}
+
 @media(max-width:900px){
   .hero{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px}
   .hero h1{font-size:clamp(44px,7.6vw,68px)}
@@ -241,7 +264,8 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 11px/1.
 <div class="wrap">
   <nav class="top" aria-label="Sections">
     <span class="brand"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="16" cy="16" r="7"/><ellipse cx="16" cy="16" rx="15" ry="5" transform="rotate(-25 16 16)"/></svg>FUTURE PARTY / 2050</span>
-    <a href="#wall">Wall</a><a href="#music">Music</a><a href="#guests">Guests</a><a href="#research">Research</a>
+    <a href="#wall">Wall</a><a href="#music">Music</a><a href="#guests">Guests</a><a href="#mars">Mars 3D</a><a href="#slides">Slides</a><a href="#research">Research</a>
+    <a class="to-app" id="navApp" href="/app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="11" height="15" rx="1"/><path d="M8 3h11a1 1 0 0 1 1 1v13"/><path d="M6 15l2.5-3 2 2 1.5-2"/></svg>Open the app</a>
   </nav>
 
   <header class="hero">
@@ -329,6 +353,30 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 11px/1.
     </div>
   </section>
 
+  <section id="slides">
+    <div class="sec-head">
+      <p class="eyebrow">For the host</p>
+      <h2>Party slides</h2>
+      <p class="note">The deck for the opening talk: why we are here, the three rules, and a mini demo of everything at the party. It plays full screen on the projector, and every slide has speaker notes.</p>
+    </div>
+    <div class="program">
+      <div>
+        <img class="mirror-shot" id="deckShot" width="1280" height="720" loading="lazy" alt="The deck's Tonight at the party slide: NFC game, Contact 2050 soundboard, visual effect camera, tea ceremony, miracle berries, dumplings, robot, mini-printer, 3D glasses, diffraction glasses">
+        <div class="actions" style="margin-top:20px"><a class="btn" id="deckLink"><span class="tri" aria-hidden="true"></span>Present the slides</a></div>
+        <p class="how" id="deckHow"></p>
+      </div>
+      <div class="arc" aria-label="What the deck covers, in order">
+        <p class="eyebrow" style="margin-bottom:4px" id="deckCount">In this order</p>
+        <div><b>Opening</b><span>The vision, the goal (make 2050 real with the people in this room) and the three rules.</span></div>
+        <div><b>NFC game</b><span>Tap someone’s card, meet their Kin, collect the room.</span></div>
+        <div><b>On the walls</b><span>The six topics, one demo each: the show reel, quotes, ideas, tweets, futurists, concept art.</span></div>
+        <div><b>Stations</b><span>Nine things to try, each with a mini demo: blue tea turns purple, a lemon turns sweet, Mars comes out of the screen.</span></div>
+        <div><b>Predictions</b><span>Naval in 2018, and Arthur C. Clarke on the BBC in 1964.</span></div>
+        <div><b>The question</b><span>A Tuesday in San Francisco in 2050: what would a teenager find absurd about our everyday?</span></div>
+      </div>
+    </div>
+  </section>
+
   <section id="research">
     <div class="sec-head">
       <p class="eyebrow">The research</p>
@@ -340,6 +388,15 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 11px/1.
 
   <footer id="foot"></footer>
 </div>
+
+<!-- The app's control deck, as in app/components/Deck.tsx, with Party lit -->
+<nav class="deck" id="appDeck" aria-label="The party and the app" hidden>
+  <a href="/" id="deckParty" aria-current="page"><span class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="5"/><ellipse cx="12" cy="12" rx="11" ry="3.8" transform="rotate(-25 12 12)"/></svg></span>Party</a>
+  <a href="/app"><span class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="11" height="15" rx="1"/><path d="M8 3h11a1 1 0 0 1 1 1v13"/><path d="M6 15l2.5-3 2 2 1.5-2"/></svg></span>My Kin</a>
+  <a href="/app/scan" class="main"><span class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M3.5 9a6 6 0 0 1 0 6M1 6.5a10 10 0 0 1 0 11M20.5 9a6 6 0 0 1 0 6M23 6.5a10 10 0 0 1 0 11"/></svg></span>Scan</a>
+  <a href="/app/mirror"><span class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><ellipse cx="12" cy="9.5" rx="6.5" ry="7.5"/><path d="M12 17v5M8.5 22h7"/><path d="M9 6.8a3.6 3.6 0 0 1 3-1.8"/></svg></span>Mirror</a>
+  <a href="/app/leaderboard"><span class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg></span>Ranking</a>
+</nav>
 
 <div class="player" id="player" role="dialog" aria-modal="true" aria-label="Film player" hidden>
   <video id="pv" playsinline loop></video>
@@ -477,7 +534,23 @@ $('marsLink').href=P.mars3d;
 $('marsLink').insertAdjacentHTML('afterend','<a class="lnk" href="'+esc(P.mars3d)+'?globe">the globe alone</a>');
 if(D.exists['mars3d/preview.jpg']===false)$('marsShot').hidden=true;
 $('marsHow').innerHTML=D.mars.pictures+' real stereo pictures of Mars from the rovers, landers, the Ingenuity helicopter and orbiters, with a live 3D globe that flies to each landing site. Red lens on the left eye; the intro has a glasses test. It runs by itself, about 13 minutes a loop, and works offline. Arrow keys skip, G opens the globe alone, I lists every picture with its source.';
-$('appLink').href=D.apps.party;
+$('appLink').href=WEB?'/app':D.apps.party;
+if(WEB){$('appLink').removeAttribute('target');$('appLink').textContent='Open the app';}
+
+/* The app one tap away: the deck at the bottom on a phone, Open the app in the top bar on a wide screen. On the site
+   Party is the page you are on, so its knob goes back to the top. The folder copy has no deck and opens the app online. */
+if(WEB){
+  $('appDeck').hidden=false;document.body.classList.add('with-deck');
+  $('deckParty').addEventListener('click',e=>{if(location.pathname==='/'||/\/index\.html$/.test(location.pathname)){e.preventDefault();history.replaceState(null,'',location.pathname+location.search);scrollTo({top:0,behavior:'smooth'})}});
+}else{$('navApp').href=D.apps.party;$('navApp').target='_blank';$('navApp').rel='noopener';}
+
+/* Party slides */
+$('deckLink').href=P.deck;
+$('deckShot').src=D.deck.shot;
+if(D.exists[D.deck.shot]===false)$('deckShot').hidden=true;
+$('deckLink').insertAdjacentHTML('afterend','<a class="lnk" href="'+esc(P.deck)+'#tonight">what’s at the party</a><a class="lnk" href="'+esc(P.deck)+'#walls">the wall topics</a>');
+$('deckCount').textContent=D.deck.slides+' slides, in this order';
+$('deckHow').innerHTML='→ or a click goes on and runs the demo clicks, ← goes back, F is full screen, N shows the speaker notes. '+(WEB?'On the projector laptop, type '+esc(D.site.replace(/^https?:\/\//,''))+'/slides.':'It opens from this folder; only the fonts and the YouTube clip need internet.');
 
 $('foot').innerHTML='Future Party 2050 · built '+esc(D.built)+' · <a href="'+esc(D.repo)+'" target="_blank" rel="noopener">source on GitHub</a>'+(WEB?'':' · <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(D.site.replace(/^https?:\/\//,''))+'</a>');
 

@@ -1,0 +1,13 @@
+node_modules/
+.next/
+.vercel/
+.env*
+!.env.example
+next-env.d.ts
+*.tsbuildinfo
+.vercel
+data/
+
+# public/ holds the party site that `npm run site` copies in (hub/site.py); the app's own files are in public/app/
+/public/*
+!/public/app/

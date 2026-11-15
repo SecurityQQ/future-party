@@ -18,7 +18,7 @@ sys.dont_write_bytecode = True  # loading wall/build.py below would otherwise le
 HUB = Path(__file__).resolve().parent
 ROOT = HUB.parent
 
-SITE = "https://future-party-2050.vercel.app"
+SITE = "https://www.vargafutureparty.com"
 REPO = "https://github.com/SecurityQQ/future-party"
 DOWNLOAD = REPO + "/releases/download"
 
@@ -39,6 +39,7 @@ ONLINE = {
     "tea": "https://claude.ai/artifact/JSq3U75PR1zGnLmkPea8Yz",
     "mirror_research": "https://claude.ai/artifact/EQ2izi4He8XwvMRmsknaqs",
     "concept": "https://claude.ai/artifact/Dqk9BpYrVUoFXQaiyfHKBD",
+    "deck": "https://claude.ai/artifact/BkSJQMeXHfnDBZJaYmezXP",
 }
 # Where each of those pages lives in this repo. hub/site.py points every claude.ai link at these copies.
 # "tea" (a claude.ai sheet) has no copy here.
@@ -65,10 +66,12 @@ PAGES = {
     "bigwall": "wall/dist/big-wall.html",
     # Mars in 3D is served from its own folder (/mars3d); site.py copies its pictures, globe maps and three.js
     "mars3d": "mars3d/index.html",
+    # The host's slides, built by slides/build.py; site.py copies its pictures in slides/assets
+    "deck": "slides/dist/party-deck.html",
 }
 # Earlier claude.ai copies of the same pages.
 ALIASES = {"https://claude.ai/artifact/65pctWFWHMQZ3ezNrrA7P1": "futurists_ru"}
-# Short addresses on the website, for typing on the projector laptop: future-party-2050.vercel.app/wall
+# Short addresses on the website, for typing on the projector laptop: vargafutureparty.com/wall
 SHORT = {
     "wall": PAGES["bigwall"],
     "quotes": "books/dist/quote-wall.html#quote-wall",
@@ -88,9 +91,12 @@ SHORT = {
     "films": PAGES["films"],
     "futurists": PAGES["futurists"],
     "programme": PAGES["program"],
+    "slides": PAGES["deck"],
 }
-# Apps for the night that run on their own servers. The Future 2050 lives in astrology/app; link its home page, never /admin.
-APPS = {"party": "https://the-future-2050.vercel.app"}
+# The picture in the Slides section: the deck's "Tonight at the party" slide
+DECK_SHOT = "slides/assets/preview.jpg"
+# The party app, The Future 2050 (app/ in this repo), is served at /app on the same site; link its home page, never /app/admin.
+APPS = {"party": SITE + "/app"}
 PLAYLISTS = {
     "soundtrack": "https://www.youtube.com/playlist?list=PLJdg5B9vQ1oA",
     "history": "https://www.youtube.com/playlist?list=PLeo45sxoQ8gE",
@@ -257,7 +263,8 @@ def build(web=False):
         "books": b, "tweets": t, "sound": s, "art": c, "wall": w, "mars": mars3d_numbers(),
         "exists": {p: (ROOT / p).exists() for p in [
             "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html",
-            "reel/links.md", "mirror/preview.jpg", "mars3d/preview.jpg", ART_TILE, WALL_TILE, *PAGES.values()]},
+            "reel/links.md", "mirror/preview.jpg", "mars3d/preview.jpg", DECK_SHOT, ART_TILE, WALL_TILE, *PAGES.values()]},
+        "deck": {"shot": DECK_SHOT, "slides": len(load("slides/deck/deck.json")["order"])},
     })
     missing = [p for p, ok in data["exists"].items() if not ok]
     page = fill("template.html", data)
