@@ -37,7 +37,7 @@ Every fragment is NASA footage, which is not copyrighted in the United States an
 
 ## Predictions
 
-The slides are cut from the *Further* master (`video/renders/further-2050-1080p.mp4`, release v2.0) with their own captions and photo credits on screen. The full record of those photos is `video/CREDITS.md`.
+The slides are cut from the *Further* master (`video/renders/further-2050-1080p.mp4`, release v3.0) with their own captions and photo credits on screen. The full record of those photos is `video/CREDITS.md`.
 
 | Chapter | Slides |
 |---|---|
@@ -95,5 +95,5 @@ Word for word from `tweets/tweets.json` (the X API text). An … marks where a p
 
 ## Type
 
-- League Gothic and Inter, bundled with HyperFrames (SIL Open Font License).
+- League Gothic, bundled with HyperFrames; Geologica and Martian Mono, the site's faces, from Google Fonts in `assets/fonts/` (all SIL Open Font License).
 - Instrument Serif, the serif of the book wall, from Google Fonts (SIL Open Font License), in `assets/fonts/`.

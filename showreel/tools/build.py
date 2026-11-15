@@ -13,7 +13,14 @@ REPO = os.path.dirname(ROOT)
 REEL = json.load(open(os.path.join(ROOT, "reel.json")))
 BARS = REEL["bars"]
 FPS = 30
-GROUND, ACCENT = "#0b0b0d", "#ff5315"
+# Blue futurism, as on the Big Wall (wall/template.html): navy ground, ice for what leads, Geologica to read,
+# Martian Mono for kickers and sources, Instrument Serif for the books' words; League Gothic stays the display face.
+GROUND, ACCENT, INK = "#030817", "#9dd8ff", "#edf4ff"
+FACES = "".join(
+    f"@font-face{{font-family:'{fam}';font-style:normal;font-weight:{w};src:url('assets/fonts/{f}-{sub}.woff2') format('woff2');unicode-range:{rng}}}"
+    for fam, f, w in (("Geologica", "Geologica", "300 700"), ("Martian Mono", "MartianMono", "400 500"))
+    for sub, rng in (("latin", "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215"),
+                     ("latin-ext", "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+20A0-20AB,U+20AD-20C4,U+2C60-2C7F,U+A720-A7FF")))
 NAMES = {"F": "fact", "Q": "quote", "T": "tweet", "P": "slides"}
 
 
@@ -55,37 +62,38 @@ def verify():
 # ---------- shared styles ----------
 
 CSS = f"""
+    {FACES}
     @font-face{{font-family:'Instrument Serif';font-style:normal;font-weight:400;src:url('assets/fonts/InstrumentSerif-Regular.woff2') format('woff2')}}
-    #root{{position:absolute;inset:0;overflow:hidden;background:{GROUND};font-family:Inter,sans-serif;color:#fff}}
+    #root{{position:absolute;inset:0;overflow:hidden;background:{GROUND};font-family:Geologica,sans-serif;color:{INK}}}
     .stage{{position:absolute;inset:0;overflow:hidden}}
     .mv{{position:absolute;inset:0}}
     video.fill{{position:absolute;left:0;top:0;width:1920px;height:1080px;object-fit:cover;display:block}}
-    .scrim{{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.8) 0%,rgba(0,0,0,.62) 36%,rgba(0,0,0,.18) 66%,rgba(0,0,0,0) 84%),linear-gradient(to bottom,rgba(0,0,0,0) 46%,rgba(0,0,0,.6) 100%)}}
-    .scrim.soft{{background:linear-gradient(to right,rgba(0,0,0,.62) 0%,rgba(0,0,0,.4) 40%,rgba(0,0,0,0) 72%)}}
-    .dim{{position:absolute;inset:0;background:rgba(11,11,13,.6)}}
-    .dim.deep{{background:rgba(11,11,13,.74)}}
+    .scrim{{position:absolute;inset:0;background:linear-gradient(to right,rgba(3,8,23,.8) 0%,rgba(3,8,23,.62) 36%,rgba(3,8,23,.18) 66%,rgba(3,8,23,0) 84%),linear-gradient(to bottom,rgba(3,8,23,0) 46%,rgba(3,8,23,.6) 100%)}}
+    .scrim.soft{{background:linear-gradient(to right,rgba(3,8,23,.62) 0%,rgba(3,8,23,.4) 40%,rgba(3,8,23,0) 72%)}}
+    .dim{{position:absolute;inset:0;background:rgba(3,8,23,.6)}}
+    .dim.deep{{background:rgba(3,8,23,.74)}}
     .dip{{position:absolute;inset:0}}
     .dipc{{position:absolute;inset:0;background:#000}}
-    .cap{{position:absolute;left:192px;width:1536px;text-shadow:0 2px 16px rgba(0,0,0,.55)}}
+    .cap{{position:absolute;left:192px;width:1536px;text-shadow:0 2px 16px rgba(3,8,23,.55)}}
     .cap.low{{bottom:112px}}
     .cap.mid{{top:0;bottom:0;display:flex;flex-direction:column;justify-content:center}}
-    .kick{{font:800 34px/1.15 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:{ACCENT}}}
-    .kick.plain{{text-transform:none;letter-spacing:.04em}}
-    .num{{font-family:'League Gothic',sans-serif;font-size:300px;line-height:.86;letter-spacing:.01em;text-transform:uppercase;margin-top:10px;white-space:nowrap}}
+    .kick{{font:400 29px/1.2 'Martian Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:{ACCENT}}}
+    .kick.plain{{text-transform:none;letter-spacing:.02em}}
+    .num{{font-family:'League Gothic',sans-serif;font-size:300px;line-height:.86;letter-spacing:.01em;text-transform:uppercase;margin-top:10px;white-space:nowrap;color:{ACCENT}}}
     .num span{{display:inline-block}}
-    .num small{{display:inline-block;font-size:.42em;margin:0 .22em;color:rgba(255,255,255,.66);text-transform:lowercase;vertical-align:.06em}}
-    .num small.unit{{font-size:.5em;margin:0 0 0 .14em;color:#fff;text-transform:none;vertical-align:0}}
-    .ftxt{{font:600 46px/1.22 Inter,sans-serif;margin-top:22px;max-width:1160px}}
+    .num small{{display:inline-block;font-size:.42em;margin:0 .22em;color:rgba(237,244,255,.66);text-transform:lowercase;vertical-align:.06em}}
+    .num small.unit{{font-size:.5em;margin:0 0 0 .14em;color:{ACCENT};text-transform:none;vertical-align:0}}
+    .ftxt{{font:500 46px/1.22 Geologica,sans-serif;margin-top:22px;max-width:1160px}}
     .ftxt span,.qtxt span{{display:inline-block}}
-    .fsrc{{font:500 28px/1.2 Inter,sans-serif;color:rgba(255,255,255,.72);margin-top:20px}}
+    .fsrc{{font:400 22px/1.3 'Martian Mono',monospace;color:rgba(237,244,255,.72);margin-top:20px}}
     .qtxt{{font-family:'Instrument Serif',serif;font-size:104px;line-height:1.05;letter-spacing:-.005em;margin-top:26px;max-width:1500px}}
     .qtxt.long{{font-size:92px}}
-    .qby{{font:600 34px/1.25 Inter,sans-serif;color:rgba(255,255,255,.86);margin-top:34px}}
+    .qby{{font:500 34px/1.25 Geologica,sans-serif;color:rgba(237,244,255,.86);margin-top:34px}}
     .thead{{display:flex;align-items:center;gap:30px}}
     .tav{{width:128px;height:128px;border-radius:50%;object-fit:cover;display:block}}
-    .tname{{font:800 50px/1.1 Inter,sans-serif}}
-    .trole{{font:500 32px/1.2 Inter,sans-serif;color:rgba(255,255,255,.74);margin-top:8px}}
-    .ttxt{{font:600 70px/1.16 Inter,sans-serif;margin-top:40px;max-width:1500px;font-feature-settings:'calt' 0}}
+    .tname{{font:600 50px/1.1 Geologica,sans-serif}}
+    .trole{{font:400 32px/1.2 Geologica,sans-serif;color:rgba(237,244,255,.74);margin-top:8px}}
+    .ttxt{{font:500 70px/1.16 Geologica,sans-serif;letter-spacing:-.01em;margin-top:40px;max-width:1500px;font-feature-settings:'calt' 0}}
     .ttxt.long{{font-size:60px}}
     .tcap .kick{{margin-top:36px}}
 """
@@ -311,7 +319,7 @@ def intro():
         f'      </div>\n'
         f'    </div>')
     css = (".ttl{font-family:'League Gothic',sans-serif;font-size:164px;line-height:.9;letter-spacing:.01em;text-transform:uppercase;margin-top:14px}\n"
-           "    .sub{font:600 40px/1.25 Inter,sans-serif;color:rgba(255,255,255,.9);margin-top:26px}\n")
+           "    .sub{font:500 40px/1.25 Geologica,sans-serif;color:rgba(237,244,255,.9);margin-top:26px}\n")
     js = [f"      tl.fromTo('#intro-mv',{{scale:1}},{{scale:1.06,duration:{r(dur)},ease:'none'}},0);",
           # the title is on screen at frame 0 (the thumbnail); only the last line of copy arrives
           "      tl.fromTo('#intro-s',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.2,ease:'power4.out'},1.0);",
@@ -340,11 +348,11 @@ def finale():
         f'      </div>\n'
         f'    </div>')
     css = (f"    .dimx{{position:absolute;inset:0}}\n    .dimc{{position:absolute;inset:0;background:{GROUND}}}\n"
-           "    .card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-shadow:0 2px 18px rgba(0,0,0,.6)}\n"
+           "    .card{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-shadow:0 2px 18px rgba(3,8,23,.6)}\n"
            "    .big{font-family:'League Gothic',sans-serif;font-size:340px;line-height:.86;letter-spacing:.01em}\n"
-           "    .line{font:600 50px/1.2 Inter,sans-serif;margin-top:26px}\n    .line span{display:inline-block}\n"
-           "    .cred{position:absolute;left:0;right:0;bottom:112px;text-align:center;font:500 28px/1.5 Inter,sans-serif;color:rgba(255,255,255,.86)}\n"
-           "    .foot{position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.7) 100%)}\n")
+           "    .line{font:500 50px/1.2 Geologica,sans-serif;margin-top:26px}\n    .line span{display:inline-block}\n"
+           "    .cred{position:absolute;left:0;right:0;bottom:112px;text-align:center;font:400 22px/1.7 'Martian Mono',monospace;color:rgba(237,244,255,.86)}\n"
+           "    .foot{position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(to bottom,rgba(3,8,23,0) 0%,rgba(3,8,23,.7) 100%)}\n")
     nw = len(fi["line"].split())
     js = [f"      tl.fromTo('#finale-dimc',{{opacity:1}},{{opacity:0.68,duration:0.9,ease:'power2.out'}},{r(a)});",
           f"      tl.fromTo('#finale-mv',{{scale:1.08}},{{scale:1,duration:{r(dur - a)},ease:'none'}},{r(a)});",
@@ -381,7 +389,7 @@ def credits():
         out.append(f"| {sid} | {where[sid]} | {x['what']} | [{src['title']}]({src['page']}), {src['date'][:4]} | {src['credit']} | "
                    f"{x['ss']} s, {round(x['dur'] * speed, 1)} s used | {speed}× |")
     out += ["", "## Predictions", "",
-            "The slides are cut from the *Further* master (`video/renders/further-2050-1080p.mp4`, release v2.0) with their own captions "
+            "The slides are cut from the *Further* master (`video/renders/further-2050-1080p.mp4`, release v3.0) with their own captions "
             "and photo credits on screen. The full record of those photos is `video/CREDITS.md`.", "",
             "| Chapter | Slides |", "|---|---|"]
     for i, ch in enumerate(REEL["chapters"]):
@@ -411,7 +419,7 @@ def credits():
             f"Used from {m['offset']} s for {m['length']} s, {abs(m['gain_db'])} dB quieter, with a fade out. The credit is on the end card.",
             "- **Effects:** two bass impacts, a short whoosh and a riser, the Pixabay effects bundled with *The Roast* (`roast/assets/sfx/`), no attribution needed.",
             "", "## Type", "",
-            "- League Gothic and Inter, bundled with HyperFrames (SIL Open Font License).",
+            "- League Gothic, bundled with HyperFrames; Geologica and Martian Mono, the site's faces, from Google Fonts in `assets/fonts/` (all SIL Open Font License).",
             "- Instrument Serif, the serif of the book wall, from Google Fonts (SIL Open Font License), in `assets/fonts/`.", ""]
     open(os.path.join(ROOT, "CREDITS.md"), "w").write("\n".join(out))
 
@@ -466,7 +474,7 @@ def main():
     <title>{e(REEL["title"])}</title>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <style>
-      :root {{ --ground: {GROUND}; --ink: #ffffff; --accent: {ACCENT}; }}
+      :root {{ --ground: {GROUND}; --ink: {INK}; --accent: {ACCENT}; }}
       * {{ margin: 0; padding: 0; box-sizing: border-box; }}
       html, body {{ margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--ground); }}
       #root {{ position: relative; width: 100%; height: 100%; background: var(--ground); }}

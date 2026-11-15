@@ -88,7 +88,7 @@ The programme, the two futurist research pages and Projection 2050 were made as 
 
 ## The films
 
-The 1080p masters are on the releases: **Already Here** on [v1.0](../../releases/tag/v1.0), **Further** and **The Roast** on [v2.0](../../releases/tag/v2.0). The repo keeps 720p previews of these three and of **Six Facts** in `video/dist/media/`, which the front page plays when the masters are not in `video/renders/` and `roast/renders/`, and which the website always plays.
+The 1080p masters are on the releases: **Already Here** on [v1.0](../../releases/tag/v1.0), **The Roast** on [v2.0](../../releases/tag/v2.0), **Further** and **Six Facts** in the site's blue look on [v3.0](../../releases/tag/v3.0) (v2.0 keeps the first, orange Further). The repo keeps 720p previews of these three and of **Six Facts** in `video/dist/media/`, which the front page plays when the masters are not in `video/renders/` and `roast/renders/`, and which the website always plays.
 
 To preview or re-render the wall film yourself (Node.js and ffmpeg):
 
@@ -126,9 +126,9 @@ python3 -I tools/build.py            # writes index.html, compositions/ and CRED
 npm run check && npm run render      # renders to renders/
 ```
 
-`reel.json` holds everything on screen: the facts, the quotes, the posts, which slides and footage each chapter uses, and the downbeat of every bar. The build stops if a quote is not word for word in `books/quotes.json` or a post is not word for word in `tweets/tweets.json`. The footage and the slide cuts are not in the repo (about 250 MB); the two tools above fetch and cut them again. The slides are cut from the *Further* master in `video/renders/`, or from release v2.0 when it is not there. `CREDITS.md` lists every fragment with its NASA page.
+`reel.json` holds everything on screen: the facts, the quotes, the posts, which slides and footage each chapter uses, and the downbeat of every bar. The build stops if a quote is not word for word in `books/quotes.json` or a post is not word for word in `tweets/tweets.json`. The footage and the slide cuts are not in the repo (about 250 MB); the two tools above fetch and cut them again. The slides are cut from the *Further* master in `video/renders/`, or from release v3.0 when it is not there. `CREDITS.md` lists every fragment with its NASA page.
 
-The 1080p render is `showreel/renders/six-facts-2050-1080p.mp4`; it is not on a release yet. The repo keeps a 720p preview in `video/dist/media/six-facts-720p.mp4`.
+The 1080p render is `showreel/renders/six-facts-2050-1080p.mp4`, on release v3.0. The repo keeps a 720p preview in `video/dist/media/six-facts-720p.mp4`. Both films use the Big Wall's look: navy ground, ice kickers in Martian Mono, Geologica text, League Gothic titles.
 
 ## The music pages
 

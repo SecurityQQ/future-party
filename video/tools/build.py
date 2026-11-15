@@ -4,7 +4,14 @@ import html, json, os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FPS = 30
 CARD, BURST, SLIDE, OVER, INTRO, OUTRO = 36, 10, 105, 3, 105, 120
-GROUND, ACCENT = "#0b0b0d", "#ff5315"
+# Blue futurism, as on the Big Wall (wall/template.html): navy ground, ice for what leads, Geologica to read,
+# Martian Mono for kickers and credits; League Gothic stays the film's display face.
+GROUND, ACCENT, INK = "#030817", "#9dd8ff", "#edf4ff"
+FACES = "".join(
+    f"@font-face{{font-family:'{fam}';font-style:normal;font-weight:{w};src:url('assets/fonts/{f}-{sub}.woff2') format('woff2');unicode-range:{rng}}}"
+    for fam, f, w in (("Geologica", "Geologica", "300 700"), ("Martian Mono", "MartianMono", "400 500"))
+    for sub, rng in (("latin", "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215"),
+                     ("latin-ext", "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+20A0-20AB,U+20AD-20C4,U+2C60-2C7F,U+A720-A7FF")))
 KB = ["push", "panl", "pull", "panr"]
 CONTAIN = set()
 TR = ["whip", "zoom", "whip", "zoom"]  # default transition cycle; a slide may set "tr"
@@ -28,25 +35,26 @@ def kb_tween(sel, mode, t, d):
 
 
 CHAPTER_CSS = f"""
-    #root{{position:absolute;inset:0;overflow:hidden;background:{GROUND};font-family:Inter,sans-serif}}
+    {FACES}
+    #root{{position:absolute;inset:0;overflow:hidden;background:{GROUND};font-family:Geologica,sans-serif;color:{INK}}}
     .card{{position:absolute;inset:0;background:{GROUND}}}
     .cin{{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}}
-    .num{{font:700 40px/1 Inter,sans-serif;letter-spacing:.14em;color:{ACCENT}}}
-    .word{{font-family:'League Gothic',sans-serif;font-size:330px;line-height:.86;color:#fff;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}}
+    .num{{font:400 34px/1 'Martian Mono',monospace;letter-spacing:.1em;color:{ACCENT}}}
+    .word{{font-family:'League Gothic',sans-serif;font-size:330px;line-height:.86;color:{INK};text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}}
     .shot{{position:absolute;inset:0;overflow:hidden}}
     .shot.burst{{background:#000}}
     .mv,.kb{{position:absolute;inset:0}}
     .kb img{{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}}
-    .scrim{{position:absolute;left:0;right:0;bottom:0;height:72%;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.45) 35%,rgba(0,0,0,.8) 70%,rgba(0,0,0,.9) 100%)}}
-    .scrim.strong{{height:80%;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.6) 30%,rgba(0,0,0,.88) 65%,rgba(0,0,0,.95) 100%)}}
-    .credit{{position:absolute;right:96px;bottom:54px;font:500 20px/1.2 Inter,sans-serif;color:rgba(255,255,255,.74)}}
-    .cap{{position:absolute;left:192px;bottom:124px;width:1520px;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.6)}}
-    .kick{{font:800 36px/1.15 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:{ACCENT}}}
-    .kick i{{font-style:normal;font-weight:700;color:rgba(255,255,255,.78)}}
+    .scrim{{position:absolute;left:0;right:0;bottom:0;height:72%;background:linear-gradient(to bottom,rgba(3,8,23,0) 0%,rgba(3,8,23,.45) 35%,rgba(3,8,23,.8) 70%,rgba(3,8,23,.9) 100%)}}
+    .scrim.strong{{height:80%;background:linear-gradient(to bottom,rgba(3,8,23,0) 0%,rgba(3,8,23,.6) 30%,rgba(3,8,23,.88) 65%,rgba(3,8,23,.95) 100%)}}
+    .credit{{position:absolute;right:96px;bottom:54px;font:400 17px/1.3 'Martian Mono',monospace;color:rgba(237,244,255,.74)}}
+    .cap{{position:absolute;left:192px;bottom:124px;width:1520px;color:{INK};text-shadow:0 2px 14px rgba(3,8,23,.6)}}
+    .kick{{font:400 30px/1.2 'Martian Mono',monospace;letter-spacing:.06em;text-transform:uppercase;color:{ACCENT}}}
+    .kick i{{font-style:normal;color:rgba(237,244,255,.78)}}
     .hero{{font-family:'League Gothic',sans-serif;font-size:136px;line-height:.92;text-transform:uppercase;letter-spacing:.01em;margin-top:12px}}
     .hero span{{display:inline-block;margin-right:.2em}}
-    .now{{font:600 36px/1.25 Inter,sans-serif;color:rgba(255,255,255,.92);margin-top:20px}}
-    .now b{{font-weight:800;font-size:28px;letter-spacing:.12em;text-transform:uppercase;margin-right:16px;vertical-align:3px}}
+    .now{{font:500 36px/1.25 Geologica,sans-serif;color:rgba(237,244,255,.92);margin-top:20px}}
+    .now b{{font-weight:500;color:{ACCENT};margin-right:16px}}
     .dip{{position:absolute;inset:0}}
     .dipc{{position:absolute;inset:0;background:#000}}
     .dipc.ground{{background:{GROUND}}}
@@ -114,7 +122,7 @@ def chapter(ch, credits, last):
         js.append(f"tl.fromTo('#{base}-k',{{opacity:0,filter:'blur(8px)'}},{{opacity:1,filter:'blur(0px)',duration:0.17,ease:'power4.out'}},{round(ts + 0.12, 4)});")
         for k, _ in enumerate(sl["hero"].split()):
             js.append(f"tl.fromTo('#{base}-w{k}',{{opacity:0,filter:'blur(6px)'}},{{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'}},{round(ts + 0.22 + k * 0.067, 4)});")
-        js.append(f"tl.fromTo('#{base}-n',{{opacity:0,color:'#8a8a8a'}},{{opacity:1,color:'rgba(255,255,255,0.92)',duration:0.2,ease:'power2.out'}},{round(ts + 0.5, 4)});")
+        js.append(f"tl.fromTo('#{base}-n',{{opacity:0,color:'#8197b8'}},{{opacity:1,color:'rgba(237,244,255,0.92)',duration:0.2,ease:'power2.out'}},{round(ts + 0.5, 4)});")
         exit_at = round(te - (0.55 if i == n - 1 and last else 0.25), 4)
         js.append(f"tl.fromTo('#{base}-cap',{{opacity:1,filter:'blur(0px)'}},{{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false}},{exit_at});")
         tr = sl.get("tr") or TR[i % len(TR)]
@@ -152,10 +160,11 @@ def chapter(ch, credits, last):
 
 
 CARD_CSS = f"""
-    #root{{position:absolute;inset:0;overflow:hidden;background:{GROUND}}}
+    {FACES}
+    #root{{position:absolute;inset:0;overflow:hidden;background:{GROUND};color:{INK}}}
     .tw{{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}}
-    .big{{font-family:'League Gothic',sans-serif;font-size:440px;line-height:1;color:#fff;letter-spacing:.02em;margin-top:-90px}}
-    .line{{position:absolute;left:0;right:0;top:700px;text-align:center;font:600 56px/1.2 Inter,sans-serif;color:rgba(255,255,255,.92)}}
+    .big{{font-family:'League Gothic',sans-serif;font-size:440px;line-height:1;color:{INK};letter-spacing:.02em;margin-top:-90px}}
+    .line{{position:absolute;left:0;right:0;top:700px;text-align:center;font:500 56px/1.2 Geologica,sans-serif;color:rgba(237,244,255,.92)}}
     .line span{{display:inline-block;margin:0 .14em}}
 """
 
@@ -225,7 +234,7 @@ def main():
     <title>{TITLE}</title>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <style>
-      :root {{ --ground: {GROUND}; --ink: #ffffff; --accent: {ACCENT}; }}
+      :root {{ --ground: {GROUND}; --ink: {INK}; --accent: {ACCENT}; }}
       * {{ margin: 0; padding: 0; box-sizing: border-box; }}
       html, body {{ margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--ground); }}
       #root {{ position: relative; width: 100%; height: 100%; background: var(--ground); }}
