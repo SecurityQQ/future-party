@@ -189,6 +189,7 @@ html = rep(html, "if(section==='horizon'){renderHorizon();document.title='2040, 
 exec(open(P('patch_playback.py'), encoding='utf-8').read())
 exec(open(P('patch_relay.py'), encoding='utf-8').read())
 exec(open(P('patch_research.py'), encoding='utf-8').read())
+exec(open(P('patch_style.py'), encoding='utf-8').read())
 
 # ---------- 7. Write ----------
 os.makedirs(P('dist'), exist_ok=True)
