@@ -56,15 +56,15 @@ nav.top a:hover{color:var(--fg)}
 nav.top .brand{display:flex;align-items:center;gap:10px;color:var(--v-chrome);margin-right:auto;font:500 12px/1.4 var(--display);letter-spacing:-.02em}
 nav.top .brand svg{width:30px;height:30px;flex:none;color:var(--v-ice)}
 
-.hero{position:relative;padding-bottom:44px}
-.hero-copy{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;min-height:650px;min-height:min(760px,calc(100svh - 100px));padding-block:38px 56px}
-.hero h1{font:500 clamp(76px,10.2vw,144px)/.94 var(--display);text-transform:uppercase;letter-spacing:-.075em;text-wrap:nowrap}
+.hero{position:relative;padding-bottom:36px}
+.hero-copy{position:relative;padding-block:44px 48px}
+.hero h1{font:500 clamp(42px,calc(24px + 5.6vw),104px)/1.04 var(--display);text-transform:uppercase;letter-spacing:0;text-wrap:nowrap}
 .hero h1 span{display:block}
-.hero h1 .yr{font-weight:600;letter-spacing:-.065em;background:var(--v-chrome-surface);background-clip:text;-webkit-background-clip:text;color:transparent;padding-bottom:.08em}
+.hero h1 .yr{font-weight:600;background:var(--v-chrome-surface);background-clip:text;-webkit-background-clip:text;color:transparent;padding-bottom:.04em}
 .hero-art{position:absolute;z-index:-1;inset:0;overflow:hidden;pointer-events:none;mask-image:linear-gradient(#000 65%,transparent 94%);-webkit-mask-image:linear-gradient(#000 65%,transparent 94%)}
-.hero-art img{position:absolute;right:-4%;top:-12%;width:80%;height:110%;object-fit:cover;object-position:center 40%;opacity:.96}
-.hero-art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg),rgb(3 8 23 / 82%) 17%,rgb(3 8 23 / 25%) 46%,transparent 68%),linear-gradient(0deg,var(--bg),transparent 45%)}
-.hero-actions{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;margin-top:38px}
+.hero-art img{position:absolute;right:0;top:0;width:70%;height:100%;object-fit:cover;object-position:center 40%;opacity:.86;mask-image:linear-gradient(90deg,transparent,#000 28%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 28%)}
+.hero-art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 10%,rgb(3 8 23 / 85%) 28%,rgb(3 8 23 / 15%) 62%,transparent 78%),linear-gradient(0deg,var(--bg),transparent 50%)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;margin-top:30px}
 .hero-actions .lnk{color:var(--v-ice)}
 
 /* The doors: one chrome-edged panel per section, the way into the page */
@@ -267,9 +267,8 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
 
 @media(max-width:1000px){
   nav.top .brand{flex-basis:100%}
-  .hero-copy{min-height:650px;padding-top:44px}
-  .hero h1{font-size:clamp(76px,11.5vw,114px)}
-  .hero-art img{width:100%;right:-15%;opacity:.9}
+  .hero-copy{padding-block:36px 44px}
+  .hero-art img{width:78%;opacity:.8}
 }
 @media(max-width:620px){
   nav.top{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 12px;padding-block:18px 8px}
@@ -277,11 +276,11 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
   nav.top .brand svg{width:25px;height:25px}
   nav.top a{font-size:11px;min-height:36px;display:inline-flex;align-items:center}
   .hero{padding-bottom:30px}
-  .hero-copy{min-height:0;padding-block:36px 38px}
-  .hero h1{font-size:clamp(44px,14.5vw,88px);line-height:.98;letter-spacing:-.07em}
-  .hero-art img{width:150%;right:-50%;top:0;height:86%;opacity:.86;object-position:center 30%}
+  .hero-copy{padding-block:28px 36px}
+  .hero h1{line-height:1.08}
+  .hero-art img{width:115%;right:-25%;height:100%;opacity:.65;object-position:center 35%}
   .hero-art::after{background:linear-gradient(90deg,rgb(3 8 23 / 78%),rgb(3 8 23 / 22%) 80%),linear-gradient(0deg,var(--bg) 8%,transparent 65%)}
-  .hero-actions{align-items:flex-start;flex-direction:column;gap:18px;margin-top:32px}
+  .hero-actions{align-items:flex-start;flex-direction:column;gap:18px;margin-top:26px}
   .hero-actions .lnk{font-size:13px;min-height:30px;display:inline-flex;align-items:center;gap:8px}
   .doors{gap:10px}
   .door{padding:16px 12px;gap:10px;border-radius:12px}
