@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Trip 2050 · Varga Future Party 2050</title>
+<script>
+// The site drops the trailing slash (/trip/ becomes /trip), and then "data.js" or "vendor/..." would load from the
+// site root. Go to /trip/index.html instead, keeping ?options. Opening the file from disk is unaffected.
+if (/^https?:$/.test(location.protocol) && !/(\/|\.html)$/.test(location.pathname))
+  location.replace(location.pathname + "/index.html" + location.search + location.hash);
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Trip 2050: a light show for the party wall. MilkDrop visuals that move with the music, the Imagined Futures concept art as kaleidoscopes and tunnels, and 24 innovators from Archimedes to CRISPR.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Unbounded:wght@500;700&family=Geologica:wght@400;500;600&family=Martian+Mono:wght@400;500&display=swap">
+<style>
+/* Trip 2050, the light show. The start screen wears Blue futurism (vibes/tokens.css); what plays on the wall is the one
+   place on the site where every colour is allowed. Type on the wall follows the Big Muse: League Gothic names,
+   Martian Mono years and credits, Geologica lines. */
+:root{
+  --v-space:#030817;--v-navy:#07132b;--v-panel:#0b1b36;--v-ink:#edf4ff;--v-muted:#a2b6d4;--v-blue:#4385ff;--v-ice:#9dd8ff;
+  --v-line:#2d486d;--v-warning:#f4c58d;
+  --v-chrome-surface:linear-gradient(118deg,#f2f7ff 0%,#aec6e8 21%,#edf6ff 42%,#7da2d1 44%,#b8d6f7 68%,#e2efff 100%);
+  --heading:"Unbounded","Arial Black",system-ui,sans-serif;--body:"Geologica",system-ui,sans-serif;
+  --mono:"Martian Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:#000;color:var(--v-ink);font:16px/1.55 var(--body);overflow:hidden}
+[hidden]{display:none!important}
+#view{position:fixed;inset:0;width:100%;height:100%;display:block;background:#000}
+body.idle,body.idle *{cursor:none}
+#start{position:fixed;inset:0;display:grid;place-items:center;padding:24px 16px;overflow:auto;
+  background:radial-gradient(120% 90% at 70% 10%,rgb(67 133 255 / 22%),transparent 60%),rgb(3 8 23 / 88%)}
+#start .card{width:min(640px,100%)}
+.mark{display:inline-block;font:500 12px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--v-ice);text-decoration:none}
+.mark:hover{color:var(--v-ink)}
+h1{font:700 clamp(40px,9vw,84px)/.95 var(--heading);letter-spacing:-.02em;margin:18px 0 14px}
+h1 span{background:var(--v-chrome-surface);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--v-muted);margin:0 0 26px;max-width:54ch}
+.row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+button{font:600 15px/1 var(--body);border-radius:999px;padding:15px 22px;cursor:pointer;border:1px solid var(--v-line);
+  background:var(--v-panel);color:var(--v-ink)}
+button.primary{background:var(--v-chrome-surface);color:#06122a;border-color:#dce9fb}
+button:hover{border-color:var(--v-ice)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--v-blue);outline-offset:3px}
+.note{font-size:14px;color:var(--v-muted);margin:0 0 10px}
+.note.warn{color:var(--v-warning)}
+.keys{font:400 12px/2 var(--mono);color:var(--v-muted);margin:18px 0 0}
+kbd{font:inherit;color:var(--v-ink);border:1px solid var(--v-line);border-radius:5px;padding:2px 6px;margin-right:4px;background:var(--v-navy)}
+#tip{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);padding:10px 16px;border-radius:999px;max-width:calc(100% - 32px);
+  background:rgb(3 8 23 / 82%);border:1px solid var(--v-line);font:400 12px/1.6 var(--mono);color:var(--v-ink);
+  transition:opacity .6s;pointer-events:none;text-align:center}
+#tip.off{opacity:0}
+</style>
+</head>
+<body>
+<canvas id="view"></canvas>
+<div id="start">
+  <div class="card">
+    <a class="mark" href="../index.html">Varga Future Party 2050</a>
+    <h1>Trip <span>2050</span></h1>
+    <p class="lead">A light show for the wall. It moves with the music in the room, turns the Imagined Futures pictures into kaleidoscopes and tunnels, and brings 24 innovators on stage, from Archimedes to CRISPR.</p>
+    <div class="row">
+      <button class="primary" id="go-mic">Start with the microphone</button>
+      <button id="go-beat">Start with the built-in beat</button>
+    </div>
+    <p class="note">The microphone only listens for the beat: no sound is recorded or leaves this computer.</p>
+    <p class="note warn">Fast motion and flashing colours. Not for guests with photosensitive epilepsy.</p>
+    <p class="note" id="file-note" hidden>Opened as a file, the browser keeps local pictures away from the graphics card: the concept art then comes from X (online only) and the innovators appear as names without portraits. For everything, offline too, run <code>python3 -m http.server 4620</code> in the repo folder and open <code>localhost:4620/trip/</code>.</p>
+    <p class="keys"><kbd>F</kbd>full screen <kbd>Space</kbd>next scene <kbd>1</kbd>–<kbd>6</kbd>keep one scene <kbd>0</kbd>all scenes<br>
+      <kbd>N</kbd>next visual <kbd>A</kbd>next picture <kbd>T</kbd>text <kbd>M</kbd>microphone <kbd>B</kbd>built-in beat <kbd>S</kbd>its sound <kbd>H</kbd>these keys</p>
+  </div>
+</div>
+<div id="tip" class="off"></div>
+<canvas id="milk" hidden></canvas>
+
+<script src="vendor/butterchurn.min.js"></script>
+<script src="presets.js"></script>
+<script src="data.js"></script>
+<script>
+'use strict';
+/* Trip 2050.
+   Three layers, drawn every frame:
+   1. Butterchurn (MilkDrop for the browser, vendor/) draws a music visual into a hidden canvas.
+   2. A feedback buffer keeps the last frame, zooms, turns and bends it along the visual's edges, shifts its hue and
+      lets it fade, then the scene paints into it: a picture as a kaleidoscope, a tunnel or liquid paint, an innovator's
+      portrait in poster colours, or a word.
+   3. The last pass puts the feedback over the visual, holds the visual's brightness under a cap and draws the text.
+   The director moves through the scenes in ORDER and changes on a beat. */
+const Q = new URLSearchParams(location.search);
+const $ = id => document.getElementById(id);
+const view = $('view'), milk = $('milk');
+const DATA = window.TRIP || {art: [], people: []};
+const PRESETS = window.TRIP_PRESETS || {};
+const rand = (a, b) => a + Math.random() * (b - a);
+const pick = a => a[Math.floor(Math.random() * a.length)];
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+
+/* ---------- WebGL ---------- */
+const gl = view.getContext('webgl2', {alpha: false, antialias: false, powerPreference: 'high-performance'});
+const VERT = `#version 300 es
+out vec2 vUv;
+void main(){ vec2 p = vec2(float((gl_VertexID << 1) & 2), float(gl_VertexID & 2)); vUv = p; gl_Position = vec4(p * 2. - 1., 0., 1.); }`;
+const COMMON = `#version 300 es
+precision highp float;
+in vec2 vUv; out vec4 o;
+uniform vec3 uPA, uPB, uPC, uPD;
+float luma(vec3 c){ return dot(c, vec3(.299, .587, .114)); }
+vec3 pal(float t){ return uPA + uPB * cos(6.28318 * (uPC * t + uPD)); }
+vec3 hueRot(vec3 c, float a){ const vec3 k = vec3(.57735); float ca = cos(a), sa = sin(a); return c * ca + cross(k, c) * sa + k * dot(k, c) * (1. - ca); }
+`;
+// Pass 1: the feedback buffer
+const FEED = COMMON + `
+uniform sampler2D uPrev, uMilk, uArt0, uArt1, uFace, uText;
+uniform vec2 uRes, uArtAsp, uCenter;
+uniform float uT, uBeat, uBass, uTreb, uAmt, uArtMix, uN, uGrid, uSeed, uDecay, uTextGlow, uSpin;
+uniform int uScene;
+uniform vec4 uWarp;      // zoom, turn, flow along the visual's edges, hue step
+uniform vec4 uFaceRect;  // centre x, centre y, half width, half height
+uniform vec3 uPoster[5]; // the portrait's five inks, dark to light
+
+vec3 vivid(vec3 c){ c = mix(vec3(luma(c)), c, 1.7); return smoothstep(.02, .92, c); }
+// Half the picture's own colour, half its light and dark run through the palette: neon without losing the drawing
+vec3 neon(vec3 c, float shift){ float l = luma(c); return mix(c, pal(l * .8 + shift) * smoothstep(.0, .3, l) * (.35 + l), .45); }
+// A picture for a dark room: a pale one is darkened until its mean (its smallest mip level) sits at a third,
+// and flat areas give way to the drawing's edges (the picture minus a blurred copy of itself)
+vec3 graded(sampler2D tex, vec2 uv){
+  vec3 c = texture(tex, uv).rgb;
+  float mean = clamp(luma(textureLod(tex, vec2(.5), 16.).rgb), .05, .95);
+  c = pow(c, vec3(clamp(log(.3) / log(mean), .75, 2.6)));
+  vec3 soft = pow(textureLod(tex, uv, 4.5).rgb, vec3(clamp(log(.3) / log(mean), .75, 2.6)));
+  return max(c + (c - soft) * .9, 0.);
+}
+vec3 artRaw(vec2 u0, vec2 u1){ return mix(graded(uArt0, u0), graded(uArt1, u1), uArtMix); }
+vec3 art(vec2 q, float cover){
+  float va = uRes.x / uRes.y;
+  vec2 s0 = vec2(1. / uArtAsp.x, 1.) * mix(1., min(1., uArtAsp.x / va), cover);
+  vec2 s1 = vec2(1. / uArtAsp.y, 1.) * mix(1., min(1., uArtAsp.y / va), cover);
+  return artRaw(q * s0 + .5, q * s1 + .5);
+}
+vec2 swirl(vec2 p, float t){
+  for (int i = 1; i < 5; i++) { float f = float(i); p += .11 / f * sin(f * 2.1 * p.yx + t * (.25 + .09 * f) + uSeed * f); }
+  return p;
+}
+vec4 kaleido(vec2 p){
+  float r = length(p), a = atan(p.y, p.x) + uSpin;
+  float seg = 6.28318 / uN;
+  a = abs(mod(a, seg) - seg * .5);
+  vec2 q = r * vec2(cos(a), sin(a));
+  q = q * (1.15 + .3 * sin(uT * .11 + uSeed) - .07 * uBeat) + vec2(.25 + .2 * sin(uT * .05 + uSeed * 3.), .12 * cos(uT * .07));
+  vec3 c = vivid(art(q, 0.));
+  c = neon(hueRot(c, .6 * sin(uT * .13 + uSeed)), r * .7 - uT * .1);
+  c = max(mix(vec3(luma(c)), c, 1.4) * 1.18, 0.);
+  return vec4(c, smoothstep(.1, .34, luma(c)) * .93);
+}
+vec4 tunnel(vec2 p){
+  p += .06 * vec2(sin(uT * .31 + uSeed), cos(uT * .23));
+  float r = length(p), a = atan(p.y, p.x) + uSpin * .5;
+  // the picture is mirrored across the angle, so the wall has no seam
+  vec2 q = vec2(abs(mod(a, 6.28318) - 3.14159) / 3.14159 * 2., .33 / (r + .02) + uT * .22 + uBass * .03);
+  vec3 c = vivid(artRaw(q * vec2(1., .5), q * vec2(1., .5)) * 1.2);
+  c = neon(c, q.y * .35);
+  // rings of light run down the walls with the beat
+  c += pal(q.y * .25 + uSeed) * pow(.5 + .5 * sin(q.y * 6.28318 - uT * 2.), 12.) * (.25 + .5 * uBeat);
+  float depth = smoothstep(.0, .3, r);
+  c = c * depth + pal(uT * .1 + r) * (1. - depth) * (.3 + .6 * uBeat) * smoothstep(.0, .06, r);
+  return vec4(c, .8 * smoothstep(.02, .12, r));
+}
+vec4 melt(vec2 p){
+  vec2 q = mix(p, swirl(p * 1.2, uT * 1.3), .62 + .2 * sin(uT * .21 + uSeed) + .18 * uBass) * (1. - .03 * uBeat);
+  vec3 c = vivid(art(q * .9, 1.));
+  c = neon(hueRot(c, .7 * sin(uT * .1 + length(p) * 3. + uSeed)), uT * .08 + length(q) * .5);
+  return vec4(c, .22);
+}
+vec4 face(vec2 p){
+  vec2 u = (p - uFaceRect.xy) / (2. * uFaceRect.zw * (1. + .012 * uBeat)) + .5;
+  if (u.x < 0. || u.y < 0. || u.x > 1. || u.y > 1.) return vec4(0.);
+  vec2 cell = floor(u * uGrid), cu = fract(u * uGrid);
+  float id = cell.x + cell.y * uGrid;
+  float l = luma(texture(uFace, cu).rgb);
+  l = smoothstep(.04, .9, l);
+  float lv = clamp(l * 4.6 - .2, 0., 3.999), f = floor(lv), k = smoothstep(.4, .6, fract(lv));
+  int i = int(f);
+  vec3 c = mix(uPoster[i], uPoster[i + 1], k);
+  // each of the four posters turns the inks a quarter of the colour wheel further
+  c = hueRot(c, id * 1.5708 + .45 * sin(uT * .23 + uSeed));
+  vec2 e = smoothstep(vec2(0.), vec2(.012), cu) * smoothstep(vec2(0.), vec2(.012), 1. - cu);
+  return vec4(c * e.x * e.y, .9);
+}
+void main(){
+  vec2 asp = vec2(uRes.x / uRes.y, 1.);
+  vec2 p = (vUv - .5) * asp;
+  vec2 px = 3. / uRes;
+  vec2 g = vec2(luma(texture(uMilk, vUv + vec2(px.x, 0.)).rgb) - luma(texture(uMilk, vUv - vec2(px.x, 0.)).rgb),
+                luma(texture(uMilk, vUv + vec2(0., px.y)).rgb) - luma(texture(uMilk, vUv - vec2(0., px.y)).rgb));
+  vec2 d = p - uCenter;
+  float ca = cos(uWarp.y), sa = sin(uWarp.y);
+  d = mat2(ca, -sa, sa, ca) * d * (uWarp.x + .012 * uBeat * sign(uWarp.x - 1.));
+  vec2 pu = (uCenter + d) / asp + .5 + vec2(-g.y, g.x) * uWarp.z;
+  vec4 prev = texture(uPrev, pu) * step(0., pu.x) * step(pu.x, 1.) * step(0., pu.y) * step(pu.y, 1.);
+  prev.rgb = hueRot(prev.rgb, uWarp.w);
+  prev = max(prev * uDecay - .0012, 0.);
+  vec4 L = vec4(0.);
+  if (uScene == 1) L = kaleido(p);
+  else if (uScene == 2) L = tunnel(p);
+  else if (uScene == 3) L = melt(p);
+  else if (uScene == 4) L = face(p);
+  o = mix(prev, vec4(L.rgb, 1.), L.a * uAmt);
+  float tg = texture(uText, vUv).a * uTextGlow;
+  o = mix(o, vec4(pal(uT * .3 + vUv.x * .8 + vUv.y * .4) * 1.15, 1.), clamp(tg, 0., 1.));
+  // one bad pixel would live in the trails for ever
+  if (any(isnan(o)) || any(isinf(o))) o = vec4(0.);
+  o = clamp(o, 0., 4.);
+}`;
+// Pass 2: the visual, the feedback over it, the text on top
+const FINAL = COMMON + `
+uniform sampler2D uFb, uMilk, uText, uShadow;
+uniform vec2 uRes;
+uniform float uMilkGain, uOcclude, uAberr, uTextAmt, uCap, uFade;
+void main(){
+  vec2 off = (vUv - .5) * uAberr;
+  vec4 f = texture(uFb, vUv);
+  vec3 fb = vec3(texture(uFb, vUv + off).r, f.g, texture(uFb, vUv - off).b);
+  vec3 mk = texture(uMilk, vUv).rgb;
+  // The whole visual's mean brightness is its smallest mip level: a white frame is turned down to the cap
+  float avg = luma(textureLod(uMilk, vec2(.5), 16.).rgb);
+  mk *= min(1., uCap / max(avg, .001)) * uMilkGain;
+  vec3 col = mk * (1. - clamp(f.a, 0., 1.) * uOcclude) + fb;
+  vec4 tx = texture(uText, vUv);
+  col *= 1. - .88 * clamp(texture(uShadow, vUv).a * 2.2, 0., 1.) * uTextAmt;
+  col = mix(col, tx.rgb, tx.a * uTextAmt);
+  col *= mix(.72, 1., smoothstep(1.05, .35, length(vUv - .5) * 1.25));
+  o = vec4(min(col, 1.) * uFade, 1.);
+}`;
+
+function program(fs) {
+  const p = gl.createProgram();
+  for (const [type, src] of [[gl.VERTEX_SHADER, VERT], [gl.FRAGMENT_SHADER, fs]]) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src); gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s));
+    gl.attachShader(p, s);
+  }
+  gl.linkProgram(p);
+  if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p));
+  const u = {};
+  for (let i = 0, n = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS); i < n; i++) {
+    const name = gl.getActiveUniform(p, i).name.replace('[0]', '');
+    u[name] = gl.getUniformLocation(p, name);
+  }
+  return {p, u};
+}
+function texture(wrap, mip) {
+  const t = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, t);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(4));
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, mip ? gl.LINEAR_MIPMAP_LINEAR : gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, wrap);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, wrap);
+  return t;
+}
+// A picture, a canvas or a video frame into a texture; false when the browser refuses (a picture from file://)
+function upload(tex, source, mip) {
+  gl.bindTexture(gl.TEXTURE_2D, tex);
+  try { gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source); } catch (e) { return false; }
+  if (mip) gl.generateMipmap(gl.TEXTURE_2D);
+  return true;
+}
+
+let P1, P2, T, FB = [], fbW = 0, fbH = 0, fbI = 0, fbType, fbFormat;
+function initGL() {
+  P1 = program(FEED); P2 = program(FINAL);
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+  T = {milk: texture(gl.CLAMP_TO_EDGE, true), art0: texture(gl.MIRRORED_REPEAT, true), art1: texture(gl.MIRRORED_REPEAT, true),
+       face: texture(gl.CLAMP_TO_EDGE, true), text: texture(gl.CLAMP_TO_EDGE, false), shadow: texture(gl.CLAMP_TO_EDGE, false)};
+  // Half floats keep long trails clean; 8 bits is the fallback
+  const half = gl.getExtension('EXT_color_buffer_float') || gl.getExtension('EXT_color_buffer_half_float');
+  gl.getExtension('OES_texture_float_linear');
+  [fbFormat, fbType] = half ? [gl.RGBA16F, gl.HALF_FLOAT] : [gl.RGBA8, gl.UNSIGNED_BYTE];
+}
+function sizeBuffers() {
+  const cap = 1920 * quality, dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let w = Math.round(view.clientWidth * dpr), h = Math.round(view.clientHeight * dpr);
+  const k = Math.min(1, cap / Math.max(w, h));
+  w = Math.max(2, Math.round(w * k)); h = Math.max(2, Math.round(h * k));
+  if (view.width !== w || view.height !== h) { view.width = w; view.height = h; }
+  const bh = Math.min(h, Math.round(720 * quality)), bw = Math.round(bh * w / h);
+  if (bw === fbW && bh === fbH) return;
+  fbW = bw; fbH = bh;
+  for (const f of FB) { gl.deleteTexture(f.tex); gl.deleteFramebuffer(f.fbo); }
+  FB = [0, 1].map(() => {
+    const tex = texture(gl.CLAMP_TO_EDGE, false);
+    gl.texImage2D(gl.TEXTURE_2D, 0, fbFormat, bw, bh, 0, gl.RGBA, fbType, null);
+    const fbo = gl.createFramebuffer();
+    gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+    gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
+    return {tex, fbo};
+  });
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  layoutText();
+}
+
+/* ---------- Sound: the microphone or the built-in beat ---------- */
+const BPM = 126;
+let ctx, viz, analyser, freq, low, lowAn, wave, input, micStream, beatSrc, beatGain, mode = '', beatT0 = 0, soundOn = Q.get('sound') === '1';
+const A = {bass: 0, mid: 0, treb: 0, beat: 0, count: 0, last: -9, peak: [.2, .2, .2], hist: new Float32Array(48), hi: 0, onBeat: false, e: 0, top: 0, quiet: true};
+
+// Four bars of techno at 126 BPM, rendered once and looped. Silent unless S is pressed: it is there to drive the visuals.
+async function makeBeat() {
+  const beat = 60 / BPM, sr = 44100;
+  const off = new OfflineAudioContext(2, Math.ceil(beat * 16 * sr), sr);
+  const out = off.createDynamicsCompressor(); out.connect(off.destination);
+  const noise = off.createBuffer(1, sr, sr), nd = noise.getChannelData(0);
+  for (let i = 0; i < sr; i++) nd[i] = Math.random() * 2 - 1;
+  const env = (g, t, peak, dur) => { g.gain.setValueAtTime(0, 0); g.gain.setValueAtTime(peak, t); g.gain.exponentialRampToValueAtTime(.001, t + dur); g.gain.setValueAtTime(0, t + dur + .01); };
+  const hit = (t, type, f0, peak, dur) => {
+    const s = off.createBufferSource(); s.buffer = noise;
+    const f = off.createBiquadFilter(); f.type = type; f.frequency.value = f0;
+    const g = off.createGain(); env(g, t, peak, dur);
+    s.connect(f).connect(g).connect(out); s.start(t); s.stop(t + dur + .05);
+  };
+  const roots = [55, 55, 65.41, 49];
+  for (let b = 0; b < 16; b++) {
+    const t = b * beat, o = off.createOscillator(), g = off.createGain();
+    o.frequency.setValueAtTime(160, t); o.frequency.exponentialRampToValueAtTime(42, t + .12);
+    env(g, t, 1, .32); o.connect(g).connect(out); o.start(t); o.stop(t + .4);
+    hit(t + beat / 2, 'highpass', 8000, .22, .06);
+    if (b % 4 === 3) hit(t + beat * .75, 'highpass', 9000, .12, .04);
+    if (b % 2 === 1) hit(t, 'bandpass', 1800, .5, .16);
+    for (let s = 1; s < 4; s++) {
+      const tt = t + s * beat / 4, bo = off.createOscillator(), bf = off.createBiquadFilter(), bg = off.createGain();
+      bo.type = 'sawtooth'; bo.frequency.value = roots[b >> 2] * (s === 3 && b % 4 === 3 ? 2 : 1);
+      bf.type = 'lowpass'; bf.Q.value = 8;
+      bf.frequency.setValueAtTime(1800, tt); bf.frequency.exponentialRampToValueAtTime(180, tt + .11);
+      env(bg, tt, .32, .12);
+      bo.connect(bf).connect(bg).connect(out); bo.start(tt); bo.stop(tt + .2);
+    }
+  }
+  for (let bar = 0; bar < 4; bar++) for (const m of [3, 7, 10]) {
+    const o = off.createOscillator(), g = off.createGain(), t = bar * 4 * beat;
+    o.type = 'triangle'; o.frequency.value = roots[bar] * 4 * Math.pow(2, m / 12);
+    g.gain.setValueAtTime(0, 0); g.gain.setValueAtTime(.0001, t); g.gain.linearRampToValueAtTime(.07, t + beat); g.gain.linearRampToValueAtTime(.0001, t + 4 * beat);
+    o.connect(g).connect(out); o.start(t); o.stop(t + 4 * beat);
+  }
+  return off.startRendering();
+}
+let beatBuffer;
+async function useBeat() {
+  stopInput();
+  beatBuffer = beatBuffer || await makeBeat();
+  beatSrc = ctx.createBufferSource(); beatSrc.buffer = beatBuffer; beatSrc.loop = true;
+  beatSrc.connect(input);
+  beatGain = ctx.createGain(); beatGain.gain.value = soundOn ? .8 : 0;
+  beatSrc.connect(beatGain).connect(ctx.destination);
+  beatT0 = ctx.currentTime + .05; beatSrc.start(beatT0);
+  mode = 'beat';
+}
+async function useMic() {
+  const stream = await navigator.mediaDevices.getUserMedia({audio: {echoCancellation: false, noiseSuppression: false, autoGainControl: false}});
+  stopInput();
+  micStream = stream;
+  ctx.createMediaStreamSource(stream).connect(input);
+  mode = 'mic';
+}
+function stopInput() {
+  if (beatSrc) { try { beatSrc.stop(); } catch (e) {} beatSrc.disconnect(); beatGain.disconnect(); beatSrc = null; }
+  if (micStream) { micStream.getTracks().forEach(t => t.stop()); micStream = null; }
+  input.disconnect();
+  input = ctx.createGain();
+  input.connect(analyser); input.connect(low); viz.connectAudio(input);
+}
+function listen(now, dt) {
+  analyser.getByteFrequencyData(freq);
+  const band = (a, b) => { let s = 0; for (let i = a; i < b; i++) s += freq[i]; return s / ((b - a) * 255); };
+  const raw = [band(1, 8), band(8, 90), band(90, 480)];   // under 170 Hz, to 1.9 kHz, to 10 kHz
+  const lv = raw.map((v, i) => { A.peak[i] = Math.max(A.peak[i] * Math.pow(.9995, dt * 60), v, .06); return v / A.peak[i]; });
+  const k = 1 - Math.exp(-dt * 14);
+  A.bass += (lv[0] - A.bass) * k; A.mid += (lv[1] - A.mid) * k; A.treb += (lv[2] - A.treb) * k;
+  A.onBeat = false;
+  if (mode === 'beat') {
+    const n = Math.floor((ctx.currentTime - beatT0) * BPM / 60);
+    if (n > A.count) { A.count = n; A.onBeat = true; }
+  } else {
+    // A beat is a jump in the loudness under 140 Hz, well over the jumps of the last second, at any volume;
+    // with no music, a quiet clock keeps the show moving
+    lowAn.getFloatTimeDomainData(wave);
+    let e = 0; for (const v of wave) e += v * v;
+    e = Math.sqrt(e / wave.length);
+    A.top = Math.max(A.top * Math.pow(.9992, dt * 60), e);
+    const en = e / Math.max(A.top, 1e-5), jump = Math.max(0, en - A.e);
+    A.e = en;
+    let mean = 0; for (const v of A.hist) mean += v; mean /= A.hist.length;
+    A.hist[A.hi = (A.hi + 1) % A.hist.length] = jump;
+    const loud = e > .002;
+    if (loud && jump > Math.max(mean * 2.4, .1) && now - A.last > .27) { A.count++; A.onBeat = true; A.quiet = false; }
+    else if (now - A.last > 1.2) { A.count++; A.onBeat = true; A.quiet = true; }
+  }
+  if (A.onBeat) { A.last = now; A.beat = A.quiet && mode !== 'beat' ? .35 : 1; }
+  else A.beat *= Math.exp(-dt * 5.5);
+}
+
+/* ---------- Pictures ---------- */
+const art = {order: shuffle(DATA.art), i: 0, failed: 0, slot: 0, mix: 0, target: 0, asp: [1, 1], cur: null, ok: DATA.art.length > 0, last: 0, token: 0};
+function loadImage(src, cors) {
+  return new Promise((res, rej) => {
+    const im = new Image();
+    if (cors) im.crossOrigin = 'anonymous';
+    im.onload = () => res(im); im.onerror = rej; im.src = src;
+  });
+}
+let artNext = null;
+// Opened as a file, the browser will not hand a local picture to WebGL: the copy on X is the only one that works
+art.remote = location.protocol === 'file:';
+function preloadArt() {
+  const item = art.order[art.i++ % art.order.length];
+  artNext = (art.remote ? loadImage(item.f, true) : loadImage(item.t)).then(im => ({item, im})).catch(() => null);
+}
+async function nextArt(now) {
+  if (!art.ok || art.busy) return;
+  art.busy = true;
+  const got = await artNext; preloadArt();
+  art.busy = false;
+  if (!got) { if (art.remote && ++art.failed > 2) art.ok = false; return; }
+  art.failed = 0;
+  const slot = 1 - art.slot, tex = slot ? T.art1 : T.art0;
+  if (!upload(tex, got.im, true)) { art.ok = false; return; }
+  art.slot = slot; art.target = slot; art.asp[slot] = got.im.width / got.im.height; art.cur = got.item; art.last = now;
+  if (scene && SCENES[scene.name].art) layoutText();
+  // Online, a large copy from X replaces the 720-pixel one when it arrives
+  const token = ++art.token;
+  if (got.item.f && navigator.onLine && !art.remote) loadImage(got.item.f, true).then(im => { if (token === art.token) upload(tex, im, true); }).catch(() => {});
+}
+const people = {list: DATA.people, i: Math.floor(Math.random() * Math.max(1, DATA.people.length)), cur: null, ok: DATA.people.length > 0, asp: .8};
+async function nextPerson() {
+  if (!people.list.length) return;
+  const p = people.list[people.i++ % people.list.length];
+  try { const im = await loadImage(p.img); if (!upload(T.face, im, true)) people.ok = false; } catch (e) { people.ok = false; }
+  people.cur = p;
+  layoutText();
+}
+
+/* ---------- Text: one canvas the size of the picture, drawn when the words change ---------- */
+const textCanvas = document.createElement('canvas'), tc = textCanvas.getContext('2d');
+const shadowCanvas = document.createElement('canvas'), sc2 = shadowCanvas.getContext('2d');   // the text blurred: its dark halo
+let faceRect = [0, 0, .3, .4], textOn = Q.get('text') !== '0', titleWord = '';
+const TITLE = ['FUTURE', 'PARTY', '2050'];
+function wrap(words, maxW) {
+  const lines = []; let line = '';
+  for (const w of words) {
+    const t = line ? line + ' ' + w : w;
+    if (line && tc.measureText(t).width > maxW) { lines.push(line); line = w; } else line = t;
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+function layoutText() {
+  if (!fbH) return;
+  const H = 1080, W = Math.round(H * view.width / view.height), asp = W / H;
+  if (textCanvas.width !== W || textCanvas.height !== H) { textCanvas.width = W; textCanvas.height = H; }
+  tc.clearRect(0, 0, W, H);
+  // The portrait stands on the right, 4:5; the words get the rest
+  const fw = Math.min(.688, asp * .42), fh = fw / .8, m = Math.round(W * .055);
+  faceRect = [asp / 2 - fw / 2 - asp * .05, 0, fw / 2, fh / 2];
+  const name = scene ? scene.name : '';
+  tc.textBaseline = 'alphabetic'; tc.textAlign = 'left';
+  if (!textOn) { /* nothing */ }
+  else if (name === 'face' && people.cur) {
+    const p = people.cur, maxW = W - m * 2 - (fw + asp * .05) * H - m * .4;
+    let size = 250, lines;
+    for (; size > 90; size -= 10) {
+      tc.font = `400 ${size}px "League Gothic","Impact","Arial Narrow",sans-serif`;
+      lines = wrap(p.name.toUpperCase().split(' '), maxW);
+      if (lines.length <= 3 && lines.every(l => tc.measureText(l).width <= maxW)) break;
+    }
+    tc.font = '500 40px "Geologica",system-ui,sans-serif';
+    const sub = wrap(p.line.split(' '), Math.min(maxW, 780));
+    const lh = size * .92, total = 70 + lines.length * lh + 30 + sub.length * 54;
+    let y = (H - total) / 2 + 44;
+    tc.font = '500 38px "Martian Mono",ui-monospace,Menlo,monospace';
+    try { tc.letterSpacing = '5px'; } catch (e) {}
+    tc.fillStyle = '#9dd8ff'; tc.fillText(p.year.toUpperCase(), m, y);
+    try { tc.letterSpacing = '0px'; } catch (e) {}
+    y += 26;
+    tc.font = `400 ${size}px "League Gothic","Impact","Arial Narrow",sans-serif`; tc.fillStyle = '#fff';
+    for (const l of lines) { y += lh; tc.fillText(l, m - size * .01, y); }
+    y += 34;
+    tc.font = '500 40px "Geologica",system-ui,sans-serif'; tc.fillStyle = '#edf4ff';
+    for (const l of sub) { y += 54; tc.fillText(l, m, y); }
+  } else if (name === 'title' && titleWord) {
+    let size = 900;
+    tc.font = `400 ${size}px "League Gothic","Impact","Arial Narrow",sans-serif`;
+    size = Math.min(size * W * .8 / tc.measureText(titleWord).width, H * .92);
+    tc.font = `400 ${size}px "League Gothic","Impact","Arial Narrow",sans-serif`;
+    tc.textAlign = 'center'; tc.fillStyle = '#fff';
+    tc.fillText(titleWord, W / 2, H / 2 + size * .36);
+  } else if (scene && SCENES[name].art && art.cur && art.ok) {
+    tc.font = '500 24px "Martian Mono",ui-monospace,Menlo,monospace';
+    try { tc.letterSpacing = '3px'; } catch (e) {}
+    tc.fillStyle = '#9dd8ff';
+    tc.fillText(('Imagined Futures · ' + (art.cur.by ? 'art by ' + art.cur.by : 'posted by @' + art.cur.h)).toUpperCase(), m, H - 54);
+    try { tc.letterSpacing = '0px'; } catch (e) {}
+  }
+  upload(T.text, textCanvas, false);
+  shadowCanvas.width = W >> 1; shadowCanvas.height = H >> 1;
+  sc2.filter = 'blur(9px)';
+  sc2.drawImage(textCanvas, 0, 0, W >> 1, H >> 1);
+  upload(T.shadow, shadowCanvas, false);
+}
+
+/* ---------- The director ---------- */
+// zoom < 1 pushes the trails outwards, > 1 pulls them in; flow bends them along the edges of the visual behind
+const SCENES = {
+  milk:    {id: 0, dur: 22, milk: 1,   occl: 0,   zoom: 1.004, turn: 0,     flow: 0,    hue: 0,    decay: .88,  text: 0, glow: 0},
+  kaleido: {id: 1, dur: 26, milk: .4,  occl: .9,  zoom: 1.012, turn: .003,  flow: .004, hue: .008, decay: .94, text: 1, glow: 0, art: 8},
+  tunnel:  {id: 2, dur: 24, milk: .25, occl: .95, zoom: .99,   turn: 0,     flow: .003, hue: .01,  decay: .9,  text: 1, glow: 0, art: 8},
+  melt:    {id: 3, dur: 26, milk: .14, occl: 1,   zoom: 1,     turn: 0,     flow: .011, hue: .004, decay: .993, text: 1, glow: 0, art: 16},
+  face:    {id: 4, dur: 24, milk: .42, occl: .92, zoom: .984,  turn: 0,     flow: .002, hue: .07,  decay: .972, text: 1, glow: .0},
+  title:   {id: 5, dur: 9,  milk: .6,  occl: .85, zoom: .95,   turn: .002,  flow: .003, hue: .12,  decay: .93, text: 1, glow: 1},
+};
+const ORDER = ['title', 'kaleido', 'face', 'tunnel', 'milk', 'melt', 'face', 'kaleido', 'milk', 'face', 'tunnel', 'melt', 'face', 'milk'];
+const KEYS = ['milk', 'kaleido', 'tunnel', 'melt', 'face', 'title'];
+// a + b cos(2 pi (c t + d)): acid rainbow, neon, ultraviolet, sunset, ice
+const PALETTES = [
+  [[.5, .5, .5], [.5, .5, .5], [1, 1, 1], [0, .33, .67]],
+  [[.5, .5, .5], [.5, .5, .5], [1, 1, .5], [.8, .9, .3]],
+  [[.55, .3, .7], [.45, .3, .3], [1, 1, 1], [.75, .55, .2]],
+  [[.6, .4, .45], [.4, .4, .45], [1, .7, .4], [0, .15, .2]],
+  [[.4, .55, .8], [.4, .4, .2], [1, 1, 1], [.55, .6, .65]],
+];
+// Five inks for a portrait, dark to light: sunset, electric, pop, toxic, acid
+const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255);
+const POSTERS = [
+  ['#06030f', '#4a0d9c', '#ff2e93', '#ff9a1f', '#ffe27a'],
+  ['#020514', '#12239a', '#2a6bff', '#2ef2ff', '#b8f4ff'],
+  ['#0a0210', '#6a0d6e', '#ff2a3c', '#ffd400', '#fff27a'],
+  ['#010a0a', '#064a52', '#00c27a', '#c6ff3d', '#f1ffa8'],
+  ['#05020f', '#2b00ff', '#ff00c8', '#ffea00', '#fff7a8'],
+].map(set => new Float32Array(set.flatMap(hex)));
+let scene = null, orderI = -1, lock = KEYS.includes(Q.get('scene')) ? Q.get('scene') : '', presetNames = [], presetI = 0, lastPreset = 0;
+const hero = () => Object.keys(PRESETS).filter(n => PRESETS[n].kind !== 'bg'), calm = () => Object.keys(PRESETS).filter(n => PRESETS[n].kind !== 'hero');
+function nextPreset(now, blend, forScene) {
+  const pool = forScene === 'milk' || forScene === 'title' ? hero() : calm();
+  if (!pool.length) return;
+  if (!presetNames.length || presetNames.pool !== pool.length) { presetNames = shuffle(pool); presetNames.pool = pool.length; presetI = 0; }
+  viz.loadPreset(PRESETS[presetNames[presetI++ % presetNames.length]].preset, blend);
+  lastPreset = now;
+}
+function available(name) {
+  if (SCENES[name].art) return art.ok;
+  if (name === 'face') return people.list.length > 0;
+  return true;
+}
+function startScene(now, name) {
+  if (!name) {
+    do { orderI = (orderI + 1) % ORDER.length; name = ORDER[orderI]; } while (!available(name));
+    if (lock && available(lock)) name = lock;
+  }
+  const s = SCENES[name];
+  scene = {name, s, t0: now, amt: 0, out: false, seed: rand(0, 10), pal: pick(PALETTES), n: pick([6, 8, 8, 10, 12, 16]),
+           poster: pick(POSTERS), spin: 0, spinV: rand(.03, .09) * (Math.random() < .5 ? -1 : 1), grid: 1, beats: 0, people: 0, word: 0};
+  if (name === 'face') nextPerson();
+  if (name === 'title') { titleWord = TITLE[0]; }
+  if (s.art) nextArt(now);
+  nextPreset(now, 2.7, name);
+  layoutText();
+}
+function direct(now, dt) {
+  if (!scene) startScene(now);
+  const sc = scene, s = sc.s, age = now - sc.t0;
+  if (!sc.out && age > s.dur && (A.onBeat || age > s.dur + 1)) sc.out = true;
+  if (!sc.out && !available(sc.name)) sc.out = true;   // the pictures did not load: move on
+  sc.amt = clamp(sc.amt + dt / (sc.out ? -1.3 : 1.5), 0, 1);
+  if (sc.out && sc.amt === 0) return startScene(now);
+  sc.spin += sc.spinV * dt * (1 + A.bass);
+  if (A.onBeat) {
+    sc.beats++;
+    if (s.art && sc.beats % s.art === 0 && now - art.last > 3) nextArt(now);
+    if (sc.name === 'kaleido' && sc.beats % 16 === 0) sc.n = pick([6, 8, 10, 12, 16]);
+    if (sc.name === 'title' && sc.beats % 2 === 0) { titleWord = TITLE[++sc.word % TITLE.length]; layoutText(); }
+  }
+  if (sc.name === 'face') {
+    // Two innovators a scene; each ends as four posters
+    const half = s.dur / 2, local = age % half;
+    if (age >= half && sc.people === 0 && !sc.out) { sc.people = 1; sc.seed += 1.7; sc.poster = pick(POSTERS.filter(x => x !== sc.poster)); nextPerson(); }
+    sc.grid = local > half * .68 ? 2 : 1;
+  }
+  if (now - lastPreset > 17 && !sc.out) nextPreset(now, 2.7, sc.name);
+  art.mix += clamp(art.target - art.mix, -dt / 1.2, dt / 1.2);
+}
+
+/* ---------- The frame ---------- */
+let quality = clamp(parseFloat(Q.get('quality')) || 1, .4, 1), last = 0, t = 0, slow = 0, running = false, fade = 0;
+function uniforms(P, set) {
+  gl.useProgram(P.p);
+  let unit = 0;
+  for (const k in set) {
+    const v = set[k], loc = P.u[k];
+    if (loc == null) continue;
+    if (v instanceof WebGLTexture) { gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, v); gl.uniform1i(loc, unit++); }
+    else if (typeof v === 'number') gl.uniform1f(loc, v);
+    else if (v instanceof Float32Array) gl.uniform3fv(loc, v);
+    else if (v.int != null) gl.uniform1i(loc, v.int);
+    else gl['uniform' + v.length + 'f'](loc, ...v);
+  }
+}
+function frame(ms) {
+  if (!running) return;
+  requestAnimationFrame(frame);
+  const now = ms / 1000, dt = Math.min(.1, now - last || .016);
+  last = now; t += dt;
+  // Under 40 frames a second for three seconds: draw fewer pixels
+  slow = dt > 1 / 40 ? slow + dt : Math.max(0, slow - dt);
+  if (slow > 3 && quality > .5) { quality = Math.max(.5, quality - .2); slow = 0; }
+  sizeBuffers();
+  listen(now, dt);
+  direct(now, dt);
+  viz.render();
+  upload(T.milk, milk, true);
+
+  const sc = scene, s = sc.s, k = sc.amt, f60 = dt * 60;
+  const mixp = (a, b) => a + (b - a) * k, idle = SCENES.milk;
+  const centre = sc.name === 'face' ? [faceRect[0], faceRect[1]] : [0, 0];
+  const src = FB[fbI], dst = FB[1 - fbI];
+  gl.bindFramebuffer(gl.FRAMEBUFFER, dst.fbo);
+  gl.viewport(0, 0, fbW, fbH);
+  uniforms(P1, {
+    uPrev: src.tex, uMilk: T.milk, uArt0: T.art0, uArt1: T.art1, uFace: T.face, uText: T.text,
+    uRes: [fbW, fbH], uArtAsp: art.asp, uCenter: centre, uT: t, uBeat: A.beat, uBass: A.bass, uTreb: A.treb,
+    uAmt: k * (sc.name === 'face' && !(people.ok && people.cur) ? 0 : 1), uArtMix: art.mix, uN: sc.n, uGrid: sc.grid, uSeed: sc.seed, uSpin: sc.spin,
+    uScene: {int: s.id}, uFaceRect: faceRect, uPoster: sc.poster,
+    uWarp: [Math.pow(mixp(idle.zoom, s.zoom), f60), mixp(0, s.turn) * f60 * Math.sign(sc.spinV), mixp(0, s.flow) * (1 + A.bass), mixp(0, s.hue) * f60],
+    uDecay: Math.pow(mixp(idle.decay, s.decay), f60), uTextGlow: s.glow * k * (textOn ? 1 : 0),
+    uPA: sc.pal[0], uPB: sc.pal[1], uPC: sc.pal[2], uPD: sc.pal[3],
+  });
+  gl.drawArrays(gl.TRIANGLES, 0, 3);
+  fbI = 1 - fbI;
+
+  fade = Math.min(1, fade + dt / 1.5);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  gl.viewport(0, 0, view.width, view.height);
+  uniforms(P2, {
+    uFb: dst.tex, uMilk: T.milk, uText: T.text, uShadow: T.shadow, uRes: [view.width, view.height],
+    uMilkGain: mixp(1, s.milk) * (1 + .12 * A.beat), uOcclude: s.occl, uAberr: .004 + .014 * A.beat * k,
+    uTextAmt: s.text * k * (textOn ? 1 : 0), uCap: .5, uFade: fade,
+    uPA: sc.pal[0], uPB: sc.pal[1], uPC: sc.pal[2], uPD: sc.pal[3],
+  });
+  gl.drawArrays(gl.TRIANGLES, 0, 3);
+}
+
+/* ---------- Start, keys ---------- */
+let tipTimer;
+function tip(text, ms) {
+  $('tip').textContent = text; $('tip').classList.remove('off');
+  clearTimeout(tipTimer); tipTimer = setTimeout(() => $('tip').classList.add('off'), ms || 2600);
+}
+async function start(want) {
+  if (running) return;
+  if (!gl || !window.butterchurn) { tip('This browser has no WebGL 2: try Chrome', 9000); return; }
+  ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
+  await ctx.resume();
+  initGL();
+  analyser = ctx.createAnalyser(); analyser.fftSize = 2048; analyser.smoothingTimeConstant = .5;
+  freq = new Uint8Array(analyser.frequencyBinCount);
+  low = ctx.createBiquadFilter(); low.type = 'lowpass'; low.frequency.value = 140;
+  lowAn = ctx.createAnalyser(); lowAn.fftSize = 1024; wave = new Float32Array(lowAn.fftSize);
+  low.connect(lowAn);
+  input = ctx.createGain(); input.connect(analyser); input.connect(low);
+  const mh = Math.round(720 * quality), mw = Math.round(mh * 16 / 9);
+  milk.width = mw; milk.height = mh;
+  viz = (butterchurn.default || butterchurn).createVisualizer(ctx, milk, {width: mw, height: mh, pixelRatio: 1, textureRatio: 1});
+  viz.connectAudio(input);
+  if (want === 'mic') { try { await useMic(); } catch (e) { tip('No microphone: playing to the built-in beat', 5000); } }
+  if (mode !== 'mic') await useBeat();
+  if (document.fonts && document.fonts.load) {
+    await Promise.race([Promise.all(['400 100px "League Gothic"', '500 40px Geologica', '500 38px "Martian Mono"'].map(f => document.fonts.load(f, '2050 Aa').catch(() => {}))),
+                        new Promise(r => setTimeout(r, 2500))]);
+  }
+  preloadArt();
+  $('start').hidden = true;
+  running = true;
+  if (navigator.wakeLock) navigator.wakeLock.request('screen').catch(() => {});
+  requestAnimationFrame(frame);
+  if (mode === 'mic' || !Q.has('src')) tip('F full screen · H keys', 5000);
+}
+$('go-mic').onclick = () => start('mic');
+$('go-beat').onclick = () => start('beat');
+if (location.protocol === 'file:') $('file-note').hidden = false;
+if (Q.has('src')) start(Q.get('src')).catch(() => {});   // works when the browser allows sound without a click (a kiosk)
+
+addEventListener('keydown', async e => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const k = e.key.toLowerCase(), now = performance.now() / 1000;
+  if (k === 'f') { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {}); return; }
+  if (k === 'h') { const s = $('start'); if (running) { s.hidden = !s.hidden; } return; }
+  if (!running) { if (k === 'enter') start('mic'); return; }
+  if (k === ' ' || k === 'arrowright') { e.preventDefault(); if (scene) scene.out = true; }
+  else if (k >= '1' && k <= '6') { lock = KEYS[+k - 1]; if (available(lock)) { scene.out = true; tip('Only ' + lock + ' · 0 for all scenes'); } else tip('No pictures for ' + lock); }
+  else if (k === '0') { lock = ''; tip('All scenes'); }
+  else if (k === 'n') nextPreset(now, 1.5, scene.name);
+  else if (k === 'a') nextArt(now);
+  else if (k === 't') { textOn = !textOn; layoutText(); tip(textOn ? 'Text on' : 'Text off'); }
+  else if (k === 'm') { try { await useMic(); tip('Listening to the microphone'); } catch (err) { tip('The microphone is not available'); } }
+  else if (k === 'b') { await useBeat(); tip('Built-in beat' + (soundOn ? '' : ' (silent: S for sound)')); }
+  else if (k === 's') { soundOn = !soundOn; if (beatGain) beatGain.gain.value = soundOn ? .8 : 0; tip(soundOn ? 'Beat sound on' : 'Beat sound off'); }
+});
+let idleTimer;
+addEventListener('pointermove', () => { document.body.classList.remove('idle'); clearTimeout(idleTimer); idleTimer = setTimeout(() => running && $('start').hidden && document.body.classList.add('idle'), 2500); });
+addEventListener('resize', () => running && sizeBuffers());
+</script>
+</body>
+</html>

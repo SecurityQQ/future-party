@@ -33,6 +33,8 @@ META = {
     "contact": ("Play: 2050 · " + NAME, None, ("hub/apps/play.jpg", 1280, 720, "Play: 2050, the Makey Makey soundboard")),
     "mirror": ("Mirror 2050 · " + NAME, None, ("hub/apps/mirror.jpg", 1280, 720, "Four of Mirror 2050’s camera effects")),
     "mars3d": ("Mars in 3D · " + NAME, None, ("mars3d/preview.jpg", 1280, 720, "Mars in 3D for red/cyan glasses")),
+    "trip": ("Trip 2050 · " + NAME, None,
+             ("trip/preview.jpg", 1280, 720, "Four moments of Trip 2050: a kaleidoscope, four posters of Hedy Lamarr, a tunnel and a street in liquid colour")),
     "concept": ("Imagined Futures · " + NAME,
                 "Concept art of the future from posts on X: space colonies, cities, vehicles, robots and the people "
                 "in them, from 1970s paperback covers to today’s film and game design.",
@@ -183,7 +185,7 @@ SUMMARY = ("Varga Future Party 2050 is a party set in the year 2050, and this si
 APP = ("The Future 2050 (party app)", SITE + "/app",
        "The party App. Tap your pass, meet your Kin (a zodiac creature from 2050), and collect the Kin of "
        "everyone you meet; a live ranking counts the cards each traveler has scanned.")
-GROUPS = [("The night", ["index", "bigwall", "further", "deck"]),
+GROUPS = [("The night", ["index", "bigwall", "trip", "further", "deck"]),
           ("Apps", ["app", "mirror", "resonance", "contact", "mars3d", "concept"]),
           ("Music", ["future_music", "soundtrack", "why"]),
           ("Research", ["books", "tweets", "futurists", "futurists_short", "films", "mirror_research"])]

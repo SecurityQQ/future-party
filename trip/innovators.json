@@ -1,0 +1,29 @@
+{
+ "about": "The innovators Trip 2050 shows between the pictures, in the order of their year. file is the portrait's name on Wikimedia Commons; tools/fetch_portraits.py downloads it, cuts it to the frame in crop (centre x, centre y, height, as parts of the original) and writes CREDITS.md. line is what they did in that year.",
+ "people": [
+  {"id": "archimedes", "name": "Archimedes", "year": "c. 250 BCE", "line": "Worked out the lever and why things float", "file": "Domenico-Fetti_Archimedes_1620.jpg", "crop": [0.7, 0.2, 0.5]},
+  {"id": "leonardo", "name": "Leonardo da Vinci", "year": "c. 1490", "line": "Drew flying machines four centuries before the first flight", "file": "Francesco_Melzi_-_Portrait_of_Leonardo_(colour_correction).png"},
+  {"id": "galileo", "name": "Galileo Galilei", "year": "1610", "line": "Turned a telescope to the sky and found the moons of Jupiter", "file": "Galileo_Galilei_(1564-1642)_RMG_BHC2700.tiff", "crop": [0.5, 0.22, 0.6]},
+  {"id": "newton", "name": "Isaac Newton", "year": "1687", "line": "Wrote down the laws of motion and gravity", "file": "Portrait_of_Sir_Isaac_Newton,_1689_(brightened).jpg", "crop": [0.52, 0.24, 0.6]},
+  {"id": "faraday", "name": "Michael Faraday", "year": "1831", "line": "Turned motion into electricity", "file": "Michael_Faraday_sitting_crop.jpg", "crop": [0.5, 0.3, 0.75]},
+  {"id": "lovelace", "name": "Ada Lovelace", "year": "1843", "line": "Published the first program, for a computer that was never built", "file": "Ada_Lovelace_daguerreotype_by_Antoine_Claudet_1843_-_cropped.png", "crop": [0.45, 0.3, 0.72]},
+  {"id": "verne", "name": "Jules Verne", "year": "1865", "line": "Sent three men from Florida to the Moon, in a novel", "file": "Jules_Verne_by_Étienne_Carjat.jpg", "crop": [0.5, 0.35, 0.75]},
+  {"id": "pasteur", "name": "Louis Pasteur", "year": "1885", "line": "Gave the first rabies vaccine to a person", "file": "Louis_Pasteur,_foto_av_Paul_Nadar,_Crisco_edit.jpg", "crop": [0.5, 0.25, 0.62]},
+  {"id": "tesla", "name": "Nikola Tesla", "year": "1888", "line": "Patented the alternating-current motor", "file": "Tesla_circa_1890.jpeg"},
+  {"id": "tsiolkovsky", "name": "Konstantin Tsiolkovsky", "year": "1903", "line": "Published the rocket equation", "file": "Константин_Циолковский.jpg", "crop": [0.52, 0.22, 0.6]},
+  {"id": "wrights", "name": "Wilbur & Orville Wright", "year": "1903", "line": "Flew the first powered aeroplane, for 12 seconds", "file": "Wright_Brothers_at_home,_1909.jpg", "crop": [0.52, 0.36, 0.72]},
+  {"id": "curie", "name": "Marie Curie", "year": "1911", "line": "Won a second Nobel Prize, in a second science", "file": "Marie_Curie_c._1920s.jpg"},
+  {"id": "einstein", "name": "Albert Einstein", "year": "1915", "line": "Showed that gravity is the curve of space and time", "file": "Albert_Einstein_Head_cleaned.jpg"},
+  {"id": "goddard", "name": "Robert Goddard", "year": "1926", "line": "Launched the first liquid-fuel rocket", "file": "Dr._Robert_H._Goddard_-_GPN-2002-000131.jpg"},
+  {"id": "turing", "name": "Alan Turing", "year": "1936", "line": "Described a machine that can compute anything computable", "file": "Alan_turing_header.jpg"},
+  {"id": "lamarr", "name": "Hedy Lamarr", "year": "1942", "line": "Patented frequency hopping, the idea under Wi-Fi and Bluetooth", "file": "Hedy_Lamarr_Publicity_Photo_for_The_Heavenly_Body_1944.jpg"},
+  {"id": "shannon", "name": "Claude Shannon", "year": "1948", "line": "Founded information theory and named the bit", "file": "C.E._Shannon._Tekniska_museet_43069_(2x3_crop).jpg"},
+  {"id": "hopper", "name": "Grace Hopper", "year": "1952", "line": "Built the first compiler", "file": "Commodore_Grace_M._Hopper,_USN_(covered)_head_and_shoulders_crop.jpg", "crop": [0.5, 0.35, 0.8]},
+  {"id": "johnson", "name": "Katherine Johnson", "year": "1962", "line": "Checked by hand the orbit that carried John Glenn", "file": "Katherine_Johnson_1983.jpg", "crop": [0.5, 0.4, 0.8]},
+  {"id": "hamilton", "name": "Margaret Hamilton", "year": "1969", "line": "Led the software that landed Apollo on the Moon", "file": "Margaret_Hamilton_-_restoration.jpg", "crop": [0.5, 0.48, 0.7]},
+  {"id": "tu", "name": "Tu Youyou", "year": "1972", "line": "Isolated artemisinin, the malaria drug", "file": "D810_4987_Tu_Youyou,_medicine_(22945001843)_(cropped).jpg"},
+  {"id": "berners-lee", "name": "Tim Berners-Lee", "year": "1989", "line": "Proposed the World Wide Web", "file": "Tim_Berners-Lee_at_the_2025_Web_Summit_(Cropped).jpg"},
+  {"id": "jobs", "name": "Steve Jobs", "year": "2007", "line": "Put the internet in a pocket", "file": "Steve_Jobs_Headshot_2010_(cropped_6).jpg"},
+  {"id": "doudna", "name": "Jennifer Doudna", "year": "2012", "line": "Showed that CRISPR can edit genes", "file": "Jennifer_Doudna_by_Christopher_Michel_in_2023_01.jpg"}
+ ]
+}
