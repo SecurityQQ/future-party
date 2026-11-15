@@ -73,6 +73,8 @@ PAGES = {
     "deck": "slides/dist/party-deck.html",
     # Trip 2050, the light show, is served from its own folder (/trip); site.py copies its data, portraits and Butterchurn
     "trip": "trip/index.html",
+    # Prayer Room, the icon that listens, is served from its own folder (/prayer); site.py copies its picture
+    "prayer": "prayer/index.html",
 }
 # Earlier claude.ai copies of the same pages.
 ALIASES = {"https://claude.ai/artifact/65pctWFWHMQZ3ezNrrA7P1": "futurists_ru"}
@@ -88,6 +90,7 @@ SHORT = {
     "tweets-short": "tweets/dist/tweet-wall.html#short-wall",
     "art": PAGES["concept"] + "#wall",
     "mars": PAGES["mars3d"],
+    "pray": PAGES["prayer"],
     "play": PAGES["contact"],
     "soundboard": PAGES["contact"],
     "soundtrack": PAGES["soundtrack"],
@@ -115,7 +118,9 @@ PLAYLISTS = {
 }
 # The previews of the Apps section, 1280x720: made by hub/apps/previews.py, except Mars in 3D's own picture
 APP_SHOTS = {"party": "hub/apps/app.jpg", "mirror": "hub/apps/mirror.jpg", "music": "hub/apps/music.jpg",
-             "play": "hub/apps/play.jpg", "mars": "mars3d/preview.jpg", "art": "hub/apps/art.jpg"}
+             "play": "hub/apps/play.jpg", "mars": "mars3d/preview.jpg", "art": "hub/apps/art.jpg",
+             # Prayer Room's own picture: the room on a wide screen, with a verse beside the icon
+             "prayer": "prayer/preview.jpg"}
 # The picture in the Light show row: four moments of Trip 2050 (a kaleidoscope, four posters, a tunnel, liquid colour)
 TRIP_SHOT = "trip/preview.jpg"
 # The picture on the Imagined Futures tile: the Prometheus Ring, a spinning habitat orbiting Saturn
