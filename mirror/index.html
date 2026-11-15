@@ -1,21 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-vibe="mirror">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Mirror 2050</title>
 <meta name="description" content="Eight camera effects that went viral on X, rebuilt for the browser: hand tracking, shaders, no install.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23070708'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23ff5315' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%235ff5ff'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23030817'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%234385ff' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%239dd8ff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 :root{
-  --bg:#070708; --fg:#fff; --fg-2:#d4d4d8; --muted:#a1a1a6; --line:rgba(255,255,255,.14);
-  --accent:#ff5315; --cyan:#5ff5ff; --warn:#ffad31; --glass:rgba(7,7,8,.62);
+  --bg:#030817; --fg:#fff; --fg-2:#d4d4d8; --muted:#a1a1a6; --line:rgba(255,255,255,.14);
+  --accent:#4385ff; --cyan:#9dd8ff; --warn:#f4c58d; --glass:rgba(3,8,23,.62);
   --display:"League Gothic",Impact,"Arial Narrow",sans-serif;
-  --font:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --font:"Geologica",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Martian Mono",ui-monospace,"SF Mono",Menlo,monospace;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -63,7 +62,7 @@ body.idle{cursor:none}
 #note{position:fixed;left:50%;top:84px;transform:translateX(-50%);font:500 12px/1.3 var(--mono);color:var(--warn);background:var(--glass);border:1px solid rgba(255,173,49,.35);padding:8px 12px;border-radius:10px;pointer-events:none;opacity:0;transition:opacity .4s;max-width:calc(100vw - 32px);text-align:center}
 #note.show{opacity:1}
 
-#gate{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:24px;background:radial-gradient(1200px 700px at 70% 20%,rgba(255,83,21,.18),transparent 60%),radial-gradient(900px 600px at 10% 90%,rgba(95,245,255,.10),transparent 60%),var(--bg)}
+#gate{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:24px;background:radial-gradient(1200px 700px at 70% 20%,rgba(67,133,255,.18),transparent 60%),radial-gradient(900px 600px at 10% 90%,rgba(95,245,255,.10),transparent 60%),var(--bg)}
 #gate.gone{display:none}
 .gate-in{max-width:620px}
 .kicker{font:500 12px/1 var(--mono);letter-spacing:.16em;color:var(--accent)}
@@ -71,11 +70,11 @@ body.idle{cursor:none}
 #gate h1 b{color:var(--accent);font-weight:400}
 #gate p{font-size:18px;line-height:1.5;color:var(--fg-2);margin:18px 0 0;max-width:52ch}
 #go{all:unset;cursor:pointer;margin-top:28px;display:inline-flex;align-items:center;gap:10px;padding:16px 22px;border-radius:12px;background:var(--accent);color:var(--bg);font:600 17px/1 var(--font)}
-#go:hover{background:#ff6a33}
+#go:hover{background:#9dd8ff}
 #gate .small{font:12px/1.7 var(--mono);color:var(--muted)}
 #gate .err{color:var(--warn);font:500 14px/1.5 var(--mono)}
 
-#info{position:fixed;top:0;right:0;bottom:0;z-index:15;width:min(440px,100vw);overflow:auto;background:rgba(7,7,8,.94);border-left:1px solid var(--line);padding:24px 22px 40px;transform:translateX(102%);transition:transform .35s ease}
+#info{position:fixed;top:0;right:0;bottom:0;z-index:15;width:min(440px,100vw);overflow:auto;background:rgba(3,8,23,.94);border-left:1px solid var(--line);padding:24px 22px 40px;transform:translateX(102%);transition:transform .35s ease}
 #info.open{transform:none}
 #info h2{font-family:var(--display);font-weight:400;font-size:44px;line-height:.9;margin:0;text-transform:uppercase}
 #info h3{font:500 11px/1 var(--mono);letter-spacing:.14em;color:var(--accent);margin:26px 0 10px;text-transform:uppercase}
@@ -90,7 +89,7 @@ body.idle{cursor:none}
 #info .close{all:unset;cursor:pointer;position:absolute;top:18px;right:18px;font:500 12px var(--mono);color:var(--muted);padding:6px 8px;border:1px solid var(--line);border-radius:8px}
 #info kbd{font:500 11px var(--mono);padding:2px 5px;border:1px solid var(--line);border-radius:5px;color:var(--fg-2)}
 
-#flash{position:fixed;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(95,245,255,.55),rgba(255,83,21,.35));opacity:0;mix-blend-mode:screen;z-index:5}
+#flash{position:fixed;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(95,245,255,.55),rgba(67,133,255,.35));opacity:0;mix-blend-mode:screen;z-index:5}
 #flash.go{animation:flash .5s ease-out}
 @keyframes flash{0%{opacity:.9}100%{opacity:0}}
 
@@ -104,7 +103,106 @@ body.idle{cursor:none}
 }
 @media (prefers-reduced-motion:reduce){#title,#flash.go{transition:none;animation:none}}
 </style>
-</head>
+<!--vibes:start--><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&family=Geologica:wght@300;400;500;600;700&family=Martian+Mono:wght@400;500&family=League+Gothic&display=swap"><script>document.documentElement.setAttribute("data-vibe","mirror")</script><meta name="theme-color" content="#030817"><style>
+/* Blue futurism: vibes/tokens.css and vibes/pages.css, put here by vibes/restyle.py */
+/* Blue futurism · canonical palette and materials for The Future 2050.
+   Run python3 vibes/sync.py from the repository root after editing. */
+:root {
+  --v-space: #030817;
+  --v-navy: #07132b;
+  --v-panel: #0b1b36;
+  --v-panel-hi: #142d52;
+  --v-ink: #edf4ff;
+  --v-muted: #a2b6d4;
+  --v-dim: #8197b8;
+  --v-blue: #4385ff;
+  --v-ice: #9dd8ff;
+  --v-chrome: #dce9fb;
+  --v-chrome-mid: #8faacf;
+  --v-chrome-low: #304e78;
+  --v-line: #2d486d;
+  --v-error: #ff8595;
+  --v-warning: #f4c58d;
+  --v-chrome-surface: linear-gradient(118deg, #f2f7ff 0%, #aec6e8 21%, #edf6ff 42%, #7da2d1 44%, #b8d6f7 68%, #e2efff 100%);
+  --v-chrome-edge: linear-gradient(145deg, #e9f4ff 0%, #82a4d1 17%, #244672 35%, #b8d8ff 48%, #eef8ff 50%, #426a9d 54%, #122d54 78%, #8bb9ec 100%);
+  --v-holo: linear-gradient(115deg, transparent 25%, rgb(67 133 255 / 18%) 40%, rgb(225 242 255 / 28%) 50%, rgb(130 199 255 / 20%) 58%, transparent 72%);
+  --v-ease: cubic-bezier(.2, .7, .2, 1);
+  --v-fast: 180ms;
+  --v-reveal: 800ms;
+  --v-orbit: 12s;
+  color-scheme: dark;
+}
+
+/* Blue futurism for the pages first made in the earlier orange look (orange on near-black, Inter and a mono face):
+   the research pages, the books, the tweets, the playlists, Further, Projection, Mirror 2050 and Play 2050.
+   vibes/restyle.py puts tokens.css and this file after each page's own style, so the page keeps its layout and takes
+   the front page's palette, type and materials. Dark only, like the front page: the pages' light themes are overruled.
+   Everything is scoped to :root[data-vibe], which restyle.py sets, so it outranks the pages' own rules. */
+
+/* The palette: the old names, pointed at the tokens (the same mapping as hub/template.html) */
+:root:root[data-vibe]{
+  --bg:var(--v-space); --raised:var(--v-navy); --raise:var(--v-panel); --raised-2:var(--v-panel); --panel:var(--v-navy); --wall:var(--v-space);
+  --fg:var(--v-ink); --ink:var(--v-ink); --fg-2:#c4d4ec; --muted:var(--v-muted); --idle:var(--v-muted); --dot:var(--v-chrome-low);
+  --line:rgb(143 170 207 / 20%); --line-2:rgb(143 170 207 / 42%);
+  --accent:var(--v-ice); --accent-hot:#cce9ff; --accent-ink:var(--v-ice); --accent-text:var(--v-ice);
+  --accent-soft:rgb(67 133 255 / 16%); --accent-mid:rgb(67 133 255 / 45%); --on-accent:var(--v-navy);
+  --pos:var(--v-ice); --warn:var(--v-warning); --bad:var(--v-error); --cyan:var(--v-ice); --glass:rgb(3 8 23 / 66%);
+  --tea:#5fc8b4; --listen:var(--v-chrome-low); --frame:var(--v-line);
+  --font:"Geologica",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --text:var(--font);
+  --mono:"Martian Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --vb-display:"Unbounded",system-ui,sans-serif;
+  color-scheme:dark;
+}
+:root[data-vibe] body{background:var(--v-space) radial-gradient(ellipse at 88% 5%,rgb(30 75 151 / 24%),transparent 35%) no-repeat;color:var(--fg);-webkit-font-smoothing:antialiased}
+:root[data-vibe] ::selection{color:var(--v-navy);background:var(--v-ice)}
+:root[data-vibe] :focus-visible{outline:2px solid var(--v-ice);outline-offset:3px}
+
+/* Headings: the page title in Unbounded at the size of Music of the Future's, its highlighted word in chrome, like the
+   front page. Mirror 2050 keeps its own (the effect names over the camera are in League Gothic, like the Big Wall's). */
+:root[data-vibe]:not([data-vibe="mirror"]) h1{font-family:var(--vb-display);font-weight:500;text-transform:uppercase;letter-spacing:-.055em;line-height:1.06}
+:root[data-vibe]:not([data-vibe="mirror"],[data-vibe="play"]) h1{font-size:clamp(36px,5.6vw,72px)}
+:root[data-vibe]:is([data-vibe="research"],[data-vibe="mirror-research"]) h1{font-size:clamp(28px,3.9vw,50px);line-height:1.1}
+:root[data-vibe]:not([data-vibe="mirror"]) h1 :is(span,em,b,i){background:var(--v-chrome-surface);background-clip:text;-webkit-background-clip:text;color:transparent;font-style:normal;font-weight:600}
+:root[data-vibe] h1 .dim{opacity:.72}
+:root[data-vibe]:not([data-vibe="mirror"],[data-vibe="play"]) h2{font-family:var(--vb-display);font-weight:500;font-size:clamp(22px,2.6vw,34px);line-height:1.2;letter-spacing:-.035em;text-transform:none}
+:root[data-vibe] .eyebrow,:root[data-vibe] .kicker{font-family:var(--mono);color:var(--v-ice)}
+
+/* Primary buttons: liquid chrome with navy ink, the way the front page's Start buttons look */
+:root[data-vibe] :is(.btn.primary,.hero-cta .btn:first-child,.s-copy,.yt-btn,.open,#go){color:var(--v-navy);background:var(--v-chrome-surface);background-size:130% 100%;border-color:#c8ddf7;box-shadow:inset 0 1px 0 #fff,0 4px 16px rgb(67 133 255 / 12%);transition:background-position var(--v-fast),box-shadow var(--v-fast)}
+:root[data-vibe] :is(.btn.primary,.hero-cta .btn:first-child,.s-copy,.yt-btn,.open,#go):hover{background-position:100% 50%;box-shadow:inset 0 1px 0 #fff,0 0 24px rgb(67 133 255 / 25%);color:var(--v-navy)}
+
+/* The way home: the party's mark at the top left of every page, pointing back to the page's section on the front page */
+:root[data-vibe] .vb-brand{display:inline-flex;align-items:center;gap:10px;color:var(--v-chrome);font:500 12px/1.4 var(--vb-display);letter-spacing:-.02em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+:root[data-vibe] .vb-brand svg{width:26px;height:26px;flex:none;color:var(--v-ice)}
+:root[data-vibe] .vb-brand:hover{color:#fff}
+:root[data-vibe] nav.top .vb-brand{margin-right:auto}
+:root[data-vibe] .vb-bar{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;padding-block:20px;border-bottom:1px solid var(--line);font:400 11px/1.4 var(--mono);letter-spacing:.03em}
+:root[data-vibe] .vb-bar .vb-brand{margin-right:auto}
+:root[data-vibe] .vb-bar .vb-back{color:var(--muted);text-decoration:none}
+:root[data-vibe] .vb-bar .vb-back:hover{color:var(--fg)}
+@media print{:root[data-vibe] .vb-bar{display:none}}
+
+/* Phones: wide tables scroll inside their frame instead of widening the page, and long source links wrap
+   (Martian Mono is wider than the mono face these pages were laid out in) */
+:root[data-vibe] :is(.table-wrap,.table-scroll){overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch}
+:root[data-vibe] .table-wrap{border:1px solid var(--line);border-radius:var(--r,10px)}
+:root[data-vibe] .sig a{white-space:normal;overflow-wrap:anywhere}
+
+/* Mirror 2050: the titles of the app's own Mirror (app/public/app/mirror/index.html), Unbounded with a chrome 2050,
+   so /mirror and /app/mirror look like one app */
+:root[data-vibe="mirror"]{--display:"Unbounded","Arial Black",system-ui,sans-serif}
+:root[data-vibe="mirror"] .brand{font:700 14px/1.05 var(--display);letter-spacing:.05em}
+:root[data-vibe="mirror"] .brand b{color:var(--v-ice);font-weight:700;margin-left:.2em}
+:root[data-vibe="mirror"] .brand small{font-size:9px;letter-spacing:.16em;margin-top:3px}
+:root[data-vibe="mirror"] #title .num{font-size:11px;letter-spacing:.16em;color:var(--v-ice)}
+:root[data-vibe="mirror"] #title h1{font:600 clamp(34px,6.2vw,88px)/1 var(--display);letter-spacing:-.01em;margin-top:8px;text-transform:none}
+:root[data-vibe="mirror"] #gate h1{font:700 clamp(54px,13vw,128px)/.92 var(--display);letter-spacing:-.02em;text-transform:none}
+:root[data-vibe="mirror"] #gate h1 b{color:transparent;background:var(--v-chrome-surface);-webkit-background-clip:text;background-clip:text;font-weight:700}
+:root[data-vibe="mirror"] #info h2{font:700 30px/1 var(--display);letter-spacing:-.01em;text-transform:none}
+@media (max-width:640px){:root[data-vibe="mirror"] .brand{font-size:12px}}
+</style>
+<!--vibes:end--></head>
 <body>
 <canvas id="gl"></canvas>
 <canvas id="hud"></canvas>
@@ -843,7 +941,7 @@ const Shatter = {
   hud(x){
     const ex = Math.min(1, Math.max(0, (this.s - 1.08)*4)); if (ex <= 0) return;
     const [cols, rows] = this.grid(), tw = S.aspect/cols, th = 1/rows, P = [this.c[0]*S.aspect, this.c[1]];
-    x.font = `${10*S.dpr}px "JetBrains Mono", ui-monospace, monospace`; x.fillStyle = `rgba(95,245,255,${.85*ex})`;
+    x.font = `${10*S.dpr}px "Martian Mono", ui-monospace, monospace`; x.fillStyle = `rgba(95,245,255,${.85*ex})`;
     for (const id of this.labels) {
       if (id >= cols*rows) continue;
       const ix = id % cols, iy = Math.floor(id / cols), r = this.rand[id];
@@ -942,11 +1040,11 @@ const Matrix = {
     const chars = ' .·:-=+*xo%#@&ｱｲｳｴｵｶｷｸｺｻｼｾﾀﾅﾊﾑ01'.split('');
     const cs = 32, c = document.createElement('canvas'), x = c.getContext('2d', {willReadFrequently:true});
     c.width = cs; c.height = cs;
-    const ink = ch => { x.clearRect(0,0,cs,cs); x.fillStyle = '#fff'; x.font = `600 ${cs*.8}px "JetBrains Mono", ui-monospace, monospace`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(ch, cs/2, cs/2+1); let s = 0; const d = x.getImageData(0,0,cs,cs).data; for (let i = 3; i < d.length; i += 4) s += d[i]; return s; };
+    const ink = ch => { x.clearRect(0,0,cs,cs); x.fillStyle = '#fff'; x.font = `600 ${cs*.8}px "Martian Mono", ui-monospace, monospace`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(ch, cs/2, cs/2+1); let s = 0; const d = x.getImageData(0,0,cs,cs).data; for (let i = 3; i < d.length; i += 4) s += d[i]; return s; };
     const sorted = chars.map(ch => [ch, ink(ch)]).sort((a,b) => a[1]-b[1]).map(a => a[0]);
     this.n = sorted.length; c.width = cs*this.n;
     x.fillStyle = '#000'; x.fillRect(0,0,c.width,cs); x.fillStyle = '#fff';
-    x.font = `600 ${cs*.8}px "JetBrains Mono", ui-monospace, monospace`; x.textAlign = 'center'; x.textBaseline = 'middle';
+    x.font = `600 ${cs*.8}px "Martian Mono", ui-monospace, monospace`; x.textAlign = 'center'; x.textBaseline = 'middle';
     sorted.forEach((ch, i) => x.fillText(ch, i*cs + cs/2, cs/2+1));
     this.tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, this.tex);
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, c); gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
@@ -1108,13 +1206,13 @@ function drawHUD(now){
   if (fx.hud) fx.hud(hx);
   if (!hudOn) return;
   const X = x => x*W, Y = y => (1-y)*H;
-  hx.font = `500 ${10.5*d}px "JetBrains Mono", ui-monospace, monospace`; hx.lineWidth = d;
+  hx.font = `500 ${10.5*d}px "Martian Mono", ui-monospace, monospace`; hx.lineWidth = d;
   // frame corners
   const m = 18*d, c = 22*d; hx.strokeStyle = 'rgba(255,255,255,.35)'; hx.beginPath();
   [[m,m,1,1],[W-m,m,-1,1],[m,H-m,1,-1],[W-m,H-m,-1,-1]].forEach(([x,y,sx,sy]) => { hx.moveTo(x, y+sy*c); hx.lineTo(x, y); hx.lineTo(x+sx*c, y); });
   hx.stroke();
   const blink = Math.floor(now/600) % 2 === 0;
-  hx.fillStyle = 'rgba(255,83,21,.95)'; if (blink) { hx.beginPath(); hx.arc(m + 10*d, H - m - 30*d, 4*d, 0, 7); hx.fill(); }
+  hx.fillStyle = 'rgba(67,133,255,.95)'; if (blink) { hx.beginPath(); hx.arc(m + 10*d, H - m - 30*d, 4*d, 0, 7); hx.fill(); }
   hx.fillStyle = 'rgba(255,255,255,.75)';
   const tc = new Date(); const hh = String(tc.getHours()).padStart(2,'0'), mi = String(tc.getMinutes()).padStart(2,'0'), ss = String(tc.getSeconds()).padStart(2,'0');
   hx.fillText(`LIVE ${hh}:${mi}:${ss} · ${fx.name.toUpperCase()}${fx.status ? ' · ' + fx.status() : ''}`, m + 20*d, H - m - 26*d);
@@ -1133,12 +1231,12 @@ function drawHUD(now){
       hx.moveTo(p[0], p[1]-r-4*d); hx.lineTo(p[0], p[1]-r); hx.stroke();
     }
     const pc = [X(h.palm[0]), Y(h.palm[1])], pr = h.size*H*.62, rot = S.time*1.4;
-    hx.strokeStyle = `rgba(255,83,21,${.85*a})`; hx.lineWidth = 2*d;
+    hx.strokeStyle = `rgba(67,133,255,${.85*a})`; hx.lineWidth = 2*d;
     for (let i = 0; i < 3; i++) { hx.beginPath(); hx.arc(pc[0], pc[1], pr, rot + i*2.09, rot + i*2.09 + 1.2 + h.open*.7); hx.stroke(); }
     hx.lineWidth = d; hx.strokeStyle = `rgba(95,245,255,${.35*a})`; hx.beginPath(); hx.arc(pc[0], pc[1], pr*1.18, -rot*.7, -rot*.7 + 4.5); hx.stroke();
     const side = h.label === 'Left' ? 'RIGHT' : h.label === 'Right' ? 'LEFT' : 'HAND';
     const tx = pc[0] + pr*1.3, ty = pc[1] - pr*.6;
-    hx.fillStyle = `rgba(255,83,21,${a})`; hx.fillText(`${side} HAND`, tx, ty);
+    hx.fillStyle = `rgba(67,133,255,${a})`; hx.fillText(`${side} HAND`, tx, ty);
     hx.fillStyle = `rgba(255,255,255,${.85*a})`;
     hx.fillText(`OPEN ${String(Math.round(h.open*100)).padStart(3,' ')}%  ${h.fingers < 0 ? '-' : h.fingers} FNG`, tx, ty + 14*d);
     hx.fillText(`PINCH ${Math.round(h.pinch*100)}%  V ${h.speed.toFixed(2)}`, tx, ty + 28*d);
@@ -1279,7 +1377,7 @@ function snapshot(){
   const c = document.createElement('canvas'); c.width = S.W; c.height = S.H; const x = c.getContext('2d');
   x.drawImage(glc, 0, 0); x.drawImage(hud, 0, 0);
   const d = S.dpr; x.font = `${30*d}px "League Gothic", Impact, sans-serif`; x.fillStyle = '#fff'; x.textAlign = 'right';
-  x.fillText('MIRROR 2050', S.W - 20*d, S.H - 22*d); x.fillStyle = '#ff5315'; x.font = `500 ${10*d}px "JetBrains Mono", monospace`;
+  x.fillText('MIRROR 2050', S.W - 20*d, S.H - 22*d); x.fillStyle = '#4385ff'; x.font = `500 ${10*d}px "Martian Mono", monospace`;
   x.fillText(`FUTURE PARTY · ${FX[cur].name.toUpperCase()}`, S.W - 20*d, S.H - 56*d);
   c.toBlob(b => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `mirror-2050-${FX[cur].id}-${Date.now()}.png`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); });
   const fl = $('#flash'); fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
