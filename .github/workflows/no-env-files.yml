@@ -1,0 +1,19 @@
+# The repo is public: no .env file may ever be committed, in any folder. Only templates
+# (.env.example, placeholders only) are allowed. .gitignore stops it locally; this stops a
+# force-added one from being merged.
+name: No .env files
+on: [push, pull_request]
+jobs:
+  env-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Only .env.example templates are tracked
+        run: |
+          found=$(git ls-files | grep -E '(^|/)\.env' | grep -vE '(^|/)\.env\.example$' || true)
+          if [ -n "$found" ]; then
+            echo "::error::These .env files must not be committed:"
+            echo "$found"
+            exit 1
+          fi
+          echo "No .env files are tracked."

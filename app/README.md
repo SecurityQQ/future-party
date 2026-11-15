@@ -37,13 +37,15 @@ The session is an httpOnly cookie (one year) tied to a row in `sessions`.
 
 The image is copied into the public `characters` bucket as a 900 px WebP. Each poll of `/api/players/<id>` moves the job along, and `after()` keeps polling for 4.5 minutes if the guest closes the page.
 
+**The Kin comes alive** (`lib/video.ts`): once a picture is stored, MiniMax H3 (`minimax_h3`, image to video) animates it: 5 s at 720p (768×1024), the picture as both first and last frame so the clip loops without a jump. About 30¢ and 80–90 s a clip, one retry. The MP4 goes into the same bucket next to the picture, and one row per picture in `videos` keeps picture, clip, job and status together, so a redraw or a switch between versions never loses or repeats a clip; `players.video_url` is the clip of the picture on the card. The card shows the picture and fades the clip in over it once it plays (a phone in Low Power Mode or with reduced motion keeps the still). The owner gets **Save picture** and **Save video** under their card. Cards drawn before clips existed get theirs the first time someone opens them. Clip status is on `/app/admin`. Clips need the `players.video_url` column and the `videos` table from `supabase/schema.sql`; until they exist the app runs exactly as before without clips, and once they do, clips switch on within a minute without a redeploy (`clipsReady()` in `lib/video.ts`).
+
 The reading streams from `google/gemini-2.5-flash`, then `openai/gpt-5-mini` (the two models the gateway's free tier allows), then a template, so the loader never stalls. After adding gateway credits, set `READING_MODEL=anthropic/claude-haiku-5.5` on Vercel to try that first.
 
 ## Running the party
 
 - **Tags**: open `/app/admin?key=<ADMIN_KEY>` (the key is in `.env.local` and on Vercel), press Generate and write one URL per tag (NFC Tools → Write → URL). The codes are random, so nobody can collect a card by typing an address. Any `/app/t/<code>` (or the old `/t/<code>`) works, so you can also write your own codes.
 - **Fix a bad image**: on `/app/admin`, Redraw (same finish) or Reroll finish.
-- **Start clean** (after testing): `set -a; source .env.local; set +a; bun scripts/reset.ts --yes`. This empties players, tags, scans and images and keeps the guest list.
+- **Start clean** (after testing): `set -a; source .env.local; set +a; bun scripts/reset.ts --yes`. This empties players, tags, scans, images and clips and keeps the guest list.
 - **Wall screen**: `/app/leaderboard` refreshes itself every 15 s.
 
 ## Setup from scratch
@@ -83,6 +85,7 @@ vercel deploy --prod               # vargafutureparty.com and the three .vercel.
 | `components/AstroLoader.tsx` | The streamed reading, star chart, synthesis log, reveal. |
 | `lib/match.ts` | Name → guest: Cyrillic transliteration, nicknames (Dima, Sasha, Katya…), Jaro-Winkler per word. |
 | `lib/character.ts` | Prompt, finish, varg job, retries, storage. |
+| `lib/video.ts` | The H3 step: animates each finished picture, stores the MP4, one `videos` row per picture. |
 | `lib/reading.ts` | The oracles' prompt, model chain, template. |
 | `app/api/*` | register, players/[id] (status), reading, claim, restore, me, admin/regenerate. |
 | `supabase/schema.sql` | Tables, the `leaderboard` view, RLS, the storage bucket. |

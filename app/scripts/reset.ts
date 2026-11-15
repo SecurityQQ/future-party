@@ -1,10 +1,10 @@
-// Wipe every pilot, card claim, collection, friendship, login code, scan and character image, and restart card numbers
+// Wipe every pilot, card claim, collection, friendship, login code, scan, character image and clip, and restart card numbers
 // at 001. The guest list stays. Run from app/:  bun scripts/reset.ts --yes
 import { SQL } from "bun";
 import { createClient } from "@supabase/supabase-js";
 
 if (!process.argv.includes("--yes")) {
-  console.log("This deletes all players, tags, collections, scans and images. Run again with --yes.");
+  console.log("This deletes all players, tags, collections, scans, images and clips. Run again with --yes.");
   process.exit(1);
 }
 const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SECRET_KEY!, { auth: { persistSession: false } });
@@ -31,7 +31,8 @@ for (;;) {
 }
 
 const sql = new SQL(process.env.DATABASE_URL!);
+// cascade also empties videos (the clips), which references players
 await sql`truncate scans, collections, friends, login_codes, sessions, tags, players restart identity cascade`;
 const [{ guests }] = await sql`select count(*)::int as guests from guests`;
 await sql.close();
-console.log(`removed ${removed} images; players, tags, collections, friends, login codes, scans and sessions emptied; ${guests} guests kept`);
+console.log(`removed ${removed} images and clips; players, tags, collections, friends, login codes, scans and sessions emptied; ${guests} guests kept`);

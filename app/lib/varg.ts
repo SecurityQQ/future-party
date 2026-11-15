@@ -5,9 +5,22 @@ import { join } from "node:path";
 
 const API = "https://api.varg.ai/v2";
 
-// Same lookup as the playground server: VARG_API_KEY, else the local varg login (dev only).
+// One line of a dotenv file, without printing or exporting anything else from it.
+function fromDotenv(file: string, name: string): string {
+  try {
+    const line = readFileSync(file, "utf8").split("\n").find((l) => l.startsWith(`${name}=`));
+    return line ? line.slice(name.length + 1).trim().replace(/^(["'])(.*)\1$/, "$2") : "";
+  } catch {
+    return "";
+  }
+}
+
+// VARG_API_KEY (always set on Vercel); locally the repo's own .env (one level up from app/),
+// else the local varg login. The playground server looks it up the same way.
 function key(): string {
   if (process.env.VARG_API_KEY) return process.env.VARG_API_KEY;
+  const local = fromDotenv(join(process.cwd(), "..", ".env"), "VARG_API_KEY");
+  if (local) return local;
   try {
     return JSON.parse(readFileSync(join(homedir(), ".varg/credentials"), "utf8")).api_key || "";
   } catch {
@@ -45,6 +58,24 @@ export async function startImage(input: { model: string; prompt: string; aspect:
   return job.id as string;
 }
 
+// Image to video. `loop` sends the picture as the last frame too, so the clip ends where it began.
+export async function startVideo(input: {
+  model: string; prompt: string; image: string; aspect: string; duration: number; resolution: string; loop?: boolean;
+}): Promise<string> {
+  const job = await call("/tools/video/call", {
+    model: input.model,
+    prompt: input.prompt,
+    files: [{ url: input.image }],
+    aspect_ratio: input.aspect,
+    duration: input.duration,
+    resolution: input.resolution,
+    ...(input.loop ? { provider_options: { fal: { end_image_url: input.image } } } : {}),
+    options: { cache: false },
+  });
+  if (!job?.id) throw new Error("varg returned no job id");
+  return job.id as string;
+}
+
 export type JobState =
   | { status: "running" }
   | { status: "done"; url: string; mediaType?: string }
@@ -54,7 +85,7 @@ export async function jobState(id: string): Promise<JobState> {
   const job = await call(`/jobs/${id}`);
   if (job.status === "completed") {
     const out = job.output?.outputs?.[0];
-    if (!out?.url) return { status: "failed", error: "job completed without an image" };
+    if (!out?.url) return { status: "failed", error: "job completed without a file" };
     return { status: "done", url: out.url, mediaType: out.media_type };
   }
   if (job.status === "failed" || job.status === "cancelled") {

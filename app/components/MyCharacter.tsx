@@ -4,18 +4,21 @@ import type { PublicCard } from "@/lib/db";
 import AstroLoader from "./AstroLoader";
 import { CharacterCard } from "./CharacterCard";
 import Hull from "./Hull";
+import { type ClipState, useKinClip } from "./KinClip";
 
 // used: redraws spent (one is allowed); hasPrev: the other version is kept and can be switched back.
 export type RedrawState = { used: number; hasPrev: boolean };
 
 // Your own Kin: the oracles' loader while it materializes, then the reveal. With `redraw`, the
 // traveler can redraw it once with notes on what to change, and switch between the two versions.
+// Once drawn, the Kin comes alive (its H3 clip) and can be saved to the phone as picture and video.
 export default function MyCharacter({ card, redraw, children }: { card: PublicCard; redraw?: RedrawState; children?: React.ReactNode }) {
   const [shown, setShown] = useState<PublicCard | null>(card.status === "done" ? card : null);
   const [flash, setFlash] = useState(false);
   const [r, setR] = useState<RedrawState | undefined>(redraw);
   // The redraw request in flight (resolves to an error message, or null when the job started).
   const [redrawing, setRedrawing] = useState<Promise<string | null> | null>(null);
+  const clip = useKinClip(redrawing ? null : shown);
 
   const reveal = (c: PublicCard) => {
     setFlash(true);
@@ -48,7 +51,8 @@ export default function MyCharacter({ card, redraw, children }: { card: PublicCa
   return (
     <>
       {flash && <div className="flash" />}
-      <CharacterCard card={shown} reveal={flash} />
+      <CharacterCard card={{ ...shown, video_url: clip.url }} reveal={flash} />
+      <SaveKin card={shown} clip={clip} />
       {r && (
         <RedrawPanel
           id={card.id}
@@ -67,6 +71,23 @@ export default function MyCharacter({ card, redraw, children }: { card: PublicCa
       )}
       {children}
     </>
+  );
+}
+
+// Supabase serves a stored file as a download when its link asks for one (?download=<file name>).
+function SaveKin({ card, clip }: { card: PublicCard; clip: ClipState }) {
+  if (!card.image_url) return null;
+  const name = `${card.character}-${String(card.card_no).padStart(3, "0")}`.replace(/[^\p{L}\p{N}]+/gu, "-");
+  const save = (url: string, ext: string) => `${url}${url.includes("?") ? "&" : "?"}download=${encodeURIComponent(`${name}.${ext}`)}`;
+  return (
+    <div className={`btns ${clip.url || clip.pending ? "two" : ""}`}>
+      <a className="btn ghost small" href={save(card.image_url, "webp")}>Save picture</a>
+      {clip.url ? (
+        <a className="btn ghost small" href={save(clip.url, "mp4")}>Save video</a>
+      ) : clip.pending ? (
+        <button className="btn ghost small" disabled>Coming alive…</button>
+      ) : null}
+    </div>
   );
 }
 

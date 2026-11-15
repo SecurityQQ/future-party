@@ -7,7 +7,7 @@ cd astrology/playground
 bun --watch server.ts      # http://localhost:4300
 ```
 
-The varg key is read from `VARG_API_KEY` or `~/.varg/credentials` and stays on the server.
+The varg key is read from `VARG_API_KEY`, the repo's own `.env` (git-ignored) or `~/.varg/credentials`, and stays on the server.
 
 ## The loop
 
