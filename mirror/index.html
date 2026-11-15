@@ -1390,7 +1390,7 @@ function snapshot(){
   x.drawImage(glc, 0, 0); x.drawImage(hud, 0, 0);
   const d = S.dpr; x.font = `${30*d}px "League Gothic", Impact, sans-serif`; x.fillStyle = '#fff'; x.textAlign = 'right';
   x.fillText('MIRROR 2050', S.W - 20*d, S.H - 22*d); x.fillStyle = '#4385ff'; x.font = `500 ${10*d}px "Martian Mono", monospace`;
-  x.fillText(`VARGA FUTURE PARTY · ${FX[cur].name.toUpperCase()}`, S.W - 20*d, S.H - 56*d);
+  x.fillText(`VARGAFUTUREPARTY.COM · ${FX[cur].name.toUpperCase()}`, S.W - 20*d, S.H - 56*d); // the address travels with a posted snapshot
   c.toBlob(b => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `mirror-2050-${FX[cur].id}-${Date.now()}.png`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); });
   const fl = $('#flash'); fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
 }

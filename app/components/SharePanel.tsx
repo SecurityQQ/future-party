@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import Hull from "./Hull";
 
 // The traveler's public link (/c/<card number>) with a QR code: whoever scans it or opens the link
-// sees this Kin and can become friends.
-export default function SharePanel({ url, qr, title }: { url: string; qr: string; title: string }) {
+// sees this Kin and can become friends. "Post on X" writes the post for them; the link's card
+// (app/app/app/c/[id]/card) shows the Kin, so the post needs no picture of its own.
+export default function SharePanel({ url, qr, title, character }: { url: string; qr: string; title: string; character: string }) {
   const [copied, setCopied] = useState(false);
   const [canShare, setCanShare] = useState(false);
   useEffect(() => setCanShare(typeof navigator.share === "function"), []);
+  const post = `https://x.com/intent/post?text=${encodeURIComponent(`My Kin for 2050: ${character}. Met at Varga Future Party by @vargastartup`)}&url=${encodeURIComponent(url)}`;
 
   async function copy() {
     try {
@@ -24,9 +26,10 @@ export default function SharePanel({ url, qr, title }: { url: string; qr: string
         <div className="stack" style={{ gap: 10, alignContent: "start" }}>
           <p style={{ margin: 0 }}>Anyone who scans this code or opens your link sees your Kin and can become your friend.</p>
           <a className="share-url mono" href={url}>{url.replace(/^https?:\/\//, "")}</a>
-          <div className={`btns ${canShare ? "two" : ""}`}>
-            {canShare && <button className="btn" onClick={() => navigator.share({ title, url }).catch(() => {})}>Share</button>}
-            <button className={`btn ${canShare ? "ghost" : ""}`} onClick={copy}>{copied ? "Copied" : "Copy link"}</button>
+          <a className="btn" href={post} target="_blank" rel="noopener">Post on X</a>
+          <div className="btns two">
+            {canShare && <button className="btn ghost small" onClick={() => navigator.share({ title, url }).catch(() => {})}>Share</button>}
+            <button className="btn ghost small" onClick={copy} style={canShare ? undefined : { gridColumn: "1 / -1" }}>{copied ? "Copied" : "Copy"}</button>
           </div>
         </div>
       </div>

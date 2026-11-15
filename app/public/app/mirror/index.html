@@ -1558,7 +1558,7 @@ function snapshot(){
   x.textAlign = 'right'; x.shadowColor = 'rgba(0,0,0,.6)'; x.shadowBlur = 12*d;
   x.font = `700 ${18*d}px Unbounded, "Arial Black", sans-serif`; x.fillStyle = '#edf4ff'; x.fillText('THE FUTURE 2050', S.W - m, S.H - m);
   const who = KIN.me ? ` · № ${pad3(KIN.me.card_no)} ${KIN.me.name.toUpperCase()}` : '';
-  x.font = `500 ${9*d}px "Martian Mono", monospace`; x.fillStyle = '#9dd8ff'; x.fillText(`MIRROR · ${FX[cur].name.toUpperCase()}${who}`, S.W - m, S.H - m - 26*d);
+  x.font = `500 ${9*d}px "Martian Mono", monospace`; x.fillStyle = '#9dd8ff'; x.fillText(`VARGAFUTUREPARTY.COM · ${FX[cur].name.toUpperCase()}${who}`, S.W - m, S.H - m - 26*d); // the address travels with a posted snapshot
   const name = `the-future-2050-mirror-${FX[cur].id}-${Date.now()}.jpg`;
   c.toBlob(b => {
     if (!b) return note('The snapshot did not work. Try again.');
