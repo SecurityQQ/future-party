@@ -1,5 +1,7 @@
-"""Build Soundtrack 2050: inject soundtrack.json and history.json into template.html,
-write dist/soundtrack2050.html (the published page) and history.csv.
+"""Build the music pages: Soundtrack 2050 (Fable 5.2's playlist about the future: soundtrack.json and history.json
+into template.html -> dist/soundtrack2050.html and history.csv), Why Music Changes (eras.json, route.json ->
+dist/why-music-changes.html) and Music of the Future, the host's own picks (future_music.json ->
+dist/music-of-the-future.html).
 Run: python3 -I build.py   (from this folder)"""
 import csv, json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -50,6 +52,24 @@ assert wt.count('__ROUTE_JSON__') == 1 and all(i.get('yt') for i in route['items
 why = wt.replace('__ERAS_JSON__', js(eras)).replace('__ROUTE_JSON__', js(route))
 open(os.path.join(HERE, 'dist', 'why-music-changes.html'), 'w', encoding='utf-8').write(why)
 print(f"built dist/why-music-changes.html ({len(why.encode())} bytes); {len(eras['eras'])} eras, {len(eras.get('scenarios', []))} scenarios")
+
+# Page 3: Music of the Future, the host's own picks (future_music.json -> future_template.html)
+fm = load('future_music.json')
+ft = open(os.path.join(HERE, 'future_template.html'), encoding='utf-8').read()
+assert ft.count('__FUTURE_JSON__') == 1 and ft.count('/*VIBES_TOKENS*/') == 1
+chapters = {c['id']: c for c in fm['chapters']}
+assert {c['part'] for c in fm['chapters']} <= {p['id'] for p in fm['parts']}
+assert len({t['yt'] for t in fm['tracks']}) == len(fm['tracks']), 'duplicate video in Music of the Future'
+for t in fm['tracks']:
+    assert t['ch'] in chapters and len(t['yt']) == 11 and t['d'] > 0, t
+# The tracks run part by part, chapter by chapter, as on the YouTube playlist
+order = [chapters[t['ch']]['part'] for t in fm['tracks']]
+assert order == sorted(order, key=[p['id'] for p in fm['parts']].index), 'parts out of order'
+tokens = open(os.path.join(HERE, '..', 'vibes', 'tokens.css'), encoding='utf-8').read()
+future = ft.replace('/*VIBES_TOKENS*/', tokens).replace('__FUTURE_JSON__', js(fm))
+open(os.path.join(HERE, 'dist', 'music-of-the-future.html'), 'w', encoding='utf-8').write(future)
+print(f"built dist/music-of-the-future.html ({len(future.encode())} bytes); {len(fm['tracks'])} videos, "
+      f"{sum(t['d'] for t in fm['tracks'])//60} min")
 
 tracks = [t for t in st['tracks'] if t.get('k') != 'voice']
 print(f"built dist/soundtrack2050.html ({len(page.encode())} bytes); {len(tracks)} tracks, "
