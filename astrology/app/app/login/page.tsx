@@ -4,7 +4,7 @@ import TopBar from "@/components/TopBar";
 import EmailLogin from "@/components/EmailLogin";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Log in · Kin 2050", robots: { index: false } };
+export const metadata = { title: "Log in · The Future 2050", robots: { index: false } };
 
 // Email login. The link in the login email lands here with ?email=..&code=.. and signs in by itself.
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ email?: string; code?: string; next?: string }> }) {

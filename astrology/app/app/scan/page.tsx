@@ -5,7 +5,7 @@ import TopBar from "@/components/TopBar";
 import NfcScan from "@/components/NfcScan";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Scan a pass · Kin 2050" };
+export const metadata = { title: "Scan a pass · The Future 2050" };
 
 // The pass scanner on its own: to join (no traveler yet) or to bring someone's Kin into your orbit.
 export default async function ScanPage() {

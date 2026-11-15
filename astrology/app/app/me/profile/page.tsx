@@ -4,7 +4,7 @@ import TopBar from "@/components/TopBar";
 import ProfileForm from "@/components/ProfileForm";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Profile · Kin 2050" };
+export const metadata = { title: "Profile · The Future 2050" };
 
 export default async function ProfilePage() {
   const me = await currentPlayer();

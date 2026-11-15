@@ -1,6 +1,6 @@
-# Kin 2050
+# The Future 2050
 
-The party app for The Future Party 2050: **https://zodiac-rangers.vercel.app** (the address keeps the first name, Zodiac Rangers).
+The party app for The Future Party 2050: **https://the-future-2050.vercel.app**. Passes written with the first address, `zodiac-rangers.vercel.app/t/<code>`, keep working: both addresses belong to the same Vercel project, `the-future-2050`.
 
 **The story.** It is 2050, and nobody arrives alone. Every traveler is met by their Kin: a companion from the future, shaped by the sky they were born under and the life they lead. Three oracles at Arrival Station read your sky while your Kin crosses over. Then you tap the pass of everyone you meet, and their Kin joins your orbit. The future is who you meet.
 
