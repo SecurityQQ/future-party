@@ -6,7 +6,7 @@ Red lens on the **left** eye. The intro has a glasses test: with the right eye c
 
 ## Open it
 
-Open `mars3d/index.html` in Chrome, from disk or from the website (`/mars3d/`, short address `/mars`). It needs no server and no internet: three.js is in `vendor/`, the globe's maps are in `globe/textures.js`. Only the fonts come from Google Fonts, and the page falls back to system fonts without them.
+Open `mars3d/index.html` in Chrome, from disk or from the website (`/mars`, or `/mars3d`, which forwards to `/mars3d/index.html`). It needs no server and no internet: three.js is in `vendor/`, the globe's maps are in `globe/textures.js`. Only the fonts come from Google Fonts, and the page falls back to system fonts without them.
 
 | Address | What it does |
 | --- | --- |
