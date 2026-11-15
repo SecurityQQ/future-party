@@ -390,10 +390,6 @@ dialog::backdrop{background:rgb(1 6 18 / 78%);backdrop-filter:blur(8px)}.dialog-
 @media print{body{background:#fff;color:#111}body::before{display:none}.app-shell{padding:0}.radio,.radio-open{display:none!important}}
 
 /* History: eras and recordings on top (era-browser.css), then the selected video and its context. */
-#history-view .history-visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-#history-view .history-step-controls{display:flex;align-items:center;justify-content:center;gap:10px;height:46px}
-#history-view .history-step-controls .icon-button{width:42px;height:42px;flex:none;border-radius:9px}
-#history-view #history-position{font:400 11px/1.5 var(--mono);color:var(--v-chrome);min-width:65px;text-align:center;white-space:nowrap}
 #history-view .story{padding-top:10px;scroll-margin-top:12px}
 #history-view .story-heading{justify-content:flex-end;margin-bottom:10px;min-height:34px}
 #history-view .story-tools{gap:20px}
@@ -429,9 +425,6 @@ dialog::backdrop{background:rgb(1 6 18 / 78%);backdrop-filter:blur(8px)}.dialog-
  #history-view .context-section p{font-size:14px}
 }
 @media(max-width:620px){
- #history-view .history-step-controls{height:44px;gap:5px}
- #history-view .history-step-controls .icon-button{height:36px;width:32px}
- #history-view #history-position{font-size:9px;min-width:46px}
  #history-view .story{padding-top:7px}
  #history-view .story-tools{gap:18px}
  #history-view .story-tools .quiet-button{font-size:11px}
@@ -443,114 +436,125 @@ dialog::backdrop{background:rgb(1 6 18 / 78%);backdrop-filter:blur(8px)}.dialog-
  #history-view .future-bridge{padding:18px}
  #history-view .future-bridge strong{font-size:20px}
 }
-@media(max-width:359px){
- #history-view .history-step-controls{gap:3px}
- #history-view #history-position{font-size:8px;min-width:40px}
- #history-view .history-step-controls .icon-button{width:28px}
-}
 
 /* Eras as glass folders, recordings as a molten ring (era-browser.js). */
-#history-view .history-controls{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;padding:14px 0 18px;border-bottom:1px solid var(--line)}
-#history-view{--era-spring:cubic-bezier(.34,1.36,.5,1);--era-ease:cubic-bezier(.2,.8,.2,1)}
+:is(#history-view,#future-view) .history-controls{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;padding:14px 0 18px;border-bottom:1px solid var(--line)}
+#history-view,#future-view{--era-spring:cubic-bezier(.34,1.36,.5,1);--era-ease:cubic-bezier(.2,.8,.2,1)}
+
+/* ---- shared by both views: hidden labels, step controls ------------------- */
+:is(#history-view,#future-view) .history-visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:is(#history-view,#future-view) .history-step-controls{display:flex;align-items:center;justify-content:center;gap:10px;height:46px;flex:none}
+:is(#history-view,#future-view) .history-step-controls .icon-button{width:42px;height:42px;flex:none;border-radius:9px}
+:is(#history-view,#future-view) .era-position{font:400 11px/1.5 var(--mono);color:var(--v-chrome);min-width:65px;text-align:center;white-space:nowrap}
+@media(max-width:620px){
+ :is(#history-view,#future-view) .history-step-controls{height:44px;gap:5px}
+ :is(#history-view,#future-view) .history-step-controls .icon-button{height:36px;width:32px}
+ :is(#history-view,#future-view) .era-position{font-size:9px;min-width:46px}
+}
+@media(max-width:359px){
+ :is(#history-view,#future-view) .history-step-controls{gap:3px}
+ :is(#history-view,#future-view) .era-position{font-size:8px;min-width:40px}
+ :is(#history-view,#future-view) .history-step-controls .icon-button{width:28px}
+}
 
 /* ---- the strip of eras ---------------------------------------------------- */
-#history-view .era-picker{position:relative;min-width:0}
-#history-view .era-strip{--fade-l:0px;--fade-r:0px;position:relative;display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-inline:contain;scroll-snap-type:x proximity;scrollbar-width:none;padding:12px 4px 16px;margin:0 -4px;
+:is(#history-view,#future-view) .era-picker{position:relative;min-width:0}
+:is(#history-view,#future-view) .era-strip{--fade-l:0px;--fade-r:0px;position:relative;display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-inline:contain;scroll-snap-type:x proximity;scrollbar-width:none;padding:12px 4px 16px;margin:0 -4px;
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 var(--fade-l),#000 calc(100% - var(--fade-r)),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 var(--fade-l),#000 calc(100% - var(--fade-r)),transparent 100%)}
-#history-view .era-strip::-webkit-scrollbar{display:none}
-#history-view .era-strip.can-earlier{--fade-l:44px}
-#history-view .era-strip.can-later{--fade-r:44px}
-#history-view .era-scroll{position:absolute;top:50%;z-index:6;width:34px;height:34px;margin-top:-17px;border-radius:50%;font-size:15px;background:rgb(7 19 43 / 72%);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid #4f709b;box-shadow:0 6px 18px rgb(0 5 18 / 45%);transition:opacity .25s var(--era-ease),border-color var(--v-fast)}
-#history-view .era-scroll:hover{border-color:var(--v-ice)}
-#history-view .era-scroll-prev{left:-6px}
-#history-view .era-scroll-next{right:-6px}
-#history-view .era-scroll:disabled{opacity:0;pointer-events:none}
+:is(#history-view,#future-view) .era-strip::-webkit-scrollbar{display:none}
+:is(#history-view,#future-view) .era-strip.can-earlier{--fade-l:44px}
+:is(#history-view,#future-view) .era-strip.can-later{--fade-r:44px}
+:is(#history-view,#future-view) .era-scroll{position:absolute;top:50%;z-index:6;width:34px;height:34px;margin-top:-17px;border-radius:50%;font-size:15px;background:rgb(7 19 43 / 72%);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid #4f709b;box-shadow:0 6px 18px rgb(0 5 18 / 45%);transition:opacity .25s var(--era-ease),border-color var(--v-fast)}
+:is(#history-view,#future-view) .era-scroll:hover{border-color:var(--v-ice)}
+:is(#history-view,#future-view) .era-scroll-prev{left:-6px}
+:is(#history-view,#future-view) .era-scroll-next{right:-6px}
+:is(#history-view,#future-view) .era-scroll:disabled{opacity:0;pointer-events:none}
 
 /* ---- one folder ------------------------------------------------------------ */
-#history-view .era-folder{--hinge:0deg;--lift:0px;--spread:0px;--fan:0deg;--stack:4px;--px:0;--py:0;--era-a:#2c5fd6;--era-b:#9dd8ff;
+:is(#history-view,#future-view) .era-folder{--hinge:0deg;--lift:0px;--spread:0px;--fan:0deg;--stack:4px;--px:0;--py:0;--era-a:#2c5fd6;--era-b:#9dd8ff;
   position:relative;flex:0 0 156px;width:156px;height:112px;margin:0;padding:0;border:0;border-radius:14px;background:none;color:var(--v-ink);text-align:left;cursor:pointer;scroll-snap-align:center;isolation:isolate;-webkit-tap-highlight-color:transparent;
   animation:era-in .9s var(--era-ease) both;animation-delay:calc(var(--i) * 55ms)}
 @keyframes era-in{from{opacity:0;transform:translateY(18px)}}
-#history-view .era-folder:hover,#history-view .era-folder:focus-visible{--hinge:-10deg;--lift:-6px;--spread:4px;--fan:2deg;--stack:6px}
-#history-view .era-folder.active{--hinge:-17deg;--lift:-13px;--spread:11px;--fan:5deg;--stack:8px}
-#history-view .era-folder:focus-visible{outline:2px solid var(--v-ice);outline-offset:4px}
-#history-view .era-folder::after{content:"";position:absolute;left:14px;right:14px;bottom:-4px;height:24px;z-index:-2;border-radius:20px;background:rgb(0 4 14 / 70%);filter:blur(10px);transition:opacity .6s var(--era-ease)}
-#history-view .era-folder::before{content:"";position:absolute;left:8%;right:8%;bottom:-12px;height:36px;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgb(67 133 255 / 70%),rgb(67 133 255 / 0%));filter:blur(6px);opacity:0;transform:scaleX(.6);transition:opacity .6s var(--era-ease),transform .8s var(--era-spring)}
-#history-view .era-folder.active::before{opacity:1;transform:none}
+:is(#history-view,#future-view) .era-folder:hover,:is(#history-view,#future-view) .era-folder:focus-visible{--hinge:-10deg;--lift:-6px;--spread:4px;--fan:2deg;--stack:6px}
+:is(#history-view,#future-view) .era-folder.active{--hinge:-17deg;--lift:-13px;--spread:11px;--fan:5deg;--stack:8px}
+:is(#history-view,#future-view) .era-folder:focus-visible{outline:2px solid var(--v-ice);outline-offset:4px}
+:is(#history-view,#future-view) .era-folder::after{content:"";position:absolute;left:14px;right:14px;bottom:-4px;height:24px;z-index:-2;border-radius:20px;background:rgb(0 4 14 / 70%);filter:blur(10px);transition:opacity .6s var(--era-ease)}
+:is(#history-view,#future-view) .era-folder::before{content:"";position:absolute;left:8%;right:8%;bottom:-12px;height:36px;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgb(67 133 255 / 70%),rgb(67 133 255 / 0%));filter:blur(6px);opacity:0;transform:scaleX(.6);transition:opacity .6s var(--era-ease),transform .8s var(--era-spring)}
+:is(#history-view,#future-view) .era-folder.active::before{opacity:1;transform:none}
 
-#history-view .era-back{position:absolute;left:0;top:8px;width:156px;height:104px;overflow:hidden;background:linear-gradient(180deg,#1a3563,#0b1b36)}
-#history-view .era-art{position:absolute;left:-10px;top:-10px;width:176px;height:124px;max-width:none;opacity:0;filter:blur(12px) saturate(.6);transform:translate(calc(var(--px) * -6px),calc(var(--py) * -5px)) scale(1.02);transition:transform 1.1s var(--era-ease),opacity 1.2s var(--era-ease),filter 1.2s var(--era-ease)}
-#history-view .era-art[data-ready]{opacity:1;filter:none}
-#history-view .era-folder:not(.active) .era-art[data-ready]{filter:saturate(.72) brightness(.82)}
-#history-view .era-folder:hover .era-art[data-ready]{filter:none}
-#history-view .era-back-sheen{position:absolute;inset:0;background:linear-gradient(180deg,rgb(255 255 255 / 20%) 0,rgb(255 255 255 / 0%) 26%),radial-gradient(120% 80% at 80% 0,rgb(255 255 255 / 14%),transparent 60%)}
-#history-view .era-back-rim{position:absolute;left:0;top:8px;width:156px;height:104px;overflow:visible;fill:none;pointer-events:none}
-#history-view .era-back-rim path{stroke:rgb(220 233 251 / 30%);stroke-width:1}
+:is(#history-view,#future-view) .era-back{position:absolute;left:0;top:8px;width:156px;height:104px;overflow:hidden;background:linear-gradient(180deg,#1a3563,#0b1b36)}
+:is(#history-view,#future-view) .era-art{position:absolute;left:-10px;top:-10px;width:176px;height:124px;max-width:none;opacity:0;filter:blur(12px) saturate(.6);transform:translate(calc(var(--px) * -6px),calc(var(--py) * -5px)) scale(1.02);transition:transform 1.1s var(--era-ease),opacity 1.2s var(--era-ease),filter 1.2s var(--era-ease)}
+:is(#history-view,#future-view) .era-art[data-ready]{opacity:1;filter:none}
+:is(#history-view,#future-view) .era-folder:not(.active) .era-art[data-ready]{filter:saturate(.72) brightness(.82)}
+:is(#history-view,#future-view) .era-folder:hover .era-art[data-ready]{filter:none}
+:is(#history-view,#future-view) .era-back-sheen{position:absolute;inset:0;background:linear-gradient(180deg,rgb(255 255 255 / 20%) 0,rgb(255 255 255 / 0%) 26%),radial-gradient(120% 80% at 80% 0,rgb(255 255 255 / 14%),transparent 60%)}
+:is(#history-view,#future-view) .era-back-rim{position:absolute;left:0;top:8px;width:156px;height:104px;overflow:visible;fill:none;pointer-events:none}
+:is(#history-view,#future-view) .era-back-rim path{stroke:rgb(220 233 251 / 30%);stroke-width:1}
 
 /* the sheets inside: they rise out of the pocket when the era opens */
-#history-view .era-files{position:absolute;inset:0;z-index:2;pointer-events:none;clip-path:inset(-60px -60px 6px -60px)}
-#history-view .era-files i{position:absolute;left:18px;top:34px;width:120px;height:62px;border-radius:9px;transform-origin:50% 100%;
+:is(#history-view,#future-view) .era-files{position:absolute;inset:0;z-index:2;pointer-events:none;clip-path:inset(-60px -60px 6px -60px)}
+:is(#history-view,#future-view) .era-files i{position:absolute;left:18px;top:34px;width:120px;height:62px;border-radius:9px;transform-origin:50% 100%;
   transform:translate(calc(var(--jx) + var(--slot) * var(--spread)),calc(var(--lift) - var(--depth) * var(--stack))) rotate(calc(var(--jr) + var(--slot) * var(--fan)));
   transition:transform .75s var(--era-spring) calc(var(--depth) * 40ms);box-shadow:inset 0 1px 0 rgb(255 255 255 / 55%),0 0 0 .5px rgb(0 0 0 / 30%),0 8px 18px -6px rgb(0 5 18 / 70%)}
-#history-view .era-files i:nth-child(1){--slot:-1;--depth:2;--jx:-3px;--jr:-2.2deg;background:var(--v-chrome-surface)}
-#history-view .era-files i:nth-child(2){--slot:0;--depth:1;--jx:2px;--jr:1.4deg;background:linear-gradient(140deg,var(--era-b),var(--era-a) 70%)}
-#history-view .era-files i:nth-child(3){--slot:1;--depth:0;--jx:0px;--jr:-.6deg;background:linear-gradient(165deg,#24477a,#0d1f3d);box-shadow:inset 0 1px 0 rgb(157 216 255 / 40%),0 0 0 .5px rgb(0 0 0 / 30%),0 8px 18px -6px rgb(0 5 18 / 70%)}
+:is(#history-view,#future-view) .era-files i:nth-child(1){--slot:-1;--depth:2;--jx:-3px;--jr:-2.2deg;background:var(--v-chrome-surface)}
+:is(#history-view,#future-view) .era-files i:nth-child(2){--slot:0;--depth:1;--jx:2px;--jr:1.4deg;background:linear-gradient(140deg,var(--era-b),var(--era-a) 70%)}
+:is(#history-view,#future-view) .era-files i:nth-child(3){--slot:1;--depth:0;--jx:0px;--jr:-.6deg;background:linear-gradient(165deg,#24477a,#0d1f3d);box-shadow:inset 0 1px 0 rgb(157 216 255 / 40%),0 0 0 .5px rgb(0 0 0 / 30%),0 8px 18px -6px rgb(0 5 18 / 70%)}
 
 /* the frosted front, hinged on its bottom edge */
-#history-view .era-front{position:absolute;left:0;top:42px;z-index:3;width:156px;height:70px;-webkit-backdrop-filter:blur(14px) saturate(1.6);backdrop-filter:blur(14px) saturate(1.6);transform-origin:50% 100%;transform:perspective(420px) rotateX(var(--hinge));transition:transform .8s var(--era-spring)}
-#history-view .era-tint{position:absolute;inset:0;background:linear-gradient(180deg,rgb(16 36 70 / 30%) 0%,rgb(8 20 44 / 64%) 46%,rgb(4 11 27 / 90%) 100%)}
-#history-view .era-spec{position:absolute;inset:0;background:radial-gradient(130px 90px at calc(50% + var(--px) * 45%) calc(18% + var(--py) * 40%),rgb(255 255 255 / 55%),rgb(255 255 255 / 0%) 70%);mix-blend-mode:screen;opacity:.16;transition:opacity .4s var(--era-ease)}
-#history-view .era-folder:hover .era-spec,#history-view .era-folder.active .era-spec{opacity:.26}
-#history-view .era-front-rim{position:absolute;left:0;top:0;width:156px;height:70px;overflow:visible;fill:none;pointer-events:none}
-#history-view .era-front-rim path{stroke:url(#era-rim);stroke-width:2.2;transition:stroke-width .3s var(--era-ease)}
-#history-view .era-folder.active .era-front-rim path{stroke:url(#era-rim-on);stroke-width:3}
-#history-view .era-label{position:absolute;left:12px;right:12px;top:12px;display:grid;gap:2px;pointer-events:none}
-#history-view .era-folder .history-period-range{font:400 9.5px/1.6 var(--mono);letter-spacing:.02em;white-space:nowrap;color:var(--v-muted)}
-#history-view .era-folder .history-period-name{font:500 12.5px/1.25 var(--font);letter-spacing:-.005em;color:var(--v-ink);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;max-width:none;min-height:0}
-#history-view .era-count{position:absolute;right:11px;top:13px;font:500 9px/1.5 var(--mono);color:var(--v-muted);letter-spacing:.04em}
-#history-view .era-folder.active .history-period-range,#history-view .era-folder.active .era-count{color:var(--v-ice)}
-#history-view .era-folder.active .history-period-name{font-weight:600;color:#fff}
+:is(#history-view,#future-view) .era-front{position:absolute;left:0;top:42px;z-index:3;width:156px;height:70px;-webkit-backdrop-filter:blur(14px) saturate(1.6);backdrop-filter:blur(14px) saturate(1.6);transform-origin:50% 100%;transform:perspective(420px) rotateX(var(--hinge));transition:transform .8s var(--era-spring)}
+:is(#history-view,#future-view) .era-tint{position:absolute;inset:0;background:linear-gradient(180deg,rgb(16 36 70 / 30%) 0%,rgb(8 20 44 / 64%) 46%,rgb(4 11 27 / 90%) 100%)}
+:is(#history-view,#future-view) .era-spec{position:absolute;inset:0;background:radial-gradient(130px 90px at calc(50% + var(--px) * 45%) calc(18% + var(--py) * 40%),rgb(255 255 255 / 55%),rgb(255 255 255 / 0%) 70%);mix-blend-mode:screen;opacity:.16;transition:opacity .4s var(--era-ease)}
+:is(#history-view,#future-view) .era-folder:hover .era-spec,:is(#history-view,#future-view) .era-folder.active .era-spec{opacity:.26}
+:is(#history-view,#future-view) .era-front-rim{position:absolute;left:0;top:0;width:156px;height:70px;overflow:visible;fill:none;pointer-events:none}
+:is(#history-view,#future-view) .era-front-rim path{stroke:url(#era-rim);stroke-width:2.2;transition:stroke-width .3s var(--era-ease)}
+:is(#history-view,#future-view) .era-folder.active .era-front-rim path{stroke:url(#era-rim-on);stroke-width:3}
+:is(#history-view,#future-view) .era-label{position:absolute;left:12px;right:12px;top:12px;display:grid;gap:2px;pointer-events:none}
+:is(#history-view,#future-view) .era-folder .history-period-range{font:400 9.5px/1.6 var(--mono);letter-spacing:.02em;white-space:nowrap;color:var(--v-muted)}
+:is(#history-view,#future-view) .era-folder .history-period-name{font:500 12.5px/1.25 var(--font);letter-spacing:-.005em;color:var(--v-ink);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;max-width:none;min-height:0}
+:is(#history-view,#future-view) .era-count{position:absolute;right:11px;top:13px;font:500 9px/1.5 var(--mono);color:var(--v-muted);letter-spacing:.04em}
+:is(#history-view,#future-view) .era-folder.active .history-period-range,:is(#history-view,#future-view) .era-folder.active .era-count{color:var(--v-ice)}
+:is(#history-view,#future-view) .era-folder.active .history-period-name{font-weight:600;color:#fff}
 
 /* ---- recordings: the molten ring ------------------------------------------ */
-#history-view .recordings{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;min-width:0}
-#history-view .recordings-head{min-width:0;display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:44px}
-#history-view .recordings-title{display:flex;align-items:baseline;gap:10px;min-width:0;margin:0;font:400 10px/1.5 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--v-muted)}
-#history-view .recordings-title b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 15px/1.3 var(--font);letter-spacing:-.01em;text-transform:none;color:var(--v-ink)}
-#history-view .recordings-title span:last-child{white-space:nowrap;color:var(--v-ice)}
-#history-view .molten{position:relative;height:clamp(178px,16.5vw,214px);border-radius:20px;overflow:hidden;touch-action:pan-y;overscroll-behavior-x:contain;-webkit-user-select:none;user-select:none;
+:is(#history-view,#future-view) .recordings{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;min-width:0}
+:is(#history-view,#future-view) .recordings-head{min-width:0;display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:44px}
+:is(#history-view,#future-view) .recordings-title{display:flex;align-items:baseline;gap:10px;min-width:0;margin:0;font:400 10px/1.5 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--v-muted)}
+:is(#history-view,#future-view) .recordings-title b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 15px/1.3 var(--font);letter-spacing:-.01em;text-transform:none;color:var(--v-ink)}
+:is(#history-view,#future-view) .recordings-title span:last-child{white-space:nowrap;color:var(--v-ice)}
+:is(#history-view,#future-view) .molten{position:relative;height:clamp(178px,16.5vw,214px);border-radius:20px;overflow:hidden;touch-action:pan-y;overscroll-behavior-x:contain;-webkit-user-select:none;user-select:none;
   background:radial-gradient(38% 62% at 50% 52%,rgb(67 133 255 / 13%),rgb(67 133 255 / 0%) 72%),linear-gradient(180deg,rgb(11 27 54 / 18%),rgb(11 27 54 / 46%));
   border:1px solid rgb(80 112 155 / 38%);box-shadow:inset 0 1px 0 rgb(220 233 251 / 10%),inset 0 -24px 40px -30px rgb(67 133 255 / 25%)}
-#history-view .molten::before,#history-view .molten::after{content:"";position:absolute;top:0;bottom:0;width:5.5%;z-index:1;pointer-events:none;-webkit-backdrop-filter:blur(2px) saturate(1.3);backdrop-filter:blur(2px) saturate(1.3)}
-#history-view .molten::before{left:0;background:linear-gradient(90deg,rgb(220 233 251 / 9%),rgb(220 233 251 / 0%));border-right:1px solid rgb(220 233 251 / 7%)}
-#history-view .molten::after{right:0;background:linear-gradient(270deg,rgb(220 233 251 / 9%),rgb(220 233 251 / 0%));border-left:1px solid rgb(220 233 251 / 7%)}
-#history-view .molten canvas{position:absolute;inset:0;display:block;width:100%;height:100%;cursor:grab;outline:none}
-#history-view .molten.dragging canvas{cursor:grabbing}
-#history-view .molten:has(canvas:focus-visible){outline:2px solid var(--v-ice);outline-offset:3px}
-#history-view .molten-hint{position:absolute;right:7%;top:10px;z-index:2;margin:0;font:400 9px/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--v-dim);pointer-events:none}
+:is(#history-view,#future-view) .molten::before,:is(#history-view,#future-view) .molten::after{content:"";position:absolute;top:0;bottom:0;width:5.5%;z-index:1;pointer-events:none;-webkit-backdrop-filter:blur(2px) saturate(1.3);backdrop-filter:blur(2px) saturate(1.3)}
+:is(#history-view,#future-view) .molten::before{left:0;background:linear-gradient(90deg,rgb(220 233 251 / 9%),rgb(220 233 251 / 0%));border-right:1px solid rgb(220 233 251 / 7%)}
+:is(#history-view,#future-view) .molten::after{right:0;background:linear-gradient(270deg,rgb(220 233 251 / 9%),rgb(220 233 251 / 0%));border-left:1px solid rgb(220 233 251 / 7%)}
+:is(#history-view,#future-view) .molten canvas{position:absolute;inset:0;display:block;width:100%;height:100%;cursor:grab;outline:none}
+:is(#history-view,#future-view) .molten.dragging canvas{cursor:grabbing}
+:is(#history-view,#future-view) .molten:has(canvas:focus-visible){outline:2px solid var(--v-ice);outline-offset:3px}
+:is(#history-view,#future-view) .molten-hint{position:absolute;right:7%;top:10px;z-index:2;margin:0;font:400 9px/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--v-dim);pointer-events:none}
 
 /* without WebGL2: a row of plain buttons */
-#history-view .molten-flat canvas,#history-view .molten-flat .molten-hint,#history-view .molten-flat::before,#history-view .molten-flat::after{display:none}
-#history-view .molten-flat{height:auto}
-#history-view .molten-row{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:14px;scrollbar-width:thin}
-#history-view .molten-chip{flex:0 0 min(240px,70%);display:grid;gap:3px;padding:14px 16px;text-align:left;scroll-snap-align:center;border:1px solid #42618b;border-radius:14px;background:linear-gradient(160deg,#142d52,#0b1b36);color:var(--v-ink)}
-#history-view .molten-chip span{font:400 10px/1.5 var(--mono);color:var(--v-ice)}
-#history-view .molten-chip b{font:600 14px/1.3 var(--font)}
-#history-view .molten-chip i{font:400 12.5px/1.4 var(--font);font-style:normal;color:var(--v-muted)}
-#history-view .molten-chip.active{border-color:var(--v-ice);box-shadow:0 0 0 1px var(--v-ice),0 6px 24px rgb(67 133 255 / 25%)}
+:is(#history-view,#future-view) .molten-flat canvas,:is(#history-view,#future-view) .molten-flat .molten-hint,:is(#history-view,#future-view) .molten-flat::before,:is(#history-view,#future-view) .molten-flat::after{display:none}
+:is(#history-view,#future-view) .molten-flat{height:auto}
+:is(#history-view,#future-view) .molten-row{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:14px;scrollbar-width:thin}
+:is(#history-view,#future-view) .molten-chip{flex:0 0 min(240px,70%);display:grid;gap:3px;padding:14px 16px;text-align:left;scroll-snap-align:center;border:1px solid #42618b;border-radius:14px;background:linear-gradient(160deg,#142d52,#0b1b36);color:var(--v-ink)}
+:is(#history-view,#future-view) .molten-chip span{font:400 10px/1.5 var(--mono);color:var(--v-ice)}
+:is(#history-view,#future-view) .molten-chip b{font:600 14px/1.3 var(--font)}
+:is(#history-view,#future-view) .molten-chip i{font:400 12.5px/1.4 var(--font);font-style:normal;color:var(--v-muted)}
+:is(#history-view,#future-view) .molten-chip.active{border-color:var(--v-ice);box-shadow:0 0 0 1px var(--v-ice),0 6px 24px rgb(67 133 255 / 25%)}
 
 @media(max-width:620px){
- #history-view .history-controls{padding:8px 0 14px}
- #history-view .era-strip{gap:10px;padding-bottom:12px}
- #history-view .era-scroll{display:none}
- #history-view .recordings-head{min-height:40px;gap:8px}
- #history-view .recordings-title{gap:7px;font-size:9px}
- #history-view .recordings-title>span:first-child{display:none}
- #history-view .recordings-title b{font-size:14px}
- #history-view .molten{height:176px;border-radius:16px}
- #history-view .molten-hint{display:none}
+ :is(#history-view,#future-view) .history-controls{padding:8px 0 14px}
+ :is(#history-view,#future-view) .era-strip{gap:10px;padding-bottom:12px}
+ :is(#history-view,#future-view) .era-scroll{display:none}
+ :is(#history-view,#future-view) .recordings-head{min-height:40px;gap:8px}
+ :is(#history-view,#future-view) .recordings-title{gap:7px;font-size:9px}
+ :is(#history-view,#future-view) .recordings-title>span:first-child{display:none}
+ :is(#history-view,#future-view) .recordings-title b{font-size:14px}
+ :is(#history-view,#future-view) .molten{height:176px;border-radius:16px}
+ :is(#history-view,#future-view) .molten-hint{display:none}
 }
 @media(prefers-reduced-motion:reduce){
- #history-view .era-folder,#history-view .era-folder *,#history-view .era-folder::before{animation:none!important;transition-duration:0s!important;transition-delay:0s!important}
+ :is(#history-view,#future-view) .era-folder,:is(#history-view,#future-view) .era-folder *,:is(#history-view,#future-view) .era-folder::before{animation:none!important;transition-duration:0s!important;transition-delay:0s!important}
 }
 
 
@@ -591,6 +595,41 @@ dialog::backdrop{background:rgb(1 6 18 / 78%);backdrop-filter:blur(8px)}.dialog-
  .future-list-heading h1{font-size:21px}
 }
 
+
+/* Music of the Future in History's layout (patch_future_eras.py): directions and
+   examples on top (era-browser.css), then the listening room left and the idea right. */
+#future-view .future-controls{margin-top:0}
+#future-view #future-detail{padding-top:10px;scroll-margin-top:12px}
+#future-view .story-heading{display:flex;justify-content:flex-end;align-items:center;margin:0 0 10px;min-height:34px}
+#future-view .story-tools{display:flex;gap:20px}
+#future-view .story-tools .quiet-button{font-size:12px;padding-block:4px}
+#future-view .future-detail-grid{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:start;margin:0;padding:0}
+#future-view .future-player-column,#future-view .future-detail-copy{min-width:0}
+#future-view .future-player-column{display:block;position:static}
+#future-view .future-player-stage{height:auto;aspect-ratio:16/9;min-height:200px}
+#future-view .future-player-info h2{font-size:22px;line-height:1.35;margin:5px 0 9px}
+#future-view .future-heard{margin-top:12px;width:100%}
+#future-view .future-listen-note{padding-top:22px}
+#future-view .story-meta{display:flex;align-items:center;margin-top:0;gap:16px}
+#future-view .story-year{font-size:24px;line-height:1.4}
+#future-view h2#future-detail-title{font:500 clamp(24px,2.4vw,34px)/1.3 var(--display);letter-spacing:-.04em;margin:12px 0 10px;overflow-wrap:anywhere;color:var(--v-ink)}
+#future-view .future-detail-deck{font-size:16px;line-height:1.6;margin:0 0 4px;color:var(--v-chrome)}
+#future-view .future-context{margin-top:22px}
+#future-view .future-context p{font-size:14px;line-height:1.85}
+#future-view .possibility-box,#future-view .history-connection{margin-top:22px}
+@media(max-width:1050px){#future-view .future-detail-grid{gap:28px}}
+@media(max-width:760px){
+ #future-view .future-detail-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:28px}
+ #future-view .story-heading{margin-bottom:9px}
+}
+@media(max-width:620px){
+ #future-view .story-tools{gap:18px}
+ #future-view .story-tools .quiet-button{font-size:11px}
+ #future-view .story-year{font-size:23px}
+ #future-view h2#future-detail-title{font-size:26px}
+ #future-view .future-player-info h2{font-size:21px}
+}
+
 </style>
 </head>
 <body>
@@ -605,13 +644,14 @@ dialog::backdrop{background:rgb(1 6 18 / 78%);backdrop-filter:blur(8px)}.dialog-
 </nav>
 </header>
 <main>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="era-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset=".4" stop-color="#dce9fb" stop-opacity=".26"/><stop offset="1" stop-color="#dce9fb" stop-opacity=".1"/></linearGradient><linearGradient id="era-rim-on" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".35" stop-color="#9dd8ff" stop-opacity=".7"/><stop offset="1" stop-color="#4385ff" stop-opacity=".35"/></linearGradient></defs></svg>
 <div id="history-view">
 <section class="history-controls" aria-label="Choose an era and a recording">
-  <h1 class="history-visually-hidden">Music history</h1><svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><linearGradient id="era-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset=".4" stop-color="#dce9fb" stop-opacity=".26"/><stop offset="1" stop-color="#dce9fb" stop-opacity=".1"/></linearGradient><linearGradient id="era-rim-on" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".35" stop-color="#9dd8ff" stop-opacity=".7"/><stop offset="1" stop-color="#4385ff" stop-opacity=".35"/></linearGradient></defs></svg>
-  <div class="era-picker"><span id="history-period-label" class="history-visually-hidden">Eras</span><button id="history-period-earlier" class="icon-button era-scroll era-scroll-prev" aria-label="Scroll to earlier eras">←</button><div id="history-period" class="era-strip" role="group" aria-labelledby="history-period-label"><button type="button" class="history-period era-folder" data-history-period="0" aria-pressed="false" aria-controls="history-recording story" style="--i:0"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" data-era-art="0" width="1" height="1"></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">c.1400 BCE—950</span><span class="history-period-name">Gods, kings &amp; cities</span></span><span class="era-count">07<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-history-period="1" aria-pressed="false" aria-controls="history-recording story" style="--i:1"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" data-era-art="1" width="1" height="1"></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">1150—1607</span><span class="history-period-name">Cathedrals, print &amp; stage</span></span><span class="era-count">08<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-history-period="2" aria-pressed="false" aria-controls="history-recording story" style="--i:2"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" data-era-art="2" width="1" height="1"></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">1720—1913</span><span class="history-period-name">Form, voice &amp; rhythm</span></span><span class="era-count">08<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-history-period="3" aria-pressed="false" aria-controls="history-recording story" style="--i:3"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" data-era-art="3" width="1" height="1"></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">1928—1965</span><span class="history-period-name">A voice of your own</span></span><span class="era-count">08<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-history-period="4" aria-pressed="false" aria-controls="history-recording story" style="--i:4"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" data-era-art="4" width="1" height="1"></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">1967—1978</span><span class="history-period-name">The studio as instrument</span></span><span class="era-count">07<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-history-period="5" aria-pressed="false" aria-controls="history-recording story" style="--i:5"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" data-era-art="5" width="1" height="1"></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">1980—1998</span><span class="history-period-name">Cities &amp; dance floors</span></span><span class="era-count">09<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-history-period="6" aria-pressed="false" aria-controls="history-recording story" style="--i:6"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" data-era-art="6" width="1" height="1"></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">1999—2017</span><span class="history-period-name">Sound as material</span></span><span class="era-count">05<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-history-period="7" aria-pressed="false" aria-controls="history-recording story" style="--i:7"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" data-era-art="7" width="1" height="1"></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">2019—2024</span><span class="history-period-name">New voices, new authors</span></span><span class="era-count">08<span class="history-visually-hidden"> recordings</span></span></span></button></div><button id="history-period-later" class="icon-button era-scroll era-scroll-next" aria-label="Scroll to later eras">→</button></div>
+  <h1 class="history-visually-hidden">Music history</h1>
+  <div class="era-picker"><span id="history-period-label" class="history-visually-hidden">Eras</span><button id="history-period-earlier" class="icon-button era-scroll era-scroll-prev" aria-label="Scroll to earlier eras">←</button><div id="history-period" class="era-strip" role="group" aria-labelledby="history-period-label"><button type="button" class="history-period era-folder" data-history-period="0" aria-pressed="false" aria-controls="history-recording story" style="--i:0"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">c.1400 BCE—950</span><span class="history-period-name">Gods, kings &amp; cities</span></span><span class="era-count">07<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-history-period="1" aria-pressed="false" aria-controls="history-recording story" style="--i:1"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">1150—1607</span><span class="history-period-name">Cathedrals, print &amp; stage</span></span><span class="era-count">08<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-history-period="2" aria-pressed="false" aria-controls="history-recording story" style="--i:2"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">1720—1913</span><span class="history-period-name">Form, voice &amp; rhythm</span></span><span class="era-count">08<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-history-period="3" aria-pressed="false" aria-controls="history-recording story" style="--i:3"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">1928—1965</span><span class="history-period-name">A voice of your own</span></span><span class="era-count">08<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-history-period="4" aria-pressed="false" aria-controls="history-recording story" style="--i:4"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">1967—1978</span><span class="history-period-name">The studio as instrument</span></span><span class="era-count">07<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-history-period="5" aria-pressed="false" aria-controls="history-recording story" style="--i:5"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">1980—1998</span><span class="history-period-name">Cities &amp; dance floors</span></span><span class="era-count">09<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-history-period="6" aria-pressed="false" aria-controls="history-recording story" style="--i:6"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">1999—2017</span><span class="history-period-name">Sound as material</span></span><span class="era-count">05<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-history-period="7" aria-pressed="false" aria-controls="history-recording story" style="--i:7"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">2019—2024</span><span class="history-period-name">New voices, new authors</span></span><span class="era-count">08<span class="history-visually-hidden"> recordings</span></span></span></button></div><button id="history-period-later" class="icon-button era-scroll era-scroll-next" aria-label="Scroll to later eras">→</button></div>
   <div class="recordings">
     <div class="recordings-head"><p class="recordings-title" id="history-recording-label"><span>In this era</span><b id="history-era-name"></b><span id="history-era-position"></span></p>
-    <div class="history-step-controls" aria-label="Move through the full history route"><button id="history-previous" class="icon-button" aria-label="Previous recording">←</button><output id="history-position" aria-live="polite" aria-atomic="true">01 / 60</output><button id="history-next" class="icon-button" aria-label="Next recording">→</button></div></div>
+    <div class="history-step-controls" aria-label="Move through the full history route"><button id="history-previous" class="icon-button" aria-label="Previous recording">←</button><output id="history-position" class="era-position" aria-live="polite" aria-atomic="true">01 / 60</output><button id="history-next" class="icon-button" aria-label="Next recording">→</button></div></div>
     <div id="history-recording" class="molten" aria-controls="story"><canvas tabindex="0" role="listbox" aria-labelledby="history-recording-label"></canvas><p class="molten-hint" aria-hidden="true">drag · swipe · ← →</p></div>
   </div>
 </section>
@@ -661,6 +701,15 @@ dialog::backdrop{background:rgb(1 6 18 / 78%);backdrop-filter:blur(8px)}.dialog-
     <a href="#future=horizon" data-future-nav="horizon">2050, maybe <span>↗</span></a>
     <span class="future-subnav-note">A FIELD GUIDE, NOT A FORECAST</span>
   </nav>
+  <section class="history-controls future-controls" id="future-controls" hidden aria-label="Choose a direction and an example">
+    <h1 class="history-visually-hidden">Music of the Future</h1>
+    <div class="era-picker"><span id="future-period-label" class="history-visually-hidden">Directions</span><button id="future-period-earlier" class="icon-button era-scroll era-scroll-prev" aria-label="Scroll to earlier directions">←</button><div id="future-period" class="era-strip" role="group" aria-labelledby="future-period-label"><button type="button" class="history-period era-folder" data-future-concept="0" aria-pressed="false" aria-controls="future-recording future-detail" style="--i:0"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">01 · SOUND</span><span class="history-period-name">A choir with a new member</span></span><span class="era-count">02<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-future-concept="1" aria-pressed="false" aria-controls="future-recording future-detail" style="--i:1"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">02 · PERFORMANCE</span><span class="history-period-name">The instrument is a rule</span></span><span class="era-count">01<span class="history-visually-hidden"> recording</span></span></span></button><button type="button" class="history-period era-folder" data-future-concept="2" aria-pressed="false" aria-controls="future-recording future-detail" style="--i:2"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">03 · SOUND</span><span class="history-period-name">Between the piano keys</span></span><span class="era-count">01<span class="history-visually-hidden"> recording</span></span></span></button><button type="button" class="history-period era-folder" data-future-concept="3" aria-pressed="false" aria-controls="future-recording future-detail" style="--i:3"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">04 · IDENTITY</span><span class="history-period-name">One voice. Many bodies.</span></span><span class="era-count">03<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-future-concept="4" aria-pressed="false" aria-controls="future-recording future-detail" style="--i:4"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">05 · VISUALS</span><span class="history-period-name">A song becomes a place</span></span><span class="era-count">08<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-future-concept="5" aria-pressed="false" aria-controls="future-recording future-detail" style="--i:5"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">06 · VISUALS</span><span class="history-period-name">The image has a model</span></span><span class="era-count">02<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-future-concept="6" aria-pressed="false" aria-controls="future-recording future-detail" style="--i:6"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">07 · SOUND</span><span class="history-period-name">Less sound. More attention.</span></span><span class="era-count">01<span class="history-visually-hidden"> recording</span></span></span></button><button type="button" class="history-period era-folder" data-future-concept="7" aria-pressed="false" aria-controls="future-recording future-detail" style="--i:7"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">08 · PERFORMANCE</span><span class="history-period-name">Too much, on purpose</span></span><span class="era-count">04<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-future-concept="8" aria-pressed="false" aria-controls="future-recording future-detail" style="--i:8"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">09 · SCENES</span><span class="history-period-name">The future has many centers</span></span><span class="era-count">03<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-future-concept="9" aria-pressed="false" aria-controls="future-recording future-detail" style="--i:9"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">10 · SOUND</span><span class="history-period-name">The digital becomes organic.</span></span><span class="era-count">02<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-future-concept="10" aria-pressed="false" aria-controls="future-recording future-detail" style="--i:10"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">11 · SCENES</span><span class="history-period-name">Leave room in the groove.</span></span><span class="era-count">04<span class="history-visually-hidden"> recordings</span></span></span></button><button type="button" class="history-period era-folder" data-future-concept="11" aria-pressed="false" aria-controls="future-recording future-detail" style="--i:11"><span class="era-back" style="clip-path:path('M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z')" aria-hidden="true"><canvas class="era-art" width="1" height="1" data-era-art></canvas><span class="era-back-sheen"></span></span><svg class="era-back-rim" viewBox="0 0 156 104" aria-hidden="true" focusable="false"><path d="M0 20a12 12 0 0 1 12-12h68c11 0 13-8 24-8h40a12 12 0 0 1 12 12v80a12 12 0 0 1-12 12H12A12 12 0 0 1 0 92Z"/></svg><span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span><span class="era-front" style="clip-path:path('M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span><svg class="era-front-rim" viewBox="0 0 156 70" aria-hidden="true" focusable="false"><path d="M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h58a12 12 0 0 1 12 12v38a12 12 0 0 1-12 12H12A12 12 0 0 1 0 58Z"/></svg><span class="era-label"><span class="history-period-range">12 · SCENES</span><span class="history-period-name">The club keeps mutating.</span></span><span class="era-count">02<span class="history-visually-hidden"> recordings</span></span></span></button></div><button id="future-period-later" class="icon-button era-scroll era-scroll-next" aria-label="Scroll to later directions">→</button></div>
+    <div class="recordings">
+      <div class="recordings-head"><p class="recordings-title" id="future-recording-label"><span>In this direction</span><b id="future-era-name"></b><span id="future-era-position"></span></p>
+      <div class="history-step-controls" aria-label="Move through every example"><button id="future-previous" class="icon-button" aria-label="Previous example">←</button><output id="future-position" class="era-position" aria-live="polite" aria-atomic="true">01 / 33</output><button id="future-next" class="icon-button" aria-label="Next example">→</button></div></div>
+      <div id="future-recording" class="molten" aria-controls="future-detail"><canvas tabindex="0" role="listbox" aria-labelledby="future-recording-label"></canvas><p class="molten-hint" aria-hidden="true">drag · swipe · ← →</p></div>
+    </div>
+  </section>
   <div id="future-atlas">
     <section class="atlas-section" aria-labelledby="atlas-heading"><div class="future-list-heading"><h1 id="atlas-heading">Music of the Future</h1><p>12 directions · 27 listening references</p></div><div id="concept-filters" class="concept-filters" role="group" aria-label="Filter concepts"></div><div id="concept-grid" class="concept-grid"></div></section>
     <section class="future-invitation"><div><p class="eyebrow">THE QUESTION BEYOND THE PLAYLIST</p><h2>What would you want<br>music to become?</h2><p>Five possible futures, grounded in things artists are already doing.<br>No crystal ball. Just a place to start a conversation.</p></div><a class="horizon-orbit" href="#future=horizon" aria-label="Explore five possibilities for 2050"><span>EXPLORE THE HORIZON</span><strong>2050<span>?</span></strong><span>OPEN QUESTIONS ↗</span></a></section>
@@ -712,7 +761,20 @@ dialog::backdrop{background:rgb(1 6 18 / 78%);backdrop-filter:blur(8px)}.dialog-
     {style: 'streak', colors: ['#f7f8fa', '#d9e2ea', '#9fb4c7', '#e8edf2', '#7d9cc0', '#ffffff'], scale: .7, warp: 1.6, angle: .35, gloss: .25, veins: 0},
     {style: 'marble', colors: ['#030817', '#0b1b36', '#2c5fd6', '#4385ff', '#9dd8ff', '#e1f2ff', '#7a5cff'], scale: .62, warp: 3.2, angle: -.5, gloss: .55, veins: .6},
   ].map((p, i) => ({...p, key: 'era' + i}));
-  const palette = era => PALETTES[era % PALETTES.length];
+  /* Music of the Future: chrome, ultraviolet, aurora, neon, electric, mercury. */
+  const FUTURE = [
+    {style: 'streak', colors: ['#f2f7ff', '#aec6e8', '#3b5f97', '#0b1b36', '#7da2d1', '#e2efff'], scale: .7, warp: 1.5, angle: -.5, gloss: .25, veins: 0},
+    {style: 'marble', colors: ['#07061a', '#1d1550', '#5a3fd1', '#0d0b26', '#7a5cff', '#c7b8ff', '#f1ecff'], scale: .68, warp: 3.4, angle: .7, gloss: .55, veins: .5},
+    {style: 'marble', colors: ['#03121a', '#0a3a4a', '#1fa3b8', '#06202b', '#5ce1e6', '#c9fbff', '#f2ffff'], scale: .7, warp: 3.2, angle: 2.2, gloss: .5, veins: .45},
+    {style: 'streak', colors: ['#f3eefa', '#ffb3e1', '#ff4fa3', '#1c1440', '#283e8c', '#4385ff', '#dfeaff'], scale: .7, warp: 1.4, angle: -.7, gloss: .2, veins: 0},
+    {style: 'marble', colors: ['#020615', '#0a1d4a', '#2a6bff', '#071232', '#9dd8ff', '#e8f6ff', '#5a8cff'], scale: .62, warp: 3.4, angle: -.3, gloss: .55, veins: .6},
+    {style: 'streak', colors: ['#f7f8fa', '#cfd8e3', '#8ea3bd', '#2c3a52', '#a9b8cc', '#ffffff'], scale: .7, warp: 1.6, angle: .4, gloss: .3, veins: 0},
+  ].map((p, i) => ({...p, key: 'future' + i}));
+  const SETS = {eras: PALETTES, future: FUTURE};
+  const paletteOf = set => group => set[group % set.length];
+  const palette = paletteOf(PALETTES);
+  /** A stable small integer for a string, so an item's art follows its name. */
+  const hashString = text => { let h = 2166136261; for (let i = 0; i < text.length; i++) h = Math.imul(h ^ text.charCodeAt(i), 16777619); return h >>> 0; };
 
   const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
   const inOutCubic = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -1061,7 +1123,7 @@ void main(){
     ctx.textBaseline = 'alphabetic';
     // date chip
     ctx.font = `500 19px ${mono}`;
-    const date = String(track.date), dw = ctx.measureText(date).width + 26;
+    const date = String(track.date || ''), dw = ctx.measureText(date).width + 26;
     roundRect(ctx, x + P - 4, y + P - 4, dw, 36, 18);
     ctx.fillStyle = 'rgba(3,8,23,.5)'; ctx.fill();
     ctx.strokeStyle = 'rgba(157,216,255,.45)'; ctx.lineWidth = 1.5; ctx.stroke();
@@ -1079,22 +1141,25 @@ void main(){
     while (size > 26 && ctx.measureText(track.artist).width > max) { size -= 2; ctx.font = `600 ${size}px ${font}`; }
     ctx.fillStyle = '#f4f8ff'; ctx.fillText(fit(ctx, track.artist, max), x + P, y + H - P - 38);
     ctx.font = `400 26px ${font}`; ctx.fillStyle = 'rgba(220,233,251,.86)';
-    ctx.fillText(fit(ctx, track.shortTitle || track.title, max), x + P, y + H - P);
+    ctx.fillText(fit(ctx, track.title || '', max), x + P, y + H - P);
     ctx.restore();
   }
 
-  function createRing(root, {tracks, chapters, reducedMotion, onSelect}) {
+  /** groups: arrays of {seed, date, genre, artist, title}; onSelect(group, index). */
+  function createRing(root, {groups, palette, reducedMotion, onSelect, label}) {
     const canvas = root.querySelector('canvas');
-    const eraItems = chapters.map((_, era) => tracks.filter(t => t.chapter === era).slice(0, MAX_CARDS));
+    const eraItems = groups.map(list => list.slice(0, MAX_CARDS));
+    const uid = (root.id || 'molten') + '-opt';
     const css = rootStyle();
     const fonts = {font: css.getPropertyValue('--font').trim() || 'system-ui, sans-serif', mono: css.getPropertyValue('--mono').trim() || 'ui-monospace, monospace'};
-    let current = 0, era = -1, targetEra = -1, targetIdx = 0, items = [];
+    let cur = {g: -1, i: -1}, era = -1, targetEra = -1, targetIdx = 0, items = [];
 
-    const listText = list => list.map((t, i) => `<span role="option" id="molten-opt-${t.id}" aria-selected="false" aria-posinset="${i + 1}" aria-setsize="${list.length}">${esc(t.date)}: ${esc(t.artist)}, ${esc(t.shortTitle || t.title)}</span>`).join('');
+    const listText = (list, g) => list.map((t, i) => `<span role="option" id="${uid}-${g}-${i}" aria-selected="false" aria-posinset="${i + 1}" aria-setsize="${list.length}">${t.date ? esc(t.date) + ': ' : ''}${esc(t.artist)}, ${esc(t.title)}</span>`).join('');
     const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
     const markOptions = () => {
-      canvas.querySelectorAll('[role=option]').forEach(o => o.setAttribute('aria-selected', String(o.id === 'molten-opt-' + current)));
-      canvas.setAttribute('aria-activedescendant', 'molten-opt-' + current);
+      const id = `${uid}-${cur.g}-${cur.i}`;
+      canvas.querySelectorAll('[role=option]').forEach(o => o.setAttribute('aria-selected', String(o.id === id)));
+      if (canvas.querySelector('#' + CSS.escape(id))) canvas.setAttribute('aria-activedescendant', id); else canvas.removeAttribute('aria-activedescendant');
     };
 
     // ---- flat fallback: a row of buttons -----------------------------------
@@ -1105,21 +1170,20 @@ void main(){
       flat = document.createElement('div');
       flat.className = 'molten-row';
       flat.setAttribute('role', 'group');
-      flat.setAttribute('aria-label', 'Recordings in this era');
+      flat.setAttribute('aria-label', label || 'Choose one');
       root.append(flat);
-      flat.addEventListener('click', e => { const b = e.target.closest('[data-id]'); if (b) onSelect(Number(b.dataset.id)); });
+      flat.addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (b) onSelect(flatEra, Number(b.dataset.i)); });
       renderFlat(true);
     };
     let flatEra = -1;
     const renderFlat = force => {
-      if (!flat || !tracks[current - 1]) return;
-      const t = tracks[current - 1];
-      if (force || flatEra !== t.chapter) {
-        flatEra = t.chapter;
-        flat.innerHTML = eraItems[flatEra].map(item => `<button type="button" class="molten-chip" data-id="${item.id}"><span>${esc(item.date)}</span><b>${esc(item.artist)}</b><i>${esc(item.shortTitle || item.title)}</i></button>`).join('');
+      if (!flat || !eraItems[cur.g]) return;
+      if (force || flatEra !== cur.g) {
+        flatEra = cur.g;
+        flat.innerHTML = eraItems[flatEra].map((item, i) => `<button type="button" class="molten-chip" data-i="${i}"><span>${esc(item.date)}</span><b>${esc(item.artist)}</b><i>${esc(item.title)}</i></button>`).join('');
       }
-      flat.querySelectorAll('[data-id]').forEach(b => {
-        const on = Number(b.dataset.id) === current;
+      flat.querySelectorAll('[data-i]').forEach(b => {
+        const on = Number(b.dataset.i) === cur.i;
         b.classList.toggle('active', on);
         if (on) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
         if (on) flat.scrollTo({left: b.offsetLeft - (flat.clientWidth - b.offsetWidth) / 2, behavior: reducedMotion ? 'instant' : 'smooth'});
@@ -1130,7 +1194,7 @@ void main(){
     const program = gl && build(gl);
     if (!gl || !program) {
       goFlat();
-      return {update(id) { current = id; renderFlat(); }};
+      return {update(g, i) { cur = {g, i}; renderFlat(); }};
     }
     const u = (() => { const cache = new Map(); return name => { let l = cache.get(name); if (l === undefined) { l = gl.getUniformLocation(program, name); cache.set(name, l); } return l; }; })();
     const quad = gl.createVertexArray();
@@ -1145,12 +1209,12 @@ void main(){
 
     // ---- atlases, one per era, the three most recent kept ------------------
     const atlases = new Map(), building = new Set();
-    const artFor = (t, priority) => paint(palette(t.chapter), t.id * 13 + 1, ART_W, ART_H, priority);
+    const artFor = (e, t, priority) => paint(palette(e), t.seed, ART_W, ART_H, priority);
     const ensureAtlas = e => {
       if (atlases.has(e) || building.has(e)) return;
       building.add(e);
       const list = eraItems[e];
-      Promise.all([Promise.all(list.map(t => artFor(t, 0))), loadFonts(fonts.font, fonts.mono)]).then(([arts]) => {
+      Promise.all([Promise.all(list.map(t => artFor(e, t, 0))), loadFonts(fonts.font, fonts.mono)]).then(([arts]) => {
         building.delete(e);
         if (lost) return;
         const cols = Math.min(3, list.length), rows = Math.ceil(list.length / cols);
@@ -1173,7 +1237,7 @@ void main(){
           gl.deleteTexture(atlases.get(oldest).tex); atlases.delete(oldest);
         }
         // The neighbouring eras are the likeliest next stop.
-        for (const n of [e + 1, e - 1]) if (eraItems[n]) eraItems[n].forEach(t => artFor(t, 3));
+        for (const n of [e + 1, e - 1]) if (eraItems[n]) eraItems[n].forEach(t => artFor(n, t, 3));
         wake();
       }).catch(error => {
         // A ring that never pours is worse than plain buttons.
@@ -1210,18 +1274,18 @@ void main(){
     document.addEventListener('visibilitychange', () => { if (!document.hidden) wake(); });
 
     const startTween = to => { tween = {from: goal, to, at: performance.now()}; snapped = true; wake(); };
-    const commit = idx => { const t = items[idx]; if (t && t.id !== current) onSelect(t.id); };
+    const commit = idx => { if (items[idx] && !(era === cur.g && idx === cur.i)) onSelect(era, idx); };
     const goTo = (idx, select) => { startTween(idx); if (select) commit(idx); };
     const crossEra = dir => {
-      const id = dir > 0 ? items[items.length - 1].id + 1 : items[0].id - 1;
-      if (id < 1 || id > tracks.length) return false;
-      onSelect(id); return true;
+      const g = era + dir;
+      if (!eraItems[g] || !eraItems[g].length) return false;
+      onSelect(g, dir > 0 ? 0 : eraItems[g].length - 1); return true;
     };
     const swapEra = () => {
       era = targetEra; items = eraItems[era];
       progress = goal = targetIdx; tween = null; snapped = true; hovered = -1;
       leanX.fill(0); leanY.fill(0); swell.fill(0); dim.fill(0);
-      canvas.innerHTML = listText(items); markOptions();
+      canvas.innerHTML = listText(items, era); markOptions();
       phase = 'wait'; spread = 0; entry = 0;
       ensureAtlas(era);
     };
@@ -1459,10 +1523,12 @@ void main(){
     }
 
     return {
-      update(id) {
-        current = id;
+      update(g, i) {
+        if (!eraItems[g]) return;
+        const idx = clamp(i, 0, eraItems[g].length - 1);
+        cur = {g, i: idx};
         if (flat) { renderFlat(); return; }
-        const t = tracks[id - 1], idx = Math.max(0, eraItems[t.chapter].indexOf(t));
+        const t = {chapter: g};
         targetIdx = idx;
         if (era < 0) { targetEra = t.chapter; swapEra(); }
         else if (t.chapter !== targetEra) {
@@ -1482,15 +1548,16 @@ void main(){
   // ---------------------------------------------------------------------------
   // Era folders: back-panel art, accents, and a light that follows the pointer.
 
-  function dressFolders(strip, chapters) {
-    strip.querySelectorAll('[data-history-period]').forEach(button => {
-      const era = Number(button.dataset.historyPeriod), p = palette(era);
+  function dressFolders(strip, {attr, palette, seed}) {
+    const selector = `[data-${attr.replace(/[A-Z]/g, c => '-' + c.toLowerCase())}]`;
+    strip.querySelectorAll(selector).forEach(button => {
+      const era = Number(button.dataset[attr]), p = palette(era);
       button.style.setProperty('--era-a', p.colors[2]);
       button.style.setProperty('--era-b', p.colors[5]);
       const canvas = button.querySelector('canvas[data-era-art]');
       if (!canvas) return;
       const w = 176, h = 124;
-      paint(p, era * 7 + 3, w, h, 1).then(src => {
+      paint(p, seed(era), w, h, 1).then(src => {
         canvas.width = src.width; canvas.height = src.height;
         canvas.getContext('2d')?.drawImage(src, 0, 0);
         canvas.dataset.ready = '';
@@ -1500,7 +1567,7 @@ void main(){
     const write = () => { raf = 0; if (!target) return; target.style.setProperty('--px', px.toFixed(3)); target.style.setProperty('--py', py.toFixed(3)); };
     strip.addEventListener('pointermove', e => {
       if (e.pointerType === 'touch') return;
-      const folder = e.target.closest('[data-history-period]');
+      const folder = e.target.closest(selector);
       if (folder !== target && target) { target.style.setProperty('--px', '0'); target.style.setProperty('--py', '0'); }
       target = folder;
       if (!folder) return;
@@ -1512,11 +1579,18 @@ void main(){
   }
 
   window.ResonanceEras = {
-    mount({root, strip, tracks, chapters, reducedMotion = false, onSelect}) {
-      if (strip) dressFolders(strip, chapters);
-      const ring = root ? createRing(root, {tracks, chapters, reducedMotion, onSelect}) : null;
-      return {update(id) { ring?.update(id); }};
+    /**
+     * groups: one array per folder, items {seed, date, genre, artist, title}.
+     * folderAttr: the camelCase data attribute holding each folder's group index.
+     * palettes: 'eras' or 'future'. onSelect(group, index) picks an item.
+     */
+    mount({root, strip, groups, folderAttr = 'historyPeriod', palettes = 'eras', folderSeed = g => g * 7 + 3, reducedMotion = false, onSelect, label}) {
+      const pal = paletteOf(SETS[palettes] || PALETTES);
+      if (strip) dressFolders(strip, {attr: folderAttr, palette: pal, seed: folderSeed});
+      const ring = root ? createRing(root, {groups, palette: pal, reducedMotion, onSelect, label}) : null;
+      return {update(g, i) { ring?.update(g, i); }};
     },
+    hash: hashString,
   };
 })();
 </script>
@@ -1636,7 +1710,7 @@ void main(){
     const inEra=tracks.filter(item=>item.chapter===track.chapter);
     $('history-era-name').textContent=chapters[track.chapter].name;
     $('history-era-position').textContent=`${pad(inEra.indexOf(track)+1)} / ${pad(inEra.length)}`;
-    try{eras?.update(current);}catch(error){console.warn('History eras could not update',error);}
+    try{eras?.update(track.chapter,inEra.indexOf(track));}catch(error){console.warn('History eras could not update',error);}
     $('history-position').textContent=`${pad(current)} / ${tracks.length}`;
     $('history-position').setAttribute('aria-label',`Recording ${current} of ${tracks.length}`);
     for(const [id,step] of [['history-previous',-1],['history-next',1]]){
@@ -1818,7 +1892,8 @@ void main(){
   window.addEventListener('resize',()=>centerHistoryPeriod(false));
   // The eras and the ring are decoration over select(): if they fail, History still works.
   let eras=null;
-  try{eras=window.ResonanceEras?.mount({root:$('history-recording'),strip:$('history-period'),tracks,chapters,reducedMotion,onSelect:id=>select(id,{smooth:false})})||null;}catch(error){console.warn('History eras could not start',error);}
+  const eraTracks=chapters.map((_,i)=>tracks.filter(t=>t.chapter===i));
+  try{eras=window.ResonanceEras?.mount({root:$('history-recording'),strip:$('history-period'),groups:eraTracks.map(list=>list.map(t=>({seed:t.id*13+1,date:t.date,genre:t.genre,artist:t.artist,title:t.shortTitle||t.title}))),reducedMotion,label:'Recordings in this era',onSelect:(g,i)=>select(eraTracks[g][i].id,{smooth:false})})||null;}catch(error){console.warn('History eras could not start',error);}
   $('history-previous').addEventListener('click',()=>select(current-1,{smooth:false}));
   $('history-next').addEventListener('click',()=>select(current+1,{smooth:false}));
   $('previous').addEventListener('click',()=>select(current-1,{scrollStory:true}));
@@ -1939,23 +2014,22 @@ void main(){
   }
   function listFor(c){return [c.featured,...c.related,...data.works.filter(w=>w.concepts.includes(c.id)).map(w=>w.id)].filter((id,i,a)=>a.indexOf(id)===i&&works.has(id));}
   function renderDetail(c,w){
-    cleanup();currentConcept=c.id;currentWork=w.id;visited.add(c.id);persist();
-    const index=data.concepts.findIndex(x=>x.id===c.id),total=data.concepts.length;const prev=data.concepts[(index-1+total)%total],next=data.concepts[(index+1)%total];const length=Math.min(90,w.duration||90);const list=listFor(c);if(!list.includes(w.id))list.push(w.id);
+    cleanup();currentConcept=c.id;currentWork=w.id;lastConcept=c.id;visited.add(c.id);persist();
+    const length=Math.min(90,w.duration||90),g=data.concepts.findIndex(x=>x.id===c.id),i=Math.max(0,FUTURE_GROUPS[g].findIndex(x=>x.id===w.id));
     $('future-detail').style.setProperty('--concept-color',c.color);
-    $('future-detail').innerHTML=`<div class="future-detail-top"><a class="quiet-button" href="#future">← All concepts</a><div class="concept-navigation"><a href="${href(prev.id)}" aria-label="Previous concept: ${esc(prev.title)}">←</a><span>CONCEPT ${pad(c.number)} / ${pad(data.concepts.length)}</span><a href="${href(next.id)}" aria-label="Next concept: ${esc(next.title)}">→</a></div></div>
-    <div class="future-detail-grid"><article class="future-detail-copy"><p class="eyebrow">${pad(c.number)} · ${esc(c.subtitle)}</p><h1 id="future-detail-title">${esc(c.title)}</h1><p class="future-detail-deck">${esc(c.question)}</p>
+    $('future-detail').innerHTML=`<div class="story-heading"><div class="story-tools"><button class="quiet-button" id="future-save-work" aria-pressed="false">◇ Save</button><button class="quiet-button" id="future-share">Share ↗</button></div></div>
+    <div class="future-detail-grid">
+    <aside class="future-player-column" aria-label="The listening room"><div class="future-player"><div class="future-player-label"><span>THE LISTENING ROOM</span><span>YOUTUBE · ON DEMAND</span></div><div class="future-player-stage" id="future-player-stage">${art(c)}<span class="future-stage-year">${w.year||'LISTEN'}</span><span class="future-stage-caption">CONCEPT STUDY · NOT THE VIDEO</span><button id="future-play-overlay" class="play-overlay" aria-label="Play ${esc(w.artist)} — ${esc(w.title)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7Z" fill="currentColor"/></svg></button><div id="future-embed" hidden></div></div>
+    <div class="future-player-info"><span class="artist-name">${esc(w.artist)}</span><h2>${esc(w.title)}</h2><p class="future-work-meta">${esc(w.dateNote||w.year||'Upload date unconfirmed')} · ${esc(w.format)}${w.reserve?' · FROM THE RESERVE SHELF':''}</p>${w.warning?`<p class="future-warning">VIEWER NOTE · ${esc(w.warning)}</p>`:''}
+    <div class="player-actions"><button id="future-play-sample" class="primary-button">▶ ${LOCAL?'Play on YouTube':length===75?'Play 75-sec track':'Play 90-sec sample'}</button><button id="future-play-full" class="secondary-button">Full ${w.format.toLowerCase().includes('set')?'set':'recording'} </button></div><button class="complete-button future-heard" id="future-heard-work" aria-pressed="false">○ Mark as listened</button><p class="player-status" id="future-player-status" aria-live="polite">${LOCAL?'Press play to listen here. In this copy the player loads from resonance-2050.vercel.app.':'Video loads only after you press play. Nothing starts automatically.'}</p><div class="player-links"><a href="${esc(workURL(w))}" target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a>${w.playlist?`<a href="${esc(w.playlist)}" target="_blank" rel="noopener noreferrer">Album playlist ↗</a>`:`<a href="https://www.youtube.com/results?search_query=${encodeURIComponent(w.artist+' '+w.title)}" target="_blank" rel="noopener noreferrer">Alternative upload ↗</a>`}</div></div></div>
+    <div class="future-listen-note"><p class="eyebrow">◎ WHILE YOU LISTEN / WATCH</p><p>${esc(w.listen)}</p></div>
+    <details class="future-work-context"><summary>About this example, technique & credits +</summary><p>${esc(w.note)}</p><span class="future-tech">${esc(w.tech)}</span>${sourceLinks(w.sources)}<p>${esc(w.verification)} YouTube availability and embedding permissions depend on the upload, region and browser. Dates refer to a release or presentation unless otherwise noted.</p></details></aside>
+    <article class="future-detail-copy"><div class="story-meta"><span class="story-year">${pad(c.number)}</span><span class="genre">${esc(c.category)} · ${esc(c.subtitle)}</span></div><h2 id="future-detail-title">${esc(c.title)}</h2><p class="future-detail-deck">${esc(c.question)}</p>
     <section class="future-context"><h3><span>01</span> Why this is happening</h3><p>${esc(c.context)}</p></section><section class="future-context"><h3><span>02</span> What changes in the experience</h3><p>${esc(c.change)}</p></section>
     <div class="possibility-box"><p class="eyebrow">2050? · A POSSIBILITY, NOT A PREDICTION</p><p>${esc(c.future)}</p></div>
     <a class="history-connection" href="#track=${c.origin}"><span class="eyebrow">LISTEN BACK · A CONNECTION TO HISTORY</span><strong>${esc(c.originLabel)} ↗</strong><small>${esc(c.bridge)}</small></a>
-    <details class="future-concept-sources"><summary>Sources & curatorial notes +</summary>${sourceLinks(c.sources)}<p>Context is a sourced synthesis. Listening prompts, comparisons and 2050 scenarios are curatorial interpretations, not claims of direct influence or inevitable progress.</p></details></article>
-    <aside class="future-player-column" aria-label="Music examples"><div class="future-player"><div class="future-player-label"><span>THE LISTENING ROOM</span><span>YOUTUBE · ON DEMAND</span></div><div class="future-player-stage" id="future-player-stage">${art(c)}<span class="future-stage-year">${w.year||'LISTEN'}</span><span class="future-stage-caption">CONCEPT STUDY · NOT THE VIDEO</span><button id="future-play-overlay" class="play-overlay" aria-label="Play ${esc(w.artist)} — ${esc(w.title)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7Z" fill="currentColor"/></svg></button><div id="future-embed" hidden></div></div>
-    <div class="future-player-info"><span class="artist-name">${esc(w.artist)}</span><h2>${esc(w.title)}</h2><p class="future-work-meta">${esc(w.dateNote||w.year||'Upload date unconfirmed')} · ${esc(w.format)}${w.reserve?' · FROM THE RESERVE SHELF':''}</p>${w.warning?`<p class="future-warning">VIEWER NOTE · ${esc(w.warning)}</p>`:''}
-    <div class="player-actions"><button id="future-play-sample" class="primary-button">▶ ${LOCAL?'Play on YouTube':length===75?'Play 75-sec track':'Play 90-sec sample'}</button><button id="future-play-full" class="secondary-button">Full ${w.format.toLowerCase().includes('set')?'set':'recording'} </button></div><p class="player-status" id="future-player-status" aria-live="polite">${LOCAL?'Press play to listen here. In this copy the player loads from resonance-2050.vercel.app.':'Video loads only after you press play. Nothing starts automatically.'}</p><div class="player-links"><a href="${esc(workURL(w))}" target="_blank" rel="noopener noreferrer">Open on YouTube ↗</a>${w.playlist?`<a href="${esc(w.playlist)}" target="_blank" rel="noopener noreferrer">Album playlist ↗</a>`:`<a href="https://www.youtube.com/results?search_query=${encodeURIComponent(w.artist+' '+w.title)}" target="_blank" rel="noopener noreferrer">Alternative upload ↗</a>`}</div></div></div>
-    <div class="future-work-actions"><button class="quiet-button" id="future-save-work" aria-pressed="false">◇ Save</button><button class="complete-button" id="future-heard-work" aria-pressed="false">○ Mark as listened</button><button class="quiet-button" id="future-share">Share ↗</button></div>
-    <div class="future-listen-note"><p class="eyebrow">◎ WHILE YOU LISTEN / WATCH</p><p>${esc(w.listen)}</p></div>
-    <details class="future-work-context"><summary>About this example, technique & credits +</summary><p>${esc(w.note)}</p><span class="future-tech">${esc(w.tech)}</span>${sourceLinks(w.sources)}<p>${esc(w.verification)} YouTube availability and embedding permissions depend on the upload, region and browser. Dates refer to a release or presentation unless otherwise noted.</p></details>
-    ${list.length>1?`<div class="sample-nav"><p class="eyebrow">EXPLORE THIS IDEA · ${list.length} EXAMPLES</p>${list.map((id,i)=>{const a=works.get(id);return `<button class="sample-choice ${id===w.id?'active':''}" data-work="${id}" data-concept="${c.id}" ${id===w.id?'aria-current="true"':''}><span>${id===w.id?'▶':pad(i+1)}</span><span><strong>${esc(a.artist)}</strong><small>${esc(a.title)}${a.reserve?' · Reserve':''}</small></span><span aria-hidden="true">↗</span></button>`;}).join('')}</div>`:''}
-    </aside></div><a class="next-concept-bar" href="${href(next.id)}"><span>NEXT CONCEPT</span><strong>${esc(next.title)}</strong><span>→</span></a>`;
+    <details class="future-concept-sources"><summary>Sources & curatorial notes +</summary>${sourceLinks(c.sources)}<p>Context is a sourced synthesis. Listening prompts, comparisons and 2050 scenarios are curatorial interpretations, not claims of direct influence or inevitable progress.</p></details></article></div>`;
+    renderFutureChoices(g,i);
     updateProgress();document.title=`${c.title} — Music of the Future · History of Music 2050`;
   }
   function renderLibrary(){
@@ -2005,14 +2079,14 @@ void main(){
   }
   function route(initial=false){
     const p=new URLSearchParams(location.hash.slice(1));if(p.has('track')){setMode('history');lastSection='history';return;}if(p.has('research')){setMode('research');window.ResonanceResearch?.show();if(!initial&&lastSection!=='research')window.scrollTo({top:0,behavior:'instant'});lastSection='research';document.title='Research — History of Music 2050';return;}
-    setMode('future');const raw=p.get('future')||'atlas';let section=raw==='library'?'library':raw==='horizon'?'horizon':raw==='signals'?'signals':concepts.has(raw)?'detail':'atlas';
-    for(const s of ['atlas','detail','library','horizon','signals'])$('future-'+s).hidden=s!==section;
+    setMode('future');const asked=p.get('future')||'atlas',raw=concepts.has(asked)||['library','horizon','signals'].includes(asked)?asked:(lastConcept||data.concepts[0].id);let section=raw==='library'?'library':raw==='horizon'?'horizon':raw==='signals'?'signals':concepts.has(raw)?'detail':'atlas';
+    for(const s of ['atlas','detail','library','horizon','signals'])$('future-'+s).hidden=s!==section;$('future-controls').hidden=section!=='detail';
     document.querySelectorAll('[data-future-nav]').forEach(a=>{const active=a.dataset.futureNav===(section==='detail'?'atlas':section);a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
     const previousConcept=currentConcept;
     if(section==='detail'){const c=concepts.get(raw),candidate=works.get(p.get('work')),w=candidate&&candidate.concepts.includes(c.id)?candidate:works.get(c.featured);renderDetail(c,w);}
     else {cleanup();currentConcept=null;currentWork=null;if(section==='atlas'){renderAtlas();document.title='Music of the Future — History of Music 2050';}if(section==='library'){if(p.get('scope')==='saved')$('future-filter').value='saved';renderLibrary();document.title='The listening shelf — History of Music 2050';}if(section==='horizon'){renderHorizon();document.title='2050, maybe — History of Music 2050';}if(section==='signals'){renderSignals();document.title='Signals now — History of Music 2050';}}
     updateProgress();
-    if(!initial&&(section!==lastSection||section==='detail'&&previousConcept!==currentConcept)){window.scrollTo({top:0,behavior:'instant'});if(section==='detail')$('future-detail').focus({preventScroll:true});}
+    if(!initial&&section!==lastSection){window.scrollTo({top:0,behavior:'instant'});if(section==='detail')$('future-detail').focus({preventScroll:true});}
     lastSection=section;
   }
   function navigate(c,w){location.hash=href(c,w).slice(1);}
@@ -2043,13 +2117,44 @@ void main(){
     const typing=e.target instanceof HTMLElement&&(e.target.matches('input,textarea,select')||e.target.isContentEditable);if(typing)return;
     if(e.key==='/'||((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k')){e.preventDefault();openSearch();return;}
     if(e.altKey||e.metaKey||e.ctrlKey||!currentConcept)return;
-    if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();const c=concepts.get(currentConcept),step=e.key==='ArrowRight'?1:-1;const next=data.concepts[(c.number-1+step+data.concepts.length)%data.concepts.length];navigate(next.id);}
+    if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();stepFuture(e.key==='ArrowRight'?1:-1);}
   });
   function openSearch(){if($('future-library').hidden){location.hash='future=library';setTimeout(()=>$('future-search').focus(),60);}else{$('future-search').focus();$('future-search').scrollIntoView({behavior:reduced?'instant':'smooth',block:'center'});}}
   window.addEventListener('hashchange',()=>route());window.addEventListener('popstate',()=>route());
   document.addEventListener('resonance:history',()=>setMode('history'));document.addEventListener('resonance:play',e=>{if(e.detail!=='future')cleanup();});
   $('mode-history').addEventListener('click',e=>{e.preventDefault();const id=window.ResonanceHistory?.getCurrent()||1;if(location.hash===`#track=${id}`){setMode('history');window.ResonanceHistory?.prepare();}else location.hash=`track=${id}`;});
   window.ResonanceFuture={openSearch,cleanup,exportData};
+  // Directions as glass folders and examples on the molten ring (era-browser.js), as in History.
+  const FUTURE_GROUPS=data.concepts.map(c=>listFor(c).map(id=>works.get(id)));
+  const ROUTE=FUTURE_GROUPS.flatMap((list,g)=>list.map((w,i)=>({c:data.concepts[g].id,w:w.id,g,i})));
+  let futureEras=null,lastConcept=null;
+  try{futureEras=window.ResonanceEras?.mount({root:$('future-recording'),strip:$('future-period'),folderAttr:'futureConcept',palettes:'future',folderSeed:g=>g*11+5,
+    groups:FUTURE_GROUPS.map((list,g)=>list.map(w=>({seed:(window.ResonanceEras.hash(w.id)%9973)+g,date:w.year?String(w.year):'Undated',genre:w.format,artist:w.artist,title:w.title}))),
+    reducedMotion:reduced,label:'Examples of this direction',onSelect:(g,i)=>navigate(data.concepts[g].id,FUTURE_GROUPS[g][i].id)})||null;}catch(error){console.warn('Future directions could not start',error);}
+  function routeIndex(){return ROUTE.findIndex(r=>r.c===currentConcept&&r.w===currentWork);}
+  function stepFuture(step){const r=ROUTE[routeIndex()+step];if(r)navigate(r.c,r.w);}
+  function updateFuturePeriodScroll(){const s=$('future-period');$('future-period-earlier').disabled=s.scrollLeft<=2;$('future-period-later').disabled=s.scrollLeft+s.clientWidth>=s.scrollWidth-2;s.classList.toggle('can-earlier',!$('future-period-earlier').disabled);s.classList.toggle('can-later',!$('future-period-later').disabled);}
+  function centerFuturePeriod(smooth=true){if(document.body.dataset.view!=='future'||$('future-controls').hidden)return;const s=$('future-period'),a=s.querySelector('.active');if(!a)return;s.scrollTo({left:a.offsetLeft-(s.clientWidth-a.offsetWidth)/2,behavior:smooth&&!reduced?'smooth':'instant'});updateFuturePeriodScroll();}
+  function renderFutureChoices(g,i){
+    $('future-period').querySelectorAll('[data-future-concept]').forEach(b=>{const on=Number(b.dataset.futureConcept)===g;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));});
+    requestAnimationFrame(()=>centerFuturePeriod());
+    const at=routeIndex();
+    $('future-era-name').textContent=data.concepts[g].title;
+    $('future-era-position').textContent=`${pad(i+1)} / ${pad(FUTURE_GROUPS[g].length)}`;
+    $('future-position').textContent=`${pad(at+1)} / ${ROUTE.length}`;$('future-position').setAttribute('aria-label',`Example ${at+1} of ${ROUTE.length}`);
+    for(const [id,step] of [['future-previous',-1],['future-next',1]]){const r=ROUTE[at+step],b=$(id);b.disabled=!r;b.setAttribute('aria-label',r?`${step<0?'Previous':'Next'}: ${works.get(r.w).artist}, ${works.get(r.w).title}`:`${step<0?'First':'Last'} example`);}
+    try{futureEras?.update(g,i);}catch(error){console.warn('Future directions could not update',error);}
+  }
+  $('future-period').addEventListener('click',e=>{const b=e.target.closest('[data-future-concept]');if(b)navigate(data.concepts[Number(b.dataset.futureConcept)].id);});
+  $('future-period').addEventListener('keydown',e=>{
+    if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;const b=e.target.closest('[data-future-concept]');if(!b)return;
+    e.preventDefault();e.stopPropagation();const next=$('future-period').querySelector(`[data-future-concept="${Number(b.dataset.futureConcept)+(e.key==='ArrowRight'?1:-1)}"]`);
+    if(next){next.focus({preventScroll:true});next.click();}
+  });
+  $('future-period').addEventListener('scroll',updateFuturePeriodScroll,{passive:true});
+  for(const [id,dir] of [['future-period-earlier',-1],['future-period-later',1]])$(id).addEventListener('click',()=>$('future-period').scrollBy({left:dir*Math.max(180,$('future-period').clientWidth*.7),behavior:reduced?'instant':'smooth'}));
+  $('future-previous').addEventListener('click',()=>stepFuture(-1));$('future-next').addEventListener('click',()=>stepFuture(1));
+  window.addEventListener('resize',()=>centerFuturePeriod(false));
   renderAtlas();renderHorizon();route(true);
 })();
 
