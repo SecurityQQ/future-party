@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { PublicCard } from "@/lib/db";
+import { haptic } from "@/lib/haptics";
 import Hull from "./Hull";
 import KinReveal from "./KinReveal";
 import { orbitCall } from "./OrbitButton";
@@ -25,6 +26,7 @@ export default function OrbitRequests({ requests }: { requests: PublicCard[] }) 
       if (action === "approve") setReveal(c);
     } catch (e: any) {
       setError(e.message);
+      haptic("error");
     } finally {
       setBusy("");
     }
@@ -56,7 +58,7 @@ export default function OrbitRequests({ requests }: { requests: PublicCard[] }) 
                 </Link>
                 <span className="who"><b>{c.name}</b><span>{c.character}</span></span>
                 <span className="acts">
-                  <button className="btn small" disabled={!!busy} onClick={() => answer(c, "approve")}>{busy === c.id ? "…" : "Approve"}</button>
+                  <button className="btn small" data-haptic="kin" disabled={!!busy} onClick={() => answer(c, "approve")}>{busy === c.id ? "…" : "Approve"}</button>
                   <button className="btn ghost small" disabled={!!busy} onClick={() => answer(c, "decline")}>Decline</button>
                 </span>
               </li>

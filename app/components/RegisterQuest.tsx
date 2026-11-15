@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Hull from "./Hull";
 import { TypedComm } from "./Comm";
+import { haptic } from "@/lib/haptics";
 
 type Choice = { id: number; name: string; hint: string | null; taken: boolean };
 
@@ -46,6 +47,7 @@ export default function RegisterQuest({
       onRegistered(j.playerId);
     } catch (e: any) {
       setError(e.message);
+      haptic("error");
     } finally {
       setBusy(false);
     }
@@ -144,7 +146,7 @@ export default function RegisterQuest({
           <ol className="choices">
             {choices.map((c, i) => (
               <li key={c.id}>
-                <button disabled={busy} onClick={() => submit(c.id)}>
+                <button data-haptic="success" disabled={busy} onClick={() => submit(c.id)}>
                   <span className="n">{i + 1}.</span>
                   {c.name} {c.hint && <span className="hint">· {c.hint}</span>}
                   {c.taken && <span className="hint"> · already has a card</span>}

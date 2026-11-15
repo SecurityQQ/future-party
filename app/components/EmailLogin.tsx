@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Hull from "./Hull";
 import { Comm } from "./Comm";
+import { haptic } from "@/lib/haptics";
 
 // Log back in on any phone: email -> six-digit code from the email -> signed in. The link in the
 // email opens /login?email=..&code=.. and signs in by itself (the POST runs in the page, so mail
@@ -46,11 +47,13 @@ export default function EmailLogin({
     setError("");
     try {
       await call("/api/auth/verify", { email: e, code: c });
+      haptic("success");
       window.dispatchEvent(new Event("zr:pilot"));
       router.replace(next);
       router.refresh();
     } catch (err: any) {
       setError(err.message);
+      haptic("error");
       setBusy(false);
     }
   }

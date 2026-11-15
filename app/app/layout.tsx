@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geologica, Martian_Mono, Unbounded } from "next/font/google";
 import Starfield from "@/components/Starfield";
 import Deck from "@/components/Deck";
+import Haptics from "@/components/Haptics";
 import { CARD, DESCRIPTION, OPEN_GRAPH, SITE, X } from "@/lib/share";
 import "./globals.css";
 
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Starfield />
         {children}
         <Deck />
+        <Haptics />
       </body>
     </html>
   );

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { OrbitState } from "@/lib/orbit";
+import { haptic } from "@/lib/haptics";
 import Hull from "./Hull";
 import KinReveal from "./KinReveal";
 
@@ -40,6 +41,7 @@ export default function OrbitButton({ target, name, initial, back, kin, signedIn
       else router.refresh();
     } catch (e: any) {
       setError(e.message);
+      haptic("error");
     } finally {
       setBusy(false);
     }
@@ -93,7 +95,7 @@ export default function OrbitButton({ target, name, initial, back, kin, signedIn
       <Hull title={`${first} wants to join orbits`} led="amber">
         <p style={{ marginTop: 0 }}>Approve and each Kin joins the other’s orbit.</p>
         <div className="btns two">
-          <button className="btn" disabled={busy} onClick={() => act("approve")}>{busy ? "…" : "Approve"}</button>
+          <button className="btn" data-haptic="kin" disabled={busy} onClick={() => act("approve")}>{busy ? "…" : "Approve"}</button>
           <button className="btn ghost" disabled={busy} onClick={() => act("decline")}>Decline</button>
         </div>
         {err}
@@ -114,7 +116,7 @@ export default function OrbitButton({ target, name, initial, back, kin, signedIn
 
   return (
     <div className="stack" style={{ gap: 6 }}>
-      <button className="btn glow" disabled={busy} onClick={() => act("request")}>{busy ? "Sending…" : "Send orbit request"}</button>
+      <button className="btn glow" data-haptic="success" disabled={busy} onClick={() => act("request")}>{busy ? "Sending…" : "Send orbit request"}</button>
       <p className="small muted" style={{ margin: 0, textAlign: "center" }}>{first} approves it and each Kin joins the other’s orbit. Next to them? Tap their pass or scan their QR instead: that adds them at once.</p>
       {err}
     </div>

@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { GLYPH } from "@/lib/zodiac";
+import { haptic } from "@/lib/haptics";
 import { LOOKS, loadLogo, startEngine, type Settings } from "./glass-engine";
 
 // The moment someone joins your orbit (a pass, a QR code or "Become friends"): a drop of glass lands
@@ -79,7 +80,8 @@ export default function KinReveal({ image, sign, kicker, title, line, onClose }:
   }, [image, sign]);
 
   useEffect(() => {
-    const t = setTimeout(() => setText(true), fallback ? 700 : TEXT_AT_MS);
+    // The Kin settles as the words come in: a soft landing (Android always; iPhone only while a tap is fresh).
+    const t = setTimeout(() => (setText(true), haptic("land")), fallback ? 700 : TEXT_AT_MS);
     const key = (e: KeyboardEvent) => e.key === "Escape" && close.current();
     window.addEventListener("keydown", key);
     const overflow = document.body.style.overflow;
@@ -107,7 +109,7 @@ export default function KinReveal({ image, sign, kicker, title, line, onClose }:
         <p className="mono kicker">{kicker}</p>
         <h2>{title}</h2>
         <p className="line">{line}</p>
-        <button className="btn" onClick={onClose}>Continue</button>
+        <button className="btn" data-haptic="success" onClick={onClose}>Continue</button>
       </div>
     </div>,
     document.body,

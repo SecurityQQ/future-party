@@ -10,6 +10,7 @@ import MyCharacter from "./MyCharacter";
 import RegisterQuest from "./RegisterQuest";
 import EmailLogin from "./EmailLogin";
 import KinReveal from "./KinReveal";
+import { haptic } from "@/lib/haptics";
 
 export type ScanState = "register" | "claim" | "busy" | "own" | "collected" | "visitor";
 type Me = { id: string; name: string; card: PublicCard; hasTag: boolean } | null;
@@ -68,6 +69,7 @@ export default function ScanScreen({ state, code, link = false, owner, me, newCo
       router.refresh();
     } catch (e: any) {
       setError(e.message);
+      haptic("error");
     } finally {
       setBusy(false);
     }
@@ -165,7 +167,7 @@ export default function ScanScreen({ state, code, link = false, owner, me, newCo
         <Hull title="Unbound pass" code={code}>
           <TypedComm who="GRUMM" text={`A blank pass. Shall I bind it to you, ${me.name.split(" ")[0]}, and to your ${me.card.character}? Whoever scans it afterwards collects your Kin.`}>
             <div className="btns" style={{ marginTop: 14 }}>
-              <button className="btn" disabled={busy} onClick={() => post("/api/claim", { tag: code })}>{busy ? "Binding…" : "Bind this card to me"}</button>
+              <button className="btn" data-haptic="kin" disabled={busy} onClick={() => post("/api/claim", { tag: code })}>{busy ? "Binding…" : "Bind this card to me"}</button>
               {error && <div className="error">{error}</div>}
             </div>
           </TypedComm>
