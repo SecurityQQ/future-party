@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mars in 3D</title>
+<script>
+// The site drops the trailing slash (/mars3d/ becomes /mars3d), and then "slides.js" or "img/..." would load from the
+// site root. Go to /mars3d/index.html instead, keeping ?options and #mission. Opening the file from disk is unaffected.
+if (/^https?:$/.test(location.protocol) && !/(\/|\.html)$/.test(location.pathname))
+  location.replace(location.pathname + "/index.html" + location.search + location.hash);
+</script>
 <meta name="description" content="Real stereo pictures of Mars from the rovers, landers and orbiters, for red/cyan 3D glasses, with a live 3D globe of Mars between the missions.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='24' cy='32' r='18' fill='%23ff2a2a'/%3E%3Ccircle cx='40' cy='32' r='18' fill='%2300e5ff' fill-opacity='.85'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
