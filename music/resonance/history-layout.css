@@ -1,8 +1,4 @@
 /* History: eras and recordings on top (era-browser.css), then the selected video and its context. */
-#history-view .history-visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-#history-view .history-step-controls{display:flex;align-items:center;justify-content:center;gap:10px;height:46px}
-#history-view .history-step-controls .icon-button{width:42px;height:42px;flex:none;border-radius:9px}
-#history-view #history-position{font:400 11px/1.5 var(--mono);color:var(--v-chrome);min-width:65px;text-align:center;white-space:nowrap}
 #history-view .story{padding-top:10px;scroll-margin-top:12px}
 #history-view .story-heading{justify-content:flex-end;margin-bottom:10px;min-height:34px}
 #history-view .story-tools{gap:20px}
@@ -38,9 +34,6 @@
  #history-view .context-section p{font-size:14px}
 }
 @media(max-width:620px){
- #history-view .history-step-controls{height:44px;gap:5px}
- #history-view .history-step-controls .icon-button{height:36px;width:32px}
- #history-view #history-position{font-size:9px;min-width:46px}
  #history-view .story{padding-top:7px}
  #history-view .story-tools{gap:18px}
  #history-view .story-tools .quiet-button{font-size:11px}
@@ -51,9 +44,4 @@
  #history-view h2#story-title{font-size:26px}
  #history-view .future-bridge{padding:18px}
  #history-view .future-bridge strong{font-size:20px}
-}
-@media(max-width:359px){
- #history-view .history-step-controls{gap:3px}
- #history-view #history-position{font-size:8px;min-width:40px}
- #history-view .history-step-controls .icon-button{width:28px}
 }

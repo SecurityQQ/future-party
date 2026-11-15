@@ -23,6 +23,15 @@ the chrome orbital texture; `assets/chrome-orbit.webp` is its optimized web copy
 - **Interaction:** clear focus rings, readable placeholders, distinct disabled
   controls, mobile safe areas, and labeled element/finish states.
 
+## Homepage hero
+
+The front page opens as a party poster: FUTURE / PARTY / 2050 on three lines,
+large Unbounded type and the chrome-orbit artwork across the stage. Keep the
+name as the headline, with no marketing lead or benefit statement. The original
+chrome Big Wall button, History of Music link, app pill and four section buttons
+keep their materials, names and destinations; the section buttons carry only a
+short factual detail. Content below the hero keeps its existing layout and behavior.
+
 ## Source of truth
 
 `tokens.css` owns the palette, chrome materials, and timing. App components and

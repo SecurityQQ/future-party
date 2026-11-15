@@ -1,0 +1,33 @@
+/* Music of the Future in History's layout (patch_future_eras.py): directions and
+   examples on top (era-browser.css), then the listening room left and the idea right. */
+#future-view .future-controls{margin-top:0}
+#future-view #future-detail{padding-top:10px;scroll-margin-top:12px}
+#future-view .story-heading{display:flex;justify-content:flex-end;align-items:center;margin:0 0 10px;min-height:34px}
+#future-view .story-tools{display:flex;gap:20px}
+#future-view .story-tools .quiet-button{font-size:12px;padding-block:4px}
+#future-view .future-detail-grid{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:start;margin:0;padding:0}
+#future-view .future-player-column,#future-view .future-detail-copy{min-width:0}
+#future-view .future-player-column{display:block;position:static}
+#future-view .future-player-stage{height:auto;aspect-ratio:16/9;min-height:200px}
+#future-view .future-player-info h2{font-size:22px;line-height:1.35;margin:5px 0 9px}
+#future-view .future-heard{margin-top:12px;width:100%}
+#future-view .future-listen-note{padding-top:22px}
+#future-view .story-meta{display:flex;align-items:center;margin-top:0;gap:16px}
+#future-view .story-year{font-size:24px;line-height:1.4}
+#future-view h2#future-detail-title{font:500 clamp(24px,2.4vw,34px)/1.3 var(--display);letter-spacing:-.04em;margin:12px 0 10px;overflow-wrap:anywhere;color:var(--v-ink)}
+#future-view .future-detail-deck{font-size:16px;line-height:1.6;margin:0 0 4px;color:var(--v-chrome)}
+#future-view .future-context{margin-top:22px}
+#future-view .future-context p{font-size:14px;line-height:1.85}
+#future-view .possibility-box,#future-view .history-connection{margin-top:22px}
+@media(max-width:1050px){#future-view .future-detail-grid{gap:28px}}
+@media(max-width:760px){
+ #future-view .future-detail-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:28px}
+ #future-view .story-heading{margin-bottom:9px}
+}
+@media(max-width:620px){
+ #future-view .story-tools{gap:18px}
+ #future-view .story-tools .quiet-button{font-size:11px}
+ #future-view .story-year{font-size:23px}
+ #future-view h2#future-detail-title{font-size:26px}
+ #future-view .future-player-info h2{font-size:21px}
+}

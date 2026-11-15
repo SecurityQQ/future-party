@@ -48,34 +48,30 @@ section{padding-block:56px;border-top:1px solid var(--line);scroll-margin-top:8p
 .sec-head{display:grid;gap:6px;margin-bottom:28px;max-width:760px}
 .sec-head .note{color:var(--muted);font-size:15px;margin-top:6px}
 
-nav.top{display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;padding-block:22px;border-bottom:1px solid var(--line);font:400 11px/1.4 var(--mono);letter-spacing:.03em}
+/* A party poster: the name takes the whole stage, chrome orbit behind it. */
+.hero-stage{position:relative;isolation:isolate;overflow:hidden}
+nav.top{position:relative;z-index:1;display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;padding-block:22px;font:400 11px/1.4 var(--mono);letter-spacing:.03em}
 nav.top a{text-decoration:none;color:var(--muted)}
 nav.top a:hover{color:var(--fg)}
 nav.top .brand{display:flex;align-items:center;gap:10px;color:var(--v-chrome);margin-right:auto;font:500 12px/1.4 var(--display);letter-spacing:-.02em}
 nav.top .brand svg{width:30px;height:30px;flex:none;color:var(--v-ice)}
 
-/* Hero: the copy and the chrome orbit, then the four doors */
-.hero{position:relative;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:36px;padding-block:48px 56px;isolation:isolate}
-.hero-copy{position:relative;z-index:1;min-width:0}
-.hero-art{position:relative;min-width:0;min-height:340px;overflow:hidden;border-radius:180px 20px 180px 20px;border:1px solid #617fa6;box-shadow:inset 0 0 0 1px #dce9fb,0 20px 80px rgb(21 59 126 / 22%);background:var(--v-space)}
-.hero-art img{position:absolute;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.88;animation:chrome-drift 24s ease-in-out infinite alternate}
-.hero-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 65%,rgb(3 8 23 / 70%));pointer-events:none}
-.art-label{position:absolute;z-index:1;left:28px;right:28px;bottom:32px;font:400 10px/1.8 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--v-chrome)}
-.art-label span{display:block;color:var(--v-muted);font-size:9px;letter-spacing:.08em}
-@keyframes chrome-drift{to{transform:scale(1.06) translateY(-1%)}}
-.hero h1{font:500 clamp(44px,6.1vw,82px)/1.06 var(--display);text-transform:uppercase;letter-spacing:-.055em;margin-top:22px}
-.hero h1 .yr{display:block;margin-top:6px;background:var(--v-chrome-surface);background-clip:text;-webkit-background-clip:text;color:transparent;font-weight:600;letter-spacing:-.045em}
-.lead{font-size:clamp(15px,1.4vw,17px);line-height:1.8;color:var(--fg-2);max-width:55ch;margin-top:26px}
-.lead b{color:var(--fg);font-weight:600}
-.hero-actions{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;margin-top:28px}
+.hero{position:relative;padding-bottom:44px}
+.hero-copy{position:relative;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;min-height:650px;min-height:min(760px,calc(100svh - 100px));padding-block:38px 56px}
+.hero h1{font:500 clamp(76px,10.2vw,144px)/.94 var(--display);text-transform:uppercase;letter-spacing:-.075em;text-wrap:nowrap}
+.hero h1 span{display:block}
+.hero h1 .yr{font-weight:600;letter-spacing:-.065em;background:var(--v-chrome-surface);background-clip:text;-webkit-background-clip:text;color:transparent;padding-bottom:.08em}
+.hero-art{position:absolute;z-index:-1;inset:0;overflow:hidden;pointer-events:none;mask-image:linear-gradient(#000 65%,transparent 94%);-webkit-mask-image:linear-gradient(#000 65%,transparent 94%)}
+.hero-art img{position:absolute;right:-4%;top:-12%;width:80%;height:110%;object-fit:cover;object-position:center 40%;opacity:.96}
+.hero-art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg),rgb(3 8 23 / 82%) 17%,rgb(3 8 23 / 25%) 46%,transparent 68%),linear-gradient(0deg,var(--bg),transparent 45%)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;margin-top:38px}
 .hero-actions .lnk{color:var(--v-ice)}
-.hero-actions .alt{flex-basis:100%}
 
 /* The doors: one chrome-edged panel per section, the way into the page */
 .doors{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 @media (max-width:980px){.doors{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:520px){.doors{grid-template-columns:1fr}}
-.door{display:flex;flex-direction:column;gap:8px;min-width:0;padding:20px;border:1px solid var(--line-2);border-top-color:#7d9ac0;border-radius:var(--r);background:linear-gradient(145deg,#112441,#07132b 75%);box-shadow:inset 0 1px 0 rgb(220 233 251 / 6%);text-decoration:none;transition:border-color var(--v-fast),box-shadow var(--v-fast),transform var(--v-fast)}
+@media (max-width:520px){.doors{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.door{display:flex;flex-direction:column;gap:12px;min-width:0;padding:20px;border:1px solid var(--line-2);border-top-color:#7d9ac0;border-radius:var(--r);background:linear-gradient(145deg,#112441,#07132b 75%);box-shadow:inset 0 1px 0 rgb(220 233 251 / 6%);text-decoration:none;transition:border-color var(--v-fast),box-shadow var(--v-fast),transform var(--v-fast)}
 .door:hover{border-color:var(--v-ice);box-shadow:inset 0 1px 0 rgb(220 233 251 / 10%),0 0 28px rgb(67 133 255 / 22%);transform:translateY(-2px)}
 .door .n{font:400 11px var(--mono);color:var(--v-ice);letter-spacing:.08em}
 .door b{font:500 clamp(16px,1.5vw,19px)/1.25 var(--display);letter-spacing:-.03em;text-transform:uppercase;color:var(--v-chrome)}
@@ -269,24 +265,32 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
   .deck a:focus-visible{border-radius:12px;outline-offset:1px}
 }
 
-@media(max-width:900px){
-  .hero{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px}
-  .hero h1{font-size:clamp(44px,7.6vw,68px)}
-  .hero-art{border-radius:100px 16px 100px 16px}
+@media(max-width:1000px){
   nav.top .brand{flex-basis:100%}
+  .hero-copy{min-height:650px;padding-top:44px}
+  .hero h1{font-size:clamp(76px,11.5vw,114px)}
+  .hero-art img{width:100%;right:-15%;opacity:.9}
 }
 @media(max-width:620px){
-  .hero{display:block;padding-block:36px 32px;overflow:hidden}
-  .hero-copy{padding-bottom:28px}
-  .hero h1{font-size:clamp(42px,12.8vw,68px);max-width:100%;letter-spacing:-.06em}
-  .hero-art{position:absolute;z-index:-1;top:16px;right:-24%;width:80%;height:440px;min-height:0;border:0;border-radius:0;box-shadow:none;opacity:.2;mask-image:linear-gradient(90deg,transparent,#000 40%,#000);-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%,#000)}
-  .hero-art .art-label{display:none}
-  .lead{max-width:100%;font-size:15px;text-shadow:0 1px 8px var(--v-space)}
+  nav.top{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 12px;padding-block:18px 8px}
+  nav.top .brand{grid-column:1/-1;font-size:11px;margin-bottom:10px}
+  nav.top .brand svg{width:25px;height:25px}
+  nav.top a{font-size:11px;min-height:36px;display:inline-flex;align-items:center}
+  .hero{padding-bottom:30px}
+  .hero-copy{min-height:0;padding-block:36px 38px}
+  .hero h1{font-size:clamp(44px,14.5vw,88px);line-height:.98;letter-spacing:-.07em}
+  .hero-art img{width:150%;right:-50%;top:0;height:86%;opacity:.86;object-position:center 30%}
+  .hero-art::after{background:linear-gradient(90deg,rgb(3 8 23 / 78%),rgb(3 8 23 / 22%) 80%),linear-gradient(0deg,var(--bg) 8%,transparent 65%)}
+  .hero-actions{align-items:flex-start;flex-direction:column;gap:18px;margin-top:32px}
+  .hero-actions .lnk{font-size:13px;min-height:30px;display:inline-flex;align-items:center;gap:8px}
+  .doors{gap:10px}
+  .door{padding:16px 12px;gap:10px;border-radius:12px}
+  .door b{font-size:14px}
+  .door i{font-size:10px;line-height:1.6;padding-top:0}
   section{padding-block:40px}
   .sec-head{margin-bottom:22px}
   .row-label{display:block}.row-label span{display:block;margin-top:6px}
   .tile,.feature{padding:14px}
-  nav.top{gap:12px 16px;font-size:10px}
 }
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
@@ -296,6 +300,10 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
 </style>
 </head>
 <body>
+<div class="hero-stage">
+  <div class="hero-art" aria-hidden="true">
+    <img src="vibes/assets/chrome-orbit.webp" width="736" height="1308" alt="" fetchpriority="high">
+  </div>
 <div class="wrap">
   <nav class="top" aria-label="Sections">
     <span class="brand"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="16" cy="16" r="7"/><ellipse cx="16" cy="16" rx="15" ry="5" transform="rotate(-25 16 16)"/></svg>FUTURE PARTY / 2050</span>
@@ -303,20 +311,20 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
     <a class="to-app" id="navApp" href="/app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="11" height="15" rx="1"/><path d="M8 3h11a1 1 0 0 1 1 1v13"/><path d="M6 15l2.5-3 2 2 1.5-2"/></svg>Open the app</a>
   </nav>
 
-  <header class="hero">
+  <header class="hero" aria-labelledby="hero-title">
     <div class="hero-copy">
-      <p class="eyebrow" id="eyebrow">Everything for the night</p>
-      <h1>Future<br>Party <span class="yr">2050</span></h1>
-      <p class="lead" id="lead"></p>
-      <div class="hero-actions"><a class="btn big" id="heroStart"><span class="tri" aria-hidden="true"></span>Start the Big Wall</a><a class="lnk" id="heroMusic">Enter History of Music 2050 <span aria-hidden="true">↗</span></a><span class="alt" id="heroAlt"></span></div>
+      <h1 id="hero-title"><span>FUTURE</span><span>PARTY</span><span class="yr">2050</span></h1>
+      <div class="hero-actions">
+        <a class="btn big" id="heroStart" href="wall/dist/big-wall.html#play"><span class="tri" aria-hidden="true"></span>Start the Big Wall</a>
+        <a class="lnk" id="heroMusic" href="music/resonance/dist/local/index.html">Enter History of Music 2050 <span aria-hidden="true">↗</span></a>
+      </div>
     </div>
-    <div class="hero-art" aria-hidden="true">
-      <img src="vibes/assets/chrome-orbit.webp" width="736" height="1308" alt="" fetchpriority="high">
-      <div class="art-label">Other worlds. One night.<span>Music · ideas · future encounters</span></div>
-    </div>
-    <div class="doors" id="doors"></div>
+    <nav class="doors" id="doors" aria-label="Explore the party"></nav>
   </header>
+</div>
+</div>
 
+<div class="wrap">
   <section id="wall">
     <div class="sec-head">
       <p class="eyebrow">On the wall</p>
@@ -424,13 +432,8 @@ const ext=u=>/^https?:/.test(u)?' target="_blank" rel="noopener"':'';
 const P=D.pages,B=D.books,T=D.tweets,S=D.sound,F=D.future,A=D.art,W=D.wall;
 
 /* Hero */
-$('lead').innerHTML=WEB
-  ?'The wall, the music, the apps and the research behind it, in one place. <b>Nothing here needs a login.</b> To run the night, open the Big Wall on the projector and press F.'
-  :'The wall, the music, the apps and the research behind it, in one place. <b>Open this page on the projector laptop</b>: everything plays straight from the folder, without internet or a login. The same pages are online at <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(D.site.replace(/^https?:\/\//,''))+'</a>.';
-
 $('heroStart').href=P.bigwall+'#play';
 $('heroMusic').href=P.resonance;
-$('heroAlt').textContent=WEB?'or type '+D.site.replace(/^https?:\/\//,'')+'/wall on the projector laptop':'press F on the wall for fullscreen';
 
 /* The apps, in the order of the Apps section: the address of each card on this page, the page it opens (the party
    app is /app on the website, the full address from the folder), its preview
@@ -500,14 +503,14 @@ const APPS=[
         ['Play as a wall','Fullscreen, one picture at a time, to read across the room.']]}
 ];
 
-/* The doors */
+/* The original four section buttons, with the current counts. */
 const DOORS=[
-  ['#wall','On the wall','The Big Wall, Further, Six Facts, and the quote, idea, tweet and art walls.','▶ '+mins(W.total)+' a loop'],
-  ['#music','Music','Music of the Future, the host’s picks; Fable 5.2’s playlist about the future; and Why Music Changes: four thousand years in thirteen eras.','2 playlists · '+(F.tracks+S.tracks)+' videos'],
-  ['#apps','Apps','The Future 2050, the NFC game; Mirror 2050, History of Music 2050, Play: 2050, Mars in 3D and Imagined Futures.',APPS.length+' apps'],
-  ['#research','2050 Research','The books, the tweets, the films and the effects behind the wall.','7 pages']
+  ['#wall','On the wall',mins(W.total)+' a loop'],
+  ['#music','Music','2 playlists · '+(F.tracks+S.tracks)+' videos'],
+  ['#apps','Apps',APPS.length+' apps'],
+  ['#research','2050 Research','Books · films · ideas']
 ];
-$('doors').innerHTML=DOORS.map((d,i)=>'<a class="door" href="'+d[0]+'"><span class="n">0'+(i+1)+'</span><b>'+esc(d[1])+'</b><span>'+esc(d[2])+'</span><i>'+esc(d[3])+'</i></a>').join('');
+$('doors').innerHTML=DOORS.map((d,i)=>'<a class="door" href="'+d[0]+'"><span class="n" aria-hidden="true">0'+(i+1)+'</span><b>'+esc(d[1])+'</b><i>'+esc(d[2])+'</i></a>').join('');
 
 /* The Big Wall */
 const C=W.counts;
