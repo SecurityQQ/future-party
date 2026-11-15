@@ -27,7 +27,7 @@ const ELEMENTS = [
 
 // Fable, in the deck: three tabs. You: your reading and your birthday sky. Friends: the signs that suit
 // you (and who of them is here), then Fable reading you with each friend and Kin in your orbit, best match
-// first. Party: who is what sign and element tonight. In six languages (lib/i18n.ts, components/LangPicker).
+// first. Party: who is what sign and element tonight, and Fable reading every other traveler. In six languages (lib/i18n.ts, components/LangPicker).
 export default async function FablePage() {
   const [me, board, lang] = await Promise.all([currentPlayer(), leaderboard(), getLang()]);
   const circle = me ? await circleOf(me.id) : [];
@@ -43,6 +43,7 @@ export default async function FablePage() {
   const elements = ELEMENTS.map((e) => ({ ...e, count: people.filter((p) => p.element === e.id).length }));
   const lead = [...elements].sort((a, b) => b.count - a.count)[0];
   const S = (sign: string) => signName(lang, sign);
+  const others = me ? people.filter((p) => p.id !== me.id) : people;
 
   const chart = me ? chartFor(me.birthday, me.sign) : null;
   const sky = skyAt();
@@ -197,6 +198,25 @@ export default async function FablePage() {
               </div>
             ))}
           </div>
+        </Hull>
+      )}
+      {others.length > 0 && (
+        <Hull title={t(lang, "everyone")} code={`${others.length}`}>
+          <ul className="fable-list">
+            {others.map((p) => (
+              <li key={p.id} className="fable-row">
+                <Link className="face" href={`/app/c/${p.card_no}`} aria-label={p.name}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  {p.image_url ? <img src={p.image_url} alt="" loading="lazy" /> : GLYPH[p.sign]}
+                </Link>
+                <div>
+                  <b>{p.name}</b>
+                  <span className="meta">{glyph(p.sign)} {S(p.sign)} · {p.character}</span>
+                  <FableReading id={p.id} lang={lang} words={words} />
+                </div>
+              </li>
+            ))}
+          </ul>
         </Hull>
       )}
     </>

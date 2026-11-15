@@ -21,6 +21,7 @@ export function pickLang(cookie?: string | null, accept?: string | null): Lang {
 }
 
 const en = {
+  deck: ["Party", "My Kin", "Scan", "Fable", "Ranking"], everyone: "Fable reads everyone",
   title: "Fable reads", titleEm: "the party",
   intro: "Fable, the oracle of 2050, reads every traveler from their birthday sky: Sun, Moon, the year’s animal and tonight’s Moon.",
   tabYou: "You", tabFriends: "Friends", tabParty: "Party",
@@ -61,6 +62,7 @@ const en = {
 export type Dict = typeof en;
 
 const ru: Dict = {
+  deck: ["Пати", "Мой Кин", "Скан", "Fable", "Рейтинг"], everyone: "Fable читает всех",
   title: "Fable читает", titleEm: "вечеринку",
   intro: "Fable, оракул 2050 года, читает каждого гостя по небу его дня рождения: Солнце, Луна, животное года и Луна этой ночи.",
   tabYou: "Ты", tabFriends: "Друзья", tabParty: "Вечеринка",
@@ -100,6 +102,7 @@ const ru: Dict = {
 };
 
 const es: Dict = {
+  deck: ["Fiesta", "Mi Kin", "Escanear", "Fable", "Ranking"], everyone: "Fable lee a todos",
   title: "Fable lee", titleEm: "la fiesta",
   intro: "Fable, el oráculo de 2050, lee a cada viajero por el cielo de su cumpleaños: Sol, Luna, el animal del año y la Luna de esta noche.",
   tabYou: "Tú", tabFriends: "Amigos", tabParty: "Fiesta",
@@ -139,6 +142,7 @@ const es: Dict = {
 };
 
 const zh: Dict = {
+  deck: ["派对", "我的 Kin", "扫描", "Fable", "排行"], everyone: "Fable 解读每个人",
   title: "Fable 解读", titleEm: "这场派对",
   intro: "Fable 是 2050 年的神谕，根据每位旅人生日那天的星空来解读：太阳、月亮、生肖，以及今晚的月亮。",
   tabYou: "我", tabFriends: "朋友", tabParty: "派对",
@@ -178,6 +182,7 @@ const zh: Dict = {
 };
 
 const ja: Dict = {
+  deck: ["パーティー", "マイ Kin", "スキャン", "Fable", "ランキング"], everyone: "Fable がみんなを読む",
   title: "Fable が読む", titleEm: "このパーティー",
   intro: "2050年の神託 Fable は、誕生日の空から旅人を一人ずつ読み解きます。太陽、月、生まれ年の干支、そして今夜の月。",
   tabYou: "あなた", tabFriends: "友だち", tabParty: "パーティー",
@@ -217,6 +222,7 @@ const ja: Dict = {
 };
 
 const de: Dict = {
+  deck: ["Party", "Mein Kin", "Scannen", "Fable", "Ranking"], everyone: "Fable liest alle",
   title: "Fable liest", titleEm: "die Party",
   intro: "Fable, das Orakel von 2050, liest jeden Reisenden aus dem Himmel seines Geburtstags: Sonne, Mond, das Tier des Jahres und der Mond von heute Nacht.",
   tabYou: "Du", tabFriends: "Freunde", tabParty: "Party",
@@ -272,3 +278,10 @@ export const phaseName = (lang: Lang, phase: string) => {
 };
 const ORD = (n: number) => `${n}${n === 1 ? "st" : n === 2 ? "nd" : n === 3 ? "rd" : "th"}`;
 export const houseName = (lang: Lang, n: number) => t(lang, "house", { n: lang === "en" ? ORD(n) : n });
+
+// In the browser: the language from the cookie (the deck lives in the layout, outside any page's lang).
+export function clientLang(): Lang {
+  if (typeof document === "undefined") return "en";
+  const m = document.cookie.match(/(?:^|; )zr_lang=(\w+)/);
+  return pickLang(m?.[1], navigator.language);
+}
