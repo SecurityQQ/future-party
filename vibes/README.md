@@ -23,16 +23,14 @@ the chrome orbital texture; `assets/chrome-orbit.webp` is its optimized web copy
 - **Interaction:** clear focus rings, readable placeholders, distinct disabled
   controls, mobile safe areas, and labeled element/finish states.
 
-## Homepage hero reference
+## Homepage hero
 
-[Portal Space Systems on Awwwards](https://www.awwwards.com/sites/portal-space-systems)
-is the reference for the homepage hero: one unframed space image, a short value
-statement, understated navigation and direct routes into the content. The hero
-keeps our chrome-orbit artwork, blue palette and type. The Big Wall remains the
-primary action; the four routes lead to Wall, Music, Apps and Research. The Apps
-cards, Slides section and shared mobile app deck keep their existing behavior.
-The decorative background is static and contained by `.hero-stage`, so it does
-not introduce horizontal scrolling or additional animation.
+The front page opens as a party poster: FUTURE / PARTY / 2050 on three lines,
+large Unbounded type and the chrome-orbit artwork across the stage. Keep the
+name as the headline, with no marketing lead or benefit statement. The original
+chrome Big Wall button, History of Music link, app pill and four section buttons
+keep their materials, names and destinations; the section buttons carry only a
+short factual detail. Content below the hero keeps its existing layout and behavior.
 
 ## Source of truth
 
