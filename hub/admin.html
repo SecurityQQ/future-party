@@ -93,7 +93,7 @@ const CHECK=[
   ['Cue the playlist on a separate speaker.','Further and the slide walls are silent. Six Facts has music: on the Big Wall it starts muted, M turns it on, so lower the playlist if you do.'],
   ['Decide between online and offline.','Online, every page is at <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(siteName)+'</a> with no login. Offline, open <code>index.html</code> from the folder: the films, walls and pages play from disk, but the YouTube playlists and Play: 2050 need the internet (build its offline copy with <code>python3 -I soundboard/build.py --offline</code>).'],
   ['Try Mirror 2050 with the webcam you will use.','Open it, allow the camera and hold up a hand: the HANDS pill at the top should count it. Without internet it needs a local server and <code>mirror/tools/vendor.sh</code> run once beforehand.'],
-  ['Open The Future 2050 on a phone and tap one pass.','<a href="'+esc(D.apps.party)+'" target="_blank" rel="noopener">'+esc(D.apps.party.replace(/^https?:\/\//,''))+'</a>. Reset the test data before the party: <code>bun scripts/reset.ts --yes</code> in <code>astrology/app</code>.']
+  ['Open The Future 2050 on a phone and tap one pass.','<a href="'+esc(D.apps.party)+'" target="_blank" rel="noopener">'+esc(D.apps.party.replace(/^https?:\/\//,''))+'</a>. Reset the test data before the party: <code>bun scripts/reset.ts --yes</code> in <code>app</code>.']
 ];
 const KEY='fp2050-check';let ticks={};
 try{ticks=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}

@@ -1,6 +1,6 @@
 # Blue futurism
 
-The shared visual direction for **The Future 2050** (`astrology/app`), the party
+The shared visual direction for **The Future 2050** (`app/`), the party
 hub, and Resonance: deep navy space, liquid chrome, electric blue, ice reflections,
 and alien companions. The images
 in this folder are the moodboard. `115185f178413a7827be3f9a8ec4942f.jpg` supplies
@@ -26,7 +26,7 @@ the chrome orbital texture; `assets/chrome-orbit.webp` is its optimized web copy
 ## Source of truth
 
 `tokens.css` owns the palette, chrome materials, and timing. App components and
-layout remain in `astrology/app`; `app/globals.css` imports the token copy.
+layout remain in `app/`; `app/globals.css` imports the token copy.
 The Next app has an isolated build root, so the two shared assets are deliberately
 copied into it and committed. No parent-folder import or runtime CDN is needed.
 
@@ -43,7 +43,7 @@ After editing tokens or the optimized texture, run from the repository root:
 ```sh
 python3 vibes/sync.py
 python3 vibes/sync.py --check
-cd astrology/app
+cd app
 npm run typecheck
 npm run build
 ```

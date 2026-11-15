@@ -479,7 +479,8 @@ $('marsLink').href=P.mars3d;
 $('marsLink').insertAdjacentHTML('afterend','<a class="lnk" href="'+esc(P.mars3d)+'?globe">the globe alone</a>');
 if(D.exists['mars3d/preview.jpg']===false)$('marsShot').hidden=true;
 $('marsHow').innerHTML=D.mars.pictures+' real stereo pictures of Mars from the rovers, landers, the Ingenuity helicopter and orbiters, with a live 3D globe that flies to each landing site. Red lens on the left eye; the intro has a glasses test. It runs by itself, about 13 minutes a loop, and works offline. Arrow keys skip, G opens the globe alone, I lists every picture with its source.';
-$('appLink').href=D.apps.party;
+$('appLink').href=WEB?'/app':D.apps.party;
+if(WEB){$('appLink').removeAttribute('target');$('appLink').textContent='Open the app';}
 
 $('foot').innerHTML='Future Party 2050 · built '+esc(D.built)+' · <a href="'+esc(D.repo)+'" target="_blank" rel="noopener">source on GitHub</a>'+(WEB?'':' · <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(D.site.replace(/^https?:\/\//,''))+'</a>');
 

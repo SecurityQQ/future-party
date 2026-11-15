@@ -1,4 +1,5 @@
-"""Write site/, the Future Party 2050 website. Vercel runs this on every deploy (see vercel.json).
+"""Write site/, the Future Party 2050 website. The app's build runs it on every deploy (npm run site in app/,
+which copies site/ into app/public/: one Next.js project serves the site and the party app at /app).
 
 The site keeps the repo's paths, so every relative link works the same as in the folder:
 - index.html is the front page in web mode: the 720p films, the 1080p masters on the GitHub releases, no claude.ai links;

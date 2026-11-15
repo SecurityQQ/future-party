@@ -9,10 +9,10 @@ import argparse
 import sys
 
 HERE = Path(__file__).resolve().parent
-APP = HERE.parent / "astrology" / "app"
+APP = HERE.parent / "app"
 FILES = {
     HERE / "tokens.css": APP / "app" / "vibes-tokens.css",
-    HERE / "assets" / "chrome-orbit.webp": APP / "public" / "vibes" / "chrome-orbit.webp",
+    HERE / "assets" / "chrome-orbit.webp": APP / "public" / "app" / "vibes" / "chrome-orbit.webp",
 }
 
 def main():
