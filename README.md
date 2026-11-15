@@ -4,6 +4,7 @@
 
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fwww.vargafutureparty.com&label=vargafutureparty.com&up_message=live&style=flat-square)](https://www.vargafutureparty.com)
 [![Release](https://img.shields.io/github/v/release/SecurityQQ/future-party?label=films&style=flat-square)](../../releases)
+[![License: MIT](https://img.shields.io/badge/license-MIT-9dd8ff?style=flat-square)](LICENSE)
 
 [![Future Party 2050: Step into 2050. The Big Wall, music, six apps and Mars in 3D for one night.](hub/og/site.jpg)](https://www.vargafutureparty.com)
 
@@ -42,6 +43,9 @@ No. Nothing on the site needs a login, and the party app opens in the phone's br
 
 **How is it built?**
 Static HTML pages written by small Python scripts from JSON data (`python3 -I hub/build.py`), films in HyperFrames, and the party app in Next.js with Supabase. One Vercel project serves the site and the app; see [The website](#the-website).
+
+**Can I copy the code?**
+Yes: the code and the original text are under the [MIT licence](LICENSE). Quotes, posts, concept art and photos belong to their authors and keep their own licences; see [Credits and licences](#credits-and-licences).
 
 **Where do the quotes, posts and pictures come from?**
 Quotes are verbatim and checked against the book text or two matching sources (`books/quotes.json`). Posts are verbatim from the X API (`tweets/tweets.json`). Photos are from NASA, ESA and Wikimedia Commons, credited in [`video/CREDITS.md`](video/CREDITS.md). Concept art links to the original post and names the artist where the post does.
@@ -234,5 +238,7 @@ python3 -I build.py   # writes imagined-futures.html (the published page, also o
 The front page lists it under On the wall; on the website `/art` starts the wall. `index.html` opens in any browser from this folder and shows the original-size pictures from `images/`, which `fetch.py` downloads (about 240 MB, not committed). Add `#wall` to its address, or press **Play as wall**, for a fullscreen slideshow. To add posts, put their ids in `picks.json`; to leave one out after review, set `"drop": true` on it, or list photo numbers in `drop_photos`. The same picture reposted by several accounts is kept once, on its earliest post.
 
 ## Credits and licences
+
+The code, the build scripts and the original writing in this repository are under the [MIT licence](LICENSE). The material they show is not ours and keeps its own licence: the verbatim book quotes and posts from X (each with its source), the concept art in `concept-art/` (each picture links to its post and artist), the photos and footage below, the Mars stereo pictures (NASA, public domain; ESA, CC BY-SA 3.0 IGO; see [`mars3d/README.md`](mars3d/README.md)) and three.js (MIT, `mars3d/vendor/LICENSE-three.txt`).
 
 All photographs are from Wikimedia Commons: public-domain works (mostly NASA) and CC BY / CC BY-SA images credited on screen. The full list with authors and licences is in [`video/CREDITS.md`](video/CREDITS.md) and `video/assets/photos/credits.json`. Each photo keeps its own licence. The films are named in the video, never shown. The soundboard plays [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) pinned to commit `c74fc80`. That repo has no licence file, so its audio is streamed rather than committed here, and the offline copy is built locally and git-ignored.
