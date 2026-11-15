@@ -1,0 +1,6 @@
+Open Resonance.command
+.DS_Store
+.env*
+.vercel
+.gitignore
+.vercelignore
