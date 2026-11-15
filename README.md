@@ -1,12 +1,12 @@
 # Varga Future Party 2050
 
-**Everything for a party set in the year 2050**: a Big Muse that plays films, quotes, futurists' posts and concept art in one loop on the projector, six apps for the guests, the music, and the research behind all of it. Live, with no login, at **[vargafutureparty.com](https://vargafutureparty.com)**.
+**Everything for a party set in the year 2050**: a Big Muse that plays films, quotes, futurists' posts and concept art in one loop on the projector, seven apps for the guests, the music, and the research behind all of it. Live, with no login, at **[vargafutureparty.com](https://vargafutureparty.com)**.
 
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fvargafutureparty.com&label=vargafutureparty.com&up_message=live&style=flat-square)](https://vargafutureparty.com)
 [![Release](https://img.shields.io/github/v/release/SecurityQQ/future-party?label=films&style=flat-square)](../../releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-9dd8ff?style=flat-square)](LICENSE)
 
-[![Varga Future Party 2050: Step into 2050. The Big Muse, music, six apps and Mars in 3D for one night.](hub/og/site.jpg)](https://vargafutureparty.com)
+[![Varga Future Party 2050: Step into 2050. The Big Muse, music, seven apps and Mars in 3D for one night.](hub/og/site.jpg)](https://vargafutureparty.com)
 
 **[Open the site](https://vargafutureparty.com)** · **[The party app](https://vargafutureparty.com/app)** · [The Big Muse](https://vargafutureparty.com/wall) · [Mars in 3D](https://vargafutureparty.com/mars3d/index.html) · [Films (1080p)](../../releases)
 
@@ -14,7 +14,7 @@
 
 A one-night party where the guests step into 2050, and this repository is the whole night as code and data. Guests tap an NFC pass to meet their Kin, play with webcam effects and a Makey Makey soundboard, look at Mars through red/cyan glasses, and watch the Big Muse: two films, 50 quotes and 25 ideas from books about 2050, 78 posts by futurists and 377 pictures of concept art, sorted into six chapters. Every claim on the wall has a source: quotes are checked against the books, posts are verbatim from X, photos come from NASA, ESA and Wikimedia Commons with their licences.
 
-### Six apps for the guests
+### Seven apps for the guests
 
 | App | What it does | Built with |
 | --- | --- | --- |
@@ -24,6 +24,7 @@ A one-night party where the guests step into 2050, and this repository is the wh
 | [Play: 2050](https://vargafutureparty.com/soundboard/dist/contact2050.html) | A soundboard you play by touching things: twelve pins, eight kits, a jam mode that keeps every touch in time and in key | Makey Makey, Web Audio, [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) ([`soundboard/`](soundboard/README.md)) |
 | [Mars in 3D](https://vargafutureparty.com/mars3d/index.html) | 40 real stereo pictures of Mars from rovers, landers and orbiters, with a live 3D globe | NASA/ESA anaglyphs, three.js ([`mars3d/`](mars3d/README.md)) |
 | [Imagined Futures](https://vargafutureparty.com/concept-art/imagined-futures.html) | 377 pictures of concept art about the future, each linked to its post and artist | Python build from public posts on X (`concept-art/`) |
+| [Prayer Room](https://vargafutureparty.com/pray) | Ask 2050 for something: an icon of Elon Musk in liquid chrome listens, your words leave on a rocket, and one of his real posts about 2050 comes back. A party joke; the icon is an AI-made picture | WebGL shader, Web Audio, one HTML file ([`prayer/`](prayer/README.md)) |
 
 ### On the wall and behind it
 
@@ -63,7 +64,7 @@ python3 -m http.server 4610 -d site     # then open http://localhost:4610
 
 ## What is here
 
-Start at **`index.html`**, the front page: four doors (the wall, the music, the apps, the research), then a section for each, with the Big Muse first. Apps holds the six things guests play with (The Future 2050, the party App; Mirror 2050; History of Music 2050; Play: 2050; Mars in 3D; Imagined Futures), each with a preview, a link of its own on the page (`#mirror`, `#play`, `#mars` …) and a jump bar. It works offline from this folder. What only the host needs (the pre-flight list for the projector laptop, the short addresses, the programme and the films kept off the front page, and how to rebuild each piece) is on **`admin.html`**, which no page links to. Rebuild both with `python3 -I hub/build.py` after any other piece changes; it rebuilds the Big Muse first. The website is the same pages in web mode (see [The website](#the-website)).
+Start at **`index.html`**, the front page: four doors (the wall, the music, the apps, the research), then a section for each, with the Big Muse first. Apps holds the seven things guests play with (The Future 2050, the party App; Mirror 2050; History of Music 2050; Play: 2050; Mars in 3D; Imagined Futures; Prayer Room), each with a preview, a link of its own on the page (`#mirror`, `#play`, `#mars` …) and a jump bar. It works offline from this folder. What only the host needs (the pre-flight list for the projector laptop, the short addresses, the programme and the films kept off the front page, and how to rebuild each piece) is on **`admin.html`**, which no page links to. Rebuild both with `python3 -I hub/build.py` after any other piece changes; it rebuilds the Big Muse first. The website is the same pages in web mode (see [The website](#the-website)).
 
 | Folder | What it is |
 | --- | --- |
@@ -77,6 +78,7 @@ Start at **`index.html`**, the front page: four doors (the wall, the music, the 
 | `music/` | **Music of the Future** (the host's own picks, with a player in the page), **Soundtrack 2050** (Fable 5.2's playlist about the future, the party's running order) and **Why Music Changes**: data (`future_music.json`, `soundtrack.json`, `history.json`, `eras.json`) and the templates that build the three pages in `dist/`. `future_music.json` keeps the order of the YouTube playlist. `music/resonance/` is **History of Music 2050** (first called Resonance), music history and what comes next, with an in-page YouTube player. |
 | `soundboard/` | **Play 2050** (formerly Contact 2050), a Makey Makey soundboard: twelve pins, eight kits, and 2,038 sounds from TidalCycles' [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) library. Jam mode keeps everything in time and in key; stage mode is for the projector. A sub-project with its own [README](soundboard/README.md). |
 | `mirror/` | **Mirror 2050**, a live camera mirror for the guests: eight effects that went viral on X (liquid air, a particle swarm, a hologram cube, portals and more), played with the hands through MediaPipe tracking and WebGL shaders, in one HTML file. Party mode cycles them on a screen. `viral-webcam-effects.html` is the research behind it: 18 posts from X with their numbers. Its own [README](mirror/README.md). |
+| `prayer/` | **Prayer Room**, a joke shrine for phones: an AI-made icon of Elon Musk in chrome and deep blue that a WebGL shader keeps slowly moving. A guest writes what they ask of 2050, the words rise to the halo and leave on a rocket, and one of his four real posts about 2050 comes back with its date and link. Candles, a drone that opens as the room prays, and `?wall` for a big screen. One HTML file, no build; see [`prayer/README.md`](prayer/README.md). |
 | `mars3d/` | **Mars in 3D**, a station for red/cyan 3D glasses: 40 real stereo pictures of Mars from the rovers, landers, the Ingenuity helicopter and orbiters (NASA, public domain; ESA, CC BY-SA 3.0 IGO), with a live 3D globe of Mars that flies to each landing site. One page that loops by itself (about 13½ minutes) and works offline; on the website at `/mars3d/` and `/mars`. Its own [README](mars3d/README.md). |
 | `slides/` | **Party slides**, the host's deck: 27 slides with the vision, the goal, the three rules, the App, a mini demo for each wall topic and each station (soundboard, camera, teas, miracle berries, 3D and diffraction glasses …), and the 2050 question, with speaker notes. A full-screen player in one page; the Slides tab on the front page, `/slides` on the website. Its own [README](slides/README.md). |
 | `books/` | **Book Projection 2050**: 18 books about the world around 2050, 25 idea slides and 50 verified verbatim quotes, with a fullscreen wall projection. `quotes.json` is the quote list in play order; `template.html` holds the books and ideas. |

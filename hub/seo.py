@@ -16,7 +16,7 @@ X = "@vargastartup"
 # Files hub/site.py copies to the root of the site: site path -> repo path
 FILES = {"og.jpg": "hub/og/site.jpg", "og-app.jpg": "hub/og/app.jpg",
          "favicon.ico": "hub/og/favicon.ico", "apple-touch-icon.png": "hub/og/apple-touch-icon.png"}
-CARD = ("og.jpg", 1200, 630, "Varga Future Party 2050: Step into 2050. The Big Muse, music, six apps and Mars in 3D for one night.")
+CARD = ("og.jpg", 1200, 630, "Varga Future Party 2050: Step into 2050. The Big Muse, music, seven apps and Mars in 3D for one night.")
 WALL = ("video/assets/photos/smiled.jpg", 2304, 1296, "Earth seen through Saturn’s rings")
 
 # The front page and every page in hub/build.py PAGES, by its key there: (title, description, picture).
@@ -35,6 +35,9 @@ META = {
     "mars3d": ("Mars in 3D · " + NAME, None, ("mars3d/preview.jpg", 1280, 720, "Mars in 3D for red/cyan glasses")),
     "trip": ("Trip 2050 · " + NAME, None,
              ("trip/preview.jpg", 1280, 720, "Four moments of Trip 2050: a kaleidoscope, four posters of Hedy Lamarr, a tunnel and a street in liquid colour")),
+    "prayer": ("Prayer Room · " + NAME, None,
+               ("prayer/preview.jpg", 1280, 720, "Prayer Room: an icon of Elon Musk in chrome and deep blue, with a "
+                                                 "mirror halo and a small rocket, and one of his posts about 2050 beside it")),
     "concept": ("Imagined Futures · " + NAME,
                 "Concept art of the future from posts on X: space colonies, cities, vehicles, robots and the people "
                 "in them, from 1970s paperback covers to today’s film and game design.",
@@ -178,15 +181,15 @@ def sitemap(pages):
 # /llms.txt (llmstxt.org): the site in a few lines for AI assistants and answer engines, by front-page section
 REPO = "https://github.com/SecurityQQ/future-party"
 SUMMARY = ("Varga Future Party 2050 is a party set in the year 2050, and this site holds everything for the night: the Big "
-           "Muse, the wall that plays every film and slide wall in one loop on the projector, the music, six apps for the "
+           "Muse, the wall that plays every film and slide wall in one loop on the projector, the music, seven apps for the "
            "guests (the party App, webcam effects played with the hands, a Makey Makey soundboard, Mars for "
-           "red/cyan 3D glasses, a gallery of concept art) and the research behind it: books, futurists' posts and "
+           "red/cyan 3D glasses, a gallery of concept art, a prayer room with an icon that answers) and the research behind it: books, futurists' posts and "
            "films about 2050, each with its sources. Nothing needs a login.")
 APP = ("The Future 2050 (party app)", SITE + "/app",
        "The party App. Tap your pass, meet your Kin (a zodiac creature from 2050), and collect the Kin of "
        "everyone you meet; a live ranking counts the cards each traveler has scanned.")
 GROUPS = [("The night", ["index", "bigwall", "trip", "further", "deck"]),
-          ("Apps", ["app", "mirror", "resonance", "contact", "mars3d", "concept"]),
+          ("Apps", ["app", "mirror", "resonance", "contact", "mars3d", "concept", "prayer"]),
           ("Music", ["future_music", "soundtrack", "why"]),
           ("Research", ["books", "tweets", "futurists", "futurists_short", "films", "mirror_research"])]
 

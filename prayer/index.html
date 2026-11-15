@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Prayer Room · Varga Future Party 2050</title>
+<script>
+// The site drops the trailing slash (/prayer/ becomes /prayer), and then "icon.jpg" would load from the site root.
+// Go to /prayer/index.html instead, keeping ?options. Opening the file from disk is unaffected.
+if (/^https?:$/.test(location.protocol) && !/(\/|\.html)$/.test(location.pathname))
+  location.replace(location.pathname + "/index.html" + location.search + location.hash);
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#030817">
+<meta name="description" content="Prayer Room: ask 2050 for something. An icon of Elon Musk in liquid chrome listens, a candle lights, a rocket carries your words up, and one of his real posts about 2050 comes back. A party joke with an AI-made picture.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Geologica:wght@400;500;600&family=Martian+Mono:wght@400;500&display=swap">
+<style>
+/* Prayer Room. Blue futurism (vibes/tokens.css): navy space, liquid chrome, electric blue and ice. The icon moves
+   slowly, like oil on water; nothing flashes. */
+:root{
+  --v-space:#030817;--v-navy:#07132b;--v-panel:#0b1b36;--v-ink:#edf4ff;--v-muted:#a2b6d4;--v-dim:#8197b8;--v-blue:#4385ff;
+  --v-ice:#9dd8ff;--v-chrome:#dce9fb;--v-line:#2d486d;
+  --v-chrome-surface:linear-gradient(118deg,#f2f7ff 0%,#aec6e8 21%,#edf6ff 42%,#7da2d1 44%,#b8d6f7 68%,#e2efff 100%);
+  --v-ease:cubic-bezier(.2,.7,.2,1);
+  --heading:"Unbounded","Arial Black",system-ui,sans-serif;--body:"Geologica",system-ui,sans-serif;
+  --mono:"Martian Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--v-space);color:var(--v-ink);font:16px/1.5 var(--body);overflow:hidden;
+  -webkit-tap-highlight-color:transparent;overscroll-behavior:none}
+[hidden]{display:none!important}
+#gl,#fx{position:fixed;inset:0;width:100%;height:100%;display:block}
+#fx{pointer-events:none}
+/* Without WebGL, or opened as a file (the browser keeps a local picture away from the graphics card), the icon is
+   this still picture and only breathes */
+#still{position:fixed;object-fit:cover;border-radius:14px;box-shadow:0 0 60px rgb(67 133 255 / 35%);
+  animation:breathe 9s ease-in-out infinite alternate}
+@keyframes breathe{from{filter:hue-rotate(-12deg) saturate(1)}to{filter:hue-rotate(16deg) saturate(1.2)}}
+
+header{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+  padding:calc(12px + env(safe-area-inset-top)) 16px 0;pointer-events:none;z-index:3}
+header>*{pointer-events:auto}
+.mark{display:block;font:500 10.5px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--v-ice);text-decoration:none}
+.mark:hover{color:var(--v-ink)}
+.mark b{display:block;font:700 15px/1.3 var(--heading);letter-spacing:-.01em;text-transform:none;color:var(--v-ink);margin-top:3px}
+.mark b span,h1 span{background:var(--v-chrome-surface);-webkit-background-clip:text;background-clip:text;color:transparent}
+#sound{width:40px;height:40px;border-radius:50%;padding:0;display:grid;place-items:center;background:rgb(7 19 43 / 72%);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+#sound svg{width:18px;height:18px}
+#sound[aria-pressed="false"] .on,#sound[aria-pressed="true"] .off{display:none}
+
+button{font:600 15px/1 var(--body);border-radius:999px;padding:14px 20px;cursor:pointer;border:1px solid var(--v-line);
+  background:var(--v-panel);color:var(--v-ink);transition:border-color .18s,transform .18s}
+button.primary{background:var(--v-chrome-surface);color:#06122a;border-color:var(--v-chrome)}
+button:hover{border-color:var(--v-ice)}
+button:active{transform:scale(.97)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--v-blue);outline-offset:3px}
+
+/* The panel under the icon: one prayer, one candle */
+#panel{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(520px,100%);z-index:3;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:grid;gap:10px}
+#ask{display:flex;gap:8px}
+#ask input{flex:1;min-width:0;font:400 16px/1.2 var(--body);color:var(--v-ink);padding:13px 18px;border-radius:999px;
+  border:1px solid var(--v-line);background:rgb(7 19 43 / 82%);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+#ask input::placeholder{color:var(--v-dim)}
+#ask input:focus{border-color:var(--v-ice);outline:none}
+.sub{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#candle{display:inline-flex;align-items:center;gap:9px;padding:11px 16px;font-weight:500;font-size:14px;background:rgb(7 19 43 / 82%);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);white-space:nowrap}
+#candle i{width:8px;height:12px;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;background:radial-gradient(circle at 50% 70%,#fff,var(--v-ice) 45%,var(--v-blue));
+  box-shadow:0 0 10px var(--v-ice)}
+#candle span{font:500 12px/1 var(--mono);color:var(--v-ice)}
+.fine{font:400 11.5px/1.4 var(--body);color:var(--v-dim);margin:0;text-align:center}
+
+/* Candles stand on the lower edge of the icon */
+#candles{position:fixed;display:flex;justify-content:center;align-items:flex-end;gap:10px;pointer-events:none;z-index:1}
+.cdl{position:relative;width:7px;height:26px;border-radius:2px;background:linear-gradient(90deg,#8faacf,#f2f7ff 45%,#7da2d1);
+  box-shadow:0 0 14px rgb(157 216 255 / 45%);animation:rise-in .7s var(--v-ease) both}
+.cdl::before{content:"";position:absolute;left:50%;bottom:100%;width:11px;height:19px;margin-left:-5.5px;
+  border-radius:50% 50% 50% 50%/64% 64% 36% 36%;transform-origin:50% 100%;
+  background:radial-gradient(ellipse at 50% 78%,#fff 0,#dff3ff 22%,var(--v-ice) 48%,rgb(67 133 255 / 80%) 72%,transparent 78%);
+  filter:drop-shadow(0 0 8px var(--v-ice));animation:flame 1.7s ease-in-out infinite alternate}
+.cdl:nth-child(2n)::before{animation-duration:2.1s}.cdl:nth-child(3n)::before{animation-duration:1.4s}
+.cdl:nth-child(2n){height:21px}.cdl:nth-child(3n){height:31px}
+@keyframes flame{0%{transform:scale(1,1) rotate(-2deg)}50%{transform:scale(.92,1.08) rotate(2deg)}100%{transform:scale(1.05,.95) rotate(-1deg)}}
+@keyframes rise-in{from{opacity:0;transform:translateY(14px)}}
+
+/* The prayer on its way up, and what comes back */
+#rise{position:fixed;left:0;top:0;z-index:2;max-width:min(80vw,420px);text-align:center;font:500 18px/1.35 var(--body);
+  color:#fff;font-weight:600;text-shadow:0 1px 2px rgb(3 8 23 / 95%),0 0 10px rgb(3 8 23 / 90%),0 0 22px var(--v-blue),0 0 44px var(--v-blue);pointer-events:none;will-change:transform,opacity,filter}
+#answer{position:fixed;z-index:2;padding:16px 18px 14px;border-radius:16px;border:1px solid rgb(157 216 255 / 34%);
+  background:linear-gradient(150deg,rgb(11 27 54 / 88%),rgb(3 8 23 / 90%));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  box-shadow:0 18px 50px rgb(0 0 0 / 55%),inset 0 1px 0 rgb(220 233 251 / 16%);
+  opacity:0;transform:translateY(12px);transition:opacity .7s var(--v-ease),transform .7s var(--v-ease);pointer-events:none}
+#answer.on{opacity:1;transform:none;pointer-events:auto}
+#answer .k{font:500 10.5px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--v-ice);margin:0 28px 8px 0}
+#answer blockquote{margin:0 0 10px;font:500 17px/1.42 var(--body);color:var(--v-ink)}
+#answer cite{font:400 11px/1.5 var(--mono);font-style:normal;color:var(--v-muted)}
+#answer cite a{color:var(--v-ice);text-decoration:none;border-bottom:1px solid rgb(157 216 255 / 35%)}
+#answer .x{position:absolute;top:6px;right:6px;width:34px;height:34px;padding:0;border:0;background:none;color:var(--v-muted);font:400 20px/1 var(--body)}
+
+/* The door */
+#start{position:fixed;inset:0;z-index:5;display:grid;place-items:center;padding:24px 16px;overflow:auto;
+  background:radial-gradient(110% 80% at 50% 12%,rgb(67 133 255 / 20%),transparent 62%),rgb(3 8 23 / 80%);
+  -webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);transition:opacity .9s var(--v-ease)}
+#start.off{opacity:0;pointer-events:none}
+#start .card{width:min(520px,100%)}
+h1{font:700 clamp(44px,13vw,84px)/.95 var(--heading);letter-spacing:-.02em;margin:18px 0 16px}
+.lead{color:var(--v-ink);margin:0 0 26px;max-width:40ch;font-size:17px}
+.row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px}
+.note{font-size:13.5px;color:var(--v-muted);margin:0;max-width:52ch}
+
+/* On the wall (?wall): no controls, the verses turn by themselves */
+#wallfoot{position:fixed;left:0;right:0;bottom:calc(18px + env(safe-area-inset-bottom));text-align:center;z-index:2;
+  font:500 13px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--v-ice)}
+body.wall #answer blockquote{font-size:clamp(17px,2.3vh,26px)}
+body.wall #answer .x{display:none}
+@media (prefers-reduced-motion:reduce){#still,.cdl::before,.cdl{animation:none}#answer,#start{transition:none}}
+</style>
+</head>
+<body>
+<canvas id="gl" aria-hidden="true"></canvas>
+<img id="still" src="icon.jpg" alt="An icon in the Byzantine manner, made of chrome and deep blue: Elon Musk in a navy robe over a spacesuit collar, a mirror halo with orbits behind his head, one hand raised in blessing, the other holding a small chrome rocket. Mars and Saturn in the corners." hidden>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div id="candles" aria-hidden="true"></div>
+
+<header>
+  <a class="mark" href="../index.html#prayer-room">Varga Future Party 2050<b>Prayer <span>Room</span></b></a>
+  <button id="sound" type="button" aria-pressed="false" aria-label="Sound" title="Sound" hidden>
+    <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+    <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+  </button>
+</header>
+
+<div id="rise" hidden></div>
+<div id="answer" role="status" aria-live="polite">
+  <button class="x" type="button" aria-label="Close">×</button>
+  <p class="k" id="ans-k"></p>
+  <blockquote id="ans-q"></blockquote>
+  <cite id="ans-c"></cite>
+</div>
+
+<div id="panel" hidden>
+  <form id="ask" autocomplete="off">
+    <input id="words" type="text" maxlength="120" enterkeyhint="send" placeholder="What do you ask of 2050?" aria-label="Your prayer">
+    <button class="primary" type="submit">Send</button>
+  </form>
+  <div class="sub">
+    <button id="candle" type="button"><i aria-hidden="true"></i>Light a candle<span id="count"></span></button>
+  </div>
+  <p class="fine">Your words stay on this phone. The icon is an AI-made picture.</p>
+</div>
+<div id="wallfoot" hidden>Pray from your phone · vargafutureparty.com/pray</div>
+
+<div id="start">
+  <div class="card">
+    <a class="mark" href="../index.html#prayer-room">Varga Future Party 2050</a>
+    <h1>Prayer <span>Room</span></h1>
+    <p class="lead">Ask 2050 for something. Light a candle, send your words up on a rocket, and take a verse back.</p>
+    <div class="row">
+      <button class="primary" id="enter" type="button">Enter</button>
+      <button id="enter-quiet" type="button">Enter without sound</button>
+    </div>
+    <p class="note">A party joke. The icon is an AI-made picture and Elon Musk has nothing to do with this page; the verses are his real posts about 2050. Slow moving colour, no flashing.</p>
+  </div>
+</div>
+
+<script>
+'use strict';
+/* Prayer Room.
+   One picture (icon.jpg, AI-made) drawn by a WebGL shader that lets its blue parts flow and shift hue, sends a slow
+   glint around the halo and ripples from every touch, while the face, the hands and the frame stay still. Around it
+   the shader continues the aureole into the dark. A 2D canvas above draws sparks and the rocket. "Devotion" (level)
+   rises with every prayer, candle and touch and fades in about half a minute; it only makes the colour move more.
+   The verses are four real posts by Elon Musk that name 2050 (tweets/tweets.json holds them with their context). */
+const Q = new URLSearchParams(location.search);
+const $ = id => document.getElementById(id);
+const WALL = Q.has('wall');
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+const rand = (a, b) => a + Math.random() * (b - a);
+
+const VERSES = [
+  {q: 'It’s possible to make a self-sustaining city on Mars by 2050, if we start in 5 years & take 10 orbital synchronizations', d: '25 Mar 2019', id: '1110329210332053504'},
+  {q: 'In my opinion, we need to convert >80% of the global road, sea & air fleet to renewables by 2050.', d: '25 Jun 2020', id: '1276221517932552192'},
+  {q: 'City itself probably takes roughly 20 years, so hopefully it is built by ~2050.', d: '10 Jul 2021', id: '1413911893316603908'},
+  {q: 'Real issue will an aging & declining world population by 2050, *not* overpopulation.', d: '21 Jun 2019', id: '1141977875567919104'}
+];
+const RECEIVED = ['Your prayer is in orbit', 'Received at the halo', 'Carried up, stage one separated', 'Heard, somewhere past Mars'];
+const IMG_W = 1152, IMG_H = 2048;
+/* Places in the picture, as fractions of its width and height */
+const HALO = [0.5, 0.265], ROCKET = [0.735, 0.49];
+
+/* ---------- what this phone remembers ---------- */
+const KEY = 'fp2050-prayer';
+let memo = {candles: 0, prayers: 0, verse: 0};
+try { memo = Object.assign(memo, JSON.parse(localStorage.getItem(KEY) || '{}')); } catch (e) {}
+const remember = () => { try { localStorage.setItem(KEY, JSON.stringify(memo)); } catch (e) {} };
+
+/* ---------- layout: where the icon stands ---------- */
+const glc = $('gl'), fxc = $('fx'), still = $('still'), panel = $('panel'), answer = $('answer'), candles = $('candles');
+let DPR = 1, W = 0, H = 0, rect = {x: 0, y: 0, w: 1, h: 1};
+function layout() {
+  DPR = Math.min(window.devicePixelRatio || 1, 2);
+  W = window.innerWidth; H = window.innerHeight;
+  const top = WALL ? 20 : 62, bottom = WALL ? 54 : (panel.hidden ? 150 : panel.offsetHeight + 4);
+  const availW = W - 24, availH = Math.max(160, H - top - bottom);
+  const h = Math.min(availH, availW * IMG_H / IMG_W), w = h * IMG_W / IMG_H;
+  rect = {x: (W - w) / 2, y: top + (availH - h) / 2, w, h};
+  for (const c of [glc, fxc]) { c.width = Math.round(W * DPR); c.height = Math.round(H * DPR); }
+  Object.assign(still.style, {left: rect.x + 'px', top: rect.y + 'px', width: w + 'px', height: h + 'px'});
+  Object.assign(candles.style, {left: rect.x + 'px', width: w + 'px', top: (rect.y + h - 0.045 * h - 40) + 'px', height: '40px'});
+  const aw = Math.min(Math.max(w - 28, 280), W - 24);
+  const side = W - (rect.x + w) - 72;                      // room to the right of the icon
+  if (side >= 320) Object.assign(answer.style, {left: rect.x + w + 36 + 'px', width: Math.min(side, 460) + 'px', bottom: (H - rect.y - 0.62 * h) + 'px'});
+  else Object.assign(answer.style, {left: (W - aw) / 2 + 'px', width: aw + 'px', bottom: (H - rect.y - h + 0.085 * h) + 'px'});
+  if (gl) gl.viewport(0, 0, glc.width, glc.height);
+  dirty = true;
+}
+const at = (u, v) => [rect.x + u * rect.w, rect.y + v * rect.h];
+
+/* ---------- the icon, in WebGL ---------- */
+let gl = null, prog = null, U = {}, texReady = false, dirty = true;
+const VERT = 'attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
+const FRAG = `precision highp float;
+uniform vec2 uRes; uniform vec4 uRect; uniform sampler2D uImg; uniform float uT, uLevel; uniform vec4 uRip[4];
+float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+vec3 hue(vec3 c, float a){
+  const mat3 toYIQ = mat3(0.299, 0.596, 0.211, 0.587, -0.274, -0.523, 0.114, -0.322, 0.312);
+  const mat3 toRGB = mat3(1., 1., 1., 0.956, -0.272, -1.106, 0.621, -0.647, 1.703);
+  vec3 y = toYIQ * c; float s = sin(a), k = cos(a);
+  return toRGB * vec3(y.x, y.y * k - y.z * s, y.y * s + y.z * k);
+}
+void main(){
+  vec2 p = vec2(gl_FragCoord.x, uRes.y - gl_FragCoord.y);
+  float md = min(uRes.x, uRes.y);
+  /* every touch and every prayer sends one slow ring outward */
+  vec2 disp = vec2(0.); float glow = 0.;
+  for (int i = 0; i < 4; i++) {
+    vec4 r = uRip[i]; float age = uT - r.z;
+    if (r.w > 0. && age > 0. && age < 7.) {
+      vec2 d = p - r.xy; float dist = length(d) / md;
+      float ring = exp(-pow((dist - age * 0.32) * 13., 2.)) * exp(-age * 0.7) * r.w;
+      disp += normalize(d + 1e-4) * ring; glow += ring;
+    }
+  }
+  vec2 uv = (p - uRect.xy) / uRect.zw;
+  vec2 hc = uRect.xy + uRect.zw * vec2(0.5, 0.265);
+
+  /* the dark around the icon: the painted aureole goes on, fainter */
+  vec2 q = (p - hc) / uRect.w - disp * 0.02; float r = length(q), a = atan(q.y, q.x);
+  float b = 0.5 + 0.5 * sin(r * 15. - uT * 0.33 + 1.6 * sin(a * 3. + uT * 0.17) + 0.9 * sin(a * 7. - uT * 0.11 + r * 5.));
+  vec3 c1 = vec3(0.012, 0.031, 0.09);
+  vec3 bg = mix(c1, vec3(0.08, 0.22, 0.6), smoothstep(0.2, 0.8, b));
+  bg = mix(bg, vec3(0.36, 0.2, 0.72), smoothstep(0.72, 1., b) * (0.3 + 0.55 * uLevel));
+  bg += vec3(0.45, 0.78, 1.) * pow(b, 12.) * 0.22;
+  float fall = exp(-r * 1.25) * (0.6 + 0.4 * uLevel);
+  bg = c1 + (bg - c1) * fall;
+  float cell = max(md / 46., 14.); vec2 g = floor(p / cell); float h = hash(g);
+  vec2 sp = (fract(p / cell) - 0.5 - (vec2(hash(g + 7.), hash(g + 13.)) - 0.5) * 0.7) * cell;
+  bg += step(0.9, h) * vec3(0.7, 0.85, 1.) * exp(-dot(sp, sp) / (0.5 + 2.2 * hash(g + 3.))) * (0.45 + 0.35 * sin(uT * 1.3 + h * 40.));
+  bg += vec3(0.5, 0.8, 1.) * glow * 0.1;
+
+  /* the picture: a box with round corners */
+  vec2 hs = uRect.zw * 0.5; float rad = uRect.z * 0.035;
+  vec2 dd = abs(p - uRect.xy - hs) - hs + rad;
+  float sd = length(max(dd, 0.)) + min(max(dd.x, dd.y), 0.) - rad;
+  bg += vec3(0.26, 0.52, 1.) * exp(-max(sd, 0.) / (uRect.w * 0.05)) * (0.2 + 0.25 * uLevel);
+  vec3 col = bg;
+  if (sd < 1.) {
+    float face = smoothstep(0.85, 1.5, length((uv - vec2(0.5, 0.30)) / vec2(0.25, 0.17)));
+    float hand1 = smoothstep(0.6, 1.3, length((uv - vec2(0.29, 0.63)) / vec2(0.15, 0.13)));
+    float hand2 = smoothstep(0.6, 1.3, length((uv - vec2(0.76, 0.80)) / vec2(0.17, 0.09)));
+    float rocket = smoothstep(0.7, 1.4, length((uv - vec2(0.735, 0.64)) / vec2(0.11, 0.17)));
+    float edge = smoothstep(0., 0.07, min(uv.x, 1. - uv.x)) * smoothstep(0., 0.04, min(uv.y, 1. - uv.y));
+    float sky = smoothstep(0.52, 0.36, uv.y);
+    float keep = face * hand1 * hand2 * rocket * edge;
+    float amp = (0.0025 + 0.007 * sky) * keep * (0.7 + 1.3 * uLevel);
+    vec2 f = vec2(sin(uv.y * 17. + uT * 0.55 + 2. * sin(uv.x * 9. + uT * 0.23)),
+                  cos(uv.x * 15. - uT * 0.45 + 2. * sin(uv.y * 11. - uT * 0.31)));
+    vec2 suv = clamp(uv + f * amp * vec2(1., 0.5625) - disp * 0.012 * edge, 0., 1.);
+    vec3 t = texture2D(uImg, suv).rgb;
+    /* only what is blue changes colour, between ice and violet (never green), in bands that travel out from the halo;
+       skin and chrome stay as painted */
+    vec2 hd = (uv - vec2(0.5, 0.265)) * vec2(1., 1.778); float hr = length(hd);
+    float blue = smoothstep(0.03, 0.2, t.b - t.r);
+    t = mix(t, hue(t, -(0.5 + 0.9 * uLevel) * (0.3 + 0.55 * sin(hr * 11. - uT * 0.5))), blue);
+    /* two glints go round the halo */
+    float ha = atan(hd.y, hd.x);
+    float ringm = smoothstep(0.36, 0.33, hr) * smoothstep(0.17, 0.24, hr) * face;
+    float gl2 = pow(max(0., cos(ha - uT * 0.3)), 30.) + pow(max(0., -cos(ha - uT * 0.3)), 30.);
+    t += vec3(0.75, 0.88, 1.) * gl2 * ringm * dot(t, vec3(0.3, 0.6, 0.1)) * (0.3 + 0.45 * uLevel);
+    t += vec3(0.55, 0.82, 1.) * glow * 0.22;
+    col = mix(t, bg, smoothstep(-1., 1., sd));
+  }
+  gl_FragColor = vec4(col, 1.);
+}`;
+function initGL() {
+  try {
+    const g = glc.getContext('webgl', {alpha: false, antialias: false, powerPreference: 'low-power'});
+    if (!g) return false;
+    const sh = (type, src) => { const s = g.createShader(type); g.shaderSource(s, src); g.compileShader(s);
+      if (!g.getShaderParameter(s, g.COMPILE_STATUS)) throw new Error(g.getShaderInfoLog(s)); return s; };
+    const p = g.createProgram();
+    g.attachShader(p, sh(g.VERTEX_SHADER, VERT)); g.attachShader(p, sh(g.FRAGMENT_SHADER, FRAG)); g.linkProgram(p);
+    if (!g.getProgramParameter(p, g.LINK_STATUS)) throw new Error(g.getProgramInfoLog(p));
+    g.useProgram(p);
+    g.bindBuffer(g.ARRAY_BUFFER, g.createBuffer());
+    g.bufferData(g.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), g.STATIC_DRAW);
+    const a = g.getAttribLocation(p, 'a'); g.enableVertexAttribArray(a); g.vertexAttribPointer(a, 2, g.FLOAT, false, 0, 0);
+    for (const n of ['uRes', 'uRect', 'uImg', 'uT', 'uLevel', 'uRip']) U[n] = g.getUniformLocation(p, n);
+    gl = g; prog = p;
+    return true;
+  } catch (e) { console.warn('Prayer Room: WebGL is off,', e.message); gl = null; return false; }
+}
+function loadIcon() {
+  const im = new Image();
+  im.onload = () => {
+    try {
+      const t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, im);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      texReady = true; dirty = true;
+    } catch (e) { fallback(); }   // a picture opened from disk may not go to the graphics card
+  };
+  im.onerror = fallback;
+  im.src = 'icon.jpg';
+}
+function fallback() { gl = null; glc.hidden = true; still.hidden = false; }
+
+/* ---------- devotion, ripples ---------- */
+let level = 0.18, levelTo = 0.18;
+const rip = new Float32Array(16); let ripN = 0;
+function ripple(x, y, strength) {
+  if (REDUCED) return;
+  rip.set([x * DPR, y * DPR, now(), strength], (ripN++ % 4) * 4);
+}
+const lift = d => { levelTo = clamp(levelTo + d, 0, 1); };
+const T0 = performance.now();
+const now = () => (performance.now() - T0) / 1000;
+
+/* ---------- sparks and the rocket ---------- */
+const fx = fxc.getContext('2d');
+let sparks = [], rockets = [];
+function burst(x, y, n, speed) {
+  if (REDUCED) return;
+  for (let i = 0; i < n; i++) {
+    const a = rand(0, Math.PI * 2), s = rand(0.25, 1) * speed;
+    sparks.push({x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 20, life: rand(0.7, 1.8), age: 0, r: rand(0.8, 2.2), c: Math.random() < 0.25 ? '#c9a8ff' : (Math.random() < 0.5 ? '#9dd8ff' : '#edf4ff')});
+  }
+}
+function launch() {
+  if (REDUCED) return;
+  const [x, y] = at(ROCKET[0], ROCKET[1]);
+  rockets.push({x, y, y0: y, age: 0});
+}
+function drawFx(dt) {
+  fx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  fx.clearRect(0, 0, W, H);
+  if (!sparks.length && !rockets.length) return;
+  fx.globalCompositeOperation = 'lighter';
+  for (const r of rockets) {
+    r.age += dt;
+    r.y = r.y0 - 0.5 * 520 * r.age * r.age - 30 * r.age;    // it leaves slowly, then faster
+    r.x += Math.sin(r.age * 9) * 0.25;
+    const tail = 26 + r.age * 60, gr = fx.createLinearGradient(r.x, r.y, r.x, r.y + tail);
+    gr.addColorStop(0, 'rgba(237,244,255,.95)'); gr.addColorStop(0.25, 'rgba(157,216,255,.7)'); gr.addColorStop(1, 'rgba(67,133,255,0)');
+    fx.strokeStyle = gr; fx.lineWidth = 3; fx.lineCap = 'round';
+    fx.beginPath(); fx.moveTo(r.x, r.y); fx.lineTo(r.x, r.y + tail); fx.stroke();
+    fx.fillStyle = '#fff'; fx.beginPath(); fx.arc(r.x, r.y, 2.6, 0, 7); fx.fill();
+    for (let i = 0; i < 2; i++) sparks.push({x: r.x + rand(-2, 2), y: r.y + tail * 0.6, vx: rand(-18, 18), vy: rand(20, 70), life: rand(0.4, 1), age: 0, r: rand(0.6, 1.6), c: '#9dd8ff'});
+  }
+  rockets = rockets.filter(r => r.y > -80);
+  for (const s of sparks) {
+    s.age += dt; s.x += s.vx * dt; s.y += s.vy * dt; s.vy += 26 * dt; s.vx *= 0.985;
+    const k = 1 - s.age / s.life; if (k <= 0) continue;
+    fx.globalAlpha = k * k; fx.fillStyle = s.c;
+    fx.beginPath(); fx.arc(s.x, s.y, s.r * (0.6 + k), 0, 7); fx.fill();
+  }
+  fx.globalAlpha = 1; fx.globalCompositeOperation = 'source-over';
+  sparks = sparks.filter(s => s.age < s.life);
+}
+
+/* ---------- frame ---------- */
+let last = 0;
+function frame(ms) {
+  requestAnimationFrame(frame);
+  if (document.hidden) { last = ms; return; }
+  const dt = Math.min(0.05, (ms - last) / 1000 || 0); last = ms;
+  levelTo += (0.18 - levelTo) * dt / 28;                  // devotion fades in about half a minute
+  level += (levelTo - level) * Math.min(1, dt * 1.6);
+  if (gl && texReady && (!REDUCED || dirty)) {
+    gl.uniform2f(U.uRes, glc.width, glc.height);
+    gl.uniform4f(U.uRect, rect.x * DPR, rect.y * DPR, rect.w * DPR, rect.h * DPR);
+    gl.uniform1f(U.uT, REDUCED ? 0 : now());
+    gl.uniform1f(U.uLevel, level + (REDUCED ? 0 : 0.05 * Math.sin(now() * 0.4)));
+    gl.uniform4fv(U.uRip, rip);
+    gl.uniform1i(U.uImg, 0);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    dirty = false;
+  }
+  drawFx(dt);
+  if (audio) audio.tone(level);
+}
+
+/* ---------- sound: a low drone that opens with devotion, a bell for each prayer ---------- */
+let audio = null;
+function startAudio() {
+  const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+  const ac = new AC(), master = ac.createGain(), lp = ac.createBiquadFilter(), delay = ac.createDelay(1), fb = ac.createGain(), wet = ac.createGain();
+  master.gain.value = 0; master.connect(ac.destination);
+  lp.type = 'lowpass'; lp.frequency.value = 500; lp.Q.value = 0.4;
+  delay.delayTime.value = 0.41; fb.gain.value = 0.5; wet.gain.value = 0.5;
+  lp.connect(master); lp.connect(delay); delay.connect(fb); fb.connect(delay); delay.connect(wet); wet.connect(master);
+  /* D, A, D, F sharp, A: an open chord, each note twice and a little apart so it beats slowly */
+  [[73.42, 0.34], [110, 0.24], [146.83, 0.2], [220, 0.1], [293.66, 0.07], [369.99, 0.045], [440, 0.03]].forEach(([f, v], i) => {
+    for (const d of [-1, 1]) {
+      const o = ac.createOscillator(), g = ac.createGain(), l = ac.createOscillator(), lg = ac.createGain();
+      o.type = i < 2 ? 'triangle' : 'sine'; o.frequency.value = f * (1 + d * 0.0022 * (1 + i * 0.3));
+      g.gain.value = v * 0.5; l.frequency.value = 0.05 + i * 0.017 + (d > 0 ? 0.011 : 0); lg.gain.value = v * 0.22;
+      l.connect(lg); lg.connect(g.gain); o.connect(g); g.connect(lp); o.start(); l.start();
+    }
+  });
+  master.gain.linearRampToValueAtTime(0.5, ac.currentTime + 3);
+  audio = {
+    ac, on: true,
+    tone(l) { lp.frequency.setTargetAtTime(420 + 1900 * l, ac.currentTime, 0.4); },
+    bell(f, v) {
+      const t = ac.currentTime;
+      [[1, 1], [2.76, 0.35], [5.4, 0.12]].forEach(([m, a]) => {
+        const o = ac.createOscillator(), g = ac.createGain();
+        o.frequency.value = f * m; g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(v * a, t + 0.01);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + 3.2 / Math.sqrt(m));
+        o.connect(g); g.connect(master); g.connect(delay); o.start(t); o.stop(t + 3.4);
+      });
+    },
+    mute(m) { this.on = !m; master.gain.setTargetAtTime(m ? 0 : 0.5, ac.currentTime, 0.15); }
+  };
+  $('sound').hidden = false; $('sound').setAttribute('aria-pressed', 'true');
+}
+const bell = (f, v) => { if (audio && audio.on) audio.bell(f, v); };
+$('sound').onclick = () => { const on = !audio.on; audio.mute(!on); $('sound').setAttribute('aria-pressed', String(on)); };
+
+/* ---------- candles ---------- */
+function showCandles(fresh) {
+  const n = Math.min(memo.candles, 9);
+  while (candles.children.length < n) {
+    const c = document.createElement('i'); c.className = 'cdl'; if (!fresh) c.style.animation = 'none';
+    candles.appendChild(c);
+  }
+  $('count').textContent = memo.candles ? ' · ' + memo.candles : '';
+}
+$('candle').onclick = () => {
+  memo.candles++; remember(); showCandles(true);
+  const c = candles.lastElementChild.getBoundingClientRect();
+  burst(c.left + c.width / 2, c.top - 8, 14, 60); ripple(c.left + c.width / 2, c.top, 0.5); lift(0.16);
+  bell([587.33, 659.25, 739.99, 880][memo.candles % 4], 0.07);
+};
+
+/* ---------- a prayer goes up, a verse comes back ---------- */
+let hideAnswer = 0;
+function verse(kicker) {
+  const v = VERSES[memo.verse % VERSES.length]; memo.verse = (memo.verse + 1) % VERSES.length; remember();
+  $('ans-k').textContent = kicker;
+  $('ans-q').textContent = '“' + v.q + '”';
+  $('ans-c').innerHTML = 'Elon Musk on X · <a href="https://x.com/elonmusk/status/' + v.id + '" target="_blank" rel="noopener">' + v.d + ' ↗</a>';
+  answer.classList.add('on');
+  clearTimeout(hideAnswer);
+  if (!WALL) hideAnswer = setTimeout(() => answer.classList.remove('on'), 20000);
+}
+answer.querySelector('.x').onclick = () => answer.classList.remove('on');
+
+let busy = false;
+$('ask').onsubmit = e => {
+  e.preventDefault();
+  const input = $('words'), text = input.value.trim();
+  if (!text) { input.focus(); return; }
+  if (busy) return;
+  busy = true; input.value = ''; input.blur(); answer.classList.remove('on');
+  memo.prayers++; remember();
+  const [hx, hy] = at(HALO[0], HALO[1]);
+  const arrive = () => {
+    burst(hx, hy, 70, 150); ripple(hx, hy, 1); lift(0.5); launch();
+    bell(293.66, 0.16); setTimeout(() => bell(440, 0.1), 260);
+    setTimeout(() => { verse(RECEIVED[memo.prayers % RECEIVED.length]); busy = false; }, REDUCED ? 0 : 1700);
+  };
+  if (REDUCED) return arrive();
+  const el = $('rise'); el.textContent = text; el.hidden = false;
+  const from = panel.getBoundingClientRect(), w = el.offsetWidth, h = el.offsetHeight;
+  const x0 = W / 2 - w / 2, y0 = from.top - h - 6, x1 = hx - w / 2, y1 = hy - h / 2;
+  const an = el.animate([
+    {transform: `translate(${x0}px,${y0 + 14}px) scale(1)`, opacity: 0, filter: 'blur(4px)'},
+    {transform: `translate(${x0}px,${y0}px) scale(1)`, opacity: 1, filter: 'blur(0)', offset: 0.14},
+    {transform: `translate(${(x0 + x1) / 2}px,${(y0 + y1) / 2}px) scale(.8)`, opacity: 1, filter: 'blur(0)', offset: 0.62},
+    {transform: `translate(${x1}px,${y1}px) scale(.3)`, opacity: 0, filter: 'blur(7px)'}
+  ], {duration: 3000, easing: 'cubic-bezier(.4,0,.5,1)'});
+  an.onfinish = () => { el.hidden = true; arrive(); };
+};
+
+/* a touch on the icon is a small blessing */
+glc.addEventListener('pointerdown', e => { ripple(e.clientX, e.clientY, 0.7); burst(e.clientX, e.clientY, 10, 70); lift(0.08); bell(880, 0.03); });
+still.addEventListener('pointerdown', e => { burst(e.clientX, e.clientY, 10, 70); bell(880, 0.03); });
+
+/* ---------- the door ---------- */
+function enter(withSound) {
+  if (withSound) { try { startAudio(); } catch (e) {} }
+  $('start').classList.add('off');
+  setTimeout(() => { $('start').hidden = true; }, 900);
+  if (WALL) {
+    document.body.classList.add('wall'); $('wallfoot').hidden = false;
+    const turn = () => { const [x, y] = at(HALO[0], HALO[1]); ripple(x, y, 0.8); lift(0.3); verse('Verse'); };
+    setTimeout(turn, 1500); setInterval(turn, 18000);
+  } else {
+    panel.hidden = false; showCandles(false);
+  }
+  layout();
+  const [x, y] = at(HALO[0], HALO[1]); ripple(x, y, 1); lift(0.35); bell(293.66, 0.1);
+}
+$('enter').onclick = () => enter(true);
+$('enter-quiet').onclick = () => enter(false);
+
+if (initGL()) loadIcon(); else fallback();
+layout();
+addEventListener('resize', layout);
+if (window.visualViewport) {
+  /* keep the panel above the phone's keyboard */
+  const lift2 = () => { panel.style.bottom = Math.max(0, window.innerHeight - visualViewport.height - visualViewport.offsetTop) + 'px'; };
+  visualViewport.addEventListener('resize', lift2); visualViewport.addEventListener('scroll', lift2);
+}
+requestAnimationFrame(frame);
+if (Q.has('go')) enter(false);   // ?go opens the room at once, silent (the preview picture is taken this way)
+</script>
+</body>
+</html>

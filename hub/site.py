@@ -40,10 +40,11 @@ PAGES = sorted(set(B.PAGES.values()) | {
     "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html"})
 MEDIA = "video/dist/media"
 # Other files the pages load from the repo: the Mirror 2050 preview, the Blue futurism chrome texture, Mars in 3D's
-# slides, Trip 2050's data, the previews of the Apps section, the figures of the 2050 Research papers (the front page
+# slides, Trip 2050's data, Prayer Room's icon, the previews of the Apps section, the figures of the 2050 Research papers (the front page
 # and the end of every research page show them), and every file the Big Muse lists in its manifest (Further's photos;
 # its films are in MEDIA)
 ASSETS = (["mirror/preview.jpg", "vibes/assets/chrome-orbit.webp", "mars3d/slides.js", "trip/data.js", "trip/presets.js",
+           "prayer/icon.jpg",
            B.TRIP_SHOT, *B.APP_SHOTS.values()]
           + [p["shot"] for p in B.research_papers()]
           + B.load("wall/dist/manifest.json")["files"])

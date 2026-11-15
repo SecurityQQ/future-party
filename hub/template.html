@@ -6,7 +6,7 @@
 <title>Varga Future Party 2050</title>
 <meta name="theme-color" content="#030817">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307132b'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='%23dce9fb' stroke-width='2'/%3E%3Cellipse cx='32' cy='32' rx='28' ry='10' transform='rotate(-30 32 32)' fill='none' stroke='%239dd8ff' stroke-width='2'/%3E%3C/svg%3E">
-<meta name="description" content="Step into 2050 for one night: the Big Muse, a wall of films and ideas, music from 1400 BCE to the future, six party apps, Mars in 3D and the research behind it.">
+<meta name="description" content="Step into 2050 for one night: the Big Muse, a wall of films and ideas, music from 1400 BCE to the future, seven party apps, Mars in 3D and the research behind it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=League+Gothic&family=Geologica:wght@400;500;600;700&family=Martian+Mono:wght@400;500&display=swap">
@@ -162,7 +162,7 @@ nav.top .brand svg{width:30px;height:30px;flex:none;color:var(--v-ice)}
 #slides .how{color:var(--fg-2);font-size:14.5px;margin-top:14px;max-width:62ch}
 #slides .how a{color:var(--fg);text-decoration:underline;text-underline-offset:2px}
 /* Apps: a jump bar that stays on screen through the section, then one card per app with its preview.
-   Each card has an address (#party-app, #mirror, #history-of-music, #play, #mars, #imagined-futures). */
+   Each card has an address (#party-app, #mirror, #history-of-music, #play, #mars, #imagined-futures, #prayer-room). */
 .appnav{position:sticky;top:0;z-index:5;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 0 22px;padding:10px 0 14px;background:linear-gradient(var(--bg) 78%,rgb(3 8 23 / 0%))}
 .appnav::-webkit-scrollbar{display:none}
 .appnav a{flex:none;display:flex;align-items:center;gap:9px;padding:5px 14px 5px 5px;border:1px solid var(--line-2);border-radius:999px;background:var(--raised);text-decoration:none;font:500 13px/1.2 var(--font);color:var(--fg-2);white-space:nowrap;transition:border-color var(--v-fast),color var(--v-fast),background var(--v-fast)}
@@ -395,7 +395,7 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
   <section id="apps">
     <div class="sec-head">
       <p class="eyebrow">Apps</p>
-      <h2>Six apps for the night</h2>
+      <h2>Seven apps for the night</h2>
       <p class="note">Games and toys for the night, each in its own page.</p>
     </div>
     <nav class="appnav" id="appNav" aria-label="Apps"></nav>
@@ -545,7 +545,17 @@ const APPS=[
         ['Era','Retro (paintings, paperback and magazine covers, NASA art) or contemporary.'],
         ['Search','By artist, account or word.'],
         ['A picture','Opens big, with what it shows, who made it and the post it came from.'],
-        ['Play as a wall','Fullscreen, one picture at a time, to read across the room.']]}
+        ['Play as a wall','Fullscreen, one picture at a time, to read across the room.']]},
+  {id:'prayer-room',short:'Prayer Room',title:'Prayer Room',kind:'Icon',
+   href:P.prayer,open:'Enter the Prayer Room',shot:SH.prayer,
+   about:'Ask 2050 for something. An icon of Elon Musk in liquid chrome listens, and a verse comes back.',
+   links:[['on the wall',P.prayer+'?wall']],howTitle:'How to pray',
+   how:[['Pray','Write what you ask of 2050 and send it: your words rise to the halo and leave on a rocket.'],
+        ['A verse','One of Elon Musk’s real posts about 2050 comes back, with its date and a link.'],
+        ['A candle','Light one; it stays lit on your phone.'],
+        ['Touch','A touch on the icon sends a ripple through it. The more the room prays, the more the colour moves.'],
+        ['On the wall','The icon alone on a big screen, turning the verses by itself.']],
+   note:'A party joke. The icon is an AI-made picture and Elon Musk has nothing to do with it. Slow moving colour, no flashing.'}
 ];
 
 /* The original four section buttons, with the current counts. */
