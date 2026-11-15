@@ -10,7 +10,7 @@ The site keeps the repo's paths, so every relative link works the same as in the
 - every page first made in the orange look is dressed in the site's Blue futurism (vibes/restyle.py), so the whole
   site looks like the front page even if a build wrote one of them in the old look;
 - every claude.ai link to one of these pages points at the copy on the site instead;
-- the 720p films and posters in video/dist/media are copied, and the photos the Big Wall loads (wall/dist/manifest.json);
+- the 720p films and posters in video/dist/media are copied, and the photos the Big Muse loads (wall/dist/manifest.json);
 - each short address in build.SHORT gets a page that forwards to it: /quotes, /tweets, /programme ...;
 - every page gets what a shared link shows (title, description, Open Graph and Twitter card, icons; hub/seo.py),
   and the site gets the share cards and icons from hub/og/, robots.txt, sitemap.xml and llms.txt.
@@ -40,7 +40,7 @@ PAGES = sorted(set(B.PAGES.values()) | {
     "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html"})
 MEDIA = "video/dist/media"
 # Other files the pages load from the repo: the Mirror 2050 preview, the Blue futurism chrome texture, Mars in 3D's
-# slides, the previews of the Apps section, and every file the Big Wall lists in its manifest (Further's photos;
+# slides, the previews of the Apps section, and every file the Big Muse lists in its manifest (Further's photos;
 # its films are in MEDIA)
 ASSETS = (["mirror/preview.jpg", "vibes/assets/chrome-orbit.webp", "mars3d/slides.js", *B.APP_SHOTS.values()]
           + B.load("wall/dist/manifest.json")["files"])

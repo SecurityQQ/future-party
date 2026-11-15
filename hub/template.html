@@ -6,14 +6,14 @@
 <title>Varga Future Party 2050</title>
 <meta name="theme-color" content="#030817">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307132b'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='%23dce9fb' stroke-width='2'/%3E%3Cellipse cx='32' cy='32' rx='28' ry='10' transform='rotate(-30 32 32)' fill='none' stroke='%239dd8ff' stroke-width='2'/%3E%3C/svg%3E">
-<meta name="description" content="Step into 2050 for one night: the Big Wall of films and ideas, music from 1400 BCE to the future, six party apps, Mars in 3D and the research behind it.">
+<meta name="description" content="Step into 2050 for one night: the Big Muse, a wall of films and ideas, music from 1400 BCE to the future, six party apps, Mars in 3D and the research behind it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=League+Gothic&family=Geologica:wght@400;500;600;700&family=Martian+Mono:wght@400;500&display=swap">
 <style>
 /* The party's front page in Blue futurism, the look shared with the party app and History of Music 2050
    (vibes/README.md): deep navy space, liquid chrome, electric blue and ice. Four doors at the top (the wall, the
-   music, the apps, the research), then one section for each, the Big Wall first. Unbounded for short
+   music, the apps, the research), then one section for each, the Big Muse first. Unbounded for short
    headings, Geologica for reading, Martian Mono for metadata. Dark only. The slide previews keep each wall's own look.
    Everything is a relative link, so the page works from the folder offline. D.mode is "folder" (index.html, from
    hub/build.py) or "web" (site/index.html, from hub/site.py): the web mode plays the 720p previews, opens Markdown on
@@ -129,7 +129,7 @@ nav.top .brand svg{width:30px;height:30px;flex:none;color:var(--v-ice)}
 .lnk:hover{color:var(--accent-ink)}
 .alt{font:400 11px/1.7 var(--mono);color:var(--muted)}
 
-/* The Big Wall: the feature panel. Its preview keeps the wall's own colours, the chapters keep theirs. */
+/* The Big Muse: the feature panel. Its preview keeps the wall's own colours, the chapters keep theirs. */
 .feature{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:32px;align-items:center;padding:20px;border:1px solid var(--line-2);border-top-color:#7d9ac0;border-radius:var(--r);background:linear-gradient(145deg,#112441,#07132b 75%);box-shadow:inset 0 1px 0 rgb(220 233 251 / 6%)}
 @media (max-width:860px){.feature{grid-template-columns:1fr;gap:22px}}
 .screen.bw{text-decoration:none;background:#000 center/cover no-repeat;display:flex;flex-direction:column;justify-content:flex-end;padding:6% 7%;color:#fff}
@@ -322,7 +322,7 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
     <div class="hero-copy">
       <h1 id="hero-title"><span class="by">VARGA</span><span>FUTURE</span><span>PARTY</span><span class="yr">2050</span></h1>
       <div class="hero-actions">
-        <a class="btn big" id="heroStart" href="wall/dist/big-wall.html#play"><span class="tri" aria-hidden="true"></span>Start the Big Wall</a>
+        <a class="btn big" id="heroStart" href="wall/dist/big-wall.html#play"><span class="tri" aria-hidden="true"></span>Start the Big Muse</a>
         <a class="lnk" id="heroMusic" href="music/resonance/dist/local/index.html">Enter History of Music 2050 <span aria-hidden="true">↗</span></a>
       </div>
     </div>
@@ -336,7 +336,7 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
     <div class="sec-head">
       <p class="eyebrow">Wall</p>
       <h2>On the wall tonight</h2>
-      <p class="note">The Big Wall plays everything below in one loop. Each piece also plays on its own.</p>
+      <p class="note">The Big Muse plays everything below in one loop. Each piece also plays on its own.</p>
     </div>
     <div class="feature" id="bigwall"></div>
     <div class="row-label"><h3>Films</h3></div>
@@ -439,7 +439,7 @@ $('heroMusic').href=P.resonance;
    (hub/apps/, made by hub/apps/previews.py), what you need, and a fold with how to play. */
 const SH=D.shots;
 const APPS=[
-  {id:'party-app',short:'The Future 2050',title:'The Future 2050',kind:'NFC game',
+  {id:'party-app',short:'The Future 2050',title:'The Future 2050',kind:'App',
    href:WEB?'/app':D.apps.party,open:WEB?'Open the app':'Open the app ↗',shot:SH.party,
    about:'Tap your pass on your phone to meet your Kin, then collect everyone you meet.',
    links:[WEB?['ranking','/app/leaderboard']:['ranking ↗',D.apps.party+'/leaderboard']],
@@ -511,12 +511,12 @@ const DOORS=[
 ];
 $('doors').innerHTML=DOORS.map((d,i)=>'<a class="door" href="'+d[0]+'"><span class="n" aria-hidden="true">0'+(i+1)+'</span><b>'+esc(d[1])+'</b><i>'+esc(d[2])+'</i></a>').join('');
 
-/* The Big Wall */
+/* The Big Muse */
 const C=W.counts;
-$('bigwall').innerHTML='<a class="screen bw" href="'+esc(P.bigwall)+'#play" style="background-image:url(\''+esc(W.tile)+'\')" aria-label="Start the Big Wall"><span class="k">The Big Wall</span><span class="t">2050</span><span class="c">The films dreamed it. Here is how far it goes.</span><span class="chips">'+W.chapters.map(c=>'<span style="--c:'+esc(c.color)+'">'+esc(c.title)+'</span>').join('')+'</span></a>'+
-  '<div><h3>The Big <span>Wall</span></h3><p>Everything below in one '+Math.round(W.total/60)+'-minute loop, in six chapters.</p>'+
+$('bigwall').innerHTML='<a class="screen bw" href="'+esc(P.bigwall)+'#play" style="background-image:url(\''+esc(W.tile)+'\')" aria-label="Start the Big Muse"><span class="k">The Big Muse</span><span class="t">2050</span><span class="c">The films dreamed it. Here is how far it goes.</span><span class="chips">'+W.chapters.map(c=>'<span style="--c:'+esc(c.color)+'">'+esc(c.title)+'</span>').join('')+'</span></a>'+
+  '<div><h3>The Big <span>Muse</span></h3><p>Everything below in one '+Math.round(W.total/60)+'-minute loop, in six chapters.</p>'+
   '<ol class="chlist">'+[{id:'highlights',title:'Highlights',color:'#dce9fb',sec:W.highlights.sec}].concat(W.chapters).map(c=>'<li><a href="'+esc(P.bigwall)+'#'+esc(c.id)+'" style="--c:'+esc(c.color)+'"><i></i><b>'+esc(c.title)+'</b><span>'+mmss(c.sec)+'</span></a></li>').join('')+'</ol>'+
-  '<div class="actions" style="margin-top:20px"><a class="btn big" href="'+esc(P.bigwall)+'#play"><span class="tri" aria-hidden="true"></span>Start the Big Wall</a></div></div>';
+  '<div class="actions" style="margin-top:20px"><a class="btn big" href="'+esc(P.bigwall)+'#play"><span class="tri" aria-hidden="true"></span>Start the Big Muse</a></div></div>';
 
 /* Films */
 const films=$('films');

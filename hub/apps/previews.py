@@ -83,8 +83,8 @@ def play(base, tmp):
 
 
 def music(base, tmp):
-    # The page opens on Music of the Future, under the History / Music of the Future / Research tabs
-    # (the History tab's stops show a YouTube frame, blank in a screenshot)
+    # The page opens on History: the era folders and the first era's stops, under the History / Music of the
+    # Future / Research tabs
     return screenshot(base + "music/resonance/dist/local/index.html", (W, H), tmp / "music.png")
 
 

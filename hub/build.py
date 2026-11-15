@@ -1,9 +1,9 @@
 """Build the front page of the Varga Future Party 2050 folder, and the admin page beside it.
 
-Reads the real numbers from the other projects (the Big Wall, quotes, ideas, tweets, pictures, soundtrack, film renders)
+Reads the real numbers from the other projects (the Big Muse, quotes, ideas, tweets, pictures, soundtrack, film renders)
 and writes the pages from template.html and admin.html. Run from anywhere:
 
-    python3 -I hub/build.py          # rebuilds the Big Wall, then ../index.html and ../admin.html (work offline)
+    python3 -I hub/build.py          # rebuilds the Big Muse, then ../index.html and ../admin.html (work offline)
     python3 -I hub/site.py           # site/, the website Vercel serves (calls build(web=True) and admin(web=True))
 
 The front page is for everyone: the wall, the music, the apps and the research. The admin page holds what only
@@ -65,7 +65,7 @@ PAGES = {
     "mirror_research": "mirror/viral-webcam-effects.html",
     # Imagined Futures reads its pictures from concept-art/thumbs/, which site.py copies too
     "concept": "concept-art/imagined-futures.html",
-    # The Big Wall, built by wall/build.py; site.py copies the photos and films it loads
+    # The Big Muse, built by wall/build.py; site.py copies the photos and films it loads
     "bigwall": "wall/dist/big-wall.html",
     # Mars in 3D is served from its own folder (/mars3d); site.py copies its pictures, globe maps and three.js
     "mars3d": "mars3d/index.html",
@@ -77,6 +77,7 @@ ALIASES = {"https://claude.ai/artifact/65pctWFWHMQZ3ezNrrA7P1": "futurists_ru"}
 # Short addresses on the website, for typing on the projector laptop: vargafutureparty.com/wall
 SHORT = {
     "wall": PAGES["bigwall"],
+    "muse": PAGES["bigwall"],
     "apps": "index.html#apps",
     "quotes": "books/dist/quote-wall.html#quote-wall",
     "ideas": "books/dist/quote-wall.html#projection",
@@ -115,7 +116,7 @@ APP_SHOTS = {"party": "hub/apps/app.jpg", "mirror": "hub/apps/mirror.jpg", "musi
              "play": "hub/apps/play.jpg", "mars": "mars3d/preview.jpg", "art": "hub/apps/art.jpg"}
 # The picture on the Imagined Futures tile: the Prometheus Ring, a spinning habitat orbiting Saturn
 ART_TILE = "concept-art/thumbs/2118267091262333357-1.jpg"
-# The photo behind the Big Wall tile: Earth seen through Saturn's rings, Further's last slide
+# The photo behind the Big Muse tile: Earth seen through Saturn's rings, Further's last slide
 WALL_TILE = "video/assets/photos/smiled.jpg"
 
 
@@ -192,7 +193,7 @@ def future_music_numbers():
 
 
 def wall_numbers():
-    """The Big Wall's chapters and loop length, from the manifest wall/build.py writes."""
+    """The Big Muse's chapters and loop length, from the manifest wall/build.py writes."""
     m = ROOT / "wall/dist/manifest.json"
     if not m.exists():
         return None
@@ -203,7 +204,7 @@ def wall_numbers():
 
 
 def build_wall():
-    """Rebuild the Big Wall from its six sources, so the front page never shows an old one."""
+    """Rebuild the Big Muse from its six sources, so the front page never shows an old one."""
     spec = importlib.util.spec_from_file_location("wall_build", ROOT / "wall/build.py")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
@@ -295,7 +296,7 @@ def build(web=False):
     front = [f for f in films if f["front"]]
     films_ok = sum(1 for f in front if f["probe"])
     previews = sum(1 for f in front if f["probe"] and f["is_preview"])
-    print(f"{'site' if web else 'folder'} front page: the Big Wall ({w['total'] // 60} min), {films_ok}/{len(front)} films ({previews} as 720p previews), "
+    print(f"{'site' if web else 'folder'} front page: the Big Muse ({w['total'] // 60} min), {films_ok}/{len(front)} films ({previews} as 720p previews), "
           f"{b['quotes']} quotes, {b['ideas']} ideas, {t['tweets']} tweets, {c['pictures']} pictures, {s['tracks']} tracks"
           + (f"; missing: {missing}" if missing else ""))
     return page

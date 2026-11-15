@@ -58,7 +58,7 @@
     <div class="sec-head">
       <p class="eyebrow">Rebuild</p>
       <h2>Where each piece comes from</h2>
-      <p class="note">Run each command from the folder root. Every build reads its own data file and writes to its <code>dist/</code> or <code>renders/</code> folder. <code>python3 -I hub/build.py</code> also rebuilds the Big Wall, so run it last.</p>
+      <p class="note">Run each command from the folder root. Every build reads its own data file and writes to its <code>dist/</code> or <code>renders/</code> folder. <code>python3 -I hub/build.py</code> also rebuilds the Big Muse, so run it last.</p>
     </div>
     <div class="table-wrap"><table>
       <thead><tr><th>Piece</th><th>Source</th><th>Command</th></tr></thead>
@@ -86,11 +86,11 @@ $('lead').innerHTML='What only the host needs: the checks before guests arrive, 
 
 /* Pre-flight */
 const CHECK=[
-  ['Get the 1080p films onto that laptop.','The Big Wall and the film tiles play the 1080p renders when they are in the folder, and the 720p previews otherwise. Download the four films from the <a href="'+esc(D.repo)+'/releases/tag/v3.0" target="_blank" rel="noopener">v3.0 release</a> into <code>video/renders</code> (Further, Already Here), <code>showreel/renders</code> (Six Facts) and <code>roast/renders</code> (The Roast).'],
-  ['Start the Big Wall once from start to the first chapter.','The Six Facts film should play, then the Planet card. Press 1 to 6 to jump through the chapters and check that the photos and pictures show.'],
+  ['Get the 1080p films onto that laptop.','The Big Muse and the film tiles play the 1080p renders when they are in the folder, and the 720p previews otherwise. Download the four films from the <a href="'+esc(D.repo)+'/releases/tag/v3.0" target="_blank" rel="noopener">v3.0 release</a> into <code>video/renders</code> (Further, Already Here), <code>showreel/renders</code> (Six Facts) and <code>roast/renders</code> (The Roast).'],
+  ['Start the Big Muse once from start to the first chapter.','The Six Facts film should play, then the Planet card. Press 1 to 6 to jump through the chapters and check that the photos and pictures show.'],
   ['Set the projector to 1920×1080 and mirror the screen.','Every film and wall is made for 16:9. F goes fullscreen.'],
   ['Turn off sleep, the screen saver and notifications.','The walls ask the browser to keep the screen on, but the laptop’s own power settings can override that.'],
-  ['Cue the playlist on a separate speaker.','Further and the slide walls are silent. Six Facts has music: on the Big Wall it starts muted, M turns it on, so lower the playlist if you do.'],
+  ['Cue the playlist on a separate speaker.','Further and the slide walls are silent. Six Facts has music: on the Big Muse it starts muted, M turns it on, so lower the playlist if you do.'],
   ['Decide between online and offline.','Online, every page is at <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(siteName)+'</a> with no login. Offline, open <code>index.html</code> from the folder: the films, walls and pages play from disk, but the YouTube playlists and Play: 2050 need the internet (build its offline copy with <code>python3 -I soundboard/build.py --offline</code>).'],
   ['Try Mirror 2050 with the webcam you will use.','Open it, allow the camera and hold up a hand: the HANDS pill at the top should count it. Without internet it needs a local server and <code>mirror/tools/vendor.sh</code> run once beforehand.'],
   ['Open The Future 2050 on a phone and tap one pass.','<a href="'+esc(D.apps.party)+'" target="_blank" rel="noopener">'+esc(D.apps.party.replace(/^https?:\/\//,''))+'</a>. Reset the test data before the party: <code>bun scripts/reset.ts --yes</code> in <code>app</code>.']
@@ -105,7 +105,7 @@ $('checkReset').addEventListener('click',()=>{ticks={};try{localStorage.removeIt
 count();
 
 /* Short addresses */
-const WHAT={wall:'the Big Wall',apps:'the Apps on the front page',quotes:'quote wall',ideas:'idea wall',mix:'quotes and ideas',tweets:'tweet wall',
+const WHAT={wall:'the Big Muse',muse:'the Big Muse',apps:'the Apps on the front page',quotes:'quote wall',ideas:'idea wall',mix:'quotes and ideas',tweets:'tweet wall',
   'tweets-short':'tweet wall, short',art:'Imagined Futures wall',mars:'Mars in 3D',play:'Play: 2050',soundboard:'Play: 2050 (old address)',
   soundtrack:'Fable 5.2’s playlist page','future-music':'Music of the Future',resonance:'History of Music 2050','music-history':'Why Music Changes',books:'Book Projection 2050',
   further:'Further 2050',films:'Projection 2050',futurists:'Futurists on 2050',programme:'Tea With Tomorrow'};
@@ -130,7 +130,7 @@ $('offList').innerHTML=[
 
 /* Rebuild */
 const RB=[
-  ['The Big Wall','<code>wall/chapters.json</code>, plus the six pieces below it reads','python3 -I wall/build.py'],
+  ['The Big Muse','<code>wall/chapters.json</code>, plus the six pieces below it reads','python3 -I wall/build.py'],
   ['Further (film v2)','<code>video/slides.json</code>, <code>video/compositions/</code>','cd video && npm run render'],
   ['Six Facts','<code>showreel/reel.json</code>, <code>showreel/footage.json</code>','cd showreel && npm run render'],
   ['The Roast','<code>roast/SPEC.md</code>, <code>roast/compositions/</code>','cd roast && npm run render'],
@@ -144,7 +144,7 @@ const RB=[
   ['Blue futurism (the look)','<code>vibes/tokens.css</code>, shared with the party app and History of Music 2050','python3 vibes/sync.py, then rebuild the pages'],
   ['Mirror 2050','<code>mirror/index.html</code>, one file; the research page and <code>mirror/preview.jpg</code> beside it','no build · offline: mirror/tools/vendor.sh'],
   ['Programme, Futurists on 2050, Projection 2050','Saved copies of the claude.ai pages, in <code>programme/</code>, <code>tweets/research/</code> and <code>reel/</code>','no build: save the page again'],
-  ['The front page and this page','<code>hub/template.html</code>, <code>hub/admin.html</code>; rebuilds the Big Wall first','python3 -I hub/build.py'],
+  ['The front page and this page','<code>hub/template.html</code>, <code>hub/admin.html</code>; rebuilds the Big Muse first','python3 -I hub/build.py'],
   ['The website','<code>hub/site.py</code>, <code>vercel.json</code>','python3 -I hub/site.py']
 ];
 $('rebuildBody').innerHTML=RB.map(r=>'<tr><td><b>'+esc(r[0])+'</b></td><td>'+r[1]+'</td><td><code>'+esc(r[2])+'</code></td></tr>').join('');
