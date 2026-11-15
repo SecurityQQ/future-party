@@ -1,6 +1,12 @@
 .DS_Store
 node_modules/
 
+# Secrets: no .env file is ever committed, in any folder (the repo is public). Only the
+# templates (.env.example, placeholders only) are. `vercel link` state stays local too.
+.env*
+!.env.example
+.vercel/
+
 # HyperFrames local state and caches (hold absolute local paths)
 video/.hyperframes/
 video/.thumbnails/

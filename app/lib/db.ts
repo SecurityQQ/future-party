@@ -58,6 +58,7 @@ export type Player = {
   redraws: number;
   feedback: string | null;
   prev_image_url: string | null;
+  video_url: string | null; // the H3 clip of the picture now on the card (lib/video.ts)
   created_at: string;
   updated_at: string;
 };
@@ -85,11 +86,12 @@ export type PublicCard = {
   style: string;
   status: Player["status"];
   image_url: string | null;
+  video_url?: string | null; // the Kin's clip; only the big card plays it
   prophecy: string | null;
   collected_by?: number;
 };
 
-export const CARD_FIELDS = "id, card_no, name, character, sign, element, style, status, image_url, prophecy";
+export const CARD_FIELDS = "id, card_no, name, character, sign, element, style, status, image_url, video_url, prophecy";
 
 export function toCard(p: Partial<Player> & Pick<Player, "id">): PublicCard {
   return {
@@ -102,6 +104,7 @@ export function toCard(p: Partial<Player> & Pick<Player, "id">): PublicCard {
     style: p.style!,
     status: p.status!,
     image_url: p.image_url ?? null,
+    video_url: p.video_url ?? null,
     prophecy: p.prophecy ?? null,
   };
 }

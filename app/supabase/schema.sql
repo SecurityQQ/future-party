@@ -127,6 +127,26 @@ create table if not exists friends (
 );
 create index if not exists friends_friend_idx on friends(friend_id);
 
+-- Kin clips (added 2026-11-15): every finished picture is animated once with MiniMax H3 (image to
+-- video, lib/video.ts). One row per picture, so a redraw or a switch between versions never loses
+-- or repeats a clip. players.video_url is the clip of the picture now on the card. Additive.
+alter table players add column if not exists video_url text;
+create table if not exists videos (
+  image_url   text primary key,                  -- the stored Kin picture the clip animates
+  player_id   uuid not null references players(id) on delete cascade,
+  model       text not null,
+  prompt      text,
+  job_id      text,
+  attempts    int not null default 0,
+  status      text not null default 'starting',  -- starting | retry | generating | finalizing | done | failed
+  error       text,
+  video_url   text,                              -- the MP4 kept in Supabase Storage
+  source_url  text,                              -- varg's original file
+  created_at  timestamptz not null default now(),
+  updated_at  timestamptz not null default now()
+);
+create index if not exists videos_player_idx on videos(player_id);
+
 -- Ranking: unique cards collected (the "scans" that count), raw scans, times collected by others.
 create or replace view leaderboard with (security_invoker = true) as
 select
@@ -148,17 +168,18 @@ alter table collections enable row level security;
 alter table scans       enable row level security;
 alter table login_codes enable row level security;
 alter table friends     enable row level security;
+alter table videos      enable row level security;
 
-revoke all on guests, players, sessions, tags, collections, scans, login_codes, friends, leaderboard from anon, authenticated;
+revoke all on guests, players, sessions, tags, collections, scans, login_codes, friends, videos, leaderboard from anon, authenticated;
 
 -- The app server uses the secret key (service_role). Grant it explicitly: newer Supabase projects
 -- no longer grant new tables to it by default.
 grant usage on schema public to service_role;
-grant select, insert, update, delete on guests, players, sessions, tags, collections, scans, login_codes, friends to service_role;
+grant select, insert, update, delete on guests, players, sessions, tags, collections, scans, login_codes, friends, videos to service_role;
 grant select on leaderboard to service_role;
 grant usage, select on all sequences in schema public to service_role;
 
--- Character images: public bucket, written only by the server.
+-- Character images and their clips (MP4, ~2.5 MB each): public bucket, written only by the server.
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
-values ('characters', 'characters', true, 10485760, array['image/webp', 'image/png', 'image/jpeg'])
-on conflict (id) do update set public = true;
+values ('characters', 'characters', true, 52428800, array['image/webp', 'image/png', 'image/jpeg', 'video/mp4'])
+on conflict (id) do update set public = true, file_size_limit = excluded.file_size_limit, allowed_mime_types = excluded.allowed_mime_types;

@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { PublicCard } from "@/lib/db";
 import { ELEMENT_ICON, GLYPH } from "@/lib/zodiac";
 import { cardClass, finishLabel as finish } from "@/lib/finish";
+import { KinClip } from "./KinClip";
 
 const pad = (n: number) => String(n).padStart(3, "0");
 
@@ -17,8 +18,11 @@ export function CharacterCard({ card, reveal, children }: { card: PublicCard; re
         </div>
         <div className="card-art">
           {card.image_url ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={card.image_url} alt={`${card.character}, the character of ${card.name}`} />
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={card.image_url} alt={`${card.character}, the character of ${card.name}`} />
+              {card.video_url && <KinClip key={card.video_url} src={card.video_url} />}
+            </>
           ) : (
             <div className="materializing">
               <div>

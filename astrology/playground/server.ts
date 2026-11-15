@@ -1,5 +1,5 @@
 // Character playground: master prompt + subject -> a batch of images from varg, rated in the browser.
-// Run: bun server.ts   (reads VARG_API_KEY from the environment or ~/.varg/credentials)
+// Run: bun server.ts   (reads VARG_API_KEY from the environment, the repo's .env, or ~/.varg/credentials)
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync, statSync } from "node:fs";
 import { join, resolve, extname, basename } from "node:path";
 import { homedir } from "node:os";
@@ -16,6 +16,12 @@ for (const d of [RUNS, CACHE, join(CACHE, "thumbs"), join(CACHE, "refs")]) mkdir
 
 function loadKey(): string {
   if (process.env.VARG_API_KEY) return process.env.VARG_API_KEY;
+  // The repo's own .env (git-ignored) holds the key image generation uses; the party app reads it too.
+  try {
+    const line = readFileSync(resolve(ROOT, "../../.env"), "utf8").split("\n").find((l) => l.startsWith("VARG_API_KEY="));
+    const key = line?.slice("VARG_API_KEY=".length).trim().replace(/^(["'])(.*)\1$/, "$2");
+    if (key) return key;
+  } catch {}
   try {
     return JSON.parse(readFileSync(join(homedir(), ".varg/credentials"), "utf8")).api_key || "";
   } catch {
@@ -23,7 +29,7 @@ function loadKey(): string {
   }
 }
 const KEY = loadKey();
-if (!KEY) console.warn("No varg API key found (VARG_API_KEY or ~/.varg/credentials). Generation will fail.");
+if (!KEY) console.warn("No varg API key found (VARG_API_KEY, the repo's .env or ~/.varg/credentials). Generation will fail.");
 
 // ---------- types ----------
 type Img = {

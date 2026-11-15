@@ -3,7 +3,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Hull from "./Hull";
 
-type Row = { id: string; card_no: number; name: string; character: string; sign: string; finish: string; status: string; error: string | null; image_url: string | null; attempts: number; model: string | null; guest: string | null; match_score: number | null; tag: string | null };
+export type Row = {
+  id: string; card_no: number; name: string; character: string; sign: string; finish: string; status: string; error: string | null;
+  image_url: string | null; video_url: string | null; attempts: number; model: string | null; guest: string | null; match_score: number | null; tag: string | null;
+  clip: { status: string; attempts: number; error: string | null } | null; // the H3 clip of the picture on the card
+};
 
 const code = () => {
   const a = "abcdefghjkmnpqrstuvwxyz23456789";
@@ -54,7 +58,14 @@ export default function AdminPanel({ adminKey, rows, tagsTotal, tagsClaimed }: {
                   <td>{r.image_url && /* eslint-disable-next-line @next/next/no-img-element */ <img src={r.image_url} alt="" width={40} />}</td>
                   <td>{r.name}<div className="muted">{r.guest ? `= ${r.guest} (${(r.match_score ?? 0).toFixed(2)})` : "not on list"}</div></td>
                   <td>{r.character}<div className="muted">{r.sign} · {r.finish}</div></td>
-                  <td className="mono">{r.status} ×{r.attempts}<div className="muted">{r.model}</div>{r.error && <div className="error">{r.error.slice(0, 120)}</div>}</td>
+                  <td className="mono">{r.status} ×{r.attempts}<div className="muted">{r.model}</div>{r.error && <div className="error">{r.error.slice(0, 120)}</div>}
+                    {r.clip && (
+                      <div className="muted">
+                        clip {r.video_url ? <a href={r.video_url}>{r.clip.status}</a> : r.clip.status} ×{r.clip.attempts}
+                        {r.clip.status === "failed" && r.clip.error && <div className="error">{r.clip.error.slice(0, 120)}</div>}
+                      </div>
+                    )}
+                  </td>
                   <td className="mono">{r.tag ? <a href={`/app/t/${r.tag}`}>{r.tag}</a> : "–"}</td>
                   <td style={{ whiteSpace: "nowrap" }}>
                     <button className="btn ghost small" disabled={busy === r.id} onClick={() => redraw(r.id, false)}>Redraw</button>
