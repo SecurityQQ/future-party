@@ -14,6 +14,7 @@ Only files in the repo are read; nothing is fetched.
 import importlib.util, re, shutil, sys
 from pathlib import Path
 
+sys.dont_write_bytecode = True  # loading build.py below would otherwise leave hub/__pycache__ in the repo
 HUB = Path(__file__).resolve().parent
 ROOT = HUB.parent
 OUT = ROOT / "site"

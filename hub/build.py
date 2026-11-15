@@ -70,6 +70,8 @@ SHORT = {
     "films": PAGES["films"],
     "futurists": PAGES["futurists"],
 }
+# Apps for the night that run on their own servers. Zodiac Rangers lives in astrology/app; link its home page, never /admin.
+APPS = {"rangers": "https://zodiac-rangers.vercel.app"}
 PLAYLISTS = {
     "soundtrack": "https://www.youtube.com/playlist?list=PLJdg5B9vQ1oA",
     "history": "https://www.youtube.com/playlist?list=PLeo45sxoQ8gE",
@@ -188,6 +190,7 @@ def resources(web, films, b, t, s):
         ["The evening", [
             ["Tea With Tomorrow", "The programme: a three-hour Futures Literacy Lab over tea, with a party clock.", "", [["open", PAGES["program"]]]],
             ["Contact 2050", "A Makey Makey soundboard for guests: 12 pins, 8 kits, jam mode, stage mode for the projector.", "", [["open", PAGES["contact"]], ["README", doc(web, "soundboard/README.md")]]],
+            ["Zodiac Rangers", "The party app: guests tap their NFC ranger card, give a name and birthday, get a zodiac creature, then scan each other's cards for the ranking.", "", [["open ↗", APPS["rangers"]]]],
             ["Tea comparison", "The teas for the tables, compared.", "claude.ai", [["open ↗", ONLINE["tea"]]]],
         ]],
         ["Sound", [
