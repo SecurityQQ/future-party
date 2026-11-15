@@ -5,7 +5,7 @@ import presets from "./presets.json";
 import { db, type Guest, type Player, type Rarity } from "./db";
 import { signFor } from "./zodiac";
 import { jobState, startImage } from "./varg";
-import { advanceClip, clipFor } from "./video";
+import { advanceClip, clipFor, clipsReady, noClip } from "./video";
 
 // Card finish = the playground style; rarer finishes are the showier materials.
 export const FINISHES: { style: string; rarity: Rarity; weight: number }[] = [
@@ -166,7 +166,7 @@ export async function refresh(id: string): Promise<Player | null> {
   if (!locked?.length) return getPlayer(p.id);
   try {
     const image = await store(p, st.url);
-    return await update(p.id, { status: "done", image_url: image, source_url: st.url, error: null, video_url: null });
+    return await update(p.id, { status: "done", image_url: image, source_url: st.url, error: null, ...(await noClip()) });
   } catch (e: any) {
     return await update(p.id, { status: "generating", error: String(e?.message || e).slice(0, 500) });
   }
@@ -222,7 +222,7 @@ export async function redrawWithFeedback(p: Player, feedback: string): Promise<P
     redraws: p.redraws + 1,
     prev_image_url: p.image_url,
     image_url: null,
-    video_url: null,
+    ...(await noClip()),
     status: "pending",
     attempts: 0,
     job_id: null,
@@ -235,6 +235,6 @@ export async function redrawWithFeedback(p: Player, feedback: string): Promise<P
 export async function swapVersion(p: Player): Promise<Player> {
   if (!p.prev_image_url) return p;
   // Each picture keeps its own clip (videos table), so the other version comes back with its clip.
-  const video_url = await clipFor(p.prev_image_url);
-  return update(p.id, { image_url: p.prev_image_url, prev_image_url: p.image_url, video_url, status: "done", error: null });
+  const clip = (await clipsReady()) ? { video_url: await clipFor(p.prev_image_url) } : {};
+  return update(p.id, { image_url: p.prev_image_url, prev_image_url: p.image_url, ...clip, status: "done", error: null });
 }

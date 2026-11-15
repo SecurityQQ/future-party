@@ -12,10 +12,10 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
   const { key } = await searchParams;
   if (!isAdmin(key)) notFound();
   const [{ data: players }, { data: tags }, { data: guests }, { data: videos }] = await Promise.all([
-    db().from("players").select("id, card_no, name, character, sign, style, status, error, image_url, video_url, attempts, model, guest_id, match_score, created_at").order("card_no", { ascending: false }),
+    db().from("players").select("id, card_no, name, character, sign, style, status, error, image_url, attempts, model, guest_id, match_score, created_at").order("card_no", { ascending: false }),
     db().from("tags").select("code, player_id, claimed_at"),
     db().from("guests").select("id, name"),
-    db().from("videos").select("image_url, status, attempts, error"),
+    db().from("videos").select("image_url, status, attempts, error, video_url"), // empty until the clip migration has run
   ]);
   const clipOf = new Map((videos ?? []).map((v: any) => [v.image_url, v]));
   const guestName = new Map((guests ?? []).map((g: any) => [g.id, g.name]));

@@ -31,7 +31,8 @@ for (;;) {
 }
 
 const sql = new SQL(process.env.DATABASE_URL!);
-await sql`truncate videos, scans, collections, friends, login_codes, sessions, tags, players restart identity cascade`;
+// cascade also empties videos (the clips), which references players
+await sql`truncate scans, collections, friends, login_codes, sessions, tags, players restart identity cascade`;
 const [{ guests }] = await sql`select count(*)::int as guests from guests`;
 await sql.close();
 console.log(`removed ${removed} images and clips; players, tags, collections, friends, login codes, scans and sessions emptied; ${guests} guests kept`);

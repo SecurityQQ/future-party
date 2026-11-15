@@ -26,7 +26,31 @@ export type Video = {
   created_at: string;
   updated_at: string;
 };
-export type ClipStatus = Video["status"] | "none";
+// "off": the database has no clip schema yet, so cards stay still and nobody waits for a clip.
+export type ClipStatus = Video["status"] | "none" | "off";
+
+// Clips need players.video_url and the videos table (supabase/schema.sql). Until that migration
+// runs, the app works exactly as before, without clips; once it has run, clips switch on by
+// themselves within a minute, no redeploy. A "yes" is kept for good, a "no" is asked again.
+let schema: { ok: boolean; at: number } | null = null;
+export async function clipsReady(): Promise<boolean> {
+  if (schema && (schema.ok || Date.now() - schema.at < 60_000)) return schema.ok;
+  let ok = false;
+  try {
+    const [table, column] = await Promise.all([
+      db().from("videos").select("image_url").limit(1),
+      db().from("players").select("video_url").limit(1),
+    ]);
+    ok = !table.error && !column.error;
+  } catch {}
+  schema = { ok, at: Date.now() };
+  return ok;
+}
+
+// The fields that reset a card's clip, only where the column exists.
+export async function noClip(): Promise<{ video_url?: null }> {
+  return (await clipsReady()) ? { video_url: null } : {};
+}
 
 // Motion only: the picture already carries the look, so the prompt names what moves and asks for
 // everything else to stay. No sign names (they pull zodiac glyphs into the frame).
@@ -50,12 +74,13 @@ async function getVideo(image: string): Promise<Video | null> {
 
 // The clip already made for a picture, if any (switching between a Kin's two versions).
 export async function clipFor(image: string | null): Promise<string | null> {
-  if (!image) return null;
+  if (!image || !(await clipsReady())) return null;
   const v = await getVideo(image);
   return v?.status === "done" ? v.video_url : null;
 }
 
 export async function clipStatus(p: Pick<Player, "status" | "image_url">): Promise<ClipStatus> {
+  if (!(await clipsReady())) return "off";
   if (p.status !== "done" || !p.image_url) return "none";
   return (await getVideo(p.image_url))?.status ?? "none";
 }
@@ -103,7 +128,7 @@ async function show(v: Video) {
 // Move the clip of the player's current picture one step forward: start it, check it, retry or
 // store it. Safe to call from every poll.
 export async function advanceClip(p: Player): Promise<Video | null> {
-  if (p.status !== "done" || !p.image_url) return null;
+  if (p.status !== "done" || !p.image_url || !(await clipsReady())) return null;
   let v = await getVideo(p.image_url);
   if (!v) {
     const { data } = await db()

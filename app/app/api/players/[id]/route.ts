@@ -13,7 +13,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
   const p = await refresh(id);
   if (!p) return NextResponse.json({ error: "No such character" }, { status: 404 });
   const [me, video] = await Promise.all([currentPlayer(), clipStatus(p)]);
-  const settled = video === "failed" || (video === "done" && !!p.video_url);
+  const settled = video === "off" || video === "failed" || (video === "done" && !!p.video_url);
   if (p.status === "done" && !settled) after(() => advanceClip(p).then(() => {}, () => {}));
   const own = me?.id === p.id;
   return NextResponse.json(

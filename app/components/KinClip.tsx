@@ -44,7 +44,7 @@ export function useKinClip(card: PublicCard | null): ClipState {
         if (!alive) return;
         if (j.image_url !== image) return; // the picture changed; the card brings its own clip
         if (j.video_url) return setClip({ url: j.video_url, pending: false });
-        if (j.video === "failed") return setClip({ url: null, pending: false });
+        if (j.video === "failed" || j.video === "off") return setClip({ url: null, pending: false });
       } catch {}
       if (alive && ++tries < 60) timer = setTimeout(tick, 5000);
       else if (alive) setClip({ url: null, pending: false });

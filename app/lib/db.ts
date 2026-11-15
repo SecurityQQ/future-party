@@ -91,7 +91,7 @@ export type PublicCard = {
   collected_by?: number;
 };
 
-export const CARD_FIELDS = "id, card_no, name, character, sign, element, style, status, image_url, video_url, prophecy";
+export const CARD_FIELDS = "id, card_no, name, character, sign, element, style, status, image_url, prophecy";
 
 export function toCard(p: Partial<Player> & Pick<Player, "id">): PublicCard {
   return {

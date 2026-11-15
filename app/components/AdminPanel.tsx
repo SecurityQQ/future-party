@@ -5,8 +5,8 @@ import Hull from "./Hull";
 
 export type Row = {
   id: string; card_no: number; name: string; character: string; sign: string; finish: string; status: string; error: string | null;
-  image_url: string | null; video_url: string | null; attempts: number; model: string | null; guest: string | null; match_score: number | null; tag: string | null;
-  clip: { status: string; attempts: number; error: string | null } | null; // the H3 clip of the picture on the card
+  image_url: string | null; attempts: number; model: string | null; guest: string | null; match_score: number | null; tag: string | null;
+  clip: { status: string; attempts: number; error: string | null; video_url: string | null } | null; // the H3 clip of the picture on the card
 };
 
 const code = () => {
@@ -61,7 +61,7 @@ export default function AdminPanel({ adminKey, rows, tagsTotal, tagsClaimed }: {
                   <td className="mono">{r.status} ×{r.attempts}<div className="muted">{r.model}</div>{r.error && <div className="error">{r.error.slice(0, 120)}</div>}
                     {r.clip && (
                       <div className="muted">
-                        clip {r.video_url ? <a href={r.video_url}>{r.clip.status}</a> : r.clip.status} ×{r.clip.attempts}
+                        clip {r.clip.video_url ? <a href={r.clip.video_url}>{r.clip.status}</a> : r.clip.status} ×{r.clip.attempts}
                         {r.clip.status === "failed" && r.clip.error && <div className="error">{r.clip.error.slice(0, 120)}</div>}
                       </div>
                     )}
