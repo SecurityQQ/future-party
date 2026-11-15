@@ -1,0 +1,295 @@
+{
+  "syncedFrom": "astrology/playground/presets.json",
+  "syncedAt": "2026-11-15",
+  "master": {
+    "id": "v6",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It stays true to its own species: no features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}.\nFigure and ground, more important than the scene description: {backdrop} The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature."
+  },
+  "styles": [
+    {
+      "id": "plush",
+      "label": "Plush glow",
+      "text": "ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy"
+    },
+    {
+      "id": "crystal",
+      "label": "Faceted crystal",
+      "text": "body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate"
+    },
+    {
+      "id": "rhinestone",
+      "label": "Diamond pave",
+      "text": "entirely encrusted with thousands of tiny silver rhinestones and diamonds, glittering macro detail, luxurious fashion editorial"
+    },
+    {
+      "id": "chrome",
+      "label": "Liquid chrome",
+      "text": "made of polished liquid chrome with soft iridescent reflections of pink, teal and gold, smooth sculptural forms, Y2K designer object"
+    },
+    {
+      "id": "porcelain",
+      "label": "Porcelain robot",
+      "text": "a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot"
+    },
+    {
+      "id": "hologlass",
+      "label": "Holographic glass",
+      "text": "transparent iridescent glass body with glowing fiber-optic veins and soft inner light, holographic sheen, faint technical blueprint annotations floating around it",
+      "tone": "glow"
+    },
+    {
+      "id": "wireframe",
+      "label": "Data wireframe",
+      "text": "formed from a glowing blue wireframe mesh and a point cloud of tiny dots, digital hologram aesthetic with thin coordinate lines, 1980s computer graphics",
+      "tone": "glow"
+    },
+    {
+      "id": "cyborg",
+      "label": "Cyborg wildlife",
+      "text": "a realistic young animal with some parts replaced by exposed precision mechanics, tiny circuit boards, brass gears and neat cables, photoreal wildlife photography meets sci-fi"
+    },
+    {
+      "id": "neonpunk",
+      "label": "Neon cyberpunk",
+      "text": "styled in neon magenta and electric teal, chunky reflective goggles, a metallic armor collar with glowing details, playful cyberpunk attitude"
+    },
+    {
+      "id": "deadpan",
+      "label": "Flash film",
+      "text": "the whole photo in black and white: shot on monochrome 35mm film with direct on-camera flash, grainy, deadpan cool attitude with tiny black sunglasses, ironic fashion photography",
+      "palette": false
+    },
+    {
+      "id": "airbrush",
+      "label": "80s airbrush",
+      "text": "painted in 1980s airbrush sci-fi illustration style, chrome highlights, rainbow light beams and a glowing laser grid, retro-futurist album cover"
+    }
+  ],
+  "scenes": [
+    {
+      "id": "vapor_hills",
+      "label": "Violet hills",
+      "text": "rolling velvet hills covered in glowing violet flowers under a deep blue twilight sky with two thin crescent moons"
+    },
+    {
+      "id": "solarpunk",
+      "label": "Solarpunk valley",
+      "text": "a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light"
+    },
+    {
+      "id": "portal",
+      "label": "Planet portal",
+      "text": "a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure"
+    },
+    {
+      "id": "hyperspace",
+      "label": "Hyperspace",
+      "text": "inside a cosmic hyperspace tunnel of rainbow light streaks, swirling stars and prismatic flares"
+    },
+    {
+      "id": "clouds",
+      "label": "Cloud sea",
+      "text": "floating above a soft sea of pink and lilac clouds at dusk, a slim crescent moon in a pastel gradient sky"
+    },
+    {
+      "id": "forest",
+      "label": "Endless forest",
+      "text": "an endless corridor of tall trees at deep blue twilight, a faint starry horizon glowing at the end of a tiny winding path"
+    },
+    {
+      "id": "mars",
+      "label": "Mars colony",
+      "text": "a terracotta Mars desert colony with a white dome city and launch towers, a pale moon in a dusty sky"
+    },
+    {
+      "id": "paperback",
+      "label": "Sci-fi paperback",
+      "text": "a vast desert under a giant ringed sphere and drifting spaceships, painted like a 1970s sci-fi paperback cover"
+    },
+    {
+      "id": "citylights",
+      "label": "City of light",
+      "text": "high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh"
+    },
+    {
+      "id": "rings",
+      "label": "Stone rings",
+      "text": "a green canyon floor beneath giant carved stone rings receding into a blue sky"
+    },
+    {
+      "id": "studio",
+      "label": "Studio color",
+      "text": "a seamless studio backdrop in one bold harmonious color with a soft floor reflection, clean product-shot lighting"
+    }
+  ],
+  "zodiac": [
+    {
+      "sign": "Aries",
+      "from": "03-21",
+      "to": "04-19",
+      "element": "fire",
+      "animal": "a woodpecker chick",
+      "traits": "fiery, brave, impatient, always first to act",
+      "tone": "mid"
+    },
+    {
+      "sign": "Taurus",
+      "from": "04-20",
+      "to": "05-20",
+      "element": "earth",
+      "animal": "an otter pup",
+      "traits": "cozy, loyal, stubborn, loves comfort and snacks",
+      "tone": "mid"
+    },
+    {
+      "sign": "Gemini",
+      "from": "05-21",
+      "to": "06-20",
+      "element": "air",
+      "animal": "a parrot chick",
+      "traits": "chatty, witty, curious, two moods at once",
+      "tone": "mid"
+    },
+    {
+      "sign": "Cancer",
+      "from": "06-21",
+      "to": "07-22",
+      "element": "water",
+      "animal": "a little crab",
+      "traits": "protective, sensitive, a homebody behind a hard shell",
+      "tone": "mid"
+    },
+    {
+      "sign": "Leo",
+      "from": "07-23",
+      "to": "08-22",
+      "element": "fire",
+      "animal": "a black panther cub",
+      "traits": "proud, dramatic, generous, loves the spotlight",
+      "tone": "dark"
+    },
+    {
+      "sign": "Virgo",
+      "from": "08-23",
+      "to": "09-22",
+      "element": "earth",
+      "animal": "a bumblebee",
+      "traits": "diligent, precise, helpful, quietly perfectionist",
+      "tone": "mid"
+    },
+    {
+      "sign": "Libra",
+      "from": "09-23",
+      "to": "10-22",
+      "element": "air",
+      "animal": "a bunny",
+      "traits": "charming, stylish, easygoing, seeks harmony",
+      "tone": "light"
+    },
+    {
+      "sign": "Scorpio",
+      "from": "10-23",
+      "to": "11-21",
+      "element": "water",
+      "animal": "a little snake",
+      "traits": "mysterious, intense, magnetic, fiercely loyal",
+      "tone": "mid"
+    },
+    {
+      "sign": "Sagittarius",
+      "from": "11-22",
+      "to": "12-21",
+      "element": "fire",
+      "animal": "a foal",
+      "traits": "free-spirited, adventurous, endlessly optimistic",
+      "tone": "mid"
+    },
+    {
+      "sign": "Capricorn",
+      "from": "12-22",
+      "to": "01-19",
+      "element": "earth",
+      "animal": "a fawn",
+      "traits": "ambitious, patient, a steady climber",
+      "tone": "mid"
+    },
+    {
+      "sign": "Aquarius",
+      "from": "01-20",
+      "to": "02-18",
+      "element": "air",
+      "animal": "a whale calf",
+      "traits": "visionary, eccentric, kind to everyone",
+      "tone": "mid"
+    },
+    {
+      "sign": "Pisces",
+      "from": "02-19",
+      "to": "03-20",
+      "element": "water",
+      "animal": "a little octopus",
+      "traits": "dreamy, intuitive, artistic, a shape-shifter",
+      "tone": "mid"
+    }
+  ],
+  "elements": {
+    "fire": "ember orange, gold and crimson",
+    "earth": "moss green, terracotta and warm cream",
+    "air": "lilac, sky blue and pearl white",
+    "water": "deep teal, aquamarine and silver"
+  },
+  "backdrops": {
+    "light": "the creature is light, so the scene around it is deep and dim: dusk shadow, darker values everywhere behind it and a dark vignette toward the edges of the frame.",
+    "dark": "the creature is dark, so the scene behind it is bright and airy: pale haze, soft high-key daylight and a luminous glow directly behind its head and body, background values much lighter than the creature.",
+    "glow": "the creature glows, so the scene around it is dark and quiet: night tones, deep shadow and only faint background detail.",
+    "mid": "the background is muted and desaturated in a hue complementary to the creature's main color, with a soft pool of brighter light directly behind it."
+  },
+  "models": [
+    {
+      "id": "gpt_image_2_6",
+      "label": "GPT Image 2.6",
+      "providerOptions": {
+        "fal": {
+          "background": "opaque"
+        }
+      }
+    },
+    {
+      "id": "nano_banana_2_1",
+      "label": "Nano Banana 2.1"
+    },
+    {
+      "id": "seedream_5_5",
+      "label": "Seedream 5.5"
+    },
+    {
+      "id": "nano_banana_pro",
+      "label": "Nano Banana Pro"
+    },
+    {
+      "id": "flux_3_image",
+      "label": "Flux 3"
+    },
+    {
+      "id": "krea_3",
+      "label": "Krea 3"
+    },
+    {
+      "id": "mai_image_2_5",
+      "label": "MAI Image 2.5",
+      "maxRefs": 1
+    },
+    {
+      "id": "seedream_5_pro",
+      "label": "Seedream 5 Pro"
+    },
+    {
+      "id": "qwen_image_3",
+      "label": "Qwen Image 3"
+    },
+    {
+      "id": "grok_imagine_image_2",
+      "label": "Grok Imagine 2"
+    }
+  ]
+}

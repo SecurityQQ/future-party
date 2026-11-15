@@ -1,0 +1,92 @@
+# Kin 2050
+
+The party app for The Future Party 2050: **https://zodiac-rangers.vercel.app** (the address keeps the first name, Zodiac Rangers).
+
+**The story.** It is 2050, and nobody arrives alone. Every traveler is met by their Kin: a companion from the future, shaped by the sky they were born under and the life they lead. Three oracles at Arrival Station read your sky while your Kin crosses over. Then you tap the pass of everyone you meet, and their Kin joins your orbit. The future is who you meet.
+
+**The words.** traveler (a guest), pass (the NFC card), Kin (the companion creature), orbit (the Kin you collected), oracles (Vexa, Grumm, Ilu), Arrival Station (the home page). The code keeps the old identifiers (`hold`, `pilot`, `astrologers`).
+
+A guest taps their pass (an RFID/NFC tag) on their phone. The page asks for their name and birthday, three oracles of 2050 read their sky while their Kin materializes, and the card is bound to them. Anyone else who taps that card adds that Kin to their own orbit. The ranking shows who scanned the most cards, plus every Kin at the party.
+
+Next.js 16 on Vercel, Supabase (Postgres + Storage), images from varg with the playground's master prompt, readings through the Vercel AI Gateway.
+
+## The flow
+
+| Someone taps card `/t/<code>` | What happens |
+| --- | --- |
+| New phone, blank card | Registration: name → birthday → the closest guest on the list (asks "which one is you?" when unsure) → the oracles' reading while the image renders → reveal. The card is now theirs. |
+| Owner's phone | Their own card, and how many travelers collected it. |
+| Another registered phone | The Kin goes into that phone's orbit (+1 on the ranking; a repeat tap counts once). |
+| Phone with no pilot, someone's card | Shows the Kin; registering from here also collects it. "This is my card" + birthday restores the owner's session on a new phone. |
+| Registered phone without a card, blank card | Offers to bind the blank card to their existing Kin. |
+
+The session is an httpOnly cookie (one year) tied to a row in `sessions`.
+
+## The character
+
+`lib/character.ts` fills the playground master prompt (`v6` in `../playground/presets.json`, copied to `lib/presets.json` by `bun scripts/sync-presets.ts`):
+
+- **subject and scene**: the guest's totem and NFC-card scene from the guest list, translated to English in `data/guests.en.json`. Guests without a totem, and people not on the list, get their zodiac animal and a random scene.
+- **traits and palette**: from the birthday's sign and element.
+- **finish = rarity**: a weighted draw over the playground styles. Common 52% (plush, porcelain, airbrush), rare 28% (neon, cyborg, chrome), epic 15% (crystal, holo glass, wireframe), legendary 5% (diamond pavé). Epic and legendary cards get a holo sheen.
+- **model**: GPT Image 2.6 (`background: opaque`), retried once, then Nano Banana 2.1, then Seedream 5.5. About 6¢ and 15–25 s per image.
+
+The image is copied into the public `characters` bucket as a 900 px WebP. Each poll of `/api/players/<id>` moves the job along, and `after()` keeps polling for 4.5 minutes if the guest closes the page.
+
+The reading streams from `google/gemini-2.5-flash`, then `openai/gpt-5-mini` (the two models the gateway's free tier allows), then a template, so the loader never stalls. After adding gateway credits, set `READING_MODEL=anthropic/claude-haiku-5.5` on Vercel to try that first.
+
+## Running the party
+
+- **Tags**: open `/admin?key=<ADMIN_KEY>` (the key is in `.env.local` and on Vercel), press Generate and write one URL per tag (NFC Tools → Write → URL). The codes are random, so nobody can collect a card by typing an address. Any `/t/<code>` works, so you can also write your own codes.
+- **Fix a bad image**: on `/admin`, Redraw (same finish) or Reroll finish.
+- **Start clean** (after testing): `set -a; source .env.local; set +a; bun scripts/reset.ts --yes`. This empties players, tags, scans and images and keeps the guest list.
+- **Wall screen**: `/leaderboard` refreshes itself every 15 s.
+
+## Setup from scratch
+
+```bash
+cd astrology/app
+npm install
+cp .env.example .env.local        # fill in; see the comments there
+set -a; source .env.local; set +a
+psql "$DATABASE_URL" -f supabase/schema.sql
+python3 -I scripts/import_guests.py data/guests.en.json "<path to Future_Party_Guests.xlsx>" | psql "$DATABASE_URL"
+vercel link && vercel env pull .env.development.local   # AI Gateway token for local readings
+npm run dev                        # http://localhost:4400
+vercel deploy --prod
+```
+
+`schema.sql` turns on row level security with no policies and revokes the public roles, so the publishable key cannot read anything. The server uses the secret key. Only guest name, aliases, totem, scene and interests are imported from the spreadsheet; notes, sources and social links stay out of the database.
+
+## Files
+
+| Path | What it is |
+| --- | --- |
+| `app/t/[code]/page.tsx` | The scan: decides which of the cases above applies, records the scan, collects. |
+| `components/ScanScreen.tsx` | The screens for each case. |
+| `components/RegisterQuest.tsx` | Registration as a text-quest dialogue. |
+| `components/AstroLoader.tsx` | The streamed reading, star chart, synthesis log, reveal. |
+| `lib/match.ts` | Name → guest: Cyrillic transliteration, nicknames (Dima, Sasha, Katya…), Jaro-Winkler per word. |
+| `lib/character.ts` | Prompt, finish, varg job, retries, storage. |
+| `lib/reading.ts` | The oracles' prompt, model chain, template. |
+| `app/api/*` | register, players/[id] (status), reading, claim, restore, me, admin/regenerate. |
+| `supabase/schema.sql` | Tables, the `leaderboard` view, RLS, the storage bucket. |
+| `scripts/` | Guest import, presets sync, reset. |
+| `public/img/` | The three oracles and the station (generated with GPT Image 2.6). |
+
+## Logging in, profiles, friends, sharing
+
+Added 14 November 2026. They need the additive part of `supabase/schema.sql` (new `players` columns: `email`, `bio`, `ask_me`, `links`, `redraws`, `feedback`, `prev_image_url`; new tables `login_codes` and `friends`). Run the schema file again; it is idempotent.
+
+| Route | What it does |
+| --- | --- |
+| `/` and `/me` | Your Kin when this phone has a traveler: the card, the one redraw, the share link with its QR, your profile, record, friends and orbit. Without a traveler: the pass scanner. |
+| `/scan` | The pass scanner. Android Chrome reads the pass in the page (Web NFC); an iPhone reads it itself when the pass touches the top edge. |
+| `/login` | Email → six-digit code → signed in. The email's link (`/login?email=…&code=…`) signs in by itself. |
+| `/me/profile` | Optional profile: name, a line about you, "ask me about", Instagram / Telegram / X / LinkedIn / website, and the login email (never shown). |
+| `/c/<card number>` | The public card and the share link. Anyone signed in gets **Become friends** (mutual, instant). Friends do not count on the ranking; only tapping a pass does. |
+
+- **Email login** uses Resend: set `RESEND_API_KEY` and `EMAIL_FROM` (an address on a domain verified in Resend). Without a key, preview and local builds show the code on the page so the flow can be tested; production answers that email login is not on yet. Codes are stored as an HMAC (`LOGIN_PEPPER`, falling back to the Supabase secret key), last 15 minutes, allow 5 tries, and at most 5 are sent per email per hour.
+- **Registration** asks for an email after the birthday (it can be skipped and added later in the profile) and sends a welcome email when Resend is set up.
+- **Redraw**: right after the reveal, a traveler can redraw their Kin once with notes on what to change (`/api/players/<id>/redraw`). The notes are added to the image prompt; the first picture is kept, and they can switch between the two versions.
+- **No rarity on screen**: the frame takes the element's color and see-through finishes keep the holo sheen. The `rarity` column is still written but never shown.
