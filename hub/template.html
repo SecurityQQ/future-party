@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Instrument+Serif&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: the projectionist's desk for the night. The wall comes first (three films with real frames,
+/* Layout: the projectionist's desk for the night. The wall comes first (the films with real frames,
    three slide walls drawn in their own type), then the programme, the sound, what to read, the
    pre-flight list and how to rebuild. The display face is League Gothic, the wall films' own type.
    Dark-first; light supported. Everything is a relative link, so the page works from the folder offline.
@@ -192,7 +192,7 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12.5px/
   <section id="wall">
     <div class="sec-head">
       <p class="eyebrow">On the wall</p>
-      <h2>Three films and three slide walls</h2>
+      <h2>Four films and three slide walls</h2>
       <p class="note">Films play here on a loop in a fullscreen player. Slide walls open in their own page and run by themselves. Everything goes fullscreen with F, and Esc leaves.</p>
     </div>
     <div class="row-label"><h3>Films</h3><span id="filmsLabel"></span></div>
@@ -294,7 +294,7 @@ if(WEB){
 /* Facts */
 const B=D.books,T=D.tweets,S=D.sound;
 const filmsOk=D.films.filter(f=>f.probe).length, films1080=D.films.filter(f=>f.probe&&!f.is_preview).length;
-$('facts').innerHTML=[WEB?'<span><b>'+filmsOk+'</b> films</span>':'<span><b>'+films1080+'</b> of 3 films at 1080p'+(filmsOk>films1080?', '+(filmsOk-films1080)+' as 720p previews':'')+'</span>','<span><b>'+B.quotes+'</b> quotes · <b>'+B.ideas+'</b> ideas · <b>'+T.tweets+'</b> tweets</span>','<span><b>'+S.tracks+'</b> soundtrack items · '+Math.floor(S.sec/3600)+' h '+Math.round(S.sec%3600/60)+' min</span>','<span>built '+esc(D.built)+'</span>'].join('');
+$('facts').innerHTML=[WEB?'<span><b>'+filmsOk+'</b> films</span>':'<span><b>'+films1080+'</b> of '+D.films.length+' films at 1080p'+(filmsOk>films1080?', '+(filmsOk-films1080)+' as 720p previews':'')+'</span>','<span><b>'+B.quotes+'</b> quotes · <b>'+B.ideas+'</b> ideas · <b>'+T.tweets+'</b> tweets</span>','<span><b>'+S.tracks+'</b> soundtrack items · '+Math.floor(S.sec/3600)+' h '+Math.round(S.sec%3600/60)+' min</span>','<span>built '+esc(D.built)+'</span>'].join('');
 
 /* All resources */
 $('allNote').textContent=WEB?'Every film, wall, page and playlist, on one screen. Each is described in more detail further down.':'Every film, wall, page and playlist, on one screen. Everything opens from this folder; links marked ↗ go online.';
@@ -317,7 +317,7 @@ D.films.forEach(f=>{
     '<div class="missing"'+(p?' hidden':'')+'><b>Not rendered here</b><span>'+esc(f.file)+'</span><span>'+esc(f.rebuild)+'</span></div></div>'+
     '<h4>'+esc(f.title)+'<small>'+esc(f.sub)+(p?' · '+(f.is_preview?'720p · ':'')+p.mb+' MB':'')+'</small></h4><p>'+esc(f.about)+'</p>'+
     '<div class="actions"><button type="button" class="btn" data-film="'+esc(f.id)+'"'+(p?'':' disabled')+'><span class="tri" aria-hidden="true"></span>Play on a loop</button>'+
-    (f.is_preview||!p?'<a class="lnk" href="'+esc(f.master)+'">1080p master ↓</a>':'')+
+    ((f.is_preview||!p)&&f.master?'<a class="lnk" href="'+esc(f.master)+'">1080p master ↓</a>':'')+
     (f.page?'<a class="lnk" href="'+esc(f.page)+'">page</a>':'')+on(f.online)+'</div>';
   const v=el.querySelector('video');
   if(v){v.addEventListener('error',()=>{v.remove();el.querySelector('.missing').hidden=false;el.querySelector('.len').textContent='';el.querySelector('.btn').disabled=true});

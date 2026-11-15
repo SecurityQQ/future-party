@@ -1,0 +1,139 @@
+<template>
+  <style>
+    @font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;src:url('assets/fonts/InstrumentSerif-Regular.woff2') format('woff2')}
+    #root{position:absolute;inset:0;overflow:hidden;background:#0b0b0d;font-family:Inter,sans-serif;color:#fff}
+    .stage{position:absolute;inset:0;overflow:hidden}
+    .mv{position:absolute;inset:0}
+    video.fill{position:absolute;left:0;top:0;width:1920px;height:1080px;object-fit:cover;display:block}
+    .scrim{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.8) 0%,rgba(0,0,0,.62) 36%,rgba(0,0,0,.18) 66%,rgba(0,0,0,0) 84%),linear-gradient(to bottom,rgba(0,0,0,0) 46%,rgba(0,0,0,.6) 100%)}
+    .scrim.soft{background:linear-gradient(to right,rgba(0,0,0,.62) 0%,rgba(0,0,0,.4) 40%,rgba(0,0,0,0) 72%)}
+    .dim{position:absolute;inset:0;background:rgba(11,11,13,.6)}
+    .dim.deep{background:rgba(11,11,13,.74)}
+    .dip{position:absolute;inset:0}
+    .dipc{position:absolute;inset:0;background:#000}
+    .cap{position:absolute;left:192px;width:1536px;text-shadow:0 2px 16px rgba(0,0,0,.55)}
+    .cap.low{bottom:112px}
+    .cap.mid{top:0;bottom:0;display:flex;flex-direction:column;justify-content:center}
+    .kick{font:800 34px/1.15 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#ff5315}
+    .kick.plain{text-transform:none;letter-spacing:.04em}
+    .num{font-family:'League Gothic',sans-serif;font-size:300px;line-height:.86;letter-spacing:.01em;text-transform:uppercase;margin-top:10px;white-space:nowrap}
+    .num span{display:inline-block}
+    .num small{display:inline-block;font-size:.42em;margin:0 .22em;color:rgba(255,255,255,.66);text-transform:lowercase;vertical-align:.06em}
+    .num small.unit{font-size:.5em;margin:0 0 0 .14em;color:#fff;text-transform:none;vertical-align:0}
+    .ftxt{font:600 46px/1.22 Inter,sans-serif;margin-top:22px;max-width:1160px}
+    .ftxt span,.qtxt span{display:inline-block}
+    .fsrc{font:500 28px/1.2 Inter,sans-serif;color:rgba(255,255,255,.72);margin-top:20px}
+    .qtxt{font-family:'Instrument Serif',serif;font-size:104px;line-height:1.05;letter-spacing:-.005em;margin-top:26px;max-width:1500px}
+    .qtxt.long{font-size:92px}
+    .qby{font:600 34px/1.25 Inter,sans-serif;color:rgba(255,255,255,.86);margin-top:34px}
+    .thead{display:flex;align-items:center;gap:30px}
+    .tav{width:128px;height:128px;border-radius:50%;object-fit:cover;display:block}
+    .tname{font:800 50px/1.1 Inter,sans-serif}
+    .trole{font:500 32px/1.2 Inter,sans-serif;color:rgba(255,255,255,.74);margin-top:8px}
+    .ttxt{font:600 70px/1.16 Inter,sans-serif;margin-top:40px;max-width:1500px;font-feature-settings:'calt' 0}
+    .ttxt.long{font-size:60px}
+    .tcap .kick{margin-top:36px}
+  </style>
+  <div id="root" data-composition-id="c5" data-width="1920" data-height="1080">
+    <div class="stage" id="c5-f-st" style="z-index:1">
+      <div class="mv" id="c5-f-a-mv"><video id="c5-f-a" class="clip fill" src="assets/footage/f5a.mp4" muted playsinline data-hf-media-start-basis="local" data-start="0.0" data-duration="2.7667" data-track-index="1"></video></div>
+      <div class="mv" id="c5-f-b-mv"><video id="c5-f-b" class="clip fill" src="assets/footage/f5b.mp4" muted playsinline data-hf-media-start-basis="local" data-start="2.7667" data-duration="2.9333" data-track-index="1"></video></div>
+      <div id="c5-f-scrim" class="clip scrim" data-start="0.0" data-duration="5.7" data-track-index="2"></div>
+      <div id="c5-f-cap" class="clip cap low" data-start="0.0" data-duration="5.7" data-track-index="3">
+        <div id="c5-f-in"><div class="kick" id="c5-f-k">Fact 5 / 6</div>
+        <div class="num" id="c5-f-num"><span id="c5-f-n0">38</span></div>
+        <div class="ftxt" id="c5-f-t"><span id="c5-f-w0">events</span> <span id="c5-f-w1">Kim</span> <span id="c5-f-w2">Stanley</span> <span id="c5-f-w3">Robinson</span> <span id="c5-f-w4">spoke</span> <span id="c5-f-w5">at</span> <span id="c5-f-w6">during</span> <span id="c5-f-w7">COP26.</span> <span id="c5-f-w8">The</span> <span id="c5-f-w9">summit’s</span> <span id="c5-f-w10">climate</span> <span id="c5-f-w11">champion</span> <span id="c5-f-w12">invited</span> <span id="c5-f-w13">him</span> <span id="c5-f-w14">after</span> <span id="c5-f-w15">reading</span> <span id="c5-f-w16">his</span> <span id="c5-f-w17">novel.</span></div>
+        <div class="fsrc" id="c5-f-s">Boston University, 2024</div></div>
+      </div>
+    </div>
+    <div class="stage" id="c5-p1-st" data-layout-allow-overflow style="z-index:2"><video id="c5-p1" class="clip fill" src="assets/further/starship.mp4" muted playsinline data-hf-media-start-basis="local" data-start="5.4334" data-duration="3.0333" data-track-index="1"></video></div>
+    <div class="stage" id="c5-p2-st" data-layout-allow-overflow style="z-index:3"><video id="c5-p2" class="clip fill" src="assets/further/elevator.mp4" muted playsinline data-hf-media-start-basis="local" data-start="8.2" data-duration="2.9667" data-track-index="1"></video></div>
+    <div class="stage" id="c5-q-st" style="z-index:4">
+      <div class="mv" id="c5-q-mv"><video id="c5-q-bg" class="clip fill" src="assets/footage/q5.mp4" muted playsinline data-hf-media-start-basis="local" data-start="11.1667" data-duration="5.7333" data-track-index="1"></video></div>
+      <div id="c5-q-dim" class="clip dim" data-start="11.1667" data-duration="5.7333" data-track-index="2"></div>
+      <div id="c5-q-cap" class="clip cap mid" data-start="11.1667" data-duration="5.7333" data-track-index="3">
+        <div id="c5-q-in"><div class="kick" id="c5-q-k">The Ministry for the Future · 2020</div>
+        <div class="qtxt long" id="c5-q-t"><span id="c5-q-w0">“…we</span> <span id="c5-q-w1">will</span> <span id="c5-q-w2">keep</span> <span id="c5-q-w3">going,</span> <span id="c5-q-w4">because</span> <span id="c5-q-w5">there</span> <span id="c5-q-w6">is</span> <span id="c5-q-w7">no</span> <span id="c5-q-w8">such</span> <span id="c5-q-w9">thing</span> <span id="c5-q-w10">as</span> <span id="c5-q-w11">fate.</span> <span id="c5-q-w12">Because</span> <span id="c5-q-w13">we</span> <span id="c5-q-w14">never</span> <span id="c5-q-w15">really</span> <span id="c5-q-w16">come</span> <span id="c5-q-w17">to</span> <span id="c5-q-w18">the</span> <span id="c5-q-w19">end.”</span></div>
+        <div class="qby" id="c5-q-b">Kim Stanley Robinson</div></div>
+      </div>
+    </div>
+    <div class="stage" id="c5-t-st" style="z-index:5">
+      <div class="mv" id="c5-t-mv"><video id="c5-t-bg" class="clip fill" src="assets/footage/t5.mp4" muted playsinline data-hf-media-start-basis="local" data-start="16.9" data-duration="5.4" data-track-index="1"></video></div>
+      <div id="c5-t-dim" class="clip dim deep" data-start="16.9" data-duration="5.4" data-track-index="2"></div>
+      <div id="c5-t-cap" class="clip cap mid tcap" data-start="16.9" data-duration="5.4" data-track-index="3">
+        <div id="c5-t-in"><div class="thead"><div id="c5-t-av"><img class="tav" src="assets/avatars/kevin2kelly.jpg" alt=""></div><div id="c5-t-who"><div class="tname">Kevin Kelly</div><div class="trole">Senior Maverick at Wired, author of The Inevitable</div></div></div>
+        <div class="ttxt" id="c5-t-x">…a bold vision of what a desirable future in 2050 might look like. I find it plausible and inspiring.</div>
+        <div class="kick plain" id="c5-t-k">@kevin2kelly on X · 21 Nov 2020</div></div>
+      </div>
+    </div>
+    <div id="c5-dip4" class="clip dip" data-layout-allow-occlusion data-start="16.8" data-duration="0.1" data-track-index="4" style="z-index:10"><div class="dipc" id="c5-dipc4"></div></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo('#c5-f-a-mv',{scale:1.1},{scale:1,duration:0.55,ease:'expo.out'},0.0);
+      tl.fromTo('#c5-f-b-mv',{scale:1.06},{scale:1,duration:0.45,ease:'expo.out'},2.7667);
+      tl.fromTo('#c5-f-k',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.17,ease:'power4.out'},0.06);
+      (function(){const o={v:0},el=document.getElementById('c5-f-n0');tl.fromTo(o,{v:0},{v:38,duration:1.2,ease:'power2.out',onUpdate:function(){el.textContent=Math.round(o.v)+"";}},0.0);})();
+      tl.fromTo('#c5-f-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.22);
+      tl.fromTo('#c5-f-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.256);
+      tl.fromTo('#c5-f-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.292);
+      tl.fromTo('#c5-f-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.328);
+      tl.fromTo('#c5-f-w4',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.364);
+      tl.fromTo('#c5-f-w5',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.4);
+      tl.fromTo('#c5-f-w6',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.436);
+      tl.fromTo('#c5-f-w7',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.472);
+      tl.fromTo('#c5-f-w8',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.508);
+      tl.fromTo('#c5-f-w9',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.544);
+      tl.fromTo('#c5-f-w10',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.58);
+      tl.fromTo('#c5-f-w11',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.616);
+      tl.fromTo('#c5-f-w12',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.652);
+      tl.fromTo('#c5-f-w13',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.688);
+      tl.fromTo('#c5-f-w14',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.724);
+      tl.fromTo('#c5-f-w15',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.76);
+      tl.fromTo('#c5-f-w16',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.796);
+      tl.fromTo('#c5-f-w17',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.832);
+      tl.fromTo('#c5-f-s',{opacity:0},{opacity:1,duration:0.25,ease:'power2.out'},1.028);
+      tl.fromTo('#c5-f-in',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},5.3467);
+      tl.fromTo('#c5-q-mv',{scale:1},{scale:1.07,duration:5.7333,ease:'none'},11.1667);
+      tl.fromTo('#c5-q-k',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.17,ease:'power4.out'},11.2667);
+      tl.fromTo('#c5-q-w0',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},11.4667);
+      tl.fromTo('#c5-q-w1',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},11.5417);
+      tl.fromTo('#c5-q-w2',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},11.6167);
+      tl.fromTo('#c5-q-w3',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},11.6917);
+      tl.fromTo('#c5-q-w4',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},11.7667);
+      tl.fromTo('#c5-q-w5',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},11.8417);
+      tl.fromTo('#c5-q-w6',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},11.9167);
+      tl.fromTo('#c5-q-w7',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},11.9917);
+      tl.fromTo('#c5-q-w8',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},12.0667);
+      tl.fromTo('#c5-q-w9',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},12.1417);
+      tl.fromTo('#c5-q-w10',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},12.2167);
+      tl.fromTo('#c5-q-w11',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},12.2917);
+      tl.fromTo('#c5-q-w12',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},12.3667);
+      tl.fromTo('#c5-q-w13',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},12.4417);
+      tl.fromTo('#c5-q-w14',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},12.5167);
+      tl.fromTo('#c5-q-w15',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},12.5917);
+      tl.fromTo('#c5-q-w16',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},12.6667);
+      tl.fromTo('#c5-q-w17',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},12.7417);
+      tl.fromTo('#c5-q-w18',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},12.8167);
+      tl.fromTo('#c5-q-w19',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},12.8917);
+      tl.fromTo('#c5-q-b',{opacity:0},{opacity:1,duration:0.25,ease:'power2.out'},13.1167);
+      tl.fromTo('#c5-q-in',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},16.68);
+      tl.fromTo('#c5-t-mv',{scale:1.07},{scale:1,duration:5.4,ease:'none'},16.9);
+      tl.fromTo('#c5-t-av',{scale:0.6,opacity:0},{scale:1,opacity:1,duration:0.38,ease:'back.out(1.6)'},16.94);
+      tl.fromTo('#c5-t-who',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.18,ease:'power4.out'},17.04);
+      tl.fromTo('#c5-t-x',{opacity:0,filter:'blur(10px)'},{opacity:1,filter:'blur(0px)',duration:0.22,ease:'power4.out'},17.2);
+      tl.fromTo('#c5-t-k',{opacity:0},{opacity:1,duration:0.25,ease:'power2.out'},17.5);
+      tl.fromTo('#c5-t-in',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},22.08);
+      tl.fromTo('#c5-f-st',{xPercent:0},{xPercent:-100,duration:0.2667,ease:'power2.inOut',immediateRender:false},5.4334);
+      tl.fromTo('#c5-p1-st',{xPercent:100},{xPercent:0,duration:0.2667,ease:'power2.inOut'},5.4334);
+      tl.fromTo('#c5-p1-st',{xPercent:0},{xPercent:-100,duration:0.2667,ease:'power2.inOut',immediateRender:false},8.2);
+      tl.fromTo('#c5-p2-st',{xPercent:100},{xPercent:0,duration:0.2667,ease:'power2.inOut'},8.2);
+      tl.fromTo('#c5-p2-st',{scale:1},{scale:1.3,duration:0.17,ease:'power3.in',immediateRender:false},10.9967);
+      tl.fromTo('#c5-q-st',{scale:1.24},{scale:1,duration:0.32,ease:'power3.out'},11.1667);
+      tl.fromTo('#c5-dipc4',{opacity:0},{opacity:0.42,duration:0.1,ease:'none'},16.8);
+      tl.fromTo('#c5-t-st',{scale:1.045},{scale:1,duration:0.45,ease:'expo.out'},16.9);
+      window.__timelines["c5"] = tl;
+    })();
+  </script>
+</template>

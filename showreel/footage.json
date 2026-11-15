@@ -1,0 +1,93 @@
+{
+ "sources": {
+   "artemis": {
+     "nasa_id": "KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595",
+     "title": "Artemis I Isolated Launch Views",
+     "credit": "NASA/Kennedy Space Center",
+     "date": "2022-11-16",
+     "page": "https://images.nasa.gov/details/KSC-20221116-MH-AJN01-0001-Artemis_I_Isolated_Launch_Views-3314595"
+   },
+   "saturnv": {
+     "nasa_id": "Ultimate Saturn V Launch w Enhanced Sound",
+     "title": "Ultimate Saturn V Launch",
+     "credit": "NASA/Marshall Space Flight Center",
+     "date": "2020-02-06",
+     "page": "https://images.nasa.gov/details/Ultimate%20Saturn%20V%20Launch%20w%20Enhanced%20Sound"
+   },
+   "sdo": {
+     "nasa_id": "GSFC_20160212_SDO_m12144_Year6",
+     "size": "orig",
+     "title": "SDO: Year 6",
+     "credit": "NASA/Goddard Space Flight Center/SDO",
+     "date": "2016-02-12",
+     "page": "https://images.nasa.gov/details/GSFC_20160212_SDO_m12144_Year6"
+   },
+   "earth": {
+     "nasa_id": "jsc2021m000138_4K_Earth_Views_Extended_Cut_for_Earth_Day_ 2021_210422-4KMP4",
+     "title": "4K Earth Views, Extended Cut for Earth Day 2021",
+     "credit": "NASA/Johnson Space Center",
+     "date": "2021-04-22",
+     "page": "https://images.nasa.gov/details/jsc2021m000138_4K_Earth_Views_Extended_Cut_for_Earth_Day_%202021_210422-4KMP4",
+     "note": "The file carries a 34 px black bar top and bottom; every shot from it is cropped to 93.6%."
+   },
+   "milton": {
+     "nasa_id": "jsc2024m000173_International_Space_Station_Cameras_Capture_New_Views_Of_Hurricane_Milton_241008",
+     "size": "orig",
+     "title": "International Space Station cameras capture new views of Hurricane Milton",
+     "credit": "NASA/Johnson Space Center",
+     "date": "2024-10-08",
+     "page": "https://images.nasa.gov/details/jsc2024m000173_International_Space_Station_Cameras_Capture_New_Views_Of_Hurricane_Milton_241008"
+   },
+   "helheim": {
+     "nasa_id": "GSFC_20150422_Helheim_m11862",
+     "size": "orig",
+     "ext": "mov",
+     "title": "The Helheim Experience (Operation IceBridge, Greenland)",
+     "credit": "NASA/Goddard Space Flight Center",
+     "date": "2015-04-22",
+     "page": "https://images.nasa.gov/details/GSFC_20150422_Helheim_m11862"
+   },
+   "nightlights": {
+     "url": "http://svs.gsfc.nasa.gov/vis/a000000/a005200/a005276/nightlights_2023_globe_2160p60.mp4",
+     "title": "Change in Night Lights between 2012 and 2023 (Black Marble, 2023 globe)",
+     "credit": "NASA's Scientific Visualization Studio",
+     "date": "2024-05-27",
+     "page": "https://svs.gsfc.nasa.gov/5276/"
+   },
+   "co2": {
+     "url": "http://svs.gsfc.nasa.gov/vis/a000000/a005100/a005110/NewTaggedCO2_3-28-2023a_co2_foursources_quality_1080p30.mp4",
+     "title": "Atmospheric Carbon Dioxide Tagged by Source",
+     "credit": "NASA's Scientific Visualization Studio",
+     "date": "2023-06-16",
+     "page": "https://svs.gsfc.nasa.gov/5110/"
+   }
+ },
+ "shots": [
+  {"id": "intro", "src": "artemis", "ss": 122.6, "dur": 6.4, "what": "The Vehicle Assembly Building as Artemis I lifts off behind it"},
+  {"id": "f1a", "src": "sdo", "ss": 200.0, "dur": 3.2, "what": "The Sun in extreme ultraviolet, close"},
+  {"id": "f1b", "src": "earth", "ss": 1790, "dur": 3.2, "speed": 4, "what": "Earth past a solar array of the ISS", "crop": "iw*0.936:ih*0.936"},
+  {"id": "q1", "src": "sdo", "ss": 56, "dur": 6.0, "crop": "iw*0.72:ih*0.72", "what": "The Sun, full disk"},
+  {"id": "t1", "src": "earth", "ss": 1085, "dur": 6.0, "speed": 4, "what": "Cloud fields from the ISS", "crop": "iw*0.936:ih*0.936"},
+  {"id": "f2a", "src": "saturnv", "ss": 71.5, "dur": 3.2, "what": "Saturn V first-stage ignition"},
+  {"id": "f2b", "src": "saturnv", "ss": 100.4, "dur": 3.2, "what": "Saturn V clears the tower", "crop": "iw*0.94:ih*0.94"},
+  {"id": "q2", "src": "saturnv", "ss": 145.6, "dur": 6.0, "speed": 0.8, "what": "Saturn V climbing"},
+  {"id": "t2", "src": "earth", "ss": 1300, "dur": 6.0, "speed": 4, "what": "Desert under the ISS", "crop": "iw*0.936:ih*0.936"},
+  {"id": "f3a", "src": "nightlights", "ss": 2, "dur": 3.2, "speed": 1.5, "crop": "iw*0.5:ih*0.5", "what": "Night lights of Asia, 2023", "grade": "curves=all='0/0 0.06/0.22 0.25/0.62 1/1',eq=saturation=1.15"},
+  {"id": "f3b", "src": "nightlights", "ss": 50, "dur": 3.2, "speed": 1.5, "crop": "iw*0.5:ih*0.5", "what": "Night lights of the Americas, 2023", "grade": "curves=all='0/0 0.06/0.22 0.25/0.62 1/1',eq=saturation=1.15"},
+  {"id": "q3", "src": "nightlights", "ss": 20, "dur": 6.0, "speed": 1.2, "crop": "iw*0.62:ih*0.62", "what": "Night lights of Africa and Europe, 2023", "grade": "curves=all='0/0 0.06/0.22 0.25/0.62 1/1',eq=saturation=1.15"},
+  {"id": "t3", "src": "earth", "ss": 820, "dur": 6.0, "speed": 4, "what": "A coast from the ISS", "crop": "iw*0.936:ih*0.936"},
+  {"id": "f4a", "src": "co2", "ss": 4, "dur": 3.2, "speed": 1.5, "what": "Carbon dioxide in the atmosphere, simulated", "crop": "iw*0.88:ih*0.88"},
+  {"id": "f4b", "src": "co2", "ss": 48, "dur": 3.2, "speed": 1.5, "what": "Carbon dioxide in the atmosphere, simulated", "crop": "iw*0.88:ih*0.88"},
+  {"id": "q4", "src": "earth", "ss": 556, "dur": 6.0, "speed": 4, "what": "Ocean and the limb of Earth", "crop": "iw*0.936:ih*0.936"},
+  {"id": "t4", "src": "earth", "ss": 2270, "dur": 6.0, "speed": 4, "what": "Ocean and cloud from the ISS", "crop": "iw*0.936:ih*0.936"},
+  {"id": "f5a", "src": "milton", "ss": 22, "dur": 3.2, "speed": 2, "what": "Hurricane Milton from the ISS", "crop": "iw*0.8:ih*0.8:iw*0.1:ih*0.2"},
+  {"id": "f5b", "src": "milton", "ss": 58, "dur": 3.2, "speed": 2, "what": "The eye of Hurricane Milton"},
+  {"id": "q5", "src": "helheim", "ss": 22, "dur": 6.0, "crop": "iw*0.78:ih*0.78:iw*0.11:0", "what": "Flying over the Greenland ice sheet"},
+  {"id": "t5", "src": "milton", "ss": 182, "dur": 6.0, "speed": 3, "what": "Cloud bands of Hurricane Milton"},
+  {"id": "f6a", "src": "artemis", "ss": 827.6, "dur": 3.2, "what": "Artemis I engines start"},
+  {"id": "f6b", "src": "artemis", "ss": 592.4, "dur": 3.2, "what": "Artemis I in flight"},
+  {"id": "t6", "src": "artemis", "ss": 666.4, "dur": 6.0, "what": "Artemis I in flight"},
+  {"id": "q6", "src": "artemis", "ss": 688.2, "dur": 6.0, "what": "The exhaust plume of Artemis I"},
+  {"id": "end", "src": "earth", "ss": 2930, "dur": 11.0, "speed": 3, "what": "Mountains and the limb of Earth", "crop": "iw*0.936:ih*0.936"}
+ ]
+}

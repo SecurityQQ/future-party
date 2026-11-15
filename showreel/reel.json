@@ -1,0 +1,310 @@
+{
+ "title": "Six Facts · Future Party 2050",
+ "fps": 30,
+ "duration": 149.5,
+ "music": {
+  "file": "assets/music/call-to-adventure.mp3",
+  "title": "Call to Adventure",
+  "by": "Kevin MacLeod (incompetech.com)",
+  "licence": "CC BY 4.0",
+  "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+  "offset": 0.065,
+  "length": 149.5,
+  "fade_at": 144.5,
+  "gain_db": -2.5,
+  "limit": 0.84,
+  "bpm": 85.6,
+  "note": "bars[] below are the downbeats found by `hyperframes beats`, minus the offset, rounded to frames"
+ },
+ "bars": [
+  0.0,
+  2.8,
+  5.6,
+  8.4,
+  11.2,
+  13.9667,
+  16.7333,
+  19.5333,
+  22.2667,
+  25.1333,
+  27.9333,
+  30.7,
+  33.5,
+  36.3,
+  39.0667,
+  41.8333,
+  44.6333,
+  47.4667,
+  50.2333,
+  53.0333,
+  55.8333,
+  58.6,
+  61.3667,
+  64.2,
+  67.0,
+  69.7667,
+  72.5333,
+  75.3667,
+  78.1333,
+  80.9333,
+  83.7333,
+  86.5,
+  89.2667,
+  92.1,
+  94.9,
+  97.6667,
+  100.4667,
+  103.2333,
+  106.0667,
+  108.9667,
+  111.8,
+  114.4667,
+  117.2,
+  120.0333,
+  122.7667,
+  125.6,
+  128.3667,
+  131.2,
+  133.9333,
+  136.7667,
+  139.5667,
+  142.2333
+ ],
+ "intro": {
+  "shot": "intro",
+  "kicker": "Future Party 2050",
+  "title": [
+   "Six facts about",
+   "how books guess",
+   "the future"
+  ],
+  "sub": "18 books · 78 tweets · 16 predictions for 2050"
+ },
+ "chapters": [
+  {
+   "id": "c1",
+   "order": "FQTP",
+   "fact": {
+    "num": "71%",
+    "count": {
+     "from": 12,
+     "to": 71,
+     "suffix": "%"
+    },
+    "text": "of electricity from solar and wind in 2050, on the IEA’s path to net zero. In 2022: 12%.",
+    "src": "IEA, Net Zero Roadmap, 2023",
+    "shots": [
+     "f1a",
+     "f1b"
+    ]
+   },
+   "quote": {
+    "b": "figueres",
+    "q": "The air is cleaner than it has been since before the Industrial Revolution.",
+    "book": "The Future We Choose",
+    "by": "Christiana Figueres and Tom Rivett-Carnac",
+    "year": 2020,
+    "bg": "q1"
+   },
+   "tweet": {
+    "id": "1227900125248286720",
+    "h": "ramez",
+    "text": "Solar is already cheaper than most climate models think it will be by 2050. Great thread.",
+    "bg": "t1"
+   },
+   "slides": [
+    "nif",
+    "aurora"
+   ]
+  },
+  {
+   "id": "c2",
+   "order": "FPQT",
+   "fact": {
+    "num": "1972",
+    "text": "The Limits to Growth. Checked in 2020 against 50 years of data: the world tracks two of its scenarios.",
+    "src": "Herrington, Journal of Industrial Ecology",
+    "shots": [
+     "f2a",
+     "f2b"
+    ]
+   },
+   "quote": {
+    "b": "limits",
+    "q": "If there is cause for deep concern, there is also cause for hope.",
+    "book": "The Limits to Growth",
+    "by": "Donella Meadows, Dennis Meadows, Jørgen Randers and William Behrens",
+    "year": 1972,
+    "bg": "q2"
+   },
+   "tweet": {
+    "id": "2008225827159441623",
+    "h": "vkhosla",
+    "text": "#13: Resources will be plentiful: We will discover more natural resources than we consume & prove resource doomers wrong…",
+    "bg": "t2"
+   },
+   "slides": [
+    "atlas",
+    "bennu"
+   ]
+  },
+  {
+   "id": "c3",
+   "order": "FPQT",
+   "fact": {
+    "num": "8.1 vs 10.3",
+    "parts": [
+     "8.1",
+     "vs",
+     "10.3"
+    ],
+    "text": "billion people at the peak. Randers, 2012: around 2040. The UN, 2024: the mid-2080s. Forty years apart.",
+    "src": "The Conversation · UN, World Population Prospects 2024",
+    "shots": [
+     "f3a",
+     "f3b"
+    ]
+   },
+   "quote": {
+    "b": "randers",
+    "q": "Please help make my forecast wrong. Together we could create a much better world.",
+    "book": "2052: A Global Forecast for the Next Forty Years",
+    "by": "Jørgen Randers",
+    "year": 2012,
+    "bg": "q3"
+   },
+   "tweet": {
+    "id": "1141977875567919104",
+    "h": "elonmusk",
+    "text": "Real issue will an aging & declining world population by 2050, *not* overpopulation. Randers estimate far more accurate than UN imo",
+    "bg": "t3"
+   },
+   "slides": [
+    "torus",
+    "marsbase"
+   ]
+  },
+  {
+   "id": "c4",
+   "order": "FQTP",
+   "fact": {
+    "num": "119 Gt",
+    "count": {
+     "from": 0,
+     "to": 119,
+     "suffix": ""
+    },
+    "unit": "Gt",
+    "text": "of CO₂ that educating girls and family planning could save together by 2050. More than any single solution in Drawdown.",
+    "src": "Drawdown, 2017 ranking · Singularity Hub",
+    "shots": [
+     "f4a",
+     "f4b"
+    ]
+   },
+   "quote": {
+    "b": "drawdown",
+    "q": "This is not a liberal agenda, nor is it a conservative one. This is the human agenda.",
+    "book": "Drawdown",
+    "by": "Paul Hawken",
+    "year": 2017,
+    "bg": "q4"
+   },
+   "tweet": {
+    "id": "2008225810071875924",
+    "h": "vkhosla",
+    "text": [
+     "#1: Expertise will be near free",
+     "AI doctors for every person & AI tutors for every child, 24x7"
+    ],
+    "bg": "t4"
+   },
+   "slides": [
+    "jewel",
+    "mammoth"
+   ]
+  },
+  {
+   "id": "c5",
+   "order": "FPQT",
+   "fact": {
+    "num": "38",
+    "count": {
+     "from": 0,
+     "to": 38,
+     "suffix": ""
+    },
+    "text": "events Kim Stanley Robinson spoke at during COP26. The summit’s climate champion invited him after reading his novel.",
+    "src": "Boston University, 2024",
+    "shots": [
+     "f5a",
+     "f5b"
+    ]
+   },
+   "quote": {
+    "b": "ministry",
+    "q": "…we will keep going, because there is no such thing as fate. Because we never really come to the end.",
+    "book": "The Ministry for the Future",
+    "by": "Kim Stanley Robinson",
+    "year": 2020,
+    "bg": "q5"
+   },
+   "tweet": {
+    "id": "1330187922511945736",
+    "h": "kevin2kelly",
+    "text": "…a bold vision of what a desirable future in 2050 might look like. I find it plausible and inspiring.",
+    "bg": "t5"
+   },
+   "slides": [
+    "starship",
+    "elevator"
+   ]
+  },
+  {
+   "id": "c6",
+   "order": "FTQP",
+   "fact": {
+    "num": "86% vs 7%",
+    "parts": [
+     "86%",
+     "vs",
+     "7%"
+    ],
+    "text": "Kurzweil’s forecasting accuracy: scored by Kurzweil himself, and by the independent reviewer Dan Luu.",
+    "src": "danluu.com · Singularity Hub, 2011",
+    "shots": [
+     "f6a",
+     "f6b"
+    ]
+   },
+   "quote": {
+    "b": "kurzweil",
+    "q": "…we will extend our minds many millions-fold by 2045.",
+    "book": "The Singularity Is Nearer",
+    "by": "Ray Kurzweil",
+    "year": 2024,
+    "bg": "q6"
+   },
+   "tweet": {
+    "id": "2013740311214706720",
+    "h": "peterdiamandis",
+    "text": "Ray Kurzweil has been predicting this moment for 30 years, and we're at the cusp of it: AGI by 2029…",
+    "bg": "t6"
+   },
+   "slides": [
+    "elt",
+    "sail"
+   ]
+  }
+ ],
+ "finale": {
+  "slide": "smiled",
+  "shot": "end",
+  "big": "2050",
+  "line": "Which one will you build?",
+  "credits": [
+   "Six facts, quotes and tweets: Book Projection 2050 and 2050 in 78 Tweets",
+   "Predictions: Further · Footage: NASA · Music: “Call to Adventure”, Kevin MacLeod, CC BY 4.0"
+  ]
+ }
+}

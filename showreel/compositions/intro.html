@@ -1,0 +1,60 @@
+<template>
+  <style>
+    @font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;src:url('assets/fonts/InstrumentSerif-Regular.woff2') format('woff2')}
+    #root{position:absolute;inset:0;overflow:hidden;background:#0b0b0d;font-family:Inter,sans-serif;color:#fff}
+    .stage{position:absolute;inset:0;overflow:hidden}
+    .mv{position:absolute;inset:0}
+    video.fill{position:absolute;left:0;top:0;width:1920px;height:1080px;object-fit:cover;display:block}
+    .scrim{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.8) 0%,rgba(0,0,0,.62) 36%,rgba(0,0,0,.18) 66%,rgba(0,0,0,0) 84%),linear-gradient(to bottom,rgba(0,0,0,0) 46%,rgba(0,0,0,.6) 100%)}
+    .scrim.soft{background:linear-gradient(to right,rgba(0,0,0,.62) 0%,rgba(0,0,0,.4) 40%,rgba(0,0,0,0) 72%)}
+    .dim{position:absolute;inset:0;background:rgba(11,11,13,.6)}
+    .dim.deep{background:rgba(11,11,13,.74)}
+    .dip{position:absolute;inset:0}
+    .dipc{position:absolute;inset:0;background:#000}
+    .cap{position:absolute;left:192px;width:1536px;text-shadow:0 2px 16px rgba(0,0,0,.55)}
+    .cap.low{bottom:112px}
+    .cap.mid{top:0;bottom:0;display:flex;flex-direction:column;justify-content:center}
+    .kick{font:800 34px/1.15 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#ff5315}
+    .kick.plain{text-transform:none;letter-spacing:.04em}
+    .num{font-family:'League Gothic',sans-serif;font-size:300px;line-height:.86;letter-spacing:.01em;text-transform:uppercase;margin-top:10px;white-space:nowrap}
+    .num span{display:inline-block}
+    .num small{display:inline-block;font-size:.42em;margin:0 .22em;color:rgba(255,255,255,.66);text-transform:lowercase;vertical-align:.06em}
+    .num small.unit{font-size:.5em;margin:0 0 0 .14em;color:#fff;text-transform:none;vertical-align:0}
+    .ftxt{font:600 46px/1.22 Inter,sans-serif;margin-top:22px;max-width:1160px}
+    .ftxt span,.qtxt span{display:inline-block}
+    .fsrc{font:500 28px/1.2 Inter,sans-serif;color:rgba(255,255,255,.72);margin-top:20px}
+    .qtxt{font-family:'Instrument Serif',serif;font-size:104px;line-height:1.05;letter-spacing:-.005em;margin-top:26px;max-width:1500px}
+    .qtxt.long{font-size:92px}
+    .qby{font:600 34px/1.25 Inter,sans-serif;color:rgba(255,255,255,.86);margin-top:34px}
+    .thead{display:flex;align-items:center;gap:30px}
+    .tav{width:128px;height:128px;border-radius:50%;object-fit:cover;display:block}
+    .tname{font:800 50px/1.1 Inter,sans-serif}
+    .trole{font:500 32px/1.2 Inter,sans-serif;color:rgba(255,255,255,.74);margin-top:8px}
+    .ttxt{font:600 70px/1.16 Inter,sans-serif;margin-top:40px;max-width:1500px;font-feature-settings:'calt' 0}
+    .ttxt.long{font-size:60px}
+    .tcap .kick{margin-top:36px}
+.ttl{font-family:'League Gothic',sans-serif;font-size:164px;line-height:.9;letter-spacing:.01em;text-transform:uppercase;margin-top:14px}
+    .sub{font:600 40px/1.25 Inter,sans-serif;color:rgba(255,255,255,.9);margin-top:26px}
+  </style>
+  <div id="root" data-composition-id="intro" data-width="1920" data-height="1080">
+    <div class="stage" id="intro-st">
+      <div class="mv" id="intro-mv"><video id="intro-v" class="clip fill" src="assets/footage/intro.mp4" muted playsinline data-hf-media-start-basis="local" data-start="0" data-duration="5.6" data-track-index="1"></video></div>
+      <div id="intro-scrim" class="clip scrim soft" data-start="0" data-duration="5.6" data-track-index="2"></div>
+      <div id="intro-cap" class="clip cap low" data-start="0" data-duration="5.6" data-track-index="3">
+        <div id="intro-in"><div class="kick" id="intro-k">Future Party 2050</div>
+        <div class="ttl" id="intro-t"><div id="intro-l0">Six facts about</div><div id="intro-l1">how books guess</div><div id="intro-l2">the future</div></div>
+        <div class="sub" id="intro-s">18 books · 78 tweets · 16 predictions for 2050</div></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo('#intro-mv',{scale:1},{scale:1.06,duration:5.6,ease:'none'},0);
+      tl.fromTo('#intro-s',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.2,ease:'power4.out'},1.0);
+      tl.fromTo('#intro-in',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},5.34);
+      tl.fromTo('#intro-st',{scale:1},{scale:1.3,duration:0.17,ease:'power3.in',immediateRender:false},5.43);
+      window.__timelines["intro"] = tl;
+    })();
+  </script>
+</template>

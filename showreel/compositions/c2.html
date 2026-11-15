@@ -1,0 +1,132 @@
+<template>
+  <style>
+    @font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;src:url('assets/fonts/InstrumentSerif-Regular.woff2') format('woff2')}
+    #root{position:absolute;inset:0;overflow:hidden;background:#0b0b0d;font-family:Inter,sans-serif;color:#fff}
+    .stage{position:absolute;inset:0;overflow:hidden}
+    .mv{position:absolute;inset:0}
+    video.fill{position:absolute;left:0;top:0;width:1920px;height:1080px;object-fit:cover;display:block}
+    .scrim{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,.8) 0%,rgba(0,0,0,.62) 36%,rgba(0,0,0,.18) 66%,rgba(0,0,0,0) 84%),linear-gradient(to bottom,rgba(0,0,0,0) 46%,rgba(0,0,0,.6) 100%)}
+    .scrim.soft{background:linear-gradient(to right,rgba(0,0,0,.62) 0%,rgba(0,0,0,.4) 40%,rgba(0,0,0,0) 72%)}
+    .dim{position:absolute;inset:0;background:rgba(11,11,13,.6)}
+    .dim.deep{background:rgba(11,11,13,.74)}
+    .dip{position:absolute;inset:0}
+    .dipc{position:absolute;inset:0;background:#000}
+    .cap{position:absolute;left:192px;width:1536px;text-shadow:0 2px 16px rgba(0,0,0,.55)}
+    .cap.low{bottom:112px}
+    .cap.mid{top:0;bottom:0;display:flex;flex-direction:column;justify-content:center}
+    .kick{font:800 34px/1.15 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#ff5315}
+    .kick.plain{text-transform:none;letter-spacing:.04em}
+    .num{font-family:'League Gothic',sans-serif;font-size:300px;line-height:.86;letter-spacing:.01em;text-transform:uppercase;margin-top:10px;white-space:nowrap}
+    .num span{display:inline-block}
+    .num small{display:inline-block;font-size:.42em;margin:0 .22em;color:rgba(255,255,255,.66);text-transform:lowercase;vertical-align:.06em}
+    .num small.unit{font-size:.5em;margin:0 0 0 .14em;color:#fff;text-transform:none;vertical-align:0}
+    .ftxt{font:600 46px/1.22 Inter,sans-serif;margin-top:22px;max-width:1160px}
+    .ftxt span,.qtxt span{display:inline-block}
+    .fsrc{font:500 28px/1.2 Inter,sans-serif;color:rgba(255,255,255,.72);margin-top:20px}
+    .qtxt{font-family:'Instrument Serif',serif;font-size:104px;line-height:1.05;letter-spacing:-.005em;margin-top:26px;max-width:1500px}
+    .qtxt.long{font-size:92px}
+    .qby{font:600 34px/1.25 Inter,sans-serif;color:rgba(255,255,255,.86);margin-top:34px}
+    .thead{display:flex;align-items:center;gap:30px}
+    .tav{width:128px;height:128px;border-radius:50%;object-fit:cover;display:block}
+    .tname{font:800 50px/1.1 Inter,sans-serif}
+    .trole{font:500 32px/1.2 Inter,sans-serif;color:rgba(255,255,255,.74);margin-top:8px}
+    .ttxt{font:600 70px/1.16 Inter,sans-serif;margin-top:40px;max-width:1500px;font-feature-settings:'calt' 0}
+    .ttxt.long{font-size:60px}
+    .tcap .kick{margin-top:36px}
+  </style>
+  <div id="root" data-composition-id="c2" data-width="1920" data-height="1080">
+    <div class="stage" id="c2-f-st" style="z-index:1">
+      <div class="mv" id="c2-f-a-mv"><video id="c2-f-a" class="clip fill" src="assets/footage/f2a.mp4" muted playsinline data-hf-media-start-basis="local" data-start="0.0" data-duration="2.7667" data-track-index="1"></video></div>
+      <div class="mv" id="c2-f-b-mv"><video id="c2-f-b" class="clip fill" src="assets/footage/f2b.mp4" muted playsinline data-hf-media-start-basis="local" data-start="2.7667" data-duration="2.9333" data-track-index="1"></video></div>
+      <div id="c2-f-scrim" class="clip scrim" data-start="0.0" data-duration="5.7" data-track-index="2"></div>
+      <div id="c2-f-cap" class="clip cap low" data-start="0.0" data-duration="5.7" data-track-index="3">
+        <div id="c2-f-in"><div class="kick" id="c2-f-k">Fact 2 / 6</div>
+        <div class="num" id="c2-f-num"><span id="c2-f-n0">1972</span></div>
+        <div class="ftxt" id="c2-f-t"><span id="c2-f-w0">The</span> <span id="c2-f-w1">Limits</span> <span id="c2-f-w2">to</span> <span id="c2-f-w3">Growth.</span> <span id="c2-f-w4">Checked</span> <span id="c2-f-w5">in</span> <span id="c2-f-w6">2020</span> <span id="c2-f-w7">against</span> <span id="c2-f-w8">50</span> <span id="c2-f-w9">years</span> <span id="c2-f-w10">of</span> <span id="c2-f-w11">data:</span> <span id="c2-f-w12">the</span> <span id="c2-f-w13">world</span> <span id="c2-f-w14">tracks</span> <span id="c2-f-w15">two</span> <span id="c2-f-w16">of</span> <span id="c2-f-w17">its</span> <span id="c2-f-w18">scenarios.</span></div>
+        <div class="fsrc" id="c2-f-s">Herrington, Journal of Industrial Ecology</div></div>
+      </div>
+    </div>
+    <div class="stage" id="c2-p1-st" data-layout-allow-overflow style="z-index:2"><video id="c2-p1" class="clip fill" src="assets/further/atlas.mp4" muted playsinline data-hf-media-start-basis="local" data-start="5.4334" data-duration="3.0667" data-track-index="1"></video></div>
+    <div class="stage" id="c2-p2-st" data-layout-allow-overflow style="z-index:3"><video id="c2-p2" class="clip fill" src="assets/further/bennu.mp4" muted playsinline data-hf-media-start-basis="local" data-start="8.2334" data-duration="2.9" data-track-index="1"></video></div>
+    <div class="stage" id="c2-q-st" style="z-index:4">
+      <div class="mv" id="c2-q-mv"><video id="c2-q-bg" class="clip fill" src="assets/footage/q2.mp4" muted playsinline data-hf-media-start-basis="local" data-start="11.1334" data-duration="5.5666" data-track-index="1"></video></div>
+      <div id="c2-q-dim" class="clip dim" data-start="11.1334" data-duration="5.5666" data-track-index="2"></div>
+      <div id="c2-q-cap" class="clip cap mid" data-start="11.1334" data-duration="5.5666" data-track-index="3">
+        <div id="c2-q-in"><div class="kick" id="c2-q-k">The Limits to Growth · 1972</div>
+        <div class="qtxt" id="c2-q-t"><span id="c2-q-w0">“If</span> <span id="c2-q-w1">there</span> <span id="c2-q-w2">is</span> <span id="c2-q-w3">cause</span> <span id="c2-q-w4">for</span> <span id="c2-q-w5">deep</span> <span id="c2-q-w6">concern,</span> <span id="c2-q-w7">there</span> <span id="c2-q-w8">is</span> <span id="c2-q-w9">also</span> <span id="c2-q-w10">cause</span> <span id="c2-q-w11">for</span> <span id="c2-q-w12">hope.”</span></div>
+        <div class="qby" id="c2-q-b">Donella Meadows, Dennis Meadows, Jørgen Randers and William Behrens</div></div>
+      </div>
+    </div>
+    <div class="stage" id="c2-t-st" style="z-index:5">
+      <div class="mv" id="c2-t-mv"><video id="c2-t-bg" class="clip fill" src="assets/footage/t2.mp4" muted playsinline data-hf-media-start-basis="local" data-start="16.7" data-duration="5.6" data-track-index="1"></video></div>
+      <div id="c2-t-dim" class="clip dim deep" data-start="16.7" data-duration="5.6" data-track-index="2"></div>
+      <div id="c2-t-cap" class="clip cap mid tcap" data-start="16.7" data-duration="5.6" data-track-index="3">
+        <div id="c2-t-in"><div class="thead"><div id="c2-t-av"><img class="tav" src="assets/avatars/vkhosla.jpg" alt=""></div><div id="c2-t-who"><div class="tname">Vinod Khosla</div><div class="trole">Venture investor, Khosla Ventures</div></div></div>
+        <div class="ttxt long" id="c2-t-x">#13: Resources will be plentiful: We will discover more natural resources than we consume &amp; prove resource doomers wrong…</div>
+        <div class="kick plain" id="c2-t-k">@vkhosla on X · 5 Jan 2026</div></div>
+      </div>
+    </div>
+    <div id="c2-dip4" class="clip dip" data-layout-allow-occlusion data-start="16.6" data-duration="0.1" data-track-index="4" style="z-index:10"><div class="dipc" id="c2-dipc4"></div></div>
+  </div>
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo('#c2-f-a-mv',{scale:1.1},{scale:1,duration:0.55,ease:'expo.out'},0.0);
+      tl.fromTo('#c2-f-b-mv',{scale:1.06},{scale:1,duration:0.45,ease:'expo.out'},2.7667);
+      tl.fromTo('#c2-f-k',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.17,ease:'power4.out'},0.06);
+      tl.fromTo('#c2-f-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.22);
+      tl.fromTo('#c2-f-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.256);
+      tl.fromTo('#c2-f-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.292);
+      tl.fromTo('#c2-f-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.328);
+      tl.fromTo('#c2-f-w4',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.364);
+      tl.fromTo('#c2-f-w5',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.4);
+      tl.fromTo('#c2-f-w6',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.436);
+      tl.fromTo('#c2-f-w7',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.472);
+      tl.fromTo('#c2-f-w8',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.508);
+      tl.fromTo('#c2-f-w9',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.544);
+      tl.fromTo('#c2-f-w10',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.58);
+      tl.fromTo('#c2-f-w11',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.616);
+      tl.fromTo('#c2-f-w12',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.652);
+      tl.fromTo('#c2-f-w13',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.688);
+      tl.fromTo('#c2-f-w14',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.724);
+      tl.fromTo('#c2-f-w15',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.76);
+      tl.fromTo('#c2-f-w16',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.796);
+      tl.fromTo('#c2-f-w17',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.832);
+      tl.fromTo('#c2-f-w18',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.868);
+      tl.fromTo('#c2-f-s',{opacity:0},{opacity:1,duration:0.25,ease:'power2.out'},1.064);
+      tl.fromTo('#c2-f-in',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},5.3467);
+      tl.fromTo('#c2-q-mv',{scale:1},{scale:1.07,duration:5.5666,ease:'none'},11.1334);
+      tl.fromTo('#c2-q-k',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.17,ease:'power4.out'},11.2334);
+      tl.fromTo('#c2-q-w0',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},11.4334);
+      tl.fromTo('#c2-q-w1',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},11.5084);
+      tl.fromTo('#c2-q-w2',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},11.5834);
+      tl.fromTo('#c2-q-w3',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},11.6584);
+      tl.fromTo('#c2-q-w4',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},11.7334);
+      tl.fromTo('#c2-q-w5',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},11.8084);
+      tl.fromTo('#c2-q-w6',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},11.8834);
+      tl.fromTo('#c2-q-w7',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},11.9584);
+      tl.fromTo('#c2-q-w8',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},12.0334);
+      tl.fromTo('#c2-q-w9',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},12.1084);
+      tl.fromTo('#c2-q-w10',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},12.1834);
+      tl.fromTo('#c2-q-w11',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},12.2584);
+      tl.fromTo('#c2-q-w12',{opacity:0.24},{opacity:1,duration:0.2,ease:'power2.out'},12.3334);
+      tl.fromTo('#c2-q-b',{opacity:0},{opacity:1,duration:0.25,ease:'power2.out'},12.5584);
+      tl.fromTo('#c2-q-in',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},16.48);
+      tl.fromTo('#c2-t-mv',{scale:1.07},{scale:1,duration:5.6,ease:'none'},16.7);
+      tl.fromTo('#c2-t-av',{scale:0.6,opacity:0},{scale:1,opacity:1,duration:0.38,ease:'back.out(1.6)'},16.74);
+      tl.fromTo('#c2-t-who',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.18,ease:'power4.out'},16.84);
+      tl.fromTo('#c2-t-x',{opacity:0,filter:'blur(10px)'},{opacity:1,filter:'blur(0px)',duration:0.22,ease:'power4.out'},17.0);
+      tl.fromTo('#c2-t-k',{opacity:0},{opacity:1,duration:0.25,ease:'power2.out'},17.3);
+      tl.fromTo('#c2-t-in',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},22.08);
+      tl.fromTo('#c2-f-st',{xPercent:0},{xPercent:100,duration:0.2667,ease:'power2.inOut',immediateRender:false},5.4334);
+      tl.fromTo('#c2-p1-st',{xPercent:-100},{xPercent:0,duration:0.2667,ease:'power2.inOut'},5.4334);
+      tl.fromTo('#c2-p1-st',{xPercent:0},{xPercent:100,duration:0.2667,ease:'power2.inOut',immediateRender:false},8.2334);
+      tl.fromTo('#c2-p2-st',{xPercent:-100},{xPercent:0,duration:0.2667,ease:'power2.inOut'},8.2334);
+      tl.fromTo('#c2-p2-st',{scale:1},{scale:1.3,duration:0.17,ease:'power3.in',immediateRender:false},10.9634);
+      tl.fromTo('#c2-q-st',{scale:1.24},{scale:1,duration:0.32,ease:'power3.out'},11.1334);
+      tl.fromTo('#c2-dipc4',{opacity:0},{opacity:0.42,duration:0.1,ease:'none'},16.6);
+      tl.fromTo('#c2-t-st',{scale:1.045},{scale:1,duration:0.45,ease:'expo.out'},16.7);
+      window.__timelines["c2"] = tl;
+    })();
+  </script>
+</template>
