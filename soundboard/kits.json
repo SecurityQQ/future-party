@@ -1,0 +1,209 @@
+{
+  "inputs": [
+    {"id": "up", "code": "ArrowUp", "glyph": "↑", "label": "Up", "side": "front"},
+    {"id": "down", "code": "ArrowDown", "glyph": "↓", "label": "Down", "side": "front"},
+    {"id": "left", "code": "ArrowLeft", "glyph": "←", "label": "Left", "side": "front"},
+    {"id": "right", "code": "ArrowRight", "glyph": "→", "label": "Right", "side": "front"},
+    {"id": "space", "code": "Space", "glyph": "SPACE", "label": "Space", "side": "front"},
+    {"id": "click", "code": "Mouse0", "glyph": "CLICK", "label": "Click", "side": "front"},
+    {"id": "w", "code": "KeyW", "glyph": "W", "label": "W", "side": "back"},
+    {"id": "a", "code": "KeyA", "glyph": "A", "label": "A", "side": "back"},
+    {"id": "s", "code": "KeyS", "glyph": "S", "label": "S", "side": "back"},
+    {"id": "d", "code": "KeyD", "glyph": "D", "label": "D", "side": "back"},
+    {"id": "f", "code": "KeyF", "glyph": "F", "label": "F", "side": "back"},
+    {"id": "g", "code": "KeyG", "glyph": "G", "label": "G", "side": "back"}
+  ],
+  "phrases": [
+    "Welcome to the year twenty fifty.",
+    "Dance protocol activated.",
+    "Warning. Too much fun detected.",
+    "Humans, please remain funky.",
+    "Gravity has been switched off.",
+    "Time machine ready. Hold on to your snacks.",
+    "All robots to the dance floor.",
+    "Please do not feed the androids.",
+    "Your teleport is now boarding.",
+    "Party level: maximum.",
+    "This banana is now a musical instrument.",
+    "Greetings from the future. It is fine here."
+  ],
+  "grooves": {
+    "house": {"drums": {"kick": "clubkick/3.wav", "clap": "realclaps/1.wav", "open": "808oh/OH25.WAV", "hat": "808/CH.WAV"}, "pattern": {"kick": "x...x...x...x...", "clap": "....x.......x...", "open": "..x...x...x...x.", "hat": "...o...o...o...o"}, "levels": {"kick": 1, "clap": 0.7, "open": 0.45, "hat": 0.5}, "bass": {"pattern": "..x...x...x...x.", "wave": "saw"}, "pad": {"wave": "warm"}, "swing": 0.06, "crash": "808cy/CY0010.WAV", "pump": true},
+    "hiphop": {"drums": {"kick": "jazz/000_BD.wav", "snare": "jazz/007_SN.wav", "hat": "jazz/003_HH.wav"}, "pattern": {"kick": "x......x..x.....", "snare": "....x.......x...", "hat": "o.o.o.o.o.o.o.o."}, "levels": {"kick": 1, "snare": 0.85, "hat": 0.45}, "bass": {"pattern": "x......x..x.....", "wave": "sine"}, "pad": {"wave": "warm"}, "swing": 0.18, "crash": "808cy/CY0010.WAV", "pump": false},
+    "rave": {"drums": {"kick": "clubkick/5.wav", "clap": "realclaps/3.wav", "open": "808oh/OH25.WAV", "hat": "808/CH.WAV"}, "pattern": {"kick": "x...x...x...x...", "clap": "....x.......x...", "open": "..x...x...x...x.", "hat": "o.o.o.o.o.o.o.o."}, "levels": {"kick": 1, "clap": 0.75, "open": 0.4, "hat": 0.35}, "bass": {"pattern": "x.x..x.xx.x..x.x", "wave": "saw", "center": 34}, "crash": "808cy/CY0010.WAV", "pump": true},
+    "halftime": {"drums": {"kick": "dr55/001_DR55 kick.wav", "snare": "dr55/003_DR55 snare.wav", "hat": "dr55/000_DR55 hi hat.wav"}, "pattern": {"kick": "x.........x.....", "snare": "........x.......", "hat": "o.oo.o.oo.o.o.oo"}, "levels": {"kick": 1, "snare": 0.8, "hat": 0.35}, "bass": {"pattern": "x.........x.....", "wave": "sine"}, "pad": {"wave": "glass"}, "swing": 0.12, "crash": "808cy/CY0010.WAV", "pump": false},
+    "chip": {"drums": {"kick": "drumtraks/006_DT Kick.wav", "snare": "sid/010_sidsnares.wav", "hat": "sid/008_hihat02.wav"}, "pattern": {"kick": "x...x...x...x...", "snare": "....x.......x...", "hat": "..o...o...o...o."}, "levels": {"kick": 1, "snare": 0.7, "hat": 0.4}, "bass": {"pattern": "x.x.x.x.x.x.x.x.", "wave": "square"}, "arp": {"pattern": "xxxxxxxxxxxxxxxx", "wave": "square"}, "crash": "808cy/CY0010.WAV", "pump": false},
+    "ambient": {"drums": {}, "pattern": {}, "bass": {"pattern": "x...............", "wave": "sine", "center": 36}, "pad": {"wave": "glass", "level": 1.4}, "arp": {"pattern": "x.....x.....x...", "wave": "bell", "random": true}, "pump": false},
+    "pop": {"drums": {"kick": "house/000_BD.wav", "snare": "house/007_SN.wav", "clap": "realclaps/2.wav", "hat": "house/003_HH.wav"}, "pattern": {"kick": "x.......x.x.....", "snare": "....x.......x...", "clap": "....x.......x...", "hat": "o.o.o.o.o.o.o.o."}, "levels": {"kick": 1, "snare": 0.6, "clap": 0.5, "hat": 0.4}, "bass": {"pattern": "x..x..x.x..x..x.", "wave": "saw"}, "pad": {"wave": "warm"}, "swing": 0.08, "crash": "808cy/CY0010.WAV", "pump": true}
+  },
+  "kits": [
+    {
+      "id": "liftoff",
+      "name": "Liftoff",
+      "color": "#ff7a4d",
+      "blurb": "Hype for the big moments: horns, drops, lasers, a UFO.",
+      "jam": {"bpm": 124, "key": "A", "scale": "minor", "chords": ["Am", "F", "C", "G"], "groove": "house"},
+      "pads": {
+        "up": {"name": "Air Horn", "synth": "airhorn"},
+        "down": {"name": "Sub Drop", "src": ["jungbass/005_jungasubdown.wav"], "tune": "root"},
+        "left": {"name": "Laser Sword", "src": ["hit/laser-powered-sword.wav"], "vary": 0.06},
+        "right": {"name": "UFO", "src": ["hit/ufo-take-me-away.wav"]},
+        "space": {"name": "Are You Ready", "src": ["rave/AREUREADY.wav"], "tune": "off"},
+        "click": {"name": "Chaos", "chaos": true},
+        "w": {"name": "Hoover", "dir": "hoover", "pick": "cycle"},
+        "a": {"name": "Give It", "src": ["rave/giveit.wav"], "tune": "off"},
+        "s": {"name": "Warp Drive", "src": ["tacscan/021_warp.wav"], "tune": "off"},
+        "d": {"name": "Zap", "src": ["hit/zap-to-crack.wav"], "vary": 0.08},
+        "f": {"name": "Riser", "synth": "riser"},
+        "g": {"name": "Robot Fart", "src": ["hit/robot-fart.wav"], "vary": 0.12}
+      }
+    },
+    {
+      "id": "robots",
+      "name": "Robot Choir",
+      "color": "#7fd8ff",
+      "blurb": "Voices from old speech chips, and an announcer who has seen 2050.",
+      "jam": {"bpm": 96, "key": "Bb", "scale": "major", "chords": ["Bb", "F", "Gm", "Eb"], "groove": "hiphop"},
+      "pads": {
+        "up": {"name": "Announcer", "speak": true},
+        "down": {"name": "Countdown", "src": ["numbers/8.wav", "numbers/7.wav", "numbers/6.wav", "numbers/5.wav", "numbers/4.wav", "numbers/3.wav", "numbers/2.wav", "numbers/1.wav", "numbers/0.wav"], "pick": "cycle"},
+        "left": {"name": "Speak & Spell", "dir": "speakspell", "tune": "melody"},
+        "right": {"name": "Alphabet", "dir": "alphabet"},
+        "space": {"name": "How Does It Feel", "src": ["blue/howdoesitfeel.wav"], "tune": "off"},
+        "click": {"name": "Chaos", "chaos": true},
+        "w": {"name": "Diphone", "dir": "diphone", "tune": "melody"},
+        "a": {"name": "Pepperpot", "dir": "speechless", "skip": ["001_pe.wav"]},
+        "s": {"name": "Hey Hey", "src": ["fm/heyhey.wav"], "tune": "off"},
+        "d": {"name": "Hmm", "src": ["hmm/hmm.wav"], "vary": 0.05},
+        "f": {"name": "Toy Robot", "src": ["toys/002_ClassicalMusic-Words.wav", "toys/005_Colors-Words.wav", "toys/008_MusicalMedley-Words.wav", "toys/011_Numbers-Words.wav"]},
+        "g": {"name": "Glitch Vox", "dir": "yeah", "burst": [8, 0.05], "tune": "off"}
+      }
+    },
+    {
+      "id": "rave",
+      "name": "Rave 2050",
+      "color": "#c99bff",
+      "blurb": "Drums and stabs. Put the kick under someone's foot.",
+      "jam": {"bpm": 140, "key": "F", "scale": "minor", "chords": ["Fm", "Bbm", "Fm", "Cm"], "groove": "rave"},
+      "pads": {
+        "up": {"name": "Clap", "dir": "realclaps", "tune": "off"},
+        "down": {"name": "Kick", "src": ["clubkick/3.wav"], "tune": "off"},
+        "left": {"name": "Hi-Hat", "src": ["808/CH.WAV"], "vary": 0.03, "tune": "off"},
+        "right": {"name": "Snare", "src": ["sd/rytm-01-classic.wav"], "tune": "off"},
+        "space": {"name": "Amen Break", "src": ["breaks152/000_AMEN.WAV"], "mode": "hold", "beats": 12},
+        "click": {"name": "Chaos", "chaos": true},
+        "w": {"name": "Rave Stab", "dir": "stab", "pick": "cycle"},
+        "a": {"name": "808 Boom", "src": ["808bd/BD5010.WAV"], "tune": "root"},
+        "s": {"name": "Gabba", "src": ["gabba/000_0.wav"], "tune": "off"},
+        "d": {"name": "Sub Glide", "src": ["jungbass/003_glide_up_down_sub.wav"], "tune": "root"},
+        "f": {"name": "Brass Stab", "src": ["trump/009_trumpstabschord.wav"]},
+        "g": {"name": "Rave Bass", "dir": "rave2", "pick": "cycle", "tune": "root"}
+      }
+    },
+    {
+      "id": "zoo",
+      "name": "Alien Zoo",
+      "color": "#8ff0a4",
+      "blurb": "Creatures, monsters and some very small insects.",
+      "jam": {"bpm": 96, "key": "D", "scale": "dorian", "chords": ["Dm7", "G"], "bars": 2, "groove": "halftime"},
+      "pads": {
+        "up": {"name": "Crow", "dir": "crow"},
+        "down": {"name": "Bark", "src": ["sugar/000_bark.wav"]},
+        "left": {"name": "Insects", "dir": "insect"},
+        "right": {"name": "Sheep", "dir": "baa"},
+        "space": {"name": "Monster Laugh", "src": ["monsterb/001_laughter.wav"]},
+        "click": {"name": "Chaos", "chaos": true},
+        "w": {"name": "Wolfman", "src": ["monsterb/004_wolfman.wav"], "vary": 0.05},
+        "a": {"name": "Tongue", "src": ["monsterb/002_tongue.wav"], "vary": 0.1},
+        "s": {"name": "Birds", "dir": "birds"},
+        "d": {"name": "Bubbles", "dir": "bubble", "skip": ["000_bub0.wav"], "burst": [7, 0.07], "tune": "off"},
+        "f": {"name": "Bwawp", "src": ["feelfx/bwawp.wav"]},
+        "g": {"name": "Warping", "src": ["monsterb/003_warping.wav"], "vary": 0.08}
+      }
+    },
+    {
+      "id": "arcade",
+      "name": "Arcade Attack",
+      "color": "#ff7ab6",
+      "blurb": "Lasers, coins and explosions sampled from old arcade boards.",
+      "jam": {"bpm": 132, "key": "E", "scale": "minor", "chords": ["Em", "C", "G", "D"], "groove": "chip"},
+      "pads": {
+        "up": {"name": "Laser", "src": ["tacscan/014_plaser.wav"], "vary": 0.04},
+        "down": {"name": "Explosion", "src": ["battles/001_explo2.wav"], "tune": "off"},
+        "left": {"name": "Blaster", "src": ["cosmicg/006_cg_gun.wav"]},
+        "right": {"name": "1-Up", "src": ["tacscan/003_1up.wav"]},
+        "space": {"name": "Torpedo", "src": ["seawolf/002_torpedo.wav"], "tune": "off"},
+        "click": {"name": "Chaos", "chaos": true},
+        "w": {"name": "Coins", "src": ["coins/coins.wav"], "vary": 0.05},
+        "a": {"name": "Chopper", "src": ["armora/001_chopper.wav"], "mode": "hold", "tune": "off"},
+        "s": {"name": "Bounce", "src": ["circus/000_bounce.wav"], "vary": 0.1},
+        "d": {"name": "Attack Wave", "src": ["cosmicg/000_cg_att.wav"]},
+        "f": {"name": "Thrusters", "src": ["tacscan/018_sthrust.wav"], "mode": "hold", "tune": "off"},
+        "g": {"name": "Miss", "src": ["circus/001_miss.wav"]}
+      }
+    },
+    {
+      "id": "space",
+      "name": "Deep Space",
+      "color": "#8484ff",
+      "blurb": "Slow pads and drones for the quiet hour. Tap once to start, again to stop.",
+      "jam": {"bpm": 76, "key": "C", "scale": "minor", "chords": ["Cm7", "Abmaj7", "Ebmaj7", "Bbsus2"], "bars": 2, "groove": "ambient"},
+      "pads": {
+        "up": {"name": "Monolith", "src": ["pad/alien-monolith-pad.wav"], "mode": "loop", "tune": "tonic"},
+        "down": {"name": "Abduction", "src": ["padlong/atmospheric-abduction.wav"], "mode": "loop", "tune": "tonic"},
+        "left": {"name": "Angels", "src": ["pad/angelpads.wav"]},
+        "right": {"name": "Bells", "src": ["pad/bellpad-harmonics.wav"]},
+        "space": {"name": "Dub Siren", "synth": "siren", "mode": "hold"},
+        "click": {"name": "Chaos", "chaos": true},
+        "w": {"name": "Juno Pad", "src": ["juno/10_juno_pad_c_minor_no_filter.wav"], "tune": "tonic"},
+        "a": {"name": "Moog", "src": ["moog/003_Mighty Moog G1.wav"]},
+        "s": {"name": "Solar Wind", "dir": "wind", "tune": "off"},
+        "d": {"name": "Teleport", "synth": "teleport"},
+        "f": {"name": "Rise", "src": ["ade/009_rise.wav"], "tune": "off"},
+        "g": {"name": "Echo Blip", "src": ["bleep/echo-blip-thing.wav"]}
+      }
+    },
+    {
+      "id": "session",
+      "name": "Jam Session",
+      "color": "#5ee0d0",
+      "blurb": "Built for making music: lead, bass, chords, arpeggio and strum, all in G major.",
+      "jam": {"bpm": 112, "key": "G", "scale": "major", "chords": ["G", "D", "Em", "C"], "groove": "pop"},
+      "pads": {
+        "up": {"name": "Moog Lead", "src": ["moog/006_Mighty Moog G4.wav"], "st": 12, "tune": "melody", "mono": true, "len": 1},
+        "down": {"name": "Bass", "src": ["jvbass/003_04.wav"], "tune": "root", "mono": true},
+        "left": {"name": "Chords", "src": ["juno/04_juno_chorus_mid.wav"], "tune": "chord"},
+        "right": {"name": "Arpeggio", "src": ["arpy/arpy01.wav"], "tune": "arp"},
+        "space": {"name": "Strum", "src": ["gtr/0001_cleanC.wav"], "tune": "strum", "len": 4},
+        "click": {"name": "Chaos", "chaos": true},
+        "w": {"name": "Bells", "dir": "tink", "tune": "melody"},
+        "a": {"name": "Kick", "src": ["house/000_BD.wav"], "tune": "off"},
+        "s": {"name": "Clap", "src": ["realclaps/2.wav"], "tune": "off"},
+        "d": {"name": "Hi-Hat", "src": ["house/003_HH.wav"], "tune": "off"},
+        "f": {"name": "Robot Singer", "dir": "speakspell", "tune": "melody"},
+        "g": {"name": "Riser", "synth": "riser"}
+      }
+    },
+    {
+      "id": "keys",
+      "name": "Magic Keys",
+      "color": "#f6e3a1",
+      "blurb": "The back row W A S D F G is a horn section you can't play wrong: move right to climb, left to fall.",
+      "jam": {"bpm": 116, "key": "F", "scale": "major", "chords": ["F", "Am", "Bb", "C"], "groove": "pop"},
+      "pads": {
+        "up": {"name": "Sax", "src": ["sax/001_notes121a2.wav", "sax/004_notes121bflat2.wav", "sax/019_notes121g2.wav"], "tune": "melody", "mono": true, "len": 1},
+        "down": {"name": "Bass", "src": ["pluck/BS E2 PI.wav", "pluck/BS G2 PI.wav", "pluck/BS A#2 PI.wav"], "tune": "root", "mono": true},
+        "left": {"name": "Chords", "src": ["juno/04_juno_chorus_mid.wav"], "tune": "chord"},
+        "right": {"name": "Harp", "src": ["arpy/arpy01.wav"], "tune": "arp"},
+        "space": {"name": "Strum", "src": ["gtr/0001_cleanC.wav"], "tune": "strum", "len": 4},
+        "click": {"name": "Chaos", "chaos": true},
+        "w": {"name": "Horn 1", "dir": "mute", "skip": ["014_FH E3 SCF.wav"], "tune": "contour"},
+        "a": {"name": "Horn 2", "dir": "mute", "skip": ["014_FH E3 SCF.wav"], "tune": "contour"},
+        "s": {"name": "Horn 3", "dir": "mute", "skip": ["014_FH E3 SCF.wav"], "tune": "contour"},
+        "d": {"name": "Horn 4", "dir": "mute", "skip": ["014_FH E3 SCF.wav"], "tune": "contour"},
+        "f": {"name": "Horn 5", "dir": "mute", "skip": ["014_FH E3 SCF.wav"], "tune": "contour"},
+        "g": {"name": "Horn 6", "dir": "mute", "skip": ["014_FH E3 SCF.wav"], "tune": "contour"}
+      }
+    }
+  ]
+}
