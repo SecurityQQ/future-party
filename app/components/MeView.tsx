@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { toProfile, type Player } from "@/lib/db";
-import { cardOf, friendsOf, holdOf, leaderboard, passCodeOf } from "@/lib/queries";
+import { cardOf, holdOf, leaderboard, passCodeOf } from "@/lib/queries";
+import { incomingRequests, settleLegacy } from "@/lib/orbit";
+import OrbitRequests from "./OrbitRequests";
 import { nextRank, rankTitle } from "@/lib/ranks";
 import { cardUrl, passUrl, qrSvg, siteOrigin } from "@/lib/url";
 import Hull from "./Hull";
@@ -14,7 +16,8 @@ import { ProfileDetails, hasProfile } from "./ProfileBlock";
 // The signed-in traveler's home, at / and /me: their Kin, its share link and QR, their profile,
 // their record, friends and orbit.
 export default async function MeView({ me }: { me: Player }) {
-  const [card, hold, board, friends, origin, pass] = await Promise.all([cardOf(me), holdOf(me.id), leaderboard(), friendsOf(me.id), siteOrigin(), passCodeOf(me)]);
+  await settleLegacy(me.id); // old mutual "friends" pairs become orbit entries
+  const [card, hold, board, requests, origin, pass] = await Promise.all([cardOf(me), holdOf(me.id), leaderboard(), incomingRequests(me.id), siteOrigin(), passCodeOf(me)]);
   const url = cardUrl(origin, me.card_no);
   // The QR is the same link as the pass: whoever scans it collects this Kin (or logs in / joins first).
   const qr = await qrSvg(passUrl(origin, pass));
@@ -28,6 +31,7 @@ export default async function MeView({ me }: { me: Player }) {
   return (
     <main className="shell stack">
       <TopBar me={me} />
+      <OrbitRequests requests={requests} />
       <MyCharacter card={card} redraw={{ used: me.redraws, hasPrev: !!me.prev_image_url }} />
 
       {!me.email && (
@@ -49,10 +53,9 @@ export default async function MeView({ me }: { me: Player }) {
       </Hull>
 
       <Hull title="Traveler record" code={`№ ${String(me.card_no).padStart(3, "0")}`}>
-        <div className="kpis four">
-          <div className="kpi"><b>{hold.length}</b><span>in orbit</span></div>
-          <div className="kpi"><b>{card.collected_by ?? 0}</b><span>collected you</span></div>
-          <div className="kpi"><b>{friends.length}</b><span>friends</span></div>
+        <div className="kpis">
+          <div className="kpi"><b>{hold.length}</b><span>in your orbit</span></div>
+          <div className="kpi"><b>{card.collected_by ?? 0}</b><span>have you</span></div>
           <div className="kpi"><b>#{pos || "–"}</b><span>ranking</span></div>
         </div>
         <p className="mono small" style={{ margin: "12px 0 0", color: "var(--green)" }}>
@@ -61,16 +64,8 @@ export default async function MeView({ me }: { me: Player }) {
         </p>
       </Hull>
 
-      {friends.length > 0 && (
-        <Hull title="Friends" code={`${friends.length}`}>
-          <div className="grid">
-            {friends.map((c) => <MiniCard key={c.id} card={c} />)}
-          </div>
-        </Hull>
-      )}
-
       <Hull title="Orbit" code={`${hold.length}/${others}`}>
-        {hold.length === 0 && <p style={{ marginTop: 0 }} className="muted">Empty. Tap other travelers’ passes to bring their Kin into your orbit.</p>}
+        {hold.length === 0 && <p style={{ marginTop: 0 }} className="muted">Empty. Tap other travelers’ passes or scan their QR codes to bring their Kin into your orbit, or send an orbit request from their card.</p>}
         <div className="grid">
           {hold.map((c) => <MiniCard key={c.id} card={c} />)}
           {Array.from({ length: slots }, (_, i) => <div key={i} className="slot">?</div>)}

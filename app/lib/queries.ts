@@ -43,21 +43,6 @@ export async function totals() {
   return { players: players.count ?? 0, collections: collections.count ?? 0, scans: scans.count ?? 0 };
 }
 
-// Friends are mutual: one row per direction, so a single lookup each way.
-export async function friendsOf(id: string): Promise<PublicCard[]> {
-  const { data } = await db()
-    .from("friends")
-    .select(`created_at, friend:players!friends_friend_id_fkey(${CARD_FIELDS})`)
-    .eq("player_id", id)
-    .order("created_at", { ascending: false });
-  return (data ?? []).map((r: any) => toCard(r.friend));
-}
-
-export async function areFriends(a: string, b: string): Promise<boolean> {
-  const { data } = await db().from("friends").select("friend_id").eq("player_id", a).eq("friend_id", b).maybeSingle();
-  return !!data;
-}
-
 export async function hasTag(id: string): Promise<boolean> {
   const { data } = await db().from("tags").select("code").eq("player_id", id).maybeSingle();
   return !!data;

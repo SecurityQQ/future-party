@@ -74,6 +74,33 @@ export default function MyCharacter({ card, redraw, children }: { card: PublicCa
   );
 }
 
+// Switch between the two versions. On a phone the answer sometimes never arrives (Safari: "Load failed")
+// although the switch went through, so after a network error the card is read again: if the picture
+// changed, that is the switched card. Errors are never shown in Safari's words.
+async function swapCall(id: string, body: unknown): Promise<any> {
+  const read = async () => (await fetch(`/api/players/${id}`, { cache: "no-store" })).json();
+  let before: string | null = null;
+  try {
+    before = (await read()).image_url ?? null;
+  } catch {}
+  let res: Response;
+  try {
+    res = await fetch(`/api/players/${id}/redraw`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  } catch {
+    for (let i = 0; i < 3; i++) {
+      await new Promise((r) => setTimeout(r, 1200));
+      try {
+        const now = await read();
+        if (now.image_url && now.image_url !== before) return now;
+      } catch {}
+    }
+    throw new Error("The connection dropped. Check your signal and try again.");
+  }
+  const j = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(j.error || "The comm link failed. Try again.");
+  return j;
+}
+
 // The picture: Supabase serves a stored file as a download when its link asks (?download=<name>).
 // The video lives on varg's CDN, which cannot, so /api/players/<id>/clip hands it over as one.
 function SaveKin({ card, clip }: { card: PublicCard; clip: ClipState }) {
@@ -81,13 +108,18 @@ function SaveKin({ card, clip }: { card: PublicCard; clip: ClipState }) {
   const name = `${card.character}-${String(card.card_no).padStart(3, "0")}`.replace(/[^\p{L}\p{N}]+/gu, "-");
   const save = (url: string, ext: string) => `${url}${url.includes("?") ? "&" : "?"}download=${encodeURIComponent(`${name}.${ext}`)}`;
   return (
-    <div className={`btns ${clip.url || clip.pending ? "two" : ""}`}>
-      <a className="btn ghost small" href={save(card.image_url, "webp")}>Save picture</a>
-      {clip.url ? (
-        <a className="btn ghost small" href={`/api/players/${card.id}/clip`}>Save video</a>
-      ) : clip.pending ? (
-        <button className="btn ghost small" disabled>Coming alive…</button>
-      ) : null}
+    <div className="stack" style={{ gap: 8 }}>
+      <div className={`btns ${clip.url ? "two" : ""}`}>
+        <a className="btn ghost small" href={save(card.image_url, "webp")}>Save picture</a>
+        {clip.url && <a className="btn ghost small" href={`/api/players/${card.id}/clip`}>Save video</a>}
+      </div>
+      {!clip.url && clip.pending && (
+        // A short video of the Kin is being made from the picture; nothing to press, it arrives by itself.
+        <p className="clip-status" role="status">
+          <i aria-hidden="true" />
+          <span><b>Your Kin is coming alive.</b> We are turning the picture into a 5-second video, about 2 minutes. It starts moving on the card by itself, then you can save it.</span>
+        </p>
+      )}
     </div>
   );
 }
@@ -102,10 +134,7 @@ function RedrawPanel({ id, state, onStart, onSwap }: { id: string; state: Redraw
     setBusy(true);
     setError("");
     try {
-      const res = await fetch(`/api/players/${id}/redraw`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-      const j = await res.json();
-      if (!res.ok) throw new Error(j.error || "The comm link failed. Try again.");
-      return j;
+      return await swapCall(id, body);
     } catch (e: any) {
       setError(e.message);
       return null;
@@ -214,10 +243,9 @@ function Redrawing({ card, request, onDone, onKeepFirst, onCancel }: {
   const pct = Math.round(Math.min(96, 6 + ((now - started.current) / EXPECTED_MS) * 90));
   async function keepFirst() {
     setBusy(true);
-    const res = await fetch(`/api/players/${card.id}/redraw`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ swap: true }) });
-    const j = await res.json().catch(() => null);
+    const j = await swapCall(card.id, { swap: true }).catch(() => null);
     setBusy(false);
-    if (res.ok && j) onKeepFirst(j);
+    if (j) onKeepFirst(j);
   }
 
   return (
