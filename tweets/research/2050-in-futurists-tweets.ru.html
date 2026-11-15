@@ -1,0 +1,263 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>2050 в твитах футуристов</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: answer first, six findings with their numbers, then themed tweet evidence (verbatim + translation + type), the people, gaps and sources. */
+:root {
+  --bg: #070708; --panel: #0e0e10; --fg: #ffffff; --fg-2: #d4d4d4; --muted: #a1a1a1;
+  --line: rgba(255,255,255,0.10); --line-2: rgba(255,255,255,0.20);
+  --accent: #ff5315; --accent-text: #ff6a33; --on-accent: #070708;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) { --bg: #ffffff; --panel: #f6f6f7; --fg: #070708; --fg-2: #262628; --muted: #737373; --line: #e5e5e5; --line-2: #cfcfd3; --accent: #ff5315; --accent-text: #c2410c; color-scheme: light; }
+}
+:root[data-theme="light"] { --bg: #ffffff; --panel: #f6f6f7; --fg: #070708; --fg-2: #262628; --muted: #737373; --line: #e5e5e5; --line-2: #cfcfd3; --accent: #ff5315; --accent-text: #c2410c; color-scheme: light; }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration-color: var(--line-2); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+section { padding-block: 52px; border-top: 1px solid var(--line); }
+section h2 { font-size: clamp(24px, 3.2vw, 34px); letter-spacing: -0.02em; line-height: 1.15; font-weight: 700; }
+.sec-head { display: grid; gap: 10px; margin-bottom: 26px; max-width: 74ch; }
+.sec-head p { color: var(--fg-2); }
+header.hero { padding-block: 44px 40px; }
+.hero-grid { display: grid; gap: 22px; }
+.hero h1 { font-size: clamp(44px, 8vw, 96px); line-height: 0.95; letter-spacing: -0.045em; font-weight: 800; }
+.hero h1 span { color: var(--accent-text); }
+.lede { font-size: clamp(18px, 2vw, 21px); color: var(--fg-2); max-width: 64ch; }
+.lede strong { color: var(--fg); font-weight: 600; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 22px; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.facts b { color: var(--fg); font-weight: 500; }
+nav.toc { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; }
+nav.toc a { color: var(--muted); text-decoration: none; }
+nav.toc a:hover { color: var(--fg); }
+
+.findings { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0 32px; }
+.finding { display: grid; gap: 8px; padding: 22px 0; border-top: 1px solid var(--line); align-content: start; min-width: 0; }
+.finding .num { font: 700 clamp(32px, 4vw, 44px) var(--font); letter-spacing: -0.035em; line-height: 1; font-variant-numeric: tabular-nums; }
+.finding h3 { font-size: 18px; font-weight: 600; }
+.finding p { color: var(--fg-2); font-size: 15px; }
+.finding a.go { font-size: 13px; color: var(--muted); }
+
+.theme { padding-top: 8px; }
+.theme + .theme { margin-top: 36px; }
+.theme > h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 4px; }
+.theme > p { color: var(--muted); font-size: 14px; margin-bottom: 10px; max-width: 74ch; }
+.tweets { display: grid; gap: 0; }
+.tw { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 8px 24px; padding: 18px 0; border-top: 1px solid var(--line); }
+.tw .who { display: grid; gap: 2px; align-content: start; }
+.tw .who b { font-weight: 600; }
+.tw .who .h { font: 400 13px var(--mono); color: var(--muted); }
+.tw .who .d { font: 400 12px var(--mono); color: var(--muted); }
+.tw .body { display: grid; gap: 8px; min-width: 0; }
+.tw .en { color: var(--fg); }
+.tw .ru { color: var(--fg-2); font-size: 15px; }
+.tw .meta { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font: 400 12px var(--mono); color: var(--muted); }
+.chip { font: 500 11px var(--mono); letter-spacing: 0.04em; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--fg-2); white-space: nowrap; }
+.chip.own { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.chip.cond { border-style: solid; }
+.chip.cite { border-style: dashed; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+
+.table-scroll { overflow-x: auto; border-top: 1px solid var(--line); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 760px; }
+th, td { text-align: left; vertical-align: top; padding: 11px 14px 11px 0; border-bottom: 1px solid var(--line); }
+th { font: 500 11px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+td b { font-weight: 600; }
+ul.gaps { margin: 0; padding-left: 20px; display: grid; gap: 10px; max-width: 80ch; color: var(--fg-2); }
+ol.src { margin: 0; padding-left: 26px; display: grid; gap: 4px; font-size: 14px; color: var(--fg-2); columns: 1; }
+ol.src li::marker { font: 12px var(--mono); color: var(--muted); }
+code { font-family: var(--mono); font-size: 13px; color: var(--fg-2); }
+footer { padding-block: 28px 60px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+@media (max-width: 640px) { .tw { grid-template-columns: 1fr; gap: 6px; } section { padding-block: 40px; } }
+</style>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <span class="eyebrow">Исследование · X (Twitter) · данные на 12–13 ноября 2026</span>
+    <h1>Каким будет <span>2050</span><br>по мнению футуристов в X</h1>
+    <p class="lede">Если сложить, что пишут самые заметные футуристы и технологи: к 2050 году <strong>экспертиза и труд станут почти бесплатными</strong> (ИИ-врачи, ИИ-репетиторы, миллиард роботов), <strong>энергия в основном чистой</strong>, <strong>население старше</strong>, а интернетом будут пользоваться в основном <strong>ИИ-агенты</strong>. Самая подробная картина — 14 прогнозов Винода Хосла (январь 2026). Многие высказывания условные («может», «если успеем»): тип каждого помечен.</p>
+    <div class="facts" id="facts"></div>
+    <nav class="toc"><a href="#findings">Главное</a><a href="#evidence">Твиты по темам</a><a href="#people">Кто эти люди</a><a href="#gaps">Что не точно</a><a href="#method">Как искали</a></nav>
+  </div>
+</header>
+
+<section id="findings">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Главное</span><h2>Шесть выводов</h2></div>
+    <div class="findings">
+      <article class="finding"><span class="num">14</span><h3>Самый подробный список — у Хосла</h3><p>14 прогнозов на 2050 год: почти бесплатные ИИ-врачи и ИИ-репетиторы, миллиард роботов, больше миллиарда людей, «программирующих» на обычном языке, десятки миллиардов агентов в интернете, термоядерные котлы вместо угольных и газовых, самолёты Mach 5. Сам он называет это «миром, который мы можем создать».</p><a class="go" href="#t-khosla">К твитам ↓</a></article>
+      <article class="finding"><span class="num">2–3×</span><h3>Энергии понадобится больше, и она будет чище</h3><p>Рамез Наам ждёт роста мирового спроса на электричество в 2–3 раза к 2050 году. Диамандис согласен с Альтманом, что к 2050 году «мы не будем сжигать много ископаемого топлива». Хосла ставит на термоядерные котлы.</p><a class="go" href="#t-energy">К твитам ↓</a></article>
+      <article class="finding"><span class="num">≈2030</span><h3>Сильный ИИ приходит задолго до 2050</h3><p>Даниэль Кокотайло сдвинул свой прогноз AGI «с ~2050 на 2030». Диамандис пересказывает Курцвейла: AGI в 2029, сингулярность в 2040-х. Хосла: «может быть, 80% от 80% всех работ к 2050 или намного раньше?»</p><a class="go" href="#t-ai">К твитам ↓</a></article>
+      <article class="finding"><span class="num">1 из 5</span><h3>Мир станет старше</h3><p>Маск: реальной проблемой к 2050 году будет «стареющее и сокращающееся население», а не перенаселение. Диамандис: к 2050 году каждый пятый будет старше 60. Кевин Келли приводит данные Economist: 2,1 млрд бабушек и дедушек, 22% человечества.</p><a class="go" href="#t-demo">К твитам ↓</a></article>
+      <article class="finding"><span class="num">~2050</span><h3>Город на Марсе — при условиях</h3><p>Маск надеется, что самодостаточный город на Марсе будет построен «к ~2050», если 10 лет выпускать по 800–1000 двигателей Raptor в год и потом около 20 лет строить сам город.</p><a class="go" href="#t-space">К твитам ↓</a></article>
+      <article class="finding"><span class="num">web</span><h3>Жизнь и общество</h3><p>Келли: к 2050 году веб станет «вездесущим разговором». Баладжи: мы, возможно, не будем знать, как выглядят далёкие люди. Ноа Смит: Америка станет «очень приятной страной». Харари: углеродная нейтральность к 2050 году, если вкладывать 2% мирового ВВП в год.</p><a class="go" href="#t-life">К твитам ↓</a></article>
+    </div>
+  </div>
+</section>
+
+<section id="evidence">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Доказательства</span><h2>Твиты по темам, дословно</h2><p>Оригинал на английском, ниже перевод. Цифры вовлечённости на момент выгрузки.</p></div>
+    <div class="legend"><span class="chip own">свой прогноз</span><span class="chip cond">условный / «может»</span><span class="chip cite">цитирует чужие данные или сценарий</span></div>
+    <div id="themes"></div>
+  </div>
+</section>
+
+<section id="people">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Кто эти люди</span><h2>Авторы и их аудитория в X</h2><p>Описание — дословно из профиля; подписчики на 12–13 ноября 2026.</p></div>
+    <div class="table-scroll"><table><thead><tr><th>Автор</th><th>Профиль</th><th>Подписчики</th><th>Твитов о 2050 здесь</th></tr></thead><tbody id="people-body"></tbody></table></div>
+  </div>
+</section>
+
+<section id="gaps">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Что не точно</span><h2>Ограничения</h2></div>
+    <ul class="gaps">
+      <li><b>«Лучшие футуристы» — мой отбор:</b> известные люди, которые профессионально думают о долгом будущем или строят технологии, и у которых нашлись твиты именно про 2050 год. Подписчики приведены, чтобы было видно масштаб, но это не мера точности прогнозов.</li>
+      <li><b>Многие высказывания не прогнозы в строгом смысле.</b> Хосла называет свой список «миром, который мы можем создать»; Маск про парк транспорта пишет «нам нужно»; Харари и Ричи пишут «если». Диамандис часто цитирует данные ООН или пересказывает Курцвейла. Каждый твит помечен по типу.</li>
+      <li><b>Не нашёл твитов про 2050</b> у Джейн Макгонигал, Томаса Пуэйо и Сэма Альтмана (мнение Альтмана есть только в пересказе Диамандиса). У Курцвейла нет своих твитов в выдаче, только пересказы Диамандиса. Эми Уэбб и Герда Леонарда первый поиск пропустил, в том числе потому, что для Леонарда был указан неверный аккаунт (он пишет как @gleonhard). Повторный поиск 13 ноября нашёл у них несколько твитов про 2050: у Леонарда — предупреждение о риске AGI, у Уэбб — вопрос о чужой книге и размышление о президенте 2050 года. Они описаны на английской странице Futurists on 2050 в разделе Missing topics.</li>
+      <li><b>Русскоязычный X</b> не дал содержательных прогнозов футуристов на 2050 год: в выдаче только ООН, СМИ и случайные посты.</li>
+      <li><b>Охват поиска.</b> Поиск X через API (режимы Top и Latest) может пропускать старые или малозаметные твиты. Тексты и цифры взяты прямо из ответов API.</li>
+      <li><b>Прогноз Хосла</b> опубликован в X 5 января 2026, но, по его словам, он сделал его «два года назад на TED и на нашей CEO-конференции».</li>
+    </ul>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Как искали</span><h2>Запросы к X</h2><p>Все запросы выполнены 12–13 ноября 2026 через поиск X (hyperx API). Профили проверены отдельным запросом к каждому аккаунту.</p></div>
+    <ol class="src" id="queries"></ol>
+  </div>
+</section>
+
+<footer><div class="wrap">2050 в твитах футуристов · исследование, ноябрь 2026. Ссылки ведут на оригинальные твиты в X.</div></footer>
+
+<script>
+(function () {
+  var PEOPLE = {
+    vkhosla: ["Vinod Khosla", "entrepreneurship zealot, grounded technology possibilist, believer in the power of ideas, passionate about sustainability & impact", 780701],
+    elonmusk: ["Elon Musk", "—", 241039468],
+    PeterDiamandis: ["Peter H. Diamandis", "Exec. Chairman @XPRIZE @fountainlife_hq (and others) Working to extend human healthspan. Curator @Abundance360 & @moonshots_pod", 423267],
+    kevin2kelly: ["Kevin Kelly", "Senior Maverick at Wired, author of bestseller book, The Inevitable. Also Cool Tool maven, Recomendo chief, and radical optimist.", 137017],
+    ramez: ["Ramez Naam", "Climate and clean energy investor. Author of 5 books. Energy & Environment co-chair @SingularityU.", 62645],
+    balajis: ["Balaji", "Author of the Network State. Founder of the Network School.", 2267775],
+    Noahpinion: ["Noah Smith", "Writes about economics, posts about rabbits.", 956877],
+    harari_yuval: ["Yuval Noah Harari", "Historian and bestselling author of 'Sapiens', 'Homo Deus', '21 Lessons for the 21st Century', 'Nexus'…", 664514],
+    naval: ["Naval", "Incompressible", 4158755],
+    DKokotajlo: ["Daniel Kokotajlo", "—", 60229],
+    _HannahRitchie: ["Hannah Ritchie", "Deputy Editor @OurWorldinData / Researcher at @UniofOxford", 79084],
+    futuryst: ["Stuart Candy", "Experiential futurist. Distinguished Visiting Professor @TecdeMonterrey / Advisor @NASAJPL / Director @sitlab", 11271]
+  };
+
+  // [handle, tweet id, date, type, english verbatim, russian translation, metrics]
+  var THEMES = [
+    { id: "t-khosla", h: "14 прогнозов Винода Хосла на 2050 год", p: "Нить от 5 января 2026: 1 106 лайков, 1 554 закладки, 265 тыс. просмотров у первого твита. В последнем твите ссылка на статью Khosla Ventures «TED: 12 predictions for the future of technology».", items: [
+      ["vkhosla", "2008225808637374847", "05.01.2026", "own", "Here are my predictions for 2050 (the world we can create) two years ago at TED and at our CEO conference:", "Вот мои прогнозы на 2050 год (мир, который мы можем создать), сделанные два года назад на TED и на нашей CEO-конференции:", "1 106 лайков · 265 170 просмотров"],
+      ["vkhosla", "2008225810071875924", "05.01.2026", "own", "#1: Expertise will be near free: We will be capable of having near free AI doctors for every person & AI tutors for every child, 24x7", "№1: Экспертиза станет почти бесплатной: у каждого человека сможет быть почти бесплатный ИИ-врач, а у каждого ребёнка ИИ-репетитор, круглосуточно.", "207 лайков"],
+      ["vkhosla", "2008225811414007865", "05.01.2026", "own", "#2: Labor will be near free: We will have a billion bipedal (and other) robots freeing humans from the servitude of undesirable jobs", "№2: Труд станет почти бесплатным: миллиард двуногих (и других) роботов освободит людей от рабства нежеланной работы.", "150 лайков"],
+      ["vkhosla", "2008225812693311533", "05.01.2026", "own", "#3: Computer use will grow expansively: here will be a billion+ programmers all “programming” in human language, dramatically increasing the scope of computers. Computers will adapt to humans, not humans to computers", "№3: Использование компьютеров резко расширится: больше миллиарда людей будут «программировать» на человеческом языке. Компьютеры будут подстраиваться под людей, а не люди под компьютеры.", "132 лайка"],
+      ["vkhosla", "2008225814127772024", "05.01.2026", "own", "#4: AI will play a large role in entertainment & design: Music and entertainment will be plentiful & personalized for you & your mood! Diversity of content & creativity will increase The celebrity-fan relationship won’t change", "№4: ИИ займёт большое место в развлечениях и дизайне: музыки и развлечений будет много, и они будут подстроены под вас и ваше настроение. Разнообразие контента вырастет, а отношения звезды и фаната не изменятся.", "97 лайков"],
+      ["vkhosla", "2008225815520309718", "05.01.2026", "own", "#5: Scientists will be supercharged: AI scientists, working alone or with humans, will become super scientists, able to 10x or 100x their capability, creativity, and volume of research", "№5: Учёные станут сверхмощными: ИИ-учёные, в одиночку или с людьми, увеличат возможности, креативность и объём исследований в 10 или 100 раз.", "111 лайков"],
+      ["vkhosla", "2008225817030250946", "05.01.2026", "own", "#6: Internet access will be mostly by agents: Most consumer access of the internet will be agents acting for consumers doing tasks and fending off marketers and bots. Tens of billions of agents on the internet will be normal", "№6: В интернет будут ходить в основном агенты: они будут выполнять задачи за людей и отбиваться от маркетологов и ботов. Десятки миллиардов агентов в сети станут нормой.", "102 лайка"],
+      ["vkhosla", "2008225818552750467", "05.01.2026", "own", "#7: From the practice to the science of medicine: We will be capable of providing precision care based on patients’ -omics, as well as AI models for each individual, enabling simulation of each body for therapeutics, dosages, etc", "№7: Медицина станет точной наукой: лечение по «омиксным» данным пациента и ИИ-модель каждого человека, на которой можно моделировать терапию, дозировки и т. д.", "80 лайков"],
+      ["vkhosla", "2008225819987243296", "05.01.2026", "own", "#8: We will have new food & fertilizers: We will have much better alternate protein production to replace traditional animal protein, & “green” fertilizer. And taste will far exceed that of traditional cows!", "№8: Новая еда и удобрения: альтернативный белок заменит животный, появятся «зелёные» удобрения. И вкус будет гораздо лучше, чем у обычной говядины.", "74 лайка"],
+      ["vkhosla", "2008225821459444160", "05.01.2026", "own", "#9: Manufacturing and bio manufacturing: We will have text to product manufacturing capability enabling hyper-personalization and democratization Manufacturing and bio manufacturing will be intelligent", "№9: Производство и биопроизводство: изделия по текстовому описанию, гиперперсонализация и доступность; производство станет «умным».", "76 лайков"],
+      ["vkhosla", "2008225822751289796", "05.01.2026", "cond", "#10: Cars could be displaced in cities: We could replace majority of cars in cities with personal autonomous transit as on-demand, affordable, public transit, increasing street throughput dramatically", "№10: Машины могут уйти из городов: большинство автомобилей можно заменить личным беспилотным транспортом как доступным общественным транспортом по вызову, резко увеличив пропускную способность улиц.", "73 лайка"],
+      ["vkhosla", "2008225824051429868", "05.01.2026", "own", "#11: Flying will be faster: We will have Mach 5 planes that get us from NYC to London in 90 minutes – on sustainable aviation fuel, making the world closer!", "№11: Летать станет быстрее: самолёты Mach 5 долетят из Нью-Йорка в Лондон за 90 минут на устойчивом авиатопливе.", "73 лайка"],
+      ["vkhosla", "2008225825485975631", "05.01.2026", "own", "#12: There will be clean, dispatchable electric power: By 2050, fusion boilers will retrofit and replace coal and natural gas boilers reducing the need to build whole new fusion plants. Superhot geothermal >400C is also a real alternative", "№12: Будет чистая управляемая электроэнергия: к 2050 году термоядерные «котлы» заменят угольные и газовые в существующих станциях, без строительства новых. Сверхгорячая геотермия >400 °C тоже реальная альтернатива.", "59 лайков"],
+      ["vkhosla", "2008225827159441623", "05.01.2026", "own", "#13: Resources will be plentiful: We will discover more natural resources than we consume & prove resource doomers wrong on lithium, cobalt, copper…", "№13: Ресурсов будет достаточно: мы будем открывать больше природных ресурсов, чем потребляем, и докажем неправоту паникёров насчёт лития, кобальта, меди…", "62 лайка"],
+      ["vkhosla", "2008225828476514788", "05.01.2026", "cond", "#14: Carbon will have solutions … if we have time: Carbon emissions could be a smaller issue because entrepreneurs will develop & scale better technologies for cement, steel, agriculture, transportation, power production, DAC, etc", "№14: У проблемы углерода будут решения… если успеем: выбросы могут стать меньшей проблемой, потому что предприниматели разработают и масштабируют лучшие технологии для цемента, стали, сельского хозяйства, транспорта, энергетики, прямого улавливания CO₂ и т. д.", "75 лайков"],
+      ["vkhosla", "1954370807553200168", "10.08.2025", "own", "I hope to retire by 2050, health permitting! Hopefully the world will be better place thru technology benefiting humanity! Lowest income brackets will make more progress by then in lifestyle & resources than they have made from 1950 to today! Free healthcare, free education, free legal services so they can access their rights, cheaper food ....", "Надеюсь уйти на пенсию к 2050 году, если позволит здоровье! Надеюсь, технологии сделают мир лучше. Беднейшие слои к тому времени продвинутся в образе жизни и ресурсах больше, чем с 1950 года по сегодня: бесплатная медицина, бесплатное образование, бесплатная юридическая помощь, более дешёвая еда…", "782 лайка · 102 147 просмотров"]
+    ]},
+    { id: "t-energy", h: "Энергия", p: "Больше электричества, меньше ископаемого топлива. Спор с консервативными сценариями МЭА.", items: [
+      ["ramez", "1593366144391315456", "17.11.2022", "own", "A more reasonable forecast is 2-3x global electricity demand by 2050, and ~5x by 2100.", "Более разумный прогноз — рост мирового спроса на электричество в 2–3 раза к 2050 году и примерно в 5 раз к 2100.", "ответ в ветке"],
+      ["ramez", "1215612795447734273", "10.01.2020", "cite", "I also expect a very meaningful global decline by 2040, inline with BNEF's forecast of 50% coal demand reduction by 2050.", "Я также жду очень заметного мирового снижения к 2040 году, в духе прогноза BNEF о сокращении спроса на уголь на 50% к 2050 году.", "ответ в ветке"],
+      ["ramez", "1227900125248286720", "13.02.2020", "own", "Solar is already cheaper than most climate models think it will be by 2050.", "Солнечная энергия уже дешевле, чем большинство климатических моделей ожидает к 2050 году.", "361 лайк"],
+      ["ramez", "1989361113046327793", "14.11.2025", "own", "The IEA isn't even trying any more. The CPS scenario is just silly. EVs stop growing outside China and Europe. Solar growth is (once again) pretty much flat through 2050. This is not a serious assessment.", "МЭА даже не старается. Сценарий CPS просто глупый: электромобили перестают расти вне Китая и Европы, рост солнечной энергетики (снова) почти плоский до 2050 года. Это несерьёзная оценка.", "73 лайка · 16 534 просмотра"],
+      ["PeterDiamandis", "1843758648067047496", "08.10.2024", "own", "At the speed at which we’re developing new energy projects, I agree with @sama that we won’t be burning many fossil fuels by 2050!", "С такой скоростью развития новых энергопроектов я согласен с @sama, что к 2050 году мы не будем сжигать много ископаемого топлива!", "100 лайков"],
+      ["vkhosla", "1730320854796710179", "30.11.2023", "cond", "Goal is to replace all coal and natural gas boilers with fusion “boilers” by 2050!", "Цель — заменить все угольные и газовые котлы термоядерными «котлами» к 2050 году!", "35 лайков"],
+      ["elonmusk", "1276221517932552192", "25.06.2020", "cond", "In my opinion, we need to convert >80% of the global road, sea & air fleet to renewables by 2050.", "По-моему, нам нужно перевести более 80% мирового автомобильного, морского и воздушного транспорта на возобновляемую энергию к 2050 году.", "3 445 лайков"],
+      ["_HannahRitchie", "1321098819627552768", "27.10.2020", "cite", "The @BloombergNEF Energy Outlook 2020 is out. This is how global electricity looks to 2050 in its transition scenario. → Wind & solar PV increase from 9% to 56% → Nuclear, hydro & other renewables supply 20% → Fossil fuels supply 24%", "Вышел Energy Outlook 2020 от BloombergNEF. Так выглядит мировая электроэнергетика к 2050 году в его сценарии перехода: ветер и солнце растут с 9% до 56%, атом, гидро и прочие ВИЭ дают 20%, ископаемое топливо 24%.", "22 лайка"]
+    ]},
+    { id: "t-ai", h: "ИИ и работа", p: "В их сроках сильный ИИ появляется задолго до 2050 года.", items: [
+      ["DKokotajlo", "1843665423075815526", "08.10.2024", "own", "Yes, in 2020, when my AGI timelines collapsed from ~2050 to 2030, due to seeing the scaling laws and GPT3 and the Bio Anchors report.", "Да, в 2020 году мои сроки AGI схлопнулись с ~2050 до 2030, когда я увидел законы масштабирования, GPT-3 и отчёт Bio Anchors.", "ответ в ветке"],
+      ["PeterDiamandis", "2013740311214706720", "20.01.2026", "cite", "Ray Kurzweil has been predicting this moment for 30 years, and we're at the cusp of it: AGI by 2029, followed by a singularity in the 2040s where machine–human hybrids trigger a post‑human intelligence explosion. -- Robotics finally crosses the real-world barrier in 2026–27 -- 1000× intelligence jump by 2045, driven by human–AI integration -- Longevity escape velocity by ~2032 -- Biology becomes computable", "Рэй Курцвейл предсказывал этот момент 30 лет, и мы на его пороге: AGI к 2029, затем сингулярность в 2040-х, когда гибриды человека и машины запустят постчеловеческий взрыв интеллекта. Робототехника наконец выходит в реальный мир в 2026–27; рост интеллекта в 1000 раз к 2045 благодаря интеграции человека и ИИ; «скорость ухода от старения» примерно к 2032; биология становится вычислимой.", "2 419 лайков · 270 265 просмотров"],
+      ["vkhosla", "1639774163413127170", "25.03.2023", "cond", "But no question much of economically valuable human jobs will be able to be done by an AI, if we allow them to be done. Maybe 80% of 80% of all jobs by 2050 or much earlier? Nations that allow this will win", "Но нет сомнений, что большую часть экономически ценной работы людей сможет делать ИИ, если мы это позволим. Может быть, 80% от 80% всех работ к 2050 году или намного раньше? Выиграют страны, которые это позволят.", "28 лайков"],
+      ["vkhosla", "1720502568806416756", "03.11.2023", "own", "The nature of technology’s exponential curve is non-intuitive for humans; the capabilities of smart technologies in 2050 (hardware, software, tests) are hard to imagine, just as today’s smartphones were unimaginable 20 years ago.", "Экспоненциальный рост технологий неинтуитивен для людей; возможности умных технологий в 2050 году (железо, софт, анализы) трудно представить, как 20 лет назад нельзя было представить нынешние смартфоны.", "29 лайков"],
+      ["naval", "1044622979974410240", "25.09.2018", "own", "[In 2050] “artificial intelligence can code software far better than humans” That’s like saying an AI can write fiction, create art, and think better than humans. An AI that can create better software is an AI that runs the world, which makes the entire article irrelevant.", "[В 2050 году] «искусственный интеллект пишет код гораздо лучше людей» — это всё равно что сказать, что ИИ пишет прозу, создаёт искусство и думает лучше людей. ИИ, который создаёт лучший софт, — это ИИ, который управляет миром, и тогда вся статья теряет смысл.", "192 лайка · ответ в ветке с @harari_yuval"]
+    ]},
+    { id: "t-demo", h: "Население", p: "Почти все сходятся в одном: мир станет старше.", items: [
+      ["elonmusk", "1141977875567919104", "21.06.2019", "own", "Real issue will an aging & declining world population by 2050, *not* overpopulation. Randers estimate far more accurate than UN imo", "Реальной проблемой к 2050 году будет стареющее и сокращающееся население мира, *а не* перенаселение. Оценка Рандерса, по-моему, гораздо точнее оценки ООН.", "5 604 лайка"],
+      ["PeterDiamandis", "1790163780032155850", "13.05.2024", "cite", "By 2050, 1 in 5 people will be over 60. We need breakthroughs for healthy aging.", "К 2050 году каждый пятый будет старше 60. Нам нужны прорывы в здоровом старении.", "84 лайка"],
+      ["PeterDiamandis", "942528329818693632", "17.12.2017", "cite", "By 2050, two-thirds of the population, more than 6 billion people, are expected to live in urbanized areas.", "Ожидается, что к 2050 году две трети населения, больше 6 млрд человек, будут жить в городах.", "174 лайка"],
+      ["kevin2kelly", "1614661104780836868", "15.01.2023", "cite", "\"There are 1.5 billion grandparents in the world, up from 0.5 billion in 1960. As a share of the population they have risen from 17% to 20%. By 2050 there will be 2.1 billion grandparents (making up 22% of humanity).\" Grandparents make better children.", "«В мире 1,5 млрд бабушек и дедушек, против 0,5 млрд в 1960 году. Их доля выросла с 17% до 20%. К 2050 году их будет 2,1 млрд (22% человечества)». Бабушки и дедушки делают детей лучше.", "71 лайк · цитата из The Economist"]
+    ]},
+    { id: "t-space", h: "Космос", p: "Марс — главный «2050» Илона Маска.", items: [
+      ["elonmusk", "1413911893316603908", "10.07.2021", "cond", "Roughly 800 to 1000 per year. That’s about what’s needed over ten years to create the fleet to build a self-sustaining city on Mars. City itself probably takes roughly 20 years, so hopefully it is built by ~2050.", "Примерно 800–1000 [двигателей Raptor] в год. Столько нужно за десять лет, чтобы создать флот для самодостаточного города на Марсе. Сам город, вероятно, займёт около 20 лет, так что, надеюсь, он будет построен к ~2050 году.", "4 623 лайка"],
+      ["elonmusk", "1110329210332053504", "25.03.2019", "cond", "It’s possible to make a self-sustaining city on Mars by 2050, if we start in 5 years & take 10 orbital synchronizations", "Самодостаточный город на Марсе к 2050 году возможен, если мы начнём через 5 лет и используем 10 орбитальных окон.", "27 750 лайков"]
+    ]},
+    { id: "t-life", h: "Жизнь, интернет и общество", items: [
+      ["kevin2kelly", "716656523762466817", "03.04.2016", "own", "By 2050 we’ll come to think of the web as an ever-present type of conversation. #theinevitable", "К 2050 году мы будем воспринимать веб как вездесущий разговор.", "19 лайков"],
+      ["kevin2kelly", "715992156771643392", "01.04.2016", "own", "The web in 2050 won’t be a better web, just as the first version of the web was not better TV with more channels. #theinevitable", "Веб 2050 года не будет «улучшенным вебом», так же как первый веб не был улучшенным телевидением с большим числом каналов.", "18 лайков"],
+      ["balajis", "1297613412957003776", "23.08.2020", "cond", "Thesis: we are in an intermediate era where you can easily google strangers and find out what they look like. What’s coming is a hall-of-mirrors of AI avatars and virtual reality. On the other side, by 2050 or so, you may not know what distant people look like anymore.", "Тезис: мы в промежуточной эпохе, когда незнакомца легко загуглить и увидеть, как он выглядит. Дальше нас ждёт зеркальный лабиринт ИИ-аватаров и виртуальной реальности. И примерно к 2050 году вы, возможно, уже не будете знать, как выглядят далёкие от вас люди.", "232 лайка"],
+      ["Noahpinion", "1548188654308274178", "16.07.2022", "own", "I think by 2050, America will be a really nice country and a great place to live, and people will largely have forgotten the current era.", "Думаю, к 2050 году Америка станет очень приятной страной, где здорово жить, а нынешнюю эпоху в основном забудут.", "1 770 лайков · 506 ответов"],
+      ["harari_yuval", "1483751636048744449", "19.01.2022", "cond", "…this would be enough to prevent catastrophic climate change. That’s less than what politicians spent on the military in 2020. And it’s the annual investment that can get us to a carbon-neutral economy by 2050.", "…[2% мирового ВВП в год на экологичные технологии] хватит, чтобы предотвратить катастрофическое изменение климата. Это меньше, чем политики потратили на армию в 2020 году. И это ежегодные инвестиции, которые могут привести нас к углеродно-нейтральной экономике к 2050 году.", "105 лайков · продолжение твита с 1 096 лайками"],
+      ["_HannahRitchie", "1463982122704773125", "25.11.2021", "cond", "If we were able to close yield gaps we would prevent almost all habitat loss in 2050.", "Если бы мы смогли сократить разрыв в урожайности, мы бы предотвратили почти всю потерю природных местообитаний к 2050 году.", "30 лайков"],
+      ["kevin2kelly", "1330187922511945736", "21.11.2020", "cite", "My former Wired colleague @peteleyden is launching a bold vision of what a desirable future in 2050 might look like. I find it plausible and inspiring.", "Мой бывший коллега по Wired @peteleyden запускает смелое видение того, каким может быть желаемое будущее 2050 года. Я нахожу его правдоподобным и вдохновляющим.", "81 лайк"],
+      ["futuryst", "692445340302184448", "27.01.2016", "cite", "In this 2050, broccoli, bananas and coffee are no longer readily available @OCAD #TimeMachine #FoodFutures", "В этом 2050 году брокколи, бананы и кофе больше не так доступны. [Экспериенциальный сценарий в OCAD]", "11 лайков · сценарий, не прогноз"]
+    ]}
+  ];
+
+  var QUERIES = [
+    "2050 (from:kevin2kelly OR from:amywebb OR from:avantgame OR from:futuryst OR from:PeterDiamandis OR from:ramez OR from:gerdleonhard OR from:tomcheesewright OR from:rossdawson OR from:michiokaku)",
+    "2050 (from:raykurzweil OR from:aubreydegrey OR from:harari_yuval OR from:BillGates OR from:tomaspueyo OR from:balajis OR from:DKokotajlo OR from:avantgame OR from:amywebb OR from:futuryst)",
+    "2050 from:elonmusk min_faves:2000",
+    "futurist \"by 2050\" min_faves:300 -filter:retweets",
+    "2050 (from:vkhosla OR from:sama OR from:DarioAmodei OR from:demishassabis OR from:kaifulee OR from:naval OR from:pmarca OR from:Noahpinion OR from:_HannahRitchie OR from:MaxCRoser)",
+    "(2045 OR 2050) (from:raykurzweil OR from:PeterDiamandis) min_faves:50",
+    "\"in 2050\" OR \"by 2050\" prediction future min_faves:3000 -filter:retweets lang:en",
+    "conversation_id:2008225808637374847 from:vkhosla",
+    "2050 (from:gerdleonhard OR from:tomaspueyo OR from:sama OR from:kevin2kelly OR from:rossdawson OR from:bryanalexander) -filter:replies",
+    "2050 from:sama · 2050 from:kevin2kelly · 2050 from:tomaspueyo",
+    "\"2050\" футуролог OR \"в 2050 году\" прогноз min_faves:30 lang:ru"
+  ];
+
+  var TYPE = { own: ["own", "свой прогноз"], cond: ["cond", "условный / «может»"], cite: ["cite", "цитирует чужие данные или сценарий"] };
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " "); }
+  var count = {}, total = 0;
+  var html = THEMES.map(function (t) {
+    return '<div class="theme" id="' + t.id + '"><h3>' + esc(t.h) + "</h3>" + (t.p ? "<p>" + esc(t.p) + "</p>" : "") + '<div class="tweets">' +
+      t.items.map(function (r) {
+        total++; count[r[0]] = (count[r[0]] || 0) + 1;
+        var p = PEOPLE[r[0]], ty = TYPE[r[3]];
+        return '<article class="tw"><div class="who"><b>' + esc(p[0]) + '</b><span class="h">@' + esc(r[0]) + '</span><span class="d">' + r[2] + "</span></div>" +
+          '<div class="body"><p class="en">' + esc(r[4]) + '</p><p class="ru">' + esc(r[5]) + "</p>" +
+          '<div class="meta"><span class="chip ' + ty[0] + '">' + ty[1] + "</span><span>" + esc(r[6]) + '</span><a href="https://x.com/' + r[0] + "/status/" + r[1] + '" target="_blank" rel="noopener">Открыть в X ↗</a></div></div></article>';
+      }).join("") + "</div></div>";
+  }).join("");
+  document.getElementById("themes").innerHTML = html;
+  document.getElementById("people-body").innerHTML = Object.keys(PEOPLE).map(function (k) {
+    var p = PEOPLE[k];
+    return '<tr><td><b>' + esc(p[0]) + '</b><br><a href="https://x.com/' + k + '" target="_blank" rel="noopener">@' + esc(k) + "</a></td><td>" + esc(p[1]) + '</td><td class="num">' + fmt(p[2]) + '</td><td class="num">' + (count[k] || 0) + "</td></tr>";
+  }).join("");
+  document.getElementById("queries").innerHTML = QUERIES.map(function (q) { return "<li><code>" + esc(q) + "</code></li>"; }).join("");
+  document.getElementById("facts").innerHTML = "<span><b>" + total + "</b> твитов</span><span><b>" + Object.keys(PEOPLE).length + "</b> авторов</span><span><b>" + QUERIES.length + "</b> запросов к X</span><span>2016–2026</span>";
+})();
+</script>
+
+</body></html>

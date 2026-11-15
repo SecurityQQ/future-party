@@ -1,0 +1,30 @@
+# Photo credits: Already Here (Projection 2050)
+
+Every image is from Wikimedia Commons, fetched through its API on 2026-11-13. Public-domain images are mostly NASA works.
+CC BY and CC BY-SA images carry their credit on screen in each shot; full details are below.
+
+- **supertrees**: [File:Singapore Supertree-Grove-in-The-Gardens-01.jpg](https://commons.wikimedia.org/wiki/File:Singapore_Supertree-Grove-in-The-Gardens-01.jpg) · CEphoto, Uwe Aranas · CC BY-SA 3.0 ([licence](https://creativecommons.org/licenses/by-sa/3.0))
+- **skywalk**: [File:Shanghai Lujiazui night skyline 2017 - Flickr.jpg](https://commons.wikimedia.org/wiki/File:Shanghai_Lujiazui_night_skyline_2017_-_Flickr.jpg) · Larry Qian · CC0 ([licence](http://creativecommons.org/publicdomain/zero/1.0/deed.en))
+- **solar**: [File:Noor 1 and 2 - Ouarzazate Solar Power Station (48962353822).jpg](https://commons.wikimedia.org/wiki/File:Noor_1_and_2_-_Ouarzazate_Solar_Power_Station_(48962353822).jpg) · Richard Allaway · CC BY 2.0 ([licence](https://creativecommons.org/licenses/by/2.0))
+- **maglev**: [File:A maglev train coming out, Pudong International Airport, Shanghai.jpg](https://commons.wikimedia.org/wiki/File:A_maglev_train_coming_out,_Pudong_International_Airport,_Shanghai.jpg) · User Alex Needham (own photography) on en.wikipedia · Public domain
+- **waymo**: [File:Waymo Jaguar I-Pace in San Francisco 2023 dllu.jpg](https://commons.wikimedia.org/wiki/File:Waymo_Jaguar_I-Pace_in_San_Francisco_2023_dllu.jpg) · Dllu · CC BY 4.0 ([licence](https://creativecommons.org/licenses/by/4.0))
+- **barrier**: [File:Thames Barrier, London, England - Feb 2010.jpg](https://commons.wikimedia.org/wiki/File:Thames_Barrier,_London,_England_-_Feb_2010.jpg) · Diliff · CC BY-SA 3.0 ([licence](https://creativecommons.org/licenses/by-sa/3.0))
+- **eden**: [File:Eden Project Biomes (9757315094).jpg](https://commons.wikimedia.org/wiki/File:Eden_Project_Biomes_(9757315094).jpg) · Rob Young from United Kingdom · CC BY 2.0 ([licence](https://creativecommons.org/licenses/by/2.0))
+- **wind**: [File:Block Island offshore wind farm P6290638m.jpg](https://commons.wikimedia.org/wiki/File:Block_Island_offshore_wind_farm_P6290638m.jpg) · Ionna22 · CC BY-SA 4.0 ([licence](https://creativecommons.org/licenses/by-sa/4.0))
+- **sophia**: [File:Sophia (robot).jpg](https://commons.wikimedia.org/wiki/File:Sophia_(robot).jpg) · ITU Pictures · CC BY 2.0 ([licence](https://creativecommons.org/licenses/by/2.0))
+- **valkyrie**: [File:ISS-29 second onboard tests of Robonaut 2.jpg](https://commons.wikimedia.org/wiki/File:ISS-29_second_onboard_tests_of_Robonaut_2.jpg) · NASA · Public domain
+- **headset**: [File:Apple Vision Pro (M5, 2025) with Dual Knit Band on Display.jpg](https://commons.wikimedia.org/wiki/File:Apple_Vision_Pro_(M5,_2025)_with_Dual_Knit_Band_on_Display.jpg) · AzureSaturn · CC0 ([licence](http://creativecommons.org/publicdomain/zero/1.0/deed.en))
+- **frontier**: [File:Frontier Supercomputer (2).jpg](https://commons.wikimedia.org/wiki/File:Frontier_Supercomputer_(2).jpg) · OLCF at ORNL · CC BY 2.0 ([licence](https://creativecommons.org/licenses/by/2.0))
+- **sequencer**: [File:Ion Proton Sequencers, BGI Shenzhen.JPG](https://commons.wikimedia.org/wiki/File:Ion_Proton_Sequencers,_BGI_Shenzhen.JPG) · Scotted400 · CC BY 3.0 ([licence](https://creativecommons.org/licenses/by/3.0))
+- **vfarm**: [File:IFarm.fi Vertical farm Finland.jpg](https://commons.wikimedia.org/wiki/File:IFarm.fi_Vertical_farm_Finland.jpg) · ifarm.fi · CC BY-SA 4.0 ([licence](https://creativecommons.org/licenses/by-sa/4.0))
+- **ingenuity**: [File:NASA's Ingenuity helicopter on Mars by Perseverance Mastcam-Z, Sol 768 (53475637956).jpg](https://commons.wikimedia.org/wiki/File:NASA%27s_Ingenuity_helicopter_on_Mars_by_Perseverance_Mastcam-Z,_Sol_768_(53475637956).jpg) · semeion.photo Credit: NASA/JPL-Caltech/ASU/Simeon Schmauß · CC BY 2.0 ([licence](https://creativecommons.org/licenses/by/2.0))
+- **launch**: [File:Artemis I Launch (NHQ202211160029).jpg](https://commons.wikimedia.org/wiki/File:Artemis_I_Launch_(NHQ202211160029).jpg) · Joel Kowsky · Public domain
+- **iss**: [File:The SpaceX Crew Dragon Endeavour approaches the International Space Station (iss065e002231).jpg](https://commons.wikimedia.org/wiki/File:The_SpaceX_Crew_Dragon_Endeavour_approaches_the_International_Space_Station_(iss065e002231).jpg) · NASA · Public domain
+- **veggie**: [File:ISS-44 VEGGIE Red Romaine Lettuce.jpg](https://commons.wikimedia.org/wiki/File:ISS-44_VEGGIE_Red_Romaine_Lettuce.jpg) · NASA · Public domain
+- **perseverance**: [File:PIA24836 Perseverance's Selfie at Rochette.jpg](https://commons.wikimedia.org/wiki/File:PIA24836_Perseverance%27s_Selfie_at_Rochette.jpg) · NASA · Public domain
+- **torus**: [File:Stanford Torus interior.jpg](https://commons.wikimedia.org/wiki/File:Stanford_Torus_interior.jpg) · NASA/Donald Davis · Public domain
+- **saturn**: [File:Saturn global view from Cassini, rings open.jpg](https://commons.wikimedia.org/wiki/File:Saturn_global_view_from_Cassini,_rings_open.jpg) · NASA / JPL-Caltech / SSI / color composite by Gordan Ugarkovic · Public domain
+- **blackhole**: [File:Black hole - Messier 87.jpg](https://commons.wikimedia.org/wiki/File:Black_hole_-_Messier_87.jpg) · Event Horizon Telescope · CC BY 4.0 ([licence](https://creativecommons.org/licenses/by/4.0))
+- **cliffs**: [File:NASA’s Webb Reveals Cosmic Cliffs, Glittering Landscape of Star Birth.jpg](https://commons.wikimedia.org/wiki/File:NASA%E2%80%99s_Webb_Reveals_Cosmic_Cliffs,_Glittering_Landscape_of_Star_Birth.jpg) · Image: National Aeronautics and Space Administration (a U.S. federal government agency; https://www.nasa.gov/) European space agency (https://www.esa.int/), Can · Public domain
+- **orion**: [File:Artemis I Flight Day 13- Orion, Earth, and Moon (art001e000679).jpeg](https://commons.wikimedia.org/wiki/File:Artemis_I_Flight_Day_13-_Orion,_Earth,_and_Moon_(art001e000679).jpeg) · NASA Johnson Space Center · Public domain
+- **earthrise**: [File:Earth-moon.jpg](https://commons.wikimedia.org/wiki/File:Earth-moon.jpg) · Apollo 8 crewmember Bill Anders · Public domain

@@ -1,0 +1,735 @@
+{
+ "elevator": {
+  "chapter": "orbit",
+  "query": "space elevator",
+  "found": 20,
+  "candidates": [
+   {
+    "title": "File:Space elevator Phobos.jpg",
+    "w": 13594,
+    "h": 4798,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Space_elevator_Phobos.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Space_elevator_Phobos.jpg/500px-Space_elevator_Phobos.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Space_elevator_Phobos.jpg",
+    "license": "CC0",
+    "artist": "Wikideas1",
+    "credit": "Own work https://space.nss.org/wp-content/uploads/2003-Space-Colonization-Using-Space-Elevators-From-Phobos.pdf",
+    "date": "2022-12-05"
+   },
+   {
+    "title": "File:International Space Elevator (Ace Combat 7).png",
+    "w": 1920,
+    "h": 1080,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/99/International_Space_Elevator_%28Ace_Combat_7%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/International_Space_Elevator_%28Ace_Combat_7%29.png/500px-International_Space_Elevator_%28Ace_Combat_7%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:International_Space_Elevator_(Ace_Combat_7).png",
+    "license": "CC BY 3.0",
+    "artist": "Bandai Namco Entertainment America",
+    "credit": "https://youtube.com/watch/6KVyY0Su4JY&t=55",
+    "date": "2017-06-10"
+   },
+   {
+    "title": "File:SpaceElevatorClimbing.jpg",
+    "w": 2048,
+    "h": 1536,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/SpaceElevatorClimbing.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/SpaceElevatorClimbing.jpg/500px-SpaceElevatorClimbing.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:SpaceElevatorClimbing.jpg",
+    "license": "CC BY-SA 3.0",
+    "artist": "Liftport. Original uploader was Rei at en.wikipedia",
+    "credit": "Liftport. Transferred from en.wikipedia",
+    "date": "11 March 2004 (origi"
+   }
+  ]
+ },
+ "asteroid": {
+  "chapter": "orbit",
+  "query": "asteroid mining",
+  "found": 20,
+  "candidates": [
+   {
+    "title": "File:Asteroid Mining (7680749368).jpg",
+    "w": 5616,
+    "h": 3457,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Asteroid_Mining_%287680749368%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/Asteroid_Mining_%287680749368%29.jpg/500px-Asteroid_Mining_%287680749368%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Asteroid_Mining_(7680749368).jpg",
+    "license": "CC BY 2.0",
+    "artist": "Steve Jurvetson from Los Altos, USA",
+    "credit": "Asteroid Mining",
+    "date": "2012-05-28 10:43"
+   },
+   {
+    "title": "File:Ensly Lighthouse Working Notes.jpg",
+    "w": 1753,
+    "h": 1181,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Ensly_Lighthouse_Working_Notes.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/ba/Ensly_Lighthouse_Working_Notes.jpg/500px-Ensly_Lighthouse_Working_Notes.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Ensly_Lighthouse_Working_Notes.jpg",
+    "license": "WTFPL",
+    "artist": "Michael Robert Einstein (apparently? I'm not sure what's going on)",
+    "credit": "Own work",
+    "date": "2022-01-13"
+   },
+   {
+    "title": "File:Planetary Resources with Asteroid Mining Squadron by Oliver Sin 2012 acrylics 160X110 cm.jpg",
+    "w": 1871,
+    "h": 1274,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Planetary_Resources_with_Asteroid_Mining_Squadron_by_Oliver_Sin_2012_acrylics_160X110_cm.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/Planetary_Resources_with_Asteroid_Mining_Squadron_by_Oliver_Sin_2012_acrylics_160X110_cm.jpg/500px-Planetary_Resources_with_Asteroid_Mining_Squadron_by_Oliver_Sin_2012_acrylics_160X110_cm.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Planetary_Resources_with_Asteroid_Mining_Squadron_by_Oliver_Sin_2012_acrylics_160X110_cm.jpg",
+    "license": "CC BY-SA 3.0",
+    "artist": "Scienceartfanatic",
+    "credit": "Own work",
+    "date": "2013-04-30 01:48:25"
+   },
+   {
+    "title": "File:Theodore von Kármán 230419-F-F3405-0001 (restored).jpg",
+    "w": 6000,
+    "h": 4987,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Theodore_von_K%C3%A1rm%C3%A1n_230419-F-F3405-0001_%28restored%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Theodore_von_K%C3%A1rm%C3%A1n_230419-F-F3405-0001_%28restored%29.jpg/500px-Theodore_von_K%C3%A1rm%C3%A1n_230419-F-F3405-0001_%28restored%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Theodore_von_K%C3%A1rm%C3%A1n_230419-F-F3405-0001_(restored).jpg",
+    "license": "Public domain",
+    "artist": "U.S. Air Force",
+    "credit": "https://www.arnold.af.mil/News/Article-Display/Article/3386245/dr-theodore-von-krmns-vision-continues-to-be-realized-at-",
+    "date": "1959-10-30"
+   },
+   {
+    "title": "File:Theodore von Karman - GPN-2000-001500.jpg",
+    "w": 2817,
+    "h": 2216,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Theodore_von_Karman_-_GPN-2000-001500.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Theodore_von_Karman_-_GPN-2000-001500.jpg/500px-Theodore_von_Karman_-_GPN-2000-001500.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Theodore_von_Karman_-_GPN-2000-001500.jpg",
+    "license": "Public domain",
+    "artist": "NACA",
+    "credit": "Great Images in NASA Description",
+    "date": "1950-01-01"
+   }
+  ]
+ },
+ "bennu": {
+  "chapter": "orbit",
+  "query": "Bennu OSIRIS-REx mosaic",
+  "found": 15,
+  "candidates": [
+   {
+    "title": "File:Bennu mosaic OSIRIS-REx.jpg",
+    "w": 3840,
+    "h": 2160,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Bennu_mosaic_OSIRIS-REx.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Bennu_mosaic_OSIRIS-REx.jpg/500px-Bennu_mosaic_OSIRIS-REx.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Bennu_mosaic_OSIRIS-REx.jpg",
+    "license": "Public domain",
+    "artist": "NASA/Goddard/University of Arizona",
+    "credit": "https://www.nasa.gov/press-release/nasa-spacecraft-provides-insight-into-asteroid-bennu-s-future-orbit",
+    "date": "2020-02-27 00:38:40"
+   },
+   {
+    "title": "File:Bennu global mosaic reduced size.png",
+    "w": 2400,
+    "h": 1200,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Bennu_global_mosaic_reduced_size.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Bennu_global_mosaic_reduced_size.png/500px-Bennu_global_mosaic_reduced_size.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Bennu_global_mosaic_reduced_size.png",
+    "license": "Public domain",
+    "artist": "NASA/Goddard/University of Arizona",
+    "credit": "https://www.asteroidmission.org/bennu_global_mosaic/",
+    "date": "2019-04-19"
+   },
+   {
+    "title": "File:Bennu Global Mosaic 20190319.png",
+    "w": 2078,
+    "h": 851,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Bennu_Global_Mosaic_20190319.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Bennu_Global_Mosaic_20190319.png/500px-Bennu_Global_Mosaic_20190319.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Bennu_Global_Mosaic_20190319.png",
+    "license": "Public domain",
+    "artist": "NASA/Goddard/University of Arizona",
+    "credit": "https://www.asteroidmission.org/bennu-global-mosaic-mar-2019-2/ (image link)",
+    "date": "2019-03-19"
+   },
+   {
+    "title": "File:Bennu Global Topographic Mosaic 20181213.png",
+    "w": 2160,
+    "h": 840,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Bennu_Global_Topographic_Mosaic_20181213.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/Bennu_Global_Topographic_Mosaic_20181213.png/500px-Bennu_Global_Topographic_Mosaic_20181213.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Bennu_Global_Topographic_Mosaic_20181213.png",
+    "license": "Public domain",
+    "artist": "NASA/Goddard/University of Arizona",
+    "credit": "https://www.asteroidmission.org/?attachment_id=15897 (image link)",
+    "date": "1 December 2018 and "
+   },
+   {
+    "title": "File:Bennu named surface features.png",
+    "w": 3600,
+    "h": 1800,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Bennu_named_surface_features.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Bennu_named_surface_features.png/500px-Bennu_named_surface_features.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Bennu_named_surface_features.png",
+    "license": "Public domain",
+    "artist": "NASA/Goddard/University of Arizona",
+    "credit": "https://www.asteroidmission.org/iau-features-3/",
+    "date": "2021"
+   }
+  ]
+ },
+ "artemis2": {
+  "chapter": "orbit",
+  "query": "Artemis II Earthset",
+  "found": 20,
+  "candidates": [
+   {
+    "title": "File:Earthset (art002e009288).jpg",
+    "w": 5568,
+    "h": 3712,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Earthset_%28art002e009288%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Earthset_%28art002e009288%29.jpg/500px-Earthset_%28art002e009288%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Earthset_(art002e009288).jpg",
+    "license": "Public domain",
+    "artist": "NASA",
+    "credit": "https://images.nasa.gov/details/art002e009288",
+    "date": "Taken on 6 April 202"
+   },
+   {
+    "title": "File:A New View of the Moon.jpg",
+    "w": 5568,
+    "h": 3712,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/A_New_View_of_the_Moon.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/A_New_View_of_the_Moon.jpg/500px-A_New_View_of_the_Moon.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:A_New_View_of_the_Moon.jpg",
+    "license": "Public domain",
+    "artist": "NASA",
+    "credit": "https://images.nasa.gov/details/art002e009287",
+    "date": "Taken on 6 April 202"
+   },
+   {
+    "title": "File:Artemis II art002e021278 earthset.jpg",
+    "w": 1920,
+    "h": 1280,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Artemis_II_art002e021278_earthset.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Artemis_II_art002e021278_earthset.jpg/500px-Artemis_II_art002e021278_earthset.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Artemis_II_art002e021278_earthset.jpg",
+    "license": "Public domain",
+    "artist": "NASA",
+    "credit": "https://www.nasa.gov/image-detail/amf-art002e021278/",
+    "date": "2026-04-06"
+   },
+   {
+    "title": "File:Earthset (art002e009288) (2×1 cropped).jpg",
+    "w": 5568,
+    "h": 2786,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Earthset_%28art002e009288%29_%282%C3%971_cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/Earthset_%28art002e009288%29_%282%C3%971_cropped%29.jpg/500px-Earthset_%28art002e009288%29_%282%C3%971_cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Earthset_(art002e009288)_(2%C3%971_cropped).jpg",
+    "license": "Public domain",
+    "artist": "NASA",
+    "credit": "https://images.nasa.gov/details/art002e009288",
+    "date": "Taken on 6 April 202"
+   },
+   {
+    "title": "File:Earthset Views (art002e021007).jpg",
+    "w": 5568,
+    "h": 3712,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Earthset_Views_%28art002e021007%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Earthset_Views_%28art002e021007%29.jpg/500px-Earthset_Views_%28art002e021007%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Earthset_Views_(art002e021007).jpg",
+    "license": "Public domain",
+    "artist": "NASA Johnson Space Center",
+    "credit": "This image or video was catalogued by Lyndon B. Johnson Space Center of the United States National Aeronautics and Space",
+    "date": "Taken on 6 April 202"
+   }
+  ]
+ },
+ "artemis2b": {
+  "chapter": "orbit",
+  "query": "Artemis II far side of the Moon Orion window",
+  "found": 11,
+  "candidates": [
+   {
+    "title": "File:Simulated Artemis II Lunar Flyby (SVS5536).jpg",
+    "w": 1920,
+    "h": 1080,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Simulated_Artemis_II_Lunar_Flyby_%28SVS5536%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Simulated_Artemis_II_Lunar_Flyby_%28SVS5536%29.jpg/500px-Simulated_Artemis_II_Lunar_Flyby_%28SVS5536%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Simulated_Artemis_II_Lunar_Flyby_(SVS5536).jpg",
+    "license": "Public domain",
+    "artist": "NASA's Scientific Visualization Studio - USRA/Ernie Wright",
+    "credit": "Simulated Artemis II Lunar Flyby",
+    "date": "15 August 2025 (uplo"
+   },
+   {
+    "title": "File:Earthset on the Far Side (art002e021219).jpg",
+    "w": 5568,
+    "h": 3712,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Earthset_on_the_Far_Side_%28art002e021219%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c1/Earthset_on_the_Far_Side_%28art002e021219%29.jpg/500px-Earthset_on_the_Far_Side_%28art002e021219%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Earthset_on_the_Far_Side_(art002e021219).jpg",
+    "license": "Public domain",
+    "artist": "NASA Johnson Space Center / NASA",
+    "credit": "This image or video was catalogued by Lyndon B. Johnson Space Center of the United States National Aeronautics and Space",
+    "date": "Taken on 6 April 202"
+   },
+   {
+    "title": "File:Goodnight Moon (art002e009210).jpg",
+    "w": 5568,
+    "h": 3712,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Goodnight_Moon_%28art002e009210%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Goodnight_Moon_%28art002e009210%29.jpg/500px-Goodnight_Moon_%28art002e009210%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Goodnight_Moon_(art002e009210).jpg",
+    "license": "Public domain",
+    "artist": "NASA Johnson Space Center / NASA",
+    "credit": "This image or video was catalogued by Lyndon B. Johnson Space Center of the United States National Aeronautics and Space",
+    "date": "Taken on 6 April 202"
+   },
+   {
+    "title": "File:Simulating the Artemis II Lunar Flyby on April 6, 2026 (SVS5633).jpg",
+    "w": 1920,
+    "h": 1080,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Simulating_the_Artemis_II_Lunar_Flyby_on_April_6%2C_2026_%28SVS5633%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Simulating_the_Artemis_II_Lunar_Flyby_on_April_6%2C_2026_%28SVS5633%29.jpg/500px-Simulating_the_Artemis_II_Lunar_Flyby_on_April_6%2C_2026_%28SVS5633%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Simulating_the_Artemis_II_Lunar_Flyby_on_April_6,_2026_(SVS5633).jpg",
+    "license": "Public domain",
+    "artist": "NASA's Scientific Visualization Studio - USRA/Ernie Wright",
+    "credit": "Simulating the Artemis II Lunar Flyby on April 6, 2026",
+    "date": "6 April 2026, 14:30:"
+   },
+   {
+    "title": "File:Art002e009280 (April 6, 2026) – Earthrise captured through the Orion spacecraft window at 7-22 p.jpg",
+    "w": 5568,
+    "h": 3712,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Art002e009280_%28April_6%2C_2026%29_%E2%80%93_Earthrise_captured_through_the_Orion_spacecraft_window_at_7-22_p.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Art002e009280_%28April_6%2C_2026%29_%E2%80%93_Earthrise_captured_through_the_Orion_spacecraft_window_at_7-22_p.jpg/500px-Art002e009280_%28April_6%2C_2026%29_%E2%80%93_Earthrise_captured_through_the_Orion_spacecraft_window_at_7-22_p.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Art002e009280_(April_6,_2026)_%E2%80%93_Earthrise_captured_through_the_Orion_spacecraft_window_at_7-22_p.jpg",
+    "license": "Public domain",
+    "artist": "NASA Johnson Space Center",
+    "credit": "This image or video was catalogued by Lyndon B. Johnson Space Center of the United States National Aeronautics and Space",
+    "date": "Taken on 6 April 202"
+   }
+  ]
+ },
+ "lunarbase": {
+  "chapter": "orbit",
+  "query": "lunar base",
+  "found": 20,
+  "candidates": [
+   {
+    "title": "File:Inflatable Moon base pillars.jpg",
+    "w": 1920,
+    "h": 1279,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Inflatable_Moon_base_pillars.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Inflatable_Moon_base_pillars.jpg/500px-Inflatable_Moon_base_pillars.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Inflatable_Moon_base_pillars.jpg",
+    "license": "CC BY-SA 3.0",
+    "artist": "ESA/Pneumocell",
+    "credit": "https://www.esa.int/ESA_Multimedia/Images/2020/09/Inflatable_Moon_base",
+    "date": "2022-09-01"
+   },
+   {
+    "title": "File:SEI Lunar Base Concept01.jpg",
+    "w": 2461,
+    "h": 1693,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/SEI_Lunar_Base_Concept01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/SEI_Lunar_Base_Concept01.jpg/500px-SEI_Lunar_Base_Concept01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:SEI_Lunar_Base_Concept01.jpg",
+    "license": "Public domain",
+    "artist": "NASA/SAIC/Pat Rawlings",
+    "credit": "http://www.spaceflight.nasa.gov/gallery/images/mars/lunaractivities/html/s95_01563.html",
+    "date": "1995-02"
+   },
+   {
+    "title": "File:Scale model of the European Moon Village concept.jpg",
+    "w": 4608,
+    "h": 3072,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Scale_model_of_the_European_Moon_Village_concept.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Scale_model_of_the_European_Moon_Village_concept.jpg/500px-Scale_model_of_the_European_Moon_Village_concept.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Scale_model_of_the_European_Moon_Village_concept.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "SpaceMusk",
+    "credit": "Own work",
+    "date": "2016-04-03 16:17:51"
+   },
+   {
+    "title": "File:Mooncolony.jpg",
+    "w": 5192,
+    "h": 3332,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Mooncolony.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Mooncolony.jpg/500px-Mooncolony.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Mooncolony.jpg",
+    "license": "Public domain",
+    "artist": "NASA/SAIC/Pat Rawlings",
+    "credit": "http://www.nasa.gov/mission_pages/exploration/mmb/22may_beaty_prt.htm, http://www.spaceflight.nasa.gov/gallery/images/ma",
+    "date": "1995"
+   },
+   {
+    "title": "File:Concept for Base at the Lunar South Pole (liveenable-im4-craterlogistics-1).png",
+    "w": 1920,
+    "h": 1080,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Concept_for_Base_at_the_Lunar_South_Pole_%28liveenable-im4-craterlogistics-1%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Concept_for_Base_at_the_Lunar_South_Pole_%28liveenable-im4-craterlogistics-1%29.png/500px-Concept_for_Base_at_the_Lunar_South_Pole_%28liveenable-im4-craterlogistics-1%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Concept_for_Base_at_the_Lunar_South_Pole_(liveenable-im4-craterlogistics-1).png",
+    "license": "Public domain",
+    "artist": "NASA",
+    "credit": "Concept for Base at the Lunar South Pole",
+    "date": "22 May 2026, 14:39:5"
+   }
+  ]
+ },
+ "havoc": {
+  "chapter": "beyond",
+  "query": "Venus airship",
+  "found": 5,
+  "candidates": [
+   {
+    "title": "File:Childs' fall bulbs that bloom plants that please berries that bear (1921) (19984764173).jpg",
+    "w": 2940,
+    "h": 1521,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Childs%27_fall_bulbs_that_bloom_plants_that_please_berries_that_bear_%281921%29_%2819984764173%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Childs%27_fall_bulbs_that_bloom_plants_that_please_berries_that_bear_%281921%29_%2819984764173%29.jpg/500px-Childs%27_fall_bulbs_that_bloom_plants_that_please_berries_that_bear_%281921%29_%2819984764173%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Childs%27_fall_bulbs_that_bloom_plants_that_please_berries_that_bear_(1921)_(19984764173).jpg",
+    "license": "No restrictions",
+    "artist": "John Lewis Childs (Firm); Henry G. Gilbert Nursery and Seed Trade Catalog Collection",
+    "credit": "https://www.flickr.com/photos/internetarchivebookimages/19984764173/ Source book page: https://archive.org/stream/childs",
+    "date": "1921"
+   }
+  ]
+ },
+ "havoc2": {
+  "chapter": "beyond",
+  "query": "High Altitude Venus Operational Concept",
+  "found": 20,
+  "candidates": [
+   {
+    "title": "File:NASA Cloud City on Venus.jpg",
+    "w": 1920,
+    "h": 1080,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/NASA_Cloud_City_on_Venus.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/NASA_Cloud_City_on_Venus.jpg/500px-NASA_Cloud_City_on_Venus.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:NASA_Cloud_City_on_Venus.jpg",
+    "license": "Public domain",
+    "artist": "NASA",
+    "credit": "http://sacd.larc.nasa.gov/branches/space-mission-analysis-branch-smab/smab-projects/havoc/",
+    "date": "2014-12-23 16:32:45"
+   },
+   {
+    "title": "File:M4A1(75) Sherman ‘USA3038210’ “HAVOC”.jpg",
+    "w": 5540,
+    "h": 3693,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/67/M4A1%2875%29_Sherman_%E2%80%98USA3038210%E2%80%99_%E2%80%9CHAVOC%E2%80%9D.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/67/M4A1%2875%29_Sherman_%E2%80%98USA3038210%E2%80%99_%E2%80%9CHAVOC%E2%80%9D.jpg/500px-M4A1%2875%29_Sherman_%E2%80%98USA3038210%E2%80%99_%E2%80%9CHAVOC%E2%80%9D.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:M4A1(75)_Sherman_%E2%80%98USA3038210%E2%80%99_%E2%80%9CHAVOC%E2%80%9D.jpg",
+    "license": "CC BY-SA 2.0",
+    "artist": "Alan Wilson",
+    "credit": "https://www.flickr.com/photos/ajw1970/49920697956/",
+    "date": "2019-06-29 18:17:20"
+   },
+   {
+    "title": "File:A-20 Havoc.jpg",
+    "w": 7157,
+    "h": 5561,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/83/A-20_Havoc.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/A-20_Havoc.jpg/500px-A-20_Havoc.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:A-20_Havoc.jpg",
+    "license": "Public domain",
+    "artist": "Alfred T. Palmer",
+    "credit": "This image is available from the United States Library of Congress's Prints and Photographs division under the digital I",
+    "date": "1942-07"
+   },
+   {
+    "title": "File:Douglas A-20G Havoc cockpit USAF.jpg",
+    "w": 1763,
+    "h": 1206,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Douglas_A-20G_Havoc_cockpit_USAF.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Douglas_A-20G_Havoc_cockpit_USAF.jpg/500px-Douglas_A-20G_Havoc_cockpit_USAF.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Douglas_A-20G_Havoc_cockpit_USAF.jpg",
+    "license": "Public domain",
+    "artist": "",
+    "credit": "",
+    "date": ""
+   }
+  ]
+ },
+ "marsblue": {
+  "chapter": "beyond",
+  "query": "PIA19400 sunset Gale",
+  "found": 3,
+  "candidates": []
+ },
+ "marsblue2": {
+  "chapter": "beyond",
+  "query": "Sunset on Mars Curiosity Mastcam",
+  "found": 20,
+  "candidates": [
+   {
+    "title": "File:Carbon dioxide clouds over Mont Mercou, Curiosity Sol 3063 (53100058892).jpg",
+    "w": 8181,
+    "h": 3302,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/48/Carbon_dioxide_clouds_over_Mont_Mercou%2C_Curiosity_Sol_3063_%2853100058892%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/Carbon_dioxide_clouds_over_Mont_Mercou%2C_Curiosity_Sol_3063_%2853100058892%29.jpg/500px-Carbon_dioxide_clouds_over_Mont_Mercou%2C_Curiosity_Sol_3063_%2853100058892%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Carbon_dioxide_clouds_over_Mont_Mercou,_Curiosity_Sol_3063_(53100058892).jpg",
+    "license": "CC BY 2.0",
+    "artist": "semeion.photo Credit: NASA/JPL-Caltech/MSSS/Simeon Schmauß",
+    "credit": "Carbon dioxide clouds over Mont Mercou, Curiosity Sol 3063",
+    "date": "Taken on 19 March 20"
+   },
+   {
+    "title": "File:Curiosity Views Feather-Shaped Iridescent Cloud (PIA25740).jpg",
+    "w": 3417,
+    "h": 1163,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/09/Curiosity_Views_Feather-Shaped_Iridescent_Cloud_%28PIA25740%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Curiosity_Views_Feather-Shaped_Iridescent_Cloud_%28PIA25740%29.jpg/500px-Curiosity_Views_Feather-Shaped_Iridescent_Cloud_%28PIA25740%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Curiosity_Views_Feather-Shaped_Iridescent_Cloud_(PIA25740).jpg",
+    "license": "Public domain",
+    "artist": "NASA Jet Propulsion Laboratory",
+    "credit": "This image or video was catalogued by Jet Propulsion Laboratory of the United States National Aeronautics and Space Admi",
+    "date": "Taken on 6 March 202"
+   },
+   {
+    "title": "File:Curiosity Views First Martian 'Sun Rays' (PIA25739).jpg",
+    "w": 3813,
+    "h": 1024,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/65/Curiosity_Views_First_Martian_%27Sun_Rays%27_%28PIA25739%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Curiosity_Views_First_Martian_%27Sun_Rays%27_%28PIA25739%29.jpg/500px-Curiosity_Views_First_Martian_%27Sun_Rays%27_%28PIA25739%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Curiosity_Views_First_Martian_%27Sun_Rays%27_(PIA25739).jpg",
+    "license": "Public domain",
+    "artist": "NASA Jet Propulsion Laboratory",
+    "credit": "This image or video was catalogued by Jet Propulsion Laboratory of the United States National Aeronautics and Space Admi",
+    "date": "Taken on 6 March 202"
+   },
+   {
+    "title": "File:Martian-Sunset-O-de-Goursac-Curiosity-2013.jpg",
+    "w": 6044,
+    "h": 1695,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Martian-Sunset-O-de-Goursac-Curiosity-2013.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Martian-Sunset-O-de-Goursac-Curiosity-2013.jpg/500px-Martian-Sunset-O-de-Goursac-Curiosity-2013.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Martian-Sunset-O-de-Goursac-Curiosity-2013.jpg",
+    "license": "CC BY-SA 3.0",
+    "artist": "NASA/JPL/MSSS; processings and mosaic: Olivier de Goursac (fr), 2014",
+    "credit": "Own work; for more information about the component images, see https://mars.jpl.nasa.gov/msl/multimedia/raw/?s=170#/?sli",
+    "date": "Taken on 27 January "
+   },
+   {
+    "title": "File:PIA17936-f2-MarsCuriosityRover-EarthMoon-20140131.jpg",
+    "w": 3200,
+    "h": 2000,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/64/PIA17936-f2-MarsCuriosityRover-EarthMoon-20140131.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/PIA17936-f2-MarsCuriosityRover-EarthMoon-20140131.jpg/500px-PIA17936-f2-MarsCuriosityRover-EarthMoon-20140131.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:PIA17936-f2-MarsCuriosityRover-EarthMoon-20140131.jpg",
+    "license": "",
+    "artist": "NASA/JPL-Caltech/MSSS/TAMU",
+    "credit": "http://photojournal.jpl.nasa.gov/figures/PIA17936_fig2.jpg",
+    "date": "2014-02-06 10:04:43"
+   }
+  ]
+ },
+ "pillarsn": {
+  "chapter": "beyond",
+  "query": "Pillars of Creation NIRCam",
+  "found": 20,
+  "candidates": [
+   {
+    "title": "File:Pillars of Creation jwst-nircam-miri-pbudassi explanation.jpg",
+    "w": 2160,
+    "h": 1192,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Pillars_of_Creation_jwst-nircam-miri-pbudassi_explanation.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Pillars_of_Creation_jwst-nircam-miri-pbudassi_explanation.jpg/500px-Pillars_of_Creation_jwst-nircam-miri-pbudassi_explanation.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Pillars_of_Creation_jwst-nircam-miri-pbudassi_explanation.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Celestialobjects",
+    "credit": "Own work",
+    "date": "2022-10-29"
+   },
+   {
+    "title": "File:Hubble and Webb Showcase the Pillars of Creation (Side by Side) (weic2216d).tiff",
+    "w": 13560,
+    "h": 6551,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Hubble_and_Webb_Showcase_the_Pillars_of_Creation_%28Side_by_Side%29_%28weic2216d%29.tiff?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Hubble_and_Webb_Showcase_the_Pillars_of_Creation_%28Side_by_Side%29_%28weic2216d%29.tiff/lossy-page1-500px-Hubble_and_Webb_Showcase_the_Pillars_of_Creation_%28Side_by_Side%29_%28weic2216d%29.tiff.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Hubble_and_Webb_Showcase_the_Pillars_of_Creation_(Side_by_Side)_(weic2216d).tiff",
+    "license": "CC BY 4.0",
+    "artist": "NASA, ESA, CSA, STScI; J. DePasquale, A. Koekemoer, A. Pagan (STScI).",
+    "credit": "Hubble and Webb Showcase the Pillars of Creation (Side by Side)",
+    "date": "19 October 2022 (upl"
+   },
+   {
+    "title": "File:Hubble and Webb Showcase the Pillars of Creation (Side by Side) (weic2216d).jpeg",
+    "w": 13560,
+    "h": 6551,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Hubble_and_Webb_Showcase_the_Pillars_of_Creation_%28Side_by_Side%29_%28weic2216d%29.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Hubble_and_Webb_Showcase_the_Pillars_of_Creation_%28Side_by_Side%29_%28weic2216d%29.jpeg/500px-Hubble_and_Webb_Showcase_the_Pillars_of_Creation_%28Side_by_Side%29_%28weic2216d%29.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Hubble_and_Webb_Showcase_the_Pillars_of_Creation_(Side_by_Side)_(weic2216d).jpeg",
+    "license": "CC BY 4.0",
+    "artist": "NASA, ESA, CSA, STScI; J. DePasquale, A. Koekemoer, A. Pagan (STScI).",
+    "credit": "Hubble and Webb Showcase the Pillars of Creation (Side by Side)",
+    "date": "19 October 2022 (upl"
+   }
+  ]
+ },
+ "mammoth2": {
+  "chapter": "planet",
+  "query": "woolly mammoth restoration",
+  "found": 20,
+  "candidates": [
+   {
+    "title": "File:Woolly Mammoth-RBC.jpg",
+    "w": 2040,
+    "h": 1424,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/09/Woolly_Mammoth-RBC.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Woolly_Mammoth-RBC.jpg/500px-Woolly_Mammoth-RBC.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Woolly_Mammoth-RBC.jpg",
+    "license": "CC BY-SA 3.0",
+    "artist": "WolfmanSF",
+    "credit": "Own work",
+    "date": "2011-08-12"
+   },
+   {
+    "title": "File:Woolly mammoth Christman.jpg",
+    "w": 1624,
+    "h": 1033,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Woolly_mammoth_Christman.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Woolly_mammoth_Christman.jpg/500px-Woolly_mammoth_Christman.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Woolly_mammoth_Christman.jpg",
+    "license": "Public domain",
+    "artist": "Erwin S. Christman (died 1921-11-27 [1])",
+    "credit": "https://archive.org/details/menofoldstoneage00osbouoft/page/190/mode/2up",
+    "date": "1916"
+   },
+   {
+    "title": "File:Ice age fauna of northern Spain - Mauricio Antón.jpg",
+    "w": 2584,
+    "h": 1263,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Ice_age_fauna_of_northern_Spain_-_Mauricio_Ant%C3%B3n.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/Ice_age_fauna_of_northern_Spain_-_Mauricio_Ant%C3%B3n.jpg/500px-Ice_age_fauna_of_northern_Spain_-_Mauricio_Ant%C3%B3n.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Ice_age_fauna_of_northern_Spain_-_Mauricio_Ant%C3%B3n.jpg",
+    "license": "CC BY 2.5",
+    "artist": "Mauricio Antón",
+    "credit": "from Caitlin Sedwick (1 April 2008). \"What Killed the Woolly Mammoth?\". PLoS Biology 6 (4): e99. DOI:10.1371/journal.pbi",
+    "date": "circa 2004date QS:P,"
+   },
+   {
+    "title": "File:Woolly mammoths.jpg",
+    "w": 2377,
+    "h": 1723,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Woolly_mammoths.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Woolly_mammoths.jpg/500px-Woolly_mammoths.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Woolly_mammoths.jpg",
+    "license": "Public domain",
+    "artist": "Charles Robert Knight",
+    "credit": "http://www.uky.edu/OtherOrgs/KPS/poky/pages/pokych10.htm and https://archive.org/stream/menofoldstoneage00osborich#page/",
+    "date": "1915"
+   },
+   {
+    "title": "File:Woolly mammoths by Knight.jpg",
+    "w": 2000,
+    "h": 700,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/3/37/Woolly_mammoths_by_Knight.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Woolly_mammoths_by_Knight.jpg/500px-Woolly_mammoths_by_Knight.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Woolly_mammoths_by_Knight.jpg",
+    "license": "Public domain",
+    "artist": "Charles R. Knight",
+    "credit": "https://mm.fieldmuseum.org/bd850db6-9190-4628-be33-b7a500dd7338",
+    "date": "ca 1929[1]"
+   }
+  ]
+ },
+ "floating": {
+  "chapter": "planet",
+  "query": "floating city concept",
+  "found": 20,
+  "candidates": [
+   {
+    "title": "File:City at sea.jpg",
+    "w": 2880,
+    "h": 910,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/14/City_at_sea.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/City_at_sea.jpg/500px-City_at_sea.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:City_at_sea.jpg",
+    "license": "CC BY-SA 4.0",
+    "artist": "Floating City -City At Seas",
+    "credit": "Own work",
+    "date": "2021-01-16"
+   },
+   {
+    "title": "File:Bakahan & Manukan 2026-10-03 The Singing Cooks & Waiters Atbp. Pasay 01.jpg",
+    "w": 3150,
+    "h": 1534,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/45/Bakahan_%26_Manukan_2026-10-03_The_Singing_Cooks_%26_Waiters_Atbp._Pasay_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Bakahan_%26_Manukan_2026-10-03_The_Singing_Cooks_%26_Waiters_Atbp._Pasay_01.jpg/500px-Bakahan_%26_Manukan_2026-10-03_The_Singing_Cooks_%26_Waiters_Atbp._Pasay_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Bakahan_%26_Manukan_2026-10-03_The_Singing_Cooks_%26_Waiters_Atbp._Pasay_01.jpg",
+    "license": "CC BY 4.0",
+    "artist": "P1898",
+    "credit": "Own work",
+    "date": "2026-10-03"
+   },
+   {
+    "title": "File:Bakahan & Manukan 2026-10-03 The Singing Cooks & Waiters Atbp. Pasay 07.jpg",
+    "w": 3874,
+    "h": 2588,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Bakahan_%26_Manukan_2026-10-03_The_Singing_Cooks_%26_Waiters_Atbp._Pasay_07.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Bakahan_%26_Manukan_2026-10-03_The_Singing_Cooks_%26_Waiters_Atbp._Pasay_07.jpg/500px-Bakahan_%26_Manukan_2026-10-03_The_Singing_Cooks_%26_Waiters_Atbp._Pasay_07.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Bakahan_%26_Manukan_2026-10-03_The_Singing_Cooks_%26_Waiters_Atbp._Pasay_07.jpg",
+    "license": "CC BY 4.0",
+    "artist": "P1898",
+    "credit": "Own work",
+    "date": "2026-10-03"
+   },
+   {
+    "title": "File:Bakahan & Manukan 2026-10-03 The Singing Cooks & Waiters Atbp. Pasay 02.jpg",
+    "w": 3008,
+    "h": 1641,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Bakahan_%26_Manukan_2026-10-03_The_Singing_Cooks_%26_Waiters_Atbp._Pasay_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Bakahan_%26_Manukan_2026-10-03_The_Singing_Cooks_%26_Waiters_Atbp._Pasay_02.jpg/500px-Bakahan_%26_Manukan_2026-10-03_The_Singing_Cooks_%26_Waiters_Atbp._Pasay_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Bakahan_%26_Manukan_2026-10-03_The_Singing_Cooks_%26_Waiters_Atbp._Pasay_02.jpg",
+    "license": "CC BY 4.0",
+    "artist": "P1898",
+    "credit": "Own work",
+    "date": "2026-10-03"
+   },
+   {
+    "title": "File:Bakahan & Manukan 2026-10-03 The Singing Cooks & Waiters Atbp. Pasay 04.jpg",
+    "w": 4096,
+    "h": 2792,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Bakahan_%26_Manukan_2026-10-03_The_Singing_Cooks_%26_Waiters_Atbp._Pasay_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Bakahan_%26_Manukan_2026-10-03_The_Singing_Cooks_%26_Waiters_Atbp._Pasay_04.jpg/500px-Bakahan_%26_Manukan_2026-10-03_The_Singing_Cooks_%26_Waiters_Atbp._Pasay_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Bakahan_%26_Manukan_2026-10-03_The_Singing_Cooks_%26_Waiters_Atbp._Pasay_04.jpg",
+    "license": "CC BY 4.0",
+    "artist": "P1898",
+    "credit": "Own work",
+    "date": "2026-10-03"
+   }
+  ]
+ },
+ "hyperion": {
+  "chapter": "planet",
+  "query": "Gardens by the Bay Supertree aerial night",
+  "found": 2,
+  "candidates": [
+   {
+    "title": "File:Gardens by the Bay, Singapore (54150067279).jpg",
+    "w": 6016,
+    "h": 4016,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Gardens_by_the_Bay%2C_Singapore_%2854150067279%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Gardens_by_the_Bay%2C_Singapore_%2854150067279%29.jpg/500px-Gardens_by_the_Bay%2C_Singapore_%2854150067279%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Gardens_by_the_Bay,_Singapore_(54150067279).jpg",
+    "license": "CC0",
+    "artist": "Mustang Joe",
+    "credit": "Gardens by the Bay, Singapore",
+    "date": "Taken on 1 November "
+   },
+   {
+    "title": "File:Supertrees (35543679270).jpg",
+    "w": 5042,
+    "h": 3199,
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Supertrees_%2835543679270%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Supertrees_%2835543679270%29.jpg/500px-Supertrees_%2835543679270%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Supertrees_(35543679270).jpg",
+    "license": "CC BY 2.0",
+    "artist": "Ray in Manila",
+    "credit": "Supertrees",
+    "date": "6 July 2017, 14:58 ("
+   }
+  ]
+ }
+}

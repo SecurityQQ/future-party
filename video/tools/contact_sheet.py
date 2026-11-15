@@ -3,10 +3,12 @@ import json, os, subprocess, sys, html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+SET = os.environ.get("SET", "")
+SUF = "-" + SET if SET else ""
 
 
 def main(chapters):
-    data = json.load(open(os.path.join(ROOT, "assets", "candidates.json")))
+    data = json.load(open(os.path.join(ROOT, "assets", f"candidates{SUF}.json")))
     os.makedirs(os.path.join(ROOT, "snapshots"), exist_ok=True)
     for chap in chapters:
         rows = []
@@ -14,7 +16,7 @@ def main(chapters):
         for k in keys:
             cells = []
             for i, c in enumerate(data[k]["candidates"]):
-                p = os.path.join(ROOT, "assets", "candidates", k, f"{i}.jpg")
+                p = os.path.join(ROOT, "assets", f"candidates{SUF}", k, f"{i}.jpg")
                 if not os.path.exists(p):
                     continue
                 lic = html.escape(c["license"][:18])
@@ -25,9 +27,9 @@ def main(chapters):
                 ".c{width:300px;position:relative}.c img{width:300px;height:169px;object-fit:cover;display:block}"
                 ".c b{position:absolute;left:4px;top:4px;background:#000c;padding:1px 4px}"
                 ".c i{display:block;font-size:11px;color:#aaa}</style>" + "".join(rows) + "</body></html>")
-        hp = os.path.join(ROOT, "snapshots", f"sheet-{chap}.html")
+        hp = os.path.join(ROOT, "snapshots", f"sheet{SUF}-{chap}.html")
         open(hp, "w").write(page)
-        out = os.path.join(ROOT, "snapshots", f"sheet-{chap}.png")
+        out = os.path.join(ROOT, "snapshots", f"sheet{SUF}-{chap}.png")
         h = 30 + len(keys) * 200
         subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--hide-scrollbars", "--allow-file-access-from-files",
                         f"--window-size=1640,{h}", f"--screenshot={out}", "file://" + hp],
@@ -36,4 +38,4 @@ def main(chapters):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:] or ["city", "machines", "space"])
+    main(sys.argv[1:] or (["planet", "orbit", "beyond"] if SET else ["city", "machines", "space"]))

@@ -1,0 +1,25 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;overflow:hidden;background:#0b0b0d;font-family:Inter,sans-serif;color:#fff}
+    .line{position:absolute;left:192px;right:192px;text-align:center;font:600 60px/1.2 Inter,sans-serif}
+    .line span{display:inline-block;margin:0 .13em}
+    .big{font-family:'League Gothic',sans-serif;text-transform:uppercase;line-height:.9;letter-spacing:.02em}
+
+    .stack{position:absolute;left:192px;right:192px;top:250px;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center}
+    .ttl{font-size:330px;color:#fff}
+    .sub{font:700 34px/1.2 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#ff5315}
+    .st{font:500 34px/1.3 Inter,sans-serif;color:rgba(255,255,255,.8)}
+    .q{font:600 54px/1.2 Inter,sans-serif;margin-top:18px}
+  </style>
+  <div id="root" data-composition-id="end" data-width="1920" data-height="1080">
+    <div id="end-stack" class="stack clip" data-start="0" data-duration="4.0"><div class="big ttl" id="end-t">Further</div><div class="sub" id="end-s">Projection 2050 · the wall film, recut</div><div class="st" id="end-n">16 bold claims · 37 free images · a 75-second loop</div><div class="q" id="end-q">Which one will you build?</div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo('#end-t',{opacity:0,filter:'blur(12px)',scale:1.08},{opacity:1,filter:'blur(0px)',scale:1,duration:0.3,ease:'power4.out'},0.1);
+    tl.fromTo('#end-s',{opacity:0},{opacity:1,duration:0.2,ease:'power2.out'},0.5);
+    tl.fromTo('#end-n',{opacity:0},{opacity:1,duration:0.2,ease:'power2.out'},0.8);
+    tl.fromTo('#end-q',{opacity:0,y:16},{opacity:1,y:0,duration:0.25,ease:'power3.out'},1.4);
+    window.__timelines["end"] = tl;
+  </script>
+</template>

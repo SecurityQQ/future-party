@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>2050 in Futurists’ Tweets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: answer first, six findings with their numbers, then tweets by theme (verbatim + type), the people, limits and the queries.
+   English edition of the Russian page "2050 в твитах футуристов"; the original tweets were always in English. */
+:root {
+  --bg: #070708; --panel: #0e0e10; --fg: #ffffff; --fg-2: #d4d4d4; --muted: #a1a1a1;
+  --line: rgba(255,255,255,0.10); --line-2: rgba(255,255,255,0.20);
+  --accent: #ff5315; --accent-text: #ff6a33; --on-accent: #070708;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) { --bg: #ffffff; --panel: #f6f6f7; --fg: #070708; --fg-2: #262628; --muted: #737373; --line: #e5e5e5; --line-2: #cfcfd3; --accent: #ff5315; --accent-text: #c2410c; color-scheme: light; }
+}
+:root[data-theme="light"] { --bg: #ffffff; --panel: #f6f6f7; --fg: #070708; --fg-2: #262628; --muted: #737373; --line: #e5e5e5; --line-2: #cfcfd3; --accent: #ff5315; --accent-text: #c2410c; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+[hidden] { display: none !important; }
+a { color: inherit; text-decoration-color: var(--line-2); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+section { padding-block: 52px; border-top: 1px solid var(--line); }
+section h2 { font-size: clamp(24px, 3.2vw, 34px); letter-spacing: -0.02em; line-height: 1.15; font-weight: 700; }
+.sec-head { display: grid; gap: 10px; margin-bottom: 26px; max-width: 74ch; }
+.sec-head p { color: var(--fg-2); }
+header.hero { padding-block: 44px 40px; }
+.hero-grid { display: grid; gap: 22px; }
+.hero h1 { font-size: clamp(44px, 8vw, 96px); line-height: 0.95; letter-spacing: -0.045em; font-weight: 800; }
+.hero h1 span { color: var(--accent-text); }
+.lede { font-size: clamp(18px, 2vw, 21px); color: var(--fg-2); max-width: 64ch; }
+.lede strong { color: var(--fg); font-weight: 600; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 22px; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.facts b { color: var(--fg); font-weight: 500; }
+nav.toc { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; }
+nav.toc a { color: var(--muted); text-decoration: none; }
+nav.toc a:hover { color: var(--fg); }
+
+.findings { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0 32px; }
+.finding { display: grid; gap: 8px; padding: 22px 0; border-top: 1px solid var(--line); align-content: start; min-width: 0; }
+.finding .num { font: 700 clamp(32px, 4vw, 44px) var(--font); letter-spacing: -0.035em; line-height: 1; font-variant-numeric: tabular-nums; }
+.finding h3 { font-size: 18px; font-weight: 600; }
+.finding p { color: var(--fg-2); font-size: 15px; }
+.finding a.go { font-size: 13px; color: var(--muted); }
+
+.theme { padding-top: 8px; scroll-margin-top: 16px; }
+.theme + .theme { margin-top: 36px; }
+.theme > h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 4px; }
+.theme > p { color: var(--muted); font-size: 14px; margin-bottom: 10px; max-width: 74ch; }
+.tweets { display: grid; gap: 0; }
+.tw { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 8px 24px; padding: 18px 0; border-top: 1px solid var(--line); }
+.tw .who { display: grid; gap: 2px; align-content: start; }
+.tw .who b { font-weight: 600; }
+.tw .who .h { font: 400 13px var(--mono); color: var(--muted); }
+.tw .who .d { font: 400 12px var(--mono); color: var(--muted); }
+.tw .body { display: grid; gap: 8px; min-width: 0; }
+.tw .en { color: var(--fg); font-size: 17px; overflow-wrap: anywhere; }
+.tw .meta { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; font: 400 12px var(--mono); color: var(--muted); }
+.chip { font: 500 11px var(--mono); letter-spacing: 0.04em; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--fg-2); white-space: nowrap; }
+.chip.own { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.chip.cond { border-style: solid; }
+.chip.cite { border-style: dashed; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+
+.table-scroll { overflow-x: auto; border-top: 1px solid var(--line); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 760px; }
+th, td { text-align: left; vertical-align: top; padding: 11px 14px 11px 0; border-bottom: 1px solid var(--line); }
+th { font: 500 11px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+td b { font-weight: 600; }
+ul.gaps { margin: 0; padding-left: 20px; display: grid; gap: 10px; max-width: 80ch; color: var(--fg-2); }
+ol.src { margin: 0; padding-left: 26px; display: grid; gap: 4px; font-size: 14px; color: var(--fg-2); }
+ol.src li::marker { font: 12px var(--mono); color: var(--muted); }
+code { font-family: var(--mono); font-size: 13px; color: var(--fg-2); overflow-wrap: anywhere; }
+footer { padding-block: 28px 60px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+@media (max-width: 640px) { .tw { grid-template-columns: 1fr; gap: 6px; } section { padding-block: 40px; } }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <span class="eyebrow">Research · X (Twitter) · data as of 12–13 November 2026</span>
+    <h1>What <span>2050</span> looks like<br>to futurists on X</h1>
+    <p class="lede">Put together, the most prominent futurists and technologists on X say that by 2050 <strong>expertise and labour will be almost free</strong> (AI doctors, AI tutors, a billion robots), <strong>energy will be mostly clean</strong>, <strong>the population will be older</strong>, and the internet will be used mostly by <strong>AI agents</strong>. The most detailed picture is Vinod Khosla’s 14 predictions (January 2026). Many statements are conditional (“could”, “if we have time”), so each one carries a label.</p>
+    <div class="facts" id="facts"></div>
+    <nav class="toc" aria-label="Sections"><a href="#findings">Findings</a><a href="#evidence">Tweets by theme</a><a href="#people">Who they are</a><a href="#gaps">Limits</a><a href="#method">How we searched</a></nav>
+  </div>
+</header>
+
+<section id="findings">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Findings</span><h2>Six findings</h2></div>
+    <div class="findings">
+      <article class="finding"><span class="num">14</span><h3>Khosla has the most detailed list</h3><p>Fourteen predictions for 2050: near-free AI doctors and AI tutors, a billion robots, more than a billion people “programming” in plain language, tens of billions of agents on the internet, fusion boilers in place of coal and gas ones, Mach 5 planes. He calls it “the world we can create”.</p><a class="go" href="#t-khosla">To the tweets ↓</a></article>
+      <article class="finding"><span class="num">2–3×</span><h3>More energy will be needed, and it will be cleaner</h3><p>Ramez Naam expects global electricity demand to grow two to three times by 2050. Diamandis agrees with Sam Altman that by 2050 “we won’t be burning many fossil fuels”. Khosla bets on fusion boilers.</p><a class="go" href="#t-energy">To the tweets ↓</a></article>
+      <article class="finding"><span class="num">≈2030</span><h3>Strong AI arrives long before 2050</h3><p>Daniel Kokotajlo moved his AGI forecast “from ~2050 to 2030”. Diamandis relays Kurzweil: AGI in 2029, the singularity in the 2040s. Khosla: “Maybe 80% of 80% of all jobs by 2050 or much earlier?”</p><a class="go" href="#t-ai">To the tweets ↓</a></article>
+      <article class="finding"><span class="num">1 in 5</span><h3>The world gets older</h3><p>Musk: the real issue by 2050 will be an “aging &amp; declining world population”, not overpopulation. Diamandis: by 2050 one person in five will be over 60. Kevin Kelly quotes The Economist: 2.1 billion grandparents, 22% of humanity.</p><a class="go" href="#t-demo">To the tweets ↓</a></article>
+      <article class="finding"><span class="num">~2050</span><h3>A city on Mars, under conditions</h3><p>Musk hopes a self-sustaining city on Mars is built “by ~2050”: ten years of making 800 to 1,000 Raptor engines a year, then about twenty years to build the city itself.</p><a class="go" href="#t-space">To the tweets ↓</a></article>
+      <article class="finding"><span class="num">web</span><h3>Life and society</h3><p>Kelly: by 2050 the web becomes “an ever-present type of conversation”. Balaji: we may no longer know what distant people look like. Noah Smith: America will be “a really nice country”. Harari: a carbon-neutral economy by 2050 if 2% of world GDP is invested every year.</p><a class="go" href="#t-life">To the tweets ↓</a></article>
+    </div>
+  </div>
+</section>
+
+<section id="evidence">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Evidence</span><h2>Tweets by theme, word for word</h2><p>Each tweet is quoted as posted; a few are excerpts, marked with “…”. Engagement figures are as of the export.</p></div>
+    <div class="legend"><span class="chip own">own forecast</span><span class="chip cond">conditional / “could”</span><span class="chip cite">cites someone else’s data or scenario</span></div>
+    <div id="themes"></div>
+  </div>
+</section>
+
+<section id="people">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Who they are</span><h2>The authors and their audience on X</h2><p>Bios are copied from each X profile; followers as of 12–13 November 2026.</p></div>
+    <div class="table-scroll"><table><thead><tr><th>Author</th><th>Profile</th><th>Followers</th><th>2050 tweets here</th></tr></thead><tbody id="people-body"></tbody></table></div>
+  </div>
+</section>
+
+<section id="gaps">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Limits</span><h2>What to keep in mind</h2></div>
+    <ul class="gaps">
+      <li><b>The choice of “best futurists” is an editorial one:</b> well-known people who think about the long-term future for a living or build the technology, and who had tweets about 2050 specifically. Follower counts show reach, not how accurate anyone’s forecasts are.</li>
+      <li><b>Many statements are not forecasts in the strict sense.</b> Khosla calls his list “the world we can create”; Musk writes “we need to” about the transport fleet; Harari and Ritchie write “if”. Diamandis often cites UN figures or summarises Kurzweil. Each tweet is labelled by type.</li>
+      <li><b>No tweets about 2050 were found</b> from Jane McGonigal, Tomas Pueyo or Sam Altman (Altman appears only through Diamandis). Kurzweil’s own tweets did not come up, only Diamandis’s summary of them. The first search missed Amy Webb and Gerd Leonhard, partly because it used the wrong handle for Leonhard (he posts as @gleonhard). A second search on 13 November found a few of their 2050 tweets: a warning about AGI risk from Leonhard, and from Webb a question about someone else’s book and a thought about the president of 2050. They are covered in the Missing topics section of <a href="https://claude.ai/artifact/P2jenFADX1YbeZjJm9eJpW" target="_blank" rel="noopener">Futurists on 2050</a>.</li>
+      <li><b>Russian-language X</b> had no substantive futurist predictions for 2050, only the UN, the media and stray posts.</li>
+      <li><b>Search coverage.</b> X search through the API (Top and Latest) can miss older or less visible tweets. Texts and figures come straight from the API responses.</li>
+      <li><b>Khosla’s list</b> was posted on X on 5 January 2026, but by his own account he made it “two years ago at TED and at our CEO conference”.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="method">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">How we searched</span><h2>Queries run on X</h2><p>All run on 12–13 November 2026 through X search (hyperx API). Each profile was checked with a separate request.</p></div>
+    <ol class="src" id="queries"></ol>
+  </div>
+</section>
+
+<footer><div class="wrap">2050 in Futurists’ Tweets · research, November 2026 · English edition of the Russian page <a href="https://claude.ai/artifact/G2pBtXXsKGaz5rDnuL5Zmn" target="_blank" rel="noopener">2050 в твитах футуристов</a>. The full English research, with consensus, particular ideas and missing topics, is <a href="https://claude.ai/artifact/P2jenFADX1YbeZjJm9eJpW" target="_blank" rel="noopener">Futurists on 2050</a>. Every link opens the original tweet on X.</div></footer>
+
+<script>
+(function () {
+  var PEOPLE = {
+    vkhosla: ["Vinod Khosla", "entrepreneurship zealot, grounded technology possibilist, believer in the power of ideas, passionate about sustainability & impact", 780701],
+    elonmusk: ["Elon Musk", "—", 241039468],
+    PeterDiamandis: ["Peter H. Diamandis", "Exec. Chairman @XPRIZE @fountainlife_hq (and others) Working to extend human healthspan. Curator @Abundance360 & @moonshots_pod", 423267],
+    kevin2kelly: ["Kevin Kelly", "Senior Maverick at Wired, author of bestseller book, The Inevitable. Also Cool Tool maven, Recomendo chief, and radical optimist.", 137017],
+    ramez: ["Ramez Naam", "Climate and clean energy investor. Author of 5 books. Energy & Environment co-chair @SingularityU.", 62645],
+    balajis: ["Balaji", "Author of the Network State. Founder of the Network School.", 2267775],
+    Noahpinion: ["Noah Smith", "Writes about economics, posts about rabbits.", 956877],
+    harari_yuval: ["Yuval Noah Harari", "Historian and bestselling author of 'Sapiens', 'Homo Deus', '21 Lessons for the 21st Century', 'Nexus'…", 664514],
+    naval: ["Naval", "Incompressible", 4158755],
+    DKokotajlo: ["Daniel Kokotajlo", "—", 60229],
+    _HannahRitchie: ["Hannah Ritchie", "Deputy Editor @OurWorldinData / Researcher at @UniofOxford", 79084],
+    futuryst: ["Stuart Candy", "Experiential futurist. Distinguished Visiting Professor @TecdeMonterrey / Advisor @NASAJPL / Director @sitlab", 11271]
+  };
+
+  // [handle, tweet id, date, type, verbatim text, engagement and notes]
+  var THEMES = [
+    { id: "t-khosla", h: "Vinod Khosla’s 14 predictions for 2050", p: "A thread from 5 January 2026. Its first tweet has 1,106 likes, 1,554 bookmarks and 265,000 views. The last tweet links to the Khosla Ventures article “TED: 12 predictions for the future of technology”.", items: [
+      ["vkhosla", "2008225808637374847", "5 Jan 2026", "own", "Here are my predictions for 2050 (the world we can create) two years ago at TED and at our CEO conference:", "1,106 likes · 265,170 views"],
+      ["vkhosla", "2008225810071875924", "5 Jan 2026", "own", "#1: Expertise will be near free: We will be capable of having near free AI doctors for every person & AI tutors for every child, 24x7", "207 likes"],
+      ["vkhosla", "2008225811414007865", "5 Jan 2026", "own", "#2: Labor will be near free: We will have a billion bipedal (and other) robots freeing humans from the servitude of undesirable jobs", "150 likes"],
+      ["vkhosla", "2008225812693311533", "5 Jan 2026", "own", "#3: Computer use will grow expansively: here will be a billion+ programmers all “programming” in human language, dramatically increasing the scope of computers. Computers will adapt to humans, not humans to computers", "132 likes"],
+      ["vkhosla", "2008225814127772024", "5 Jan 2026", "own", "#4: AI will play a large role in entertainment & design: Music and entertainment will be plentiful & personalized for you & your mood! Diversity of content & creativity will increase The celebrity-fan relationship won’t change", "97 likes"],
+      ["vkhosla", "2008225815520309718", "5 Jan 2026", "own", "#5: Scientists will be supercharged: AI scientists, working alone or with humans, will become super scientists, able to 10x or 100x their capability, creativity, and volume of research", "111 likes"],
+      ["vkhosla", "2008225817030250946", "5 Jan 2026", "own", "#6: Internet access will be mostly by agents: Most consumer access of the internet will be agents acting for consumers doing tasks and fending off marketers and bots. Tens of billions of agents on the internet will be normal", "102 likes"],
+      ["vkhosla", "2008225818552750467", "5 Jan 2026", "own", "#7: From the practice to the science of medicine: We will be capable of providing precision care based on patients’ -omics, as well as AI models for each individual, enabling simulation of each body for therapeutics, dosages, etc", "80 likes"],
+      ["vkhosla", "2008225819987243296", "5 Jan 2026", "own", "#8: We will have new food & fertilizers: We will have much better alternate protein production to replace traditional animal protein, & “green” fertilizer. And taste will far exceed that of traditional cows!", "74 likes"],
+      ["vkhosla", "2008225821459444160", "5 Jan 2026", "own", "#9: Manufacturing and bio manufacturing: We will have text to product manufacturing capability enabling hyper-personalization and democratization Manufacturing and bio manufacturing will be intelligent", "76 likes"],
+      ["vkhosla", "2008225822751289796", "5 Jan 2026", "cond", "#10: Cars could be displaced in cities: We could replace majority of cars in cities with personal autonomous transit as on-demand, affordable, public transit, increasing street throughput dramatically", "73 likes"],
+      ["vkhosla", "2008225824051429868", "5 Jan 2026", "own", "#11: Flying will be faster: We will have Mach 5 planes that get us from NYC to London in 90 minutes – on sustainable aviation fuel, making the world closer!", "73 likes"],
+      ["vkhosla", "2008225825485975631", "5 Jan 2026", "own", "#12: There will be clean, dispatchable electric power: By 2050, fusion boilers will retrofit and replace coal and natural gas boilers reducing the need to build whole new fusion plants. Superhot geothermal >400C is also a real alternative", "59 likes"],
+      ["vkhosla", "2008225827159441623", "5 Jan 2026", "own", "#13: Resources will be plentiful: We will discover more natural resources than we consume & prove resource doomers wrong on lithium, cobalt, copper…", "62 likes"],
+      ["vkhosla", "2008225828476514788", "5 Jan 2026", "cond", "#14: Carbon will have solutions … if we have time: Carbon emissions could be a smaller issue because entrepreneurs will develop & scale better technologies for cement, steel, agriculture, transportation, power production, DAC, etc", "75 likes"],
+      ["vkhosla", "1954370807553200168", "10 Aug 2025", "own", "I hope to retire by 2050, health permitting! Hopefully the world will be better place thru technology benefiting humanity! Lowest income brackets will make more progress by then in lifestyle & resources than they have made from 1950 to today! Free healthcare, free education, free legal services so they can access their rights, cheaper food ....", "782 likes · 102,147 views"]
+    ]},
+    { id: "t-energy", h: "Energy", p: "More electricity and less fossil fuel, and an argument with the IEA’s conservative scenarios.", items: [
+      ["ramez", "1593366144391315456", "17 Nov 2022", "own", "A more reasonable forecast is 2-3x global electricity demand by 2050, and ~5x by 2100.", "reply in a thread · excerpt"],
+      ["ramez", "1215612795447734273", "10 Jan 2020", "cite", "I also expect a very meaningful global decline by 2040, inline with BNEF's forecast of 50% coal demand reduction by 2050.", "reply in a thread · excerpt · BNEF is BloombergNEF"],
+      ["ramez", "1227900125248286720", "13 Feb 2020", "own", "Solar is already cheaper than most climate models think it will be by 2050.", "361 likes"],
+      ["ramez", "1989361113046327793", "14 Nov 2025", "own", "The IEA isn't even trying any more. The CPS scenario is just silly. EVs stop growing outside China and Europe. Solar growth is (once again) pretty much flat through 2050. This is not a serious assessment.", "73 likes · 16,534 views · CPS is the IEA’s Current Policies Scenario"],
+      ["PeterDiamandis", "1843758648067047496", "8 Oct 2024", "own", "At the speed at which we’re developing new energy projects, I agree with @sama that we won’t be burning many fossil fuels by 2050!", "100 likes · @sama is Sam Altman"],
+      ["vkhosla", "1730320854796710179", "30 Nov 2023", "cond", "Goal is to replace all coal and natural gas boilers with fusion “boilers” by 2050!", "35 likes · excerpt"],
+      ["elonmusk", "1276221517932552192", "25 Jun 2020", "cond", "In my opinion, we need to convert >80% of the global road, sea & air fleet to renewables by 2050.", "3,445 likes · excerpt"],
+      ["_HannahRitchie", "1321098819627552768", "27 Oct 2020", "cite", "The @BloombergNEF Energy Outlook 2020 is out. This is how global electricity looks to 2050 in its transition scenario. → Wind & solar PV increase from 9% to 56% → Nuclear, hydro & other renewables supply 20% → Fossil fuels supply 24%", "22 likes"]
+    ]},
+    { id: "t-ai", h: "AI and work", p: "In their timelines, strong AI arrives well before 2050.", items: [
+      ["DKokotajlo", "1843665423075815526", "8 Oct 2024", "own", "Yes, in 2020, when my AGI timelines collapsed from ~2050 to 2030, due to seeing the scaling laws and GPT3 and the Bio Anchors report.", "reply in a thread"],
+      ["PeterDiamandis", "2013740311214706720", "20 Jan 2026", "cite", "Ray Kurzweil has been predicting this moment for 30 years, and we're at the cusp of it: AGI by 2029, followed by a singularity in the 2040s where machine–human hybrids trigger a post‑human intelligence explosion. -- Robotics finally crosses the real-world barrier in 2026–27 -- 1000× intelligence jump by 2045, driven by human–AI integration -- Longevity escape velocity by ~2032 -- Biology becomes computable", "2,419 likes · 270,265 views · summarising Kurzweil"],
+      ["vkhosla", "1639774163413127170", "25 Mar 2023", "cond", "But no question much of economically valuable human jobs will be able to be done by an AI, if we allow them to be done. Maybe 80% of 80% of all jobs by 2050 or much earlier? Nations that allow this will win", "28 likes · excerpt"],
+      ["vkhosla", "1720502568806416756", "3 Nov 2023", "own", "The nature of technology’s exponential curve is non-intuitive for humans; the capabilities of smart technologies in 2050 (hardware, software, tests) are hard to imagine, just as today’s smartphones were unimaginable 20 years ago.", "29 likes · excerpt"],
+      ["naval", "1044622979974410240", "25 Sep 2018", "own", "[In 2050] “artificial intelligence can code software far better than humans” That’s like saying an AI can write fiction, create art, and think better than humans. An AI that can create better software is an AI that runs the world, which makes the entire article irrelevant.", "192 likes · reply in a thread with @harari_yuval · the quoted words are from the article he is arguing with"]
+    ]},
+    { id: "t-demo", h: "Population", p: "Almost all of them agree on one thing: the world gets older.", items: [
+      ["elonmusk", "1141977875567919104", "21 Jun 2019", "own", "Real issue will an aging & declining world population by 2050, *not* overpopulation. Randers estimate far more accurate than UN imo", "5,604 likes"],
+      ["PeterDiamandis", "1790163780032155850", "13 May 2024", "cite", "By 2050, 1 in 5 people will be over 60. We need breakthroughs for healthy aging.", "84 likes · excerpt"],
+      ["PeterDiamandis", "942528329818693632", "17 Dec 2017", "cite", "By 2050, two-thirds of the population, more than 6 billion people, are expected to live in urbanized areas.", "174 likes · excerpt"],
+      ["kevin2kelly", "1614661104780836868", "15 Jan 2023", "cite", "\"There are 1.5 billion grandparents in the world, up from 0.5 billion in 1960. As a share of the population they have risen from 17% to 20%. By 2050 there will be 2.1 billion grandparents (making up 22% of humanity).\" Grandparents make better children.", "71 likes · quoting The Economist"]
+    ]},
+    { id: "t-space", h: "Space", p: "Mars is Elon Musk’s main 2050.", items: [
+      ["elonmusk", "1413911893316603908", "10 Jul 2021", "cond", "Roughly 800 to 1000 per year. That’s about what’s needed over ten years to create the fleet to build a self-sustaining city on Mars. City itself probably takes roughly 20 years, so hopefully it is built by ~2050.", "4,623 likes · “800 to 1000 per year” refers to Raptor engines"],
+      ["elonmusk", "1110329210332053504", "25 Mar 2019", "cond", "It’s possible to make a self-sustaining city on Mars by 2050, if we start in 5 years & take 10 orbital synchronizations", "27,750 likes"]
+    ]},
+    { id: "t-life", h: "Life, the web and society", items: [
+      ["kevin2kelly", "716656523762466817", "3 Apr 2016", "own", "By 2050 we’ll come to think of the web as an ever-present type of conversation. #theinevitable", "19 likes"],
+      ["kevin2kelly", "715992156771643392", "1 Apr 2016", "own", "The web in 2050 won’t be a better web, just as the first version of the web was not better TV with more channels. #theinevitable", "18 likes"],
+      ["balajis", "1297613412957003776", "23 Aug 2020", "cond", "Thesis: we are in an intermediate era where you can easily google strangers and find out what they look like. What’s coming is a hall-of-mirrors of AI avatars and virtual reality. On the other side, by 2050 or so, you may not know what distant people look like anymore.", "232 likes"],
+      ["Noahpinion", "1548188654308274178", "16 Jul 2022", "own", "I think by 2050, America will be a really nice country and a great place to live, and people will largely have forgotten the current era.", "1,770 likes · 506 replies"],
+      ["harari_yuval", "1483751636048744449", "19 Jan 2022", "cond", "…this would be enough to prevent catastrophic climate change. That’s less than what politicians spent on the military in 2020. And it’s the annual investment that can get us to a carbon-neutral economy by 2050.", "105 likes · continues a tweet with 1,096 likes; “this” is investing 2% of world GDP a year in green technology"],
+      ["_HannahRitchie", "1463982122704773125", "25 Nov 2021", "cond", "If we were able to close yield gaps we would prevent almost all habitat loss in 2050.", "30 likes · excerpt"],
+      ["kevin2kelly", "1330187922511945736", "21 Nov 2020", "cite", "My former Wired colleague @peteleyden is launching a bold vision of what a desirable future in 2050 might look like. I find it plausible and inspiring.", "81 likes"],
+      ["futuryst", "692445340302184448", "27 Jan 2016", "cite", "In this 2050, broccoli, bananas and coffee are no longer readily available @OCAD #TimeMachine #FoodFutures", "11 likes · caption from an experiential futures scenario at OCAD University: a scenario, not a forecast"]
+    ]}
+  ];
+
+  var QUERIES = [
+    "2050 (from:kevin2kelly OR from:amywebb OR from:avantgame OR from:futuryst OR from:PeterDiamandis OR from:ramez OR from:gerdleonhard OR from:tomcheesewright OR from:rossdawson OR from:michiokaku)",
+    "2050 (from:raykurzweil OR from:aubreydegrey OR from:harari_yuval OR from:BillGates OR from:tomaspueyo OR from:balajis OR from:DKokotajlo OR from:avantgame OR from:amywebb OR from:futuryst)",
+    "2050 from:elonmusk min_faves:2000",
+    "futurist \"by 2050\" min_faves:300 -filter:retweets",
+    "2050 (from:vkhosla OR from:sama OR from:DarioAmodei OR from:demishassabis OR from:kaifulee OR from:naval OR from:pmarca OR from:Noahpinion OR from:_HannahRitchie OR from:MaxCRoser)",
+    "(2045 OR 2050) (from:raykurzweil OR from:PeterDiamandis) min_faves:50",
+    "\"in 2050\" OR \"by 2050\" prediction future min_faves:3000 -filter:retweets lang:en",
+    "conversation_id:2008225808637374847 from:vkhosla",
+    "2050 (from:gerdleonhard OR from:tomaspueyo OR from:sama OR from:kevin2kelly OR from:rossdawson OR from:bryanalexander) -filter:replies",
+    "2050 from:sama · 2050 from:kevin2kelly · 2050 from:tomaspueyo",
+    "\"2050\" футуролог OR \"в 2050 году\" прогноз min_faves:30 lang:ru"
+  ];
+
+  var TYPE = { own: ["own", "own forecast"], cond: ["cond", "conditional / “could”"], cite: ["cite", "cites someone else’s data or scenario"] };
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function fmt(n) { return Number(n).toLocaleString("en-US"); }
+  var count = {}, total = 0;
+  document.getElementById("themes").innerHTML = THEMES.map(function (t) {
+    return '<div class="theme" id="' + t.id + '"><h3>' + esc(t.h) + "</h3>" + (t.p ? "<p>" + esc(t.p) + "</p>" : "") + '<div class="tweets">' +
+      t.items.map(function (r) {
+        total++; count[r[0]] = (count[r[0]] || 0) + 1;
+        var p = PEOPLE[r[0]], ty = TYPE[r[3]];
+        return '<article class="tw"><div class="who"><b>' + esc(p[0]) + '</b><span class="h">@' + esc(r[0]) + '</span><span class="d">' + esc(r[2]) + "</span></div>" +
+          '<div class="body"><p class="en">' + esc(r[4]) + "</p>" +
+          '<div class="meta"><span class="chip ' + ty[0] + '">' + ty[1] + "</span><span>" + esc(r[5]) + '</span><a href="https://x.com/' + r[0] + "/status/" + r[1] + '" target="_blank" rel="noopener">Open on X ↗</a></div></div></article>';
+      }).join("") + "</div></div>";
+  }).join("");
+  document.getElementById("people-body").innerHTML = Object.keys(PEOPLE).map(function (k) {
+    var p = PEOPLE[k];
+    return "<tr><td><b>" + esc(p[0]) + '</b><br><a href="https://x.com/' + k + '" target="_blank" rel="noopener">@' + esc(k) + "</a></td><td>" + esc(p[1]) + '</td><td class="num">' + fmt(p[2]) + '</td><td class="num">' + (count[k] || 0) + "</td></tr>";
+  }).join("");
+  document.getElementById("queries").innerHTML = QUERIES.map(function (q) { return "<li><code>" + esc(q) + "</code></li>"; }).join("");
+  document.getElementById("facts").innerHTML = "<span><b>" + total + "</b> tweets</span><span><b>" + Object.keys(PEOPLE).length + "</b> authors</span><span><b>" + QUERIES.length + "</b> X queries</span><span>2016–2026</span>";
+})();
+</script>
+</body>
+</html>

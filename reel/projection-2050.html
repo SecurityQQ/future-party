@@ -1,0 +1,862 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Projection 2050</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a projection-room cut sheet. Hero = a "movie barcode" of every film's palette; then the reel (3 blocks of clips with keep/drop), cut sheets per film, and the research behind the picks. Dark-first (varg look), light supported. */
+:root{
+  --bg:#070708; --raised:#0e0e10; --fg:#ffffff; --fg-2:#d6d6d6; --muted:#a1a1a1;
+  --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.20);
+  --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#ff6a33; --accent-soft:rgba(255,83,21,.13);
+  --dot:#5c5c62; --pos:#67fc5c; --warn:#ffad31; --idle:#a1a1a1;
+  --font:"Aeonik","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --r:10px; --r-s:6px;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#ffffff; --raised:#f6f6f6; --fg:#070708; --fg-2:#2c2c30; --muted:#737373;
+    --line:#e5e5e5; --line-2:#cfcfcf;
+    --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#c63a05; --accent-soft:rgba(255,83,21,.10);
+    --dot:#b9b9bd; --pos:#16883a; --warn:#a35f00; --idle:#737373;
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#ffffff; --raised:#f6f6f6; --fg:#070708; --fg-2:#2c2c30; --muted:#737373;
+  --line:#e5e5e5; --line-2:#cfcfcf;
+  --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#c63a05; --accent-soft:rgba(255,83,21,.10);
+  --dot:#b9b9bd; --pos:#16883a; --warn:#a35f00; --idle:#737373;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--font);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+section{padding-block:64px;border-top:1px solid var(--line)}
+.eyebrow{font:500 12px/1.3 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0}
+h1{font-size:clamp(46px,9vw,112px);line-height:.92;letter-spacing:-.05em;font-weight:800;margin:18px 0 0;text-wrap:balance}
+h1 .yr{color:var(--accent)}
+h2{font-size:clamp(26px,3.6vw,40px);line-height:1.08;letter-spacing:-.035em;font-weight:700;margin:10px 0 0;text-wrap:balance}
+h3{margin:0;text-wrap:balance}
+.lead{font-size:clamp(18px,2.1vw,22px);line-height:1.5;color:var(--fg-2);max-width:62ch;margin:28px 0 0}
+.lead b{color:var(--fg);font-weight:600}
+.note{color:var(--muted);max-width:68ch;margin:14px 0 0;font-size:15px}
+.sec-head{display:grid;gap:4px;margin-bottom:32px;max-width:780px}
+.sec-head p.note{margin-top:10px}
+nav.top{display:flex;flex-wrap:wrap;gap:6px 18px;padding-block:18px;font:500 13px/1 var(--mono);letter-spacing:.04em}
+nav.top a{text-decoration:none;color:var(--muted)}
+nav.top a:hover{color:var(--fg)}
+nav.top .brand{color:var(--fg);margin-right:auto}
+
+/* Hero */
+.hero{padding-block:40px 56px;border-top:0}
+.stats{display:flex;flex-wrap:wrap;gap:10px 36px;margin-top:28px}
+.stat{display:grid;gap:2px}
+.stat b{font-size:clamp(28px,3.4vw,40px);font-weight:750;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.stat:first-child b{color:var(--accent)}
+.stat span{font:400 12px/1.4 var(--mono);color:var(--muted);letter-spacing:.03em}
+.barcode{display:flex;gap:3px;height:clamp(84px,13vw,150px);margin-top:40px}
+.bc{flex:1;display:flex;min-width:0;text-decoration:none;border-radius:2px;overflow:hidden;transform-origin:bottom;animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.bc span{flex:1}
+.bc:hover,.bc:focus-visible{outline:2px solid var(--fg);outline-offset:2px}
+@keyframes rise{from{transform:scaleY(.55)}to{transform:scaleY(1)}}
+.bc-cap{display:flex;justify-content:space-between;gap:12px;margin-top:10px;font:400 12px/1.4 var(--mono);color:var(--muted)}
+.bc-cap span:nth-child(2){text-align:center}
+
+/* Picks status + tools */
+.toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-bottom:26px;padding:12px 14px;border:1px solid var(--line);border-radius:var(--r)}
+.toolbar .pstat{font-size:14px;color:var(--fg-2);margin-right:auto;min-width:0}
+.toolbar .pstat b{color:var(--fg);font-weight:600}
+.btn{font:500 14px/1 var(--font);color:var(--fg);background:transparent;border:1px solid var(--line-2);border-radius:999px;padding:10px 14px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn:hover{border-color:var(--fg)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#070708}
+.btn.primary:hover{background:var(--accent-hot);border-color:var(--accent-hot)}
+.copybox{width:100%;min-height:160px;margin-top:10px;font:400 12.5px/1.5 var(--mono);background:var(--raised);color:var(--fg-2);border:1px solid var(--line);border-radius:var(--r-s);padding:10px}
+
+/* Reel blocks */
+.reel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+@media (max-width:980px){.reel{grid-template-columns:1fr}}
+.block{border-top:2px solid var(--fg);padding-top:16px;min-width:0;display:flex;flex-direction:column}
+.block h3{font-size:21px;letter-spacing:-.02em}
+.block .dur{font:400 12px var(--mono);color:var(--muted);margin-top:4px}
+.block ol{margin:14px 0 0;padding:0;list-style:none;counter-reset:s}
+.block .play{margin-top:16px;align-self:flex-start}
+.block .pcount{font:400 12px var(--mono);color:var(--muted);margin-top:8px}
+
+/* Clip rows (shared by reel and cut sheets) */
+.clip{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 10px;padding:11px 0;border-bottom:1px solid var(--line);align-items:start}
+.block .clip{counter-increment:s;grid-template-columns:26px minmax(0,1fr) auto}
+.block .clip::before{content:counter(s,decimal-leading-zero);font:400 12px/1.9 var(--mono);color:var(--muted)}
+.clip .what{min-width:0;font-size:14.5px;line-height:1.45;color:var(--fg-2)}
+.clip .what b{color:var(--fg);font-weight:600}
+.clip .what a.watch{color:var(--fg);text-decoration:none;font-weight:600}
+.clip .what a.watch:hover{color:var(--accent-ink)}
+.clip .src{display:block;font:400 12px/1.5 var(--mono);color:var(--muted);margin-top:2px;overflow-wrap:anywhere}
+.clip .cnote{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.src .kind{display:inline-block;font:500 10.5px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;padding:3px 5px;border-radius:4px;border:1px solid var(--line-2);color:var(--fg-2);margin-right:6px;vertical-align:1px}
+.src .kind.off{border-color:var(--accent);color:var(--accent-ink)}
+.kd{display:flex;gap:4px}
+.kd button{font:500 12px/1 var(--mono);letter-spacing:.03em;padding:7px 9px;border-radius:6px;border:1px solid var(--line-2);background:transparent;color:var(--fg-2);cursor:pointer}
+.kd button:hover{border-color:var(--fg)}
+.kd button.k[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.kd button.d[aria-pressed="true"]{background:transparent;color:var(--muted);border-color:var(--muted);text-decoration:line-through}
+.clip.dropped .what{opacity:.45}
+.clip.kept .what a.watch::after{content:" · kept";color:var(--accent-ink);font:500 11px var(--mono);letter-spacing:.04em}
+.clip .noteinp{grid-column:1/-1;width:100%;font:400 13px/1.3 var(--font);color:var(--fg-2);background:transparent;border:0;border-bottom:1px dashed var(--line-2);padding:4px 0}
+.clip .noteinp::placeholder{color:var(--muted)}
+.ro .kd button,.ro .noteinp{pointer-events:none;opacity:.6}
+
+/* Answer */
+.answer{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:48px;margin-top:8px}
+@media (max-width:860px){.answer{grid-template-columns:1fr;gap:36px}}
+.core{list-style:none;margin:18px 0 0;padding:0;display:grid}
+.core li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.core li:first-child{border-top:1px solid var(--line)}
+.core a{font-weight:650;font-size:18px;text-decoration:none;letter-spacing:-.01em}
+.core a:hover{color:var(--accent-ink)}
+.core .why{grid-column:1/-1;color:var(--muted);font-size:14.5px}
+.pb{font:500 13px/1.6 var(--mono);color:var(--fg-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.pb i{font-style:normal;color:var(--muted)}
+.wall-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.wall-list a{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line-2);border-radius:999px;text-decoration:none;font-size:14.5px}
+.wall-list a:hover{border-color:var(--fg)}
+.wall-list .sw{display:inline-flex;width:28px;height:10px;border-radius:2px;overflow:hidden}
+.wall-list .sw b{flex:1}
+.method{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:14.5px}
+.method strong{color:var(--fg-2);font-weight:600}
+
+/* Findings */
+.findings{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+@media (max-width:900px){.findings{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.findings{grid-template-columns:1fr}}
+.fd{padding:26px 24px 28px 0;border-bottom:1px solid var(--line);display:grid;gap:10px;align-content:start}
+.fd .num{font-size:clamp(40px,5vw,60px);font-weight:750;letter-spacing:-.045em;line-height:1;font-variant-numeric:tabular-nums}
+.fd.key .num{color:var(--accent)}
+.fd p{margin:0;color:var(--fg-2);font-size:15.5px;max-width:42ch}
+.fd .srcl{font:400 12px/1.4 var(--mono);color:var(--muted)}
+.fd .srcl a{color:var(--muted)}
+
+/* Chart */
+.chart-box{position:relative;overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);padding:8px 4px 4px}
+.chart-box svg{display:block;width:100%;min-width:660px;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin:0 0 14px;font-size:14px;color:var(--fg-2)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.ax{stroke:var(--line);stroke-width:1}
+.ax-strong{stroke:var(--line-2)}
+.tick{fill:var(--muted);font:400 12px var(--mono)}
+.ax-title{fill:var(--muted);font:500 12px var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.quad{fill:var(--accent-soft)}
+.quad-label{fill:var(--accent-ink);font:500 12px var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.pt circle{stroke:var(--bg);stroke-width:2;transition:r .15s}
+.pt.gold circle{fill:var(--accent)}
+.pt.rest circle{fill:var(--dot)}
+.pt text{font:500 13px var(--font);fill:var(--muted);paint-order:stroke;stroke:var(--bg);stroke-width:4px;stroke-linejoin:round}
+.pt.gold text{fill:var(--fg);font-weight:600}
+.pt:hover circle,.pt:focus circle{r:10}
+.pt .hit{fill:transparent;stroke:none}
+.pt:focus{outline:none}
+.pt:focus-visible circle{stroke:var(--fg)}
+.tip{position:absolute;pointer-events:none;background:var(--bg);border:1px solid var(--line-2);border-radius:8px;padding:10px 12px;font-size:13.5px;line-height:1.45;max-width:240px;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:2}
+.tip b{display:block;font-size:14.5px}
+.tip .m{color:var(--muted);font:400 12px/1.5 var(--mono)}
+
+/* Filters + cards */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.filters button{font:500 14px/1 var(--font);color:var(--fg-2);background:transparent;border:1px solid var(--line-2);border-radius:999px;padding:10px 14px;cursor:pointer}
+.filters button:hover{border-color:var(--fg)}
+.filters button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.filters .count{font:400 12px var(--mono);opacity:.7;margin-left:6px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:18px}
+.card{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;background:var(--bg);scroll-margin-top:24px;min-width:0}
+.card:target,.card.flash{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.card .strip{display:flex;height:10px}
+.card .strip b{flex:1}
+.cb{padding:20px 20px 18px;display:flex;flex-direction:column;gap:16px;flex:1;min-width:0}
+.card h3{font-size:22px;letter-spacing:-.025em;line-height:1.15;font-weight:700}
+.card h3 .en{display:block;font:400 13px/1.5 var(--mono);color:var(--muted);letter-spacing:0;margin-top:4px}
+.card .meta{margin:6px 0 0;color:var(--fg-2);font-size:14px}
+.card .meta .set{color:var(--muted)}
+.scores{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.score{display:grid;gap:6px}
+.score .lbl{display:flex;justify-content:space-between;font:400 12px var(--mono);color:var(--muted);letter-spacing:.03em}
+.score .lbl b{color:var(--fg);font-weight:500;font-variant-numeric:tabular-nums}
+.bar{height:4px;border-radius:4px;background:var(--line)}
+.bar i{display:block;height:100%;border-radius:4px;background:var(--fg-2)}
+.card.gold .bar i{background:var(--accent)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font:500 11.5px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;padding:6px 8px;border-radius:var(--r-s);border:1px solid var(--line-2);color:var(--fg-2)}
+.tag.gold{border-color:var(--accent);color:var(--accent-ink)}
+.card dl{margin:0;display:grid;gap:12px}
+.card dt{font:500 11.5px/1.3 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.card dd{margin:4px 0 0;font-size:14.5px;line-height:1.5;color:var(--fg-2)}
+.st{display:inline-block;font:500 11px/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;padding:4px 6px;border-radius:4px;border:1px solid currentColor;margin-right:6px;vertical-align:1px;white-space:nowrap}
+.st.here{color:var(--pos)} .st.progress{color:var(--warn)} .st.future{color:var(--idle)}
+.card .clips{margin-top:2px}
+.card .clips .clip:first-child{border-top:1px solid var(--line)}
+.card .links{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px 16px;padding-top:12px;border-top:1px solid var(--line);font-size:14px}
+.card .links a{color:var(--fg-2);text-decoration:none}
+.card .links a:hover{color:var(--accent-ink)}
+.card .links small{font:400 11.5px var(--mono);color:var(--muted)}
+
+/* Timeline */
+.tl-box{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);padding:8px 4px}
+.tl-box svg{display:block;width:100%;min-width:760px;height:auto}
+.tl-band{fill:var(--accent-soft)}
+.tl-band-label{fill:var(--accent-ink);font:500 12px var(--mono);letter-spacing:.06em}
+.tl-axis{stroke:var(--line-2);stroke-width:1}
+.tl-stem{stroke:var(--line-2);stroke-width:1}
+.tl-dot{fill:var(--dot);stroke:var(--bg);stroke-width:2}
+.tl-dot.in{fill:var(--accent)}
+.tl-lbl{font:500 12.5px var(--font);fill:var(--muted)}
+.tl-lbl.in{fill:var(--fg)}
+.tl-yr{font:500 11.5px var(--mono);fill:var(--muted)}
+.tl-now{stroke:var(--fg-2);stroke-dasharray:3 4}
+
+/* Tables */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:14.5px}
+th,td{text-align:left;vertical-align:top;padding:14px 16px;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+th{font:500 11.5px/1.3 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:500;background:var(--raised)}
+td.idea{font-weight:600;color:var(--fg);width:22%}
+td{color:var(--fg-2)}
+td .films{color:var(--muted)}
+.chance{font:500 12.5px var(--mono);white-space:nowrap}
+
+/* Tips, method, sources */
+.tips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;margin-top:40px}
+@media (max-width:760px){.tips{grid-template-columns:1fr}}
+.tips div{padding:14px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--fg-2)}
+.tips div b{display:block;color:var(--fg);font-weight:600;margin-bottom:4px}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:0 28px;counter-reset:st}
+.steps li{counter-increment:st;padding:16px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--fg-2);display:grid;gap:6px;align-content:start}
+.steps li::before{content:counter(st);font:500 12px var(--mono);color:var(--accent-ink)}
+.steps li b{color:var(--fg);font-weight:600}
+.files{margin-top:22px;font:400 13px/1.7 var(--mono);color:var(--muted)}
+.files code{color:var(--fg-2)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px}
+@media (max-width:860px){.two{grid-template-columns:1fr;gap:32px}}
+.src-list{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:10px;font-size:14px}
+.src-list li{color:var(--muted)}
+.src-list a{color:var(--fg-2);text-underline-offset:3px;text-decoration-color:var(--line-2);word-break:break-word}
+.src-list a:hover{color:var(--accent-ink)}
+.unc{margin:16px 0 0;padding-left:18px;display:grid;gap:10px;font-size:14.5px;color:var(--fg-2)}
+footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12px/1.6 var(--mono);color:var(--muted)}
+
+@media (prefers-reduced-motion: reduce){.bc{animation:none}.pt circle{transition:none}}
+</style>
+
+<div class="wrap">
+  <nav class="top" aria-label="Sections">
+    <span class="brand">FUTURE NIGHT / 2050</span>
+    <a href="#reel">Reel</a><a href="#films">Cut sheets</a><a href="#core">Why these</a><a href="#map">Map</a><a href="#timeline">Years</a><a href="#ideas">Ideas</a><a href="#method">How found</a><a href="#sources">Sources</a>
+  </nav>
+
+  <header class="hero">
+    <p class="eyebrow">Cut sheets for a future night · November 2026</p>
+    <h1>Projection <span class="yr">2050</span></h1>
+    <p class="lead">Eighteen films and shorts about the world around 2050, chosen for being <b>plausible</b> and <b>beautiful</b>. Every film has scenes for the wall, a clip to preview each scene, and links to its stills on Film-Grab and Shot Cafe. Keep or drop each clip, and the three blocks below turn into your running order.</p>
+    <div class="stats" id="stats"></div>
+    <div class="barcode" id="barcode" aria-label="Frame palettes of every film in the selection"></div>
+    <div class="bc-cap"><span>1968 · 2001</span><span>frame palettes, by release year</span><span>2024 · The Wild Robot</span></div>
+  </header>
+
+  <section id="reel">
+    <div class="sec-head">
+      <p class="eyebrow">The reel</p>
+      <h2>Three blocks for the projector, about 40 minutes each</h2>
+      <p class="note">Play silently, under your own playlist. Each block ends on a short complete piece, so the loop can simply repeat. Mark a clip <b>Keep</b> to build the block from your keeps only, or <b>Drop</b> to take it out.</p>
+    </div>
+    <div class="toolbar" id="toolbar">
+      <span class="pstat" id="pickStatus">Loading saved picks…</span>
+      <button class="btn" type="button" id="copyList">Copy cut list</button>
+    </div>
+    <textarea class="copybox" id="copyBox" hidden readonly aria-label="Cut list text"></textarea>
+    <div class="reel" id="reelBlocks"></div>
+    <div class="tips">
+      <div><b>Sound</b>Run a soundtrack playlist instead of the clips' audio: Vangelis (Blade Runner, 1982), Hans Zimmer (Interstellar), Arcade Fire with Owen Pallett (Her), and Ryuichi Sakamoto (Yang's theme from After Yang).</div>
+      <div><b>Frame</b>Most of these films are 2.39:1, so a 16:9 wall leaves black bars. Zoom to fill the height and lose the sides, or throw the image wider.</div>
+      <div><b>Light</b>Dark frames (Blade Runner 2049, deep space in Interstellar) vanish in a lit room. Keep the third block for late in the evening.</div>
+      <div><b>Rights</b>The clips are for previewing and finding scenes. Play them from YouTube full screen, or cut from your own legal copies. Don't download or re-upload them. A public or ticketed event needs a public-performance licence.</div>
+    </div>
+  </section>
+
+  <section id="films">
+    <div class="sec-head">
+      <p class="eyebrow">Cut sheets</p>
+      <h2>Eighteen films, the scenes to cut, and where to find the frames</h2>
+      <p class="note">Sorted by the sum of both scores. The strip on top is the frame palette, a starting point for lights and decor. Clips marked <b>Studio · press</b> come from a studio, a licensed clip channel, a press outlet or the author. The rest are fan uploads: fine for previewing, but they may disappear.</p>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Filter the films"></div>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <section id="core">
+    <div class="answer">
+      <div>
+        <p class="eyebrow">Why these films</p>
+        <h2>Six films where the future is both plausible and beautiful</h2>
+        <ul class="core" id="coreList"></ul>
+      </div>
+      <div>
+        <p class="eyebrow">For the wall</p>
+        <h2>The most beautiful frames, even when the story is less plausible</h2>
+        <div class="wall-list" id="wallList"></div>
+        <div class="method">
+          <strong>How they were scored.</strong> Plausibility: science advisers, fit with 2026 trends, details that came true. Beauty: awards for cinematography, production design and effects, and whether a frame holds a wall with no sound. Both scores are editorial, out of 10. A film joins the core when both are 8 or higher.
+        </div>
+      </div>
+    </div>
+    <div class="findings" style="margin-top:48px">
+      <div class="fd key"><div class="num">73%</div><p>In 2025, GPT-4.5 with a persona was judged human in 73% of three-party Turing tests. The future of Her and Ex Machina arrived long before 2050.</p><div class="srcl">UCSD, Jones &amp; Bergen · <a href="https://arxiv.org/abs/2503.23674" target="_blank" rel="noopener">arXiv 2503.23674</a></div></div>
+      <div class="fd"><div class="num">15</div><p>About fifteen experts spent three days in 1999 designing 2054 for Minority Report. Their "2054 bible" gave the film its gesture interface, personal ads and self-driving lanes.</p><div class="srcl"><a href="https://hieroglyph.asu.edu/2012/06/insideminorityreportsideasummitvisionariessawthefuture/" target="_blank" rel="noopener">Wired / Hieroglyph, 2012</a></div></div>
+      <div class="fd"><div class="num">No. 1</div><p>Gattaca topped a 2011 poll of scientists linked to NASA's JPL as the most plausible science-fiction film. The least plausible was 2012.</p><div class="srcl"><a href="https://www.slashfilm.com/513093/nasa-2012-absurd-scifi-movie-gattaca-plausible/" target="_blank" rel="noopener">/Film, January 2011</a></div></div>
+      <div class="fd"><div class="num">0.72</div><p>South Korea's total fertility rate in 2023. The childless world of Children of Men has become a demographic statistic.</p><div class="srcl"><a href="https://en.wikipedia.org/wiki/Demographics_of_South_Korea" target="_blank" rel="noopener">Statistics Korea</a></div></div>
+      <div class="fd"><div class="num">2015</div><p>The year Interstellar's black hole render became a paper in Classical and Quantum Gravity, with Kip Thorne among its authors.</p><div class="srcl"><a href="https://arxiv.org/abs/1502.03808" target="_blank" rel="noopener">arXiv 1502.03808</a></div></div>
+      <div class="fd"><div class="num">No. 1</div><p>2001: A Space Odyssey topped the Sight &amp; Sound 2022 directors' poll. A 1968 film still sets how life in space looks on screen.</p><div class="srcl"><a href="https://www.bfi.org.uk/sight-and-sound/news/sight-sound-presents-greatest-films-all-time" target="_blank" rel="noopener">BFI, 2022</a></div></div>
+    </div>
+  </section>
+
+  <section id="map">
+    <div class="sec-head">
+      <p class="eyebrow">Map of the selection</p>
+      <h2>Plausibility against beauty</h2>
+      <p class="note">The top-right corner is the core. Top left are films for the frame; bottom right are films for the ideas. Hover a dot for details, or click it to jump to its cut sheet.</p>
+    </div>
+    <div class="legend"><span><i style="background:var(--accent)"></i>Core: both scores 8 or higher</span><span><i style="background:var(--dot)"></i>The rest of the selection</span></div>
+    <div class="chart-box" id="chartBox"><svg id="chart" viewBox="0 0 820 500" role="img" aria-label="Scatter plot: plausibility across, beauty up, 18 titles"></svg><div class="tip" id="tip" hidden></div></div>
+  </section>
+
+  <section id="timeline">
+    <div class="sec-head">
+      <p class="eyebrow">Setting years</p>
+      <h2>Where cinema puts the future</h2>
+      <p class="note">Orange dots are in the selection; grey dots are other well-known films that name their year. The band marks 2045–2055. Films without a named year are left off: Her, Gattaca, Interstellar, After Yang. Elysium (2154) is past the right edge.</p>
+    </div>
+    <div class="tl-box"><svg id="tl" viewBox="0 0 900 300" role="img" aria-label="Timeline of setting years of films about the future, 2025 to 2088"></svg></div>
+  </section>
+
+  <section id="ideas">
+    <div class="sec-head">
+      <p class="eyebrow">Projection 2050</p>
+      <h2>Which ideas from these films are already coming true</h2>
+      <p class="note">Status as of November 2026. The "by 2050" column is an editorial judgement, not a model forecast.</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Idea</th><th>From</th><th>Status now</th><th>By 2050</th></tr></thead>
+        <tbody id="ideasBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="series">
+    <div class="sec-head">
+      <p class="eyebrow">If you need more hours</p>
+      <h2>Series and anime</h2>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Title</th><th>Setting</th><th>Why it's worth it</th><th>Plaus. / Beauty</th></tr></thead>
+        <tbody>
+          <tr><td class="idea">Westworld, season 3 <span class="films">(2020)</span></td><td>2053, Los Angeles</td><td>A city run by an AI called Rehoboam. Its future Los Angeles was partly shot in Singapore.</td><td class="chance">6 / 8</td></tr>
+          <tr><td class="idea">Black Mirror <span class="films">(2011–)</span></td><td>near future</td><td>"Be Right Back" (a bot of a dead partner), "Nosedive" (people rate each other), "San Junipero" (digital life after death). The sharpest series about technology right now.</td><td class="chance">9 / 6</td></tr>
+          <tr><td class="idea">Mars <span class="films">(National Geographic, 2016)</span></td><td>2033, the first expedition</td><td>Drama intercut with interviews with Elon Musk, Andy Weir and Neil deGrasse Tyson.</td><td class="chance">9 / 6</td></tr>
+          <tr><td class="idea">Planetes <span class="films">(anime, 2003)</span></td><td>2075, Earth orbit</td><td>Orbital debris collectors and the threat of a debris cascade. One of the most engineering-minded space stories.</td><td class="chance">9 / 6</td></tr>
+          <tr><td class="idea">Years and Years <span class="films">(BBC, 2019)</span></td><td>2019–2034</td><td>Fifteen years of one Manchester family against politics, climate and technology.</td><td class="chance">9 / 5</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="method">
+    <div class="sec-head">
+      <p class="eyebrow">How the clips were found</p>
+      <h2>Following the Finding References guide</h2>
+      <p class="note">The guide's rule: the agent reads open sources and writes links for the sites only a person may open, opens every clip it keeps, and leaves the pick to you.</p>
+    </div>
+    <ol class="steps">
+      <li><b>Film-Grab and Shot Cafe stay person-only.</b>Both sites forbid agents, so neither was browsed. Their page addresses for each film came from web search results. Where none appeared, the card links to a site search or the home page.</li>
+      <li><b>108 web searches for scene clips.</b>Studio, licensed-clip, press and author uploads were preferred. Reactions, essays, multi-film compilations, fan edits and recreations were rejected, per the guide's never list.</li>
+      <li><b>Every clip was opened.</b>Each candidate was checked through YouTube's public oEmbed lookup: 111 checked, 93 opened, 18 were gone or refused and are dropped. Titles and channels shown here are what YouTube returned.</li>
+      <li><b>Refs said no.</b>The guide's open video search answered HTTP 401 on three searches. The guide treats that as final, so the link is left for you.</li>
+      <li><b>You pick.</b>No one has watched these clips yet. Keep or drop each one and add a note; picks are saved to this page, so Claude can read them back and turn them into a final running order.</li>
+    </ol>
+    <p class="files">Working files in the party folder: <code>future-party/reel/</code> · <code>brief.json</code> · <code>never.md</code> · <code>search_log.jsonl</code> · <code>links.md</code> · <code>refs.md</code> · <code>clips.json</code></p>
+  </section>
+
+  <section id="sources">
+    <div class="two">
+      <div>
+        <p class="eyebrow">Sources</p>
+        <h2>Where the facts come from</h2>
+        <ul class="src-list">
+          <li><a href="https://www.slashfilm.com/513093/nasa-2012-absurd-scifi-movie-gattaca-plausible/" target="_blank" rel="noopener">/Film: NASA names Gattaca the most plausible sci-fi film</a>; <a href="https://www.portlandmercury.com/BlogtownPDX/archives/2011/01/07/nasa-names-the-most-and-least-realistic-science-fiction-films-ever-made" target="_blank" rel="noopener">Portland Mercury, 2011</a></li>
+          <li><a href="https://hieroglyph.asu.edu/2012/06/insideminorityreportsideasummitvisionariessawthefuture/" target="_blank" rel="noopener">Inside Minority Report's "Idea Summit"</a>; <a href="https://en.wikipedia.org/wiki/Technologies_in_Minority_Report" target="_blank" rel="noopener">Technologies in Minority Report</a></li>
+          <li><a href="https://arxiv.org/abs/2503.23674" target="_blank" rel="noopener">Jones &amp; Bergen, Large Language Models Pass the Turing Test (2025)</a></li>
+          <li><a href="https://arxiv.org/abs/1502.03808" target="_blank" rel="noopener">James, von Tunzelmann, Franklin, Thorne: Gravitational Lensing by Spinning Black Holes… and in the Movie Interstellar (2015)</a></li>
+          <li><a href="https://www.bfi.org.uk/sight-and-sound/news/sight-sound-presents-greatest-films-all-time" target="_blank" rel="noopener">BFI: Sight &amp; Sound Greatest Films of All Time 2022</a></li>
+          <li><a href="https://www.gamesradar.com/the-creator-trailer-breakdown-gareth-edwards" target="_blank" rel="noopener">GamesRadar: The Creator's timeline</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Westworld_season_3" target="_blank" rel="noopener">Westworld season 3</a> (2053, filming in Singapore)</li>
+          <li><a href="https://atmos.earth/art-and-culture/parasite-directors-new-film-proves-space-wont-save-us/" target="_blank" rel="noopener">Atmos: Mickey 17 is set in 2054</a></li>
+          <li><a href="https://www.whatsyour2040.com" target="_blank" rel="noopener">2040, official site</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/Wanderers_(2014_film)" target="_blank" rel="noopener">Wanderers (2014)</a>; <a href="https://erikwernquist.com/wanderers" target="_blank" rel="noopener">erikwernquist.com</a></li>
+          <li><a href="https://en.wikipedia.org/wiki/GPT-4o" target="_blank" rel="noopener">GPT-4o: the voice mode and the nod to Her</a></li>
+          <li><a href="https://spacesheep.dev/@alex/find-references" target="_blank" rel="noopener">Finding References</a> and the <a href="https://github.com/vargHQ/skills/tree/main/find-references" target="_blank" rel="noopener">find-references skill</a>: the method for the clips</li>
+          <li>Awards, crews and locations: each film's Wikipedia page, linked on its cut sheet. Clip titles and channels: YouTube oEmbed, 13 November 2026.</li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow">Not checked</p>
+        <h2>Where this could be wrong</h2>
+        <ul class="unc">
+          <li>No one has watched the clips. A clip's scene is what its YouTube title says. Check framing, burned-in text and length before the night.</li>
+          <li>Fan uploads can vanish at any time. Studio, licensed and author uploads are steadier.</li>
+          <li>The "Play block" link uses YouTube's quick-playlist address. YouTube has never documented it, so if it stops working, open the clips one by one.</li>
+          <li>No clip turned up for these scenes: the city walks in Her, the forest drive in After Yang, the rover drive in The Martian, the temples and rice fields in The Creator (trailers only), and the Wakanda market. Look for them in the stills sites and in your own copy.</li>
+          <li>Film-Grab and Shot Cafe links come from search results and were never opened, as the guide asks. Shot Cafe files Minority Report under 2007 in its address, though it is the 2002 film.</li>
+          <li>Both scores are editorial. The 2011 Gattaca poll was of scientists around NASA's JPL, not an official NASA position. The Martian's year (about 2035) comes from the novel. For The Creator, most sources give 2070 and one review gives 2065.</li>
+          <li>The palettes are drawn from memory of each film's grade, not sampled from frames.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>Projection 2050 · cut sheets for a future night · clips checked 13 November 2026 · scores are editorial, facts are linked</footer>
+</div>
+
+<script>
+(function(){
+const CL={"films":{"her":{"fg":null,"sc":"https://shot.cafe/movie/her-2013","trailer":["dJTU48_yghs","Rotten Tomatoes Trailers",true],"clips":[{"id":"her-1","scene":"The city: Shanghai as Los Angeles, crowds and skyline","v":"ne6p6MfLBxc","ch":"Warner Bros.","off":true,"note":"No scene clip of the city walks turned up. The official trailer carries the skyline and crowd shots."},{"id":"her-2","scene":"The Moon Song","v":"CxahbnUCZxY","ch":"Warner Bros.","off":true,"note":"Studio upload of the scene."},{"id":"her-3","scene":"The Moon Song (alternate)","v":"bVnQmll4kyU","ch":"arkmario","off":false,"note":"HD fan upload."},{"id":"her-4","scene":"Beach day","v":"S7t4r2G2XCE","ch":"IsaacamirDesigns","off":false,"note":""},{"id":"her-5","scene":"OS1 boots up","v":"WOeyLpgjQ5Y","ch":"That Martian","off":false,"note":"Mostly dialogue: best as a short insert."}]},"afteryang":{"fg":"https://film-grab.com/2022/07/04/after-yang/","sc":null,"trailer":["Kwp32zLc08c","A24",true],"clips":[{"id":"ay-1","scene":"Opening titles: the family dance battle","v":"dRGU2J8BfvA","ch":"MovieTitles","off":false,"note":"The full title sequence. A strong opener for the night."},{"id":"ay-2","scene":"Dance battle (press clip)","v":"Aan9ttOVuWU","ch":"ScreenRant Plus","off":true,"note":"Press release clip."},{"id":"ay-3","scene":"Yang's recorded memories","v":"UTvAnwPd_6Q","ch":"ComingSoon.net","off":true,"note":"Press clip from the home release."},{"id":"ay-4","scene":"Yang's memory (Korean promo)","v":"ZTS_-oX2Niw","ch":"Korean distributor channel","off":true,"note":"Distributor promo."}]},"gattaca":{"fg":null,"sc":"https://shot.cafe/movie/gattaca-1997-211","trailer":["hWjlUj7Czlk","TrailersPlaygroundHD",false],"clips":[{"id":"g-1","scene":"Solar plant at sunset","v":"fn_gUcCO-gM","ch":"Vito Ciavarella","off":false,"note":""},{"id":"g-2","scene":"Every rocket launch in the film","v":"iVfoCIx9pA0","ch":"Saint","off":false,"note":"A one-film supercut of the launches."},{"id":"g-3","scene":"Final launch","v":"jqVHxRVRGDU","ch":"Alternative Indie Music Hideout","off":false,"note":"Intercut with a death scene: trim it for the party."},{"id":"g-4","scene":"Final launch (alternate)","v":"DjIjCi83t7k","ch":"Voyage","off":false,"note":""}]},"martian":{"fg":"https://film-grab.com/2017/01/06/the-martian/","sc":null,"trailer":["ej3ioOneTy8","20th Century Studios",true],"clips":[{"id":"m-1","scene":"Opening on Mars, 4K HDR","v":"k2Sb7tlMDNs","ch":"Apex Clips","off":false,"note":"Landscape and storm. No rover-drive clip turned up."},{"id":"m-2","scene":"Potato farm in the Hab","v":"4sY8vLf-vMo","ch":"Clippy Reels","off":false,"note":"May be a vertical reel: check the framing."},{"id":"m-3","scene":"MAV blast-off","v":"wsr4cymoa8g","ch":"Alex Movie Clipz","off":false,"note":""},{"id":"m-4","scene":"Hermes rescue, 'Iron Man'","v":"aD2aykHaz_U","ch":"Entertainment Access","off":false,"note":""},{"id":"m-5","scene":"Hermes rescue (alternate)","v":"iWg8GUOBtek","ch":"Flix & Clips","off":false,"note":""}]},"exmachina":{"fg":null,"sc":"https://shot.cafe/movie/ex-machina-2014-185","trailer":["bggUmgeMCdc","A24",true],"clips":[{"id":"ex-1","scene":"Nathan and Kyoko tear up the dance floor","v":"b7C69HqnV8s","ch":"Movieclips","off":true,"note":"Licensed clip. The party moment of the night."},{"id":"ex-2","scene":"Dance scene (alternate)","v":"ODef-GMF-ek","ch":"Pascal Nouma","off":false,"note":""},{"id":"ex-3","scene":"Ava is free","v":"0Gq5R5ffrtE","ch":"Movieclips","off":true,"note":"Licensed clip. The glacier and forest arrival is only in the trailer here."}]},"s2001":{"fg":null,"sc":"https://shot.cafe/movie/2001-a-space-odyssey-1968","trailer":["6PJEuVgQE6Y","The Shape Lurks",false],"clips":[{"id":"o-1","scene":"Docking to the Blue Danube","v":"0ZoSYsNADtY","ch":"Screen Themes","off":false,"note":"1080p."},{"id":"o-2","scene":"From bone to satellite","v":"avjdKTqiVvQ","ch":"Movieclips","off":true,"note":"Licensed clip."},{"id":"o-3","scene":"Star Gate","v":"zB_h-1U3lCs","ch":"doagarfieldkartvideo","off":false,"note":"4K upload. Very long and intense: cut a few minutes."}]},"minority":{"fg":"https://film-grab.com/2013/09/03/minority-report/","sc":"https://shot.cafe/movie/minority-report-2007","trailer":["lG7DGMgfOb8","Rotten Tomatoes Classic Trailers",true],"clips":[{"id":"mr-1","scene":"Precrime: the gesture interface","v":"vrYKQiyeNv0","ch":"godfunk","off":false,"note":""},{"id":"mr-2","scene":"Gesture interface (alternate)","v":"NwVBzx0LMNQ","ch":"ysnimkim","off":false,"note":""},{"id":"mr-3","scene":"Maglev chase, part 1","v":"sZQ6p69Kg6c","ch":"Templar613","off":false,"note":"Which part holds the vertical highways is not checked."},{"id":"mr-4","scene":"Maglev chase, part 2","v":"GCQpMT_iL9U","ch":"Templar613","off":false,"note":""},{"id":"mr-5","scene":"Personal ads in the mall","v":"oBaiKsYUdvg","ch":"fayizaugusto","off":false,"note":""},{"id":"mr-6","scene":"Personal ads (alternate)","v":"7bXJ_obaiYQ","ch":"dscmailtest","off":false,"note":""}]},"children":{"fg":"https://film-grab.com/2014/02/27/children-of-men/","sc":"https://shot.cafe/movie/children-of-men-2006","trailer":["3CdJYhtjEns","TrailersPlaygroundHD",false],"clips":[{"id":"c-1","scene":"Car ambush in one take","v":"KE8F9h5Geik","ch":"Action Picks","off":false,"note":"Violent. For the talk, not for the wall."},{"id":"c-2","scene":"Bexhill in one take","v":"bcp344Yctx8","ch":"Screen Bites","off":false,"note":"Violent. For the talk, not for the wall."},{"id":"c-3","scene":"Bexhill (alternate)","v":"g2vX7IHg_SE","ch":"All Action","off":false,"note":""}]},"interstellar":{"fg":"https://film-grab.com/2015/04/17/interstellar/","sc":null,"trailer":["0vxOhd4qlnA","Interstellar Movie",true],"clips":[{"id":"i-1","scene":"Dust storm on the farm","v":"MJ9v-0jC4lQ","ch":"Movie Scenes","off":false,"note":"1080p."},{"id":"i-2","scene":"Through the wormhole at Saturn","v":"69EUgdj7lzI","ch":"4K HDR Media","off":false,"note":"4K HDR."},{"id":"i-3","scene":"Wormhole (alternate)","v":"RgWB_Fyz0JU","ch":"Richard Parker","off":false,"note":""},{"id":"i-4","scene":"Miller's planet waves","v":"DB8i1kyXkWc","ch":"4K HDR Media","off":false,"note":"4K HDR."},{"id":"i-5","scene":"Miller's planet (alternate)","v":"IgZ3b92YlC0","ch":"4K Clips HDR","off":false,"note":""},{"id":"i-6","scene":"Docking: no time for caution","v":"onVhbeY7nLM","ch":"4K HDR Media","off":false,"note":"4K HDR."},{"id":"i-7","scene":"Docking (alternate)","v":"oF5AmOOFOwQ","ch":"Instrumental Corner","off":false,"note":""},{"id":"i-8","scene":"Cooper Station","v":"8LiVGDq01FU","ch":"4K Clips HDR","off":false,"note":""}]},"br2049":{"fg":"https://film-grab.com/2019/05/24/blade-runner-2049/","sc":"https://shot.cafe/movie/blade-runner-2049-2017-326","trailer":["gCcx85zbxz4","Warner Bros.",true],"clips":[{"id":"b-1","scene":"Opening flight over the farms","v":"gSt2UNe12UA","ch":"4K HDR Media","off":false,"note":"4K HDR."},{"id":"b-2","scene":"Opening (alternate)","v":"4GdA8d1VWWo","ch":"Just The Best Scenes","off":false,"note":""},{"id":"b-3","scene":"Ruins of Las Vegas","v":"4tfxReNqQgg","ch":"Just The Best Scenes","off":false,"note":"4K."},{"id":"b-4","scene":"Giant Joi hologram on the bridge","v":"pdcWbwsPK5E","ch":"Recall","off":false,"note":""},{"id":"b-5","scene":"Giant Joi (alternate)","v":"1SW0dZYsMd0","ch":"El extranjero","off":false,"note":""},{"id":"b-6","scene":"Joi in the rain","v":"nL3o4MGY9NQ","ch":"Movieclips","off":true,"note":"Licensed clip."}]},"creator":{"fg":"https://film-grab.com/2024/01/11/the-creator/","sc":null,"trailer":["HH0wFh3GAQo","20th Century Studios AUNZ",true],"clips":[{"id":"cr-1","scene":"Raid on the village","v":"ZEGgHKS8b_M","ch":"MovieGasm","off":false,"note":"4K Blu-ray source. Temples, monks and rice fields turned up only in trailers."},{"id":"cr-2","scene":"NOMAD's final strike","v":"4uvtHbtYUkk","ch":"GameGasm","off":false,"note":"4K Blu-ray source."},{"id":"cr-3","scene":"The city is under attack","v":"vmmJr9EpOLI","ch":"Rapid Trailer","off":false,"note":""},{"id":"cr-4","scene":"Final trailer in 4K","v":"yd5vYmeuLgk","ch":"MovieGasm","off":false,"note":"Where the temple and rice-field shots are."}]},"wildrobot":{"fg":null,"sc":null,"trailer":["67vbA5ZJdKQ","Universal Pictures",true],"clips":[{"id":"w-1","scene":"Roz arrives and switches on","v":"4NS7L9jH_pg","ch":"Animation World Network","off":true,"note":"Press clip."},{"id":"w-2","scene":"Roz learns the wild (alternate)","v":"W4isFQE3Xtc","ch":"Family Movie Picks","off":false,"note":""},{"id":"w-3","scene":"Kiss the Sky: flying lessons","v":"mf8uM_JxhbA","ch":"Gui Medina","off":false,"note":"Fan upload labelled 'movie version': check it is the film cut."},{"id":"w-4","scene":"Migration over flooded San Francisco","v":"Iz2duERiP7g","ch":"JoBlo Animation 4K","off":true,"note":"Press clip. The flooded city is not confirmed inside it."}]},"panther":{"fg":"https://film-grab.com/2019/04/29/black-panther/","sc":null,"trailer":["ph9_oITIefE","Marvel Australia & New Zealand",true],"clips":[{"id":"p-1","scene":"Arrival over Wakanda","v":"WK_yQD_s8f8","ch":"Screen Master","off":false,"note":"IMAX 4K upload."},{"id":"p-2","scene":"Arrival (alternate)","v":"ip8o5OtSyv0","ch":"MovieClipJunction","off":false,"note":"No market or maglev clip turned up."}]},"elysium":{"fg":"https://film-grab.com/2018/11/15/elysium/","sc":null,"trailer":["oIBtePb-dGY","Sony Pictures Entertainment",true],"clips":[{"id":"e-1","scene":"Ships inbound to the ring","v":"jEuQTgzGPF8","ch":"Sony Pictures India","off":true,"note":"Studio clip."}]},"oblivion":{"fg":"https://film-grab.com/2014/01/24/oblivion/","sc":"https://shot.cafe/movie/oblivion-2013","trailer":["4fDGqL4-wQA","Universal Pictures UK",true],"clips":[{"id":"ob-1","scene":"The Sky Tower","v":"2HePCq0b0yM","ch":"Universal Pictures Ireland","off":true,"note":"Studio clip. The ambient loop of the night."},{"id":"ob-2","scene":"The glass pool","v":"_efA8cN4FWk","ch":"DOD Multimedia","off":false,"note":""},{"id":"ob-3","scene":"Bubbleship flyby (deleted scene)","v":"Q1HcVmmQ6N8","ch":"E Manic","off":false,"note":"No dialogue."},{"id":"ob-4","scene":"Bubbleship takeoff","v":"Mznwd9I-kM0","ch":"Matthew Law","off":false,"note":""}]},"wanderers":{"fg":null,"sc":null,"trailer":null,"clips":[{"id":"wa-1","scene":"The whole film","v":"YH3c1QZzRK4","ch":"Erik Wernquist - Digital Artist","off":true,"note":"The author's own upload."},{"id":"wa-2","scene":"The whole film in 4K","v":"TRnmS7s92o4","ch":"a re-upload channel","off":false,"note":"4K, but not the author's channel."}]},"doc2040":{"fg":null,"sc":null,"trailer":["p-rTQ443akE","Madman Films",true],"clips":[{"id":"d-1","scene":"Official trailer","v":"p-rTQ443akE","ch":"Madman Films","off":true,"note":"The visualised 2040 scenes are in here."},{"id":"d-2","scene":"Solar microgrids segment","v":"j6oB1UjwY5w","ch":"SOLshare","off":false,"note":"Uploaded by the company in the film."},{"id":"d-3","scene":"US trailer","v":"McttTvr6eTc","ch":"Together Films","off":true,"note":""}]},"hyper":{"fg":null,"sc":null,"trailer":null,"clips":[{"id":"h-1","scene":"The whole film","v":"YJg02ivYzSs","ch":"Keiichi Matsuda","off":true,"note":"The author's own upload."}]}},"blocks":[{"id":"city","title":"Morning in 2050: the city","when":"light frames, early evening","items":["ay-1","her-1","her-2","p-1","g-1","g-2","mr-3","mr-5","d-1"]},{"id":"machines","title":"Us and the machines","when":"the middle, more contrast","items":["ex-1","cr-4","cr-1","b-1","b-3","b-4","w-4","h-1"]},{"id":"space","title":"Beyond the horizon","when":"late, dark space frames","items":["m-1","m-3","i-2","i-4","i-6","o-1","ob-1","wa-1"]}]};
+const F=[
+ {id:'her',t:'Her',y:2013,dir:'Spike Jonze',set:'near future, Los Angeles (shot in Shanghai)',p:9,b:9,tone:'insp',kind:'film',
+  pal:['#E2725B','#F2B38B','#D9A5A0','#C9D3D6','#8B5E3C'],
+  auth:'Oscar for Best Original Screenplay and four more nominations, including Production Design. Shot by Hoyte van Hoytema.',
+  idea:'Technology recedes into the background: a soft, walkable city, a metro, warm colour, and an AI you talk to by voice.',
+  st:'here',stt:'In May 2024 OpenAI showed voice GPT-4o, and Sam Altman announced it with one word: "her".',
+  why:'The warmest future here, and half of it has arrived',wiki:'Her_(film)'},
+ {id:'afteryang',t:'After Yang',y:2021,dir:'Kogonada',set:'an undated future',p:8,b:9.5,tone:'insp',kind:'film',
+  pal:['#9DAE8C','#B78D53','#EFEBE3','#5E6E4E','#8A8278'],
+  auth:'Premiered in Un Certain Regard at Cannes 2021. Yang\'s theme is by Ryuichi Sakamoto.',
+  idea:'Quiet technology: an android big brother, a tea shop, wood and plants inside a self-driving car.',
+  st:'progress',stt:'AI companions are a mass product; a robot as a member of the family is still ahead.',
+  why:'The most beautiful picture of a calm future',wiki:'After_Yang'},
+ {id:'gattaca',t:'Gattaca',y:1997,dir:'Andrew Niccol',set:'"the not-too-distant future"',p:9.5,b:8,tone:'both',kind:'film',
+  pal:['#9C8F3A','#D4A24C','#4F6B6B','#E8D9A8','#141414'],
+  auth:'No. 1 in a 2011 poll of scientists linked to NASA JPL on the most plausible sci-fi film. Oscar-nominated for Art Direction; shot at Frank Lloyd Wright\'s Marin County Civic Center.',
+  idea:'A calm modernist world, solar fields to the horizon, rocket launches as daily routine. The price is selection by genome.',
+  st:'progress',stt:'Genetic screening of embryos is sold with IVF; the first gene-edited children were born in China in 2018.',
+  why:'Ranked the most plausible sci-fi film in a 2011 poll',wiki:'Gattaca'},
+ {id:'martian',t:'The Martian',y:2015,dir:'Ridley Scott',set:'around 2035, Mars',p:8.5,b:8.5,tone:'insp',kind:'film',
+  pal:['#C2562B','#E3A66B','#E9C49A','#F1F1EE','#4A2B1F'],
+  auth:'NASA consulted on the production. Seven Oscar nominations. Based on Andy Weir\'s novel, whose orbits and supplies he worked out himself.',
+  idea:'Science as survival: a greenhouse on Mars, a ship with a spinning ring, an international rescue.',
+  st:'progress',stt:'NASA\'s Artemis programme is preparing the return to the Moon as a step to Mars. No one is on Mars yet.',
+  why:'Engineering optimism, made with NASA\'s help',wiki:'The_Martian_(film)'},
+ {id:'exmachina',t:'Ex Machina',y:2014,dir:'Alex Garland',set:'the present, or a little later',p:8,b:8,tone:'both',kind:'film',
+  pal:['#2F4A3A','#A9C1C4','#8E8E88','#C9A27E','#B3362B'],
+  auth:'Oscar for Visual Effects. Scientific adviser: Murray Shanahan of Imperial College London.',
+  idea:'A machine that passes the Turing test, and architecture dissolved into nature.',
+  st:'here',stt:'In 2025, GPT-4.5 with a persona was judged human in 73% of three-party Turing tests (UC San Diego).',
+  why:'A Turing test that has since been passed',wiki:'Ex_Machina_(film)'},
+ {id:'s2001',t:'2001: A Space Odyssey',short:'2001',y:1968,dir:'Stanley Kubrick',set:'2001, thirty-three years after release',p:8.5,b:10,tone:'insp',kind:'film',
+  pal:['#F2F2F0','#C8342A','#050505','#9A9A98','#E8742A'],
+  auth:'No. 1 in the Sight & Sound 2022 directors\' poll. Oscar for Special Visual Effects; written with Arthur C. Clarke.',
+  idea:'Space as routine: an orbital station, a video call home, tablets at lunch, a voice AI.',
+  st:'here',stt:'In 2011 Samsung cited the film\'s tablets in court against Apple as prior art for the iPad.',
+  why:'The benchmark every space film is measured against',wiki:'2001:_A_Space_Odyssey'},
+ {id:'minority',t:'Minority Report',y:2002,dir:'Steven Spielberg',set:'2054, Washington, D.C.',p:8.5,b:7,tone:'both',kind:'film',
+  pal:['#6F8FA6','#DDE3E6','#3FB8C9','#2B2F33','#9AA7AE'],
+  auth:'In 1999 about fifteen experts, convened by Peter Schwartz and Stewart Brand, spent three days designing 2054. John Underkoffler of MIT designed the interface.',
+  idea:'Maglev lanes running up building faces, and an interface you conduct with your hands. The price is total surveillance.',
+  st:'progress',stt:'Underkoffler turned the interface into a real system, g-speak; headsets now take hands and gaze as input; US police have trialled predictive policing.',
+  wiki:'Minority_Report_(film)'},
+ {id:'children',t:'Children of Men',y:2006,dir:'Alfonso Cuarón',set:'2027, London',p:7.5,b:7.5,tone:'warn',kind:'film',
+  pal:['#5E6660','#8C8F86','#B7B3A3','#3A3F3B','#C9A15A'],
+  auth:'Three Oscar nominations, including Emmanuel Lubezki\'s cinematography. Famous long takes with no cut.',
+  idea:'A world where children stopped being born. A warning, not a dream.',
+  st:'here',stt:'South Korea\'s total fertility rate in 2023: 0.72 children per woman.',
+  wiki:'Children_of_Men'},
+ {id:'interstellar',t:'Interstellar',y:2014,dir:'Christopher Nolan',set:'21st century, year not named',p:6.5,b:10,tone:'both',kind:'film',
+  pal:['#C8B48A','#D9C27A','#0B0D12','#BFD3DA','#E7B65A'],
+  auth:'Science adviser and executive producer Kip Thorne, Nobel laureate 2017. Its black hole render became a 2015 paper. Oscar for Visual Effects.',
+  idea:'Dust storms and failing crops on Earth, then a spinning cylinder station as a new home.',
+  st:'progress',stt:'In 2019 the Event Horizon Telescope showed the first image of a black hole\'s shadow. No orbital cities yet.',
+  wiki:'Interstellar_(film)'},
+ {id:'br2049',t:'Blade Runner 2049',y:2017,dir:'Denis Villeneuve',set:'2049, Los Angeles and Las Vegas',p:5,b:10,tone:'warn',kind:'film',
+  pal:['#E0702A','#F2A541','#2C6E7F','#1C2E3B','#D94FA0'],
+  auth:'Oscars for Cinematography (Roger Deakins) and Visual Effects.',
+  idea:'A sea wall around Los Angeles, protein farms, and Joi, a holographic companion.',
+  st:'progress',stt:'AI companions such as Replika and Character.AI went mainstream; insect protein is on sale, though niche. No replicants.',
+  wiki:'Blade_Runner_2049'},
+ {id:'creator',t:'The Creator',y:2023,dir:'Gareth Edwards',set:'2070, "New Asia"',p:5.5,b:9,tone:'both',kind:'film',
+  pal:['#7FA35B','#E39B3A','#3E5C7A','#CFC6B4','#6C6A64'],
+  auth:'Two Oscar nominations, for Visual Effects and Sound. Shot on real locations across Asia on a Sony FX3, effects added later, for about $80 million.',
+  idea:'People and AI living together: robot monks in temples, rice fields, high-tech villages.',
+  st:'future',stt:'Humanoid robots are only reaching factory pilots; there are no shared human-machine communities.',
+  wiki:'The_Creator_(2023_film)'},
+ {id:'wildrobot',t:'The Wild Robot',y:2024,dir:'Chris Sanders',set:'undated future, a flooded San Francisco',p:4.5,b:9,tone:'insp',kind:'film',
+  pal:['#2F6F6B','#E38B3B','#8DA05A','#9CC3D5','#A8ACA8'],
+  auth:'Three Oscar nominations, including Best Animated Feature. Painterly, hand-made texture instead of glossy 3D.',
+  idea:'A robot learns to care, and after the seas rise people live in domed farms beside the wild.',
+  st:'future',stt:'Sea-level rise is real; domed farms and robot nannies are not.',
+  wiki:'The_Wild_Robot'},
+ {id:'panther',t:'Black Panther',y:2018,dir:'Ryan Coogler',set:'the present, hidden Wakanda',p:4,b:8.5,tone:'insp',kind:'film',
+  pal:['#5B2A86','#B9B6C9','#A3472D','#D9A441','#2F6B4F'],
+  auth:'Oscars for Production Design (Hannah Beachler), Costume Design and Score.',
+  idea:'Afrofuturism: high technology without giving up tradition, a maglev over the market, towers with gardens.',
+  st:'future',stt:'An image of a city rather than a forecast: no real city joins tradition and technology like this yet.',
+  wiki:'Black_Panther_(film)'},
+ {id:'elysium',t:'Elysium',y:2013,dir:'Neill Blomkamp',set:'2154, Earth orbit',p:3.5,b:8,tone:'warn',kind:'film',
+  pal:['#F3EFE6','#7FAF6A','#1E3448','#C9B68B','#8A7F6E'],
+  auth:'The station follows the Stanford torus from NASA\'s 1975 summer study. Syd Mead, the artist of the first Blade Runner, worked on the design.',
+  idea:'An orbital home of lawns and villas for the rich, and ruin below for everyone else.',
+  st:'future',stt:'The only permanently crewed stations are the ISS and China\'s Tiangong.',
+  wiki:'Elysium_(film)'},
+ {id:'oblivion',t:'Oblivion',y:2013,dir:'Joseph Kosinski',set:'2077, Earth after a war',p:2.5,b:9,tone:'warn',kind:'film',
+  pal:['#F4F6F7','#CFD8DE','#7FA7C4','#5D6770','#E3C9A0'],
+  auth:'Shot by Claudio Miranda, Oscar winner for Life of Pi. The sky outside the Sky Tower was projected on set, not green screen.',
+  idea:'Clean white architecture above the clouds.',
+  st:'future',stt:'Far from plausible: it is here for the frame.',
+  wiki:'Oblivion_(2013_film)'},
+ {id:'wanderers',t:'Wanderers',sub:'short film, 3 min 50 s',y:2014,dir:'Erik Wernquist',set:'the Solar System, undated',p:7,b:9.5,tone:'insp',kind:'short',
+  pal:['#D8B07A','#1A2233','#C9D6E3','#8A5A3C','#F0E6D2'],
+  auth:'Every location is a digital copy of a real place, built from NASA images and maps. Narrated by Carl Sagan, from Pale Blue Dot.',
+  idea:'People as travellers of the Solar System: a jump off Verona Rupes on Miranda, Saturn\'s rings, Titan.',
+  st:'future',stt:'The places are real; the people are not there yet.',
+  site:'https://erikwernquist.com/wanderers',wiki:'Wanderers_(2014_film)'},
+ {id:'doc2040',t:'2040',sub:'documentary, 92 min',y:2019,dir:'Damon Gameau',set:'2040, Australia and the world',p:9.5,b:6,tone:'insp',kind:'doc',
+  pal:['#7DB36A','#3C8DAD','#F2D16B','#E9E4D8','#2E5E3E'],
+  auth:'Uses only technology that already exists, scaled up to 2040. With Paul Hawken (Drawdown) and Kate Raworth (Doughnut Economics).',
+  idea:'Neighbour-to-neighbour solar microgrids, regenerative farms, seaweed farms at sea, shared self-driving cars.',
+  st:'progress',stt:'Every solution in the film already works somewhere; the question is scale.',
+  site:'https://www.whatsyour2040.com',extra:['https://www.youtube.com/@2040film/videos','The film\'s channel: look here for the seaweed farms']},
+ {id:'hyper',t:'Hyper-Reality',sub:'short film, about 6 min',y:2016,dir:'Keiichi Matsuda',set:'near future, Medellín',p:8,b:5.5,tone:'warn',kind:'short',
+  pal:['#FF3EA5','#33D6FF','#FFE14D','#8E8E8E','#1C1C1C'],
+  auth:'Made by an interface designer as a forecast of augmented reality, shot in Medellín.',
+  idea:'A city covered in layers of augmented reality, ads and loyalty points.',
+  st:'progress',stt:'Mixed-reality headsets are on sale but have not entered everyday life.'}
+];
+const gold=f=>f.p>=8&&f.b>=8, wallOK=f=>f.b>=9;
+const fmt=n=>String(n);
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const byScore=[...F].sort((a,b)=>(gold(b)-gold(a))||((b.p+b.b)-(a.p+a.b))||(b.b-a.b));
+const stLabel={here:'already here',progress:'in progress',future:'still fiction'};
+const toneLabel={insp:'inspiring',warn:'warning',both:'inspiring and warning'};
+const yt=v=>'https://www.youtube.com/watch?v='+v;
+const byId={};F.forEach(f=>{byId[f.id]=f});
+const clipById={};Object.keys(CL.films).forEach(k=>CL.films[k].clips.forEach(c=>{c.film=k;clipById[c.id]=c}));
+const allClips=Object.values(clipById);
+
+/* Stats */
+const offN=allClips.filter(c=>c.off).length;
+document.getElementById('stats').innerHTML=
+ '<div class="stat"><b>'+allClips.length+'</b><span>clips, every one opened</span></div>'+
+ '<div class="stat"><b>'+offN+'</b><span>from studios, press or authors</span></div>'+
+ '<div class="stat"><b>'+F.length+'</b><span>films and shorts</span></div>'+
+ '<div class="stat"><b>3</b><span>blocks of about 40 minutes</span></div>';
+
+/* Barcode */
+const bc=document.getElementById('barcode');
+[...F].sort((a,b)=>a.y-b.y).forEach((f,i)=>{
+  const a=document.createElement('a');a.className='bc';a.href='#f-'+f.id;
+  a.title=f.t+' ('+f.y+')';a.setAttribute('aria-label',f.t+', '+f.y);
+  a.style.animationDelay=(i*35)+'ms';
+  a.innerHTML=f.pal.map(c=>'<span style="background:'+c+'"></span>').join('');
+  bc.appendChild(a);
+});
+
+/* Picks state */
+let picks={};let canWrite=true;let mode='loading';
+const pstat=document.getElementById('pickStatus');
+function keptCount(){return Object.values(picks).filter(p=>p&&p.state==='keep').length}
+function droppedCount(){return Object.values(picks).filter(p=>p&&p.state==='drop').length}
+function statusText(){
+  const n='<b>'+keptCount()+'</b> kept, <b>'+droppedCount()+'</b> dropped. ';
+  if(mode==='db')return n+'Picks are saved to this page.';
+  if(mode==='local')return n+'Picks are saved in this browser only.';
+  if(mode==='ro')return n+'You can see the picks but not change them.';
+  if(mode==='slow')return n+'Saved picks can\'t be reached yet.';
+  return 'Loading saved picks…';
+}
+
+/* Clip row */
+function clipRow(c,opts){
+  const f=byId[c.film];const p=picks[c.id]||{};
+  const li=document.createElement(opts.tag||'div');
+  li.className='clip'+(p.state==='keep'?' kept':'')+(p.state==='drop'?' dropped':'');
+  li.dataset.clip=c.id;
+  const who=opts.inBlock?'<b>'+esc(f.short||f.t)+'</b> · ':'';
+  li.innerHTML='<div class="what">'+who+'<a class="watch" href="'+yt(c.v)+'" target="_blank" rel="noopener">'+esc(c.scene)+' ↗</a>'+
+    '<span class="src"><span class="kind'+(c.off?' off':'')+'">'+(c.off?'Studio · press':'Fan upload')+'</span>'+esc(c.ch)+'</span>'+
+    (c.note&&!opts.inBlock?'<span class="cnote">'+esc(c.note)+'</span>':'')+'</div>'+
+    '<div class="kd"><button type="button" class="k" aria-pressed="'+(p.state==='keep')+'" aria-label="Keep '+esc(c.scene)+'">Keep</button>'+
+    '<button type="button" class="d" aria-pressed="'+(p.state==='drop')+'" aria-label="Drop '+esc(c.scene)+'">Drop</button></div>'+
+    (opts.note?'<input class="noteinp" type="text" id="note-'+c.id+'" placeholder="Note: timecode, trim, why" value="'+esc(p.note||'')+'" aria-label="Note for '+esc(c.scene)+'">':'');
+  li.querySelector('.k').addEventListener('click',()=>toggle(c.id,'keep'));
+  li.querySelector('.d').addEventListener('click',()=>toggle(c.id,'drop'));
+  const ni=li.querySelector('.noteinp');
+  if(ni)ni.addEventListener('change',()=>savePick(c.id,(picks[c.id]||{}).state||'',ni.value.trim()));
+  return li;
+}
+
+/* Reel */
+const reel=document.getElementById('reelBlocks');
+function blockClips(b){
+  const items=b.items.map(id=>clipById[id]).filter(Boolean);
+  const kept=items.filter(c=>(picks[c.id]||{}).state==='keep');
+  const pool=kept.length?kept:items.filter(c=>(picks[c.id]||{}).state!=='drop');
+  return {items,pool,fromKeeps:kept.length>0};
+}
+function renderReel(){
+  reel.innerHTML='';
+  CL.blocks.forEach(b=>{
+    const d=document.createElement('div');d.className='block';
+    d.innerHTML='<h3>'+esc(b.title)+'</h3><div class="dur">'+esc(b.when)+'</div>';
+    const ol=document.createElement('ol');
+    b.items.forEach(id=>{const c=clipById[id];if(c)ol.appendChild(clipRow(c,{inBlock:true,tag:'li'}))});
+    d.appendChild(ol);
+    const {pool,fromKeeps}=blockClips(b);
+    const a=document.createElement('a');a.className='btn primary play';a.target='_blank';a.rel='noopener';
+    a.href='https://www.youtube.com/watch_videos?video_ids='+pool.map(c=>c.v).join(',');
+    a.textContent='Play this block on YouTube ↗';
+    d.appendChild(a);
+    const pc=document.createElement('div');pc.className='pcount';
+    pc.textContent=pool.length+' clips in order'+(fromKeeps?', your keeps only':', drops left out');
+    d.appendChild(pc);
+    reel.appendChild(d);
+  });
+}
+
+/* Cards */
+const cards=document.getElementById('cards');
+function renderCards(){
+  cards.innerHTML='';
+  byScore.forEach(f=>{
+    const d=CL.films[f.id]||{clips:[]};
+    const tags=[];
+    if(gold(f))tags.push('<span class="tag gold">core</span>');
+    if(wallOK(f))tags.push('<span class="tag">for the wall</span>');
+    tags.push('<span class="tag">'+toneLabel[f.tone]+'</span>');
+    if(f.kind==='short')tags.push('<span class="tag">short</span>');
+    if(f.kind==='doc')tags.push('<span class="tag">documentary</span>');
+    const q=encodeURIComponent(f.t);
+    const links=[];
+    if(d.trailer)links.push('<a href="'+yt(d.trailer[0])+'" target="_blank" rel="noopener">Trailer ↗</a>');
+    links.push(d.fg?'<a href="'+d.fg+'" target="_blank" rel="noopener">Film-Grab stills ↗</a>':'<a href="https://film-grab.com/?s='+q+'" target="_blank" rel="noopener">Search Film-Grab ↗</a>');
+    links.push(d.sc?'<a href="'+d.sc+'" target="_blank" rel="noopener">Shot Cafe stills ↗</a>':'<a href="https://shot.cafe/" target="_blank" rel="noopener">Shot Cafe ↗</a> <small>look for '+esc(f.t)+'</small>');
+    if(f.id==='oblivion')links.push('<a href="https://shot.cafe/movie/oblivion-2013/swimming+pool" target="_blank" rel="noopener">Shot Cafe: the pool ↗</a>');
+    if(f.id==='panther')links.push('<a href="https://www.youtube.com/playlist?list=PLv23fwEqo3epXKxBP6qix94Vb8111xdQ3" target="_blank" rel="noopener">Marvel clips playlist ↗</a>');
+    if(f.extra)links.push('<a href="'+f.extra[0]+'" target="_blank" rel="noopener">Film channel ↗</a>');
+    if(f.wiki)links.push('<a href="https://en.wikipedia.org/wiki/'+f.wiki+'" target="_blank" rel="noopener">Wikipedia ↗</a>');
+    if(f.site)links.push('<a href="'+f.site+'" target="_blank" rel="noopener">Site ↗</a>');
+    const a=document.createElement('article');
+    a.className='card'+(gold(f)?' gold':'');a.id='f-'+f.id;
+    a.dataset.gold=gold(f)?1:0;a.dataset.wall=wallOK(f)?1:0;a.dataset.tone=f.tone;a.dataset.kind=f.kind;
+    a.innerHTML='<div class="strip" aria-hidden="true">'+f.pal.map(c=>'<b style="background:'+c+'"></b>').join('')+'</div>'+
+     '<div class="cb"><div><h3>'+esc(f.t)+(f.sub?'<span class="en">'+esc(f.sub)+'</span>':'')+'</h3>'+
+     '<p class="meta">'+f.y+' · '+esc(f.dir)+'<br><span class="set">Set in '+esc(f.set)+'</span></p></div>'+
+     '<div class="scores"><div class="score"><div class="lbl">Plausibility<b>'+fmt(f.p)+'</b></div><div class="bar"><i style="width:'+f.p*10+'%"></i></div></div>'+
+     '<div class="score"><div class="lbl">Beauty<b>'+fmt(f.b)+'</b></div><div class="bar"><i style="width:'+f.b*10+'%"></i></div></div></div>'+
+     '<div class="tags">'+tags.join('')+'</div>'+
+     '<dl><div><dt>Scenes to cut</dt><dd class="clips"></dd></div>'+
+     '<div><dt>Why it\'s credible</dt><dd>'+esc(f.auth)+'</dd></div>'+
+     '<div><dt>Idea for 2050</dt><dd>'+esc(f.idea)+' <span class="st '+f.st+'">'+stLabel[f.st]+'</span>'+esc(f.stt)+'</dd></div></dl>'+
+     '<div class="links">'+links.join('')+'</div></div>';
+    const box=a.querySelector('.clips');
+    d.clips.forEach(c=>box.appendChild(clipRow(c,{note:true})));
+    cards.appendChild(a);
+  });
+  applyFilter();
+}
+
+/* Filters */
+const FL=[
+ {k:'all',t:'All',fn:()=>true},
+ {k:'gold',t:'Core',fn:c=>c.dataset.gold==='1'},
+ {k:'wall',t:'For the wall',fn:c=>c.dataset.wall==='1'},
+ {k:'insp',t:'Inspiring',fn:c=>c.dataset.tone!=='warn'},
+ {k:'warn',t:'Warning',fn:c=>c.dataset.tone!=='insp'},
+ {k:'short',t:'Shorts and documentary',fn:c=>c.dataset.kind!=='film'}
+];
+let curFilter='all';
+try{curFilter=localStorage.getItem('p2050-filter')||'all'}catch(e){}
+if(location.hash&&location.hash.indexOf('#f-')===0)curFilter='all';
+const fw=document.getElementById('filters');
+function buildFilters(){
+  fw.innerHTML='';
+  const all=[...cards.children];
+  FL.forEach(o=>{
+    const b=document.createElement('button');b.type='button';b.id='flt-'+o.k;b.dataset.k=o.k;
+    b.innerHTML=esc(o.t)+'<span class="count">'+all.filter(o.fn).length+'</span>';
+    b.setAttribute('aria-pressed',o.k===curFilter);b.addEventListener('click',()=>setFilter(o.k));fw.appendChild(b);
+  });
+}
+function applyFilter(){
+  const o=FL.find(x=>x.k===curFilter)||FL[0];
+  [...cards.children].forEach(c=>{c.hidden=!o.fn(c)});
+  fw.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===o.k));
+}
+function setFilter(k){curFilter=k;applyFilter();try{localStorage.setItem('p2050-filter',k)}catch(e){}}
+function flash(id){const c=document.getElementById('f-'+id);if(!c)return;c.classList.add('flash');setTimeout(()=>c.classList.remove('flash'),1800)}
+document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href^="#f-"]');if(a){setFilter('all');flash(a.getAttribute('href').slice(3))}});
+
+function renderAll(){
+  pstat.innerHTML=statusText();
+  document.getElementById('toolbar').classList.toggle('ro',mode==='ro');
+  renderReel();
+  const active=document.activeElement&&document.activeElement.classList.contains('noteinp')?document.activeElement.id:null;
+  if(active){ // keep a note being typed: update rows in place instead of rebuilding
+    document.querySelectorAll('.card .clip').forEach(row=>{const p=picks[row.dataset.clip]||{};row.classList.toggle('kept',p.state==='keep');row.classList.toggle('dropped',p.state==='drop');row.querySelector('.k').setAttribute('aria-pressed',p.state==='keep');row.querySelector('.d').setAttribute('aria-pressed',p.state==='drop')});
+  }else{renderCards()}
+  document.getElementById('cards').classList.toggle('ro',mode==='ro');
+  reel.classList.toggle('ro',mode==='ro');
+}
+
+/* Storage: db when the page is served it, browser storage otherwise */
+let db=null;const chain={};
+function localLoad(){try{return JSON.parse(localStorage.getItem('p2050-picks')||'{}')}catch(e){return {}}}
+function localSave(){try{localStorage.setItem('p2050-picks',JSON.stringify(picks))}catch(e){}}
+function toggle(id,state){if(mode==='ro')return;const cur=(picks[id]||{}).state;savePick(id,cur===state?'':state,(picks[id]||{}).note||'')}
+function savePick(id,state,note){
+  if(mode==='ro')return;
+  const c=clipById[id];
+  const body={state:state,note:note||'',film:c.film,scene:c.scene,video:c.v,at:new Date().toISOString()};
+  picks[id]=body;renderAll();
+  if(!db){localSave();return}
+  chain[id]=(chain[id]||Promise.resolve()).then(()=>db.doc('picks/'+id).set(body)).catch(err=>{
+    if(err&&err.code==='invalid_argument'){mode='ro';renderAll()}
+    else{pstat.innerHTML=statusText()+' The last pick did not save; try again.'}
+  });
+}
+(async()=>{
+  try{db=window.claude&&window.claude.use?await window.claude.use('db'):null}catch(e){db=null}
+  if(!db){mode='local';picks=localLoad();renderAll();return}
+  const timer=setTimeout(()=>{if(mode==='loading'){mode='slow';renderAll()}},10000);
+  db.collection('picks').onSnapshot(snap=>{
+    if(!snap.metadata.fromCache)clearTimeout(timer);
+    const next={};snap.docs.forEach(d=>{const v=d.data();if(v)next[d.id]=v});
+    picks=next;if(mode==='loading'||mode==='slow')mode='db';renderAll();
+  },err=>{clearTimeout(timer);mode='local';picks=localLoad();renderAll()});
+})();
+
+/* Copy cut list */
+document.getElementById('copyList').addEventListener('click',()=>{
+  const lines=['PROJECTION 2050 · cut list',''];
+  CL.blocks.forEach(b=>{
+    const {pool}=blockClips(b);
+    lines.push(b.title.toUpperCase()+' ('+b.when+')');
+    pool.forEach(c=>{const p=picks[c.id]||{};lines.push('- '+(byId[c.film].short||byId[c.film].t)+': '+c.scene+' · '+yt(c.v)+(p.note?' · note: '+p.note:''))});
+    lines.push('Play: https://www.youtube.com/watch_videos?video_ids='+pool.map(c=>c.v).join(','),'');
+  });
+  const inBlocks=new Set(CL.blocks.flatMap(b=>b.items));
+  const extra=allClips.filter(c=>(picks[c.id]||{}).state==='keep'&&!inBlocks.has(c.id));
+  if(extra.length){lines.push('ALSO KEPT');extra.forEach(c=>{const p=picks[c.id]||{};lines.push('- '+(byId[c.film].short||byId[c.film].t)+': '+c.scene+' · '+yt(c.v)+(p.note?' · note: '+p.note:''))})}
+  const text=lines.join('\n');const box=document.getElementById('copyBox');const btn=document.getElementById('copyList');
+  const show=()=>{box.hidden=false;box.value=text;box.focus();box.select();btn.textContent='Select and copy the text below'};
+  try{navigator.clipboard.writeText(text).then(()=>{btn.textContent='Copied';setTimeout(()=>{btn.textContent='Copy cut list'},1800)},show)}catch(e){show()}
+});
+
+/* Core + wall lists */
+const core=document.getElementById('coreList');
+byScore.filter(gold).forEach(f=>{
+  const li=document.createElement('li');
+  li.innerHTML='<a href="#f-'+f.id+'">'+esc(f.t)+'</a><span class="pb"><i>P</i> '+fmt(f.p)+' · <i>B</i> '+fmt(f.b)+'</span><span class="why">'+esc(f.why||'')+' · '+f.y+'</span>';
+  core.appendChild(li);
+});
+const wl=document.getElementById('wallList');
+[...F].filter(wallOK).sort((a,b)=>b.b-a.b||b.p-a.p).forEach(f=>{
+  const a=document.createElement('a');a.href='#f-'+f.id;
+  a.innerHTML='<span class="sw">'+f.pal.slice(0,4).map(c=>'<b style="background:'+c+'"></b>').join('')+'</span>'+esc(f.short||f.t);
+  wl.appendChild(a);
+});
+
+/* Chart */
+const svg=document.getElementById('chart'),NS='http://www.w3.org/2000/svg';
+const W=820,H=500,m={l:58,r:24,t:24,b:56};
+const xd=[2,10.5],yd=[5,10.5];
+const sx=v=>m.l+(v-xd[0])/(xd[1]-xd[0])*(W-m.l-m.r);
+const sy=v=>H-m.b-(v-yd[0])/(yd[1]-yd[0])*(H-m.t-m.b);
+const el=(t,at,txt)=>{const e=document.createElementNS(NS,t);for(const k in at)e.setAttribute(k,at[k]);if(txt!=null)e.textContent=txt;return e};
+svg.appendChild(el('rect',{class:'quad',x:sx(8),y:sy(10.5),width:sx(10.5)-sx(8),height:sy(8)-sy(10.5),rx:6}));
+svg.appendChild(el('text',{class:'quad-label',x:sx(10.5)-10,y:sy(10.5)+18,'text-anchor':'end'},'core'));
+for(let x=2;x<=10;x++){svg.appendChild(el('line',{class:'ax',x1:sx(x),x2:sx(x),y1:sy(yd[0]),y2:sy(yd[1])}));svg.appendChild(el('text',{class:'tick',x:sx(x),y:H-m.b+20,'text-anchor':'middle'},x))}
+for(let y=5;y<=10;y++){svg.appendChild(el('line',{class:'ax',x1:sx(xd[0]),x2:sx(xd[1]),y1:sy(y),y2:sy(y)}));svg.appendChild(el('text',{class:'tick',x:m.l-12,y:sy(y)+4,'text-anchor':'end'},y))}
+svg.appendChild(el('line',{class:'ax ax-strong',x1:sx(xd[0]),x2:sx(xd[1]),y1:sy(yd[0]),y2:sy(yd[0])}));
+svg.appendChild(el('text',{class:'ax-title',x:sx(xd[1]),y:H-12,'text-anchor':'end'},'Plausibility →'));
+svg.appendChild(el('text',{class:'ax-title',x:16,y:sy(yd[1])+4,transform:'rotate(-90 16 '+(sy(yd[1])+4)+')','text-anchor':'end'},'Beauty of the frame →'));
+const leftLabel={wanderers:1,wildrobot:1};
+const tip=document.getElementById('tip'),box=document.getElementById('chartBox');
+F.forEach(f=>{
+  const g=el('a',{class:'pt '+(gold(f)?'gold':'rest'),href:'#f-'+f.id,'aria-label':f.t+': plausibility '+f.p+', beauty '+f.b});
+  const cx=sx(f.p),cy=sy(f.b);
+  g.appendChild(el('circle',{class:'hit',cx:cx,cy:cy,r:16}));
+  g.appendChild(el('circle',{cx:cx,cy:cy,r:7}));
+  const L=!!leftLabel[f.id];
+  g.appendChild(el('text',{x:L?cx-12:cx+12,y:cy+4.5,'text-anchor':L?'end':'start'},f.short||f.t));
+  const show=()=>{
+    tip.innerHTML='<b>'+esc(f.t)+'</b><span class="m">'+f.y+' · '+esc(f.dir)+'</span><br>Plausibility '+f.p+' · Beauty '+f.b+'<br><span class="m">'+esc(f.set)+'</span>';
+    tip.hidden=false;
+    const r=svg.getBoundingClientRect(),br=box.getBoundingClientRect();
+    const k=r.width/W;let x=(r.left-br.left)+box.scrollLeft+cx*k+14,y=(r.top-br.top)+cy*k-10;
+    const tw=tip.offsetWidth;if(x+tw>box.scrollLeft+box.clientWidth-8)x=(r.left-br.left)+box.scrollLeft+cx*k-tw-14;
+    tip.style.left=x+'px';tip.style.top=Math.max(6,y)+'px';
+  };
+  const hide=()=>{tip.hidden=true};
+  g.addEventListener('pointerenter',show);g.addEventListener('pointerleave',hide);
+  g.addEventListener('focus',show);g.addEventListener('blur',hide);
+  svg.appendChild(g);
+});
+
+/* Timeline */
+const T=[
+ {y:2027,t:'Children of Men',in:1},{y:2029,t:'Ghost in the Shell'},{y:2033,t:'Mars (series)'},
+ {y:2035,t:'I, Robot'},{y:2035,t:'The Martian ≈',in:1},{y:2040,t:'2040',in:1},{y:2044,t:'Looper'},
+ {y:2045,t:'Ready Player One'},{y:2049,t:'Blade Runner 2049',in:1},
+ {y:2053,t:'Westworld, season 3'},{y:2054,t:'Minority Report',in:1},{y:2054,t:'Mickey 17'},
+ {y:2057,t:'Sunshine'},{y:2070,t:'The Creator',in:1},{y:2075,t:'Planetes'},{y:2077,t:'Oblivion',in:1},
+ {y:2084,t:'Guest from the Future'}
+];
+const tl=document.getElementById('tl');
+const TW=900,tm={l:24,r:24},td=[2024,2088];
+const tx=v=>tm.l+(v-td[0])/(td[1]-td[0])*(TW-tm.l-tm.r);
+const laneEnd=[],placed=[];
+T.forEach(it=>{const x=tx(it.y),w=(it.t.length+5)*7+14;let lane=0;while(laneEnd[lane]!=null&&laneEnd[lane]>x-6)lane++;laneEnd[lane]=x+w;placed.push({...it,x,lane})});
+const lanes=laneEnd.length,LH=24,top=40,axisY=top+lanes*LH+16,TH=axisY+44;
+tl.setAttribute('viewBox','0 0 '+TW+' '+TH);
+tl.appendChild(el('rect',{class:'tl-band',x:tx(2045),y:14,width:tx(2055)-tx(2045),height:axisY-14,rx:4}));
+tl.appendChild(el('text',{class:'tl-band-label',x:(tx(2045)+tx(2055))/2,y:30,'text-anchor':'middle'},'2050 ± 5'));
+tl.appendChild(el('line',{class:'tl-axis',x1:tm.l,x2:TW-tm.r,y1:axisY,y2:axisY}));
+tl.appendChild(el('line',{class:'tl-now',x1:tx(2026),x2:tx(2026),y1:14,y2:axisY}));
+tl.appendChild(el('text',{class:'tl-yr',x:tx(2026)+5,y:30},'now'));
+for(let y=2030;y<=2080;y+=10){tl.appendChild(el('text',{class:'tl-yr',x:tx(y),y:axisY+22,'text-anchor':'middle'},y));tl.appendChild(el('line',{class:'tl-axis',x1:tx(y),x2:tx(y),y1:axisY,y2:axisY+6}))}
+placed.sort((a,b)=>b.lane-a.lane).forEach(p=>{const ly=top+(lanes-1-p.lane)*LH+12;tl.appendChild(el('line',{class:'tl-stem',x1:p.x,x2:p.x,y1:ly+4,y2:axisY}));tl.appendChild(el('text',{class:'tl-lbl'+(p.in?' in':''),x:p.x+6,y:ly+4},p.y+' '+p.t))});
+placed.forEach(p=>tl.appendChild(el('circle',{class:'tl-dot'+(p.in?' in':''),cx:p.x,cy:axisY,r:5})));
+
+/* Ideas */
+const I=[
+ ['A voice AI with a personality','Her, After Yang, Blade Runner 2049','here','Voice GPT-4o (2024); in 2025 GPT-4.5 was judged human in 73% of Turing tests.','near certain'],
+ ['Hands and gaze instead of a keyboard','Minority Report, Hyper-Reality','progress','The film\'s interface became the g-speak system; mixed-reality headsets take hands and gaze as input.','high'],
+ ['Self-driving transport, streets without parking','Minority Report, After Yang, 2040','progress','Driverless robotaxis carry paying passengers in several US cities.','high'],
+ ['Choosing and editing the genome','Gattaca','progress','Embryo screening is sold with IVF; the first gene-edited children were born in 2018, and the scientist was jailed.','high, contested'],
+ ['Solar fields and neighbourhood grids','Gattaca, 2040','progress','Solar is the fastest-growing source of electricity.','high'],
+ ['An algorithm that runs the city','Minority Report, Westworld S3','progress','Predictive policing has been trialled; recommendation systems decide what people see.','high'],
+ ['Cities defended from the sea','Blade Runner 2049, The Wild Robot','progress','Flood barriers already run, such as MOSE in Venice.','high'],
+ ['Humanoid robots around us','Ex Machina, The Creator, The Wild Robot','progress','Humanoids are in factory trials, not yet in homes.','medium'],
+ ['People on Mars','The Martian, Mars, Wanderers','future','Artemis starts with the return to the Moon.','medium'],
+ ['Orbital cities','Interstellar, Elysium','future','Only the ISS and Tiangong are permanently crewed.','low'],
+ ['A world of low birth rates','Children of Men','here','South Korea, 2023: 0.72 children per woman.','near certain']
+];
+document.getElementById('ideasBody').innerHTML=I.map(r=>'<tr><td class="idea">'+esc(r[0])+'</td><td class="films">'+esc(r[1])+'</td><td><span class="st '+r[2]+'">'+stLabel[r[2]]+'</span>'+esc(r[3])+'</td><td class="chance">'+esc(r[4])+'</td></tr>').join('');
+
+renderCards();buildFilters();renderAll();
+})();
+</script>
+
+</body></html>

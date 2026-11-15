@@ -1,0 +1,121 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;overflow:hidden;background:#0b0b0d;font-family:Inter,sans-serif}
+    .card{position:absolute;inset:0;background:#0b0b0d}
+    .cin{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+    .num{font:700 40px/1 Inter,sans-serif;letter-spacing:.14em;color:#ff5315}
+    .word{font-family:'League Gothic',sans-serif;font-size:330px;line-height:.86;color:#fff;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}
+    .shot{position:absolute;inset:0;overflow:hidden}
+    .shot.burst{background:#000}
+    .mv,.kb{position:absolute;inset:0}
+    .kb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+    .scrim{position:absolute;left:0;right:0;bottom:0;height:72%;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.45) 35%,rgba(0,0,0,.8) 70%,rgba(0,0,0,.9) 100%)}
+    .scrim.strong{height:80%;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.6) 30%,rgba(0,0,0,.88) 65%,rgba(0,0,0,.95) 100%)}
+    .credit{position:absolute;right:96px;bottom:54px;font:500 20px/1.2 Inter,sans-serif;color:rgba(255,255,255,.74)}
+    .cap{position:absolute;left:192px;bottom:124px;width:1520px;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+    .kick{font:800 36px/1.15 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#ff5315}
+    .kick i{font-style:normal;font-weight:700;color:rgba(255,255,255,.78)}
+    .hero{font-family:'League Gothic',sans-serif;font-size:136px;line-height:.92;text-transform:uppercase;letter-spacing:.01em;margin-top:12px}
+    .hero span{display:inline-block;margin-right:.2em}
+    .now{font:600 36px/1.25 Inter,sans-serif;color:rgba(255,255,255,.92);margin-top:20px}
+    .now b{font-weight:800;font-size:28px;letter-spacing:.12em;text-transform:uppercase;margin-right:16px;vertical-align:3px}
+    .dip{position:absolute;inset:0}
+    .dipc{position:absolute;inset:0;background:#000}
+    .dipc.ground{background:#0b0b0d}
+  </style>
+  <div id="root" data-composition-id="orbit" data-width="1920" data-height="1080">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><filter id="orbit-s0-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="orbit-s0-fb" stdDeviation="0 0"/></filter><filter id="orbit-s1-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="orbit-s1-fb" stdDeviation="0 0"/></filter><filter id="orbit-s2-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="orbit-s2-fb" stdDeviation="0 0"/></filter><filter id="orbit-s3-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="orbit-s3-fb" stdDeviation="0 0"/></filter><filter id="orbit-s4-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="orbit-s4-fb" stdDeviation="0 0"/></filter></defs></svg>
+    <div id="orbit-card" class="clip card" data-start="0" data-duration="1.2" data-track-index="1" style="z-index:1"><div class="cin" id="orbit-cin"><div class="num" id="orbit-num">2 / 3</div><div class="word" id="orbit-word">Orbit</div></div></div>
+    <div id="orbit-b0" class="clip shot burst" data-start="1.2" data-duration="0.333333" data-track-index="2" style="z-index:2"><div class="kb" id="orbit-b0-kb"><img src="assets/photos/jwstmirror.jpg" alt=""></div><div class="credit" data-layout-ignore>Photo: NASA/MSFC, David Higginbotham</div></div>
+    <div id="orbit-b1" class="clip shot burst" data-start="1.533333" data-duration="0.333334" data-track-index="2" style="z-index:3"><div class="kb" id="orbit-b1-kb"><img src="assets/photos/fheavy.jpg" alt=""></div><div class="credit" data-layout-ignore>Photo: SpaceX · CC0</div></div>
+    <div id="orbit-b2" class="clip shot burst" data-start="1.866667" data-duration="0.333333" data-track-index="2" style="z-index:4"><div class="kb" id="orbit-b2-kb"><img src="assets/photos/cylinder.jpg" alt=""></div><div class="credit" data-layout-ignore>Painting: Rick Guidice for NASA Ames</div></div>
+    <div id="orbit-b3" class="clip shot burst" data-start="2.2" data-duration="0.333333" data-track-index="2" style="z-index:5"><div class="kb" id="orbit-b3-kb"><img src="assets/photos/launch.jpg" alt=""></div><div class="credit" data-layout-ignore>Photo: NASA, Joel Kowsky</div></div>
+    <div id="orbit-b4" class="clip shot burst" data-start="2.533333" data-duration="0.333334" data-track-index="2" style="z-index:6"><div class="kb" id="orbit-b4-kb"><img src="assets/photos/bernal.jpg" alt=""></div><div class="credit" data-layout-ignore>Painting: Rick Guidice for NASA Ames</div></div>
+    <div id="orbit-b5" class="clip shot burst" data-start="2.866667" data-duration="0.333333" data-track-index="2" style="z-index:7"><div class="kb" id="orbit-b5-kb"><img src="assets/photos/orion.jpg" alt=""></div><div class="credit" data-layout-ignore>Image: NASA</div></div>
+    <div id="orbit-b6" class="clip shot burst" data-start="3.2" data-duration="0.333333" data-track-index="2" style="z-index:8"><div class="kb" id="orbit-b6-kb"><img src="assets/photos/iss.jpg" alt=""></div><div class="credit" data-layout-ignore>Photo: NASA</div></div>
+    <div id="orbit-bdip" class="clip dip" data-start="3.2" data-duration="0.333333" data-track-index="3" style="z-index:9"><div class="dipc" id="orbit-bdipc"></div></div>
+    <div id="orbit-s0" class="clip shot" data-start="3.533333" data-duration="3.6" data-track-index="4" style="z-index:10"><div class="mv" id="orbit-s0-mv" style="filter:url(#orbit-s0-mb)"><div class="kb" id="orbit-s0-kb"><img src="assets/photos/starship.jpg" alt="Orbit for the price of a flight"></div><div class="scrim strong"></div><div class="credit" data-layout-ignore>Photo: Jared Krahn · CC BY-SA 4.0</div></div><div class="cap" id="orbit-s0-cap"><div class="kick" id="orbit-s0-k">By 2035<i> · Destination Moon</i></div><div class="hero" id="orbit-s0-h"><span id="orbit-s0-w0">Orbit</span><span id="orbit-s0-w1">for</span><span id="orbit-s0-w2">the</span><span id="orbit-s0-w3">price</span><span id="orbit-s0-w4">of</span><span id="orbit-s0-w5">a</span><span id="orbit-s0-w6">flight</span></div><div class="now" id="orbit-s0-n"><b>2024</b>A Starship booster was caught by the tower that launched it</div></div></div>
+    <div id="orbit-s1" class="clip shot" data-start="6.933333" data-duration="3.7" data-track-index="4" style="z-index:11"><div class="mv" id="orbit-s1-mv" style="filter:url(#orbit-s1-mb)"><div class="kb" id="orbit-s1-kb"><img src="assets/photos/moon.jpg" alt="People living on the Moon"></div><div class="scrim"></div><div class="credit" data-layout-ignore>Photo: NASA, Artemis II crew</div></div><div class="cap" id="orbit-s1-cap"><div class="kick" id="orbit-s1-k">By 2035<i> · 2001</i></div><div class="hero" id="orbit-s1-h"><span id="orbit-s1-w0">People</span><span id="orbit-s1-w1">living</span><span id="orbit-s1-w2">on</span><span id="orbit-s1-w3">the</span><span id="orbit-s1-w4">Moon</span></div><div class="now" id="orbit-s1-n"><b>2026</b>Artemis II flew four people around the Moon and took this</div></div></div>
+    <div id="orbit-s2" class="clip shot" data-start="10.433333" data-duration="3.7" data-track-index="4" style="z-index:12"><div class="mv" id="orbit-s2-mv" style="filter:url(#orbit-s2-mb)"><div class="kb" id="orbit-s2-kb"><img src="assets/photos/torus.jpg" alt="Towns that orbit Earth"></div><div class="scrim"></div><div class="credit" data-layout-ignore>Painting: Donald Davis for NASA Ames, 1975</div></div><div class="cap" id="orbit-s2-cap"><div class="kick" id="orbit-s2-k">By 2050<i> · Elysium</i></div><div class="hero" id="orbit-s2-h"><span id="orbit-s2-w0">Towns</span><span id="orbit-s2-w1">that</span><span id="orbit-s2-w2">orbit</span><span id="orbit-s2-w3">Earth</span></div><div class="now" id="orbit-s2-n"><b>1975</b>NASA designed this ring for 10,000 people</div></div></div>
+    <div id="orbit-s3" class="clip shot" data-start="13.933333" data-duration="3.7" data-track-index="4" style="z-index:13"><div class="mv" id="orbit-s3-mv" style="filter:url(#orbit-s3-mb)"><div class="kb" id="orbit-s3-kb"><img src="assets/photos/elevator.jpg" alt="An elevator to space"></div><div class="scrim"></div><div class="credit" data-layout-ignore>Image: Bandai Namco, Ace Combat 7 · CC BY 3.0</div></div><div class="cap" id="orbit-s3-cap"><div class="kick" id="orbit-s3-k">By 2050<i> · Ace Combat 7</i></div><div class="hero" id="orbit-s3-h"><span id="orbit-s3-w0">An</span><span id="orbit-s3-w1">elevator</span><span id="orbit-s3-w2">to</span><span id="orbit-s3-w3">space</span></div><div class="now" id="orbit-s3-n"><b>2012</b>Obayashi set out a plan to open one by 2050</div></div></div>
+    <div id="orbit-s4" class="clip shot" data-start="17.433333" data-duration="3.6" data-track-index="4" style="z-index:14"><div class="mv" id="orbit-s4-mv" style="filter:url(#orbit-s4-mb)"><div class="kb" id="orbit-s4-kb"><img src="assets/photos/bennu.jpg" alt="Mining the asteroids"></div><div class="scrim"></div><div class="credit" data-layout-ignore>Image: NASA/Goddard/University of Arizona</div></div><div class="cap" id="orbit-s4-cap"><div class="kick" id="orbit-s4-k">By 2045<i> · The Expanse</i></div><div class="hero" id="orbit-s4-h"><span id="orbit-s4-w0">Mining</span><span id="orbit-s4-w1">the</span><span id="orbit-s4-w2">asteroids</span></div><div class="now" id="orbit-s4-n"><b>2023</b>OSIRIS-REx brought a piece of asteroid Bennu home</div></div></div>
+    <div id="orbit-end" class="clip dip" data-start="20.933333" data-duration="0.1" data-track-index="3" style="z-index:15"><div class="dipc" id="orbit-endc"></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo('#orbit-num',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0);
+    tl.fromTo('#orbit-word',{opacity:0,filter:'blur(10px)'},{opacity:1,filter:'blur(0px)',duration:0.17,ease:'power4.out'},0.03);
+    tl.fromTo('#orbit-cin',{scale:1},{scale:6,duration:0.35,ease:'power3.in',immediateRender:false},0.85);
+    tl.fromTo('#orbit-b0-kb',{scale:1.06},{scale:1,duration:0.333333,ease:'expo.out'},1.2);
+    tl.fromTo('#orbit-b1-kb',{scale:1.06},{scale:1,duration:0.333334,ease:'expo.out'},1.533333);
+    tl.fromTo('#orbit-b2-kb',{scale:1.06},{scale:1,duration:0.333333,ease:'expo.out'},1.866667);
+    tl.fromTo('#orbit-b3-kb',{scale:1.06},{scale:1,duration:0.333333,ease:'expo.out'},2.2);
+    tl.fromTo('#orbit-b4-kb',{scale:1.06},{scale:1,duration:0.333334,ease:'expo.out'},2.533333);
+    tl.fromTo('#orbit-b5-kb',{scale:1.06},{scale:1,duration:0.333333,ease:'expo.out'},2.866667);
+    tl.fromTo('#orbit-b6-kb',{scale:1.06},{scale:1,duration:0.333333,ease:'expo.out'},3.2);
+    tl.fromTo('#orbit-bdipc',{opacity:0},{opacity:0.4,duration:0.1,ease:'none'},3.433333);
+    tl.fromTo('#orbit-s0-kb',{scale:1},{scale:1.07,duration:3.6,ease:'none'},3.533333);
+    tl.fromTo('#orbit-s0-k',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.17,ease:'power4.out'},3.6533);
+    tl.fromTo('#orbit-s0-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},3.7533);
+    tl.fromTo('#orbit-s0-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},3.8203);
+    tl.fromTo('#orbit-s0-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},3.8873);
+    tl.fromTo('#orbit-s0-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},3.9543);
+    tl.fromTo('#orbit-s0-w4',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},4.0213);
+    tl.fromTo('#orbit-s0-w5',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},4.0883);
+    tl.fromTo('#orbit-s0-w6',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},4.1553);
+    tl.fromTo('#orbit-s0-n',{opacity:0,color:'#8a8a8a'},{opacity:1,color:'rgba(255,255,255,0.92)',duration:0.2,ease:'power2.out'},4.0333);
+    tl.fromTo('#orbit-s0-cap',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},6.7833);
+    tl.fromTo('#orbit-s1-kb',{scale:1.06,xPercent:1.6},{scale:1.06,xPercent:-1.6,duration:3.7,ease:'none'},6.933333);
+    tl.fromTo('#orbit-s1-k',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.17,ease:'power4.out'},7.1533);
+    tl.fromTo('#orbit-s1-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},7.2533);
+    tl.fromTo('#orbit-s1-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},7.3203);
+    tl.fromTo('#orbit-s1-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},7.3873);
+    tl.fromTo('#orbit-s1-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},7.4543);
+    tl.fromTo('#orbit-s1-w4',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},7.5213);
+    tl.fromTo('#orbit-s1-n',{opacity:0,color:'#8a8a8a'},{opacity:1,color:'rgba(255,255,255,0.92)',duration:0.2,ease:'power2.out'},7.5333);
+    tl.fromTo('#orbit-s1-cap',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},10.2833);
+    tl.fromTo('#orbit-s0-mv',{scale:1},{scale:1.35,duration:0.2,ease:'power2.in',immediateRender:false},6.933333);
+    tl.fromTo('#orbit-s1-mv',{scale:1.3,opacity:0},{scale:1,opacity:1,duration:0.2,ease:'power3.out'},6.933333);
+    tl.fromTo('#orbit-s1-fb',{attr:{stdDeviation:'16 16'}},{attr:{stdDeviation:'0 0'},duration:0.2,ease:'power2.out'},6.933333);
+    tl.fromTo('#orbit-s2-kb',{scale:1.07},{scale:1,duration:3.7,ease:'none'},10.433333);
+    tl.fromTo('#orbit-s2-k',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.17,ease:'power4.out'},10.6533);
+    tl.fromTo('#orbit-s2-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},10.7533);
+    tl.fromTo('#orbit-s2-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},10.8203);
+    tl.fromTo('#orbit-s2-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},10.8873);
+    tl.fromTo('#orbit-s2-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},10.9543);
+    tl.fromTo('#orbit-s2-n',{opacity:0,color:'#8a8a8a'},{opacity:1,color:'rgba(255,255,255,0.92)',duration:0.2,ease:'power2.out'},11.0333);
+    tl.fromTo('#orbit-s2-cap',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},13.7833);
+    tl.fromTo('#orbit-s1-mv',{xPercent:0},{xPercent:-100,duration:0.2,ease:'power2.inOut',immediateRender:false},10.433333);
+    tl.fromTo('#orbit-s2-mv',{xPercent:100},{xPercent:0,duration:0.2,ease:'power2.inOut'},10.433333);
+    tl.fromTo('#orbit-s1-fb',{attr:{stdDeviation:'0 0'}},{attr:{stdDeviation:'40 0'},duration:0.1,ease:'power2.in',immediateRender:false},10.433333);
+    tl.fromTo('#orbit-s1-fb',{attr:{stdDeviation:'40 0'}},{attr:{stdDeviation:'0 0'},duration:0.1,ease:'power2.out',immediateRender:false},10.533333);
+    tl.fromTo('#orbit-s2-fb',{attr:{stdDeviation:'0 0'}},{attr:{stdDeviation:'40 0'},duration:0.1,ease:'power2.in',immediateRender:false},10.433333);
+    tl.fromTo('#orbit-s2-fb',{attr:{stdDeviation:'40 0'}},{attr:{stdDeviation:'0 0'},duration:0.1,ease:'power2.out',immediateRender:false},10.533333);
+    tl.fromTo('#orbit-s3-kb',{scale:1.06,xPercent:-1.6},{scale:1.06,xPercent:1.6,duration:3.7,ease:'none'},13.933333);
+    tl.fromTo('#orbit-s3-k',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.17,ease:'power4.out'},14.1533);
+    tl.fromTo('#orbit-s3-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},14.2533);
+    tl.fromTo('#orbit-s3-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},14.3203);
+    tl.fromTo('#orbit-s3-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},14.3873);
+    tl.fromTo('#orbit-s3-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},14.4543);
+    tl.fromTo('#orbit-s3-n',{opacity:0,color:'#8a8a8a'},{opacity:1,color:'rgba(255,255,255,0.92)',duration:0.2,ease:'power2.out'},14.5333);
+    tl.fromTo('#orbit-s3-cap',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},17.2833);
+    tl.fromTo('#orbit-s2-mv',{scale:1},{scale:1.35,duration:0.2,ease:'power2.in',immediateRender:false},13.933333);
+    tl.fromTo('#orbit-s3-mv',{scale:1.3,opacity:0},{scale:1,opacity:1,duration:0.2,ease:'power3.out'},13.933333);
+    tl.fromTo('#orbit-s3-fb',{attr:{stdDeviation:'16 16'}},{attr:{stdDeviation:'0 0'},duration:0.2,ease:'power2.out'},13.933333);
+    tl.fromTo('#orbit-s4-kb',{scale:1},{scale:1.07,duration:3.6,ease:'none'},17.433333);
+    tl.fromTo('#orbit-s4-k',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.17,ease:'power4.out'},17.6533);
+    tl.fromTo('#orbit-s4-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},17.7533);
+    tl.fromTo('#orbit-s4-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},17.8203);
+    tl.fromTo('#orbit-s4-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},17.8873);
+    tl.fromTo('#orbit-s4-n',{opacity:0,color:'#8a8a8a'},{opacity:1,color:'rgba(255,255,255,0.92)',duration:0.2,ease:'power2.out'},18.0333);
+    tl.fromTo('#orbit-s4-cap',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},20.7833);
+    tl.fromTo('#orbit-s3-mv',{xPercent:0},{xPercent:-100,duration:0.2,ease:'power2.inOut',immediateRender:false},17.433333);
+    tl.fromTo('#orbit-s4-mv',{xPercent:100},{xPercent:0,duration:0.2,ease:'power2.inOut'},17.433333);
+    tl.fromTo('#orbit-s3-fb',{attr:{stdDeviation:'0 0'}},{attr:{stdDeviation:'40 0'},duration:0.1,ease:'power2.in',immediateRender:false},17.433333);
+    tl.fromTo('#orbit-s3-fb',{attr:{stdDeviation:'40 0'}},{attr:{stdDeviation:'0 0'},duration:0.1,ease:'power2.out',immediateRender:false},17.533333);
+    tl.fromTo('#orbit-s4-fb',{attr:{stdDeviation:'0 0'}},{attr:{stdDeviation:'40 0'},duration:0.1,ease:'power2.in',immediateRender:false},17.433333);
+    tl.fromTo('#orbit-s4-fb',{attr:{stdDeviation:'40 0'}},{attr:{stdDeviation:'0 0'},duration:0.1,ease:'power2.out',immediateRender:false},17.533333);
+    tl.fromTo('#orbit-endc',{opacity:0},{opacity:0.4,duration:0.1,ease:'none'},20.933333);
+    window.__timelines["orbit"] = tl;
+  </script>
+</template>

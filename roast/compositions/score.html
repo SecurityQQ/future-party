@@ -1,0 +1,26 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;overflow:hidden;background:#0b0b0d;font-family:Inter,sans-serif;color:#fff}
+    .line{position:absolute;left:192px;right:192px;text-align:center;font:600 60px/1.2 Inter,sans-serif}
+    .line span{display:inline-block;margin:0 .13em}
+    .big{font-family:'League Gothic',sans-serif;text-transform:uppercase;line-height:.9;letter-spacing:.02em}
+
+    .row{position:absolute;left:192px;right:192px;top:300px;display:flex;justify-content:space-between}
+    .sc{display:flex;flex-direction:column;align-items:center;width:340px}
+    .sc b{font-family:'League Gothic',sans-serif;font-weight:400;font-size:300px;line-height:.9}
+    .sc span{font:700 36px/1.2 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-top:8px}
+    .sc.hi b{color:#ff5315}
+  </style>
+  <div id="root" data-composition-id="score" data-width="1920" data-height="1080">
+    <div id="score-row" class="row clip" data-start="0" data-duration="3.5"><div class="sc hi" id="sc0"><b>15</b><span>cut</span></div><div class="sc" id="sc1"><b>6</b><span>demoted</span></div><div class="sc" id="sc2"><b>3</b><span>replaced</span></div><div class="sc" id="sc3"><b>1</b><span>kept</span></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo('#sc0',{opacity:0,y:30,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.2,ease:'power4.out'},0.2);
+    tl.fromTo('#sc1',{opacity:0,y:30,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.2,ease:'power4.out'},0.6);
+    tl.fromTo('#sc2',{opacity:0,y:30,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.2,ease:'power4.out'},1.0);
+    tl.fromTo('#sc3',{opacity:0,y:30,filter:'blur(8px)'},{opacity:1,y:0,filter:'blur(0px)',duration:0.2,ease:'power4.out'},1.4);
+    tl.fromTo('#score-row',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.2,ease:'power2.in',immediateRender:false},3.2);
+    window.__timelines["score"] = tl;
+  </script>
+</template>

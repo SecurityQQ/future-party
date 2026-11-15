@@ -1,0 +1,34 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;overflow:hidden;background:#0b0b0d;font-family:Inter,sans-serif;color:#fff}
+    .line{position:absolute;left:192px;right:192px;text-align:center;font:600 60px/1.2 Inter,sans-serif}
+    .line span{display:inline-block;margin:0 .13em}
+    .big{font-family:'League Gothic',sans-serif;text-transform:uppercase;line-height:.9;letter-spacing:.02em}
+
+    .tw{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+    .ttl{font-size:360px;color:#fff}
+    .tk{font:800 34px/1.2 Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#ff5315}
+  </style>
+  <div id="root" data-composition-id="open" data-width="1920" data-height="1080">
+    <div id="open-tw" class="tw clip" data-start="0" data-duration="4.7"><div class="tk">Projection 2050</div><div class="big ttl">The roast</div></div>
+    <div id="open-l1" class="line clip" data-start="0" data-duration="4.7" style="top:470px"><span id="open-l1-w0">We</span><span id="open-l1-w1">made</span><span id="open-l1-w2">a</span><span id="open-l1-w3">film</span><span id="open-l1-w4">about</span><span id="open-l1-w5">2050.</span></div>
+    <div id="open-l2" class="line clip" data-start="0" data-duration="4.7" style="top:470px"><span id="open-l2-w0">Then</span><span id="open-l2-w1">we</span><span id="open-l2-w2">watched</span><span id="open-l2-w3">it.</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo('#open-tw',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.2,ease:'power2.in',immediateRender:false},1.0);
+    tl.fromTo('#open-l1-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},1.3);
+    tl.fromTo('#open-l1-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},1.367);
+    tl.fromTo('#open-l1-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},1.434);
+    tl.fromTo('#open-l1-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},1.501);
+    tl.fromTo('#open-l1-w4',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},1.568);
+    tl.fromTo('#open-l1-w5',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},1.635);
+    tl.fromTo('#open-l1',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},2.75);
+    tl.fromTo('#open-l2-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},2.95);
+    tl.fromTo('#open-l2-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},3.017);
+    tl.fromTo('#open-l2-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},3.084);
+    tl.fromTo('#open-l2-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},3.151);
+    tl.fromTo('#open-l2',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},4.45);
+    window.__timelines["open"] = tl;
+  </script>
+</template>

@@ -1,0 +1,73 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;overflow:hidden;background:#0b0b0d;font-family:Inter,sans-serif;color:#fff}
+    .line{position:absolute;left:192px;right:192px;text-align:center;font:600 60px/1.2 Inter,sans-serif}
+    .line span{display:inline-block;margin:0 .13em}
+    .big{font-family:'League Gothic',sans-serif;text-transform:uppercase;line-height:.9;letter-spacing:.02em}
+
+    .shot{position:absolute;inset:0;overflow:hidden}
+    .mv,.kb{position:absolute;inset:0}
+    .kb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  </style>
+  <div id="root" data-composition-id="recut" data-width="1920" data-height="1080">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><filter id="rc0-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="rc0-fb" stdDeviation="0 0"/></filter><filter id="rc1-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="rc1-fb" stdDeviation="0 0"/></filter><filter id="rc2-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="rc2-fb" stdDeviation="0 0"/></filter><filter id="rc3-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="rc3-fb" stdDeviation="0 0"/></filter><filter id="rc4-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="rc4-fb" stdDeviation="0 0"/></filter><filter id="rc5-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="rc5-fb" stdDeviation="0 0"/></filter><filter id="rc6-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="rc6-fb" stdDeviation="0 0"/></filter><filter id="rc7-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="rc7-fb" stdDeviation="0 0"/></filter><filter id="rc8-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="rc8-fb" stdDeviation="0 0"/></filter></defs></svg>
+    <div id="rc0" class="clip shot" data-start="0.0" data-duration="2.3" data-track-index="1" style="z-index:1"><div class="mv" id="rc0-mv" style="filter:url(#rc0-mb)"><div class="kb" id="rc0-kb"><img src="assets/v2/nif.jpg" alt="v2 slide: nif"></div></div></div>
+    <div id="rc1" class="clip shot" data-start="2.1" data-duration="2.4" data-track-index="1" style="z-index:2"><div class="mv" id="rc1-mv" style="filter:url(#rc1-mb)"><div class="kb" id="rc1-kb"><img src="assets/v2/mammoth.jpg" alt="v2 slide: mammoth"></div></div></div>
+    <div id="rc2" class="clip shot" data-start="4.3" data-duration="2.4" data-track-index="1" style="z-index:3"><div class="mv" id="rc2-mv" style="filter:url(#rc2-mb)"><div class="kb" id="rc2-kb"><img src="assets/v2/aurora.jpg" alt="v2 slide: aurora"></div></div></div>
+    <div id="rc3" class="clip shot" data-start="6.5" data-duration="2.4" data-track-index="1" style="z-index:4"><div class="mv" id="rc3-mv" style="filter:url(#rc3-mb)"><div class="kb" id="rc3-kb"><img src="assets/v2/starship.jpg" alt="v2 slide: starship"></div></div></div>
+    <div id="rc4" class="clip shot" data-start="8.7" data-duration="2.4" data-track-index="1" style="z-index:5"><div class="mv" id="rc4-mv" style="filter:url(#rc4-mb)"><div class="kb" id="rc4-kb"><img src="assets/v2/moon.jpg" alt="v2 slide: moon"></div></div></div>
+    <div id="rc5" class="clip shot" data-start="10.9" data-duration="2.4" data-track-index="1" style="z-index:6"><div class="mv" id="rc5-mv" style="filter:url(#rc5-mb)"><div class="kb" id="rc5-kb"><img src="assets/v2/elevator.jpg" alt="v2 slide: elevator"></div></div></div>
+    <div id="rc6" class="clip shot" data-start="13.1" data-duration="2.4" data-track-index="1" style="z-index:7"><div class="mv" id="rc6-mv" style="filter:url(#rc6-mb)"><div class="kb" id="rc6-kb"><img src="assets/v2/elt.jpg" alt="v2 slide: elt"></div></div></div>
+    <div id="rc7" class="clip shot" data-start="15.3" data-duration="2.4" data-track-index="1" style="z-index:8"><div class="mv" id="rc7-mv" style="filter:url(#rc7-mb)"><div class="kb" id="rc7-kb"><img src="assets/v2/sail.jpg" alt="v2 slide: sail"></div></div></div>
+    <div id="rc8" class="clip shot" data-start="17.5" data-duration="3.1" data-track-index="1" style="z-index:9"><div class="mv" id="rc8-mv" style="filter:url(#rc8-mb)"><div class="kb" id="rc8-kb"><img src="assets/v2/smiled.jpg" alt="v2 slide: smiled"></div></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo('#rc0-kb',{scale:1},{scale:1.04,duration:2.3,ease:'none'},0.0);
+    tl.fromTo('#rc1-kb',{scale:1},{scale:1.04,duration:2.4,ease:'none'},2.1);
+    tl.fromTo('#rc0-mv',{scale:1},{scale:1.35,duration:0.2,ease:'power2.in',immediateRender:false},2.1);
+    tl.fromTo('#rc1-mv',{scale:1.3,opacity:0},{scale:1,opacity:1,duration:0.2,ease:'power3.out'},2.1);
+    tl.fromTo('#rc1-fb',{attr:{stdDeviation:'16 16'}},{attr:{stdDeviation:'0 0'},duration:0.2,ease:'power2.out'},2.1);
+    tl.fromTo('#rc2-kb',{scale:1},{scale:1.04,duration:2.4,ease:'none'},4.3);
+    tl.fromTo('#rc1-mv',{xPercent:0},{xPercent:100,duration:0.2,ease:'power2.inOut',immediateRender:false},4.3);
+    tl.fromTo('#rc2-mv',{xPercent:-100},{xPercent:0,duration:0.2,ease:'power2.inOut'},4.3);
+    tl.fromTo('#rc1-fb',{attr:{stdDeviation:'0 0'}},{attr:{stdDeviation:'40 0'},duration:0.1,ease:'power2.in',immediateRender:false},4.3);
+    tl.fromTo('#rc1-fb',{attr:{stdDeviation:'40 0'}},{attr:{stdDeviation:'0 0'},duration:0.1,ease:'power2.out',immediateRender:false},4.4);
+    tl.fromTo('#rc2-fb',{attr:{stdDeviation:'0 0'}},{attr:{stdDeviation:'40 0'},duration:0.1,ease:'power2.in',immediateRender:false},4.3);
+    tl.fromTo('#rc2-fb',{attr:{stdDeviation:'40 0'}},{attr:{stdDeviation:'0 0'},duration:0.1,ease:'power2.out',immediateRender:false},4.4);
+    tl.fromTo('#rc3-kb',{scale:1},{scale:1.04,duration:2.4,ease:'none'},6.5);
+    tl.fromTo('#rc2-mv',{scale:1},{scale:1.35,duration:0.2,ease:'power2.in',immediateRender:false},6.5);
+    tl.fromTo('#rc3-mv',{scale:1.3,opacity:0},{scale:1,opacity:1,duration:0.2,ease:'power3.out'},6.5);
+    tl.fromTo('#rc3-fb',{attr:{stdDeviation:'16 16'}},{attr:{stdDeviation:'0 0'},duration:0.2,ease:'power2.out'},6.5);
+    tl.fromTo('#rc4-kb',{scale:1},{scale:1.04,duration:2.4,ease:'none'},8.7);
+    tl.fromTo('#rc3-mv',{xPercent:0},{xPercent:-100,duration:0.2,ease:'power2.inOut',immediateRender:false},8.7);
+    tl.fromTo('#rc4-mv',{xPercent:100},{xPercent:0,duration:0.2,ease:'power2.inOut'},8.7);
+    tl.fromTo('#rc3-fb',{attr:{stdDeviation:'0 0'}},{attr:{stdDeviation:'40 0'},duration:0.1,ease:'power2.in',immediateRender:false},8.7);
+    tl.fromTo('#rc3-fb',{attr:{stdDeviation:'40 0'}},{attr:{stdDeviation:'0 0'},duration:0.1,ease:'power2.out',immediateRender:false},8.8);
+    tl.fromTo('#rc4-fb',{attr:{stdDeviation:'0 0'}},{attr:{stdDeviation:'40 0'},duration:0.1,ease:'power2.in',immediateRender:false},8.7);
+    tl.fromTo('#rc4-fb',{attr:{stdDeviation:'40 0'}},{attr:{stdDeviation:'0 0'},duration:0.1,ease:'power2.out',immediateRender:false},8.8);
+    tl.fromTo('#rc5-kb',{scale:1},{scale:1.04,duration:2.4,ease:'none'},10.9);
+    tl.fromTo('#rc4-mv',{scale:1},{scale:1.35,duration:0.2,ease:'power2.in',immediateRender:false},10.9);
+    tl.fromTo('#rc5-mv',{scale:1.3,opacity:0},{scale:1,opacity:1,duration:0.2,ease:'power3.out'},10.9);
+    tl.fromTo('#rc5-fb',{attr:{stdDeviation:'16 16'}},{attr:{stdDeviation:'0 0'},duration:0.2,ease:'power2.out'},10.9);
+    tl.fromTo('#rc6-kb',{scale:1},{scale:1.04,duration:2.4,ease:'none'},13.1);
+    tl.fromTo('#rc5-mv',{xPercent:0},{xPercent:100,duration:0.2,ease:'power2.inOut',immediateRender:false},13.1);
+    tl.fromTo('#rc6-mv',{xPercent:-100},{xPercent:0,duration:0.2,ease:'power2.inOut'},13.1);
+    tl.fromTo('#rc5-fb',{attr:{stdDeviation:'0 0'}},{attr:{stdDeviation:'40 0'},duration:0.1,ease:'power2.in',immediateRender:false},13.1);
+    tl.fromTo('#rc5-fb',{attr:{stdDeviation:'40 0'}},{attr:{stdDeviation:'0 0'},duration:0.1,ease:'power2.out',immediateRender:false},13.2);
+    tl.fromTo('#rc6-fb',{attr:{stdDeviation:'0 0'}},{attr:{stdDeviation:'40 0'},duration:0.1,ease:'power2.in',immediateRender:false},13.1);
+    tl.fromTo('#rc6-fb',{attr:{stdDeviation:'40 0'}},{attr:{stdDeviation:'0 0'},duration:0.1,ease:'power2.out',immediateRender:false},13.2);
+    tl.fromTo('#rc7-kb',{scale:1},{scale:1.04,duration:2.4,ease:'none'},15.3);
+    tl.fromTo('#rc6-mv',{scale:1},{scale:1.35,duration:0.2,ease:'power2.in',immediateRender:false},15.3);
+    tl.fromTo('#rc7-mv',{scale:1.3,opacity:0},{scale:1,opacity:1,duration:0.2,ease:'power3.out'},15.3);
+    tl.fromTo('#rc7-fb',{attr:{stdDeviation:'16 16'}},{attr:{stdDeviation:'0 0'},duration:0.2,ease:'power2.out'},15.3);
+    tl.fromTo('#rc8-kb',{scale:1},{scale:1.04,duration:3.1,ease:'none'},17.5);
+    tl.fromTo('#rc7-mv',{xPercent:0},{xPercent:-100,duration:0.2,ease:'power2.inOut',immediateRender:false},17.5);
+    tl.fromTo('#rc8-mv',{xPercent:100},{xPercent:0,duration:0.2,ease:'power2.inOut'},17.5);
+    tl.fromTo('#rc7-fb',{attr:{stdDeviation:'0 0'}},{attr:{stdDeviation:'40 0'},duration:0.1,ease:'power2.in',immediateRender:false},17.5);
+    tl.fromTo('#rc7-fb',{attr:{stdDeviation:'40 0'}},{attr:{stdDeviation:'0 0'},duration:0.1,ease:'power2.out',immediateRender:false},17.6);
+    tl.fromTo('#rc8-fb',{attr:{stdDeviation:'0 0'}},{attr:{stdDeviation:'40 0'},duration:0.1,ease:'power2.in',immediateRender:false},17.5);
+    tl.fromTo('#rc8-fb',{attr:{stdDeviation:'40 0'}},{attr:{stdDeviation:'0 0'},duration:0.1,ease:'power2.out',immediateRender:false},17.6);
+    window.__timelines["recut"] = tl;
+  </script>
+</template>

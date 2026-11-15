@@ -9,7 +9,8 @@ import json, os, sys, time, urllib.parse, urllib.request, html, re
 UA = "future-party-video/1.0 (private non-commercial party loop; generic client)"
 API = "https://commons.wikimedia.org/w/api.php"
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-OUT = os.path.join(ROOT, "assets", "candidates")
+SET = os.environ.get("SET", "")  # "v2" reads tools/subjects_v2.json and writes candidates-v2*
+OUT = os.path.join(ROOT, "assets", "candidates" + ("-" + SET if SET else ""))
 
 SUBJECTS = [
  # chapter, key, query
@@ -62,8 +63,11 @@ def clean(s):
 
 
 def main(only=None):
+    global SUBJECTS
+    if SET:
+        SUBJECTS = [tuple(x) for x in json.load(open(os.path.join(ROOT, "tools", f"subjects_{SET}.json")))]
     os.makedirs(OUT, exist_ok=True)
-    path = os.path.join(ROOT, "assets", "candidates.json")
+    path = os.path.join(ROOT, "assets", "candidates" + ("-" + SET if SET else "") + ".json")
     result = json.load(open(path)) if os.path.exists(path) else {}
     for chap, key, q in SUBJECTS:
         if only and key not in only:

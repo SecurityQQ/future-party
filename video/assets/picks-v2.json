@@ -1,0 +1,201 @@
+{
+ "nif": {
+  "title": "File:National Ignition Facility's target chamber.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "nifworker": {
+  "title": "File:Worker inside the target chamber of the National Ignition Facility.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "mammoth": {
+  "title": "File:Ice age fauna of northern Spain - Mauricio Antón.jpg",
+  "focus": [
+   0.4,
+   0.5
+  ]
+ },
+ "mammothrbc": {
+  "title": "File:Woolly Mammoth-RBC.jpg",
+  "focus": [
+   0.6,
+   0.45
+  ]
+ },
+ "jewel": {
+  "title": "File:At Jewel Changi, Singapore 2023 44.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "jewelwide": {
+  "title": "File:Rain Vortex Jewel Changi Airport.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "atlas": {
+  "title": "File:CERN LHC ATLAS Detector.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "supernight": {
+  "title": "File:Supertree Grove, Singapore, augusti 2023 02.jpg",
+  "focus": [
+   0.5,
+   0.45
+  ]
+ },
+ "aurora": {
+  "title": "File:Iss072e147641 (Nov 9, 2024) -- A green and red aurora streaks through Earth's atmosphere as the International Space Station orbited 258 miles above Winnipeg.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "aurora2": {
+  "title": "File:Aurora Seen From Space by NASA.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "startrails": {
+  "title": "File:International Space Station star trails - JSC2012E039800.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "starship": {
+  "title": "File:Starship SN9 Evening Rays.jpg",
+  "focus": [
+   0.5,
+   0.15
+  ]
+ },
+ "moon": {
+  "title": "File:Earthset (art002e009288).jpg",
+  "focus": [
+   0.5,
+   0.52
+  ],
+  "zoom": 1.35
+ },
+ "elevator": {
+  "title": "File:International Space Elevator (Ace Combat 7).png",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "bennu": {
+  "title": "File:Bennu mosaic OSIRIS-REx.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ],
+  "zoom": 1.35
+ },
+ "jwstmirror": {
+  "title": "File:James Webb Primary Mirror.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "fheavy": {
+  "title": "File:Falcon Heavy Side Boosters landing on LZ1 and LZ2 - 2018 (25254688767).jpg",
+  "focus": [
+   0.5,
+   0.45
+  ]
+ },
+ "cylinder": {
+  "title": "File:Spacecolony3edit.jpeg",
+  "focus": [
+   0.5,
+   0.55
+  ]
+ },
+ "bernal": {
+  "title": "File:Bernal sphere interior.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "marsbase": {
+  "title": "File:Concept Mars colony.jpg",
+  "focus": [
+   0.5,
+   0.62
+  ]
+ },
+ "havoc": {
+  "title": "File:NASA Cloud City on Venus.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "europa": {
+  "title": "File:PIA19048 realistic color Europa mosaic edited.jpg",
+  "focus": [
+   0.5,
+   0.25
+  ]
+ },
+ "elt": {
+  "title": "File:Artist’s impression of the European Extremely Large Telescope deploying lasers for adaptive optics.jpg",
+  "focus": [
+   0.5,
+   0.4
+  ]
+ },
+ "sail": {
+  "title": "File:Advanced Composite Solar Sail System Artist’s Concept 1 (ACS3 SolarSailTurntableWithSun).png",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "smiled": {
+  "title": "File:The Day the Earth Smiled - PIA17172.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ],
+  "fit": "contain"
+ },
+ "alma": {
+  "title": "File:The Milky Way above the antennas of ALMA.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "vltlaser": {
+  "title": "File:Laser Guide Star at the VLT (dsc1792-cc).tiff",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ },
+ "vltlaser2": {
+  "title": "File:The VLT´s Laser Guide Star.jpg",
+  "focus": [
+   0.5,
+   0.5
+  ]
+ }
+}

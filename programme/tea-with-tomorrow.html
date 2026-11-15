@@ -1,0 +1,981 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Tea With Tomorrow</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: one long evening read top to bottom. A to-scale arc of the night, then the run of show as a time rail where every block names its source, then people, evidence and the kit. EN/RU switch rewrites every string. */
+:root {
+  --bg: #070708;
+  --panel: #0e0e10;
+  --fg: #ffffff;
+  --fg-2: #d4d4d4;
+  --muted: #a1a1a1;
+  --line: rgba(255,255,255,0.10);
+  --line-2: rgba(255,255,255,0.20);
+  --accent: #ff5315;
+  --accent-hot: #f92f02;
+  --accent-text: #ff6a33;
+  --on-accent: #070708;
+  --tea: #00aa7a;
+  --listen: #7c7c84;
+  --frame: #3a3a40;
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --r: 10px;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #ffffff; --panel: #f6f6f7; --fg: #070708; --fg-2: #262628; --muted: #737373;
+    --line: #e5e5e5; --line-2: #cfcfd3; --accent: #ff5315; --accent-hot: #f92f02; --accent-text: #c2410c;
+    --on-accent: #070708; --tea: #00876a; --listen: #a3a3aa; --frame: #dcdce0; color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #ffffff; --panel: #f6f6f7; --fg: #070708; --fg-2: #262628; --muted: #737373;
+  --line: #e5e5e5; --line-2: #cfcfd3; --accent: #ff5315; --accent-hot: #f92f02; --accent-text: #c2410c;
+  --on-accent: #070708; --tea: #00876a; --listen: #a3a3aa; --frame: #dcdce0; color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration-color: var(--line-2); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+h1, h2, h3, h4 { text-wrap: balance; margin: 0; }
+p { margin: 0; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+section { padding-block: 56px; border-top: 1px solid var(--line); }
+section h2 { font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -0.02em; line-height: 1.1; font-weight: 700; }
+.sec-head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; max-width: 74ch; }
+.sec-head p { color: var(--fg-2); }
+.sub-h { font-size: 18px; font-weight: 600; margin: 36px 0 12px; }
+.note { font-size: 14px; color: var(--muted); max-width: 78ch; }
+
+/* Hero */
+header.hero { padding-block: 40px; }
+.hero-grid { display: grid; gap: 26px; }
+.topbar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+.hero h1 { font-size: clamp(46px, 8.4vw, 104px); line-height: 0.92; letter-spacing: -0.045em; font-weight: 800; }
+.hero h1 .dim { color: var(--muted); font-weight: 700; }
+.lede { font-size: clamp(18px, 2vw, 21px); line-height: 1.5; color: var(--fg-2); max-width: 64ch; }
+.lede strong { color: var(--fg); font-weight: 600; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 22px; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.facts b { color: var(--fg); font-weight: 500; }
+nav.toc { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; }
+nav.toc a { color: var(--muted); text-decoration: none; }
+nav.toc a:hover { color: var(--fg); }
+
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding-block: 18px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.ctl { display: flex; align-items: center; gap: 10px; }
+.ctl label, .ctl .lbl { font-size: 13px; color: var(--muted); }
+.seg { display: inline-flex; border: 1px solid var(--line-2); border-radius: 8px; overflow: hidden; }
+.seg button { font: 500 14px var(--font); background: transparent; color: var(--fg-2); border: 0; padding: 8px 14px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+.seg.lang button { font: 600 12px var(--mono); letter-spacing: 0.06em; padding: 7px 12px; }
+input[type="time"], input[type="text"], input[type="number"] { font: 500 14px var(--mono); background: transparent; color: var(--fg); border: 1px solid var(--line-2); border-radius: 8px; padding: 7px 10px; min-width: 0; }
+input#topic { width: 14ch; font-family: var(--font); }
+input#year { width: 8ch; }
+.btn { font: 600 14px var(--font); border-radius: 8px; padding: 9px 16px; cursor: pointer; border: 1px solid var(--line-2); background: transparent; color: var(--fg); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn.primary:hover { background: var(--accent-hot); border-color: var(--accent-hot); }
+.ctl-spacer { flex: 1 1 auto; }
+.ctl-note { font-size: 13px; color: var(--muted); padding-top: 10px; }
+
+/* Arc of the night */
+.arc { margin-top: 28px; display: grid; gap: 10px; }
+.arc-bar { display: flex; gap: 3px; height: 54px; }
+.arc-seg { border-radius: 4px; min-width: 0; cursor: pointer; border: 0; padding: 0 6px 6px; text-align: left; overflow: hidden; font: 500 11px var(--font); line-height: 1.15; display: flex; align-items: flex-end; }
+.arc-seg span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.arc-seg[data-type="make"] { background: var(--accent); color: var(--on-accent); }
+.arc-seg[data-type="listen"] { background: var(--listen); color: #070708; }
+.arc-seg[data-type="tea"] { background: var(--tea); color: #070708; }
+.arc-seg[data-type="frame"] { background: var(--frame); color: var(--fg); }
+.arc-seg.is-now { outline: 2px solid var(--fg); outline-offset: 2px; }
+.arc-ticks { position: relative; height: 18px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.arc-ticks span { position: absolute; top: 0; transform: translateX(-50%); }
+.arc-ticks span:first-child { transform: none; }
+.arc-ticks span:last-child { transform: translateX(-100%); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.legend .sum { font-family: var(--mono); color: var(--fg-2); }
+
+/* Rules */
+.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); border-top: 1px solid var(--line); }
+.rule { padding: 18px 18px 18px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 34px 1fr; gap: 4px 10px; min-width: 0; }
+.rule .n { font-family: var(--mono); color: var(--muted); font-size: 13px; padding-top: 3px; }
+.rule b { font-weight: 600; }
+.rule p { grid-column: 2; color: var(--fg-2); font-size: 14px; }
+.rule .s { grid-column: 2; color: var(--muted); font-size: 12px; font-family: var(--mono); }
+
+/* Program */
+.act-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; padding: 34px 0 12px; }
+.act-head:first-child { padding-top: 0; }
+.act-head h3 { font-size: 22px; letter-spacing: -0.01em; font-weight: 700; }
+.act-head p { color: var(--muted); }
+.block { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 0 28px; padding: 24px 0; border-top: 1px solid var(--line); scroll-margin-top: 20px; }
+.when { display: flex; flex-direction: column; gap: 2px; }
+.when .clock { font: 600 22px var(--mono); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.when .off, .when .dur { font: 400 12px var(--mono); color: var(--muted); }
+.block.is-now .clock { color: var(--accent-text); }
+.now-pill { display: none; align-self: flex-start; margin-top: 8px; font: 600 11px var(--mono); letter-spacing: 0.06em; background: var(--accent); color: var(--on-accent); padding: 3px 8px; border-radius: 999px; }
+.block.is-now .now-pill { display: inline-block; }
+.block.is-past { opacity: 0.55; }
+.body { display: grid; gap: 12px; min-width: 0; }
+.title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.title-row h4 { font-size: 21px; letter-spacing: -0.01em; font-weight: 600; }
+.chip { font: 500 11px var(--mono); letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--line-2); color: var(--fg-2); display: inline-flex; align-items: center; gap: 6px; }
+.chip i { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+.method { font-size: 14px; color: var(--fg-2); }
+.method a { color: var(--fg); }
+.purpose { color: var(--fg-2); max-width: 70ch; }
+ol.steps { margin: 0; padding-left: 22px; display: grid; gap: 6px; max-width: 74ch; }
+ol.steps li { padding-left: 4px; }
+ol.steps li::marker { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.v4 { font: 500 11px var(--mono); color: var(--muted); border: 1px solid var(--line-2); border-radius: 4px; padding: 0 5px; margin-right: 6px; white-space: nowrap; }
+.quote { font-style: italic; color: var(--fg); max-width: 72ch; }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px 28px; font-size: 14px; }
+.meta > div { min-width: 0; }
+.k { font: 500 11px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 3px; }
+.changed .k { color: var(--accent-text); }
+
+/* Tables */
+.table-scroll { overflow-x: auto; border-top: 1px solid var(--line); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 880px; }
+th, td { text-align: left; vertical-align: top; padding: 12px 14px 12px 0; border-bottom: 1px solid var(--line); }
+th { font: 500 11px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+td b { font-weight: 600; }
+td .links { display: flex; flex-direction: column; gap: 3px; }
+.ev { font: 500 11px var(--mono); padding: 2px 7px; border-radius: 4px; white-space: nowrap; display: inline-block; }
+.ev-strong { background: var(--fg); color: var(--bg); }
+.ev-lab { border: 1px solid var(--fg-2); color: var(--fg); }
+.ev-prac { border: 1px solid var(--line-2); color: var(--fg-2); }
+.ev-new { border: 1px dashed var(--line-2); color: var(--muted); }
+
+/* Lists */
+ul.plain { list-style: none; margin: 0; padding: 0; }
+ul.plain li { padding: 12px 0; border-top: 1px solid var(--line); display: grid; gap: 3px; }
+ul.plain li:last-child { border-bottom: 1px solid var(--line); }
+ul.plain li b { font-weight: 600; }
+ul.plain li span { color: var(--fg-2); font-size: 14px; }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px 48px; }
+.cols > div { min-width: 0; display: grid; gap: 14px; align-content: start; }
+.cols h3 { font-size: 18px; font-weight: 600; }
+.brief { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); padding: 18px 18px 14px; display: grid; gap: 12px; }
+.brief p { font-size: 15px; color: var(--fg-2); white-space: pre-line; }
+.brief .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.copied { font-size: 13px; color: var(--muted); }
+ol.qs { margin: 0; padding-left: 22px; display: grid; gap: 6px; color: var(--fg-2); }
+.modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0 40px; }
+.module { padding: 18px 0; border-top: 1px solid var(--line); display: grid; gap: 8px; min-width: 0; align-content: start; }
+.module h3 { font-size: 17px; font-weight: 600; }
+.module .m-meta { font: 500 12px var(--mono); color: var(--muted); }
+.module ol { margin: 0; padding-left: 20px; display: grid; gap: 4px; font-size: 14px; color: var(--fg-2); }
+.module p { font-size: 14px; color: var(--fg-2); }
+
+/* Buy links */
+.buy { font: 500 12px var(--mono); white-space: nowrap; color: var(--fg-2); text-decoration: none; border: 1px solid var(--line-2); border-radius: 6px; padding: 2px 7px; display: inline-block; }
+.buy:hover { border-color: var(--accent); color: var(--fg); }
+.buy.local { border-style: dashed; color: var(--muted); }
+td .buy { margin-top: 6px; }
+
+/* Prep */
+.countdown { list-style: none; margin: 0; padding: 0; }
+.countdown li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-top: 1px solid var(--line); }
+.countdown li .t { font: 500 13px var(--mono); color: var(--muted); padding-top: 2px; }
+.check { list-style: none; margin: 0; padding: 0; }
+.check li { display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; padding: 8px 0; border-top: 1px solid var(--line); }
+.check label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; font-size: 15px; flex: 1 1 auto; min-width: 0; }
+.check input { margin-top: 4px; accent-color: var(--accent); width: 16px; height: 16px; flex: none; }
+.check input:checked + span { color: var(--muted); text-decoration: line-through; }
+
+ul.gaps { margin: 0; padding-left: 20px; display: grid; gap: 10px; max-width: 80ch; color: var(--fg-2); }
+ol.sources { margin: 0; padding-left: 26px; display: grid; gap: 6px; font-size: 14px; color: var(--fg-2); }
+ol.sources li::marker { font-family: var(--mono); color: var(--muted); font-size: 12px; }
+footer { padding-block: 32px 120px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+
+/* Host bar */
+.hostbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--panel); border-top: 1px solid var(--line-2); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.hostbar .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding-block: 12px; }
+.live { font: 600 11px var(--mono); letter-spacing: 0.08em; color: var(--accent-text); display: inline-flex; align-items: center; gap: 6px; }
+.live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: 0.3; } }
+.hb-now { font-weight: 600; min-width: 0; }
+.hb-mono { font-family: var(--mono); color: var(--fg-2); font-size: 14px; }
+.hb-next { color: var(--muted); font-size: 14px; min-width: 0; }
+.hostbar .btns { display: flex; gap: 8px; margin-left: auto; }
+.hostbar .btn { padding: 7px 12px; font-size: 13px; }
+
+@media (max-width: 640px) {
+  .block { grid-template-columns: 1fr; gap: 10px; }
+  .when { flex-direction: row; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .now-pill { margin-top: 0; }
+  .arc-seg span { display: none; }
+  .countdown li { grid-template-columns: 1fr; gap: 2px; }
+  section { padding-block: 44px; }
+}
+@media (prefers-reduced-motion: reduce) { .live::before { animation: none; } }
+</style>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="topbar">
+      <span class="eyebrow" data-t="eyebrow"></span>
+      <div class="seg lang" role="group" aria-label="Language / Язык">
+        <button type="button" id="lang-en" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" id="lang-ru" data-lang="ru" aria-pressed="false">RU</button>
+      </div>
+    </div>
+    <h1><span data-t="h1a"></span><br><span class="dim" data-t="h1b"></span></h1>
+    <p class="lede" data-t="lede"></p>
+    <div class="facts" id="facts"></div>
+    <nav class="toc" aria-label="Sections">
+      <a href="#program" data-t="toc_program"></a><a href="#people" data-t="toc_people"></a><a href="#evidence" data-t="toc_evidence"></a><a href="#modules" data-t="toc_modules"></a><a href="#tea" data-t="toc_tea"></a><a href="#prep" data-t="toc_prep"></a><a href="#gaps" data-t="toc_gaps"></a><a href="#sources" data-t="toc_src"></a>
+    </nav>
+  </div>
+</header>
+
+<section id="program" style="border-top:0; padding-top:0">
+  <div class="wrap">
+    <div class="controls">
+      <div class="ctl"><span class="lbl" id="len-label" data-t="len_label"></span>
+        <div class="seg" role="group" aria-labelledby="len-label">
+          <button type="button" id="len-4" data-len="4" aria-pressed="true" data-t="len4"></button>
+          <button type="button" id="len-3" data-len="3" aria-pressed="false" data-t="len3"></button>
+        </div>
+      </div>
+      <div class="ctl"><label for="start-time" data-t="doors"></label><input type="time" id="start-time" value="18:30"></div>
+      <div class="ctl"><label for="topic" data-t="topic_label"></label><input type="text" id="topic" maxlength="40"></div>
+      <div class="ctl"><label for="year" data-t="year_label"></label><input type="number" id="year" min="2027" max="2300" step="1" value="2070"></div>
+      <span class="ctl-spacer"></span>
+      <button type="button" class="btn primary" id="host-start"></button>
+    </div>
+    <p class="ctl-note" data-t="ctl_note"></p>
+
+    <div class="arc">
+      <div class="arc-bar" id="arc-bar"></div>
+      <div class="arc-ticks" id="arc-ticks"></div>
+      <div class="legend">
+        <span><i style="background:var(--frame)"></i><span data-t="type_frame"></span></span>
+        <span><i style="background:var(--listen)"></i><span data-t="type_listen"></span></span>
+        <span><i style="background:var(--accent)"></i><span data-t="type_make"></span></span>
+        <span class="sum" id="legend-sum"></span>
+      </div>
+    </div>
+
+    <div class="sec-head" style="margin-top:48px"><span class="eyebrow" data-t="rules_eyebrow"></span></div>
+    <div class="rules" id="rules"></div>
+
+    <div class="sec-head" style="margin-top:56px">
+      <span class="eyebrow" data-t="prog_eyebrow"></span>
+      <h2 data-t="prog_h2"></h2>
+      <p data-t="prog_p"></p>
+    </div>
+    <div id="blocks"></div>
+  </div>
+</section>
+
+<section id="people">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow" data-t="people_eyebrow"></span><h2 data-t="people_h2"></h2><p data-t="people_p"></p></div>
+    <h3 class="sub-h" style="margin-top:0" data-t="guests_h3"></h3>
+    <div class="table-scroll"><table><thead><tr><th data-t="th_who"></th><th data-t="th_facts"></th><th data-t="th_fit"></th><th data-t="th_lang"></th><th data-t="th_links"></th></tr></thead><tbody id="people-body"></tbody></table></div>
+
+    <div class="cols" style="margin-top:40px">
+      <div>
+        <h3 data-t="brief_h3"></h3>
+        <div class="brief">
+          <p id="brief-text"></p>
+          <div class="row"><button type="button" class="btn" id="copy-brief" data-t="copy_btn"></button><span class="copied" id="copy-status" aria-live="polite"></span></div>
+        </div>
+        <h3 data-t="qs_h3"></h3>
+        <p class="note" data-t="qs_note"></p>
+        <ol class="qs" id="qs"></ol>
+        <p class="note" data-t="qs_guide"></p>
+      </div>
+      <div>
+        <h3 data-t="listen_h3"></h3>
+        <p class="note" data-t="listen_note"></p>
+        <ul class="plain" id="listen"></ul>
+      </div>
+    </div>
+
+    <h3 class="sub-h" data-t="train_h3"></h3>
+    <div class="table-scroll"><table><thead><tr><th data-t="th_where"></th><th data-t="th_what"></th><th data-t="th_lang"></th><th data-t="th_links"></th></tr></thead><tbody id="train-body"></tbody></table></div>
+  </div>
+</section>
+
+<section id="evidence">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow" data-t="ev_eyebrow"></span><h2 data-t="ev_h2"></h2><p data-t="ev_p"></p></div>
+    <div class="table-scroll"><table><thead><tr><th data-t="th_part"></th><th data-t="th_ev"></th><th data-t="th_known"></th><th data-t="th_src"></th></tr></thead><tbody id="ev-body"></tbody></table></div>
+  </div>
+</section>
+
+<section id="modules">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow" data-t="mod_eyebrow"></span><h2 data-t="mod_h2"></h2><p data-t="mod_p"></p></div>
+    <div class="modules" id="modules-list"></div>
+  </div>
+</section>
+
+<section id="tea">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow" data-t="tea_eyebrow"></span><h2 data-t="tea_h2"></h2><p data-t="tea_p"></p></div>
+    <div class="table-scroll"><table><thead><tr><th data-t="tth_tea"></th><th data-t="tth_brew"></th><th data-t="tth_caf"></th><th data-t="tth_buy"></th></tr></thead><tbody id="tea-body"></tbody></table></div>
+    <p class="note" style="margin-top:18px" data-t="tea_n1"></p>
+  </div>
+</section>
+
+<section id="prep">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow" data-t="prep_eyebrow"></span><h2 data-t="prep_h2"></h2></div>
+    <div class="cols">
+      <div>
+        <h3 data-t="count_h3"></h3>
+        <ol class="countdown" id="countdown"></ol>
+        <h3 style="margin-top:18px" data-t="roles_h3"></h3>
+        <ul class="plain" id="roles"></ul>
+      </div>
+      <div>
+        <h3 data-t="kit_h3"></h3>
+        <p class="note" data-t="kit_note"></p>
+        <ul class="check" id="checklist"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gaps">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow" data-t="gaps_eyebrow"></span><h2 data-t="gaps_h2"></h2></div>
+    <ul class="gaps" id="gaps-list"></ul>
+  </div>
+</section>
+
+<section id="sources">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow" data-t="src_eyebrow"></span><h2 data-t="src_h2"></h2></div>
+    <ol class="sources">
+      <li><a href="https://futuresproject.pb.edu.pl/app/uploads/2023/08/Annex-2.4_Futures-Literacy-Lab_3h-Example.pdf">Annex 2.4: Example of a Futures Literacy Laboratory (3h), The Future of Work (EU-funded project, CC BY 4.0)</a>, read in full</li>
+      <li><a href="https://dutpartnership.eu/sites/default/files/2026-06/Exploring%20urban%20futures%20of%20reuse%2C%20sharing%20and%20repair%20NIFUWorking%20Paper2026-13%20%28TransScale%29.pdf">Ingeborgrud et al. (2026), NIFU Working Paper 2026/13: Futures Literacy Laboratories in Norway, Poland, Denmark and Latvia</a></li>
+      <li><a href="https://jfsdigital.org/articles-andessays/2017-2/the-polak-game-or-where-do-you-stand">Hayward &amp; Candy (2017), The Polak Game, Or: Where Do You Stand? Journal of Futures Studies 22(2): 5–14</a>, read in full</li>
+      <li><a href="https://www.liberatingstructures.com/celebrity-interview/">Liberating Structures: Celebrity Interview</a> · <a href="https://www.liberatingstructures.com/1-2-4-all/">1-2-4-All</a> · <a href="https://www.liberatingstructures.com/25-10-crowdsourcing/">25/10 Crowd Sourcing</a> · <a href="https://www.liberatingstructures.com/what-so-what-now-what/">What, So What, Now What?</a> · <a href="http://www.liberatingstructures.com/local-and-regional-ls-links">Local and regional links</a></li>
+      <li><a href="https://mcguinnessinstitute.org/wp-content/uploads/2024/11/06-FuturesWheel.pdf">Jerome C. Glenn, The Futures Wheel (Futures Research Methodology v3.0, chapter copy)</a></li>
+      <li><a href="https://www.nesta.org.uk/report/cards-for-the-future/">Nesta, Cards for the Future</a> · <a href="https://pressbooks.library.torontomu.ca/futurethingcards/back-matter/credits/">The Thing From The Future credits (TMU Pressbooks)</a> · <a href="https://pressbooks.library.torontomu.ca/futurethingcards/chapter/card-meanings/">Card meanings</a> · <a href="https://longnow.org/ideas/the-thing-from-the-future-prognostication-can-be-fun/">Long Now</a></li>
+      <li><a href="https://www.woah.org/en/unescos-futures-literacy-laboratory-playbook-highlights-woah/">WOAH, August 2023, on UNESCO's Futures Literacy Laboratories</a></li>
+      <li><a href="https://soif.org.uk/speakers/riel-miller">SOIF: Riel Miller</a> · <a href="https://thefuturesworkshop.substack.com/p/episode-twelve-riel-miller-at-the">The Futures Workshop, Ep. 12</a> · <a href="https://thefuturesworkshop.substack.com/p/episode-one-bill-sharpe-on-three">Ep. 1</a></li>
+      <li><a href="https://tec.mx/en/our-faculty/eaad/stuart-candy">Tec de Monterrey: Stuart Candy</a> · <a href="https://soif.org.uk/speakers/stuart-candy/">SOIF: Stuart Candy</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Sohail_Inayatullah">Sohail Inayatullah (Wikipedia)</a> · <a href="https://www.metafuture.org/?p=13140">Metafuture</a> · <a href="https://www.dubaifuture.ae/?p=197096">Dubai Future Foundation course</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Jane_McGonigal">Jane McGonigal (Wikipedia)</a> · <a href="https://www.ted.com/talks/jane_mcgonigal_how_to_see_the_future_coming_and_prepare_for_it">TED</a></li>
+      <li><a href="https://ftsg.com/convergence">FTSG Convergence Outlook</a> · <a href="https://exame.com/marketing/no-sxsw-amy-webb-enterra-relatorio-de-tendencias-e-propoe-era-das-convergencias/">Exame, 14 March 2026</a></li>
+      <li><a href="https://habr.com/ru/companies/2035_university/articles/570100">Habr, July 2021</a> · <a href="https://cnti.org.cy/wiki/Global_Education_Futures">Global Education Futures (Future Worlds Center wiki)</a> · <a href="https://www.gettingsmart.com/podcast/podcast-pavel-luksha-on-educating-for-purpose-potential-and-the-planet/">Getting Smart, 2019</a></li>
+      <li><a href="https://unescofutures.hse.ru/news/keywords/522312900/">HSE UNESCO Chair</a> · <a href="https://www.hse.ru/en/staff/Alexander.Chulok">HSE: Alexander Chulok</a> · <a href="https://www.hse.ru/edu/courses/944979320">HSE course</a></li>
+      <li><a href="https://profile.ru/society/evgenij-kuznecov-goroda-budut-rasti-vverh-i-uhodit-pod-zemlju-1876054/">Profile, July 2026</a> · <a href="https://www.e1.ru/text/business/2024/05/07/73547192/">E1, May 2024</a></li>
+      <li><a href="https://soif.org.uk/app/uploads/2022/10/8-week-Strategic-Foresight-Virtual-Course-.pdf">SOIF course PDF</a> · <a href="https://cifs.dk/services/courses/futures-and-foresight-with-ai">CIFS AI course</a> · <a href="https://www.cifs.dk/services/courses/cultural-foresight-masterclass">CIFS masterclass</a> · <a href="https://cifs.dk/organisational-training/">CIFS for organisations</a> · <a href="https://www.hdcs.uh.edu/programs/certificates/foresight/seminar">University of Houston seminar</a></li>
+      <li><a href="https://dou.ua/calendar/54892/">DOU, 17 September 2025</a> · <a href="https://dspace.ncfu.ru/bitstream/20.500.12258/17911/1/181-185.pdf">Эренценова, Блудова, Вестник СКФУ, 2020</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/Gongfu_tea">Gongfu tea (Wikipedia)</a> · <a href="https://meileaf.com/article/how-much-tea-leaf-for-perfect-brewing/">Mei Leaf, leaf amounts</a> · <a href="https://meileaf.com/article/how-to-brew-tea-properly/">Mei Leaf, brewing</a> · <a href="https://en.wikipedia.org/wiki/Butterfly_pea_flower_tea">Butterfly pea flower tea (Wikipedia)</a></li>
+    </ol>
+  </div>
+</section>
+
+<footer><div class="wrap" data-t="footer"></div></footer>
+
+<div class="hostbar" id="hostbar" hidden>
+  <div class="wrap">
+    <span class="live" data-t="hb_live"></span>
+    <span class="hb-mono" id="hb-elapsed"></span>
+    <span class="hb-now" id="hb-now"></span>
+    <span class="hb-mono" id="hb-left"></span>
+    <span class="hb-next" id="hb-next"></span>
+    <span class="btns"><button type="button" class="btn" id="hb-jump" data-t="hb_jump"></button><button type="button" class="btn" id="hb-end" data-t="hb_end"></button></span>
+  </div>
+</div>
+
+<script>
+(function () {
+  var FLL = "https://futuresproject.pb.edu.pl/app/uploads/2023/08/Annex-2.4_Futures-Literacy-Lab_3h-Example.pdf";
+  var POLAK = "https://jfsdigital.org/articles-andessays/2017-2/the-polak-game-or-where-do-you-stand";
+  var LS_CI = "https://www.liberatingstructures.com/celebrity-interview/";
+
+  // Every string is [English, Russian]. HTML allowed; all content is authored here.
+  var STR = {
+    eyebrow: ["Party program · futurists, tea and futures thinking", "Программа вечеринки · футуристы, чай и мышление о будущем"],
+    h1a: ["Tea With", "Чай с"], h1b: ["Tomorrow", "завтрашним днём"],
+    lede: ["The evening follows a <strong>published 3-hour Futures Literacy Lab</strong>, the UNESCO method. It opens with the <strong>Polak Game</strong> in the lab's own 10-minute version and ends with a <strong>futurist in the Celebrity Interview format</strong> from Liberating Structures, answering the questions your guests came up with. Tea is on the tables all evening. The two lengths differ only in the interview: the protocol's maximum or its minimum. Every block names its source; whatever I changed or added is marked.",
+           "Вечер идёт по <strong>опубликованной 3-часовой программе Futures Literacy Lab</strong>, метода ЮНЕСКО. Он открывается <strong>игрой Полака</strong> в 10-минутной версии из самой программы и заканчивается <strong>интервью с футуристом в формате Celebrity Interview</strong> из Liberating Structures: футурист отвечает на вопросы, которые придумали ваши гости. Чай на столах весь вечер. Две длительности отличаются только интервью: максимум или минимум протокола. У каждого блока указан источник; всё, что я изменил или добавил, помечено."],
+    toc_program: ["Program", "Программа"], toc_people: ["Futurists & trainers", "Футуристы и тренеры"], toc_evidence: ["How tested", "Насколько проверено"],
+    toc_modules: ["Swap-in modules", "Сменные модули"], toc_tea: ["Tea", "Чай"], toc_prep: ["Prep & shopping", "Подготовка и покупки"],
+    toc_gaps: ["What's uncertain", "Что не точно"], toc_src: ["Sources", "Источники"],
+    len_label: ["Length", "Длительность"], len4: ["3 h 55 min", "3 ч 55 мин"], len3: ["3 h 30 min", "3 ч 30 мин"], doors: ["Doors open", "Начало"],
+    topic_label: ["Topic", "Тема"], year_label: ["Year", "Год"], topic_default: ["work", "работа"],
+    ctl_note: ["Topic and year go into every prompt. The defaults come from the published example: the future of work in 2070. Pick your own.",
+               "Тема и год подставляются во все вопросы. По умолчанию стоят значения из опубликованного примера: будущее работы в 2070 году. Выберите свои."],
+    host_start: ["Start the party clock", "Запустить часы вечеринки"], host_restart: ["Restart the party clock", "Перезапустить часы"],
+    type_frame: ["Frame", "Рамка"], type_listen: ["Listen", "Слушаем"], type_tea: ["Tea", "Чай"], type_make: ["Make", "Делаем"],
+    rules_eyebrow: ["Ground rules, each taken from a source", "Правила, каждое взято из источника"],
+    prog_eyebrow: ["Run of show", "Сценарий вечера"],
+    prog_h2: ["The program, block by block", "Программа, блок за блоком"],
+    prog_p: ["Each block shows the method and its source, what the source prescribes, what I changed for a party, and the source's own words to read out. Times follow the length and start time above.",
+             "В каждом блоке: метод и источник, что предписывает источник, что я изменил для вечеринки, и слова из источника, которые можно зачитать. Время пересчитывается по длительности и началу выше."],
+    method: ["Method", "Метод"], insource: ["In the source", "В источнике"], changed: ["Changed for the party", "Изменено для вечеринки"],
+    words: ["Words from the source", "Слова из источника"], need: ["You need", "Понадобится"], none_method: ["No method", "Не метод"],
+    people_eyebrow: ["Futurists and trainers", "Футуристы и тренеры"],
+    people_h2: ["Who to invite, who to listen to, where to learn", "Кого пригласить, кого послушать, где учиться"],
+    people_p: ["Every fact below was checked against the linked page on 12 November 2026; claims found only in search summaries, or on pages that refused automated reading, were removed. Fees and availability weren't checked. Affiliations are listed as found.",
+               "Каждый факт ниже сверен со страницей по ссылке 12 ноября 2026; то, что нашлось только в поисковых сводках или на страницах, которые не открылись для автоматического чтения, убрано. Гонорары и доступность не проверены. Аффилиации указаны как есть."],
+    guests_h3: ["Guests for the interview", "Гости для интервью"],
+    th_who: ["Who", "Кто"], th_facts: ["Verified facts", "Проверенные факты"], th_fit: ["Link to this evening", "Связь с этим вечером"], th_lang: ["Language", "Язык"], th_links: ["Links", "Ссылки"],
+    th_where: ["Where", "Где"], th_what: ["What it is", "Что это"],
+    brief_h3: ["Brief to send the futurist", "Бриф для футуриста"],
+    brief_text: ["Hi! On [date] I'm hosting [number] people for an evening about the future. Most of the evening the guests work through a Futures Literacy Lab on “{topic}” in {year}: probable, desirable and unexpected futures.\n\nAt the end, after the lab, I'd like to interview you for 30–55 minutes in a talk-show format, no slides needed: 15–30 minutes of questions prepared in advance, which I'll send you beforehand, then new questions the guests write during the interview.\n\nYou're welcome to come earlier for tea and to watch the lab.",
+                 "Привет! [Дата] я собираю [число] человек на вечер о будущем. Большую часть вечера гости проходят Futures Literacy Lab на тему «{topic}» в {year} году: вероятное, желаемое и неожиданное будущее.\n\nВ конце, после лаборатории, я хотел бы взять у тебя интервью на 30–55 минут в формате ток-шоу, без слайдов: 15–30 минут заранее подготовленных вопросов (пришлю заранее), потом новые вопросы, которые гости напишут прямо во время интервью.\n\nПриходи пораньше на чай и посмотреть, как идёт лаборатория."],
+    copy_btn: ["Copy brief", "Скопировать бриф"], copied: ["Copied.", "Скопировано."], selected: ["Selected. Press Ctrl+C or ⌘C to copy.", "Выделено. Нажмите Ctrl+C или ⌘C."],
+    qs_h3: ["Sample interview questions from the source", "Примеры вопросов из источника"],
+    qs_note: ["For this evening's own questions, use the page's listed variation: gather them from your guests in advance, “such as what they want to know but would not dare to ask”. The samples below are verbatim from the page and were written for leaders in an organisation; they show the expected depth. The same page's tips: questions should not be trivial or easy to answer; you can give them to the celebrity in advance; during the interview, ask for stories and concrete details.", "Вопросы именно для этого вечера соберите по варианту со страницы: заранее у гостей, «например то, что они хотят узнать, но не решились бы спросить». Примеры ниже дословно со страницы и написаны для руководителей в организации; они показывают нужную глубину. Советы с той же страницы: вопросы не должны быть тривиальными или лёгкими; их можно заранее отдать гостю; во время интервью просите истории и конкретные детали."],
+    qs_guide: ["Participant guide from the same page: “Ask the big questions on everyone's mind. Ask the questions that would help you make sense of the complex situation at hand. Share your questions as curiosities that came from your group (this helps make the hard questions easier to ask).”", "Памятка для участников с той же страницы: «Задавайте большие вопросы, которые у всех на уме. Задавайте вопросы, которые помогут разобраться в сложной ситуации. Подавайте вопросы как любопытство вашей группы (так трудные вопросы задавать легче)»."],
+    listen_h3: ["Recorded talks to listen to", "Записи, которые стоит послушать"],
+    listen_note: ["Talks and interviews by people in this field, each checked on its own page.", "Доклады и интервью людей из этой области, каждое проверено на своей странице."],
+    train_h3: ["Trainers, courses and where to find a facilitator", "Тренеры, курсы и где найти фасилитатора"],
+    ev_eyebrow: ["How well each part is tested", "Насколько проверена каждая часть"],
+    ev_h2: ["Research or practice", "Исследования или практика"],
+    ev_p: ["Futures methods are mostly tested in practice, not in controlled trials. This table separates the two.", "Методы работы с будущим в основном проверены практикой, а не контролируемыми испытаниями. Таблица разделяет одно и другое."],
+    th_part: ["Part of the evening", "Часть вечера"], th_ev: ["Evidence", "Доказательства"], th_known: ["What is known", "Что известно"], th_src: ["Source", "Источник"],
+    mod_eyebrow: ["Swap-in modules", "Сменные модули"],
+    mod_h2: ["Other methods, with their published rules", "Другие методы с опубликованными правилами"],
+    mod_p: ["Use one of these instead of a block, or for a second evening. Timings are the sources' own unless marked.", "Используйте вместо одного из блоков или на второй вечер. Время указано по источникам, если не помечено иначе."],
+    tea_eyebrow: ["Tea", "Чай"], tea_h2: ["What to brew and when", "Что заваривать и когда"],
+    tea_p: ["Tea is on the tables all evening. Brewing figures come from Wikipedia and Mei Leaf; butterfly pea flower is the caffeine-free option.", "Чай на столах весь вечер. Цифры для заваривания из Википедии и Mei Leaf; анчан — вариант без кофеина."],
+    tth_when: ["When", "Когда"], tth_tea: ["Tea", "Чай"], tth_brew: ["Brewing, per source", "Заваривание, по источнику"], tth_caf: ["Caffeine", "Кофеин"], tth_qty: ["For 20 guests (my estimate)", "На 20 гостей (моя оценка)"], tth_buy: ["Buy", "Купить"],
+    tea_n1: ["Temperatures and infusion times come from Wikipedia’s “Gongfu tea”; leaf amounts from Mei Leaf, which also says “3-7g per 100ml, depending on the tea”. Neither source recommends a rinse, so none is listed. Let the tea master taste and adjust.",
+             "Температуры и время проливов взяты из статьи Википедии «Gongfu tea»; количество листа из Mei Leaf, где также сказано «3–7 г на 100 мл в зависимости от чая». Ни один источник не советует промывать чай, поэтому промывки нет. Пусть чайный мастер пробует и подстраивает."],
+    prep_eyebrow: ["Prep & shopping", "Подготовка и покупки"], prep_h2: ["What to prepare, roles and shopping", "Что подготовить, роли и покупки"],
+    count_h3: ["What the sources ask you to prepare", "Что просят подготовить источники"], roles_h3: ["Roles named in the sources", "Роли из источников"],
+    kit_h3: ["What to buy", "Что купить"],
+    kit_note: ["Items come from the sources' material lists: sticky notes and posters (FLL example), paperclips, paper, balloons and cups (FLL prototype), index cards (Celebrity Interview), plus gongfu tea gear. Each link opens an Amazon search, not a specific product; prices and delivery weren't checked.",
+               "Предметы взяты из списков материалов в источниках: стикеры и плакаты (пример FLL), скрепки, бумага, шарики и стаканчики (прототип FLL), карточки (Celebrity Interview), плюс посуда для гунфу ча. Каждая ссылка открывает поиск на Amazon, а не конкретный товар; цены и доставка не проверены."],
+    gaps_eyebrow: ["What's uncertain", "Что не точно"], gaps_h2: ["What I assumed and what wasn't checked", "Допущения и то, что не проверено"],
+    src_eyebrow: ["Sources", "Источники"], src_h2: ["Every link used", "Все использованные ссылки"],
+    footer: ["Tea With Tomorrow · program draft, November 2026. Ticked boxes, language, topic and the party clock are saved in this browser only.",
+             "Чай с завтрашним днём · черновик программы, ноябрь 2026. Отметки, язык, тема и часы вечеринки сохраняются только в этом браузере."],
+    hb_live: ["LIVE", "ИДЁТ"], hb_jump: ["Show block", "К блоку"], hb_end: ["End clock", "Остановить"],
+    now: ["Now: ", "Сейчас: "], left: [" min left", " мин осталось"], next: ["Next: ", "Далее: "], at: [" at ", " в "],
+    last: ["Last block", "Последний блок"], over: ["That's the evening.", "Вечер окончен."], over_next: ["Send guests the photos and the questions.", "Отправьте гостям фото и вопросы."],
+    min: ["min", "мин"], nowpill: ["NOW", "СЕЙЧАС"], v4: ["4 h", "4 ч"],
+    hours: ["hours", "часа"], h: ["h", "ч"], guests: ["guests", "гостей"], futurists: ["futurists", "футуриста"], phases: ["FLL phases", "фазы FLL"], blocks: ["blocks", "блоков"],
+    sum_listen: ["Listening", "Слушаем"], sum_tea: ["Tea", "Чай"], sum_make: ["Making", "Делаем"],
+    buy: ["Amazon ↗", "Amazon ↗"], local: ["Local shop", "Магазин рядом"]
+  };
+
+  var ACTS = {
+    open: [["Opening", "Открытие"], ["Frame the evening and see where everyone stands", "Задать рамку и увидеть, кто где стоит"]],
+    reveal: [["Phase 1 · Reveal", "Фаза 1 · Reveal (проявить)"], ["The futures people already carry: probable and desirable", "Будущее, которое люди уже носят в голове: вероятное и желаемое"]],
+    inter: [["Interlude", "Интерлюдия"], ["Tea", "Чай"]],
+    reframe: [["Phase 2 · Reframe", "Фаза 2 · Reframe (сдвинуть рамку)"], ["A future outside prediction and preference", "Будущее вне прогнозов и предпочтений"]],
+    rethink: [["Phase 3 · Rethink", "Фаза 3 · Rethink (переосмыслить)"], ["Back to the present with new questions", "Назад в настоящее с новыми вопросами"]],
+    fut: [["The futurist", "Футурист"], ["A conversation, then the room's questions", "Разговор, потом вопросы зала"]],
+    close: [["Close", "Финал"], ["Recap and one line each", "Итог и по одной фразе"]]
+  };
+  var TYPE_COLOR = { frame: "var(--frame)", listen: "var(--listen)", tea: "var(--tea)", make: "var(--accent)" };
+
+  var RULES = [
+    [["Write alone first.", "Сначала пишем молча."], ["Five silent minutes on sticky notes before anyone shares.", "Пять минут молча на стикерах, прежде чем кто-то начнёт говорить."], "FLL 3h example"],
+    [["A snapshot, not a movie.", "Снимок, а не фильм."], ["Describe the world as it is in {year}, in the present tense, not the road to it.", "Описываем мир таким, какой он в {year} году, в настоящем времени, а не путь к нему."], "FLL 3h example"],
+    [["There is no right or wrong.", "Нет правильного и неправильного."], ["Said when imagining desirable futures.", "Говорится, когда представляем желаемое будущее."], "FLL 3h example"],
+    [["Share without judgment or discussion.", "Делимся без оценок и споров."], ["Everyone gets the space and time to respond to the reframe.", "У каждого есть место и время отреагировать на reframe."], "FLL 3h example"],
+    [["Subjective is fine.", "Субъективно — это нормально."], ["“There is a subjective judgment at play here, which is fine.”", "«Здесь работает субъективное суждение, и это нормально»."], "Candy, Polak Game"],
+    [["A good new question has no answer yet.", "Хороший новый вопрос пока без ответа."], ["And it emerged from the workshop.", "И он появился во время воркшопа."], "FLL 3h example"]
+  ];
+
+  // d: [4-hour minutes, 3-hour minutes]; 0 skips the block. {a|b}: a in 4 h, b in 3 h. "4h:" marks a step shown only in 4 h. {topic} and {year} are filled from the inputs.
+  var BLOCKS = [
+    { id: "intro", act: "open", type: "frame", d: [5, 5],
+      src: [["Futures Literacy Lab, 3h example: “Intro Futures Literacy”", "Futures Literacy Lab, пример на 3 часа: «Intro Futures Literacy»"], FLL],
+      title: ["Introduction", "Вступление"],
+      purpose: ["Say in a few sentences what the evening is and that it has three phases.", "В нескольких фразах сказать, что за вечер и что в нём три фазы."],
+      steps: [["Futures literacy is a capability that enhances our imagination and diversifies futures; we use those futures to see things differently in the present. A Futures Literacy Laboratory is a tool to practise the capability.", "Futures literacy — способность, которая усиливает воображение и разнообразит образы будущего; эти образы помогают по-другому увидеть настоящее. Futures Literacy Laboratory — инструмент, чтобы эту способность тренировать."],
+              ["Explain that there are three phases: Reveal, Reframe, Rethink.", "Скажите, что фаз три: Reveal, Reframe, Rethink."],
+              ["Name tonight's topic and year: “{topic}”, {year}.", "Назовите тему и год вечера: «{topic}», {year}."]],
+      orig: ["5 minutes.", "5 минут."], adapt: null,
+      quote: ["Keep it short and simple. … Feel free to use your own words!", "Коротко и просто. … Говорите своими словами!"],
+      need: ["Nothing", "Ничего"] },
+    { id: "polak", act: "open", type: "make", d: [10, 10],
+      src: [["Polak Game (Hayward & Candy), as run in the FLL 3h example", "Игра Полака (Хейворд и Кэнди) в версии из 3-часового примера FLL"], FLL],
+      title: ["Polak Game", "Игра Полака"],
+      purpose: ["A warm-up: everyone answers two questions about the future by where they stand.", "Разминка: каждый отвечает на два вопроса о будущем тем, где встаёт."],
+      steps: [["Introduce the first axis: “Future is bright vs Future is bleak”. Ask participants to take a physical stand on an imaginary line on the floor.", "Задайте первую ось: «будущее светлое или будущее мрачное». Попросите участников встать в свою точку на воображаемой линии на полу."],
+              ["Ask them to stay where they are, then introduce a perpendicular imaginary line for agency: “I can influence the future vs bigger forces are at play”. Participants move along it too, which gives four quadrants.", "Попросите остаться на месте и задайте перпендикулярную линию влияния: «я могу влиять на будущее или действуют силы больше нас». Участники сдвигаются и по ней, получается четыре квадранта."],
+              ["They share briefly with each other why they chose this position. Ask for a few responses.", "Участники коротко рассказывают друг другу, почему встали именно сюда. Попросите несколько человек ответить для всех."]],
+      orig: ["10 minutes, with no specific theme or timeframe. Its authors usually run it for 30–60 minutes; Candy's longer script fixes a 25-year horizon.", "10 минут, без конкретной темы и горизонта. Авторы обычно проводят её 30–60 минут; в более длинном сценарии Кэнди горизонт 25 лет."],
+      adapt: null,
+      quote: ["The Polak makes very explicit the differences in futures, and demonstrates that there is data in how people move as well, besides using words.", "Игра Полака очень наглядно показывает различия в образах будущего и то, что данные есть и в том, как люди двигаются, а не только в словах."],
+      need: ["Open floor space", "Свободное место на полу"] },
+    { id: "probable", act: "reveal", type: "make", d: [15, 15],
+      src: [["Futures Literacy Lab, 3h example: “Phase 1a Reveal Probable Future”", "Futures Literacy Lab, пример на 3 часа: «Phase 1a Reveal Probable Future»"], FLL],
+      title: ["Reveal: the probable future", "Reveal: вероятное будущее"],
+      purpose: ["Write down the future people actually expect, so the room can see its assumptions.", "Записать будущее, которого люди на самом деле ждут, чтобы зал увидел свои допущения."],
+      steps: [["Participants close their eyes and wake up in {year}. From a day-in-the-life perspective: what does {topic} look like in a probable future, one they would make a bet on?", "Участники закрывают глаза и просыпаются в {year} году. Глазами одного дня: как выглядит {topic} в вероятном будущем, на которое они готовы поставить?"],
+              ["Working silently, on their own, participants have 5 minutes to jot down ideas on sticky notes.", "Молча, каждый сам, 5 минут записывают идеи на стикерах."],
+              ["Each member of the group shares their thoughts with a bit of discussion, about 2 minutes per participant.", "Каждый в группе делится мыслями, с небольшим обсуждением, около 2 минут на человека."]],
+      orig: ["15 minutes in total.", "15 минут в сумме."], adapt: null,
+      quote: ["Think of a snapshot, not a movie. This is not about the road to {year}, it's about describing as it is. You are there, describe things in the present tense.", "Думайте о снимке, а не о фильме. Речь не о пути к {year} году, а о том, как там всё устроено. Вы там, описывайте в настоящем времени."],
+      need: ["Sticky notes and pens", "Стикеры и ручки"] },
+    { id: "cla", act: "reveal", type: "make", d: [20, 20],
+      src: [["Causal Layered Analysis (Sohail Inayatullah), as simplified in the FLL 3h example", "Многоуровневый причинный анализ (Сохаил Инаятулла) в упрощении из примера FLL"], FLL],
+      title: ["Unpack it: the iceberg", "Разбор: айсберг"],
+      purpose: ["Sort the probable future into what is visible and what sits underneath it.", "Разложить вероятное будущее на то, что видно, и то, что лежит под ним."],
+      steps: [["Posters on the table in the middle of each group, with the four layers.", "Плакаты на столе в центре каждой группы, с четырьмя слоями."],
+              ["Explain the layers: Litany, the visible (the tangible, numbers, data, headlines). Systems, the ways we operate (systems, organisations, markets, schedules, tests). Worldview, our collective convictions that influence systems and litany. Myths, the metaphors and tacit emotional collective narratives that feed our worldviews.", "Объясните слои: Литания, видимое (осязаемое, цифры, данные, заголовки). Системы, то, как мы действуем (системы, организации, рынки, расписания, экзамены). Мировоззрение, общие убеждения, которые влияют на системы и литанию. Мифы, метафоры и неявные эмоциональные коллективные истории, которые питают мировоззрение."],
+              ["Each participant takes an individual turn to place their sticky notes.", "Каждый по очереди раскладывает свои стикеры."]],
+      orig: ["20 minutes.", "20 минут."], adapt: null,
+      quote: ["Try to keep it simple. Explain that this is about unpacking their futures, not about putting the right post-it on the right layer.", "Держите это простым. Объясните, что смысл в том, чтобы разобрать своё будущее, а не в том, чтобы положить правильный стикер на правильный слой."],
+      need: ["One iceberg poster per table", "По плакату-айсбергу на стол"] },
+    { id: "desirable", act: "reveal", type: "make", d: [25, 25],
+      src: [["Futures Literacy Lab, 3h example: “Phase 1b Reveal Desirable Future”", "Futures Literacy Lab, пример на 3 часа: «Phase 1b Reveal Desirable Future»"], FLL],
+      title: ["Reveal: the desirable future", "Reveal: желаемое будущее"],
+      purpose: ["The same exercise for the future people want.", "То же упражнение для будущего, которого люди хотят."],
+      steps: [["Participants close their eyes and imagine a desirable {topic} in {year}. Again a snapshot, not a movie. Focus on day-in-the-life activities: what is it like when they wake up in the morning? What do they do?", "Участники закрывают глаза и представляют желаемое: как выглядит {topic} в {year} году. Снова снимок, а не фильм. Один день: каково это, когда просыпаешься утром? Что делаешь?"],
+              ["Working silently, on their own, 5 minutes to jot down ideas. Invite images or drawings.", "Молча, каждый сам, 5 минут на идеи. Предложите рисовать и использовать картинки."],
+              ["Each member shares, about 2 minutes per participant, with a bit of discussion.", "Каждый делится, около 2 минут на человека, с небольшим обсуждением."],
+              ["Participants work on the iceberg with their desirable futures, 10 minutes max.", "Участники раскладывают желаемое будущее по айсбергу, не больше 10 минут."]],
+      orig: ["15 minutes, then 10 minutes on the iceberg.", "15 минут, потом 10 минут на айсберг."], adapt: null,
+      quote: ["Try to stretch their imagination by emphasizing this is the world of endless possibilities! There is no right or wrong!", "Растягивайте воображение: подчеркните, что это мир бесконечных возможностей! Нет правильного и неправильного!"],
+      need: ["Sticky notes, pens, the iceberg posters", "Стикеры, ручки, плакаты-айсберги"] },
+    { id: "compare", act: "reveal", type: "make", d: [10, 10],
+      src: [["Futures Literacy Lab, 3h example: “Compare and share”", "Futures Literacy Lab, пример на 3 часа: «Compare and share»"], FLL],
+      title: ["Compare and share", "Сравнение"],
+      purpose: ["Each group hears what the others expect and want.", "Каждая группа слышит, чего ждут и хотят другие."],
+      steps: [["Each group gives a short presentation of their findings.", "Каждая группа коротко рассказывает, что у неё получилось."],
+              ["Ask: “What are some of the differences or similarities between the icebergs?”", "Спросите: «В чём различия и сходства между айсбергами?»"]],
+      orig: ["10 minutes.", "10 минут."], adapt: null,
+      quote: ["2 minutes max per group!", "Не больше 2 минут на группу!"],
+      need: ["A timer", "Таймер"] },
+    { id: "reframe", act: "reframe", type: "make", d: [20, 20],
+      src: [["Futures Literacy Lab, 3h example: “Phase 2a Reframe”", "Futures Literacy Lab, пример на 3 часа: «Phase 2a Reframe»"], FLL],
+      title: ["Reframe: a future nobody expected or wanted", "Reframe: будущее, которого никто не ждал и не хотел"],
+      purpose: ["Hear a future outside the room's predictions and preferences and notice what it reveals.", "Услышать будущее вне прогнозов и предпочтений зала и заметить, что оно показывает."],
+      steps: [["Read a short story: a non-probable, non-desirable future that defines {topic} in an unexpected way, outside the predictions and preferences people usually use to create images of the future.", "Прочитайте короткую историю: невероятное и нежеланное будущее, где {topic} определено неожиданным образом, вне прогнозов и предпочтений, из которых люди обычно строят образы будущего."],
+              ["Examples from the source (topic: work): in 2070 development of technology has halted; or trust in technology has eroded; or you only get paid for leisure time, and work is for free.", "Примеры из источника (тема: работа): в 2070 году развитие технологий остановилось; или доверие к технологиям подорвано; или деньги платят только за досуг, а работа бесплатна."],
+              ["Questions: What is your first response? What makes you curious about this future? What did you take for granted?", "Вопросы: Какая ваша первая реакция? Что в этом будущем вызывает любопытство? Что вы считали само собой разумеющимся?"],
+              ["After an individual reflection of 5 minutes, participants share their thoughts within their groups.", "После 5 минут размышлений в одиночку участники делятся мыслями в своих группах."]],
+      orig: ["20 minutes.", "20 минут."], adapt: ["You write the story for your own topic before the party.", "Историю для своей темы вы пишете до вечеринки."],
+      quote: ["It is important that everybody has the space and time to share without judgment or discussion.", "Важно, чтобы у каждого было место и время поделиться без оценок и споров."],
+      need: ["The reframe story", "История для reframe"] },
+    { id: "prototype", act: "reframe", type: "make", d: [20, 20],
+      src: [["Futures Literacy Lab, 3h example: “Phase 2b Prototype the reframe”", "Futures Literacy Lab, пример на 3 часа: «Phase 2b Prototype the reframe»"], FLL],
+      title: ["Prototype the reframe world", "Прототип reframe-мира"],
+      purpose: ["Build the reframe world with your hands to bring out assumptions words miss.", "Собрать reframe-мир руками, чтобы вылезли допущения, которые не ловят слова."],
+      steps: [["Within each group, try to build a 3D sculpture of the reframe world, without too much discussion. Use all the material available. 10 minutes.", "В каждой группе постройте 3D-скульптуру reframe-мира, почти без обсуждения. Используйте все материалы. 10 минут."],
+              ["Participants share their prototypes with the other groups. 10 minutes.", "Участники показывают прототипы другим группам. 10 минут."]],
+      orig: ["10 minutes building, 10 minutes sharing.", "10 минут строим, 10 минут показываем."], adapt: null,
+      quote: ["Purpose is to [go] beyond words, and to see what other assumptions come up when doing this.", "Цель выйти за пределы слов и увидеть, какие ещё допущения всплывают, пока мы это делаем."],
+      need: ["Paperclips, paper, balloons, cups (the source's list)", "Скрепки, бумага, шарики, стаканчики (список из источника)"] },
+    { id: "rethink", act: "rethink", type: "make", d: [25, 25],
+      src: [["Futures Literacy Lab, 3h example: “Phase 3 Rethink New Questions”", "Futures Literacy Lab, пример на 3 часа: «Phase 3 Rethink New Questions»"], FLL],
+      title: ["Rethink: new questions", "Rethink: новые вопросы"],
+      purpose: ["Come back to the present and leave with questions the evening produced.", "Вернуться в настоящее и уйти с вопросами, которые родил этот вечер."],
+      steps: [["We are back in the present. Compare and contrast Phase 1's probable and desirable futures with Phase 2's reframed future.", "Мы снова в настоящем. Сравните вероятное и желаемое будущее из фазы 1 с reframe-будущим из фазы 2."],
+              ["Are there sources and uses of {topic} you had not noticed before? Different ways of doing it you did not think of before? Things you thought were important before the exercise that seem less important now, and vice versa?", "Есть ли у темы «{topic}» источники и применения, которых вы раньше не замечали? Другие способы, о которых вы не думали? Что казалось важным до упражнения, а теперь кажется менее важным, и наоборот?"],
+              ["Participants individually make a list of new questions and prepare 3 to share; in the groups, negotiate the three most pressing questions and write them down. 10 min.", "Каждый составляет список новых вопросов и готовит 3; в группах договариваются о трёх самых острых и записывают их. 10 мин."],
+              ["Share the new questions with the other groups. 15 min.", "Поделитесь новыми вопросами с другими группами. 15 мин."]],
+      orig: ["10 minutes, then 15 minutes sharing.", "10 минут, потом 15 минут обмена."],
+      adapt: ["The source's questions are about work; your topic is substituted.", "В источнике вопросы про работу; подставлена ваша тема."],
+      quote: ["1. It's an open question for which you don't have an answer yet. 2. The question has emerged from the workshop.", "1. Это открытый вопрос, на который у вас пока нет ответа. 2. Вопрос появился во время воркшопа."],
+      need: ["Paper or cards for the questions", "Бумага или карточки для вопросов"] },
+    { id: "checkout", act: "close", type: "frame", d: [30, 30],
+      src: [["Futures Literacy Lab, 3h example: “Recap of the process” and “Check out”", "Futures Literacy Lab, пример на 3 часа: «Recap of the process» и «Check out»"], FLL],
+      title: ["Recap and check-out", "Итог и check-out"],
+      purpose: ["Name what the room did and close with one line from everyone.", "Назвать, что сделал зал, и закончить одной фразой от каждого."],
+      steps: [["Recap: “What have we done today?” Go over the learning curve and explain the three phases. 15 min.", "Итог: «Что мы сегодня сделали?» Пройдитесь по пути и объясните три фазы. 15 мин."],
+              ["Check out, one line each, for example “Capture the workshop in one word…” or “In the future I want to…”. 15 min.", "Check-out, по одной фразе, например «Опишите вечер одним словом…» или «В будущем я хочу…». 15 мин."]],
+      orig: ["15 minutes recap, 15 minutes check-out.", "15 минут итог, 15 минут check-out."], adapt: null,
+      quote: ["Make sure you give a recap of the process, and point out the three phases.", "Обязательно подведите итог процесса и назовите три фазы."],
+      need: ["Nothing", "Ничего"] },
+    { id: "interview", act: "fut", type: "listen", d: [55, 30],
+      src: [["Liberating Structures: Celebrity Interview (~30–55 min)", "Liberating Structures: Celebrity Interview (~30–55 мин)"], LS_CI],
+      title: ["Celebrity Interview with the futurist", "Celebrity Interview с футуристом"],
+      purpose: ["Listen to a futurist in conversation rather than a lecture, then ask the room's own questions.", "Послушать футуриста в разговоре, а не на лекции, а потом задать ему вопросы зала."],
+      steps: [["Intro: share the structuring invitation and display the flow figure from the page. 1 min.", "Вступление: озвучьте приглашение и покажите схему с этой страницы. 1 мин."],
+              ["Welcome the futurist and introduce the topic in a casual talk-show format. 3 min.", "Поприветствуйте футуриста и представьте тему в непринуждённом формате ток-шоу. 3 мин."],
+              ["Interview with the prepared questions, gathered from the guests in advance as the page's variation suggests; ask for stories and concrete details. {30|15} min.", "Интервью по заготовленным вопросам, собранным у гостей заранее, как предлагает вариант со страницы; просите истории и конкретные детали. {30|15} мин."],
+              ["Participants think of more questions in a 1-2-4-All configuration and write them on index cards. {10|5} min.", "Участники придумывают новые вопросы по схеме 1-2-4-All и пишут их на карточках. {10|5} мин."],
+              ["Sift through the questions and ask a few more. {10|5} min.", "Просейте вопросы и задайте ещё несколько. {10|5} мин."],
+              ["Closing comment and thanks. 1 min.", "Завершающая реплика и благодарность. 1 мин."]],
+      orig: ["About 30–55 minutes; minimum group size twelve; roles: interviewer/host, celebrity and audience. Tips: keep the introduction short; questions should not be trivial or easy to answer.", "Около 30–55 минут; минимум 12 человек; роли: интервьюер/ведущий, «знаменитость» и зал. Советы: короткое вступление; вопросы не должны быть тривиальными или лёгкими."],
+      adapt: ["Held after the lab closes, as its own session: the Futures Literacy Lab approach treats “all participants … as experts in some way” and questions reliance on “expert advice” (NIFU 2026), so the futurist does not speak inside the lab. Minutes: the protocol's maximum (55 min) or minimum (30 min), depending on the length you pick.", "Проходит после закрытия лаборатории, отдельной сессией: подход Futures Literacy Lab считает, что «все участники … в каком-то смысле эксперты», и ставит под вопрос опору на «экспертные советы» (NIFU 2026), поэтому футурист не выступает внутри лаборатории. Минуты: максимум протокола (55 мин) или минимум (30 мин), в зависимости от выбранной длительности."],
+      quote: ["Let's have a real conversation about the things that matter, the experiences that shape us.", "Давайте по-настоящему поговорим о том, что важно, об опыте, который нас формирует."],
+      need: ["Index cards; the flow figure from the page", "Карточки; схема со страницы источника"] }
+  ];
+
+  var QS = [
+    ["What gives you the strength to lead through this challenging time?", "Что даёт вам силы вести за собой в это непростое время?"],
+    ["What big transitions are most critical in this moment?", "Какие большие переходы сейчас важнее всего?"],
+    ["Given the challenges and transitions underway, what do you hope is possible?", "С учётом нынешних вызовов и переходов, на что вы надеетесь?"],
+    ["What must be invented or developed for us to succeed?", "Что нужно изобрести или развить, чтобы у нас получилось?"],
+    ["To make space for innovation, what do we need to let go of or stop doing?", "Чтобы освободить место для нового, от чего нам нужно отказаться или что перестать делать?"],
+    ["What is your part in letting go?", "Какова ваша роль в том, чтобы отпустить старое?"]
+  ];
+
+  var PEOPLE = [
+    [["Riel Miller", "Риэль Миллер"],
+     ["Head of Foresight and Futures Literacy at UNESCO from mid-2012 to early 2022 (his SOIF speaker page). Interviewed on futures literacy at the Dubai Future Forum 2024 (The Futures Workshop podcast, published 20 January 2025).", "Руководил форсайтом и Futures Literacy в ЮНЕСКО с середины 2012 до начала 2022 года (его страница спикера на SOIF). Дал интервью о futures literacy на Dubai Future Forum 2024 (подкаст The Futures Workshop, опубликован 20 января 2025)."],
+     ["He led UNESCO's futures literacy work, and this evening is built on a Futures Literacy Lab.", "Он руководил работой ЮНЕСКО по futures literacy, а этот вечер построен на Futures Literacy Lab."], "EN",
+     [["SOIF", "https://soif.org.uk/speakers/riel-miller"], ["Podcast, Jan 2025", "https://thefuturesworkshop.substack.com/p/episode-twelve-riel-miller-at-the"]]],
+    [["Stuart Candy", "Стюарт Кэнди"],
+     ["Co-author of the 2017 Polak Game article used in the opening; co-designer, with Jeff Watson, of The Thing From The Future (2015, CC BY-NC-SA). Now Distinguished Visiting Professor in Critical Futures, School of Architecture, Art and Design, Tecnológico de Monterrey (Tec faculty page, 2026). The 2017 article lists him at Carnegie Mellon University; SOIF calls him Director of Situation Lab.", "Соавтор статьи 2017 года об игре Полака, по которой идёт открытие; вместе с Джеффом Уотсоном автор игры The Thing From The Future (2015, CC BY-NC-SA). Сейчас Distinguished Visiting Professor in Critical Futures в School of Architecture, Art and Design, Tecnológico de Monterrey (страница факультета Tec, 2026). В статье 2017 года он указан в Carnegie Mellon University; SOIF называет его директором Situation Lab."],
+     ["Co-author of the Polak Game used in the opening.", "Соавтор игры Полака, с которой начинается вечер."], "EN",
+     [["Tec de Monterrey", "https://tec.mx/en/our-faculty/eaad/stuart-candy"], ["SOIF", "https://soif.org.uk/speakers/stuart-candy/"], ["Polak article", "https://jfsdigital.org/articles-andessays/2017-2/the-polak-game-or-where-do-you-stand"], ["Game credits", "https://pressbooks.library.torontomu.ca/futurethingcards/back-matter/credits/"]]],
+    [["Sohail Inayatullah", "Сохаил Инаятулла"],
+     ["Wikipedia: “most famous for introducing and pioneering” causal layered analysis, the iceberg in Phase 1. Teaches “Become a Futurist”, a self-paced online video course (Metafuture). Facilitated “Futures Thinking and Strategy Transformation” at the Dubai Future Foundation on 9–10 November 2026.", "Википедия: «наиболее известен тем, что ввёл и развил» многоуровневый причинный анализ, тот самый айсберг в фазе 1. Ведёт «Become a Futurist», видеокурс онлайн в своём темпе (Metafuture). Вёл курс «Futures Thinking and Strategy Transformation» в Dubai Future Foundation 9–10 ноября 2026."],
+     ["Introduced CLA, used in the iceberg step; teaches it in an online course.", "Ввёл CLA, который используется в шаге с айсбергом; преподаёт его в онлайн-курсе."], "EN",
+     [["Wikipedia", "https://en.wikipedia.org/wiki/Sohail_Inayatullah"], ["Metafuture", "https://www.metafuture.org/?p=13140"], ["Dubai course", "https://www.dubaifuture.ae/?p=197096"]]],
+    [["Pavel Luksha", "Павел Лукша"],
+     ["Habr (July 2021): “founder of the Global Education Futures initiative” and head of the “100-year horizon” foresight group. The Future Worlds Center wiki lists him as leader of GEF, which has hubs in New Delhi, Buenos Aires, London, Algiers, Tbilisi and Kigali. Getting Smart (2019) called him Moscow-based.", "Хабр (июль 2021): «основатель инициативы „Глобальное будущее образования“» и руководитель форсайт-группы «100-летний горизонт». Вики Future Worlds Center указывает его руководителем GEF с хабами в Нью-Дели, Буэнос-Айресе, Лондоне, Алжире, Тбилиси и Кигали. Getting Smart (2019) писал, что он живёт в Москве."],
+     ["Writes and speaks on long-term futures of education: in Russian (Habr) and in English (Getting Smart).", "Пишет и говорит о долгом будущем образования: на русском (Хабр) и на английском (Getting Smart)."], "RU, EN",
+     [["Habr", "https://habr.com/ru/companies/2035_university/articles/570100"], ["GEF wiki", "https://cnti.org.cy/wiki/Global_Education_Futures"], ["Podcast 2019", "https://www.gettingsmart.com/podcast/podcast-pavel-luksha-on-educating-for-purpose-potential-and-the-planet/"]]],
+    [["Alexander Sokolov, Alexander Chulok (HSE)", "Александр Соколов, Александр Чулок (ВШЭ)"],
+     ["Sokolov: director of the HSE Foresight Centre and head of HSE's UNESCO Chair on futures studies (chair website, October 2025). Chulok: Director of the Centre for Science and Technology Foresight at ISSEK (HSE staff page); listed among the authors of an HSE course on science and technology forecasting.", "Соколов: директор Форсайт-центра и заведующий кафедрой ЮНЕСКО по исследованиям будущего НИУ ВШЭ (сайт кафедры, октябрь 2025). Чулок: директор Центра научно-технологического прогнозирования ИСИЭЗ (страница сотрудника ВШЭ); указан среди авторов курса ВШЭ по научно-технологическому прогнозированию."],
+     ["Russian-language academic guests on science and technology foresight.", "Русскоязычные академические гости по научно-технологическому форсайту."], "RU",
+     [["UNESCO Chair", "https://unescofutures.hse.ru/news/keywords/522312900/"], ["HSE: Chulok", "https://www.hse.ru/en/staff/Alexander.Chulok"], ["HSE course", "https://www.hse.ru/edu/courses/944979320"]]],
+    [["Evgeny Kuznetsov", "Евгений Кузнецов"],
+     ["Called a futurist by Profile (July 2026, on cities of the future). E1 (May 2024): CEO of Orbita Capital Partners, the management company of Rosatom's venture fund.", "«Профиль» называет его футурологом (июль 2026, о городах будущего). E1 (май 2024): генеральный директор «Орбита Капитал Партнерз», управляющей компании венчурного фонда «Росатома»."],
+     ["Comments on technology futures in Russian media (Profile, E1).", "Комментирует технологическое будущее в русскоязычных СМИ («Профиль», E1)."], "RU",
+     [["Profile 2026", "https://profile.ru/society/evgenij-kuznecov-goroda-budut-rasti-vverh-i-uhodit-pod-zemlju-1876054/"], ["E1 2024", "https://www.e1.ru/text/business/2024/05/07/73547192/"]]]
+  ];
+
+  var LISTEN = [
+    ["<a href='https://www.ted.com/talks/jane_mcgonigal_how_to_see_the_future_coming_and_prepare_for_it'>Jane McGonigal, “How to see the future coming — and prepare for it” (TEDNext, October 2024)</a>", "<a href='https://www.ted.com/talks/jane_mcgonigal_how_to_see_the_future_coming_and_prepare_for_it'>Джейн Макгонигал, «How to see the future coming — and prepare for it» (TEDNext, октябрь 2024)</a>",
+     "Wikipedia: Director of Game Research and Development at the Institute for the Future since 2008; her book Imaginable came out on 22 March 2022.", "Википедия: с 2008 года директор по исследованиям и разработке игр в Institute for the Future; её книга «Imaginable» вышла 22 марта 2022 года."],
+    ["<a href='https://ftsg.com/convergence'>Amy Webb, Convergence Outlook 2026 (Future Today Strategy Group)</a>", "<a href='https://ftsg.com/convergence'>Эми Уэбб, Convergence Outlook 2026 (Future Today Strategy Group)</a>",
+     "Exame (14 March 2026): at SXSW 2026 she announced the end of the annual trends report and a new model based on “convergences”. The FTSG page offers the Outlook itself; whether the SXSW video is public wasn't checked.", "Exame (14 марта 2026): на SXSW 2026 она объявила о конце ежегодного доклада о трендах и о новой модели на основе «конвергенций». На странице FTSG можно получить сам Outlook; доступно ли видео с SXSW, не проверено."],
+    ["<a href='https://thefuturesworkshop.substack.com/p/episode-twelve-riel-miller-at-the'>The Futures Workshop podcast, Ep. 12: Riel Miller at the Dubai Future Forum</a>", "<a href='https://thefuturesworkshop.substack.com/p/episode-twelve-riel-miller-at-the'>Подкаст The Futures Workshop, эп. 12: Риэль Миллер на Dubai Future Forum</a>",
+     "Recorded at the Dubai Future Forum 2024, published 20 January 2025.", "Записан на Dubai Future Forum 2024, опубликован 20 января 2025."],
+    ["<a href='https://thefuturesworkshop.substack.com/p/episode-one-bill-sharpe-on-three'>The Futures Workshop podcast, Ep. 1: Bill Sharpe on Three Horizons</a>", "<a href='https://thefuturesworkshop.substack.com/p/episode-one-bill-sharpe-on-three'>Подкаст The Futures Workshop, эп. 1: Билл Шарп о Three Horizons</a>",
+     "Published 25 July 2024; Bill Sharpe on his Three Horizons tool.", "Опубликован 25 июля 2024; Билл Шарп о своём инструменте Three Horizons."],
+    ["<a href='https://www.gettingsmart.com/podcast/podcast-pavel-luksha-on-educating-for-purpose-potential-and-the-planet/'>Getting Smart podcast: Pavel Luksha on Educating for Purpose, Potential, and the Planet</a>", "<a href='https://www.gettingsmart.com/podcast/podcast-pavel-luksha-on-educating-for-purpose-potential-and-the-planet/'>Подкаст Getting Smart: Павел Лукша об образовании</a>",
+     "In English, 25 September 2019.", "На английском, 25 сентября 2019."]
+  ];
+
+  var TRAIN = [
+    [["School of International Futures", "School of International Futures"], ["8-week virtual Strategic Foresight course: about 30 hours of contact time, cohorts of 14–20, £3,250 non-profit or £4,600 corporate (course PDF for January 2023).", "8-недельный онлайн-курс Strategic Foresight: около 30 часов занятий, группы по 14–20 человек, £3 250 для НКО или £4 600 для компаний (PDF курса на январь 2023)."], "EN", [["Course PDF", "https://soif.org.uk/app/uploads/2022/10/8-week-Strategic-Foresight-Virtual-Course-.pdf"]]],
+    [["Copenhagen Institute for Futures Studies", "Copenhagen Institute for Futures Studies"], ["Copenhagen: Futures & Foresight with AI, 14–15 January 2027; Cultural Foresight Masterclass, 2 December 2026, sold out, EUR 1,350 + 25% VAT. Training for organisations from EUR 8,000. The AI course page also lists an online version with Hyper Island, 27 January – 3 March.", "Копенгаген: Futures & Foresight with AI, 14–15 января 2027; Cultural Foresight Masterclass, 2 декабря 2026, мест нет, €1 350 + 25% НДС. Обучение для организаций от €8 000. На странице курса по ИИ есть и онлайн-версия с Hyper Island, 27 января – 3 марта."], "EN", [["AI course", "https://cifs.dk/services/courses/futures-and-foresight-with-ai"], ["Masterclass", "https://www.cifs.dk/services/courses/cultural-foresight-masterclass"], ["For organisations", "https://cifs.dk/organisational-training/"]]],
+    [["University of Houston Foresight", "University of Houston Foresight"], ["Professional Certificate in Foresight seminar: a 5-day intensive workshop in Framework Foresight; in person 11–15 January 2027 in Houston; content questions go to Dr. Andy Hines.", "Professional Certificate in Foresight: 5-дневный интенсивный воркшоп по Framework Foresight; очно 11–15 января 2027 в Хьюстоне; вопросы по содержанию к доктору Энди Хайнсу."], "EN", [["Seminar", "https://www.hdcs.uh.edu/programs/certificates/foresight/seminar"]]],
+    [["Liberating Structures community", "Сообщество Liberating Structures"], ["The site links a Slack, a Qiqochat calendar, a LinkedIn group and a user-group list that it marks as out of date.", "Сайт даёт ссылки на Slack, календарь в Qiqochat, группу в LinkedIn и список групп пользователей, который сам помечает как устаревший."], "EN", [["LS links", "http://www.liberatingstructures.com/local-and-regional-ls-links"]]],
+    [["Ukrainian-language LS meetups (DOU)", "Украиноязычные встречи по LS (DOU)"], ["Online meetups on Liberating Structures in Ukrainian, for example on 17 September 2025.", "Онлайн-встречи по Liberating Structures на украинском, например 17 сентября 2025."], "UA", [["DOU", "https://dou.ua/calendar/54892/"]]],
+    [["HSE University", "НИУ ВШЭ"], ["Course “Научно-технологическое прогнозирование в цифровой экономике” (2024/25): Delphi and technology roadmaps practised as interactive business games; Chulok among the listed authors. Part of a degree programme.", "Дисциплина «Научно-технологическое прогнозирование в цифровой экономике» (2024/25): метод Дельфи и технологические дорожные карты отрабатываются в интерактивных деловых играх; Чулок среди авторов. Часть учебной программы."], "RU", [["hse.ru", "https://www.hse.ru/edu/courses/944979320"]]],
+    [["Rapid Foresight", "Rapid Foresight"], ["A Russian foresight-session format in which all participants jointly build a “time map” from images and schemes (Vestnik NCFU, 2020).", "Российский формат форсайт-сессии: все участники вместе строят «карту времени», работая с образами и схемами (Вестник СКФУ, 2020)."], "RU", [["Vestnik NCFU", "https://dspace.ncfu.ru/bitstream/20.500.12258/17911/1/181-185.pdf"]]]
+  ];
+
+  var EVID = [
+    [["Futures Literacy Lab", "Futures Literacy Lab"], "prac", ["WOAH (August 2023) reports UNESCO co-designing and implementing over 115 Futures Literacy Laboratories in 50 countries. No controlled trials found.", "WOAH (август 2023) сообщает, что ЮНЕСКО спроектировала и провела более 115 Futures Literacy Laboratories в 50 странах. Контролируемых испытаний не нашёл."], ["WOAH, August 2023", "WOAH, август 2023"]],
+    [["The 3-hour agenda used here", "3-часовая программа, взятая за основу"], "prac", ["One published example agenda from an EU-funded project (CC BY 4.0), not UNESCO's own template.", "Один опубликованный пример программы из проекта с финансированием ЕС (CC BY 4.0), а не официальный шаблон ЮНЕСКО."], ["Annex 2.4", "Annex 2.4"]],
+    [["Polak Game", "Игра Полака"], "prac", ["Over a dozen years of use in classrooms and workshops, per its authors.", "Больше десяти лет использования в аудиториях и на воркшопах, по словам авторов."], ["Hayward & Candy 2017", "Hayward & Candy 2017"]],
+    [["Iceberg (CLA)", "Айсберг (CLA)"], "prac", ["An academic futures method by Sohail Inayatullah; used here only in the simplified form from the example agenda.", "Академический метод исследований будущего Сохаила Инаятуллы; здесь только в упрощённом виде из примера программы."], ["FLL 3h example", "Пример FLL на 3 часа"]],
+    [["Celebrity Interview", "Celebrity Interview"], "prac", ["Liberating Structures protocol: about 30–55 minutes, at least 12 people.", "Протокол Liberating Structures: около 30–55 минут, минимум 12 человек."], ["liberatingstructures.com", "liberatingstructures.com"]],
+    [["Order of blocks", "Порядок блоков"], "prac", ["The lab runs as published; the futurist comes after it closes, because the approach treats participants as the experts.", "Лаборатория идёт как опубликована; футурист после её закрытия, потому что подход считает экспертами самих участников."], ["NIFU Working Paper 2026/13", "NIFU Working Paper 2026/13"]]
+  ];
+  var EV = { strong: ["ev-strong", ["Research", "Исследования"]], lab: ["ev-lab", ["Lab research", "Лаб. исследования"]], prac: ["ev-prac", ["Practice", "Практика"]], novel: ["ev-new", ["My choice", "Мой выбор"]] };
+
+  var MODULES = [
+    { t: ["1-2-4-All", "1-2-4-All"], meta: ["Liberating Structures · ~15 min · from 4 people", "Liberating Structures · ~15 мин · от 4 человек"], link: "https://www.liberatingstructures.com/1-2-4-all/",
+      steps: [["Intro: share the invitation, e.g. “What opportunities do you see for making progress on this challenge?” (1 min)", "Вступление: приглашение, например «Какие возможности для продвижения в этой задаче вы видите?» (1 мин)"],
+              ["Alone: silently reflect and write down ideas (1 min)", "В одиночку: молча подумать и записать идеи (1 мин)"], ["Pairs: share and build on ideas (2 min)", "В парах: поделиться и развить идеи (2 мин)"],
+              ["Quartets: pairs join to refine and differentiate ideas (5 min)", "Четвёрки: пары объединяются, уточняют и различают идеи (5 мин)"], ["All together: a few people share something everyone should hear (7 min)", "Все вместе: несколько человек делятся тем, что важно услышать всем (7 мин)"]],
+      use: ["Instead of the table sharing in Reveal or Rethink.", "Вместо обсуждения за столами в Reveal или Rethink."] },
+    { t: ["Futures Wheel", "Колесо будущего"], meta: ["Jerome Glenn, Futures Research Methodology v3.0 · no timings in the source", "Джером Гленн, Futures Research Methodology v3.0 · время в источнике не указано"], link: "https://mcguinnessinstitute.org/wp-content/uploads/2024/11/06-FuturesWheel.pdf",
+      steps: [["The group picks a trend, idea, future event or value; the leader writes it in the middle of a sheet.", "Группа выбирает тренд, идею, событие будущего или ценность; ведущий пишет это в центре листа."],
+              ["The group names primary impacts; the leader writes each at the end of a spoke.", "Группа называет первичные последствия; ведущий пишет каждое на конце «спицы»."],
+              ["For each primary impact, the group “forgets about the original item” and names two or three secondary impacts; continue to a third ring.", "Для каждого первичного последствия группа «забывает об исходном пункте» и называет два-три вторичных; продолжайте до третьего кольца."],
+              ["First fast, with little evaluation; then evaluate and edit the wheel.", "Сначала быстро, почти без оценок; потом оценить и отредактировать колесо."]],
+      use: ["Instead of the iceberg: put the room's most common probable future in the centre.", "Вместо айсберга: в центр поставьте самое частое вероятное будущее зала."] },
+    { t: ["The Thing From The Future", "Вещь из будущего (The Thing From The Future)"], meta: ["Situation Lab (Candy & Watson); rules from Nesta's printable adaptation · 4–6 players", "Situation Lab (Кэнди и Уотсон); правила по печатной адаптации Nesta · 4–6 игроков"], link: "https://www.nesta.org.uk/report/cards-for-the-future/",
+      steps: [["The dealer lays one card of each type on the board.", "Сдающий кладёт на поле по одной карте каждого типа."],
+              ["A 3-minute timer starts; each player writes a brief, positive idea inspired by the cards and gives it a title.", "Запускается таймер на 3 минуты; каждый пишет короткую позитивную идею по картам и даёт ей название."],
+              ["Ideas are read aloud without attribution; everyone votes at once for the most inspiring, not the most realistic.", "Идеи читают вслух без имени автора; все одновременно голосуют за самую вдохновляющую, а не самую реалистичную."],
+              ["The winner gets a token; the dealer role rotates; the game ends when the deck or the time runs out.", "Победитель получает жетон; роль сдающего переходит по кругу; игра кончается, когда закончились карты или время."]],
+      use: ["Instead of the prototype block. Situation Lab's own site was under construction on 12 November 2026; Nesta's report includes its card pages.", "Вместо блока с прототипом. Сайт Situation Lab 12 ноября 2026 был на реконструкции; в отчёте Nesta есть страницы с картами."] },
+    { t: ["25/10 Crowd Sourcing", "25/10 Crowd Sourcing"], meta: ["Liberating Structures · ~20–25 min · from 15 people", "Liberating Structures · ~20–25 мин · от 15 человек"], link: "https://www.liberatingstructures.com/25-10-crowdsourcing/",
+      steps: [["Invitation: “If you were ten times bolder, what big idea would you recommend? What first step would you take?” (3 min)", "Приглашение: «Если бы вы были в десять раз смелее, какую большую идею вы бы предложили? Какой первый шаг?» (3 мин)"],
+              ["Each writes the boldest idea and its first step on an index card (5 min).", "Каждый пишет самую смелую идею и первый шаг на карточке (5 мин)."],
+              ["Pass cards around; read the card in hand, rate it 1–5 on the back; five rounds (about 5 min).", "Передаём карточки; читаем ту, что в руках, ставим 1–5 на обороте; пять раундов (около 5 мин)."],
+              ["Add up the scores (2 min); count down from “Who has a 25?” (3–5 min); wrap up (2 min).", "Складываем баллы (2 мин); считаем вниз с «У кого 25?» (3–5 мин); итог (2 мин)."]],
+      use: ["After Rethink, to choose one action the room wants to take.", "После Rethink, чтобы выбрать одно действие, которое зал хочет сделать."] },
+    { t: ["What, So What, Now What?", "What, So What, Now What?"], meta: ["Liberating Structures · ~20–40 min · from 4 people", "Liberating Structures · ~20–40 мин · от 4 человек"], link: "https://www.liberatingstructures.com/what-so-what-now-what/",
+      steps: [["Intro: preview the three questions, What? So What? Now What? (2 min)", "Вступление: три вопроса, Что? И что? Что теперь? (2 мин)"],
+              ["Round 1, What?: reflect alone (1 min), share in groups of five to seven (3–8 min), a few people share the key facts (2–3 min).", "Раунд 1, Что?: подумать одному (1 мин), обсудить в группах по 5–7 (3–8 мин), несколько человек называют главное (2–3 мин)."],
+              ["Rounds 2 and 3: the same steps for meaning (So What?) and for actions (Now What?).", "Раунды 2 и 3: те же шаги для смысла (И что?) и для действий (Что теперь?)."]],
+      use: ["Instead of the check-out, if you have 30 minutes.", "Вместо check-out, если есть 30 минут."] }
+  ];
+
+  var TEA = [
+    { tea: ["Shou (ripe) pu-erh", "Шу пуэр"], brew: ["95–100 °C, 99 °C typical (Wikipedia) · 5 g per 100 ml for gongfu (Mei Leaf)", "95–100 °C, обычно 99 °C (Википедия) · 5 г на 100 мл для гунфу (Mei Leaf)"], caf: ["Yes", "Есть"], q: "shou pu erh loose leaf tea" },
+    { tea: ["Oolong, gongfu style", "Улун в стиле гунфу ча"], brew: ["80–90 °C, 85 °C typical · first pourings 10–15 s, then longer (Wikipedia) · 4.5–5 g per 100 ml, ball oolong 6–6.5 g (Mei Leaf)", "80–90 °C, обычно 85 °C · первые проливы 10–15 с, потом дольше (Википедия) · 4,5–5 г на 100 мл, скрученный улун 6–6,5 г (Mei Leaf)"], caf: ["Yes", "Есть"], q: "taiwan high mountain oolong loose leaf tea" },
+    { tea: ["Butterfly pea flower", "Анчан (цветки клитории)"], brew: ["Caffeine-free; turns purple with lemon juice (Wikipedia). Brewing time not checked.", "Без кофеина; от лимонного сока становится фиолетовым (Википедия). Время заваривания не проверено."], caf: ["None", "Нет"], q: "butterfly pea flower tea dried" }
+  ];
+
+  var COUNTDOWN = [
+    [["FLL example", "Пример FLL"], ["Choose the topic and the year. The example uses the future of work in 2070.", "Выберите тему и год. В примере — будущее работы в 2070 году."]],
+    [["FLL example", "Пример FLL"], ["Write the reframe: “a short story that is a non-probable, non-desirable future”, one that “challenges their thinking and their assumptions”.", "Напишите reframe: «короткую историю о невероятном и нежеланном будущем», которая «бросает вызов их мышлению и допущениям»."]],
+    [["FLL example", "Пример FLL"], ["“Make sure you have enough material: paperclips, paper, balloons, cups etc…”", "«Убедитесь, что материалов достаточно: скрепки, бумага, шарики, стаканчики и т. п.»"]],
+    [["FLL example", "Пример FLL"], ["Iceberg posters for “the table in the middle of the group”.", "Плакаты-айсберги «на стол в центре группы»."]],
+    [["FLL example", "Пример FLL"], ["Floor space: the Polak Game uses “an imaginary line on the floor”.", "Место на полу: игра Полака идёт на «воображаемой линии на полу»."]],
+    [["Celebrity Interview", "Celebrity Interview"], ["“Interview questions prepared in advance”; “you can give them to the celebrity in advance so they can prepare.”", "«Вопросы для интервью, подготовленные заранее»; «можно отдать их гостю заранее, чтобы он подготовился»."]],
+    [["Celebrity Interview, variation", "Celebrity Interview, вариант"], ["“Conduct research in advance to gather questions from participants, such as what they want to know but would not dare to ask.”", "«Заранее соберите вопросы участников, например то, что они хотят узнать, но не решились бы спросить»."]],
+    [["Celebrity Interview", "Celebrity Interview"], ["Index cards for the new questions, and the flow figure from the page to display at the start.", "Карточки для новых вопросов и схема со страницы, чтобы показать её в начале."]]
+  ];
+
+  var ROLES = [
+    [["Facilitator", "Фасилитатор"], ["Runs the lab and reads the prompts; the FLL example is written as notes for the facilitator.", "Ведёт лабораторию и зачитывает вопросы; пример FLL написан как заметки для фасилитатора."]],
+    [["Interviewer / host", "Интервьюер / ведущий"], ["Celebrity Interview lists the roles “interviewer/host, celebrity, and audience”.", "Celebrity Interview называет роли «интервьюер/ведущий, знаменитость и зал»."]],
+    [["Celebrity", "«Знаменитость»"], ["The futurist. A listed variation, “Invite a few celebrities to highlight different perspectives”, allows more than one.", "Футурист. Вариант из источника, «пригласите нескольких знаменитостей, чтобы показать разные взгляды», разрешает и больше одного."]],
+    [["Audience", "Зал"], ["Writes new questions in 1-2-4-All on index cards.", "Пишет новые вопросы по схеме 1-2-4-All на карточках."]]
+  ];
+
+  var KIT = [
+    [["Sticky notes", "Стикеры"], "super sticky notes 3x3 assorted colors bulk"],
+    [["Pens or markers", "Ручки или маркеры"], "black felt tip pens fine point 24 pack"],
+    [["Flipchart paper for the iceberg posters", "Бумага для флипчарта под плакаты-айсберги"], "self stick flip chart paper pad 25 x 30"],
+    [["Index cards for interview questions", "Каталожные карточки для вопросов"], "index cards 3x5 ruled 100 pack"],
+    [["Paperclips", "Скрепки"], "colored paper clips 500 pack"],
+    [["Paper", "Бумага"], "construction paper assorted colors"],
+    [["Balloons", "Воздушные шарики"], "balloons assorted colors 100 pack"],
+    [["Cups", "Стаканчики"], "paper cups 100 pack"],
+    [["Timer for the timed steps", "Таймер для шагов по времени"], "visual timer for classroom"],
+    [["Small brewing vessels for gongfu tea (gaiwan)", "Маленькая посуда для гунфу ча (гайвань)"], "porcelain gaiwan 100ml"],
+    [["Kettle with temperature control (80–100 °C)", "Чайник с регулировкой температуры (80–100 °C)"], "electric gooseneck kettle temperature control"],
+    [["Small tea cups", "Маленькие чайные чашки"], "small porcelain tea cups set 50ml"],
+    [["Shou pu-erh", "Шу пуэр"], "shou pu erh loose leaf tea"],
+    [["Oolong", "Улун"], "taiwan high mountain oolong loose leaf tea"],
+    [["Butterfly pea flowers", "Цветки анчана"], "butterfly pea flower tea dried"]
+  ];
+
+  var GAPS = [
+    ["<b>Topic and year are yours to choose.</b> The defaults (work, 2070) come from the example agenda; its prompts and reframe examples are about work, and your topic is substituted.", "<b>Тему и год выбираете вы.</b> Значения по умолчанию (работа, 2070) взяты из примера программы; его вопросы и примеры reframe про работу, ваша тема подставляется."],
+    ["<b>Sources read in full:</b> the 3-hour FLL agenda, the Polak Game article and the Celebrity Interview page. The agenda is one published example from an EU-funded project, not UNESCO's official template. The agenda (5 pages, PDF created August 2023) is checked line by line: every block's times match its 0h00–2h45 schedule.", "<b>Прочитаны целиком:</b> 3-часовая программа FLL, статья об игре Полака и страница Celebrity Interview. Программа — один опубликованный пример из проекта с финансированием ЕС, а не официальный шаблон ЮНЕСКО. Программа (5 страниц, PDF создан в августе 2023) сверена построчно: время каждого блока совпадает с её расписанием 0h00–2h45."],
+    ["<b>Order and minutes.</b> The lab runs as published, 3 hours. The futurist comes after it, following the NIFU (2026) lab report. The interview runs at the Celebrity Interview maximum (55 min) or minimum (30 min). No step, order or minute is my own choice.", "<b>Порядок и минуты.</b> Лаборатория идёт как опубликована, 3 часа. Футурист выступает после неё, по отчёту NIFU (2026). Интервью идёт по максимуму (55 мин) или минимуму (30 мин) Celebrity Interview. Ни один шаг, порядок или минута не выбраны мной."],
+    ["<b>Group size.</b> Celebrity Interview needs at least 12 people; the example lab's sharing assumes about 2 minutes per person in each group.", "<b>Размер группы.</b> Celebrity Interview рассчитан минимум на 12 человек; обмен в примере лаборатории рассчитан примерно на 2 минуты на человека в группе."],
+    ["<b>The sample interview questions</b> on the Celebrity Interview page are written for leaders in an organisation; the same page advises questions that are not trivial and can be sent to the guest in advance.", "<b>Примеры вопросов</b> на странице Celebrity Interview написаны для руководителей в организации; там же советуют нетривиальные вопросы, которые можно заранее отправить гостю."],
+    ["<b>People and courses.</b> Fees and availability weren't checked. Only people and courses whose own pages could be read are listed; anything that could not be checked on its own page was left out. An older HSE news item calls Chulok Deputy Director of the Foresight Centre; his staff page now says Director of the Centre for Science and Technology Foresight. Dates are as the pages showed on 12 November 2026.", "<b>Люди и курсы.</b> Гонорары и доступность не проверены. В списке только люди и курсы, чьи страницы удалось прочитать; всё, что нельзя было проверить на собственной странице, не включено. В старой новости ВШЭ Чулок назван замдиректора Форсайт-центра; на странице сотрудника сейчас он директор Центра научно-технологического прогнозирования. Даты такие, какими они были на страницах 12 ноября 2026."],
+    ["<b>The Thing From The Future.</b> Situation Lab's site was under construction on 12 November 2026, so the module uses Nesta's published adaptation (CC BY-NC-SA 2.0, attributed to Situation Lab). The cards are in English.", "<b>The Thing From The Future.</b> Сайт Situation Lab 12 ноября 2026 был на реконструкции, поэтому модуль использует опубликованную адаптацию Nesta (CC BY-NC-SA 2.0, с указанием Situation Lab). Карты на английском."],
+    ["<b>Not found:</b> a Russian-language Liberating Structures community or a Russian-speaking Futures Literacy Lab facilitator.", "<b>Не нашёл:</b> русскоязычного сообщества Liberating Structures и русскоязычного фасилитатора Futures Literacy Lab."],
+    ["<b>Evidence</b> for these futures methods is practice, documented in the sources above, not controlled trials.", "<b>Доказательства</b> для этих методов практические, они описаны в источниках выше, а не в контролируемых испытаниях."],
+    ["<b>Amazon links</b> are searches on amazon.com; prices, stock and delivery weren't checked. Quantities depend on your guest count.", "<b>Ссылки на Amazon</b> — это поиск по amazon.com; цены, наличие и доставка не проверены. Количества зависят от числа гостей."]
+  ];
+
+  // Helpers
+  function load(k, fb) { try { var v = localStorage.getItem(k); return v === null ? fb : JSON.parse(v); } catch (e) { return fb; } }
+  function save(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  var $ = function (id) { return document.getElementById(id); };
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function T(x) { return Array.isArray(x) ? x[state.lang === "ru" ? 1 : 0] : x; }
+  function S(key) { return T(STR[key]); }
+  function L() { return state.len === "3" ? 1 : 0; }
+  function fill(s) { return s.replace(/\{([^|}]+)\|([^}]+)\}/g, function (m, a, b) { return L() ? b : a; }); }
+  function topic() { return (state.topic && state.topic.trim()) || S("topic_default"); }
+  function year() { var y = parseInt(state.year, 10); return isFinite(y) ? String(y) : "2070"; }
+  function tpl(s) { return fill(s).replace(/\{topic\}/g, topic()).replace(/\{year\}/g, year()); }
+  function txt(x) { return esc(tpl(T(x))); }
+  function toMin(hhmm) { var p = (hhmm || "18:30").split(":"); return (+p[0]) * 60 + (+p[1] || 0); }
+  function clock(m) { m = ((Math.round(m) % 1440) + 1440) % 1440; var h = Math.floor(m / 60), mm = m % 60; return (h < 10 ? "0" : "") + h + ":" + (mm < 10 ? "0" : "") + mm; }
+  function off(m) { var h = Math.floor(m / 60), mm = m % 60; return "T+" + h + ":" + (mm < 10 ? "0" : "") + mm; }
+  function amz(q) { return "https://www.amazon.com/s?k=" + encodeURIComponent(q).replace(/%20/g, "+"); }
+  function buyLink(q) { return q ? '<a class="buy" href="' + amz(q) + '" target="_blank" rel="noopener">' + S("buy") + "</a>" : '<span class="buy local">' + S("local") + "</span>"; }
+  function links(arr) { return '<span class="links">' + arr.map(function (l) { return '<a href="' + l[1] + '" target="_blank" rel="noopener">' + esc(l[0]) + "</a>"; }).join("") + "</span>"; }
+
+  var defaultLang = "en";
+  try { if ((navigator.language || "").toLowerCase().indexOf("ru") === 0) defaultLang = "ru"; } catch (e) {}
+  var state = { lang: load("twt-lang", defaultLang), len: load("twt-len", "4"), start: load("twt-start", "18:30"), host: load("twt-host", null), topic: load("twt-topic", ""), year: load("twt-year", 2070) };
+  if (state.lang !== "ru" && state.lang !== "en") state.lang = "en";
+
+  function timeline() {
+    var t = 0, out = [];
+    BLOCKS.forEach(function (b) { var d = b.d[L()]; if (!d) return; out.push({ b: b, start: t, end: t + d, d: d }); t += d; });
+    return out;
+  }
+
+  function renderStatic() {
+    document.documentElement.lang = state.lang;
+    ["lang-en", "lang-ru"].forEach(function (id) { $(id).setAttribute("aria-pressed", String($(id).dataset.lang === state.lang)); });
+    document.querySelectorAll("[data-t]").forEach(function (el) { var v = STR[el.dataset.t]; if (v) el.innerHTML = T(v); });
+    $("topic").placeholder = S("topic_default");
+
+    $("people-body").innerHTML = PEOPLE.map(function (p) {
+      return "<tr><td><b>" + esc(T(p[0])) + "</b></td><td>" + esc(T(p[1])) + "</td><td>" + esc(T(p[2])) + '</td><td class="num">' + p[3] + "</td><td>" + links(p[4]) + "</td></tr>";
+    }).join("");
+    $("listen").innerHTML = LISTEN.map(function (r) {
+      var ru = state.lang === "ru";
+      return "<li><b>" + (ru ? r[1] : r[0]) + "</b><span>" + esc(ru ? r[3] : r[2]) + "</span></li>";
+    }).join("");
+    $("train-body").innerHTML = TRAIN.map(function (r) {
+      return "<tr><td><b>" + esc(T(r[0])) + "</b></td><td>" + esc(T(r[1])) + '</td><td class="num">' + r[2] + "</td><td>" + links(r[3]) + "</td></tr>";
+    }).join("");
+    $("ev-body").innerHTML = EVID.map(function (r) {
+      var ev = EV[r[1]];
+      return "<tr><td><b>" + esc(T(r[0])) + '</b></td><td><span class="ev ' + ev[0] + '">' + T(ev[1]) + "</span></td><td>" + esc(T(r[2])) + "</td><td>" + esc(T(r[3])) + "</td></tr>";
+    }).join("");
+    $("modules-list").innerHTML = MODULES.map(function (m) {
+      return '<article class="module"><h3><a href="' + m.link + '" target="_blank" rel="noopener">' + esc(T(m.t)) + '</a></h3><span class="m-meta">' + esc(T(m.meta)) + "</span><ol>" +
+        m.steps.map(function (s) { return "<li>" + esc(T(s)) + "</li>"; }).join("") + "</ol><p>" + esc(T(m.use)) + "</p></article>";
+    }).join("");
+    $("tea-body").innerHTML = TEA.map(function (r) {
+      return "<tr><td><b>" + esc(T(r.tea)) + '</b></td><td class="num">' + esc(T(r.brew)) + "</td><td>" + esc(T(r.caf)) + "</td><td>" + buyLink(r.q) + "</td></tr>";
+    }).join("");
+    $("countdown").innerHTML = COUNTDOWN.map(function (r) { return '<li><span class="t">' + esc(T(r[0])) + "</span><span>" + esc(T(r[1])) + "</span></li>"; }).join("");
+    $("roles").innerHTML = ROLES.map(function (r) { return "<li><b>" + esc(T(r[0])) + "</b><span>" + esc(T(r[1])) + "</span></li>"; }).join("");
+    var checked = load("twt-kit3", {});
+    $("checklist").innerHTML = KIT.map(function (item, i) {
+      return '<li><label for="kit-' + i + '"><input type="checkbox" id="kit-' + i + '"' + (checked[i] ? " checked" : "") + "><span>" + esc(T(item[0])) + "</span></label>" + buyLink(item[1]) + "</li>";
+    }).join("");
+    $("gaps-list").innerHTML = GAPS.map(function (g) { return "<li>" + T(g) + "</li>"; }).join("");
+    $("copy-status").textContent = "";
+  }
+
+  function renderDynamic() {
+    var tl = timeline(), total = tl[tl.length - 1].end, s0 = toMin(state.start);
+    ["len-4", "len-3"].forEach(function (id) { $(id).setAttribute("aria-pressed", String($(id).dataset.len === state.len)); });
+    $("start-time").value = state.start;
+    if (document.activeElement !== $("topic")) $("topic").value = state.topic || "";
+    if (document.activeElement !== $("year")) $("year").value = year();
+
+    $("rules").innerHTML = RULES.map(function (r, i) {
+      return '<div class="rule"><span class="n">' + (i + 1) + "</span><b>" + txt(r[0]) + "</b><p>" + txt(r[1]) + '</p><span class="s">' + esc(r[2]) + "</span></div>";
+    }).join("");
+
+    var mins = { listen: 0, tea: 0, make: 0 };
+    tl.forEach(function (r) { if (mins[r.b.type] !== undefined) mins[r.b.type] += r.d; });
+    $("facts").innerHTML = "<span><b>" + Math.floor(total / 60) + " " + S("h") + " " + (total % 60) + " " + S("min") + "</b> · " + clock(s0) + "–" + clock(s0 + total) + "</span>" +
+      "<span><b>12+</b> " + S("guests") + "</span><span><b>1–2</b> " + S("futurists") + "</span><span><b>3</b> " + S("phases") + "</span><span><b>" + tl.length + "</b> " + S("blocks") + "</span>";
+    $("legend-sum").textContent = S("sum_listen") + " " + mins.listen + " " + S("min") + " · " + S("sum_make") + " " + mins.make + " " + S("min");
+
+    $("arc-bar").innerHTML = tl.map(function (r) {
+      var title = tpl(T(r.b.title));
+      return '<button type="button" class="arc-seg" data-type="' + r.b.type + '" data-id="' + r.b.id + '" style="flex:' + r.d + ' 1 0" title="' +
+        esc(clock(s0 + r.start) + " · " + title + " · " + r.d + " " + S("min")) + '" aria-label="' + esc(title + ", " + r.d + " " + S("min")) + '"><span>' + esc(title.split(":")[0]) + "</span></button>";
+    }).join("");
+    var ticks = "";
+    for (var h = 0; h <= total / 60; h++) ticks += '<span style="left:' + (h * 60 / total * 100) + '%">' + clock(s0 + h * 60) + "</span>";
+    $("arc-ticks").innerHTML = ticks;
+
+    var html = "", prevAct = null;
+    tl.forEach(function (r) {
+      var b = r.b;
+      if (b.act !== prevAct) { html += '<div class="act-head"><h3>' + esc(T(ACTS[b.act][0])) + "</h3><p>" + esc(T(ACTS[b.act][1])) + "</p></div>"; prevAct = b.act; }
+      var steps = "";
+      b.steps.forEach(function (st) {
+        T(st).split(/(?=4h:)/).forEach(function (p) {
+          var only4 = p.indexOf("4h:") === 0;
+          if (only4 && L()) return;
+          steps += "<li>" + (only4 ? '<span class="v4">' + S("v4") + "</span>" : "") + esc(tpl(only4 ? p.slice(3) : p)) + "</li>";
+        });
+      });
+      var method = b.src ? '<a href="' + b.src[1] + '" target="_blank" rel="noopener">' + esc(T(b.src[0])) + "</a>" : esc(S("none_method"));
+      var q = b.quote ? (state.lang === "ru" ? "«" + txt(b.quote) + "»" : "“" + txt(b.quote) + "”") : "";
+      html += '<article class="block" id="b-' + b.id + '">' +
+        '<div class="when"><span class="clock">' + clock(s0 + r.start) + '</span><span class="off">' + off(r.start) + '</span><span class="dur">' + r.d + " " + S("min") + '</span><span class="now-pill">' + S("nowpill") + "</span></div>" +
+        '<div class="body"><div class="title-row"><h4>' + txt(b.title) + '</h4><span class="chip"><i style="background:' + TYPE_COLOR[b.type] + '"></i>' + S("type_" + b.type) + "</span></div>" +
+        '<p class="method"><span class="k">' + S("method") + "</span>" + method + "</p>" +
+        '<p class="purpose">' + txt(b.purpose) + "</p>" +
+        '<ol class="steps">' + steps + "</ol>" +
+        (q ? '<div><span class="k">' + S("words") + '</span><p class="quote">' + q + "</p></div>" : "") +
+        '<div class="meta">' +
+        (b.orig ? '<div><span class="k">' + S("insource") + "</span>" + txt(b.orig) + "</div>" : "") +
+        (b.adapt ? '<div class="changed"><span class="k">' + S("changed") + "</span>" + txt(b.adapt) + "</div>" : "") +
+        '<div><span class="k">' + S("need") + "</span>" + txt(b.need) + "</div>" +
+        "</div></div></article>";
+    });
+    $("blocks").innerHTML = html;
+
+    $("brief-text").textContent = tpl(S("brief_text"));
+    $("qs").innerHTML = QS.map(function (q) { return "<li>" + txt(q) + "</li>"; }).join("");
+    tick();
+  }
+
+  // Party clock
+  var timer = null, wakeLock = null, nowId = null;
+  function requestWake() {
+    try { if (navigator.wakeLock && navigator.wakeLock.request) navigator.wakeLock.request("screen").then(function (l) { wakeLock = l; }).catch(function () {}); } catch (e) {}
+  }
+  function tick() {
+    var bar = $("hostbar");
+    document.querySelectorAll(".is-now, .is-past").forEach(function (el) { el.classList.remove("is-now", "is-past"); });
+    if (!state.host) { bar.hidden = true; $("host-start").textContent = S("host_start"); nowId = null; return; }
+    bar.hidden = false; $("host-start").textContent = S("host_restart");
+    var tl = timeline(), total = tl[tl.length - 1].end, s0 = toMin(state.start);
+    var el = (Date.now() - state.host) / 60000, cur = null, next = null;
+    tl.forEach(function (r, i) {
+      var node = $("b-" + r.b.id);
+      if (el >= r.end && node) node.classList.add("is-past");
+      if (el >= r.start && el < r.end) { cur = r; next = tl[i + 1] || null; }
+    });
+    $("hb-elapsed").textContent = off(Math.max(0, Math.floor(el)));
+    if (cur) {
+      nowId = cur.b.id;
+      var n = $("b-" + cur.b.id); if (n) n.classList.add("is-now");
+      var seg = document.querySelector('.arc-seg[data-id="' + cur.b.id + '"]'); if (seg) seg.classList.add("is-now");
+      $("hb-now").textContent = S("now") + tpl(T(cur.b.title));
+      $("hb-left").textContent = Math.max(1, Math.ceil(cur.end - el)) + S("left");
+      $("hb-next").textContent = next ? S("next") + tpl(T(next.b.title)) + S("at") + clock(s0 + next.start) : S("last");
+    } else if (el >= total) {
+      nowId = null;
+      $("hb-now").textContent = S("over"); $("hb-left").textContent = ""; $("hb-next").textContent = S("over_next");
+    }
+  }
+  function startHost() {
+    var d = new Date();
+    state.start = clock(d.getHours() * 60 + d.getMinutes());
+    state.host = Date.now();
+    save("twt-start", state.start); save("twt-host", state.host);
+    requestWake(); renderDynamic();
+    if (!timer) timer = setInterval(tick, 15000);
+  }
+  function endHost() {
+    state.host = null; save("twt-host", null);
+    try { if (wakeLock) wakeLock.release(); } catch (e) {}
+    wakeLock = null; tick();
+  }
+
+  // Controls
+  ["lang-en", "lang-ru"].forEach(function (id) {
+    $(id).addEventListener("click", function () { state.lang = this.dataset.lang; save("twt-lang", state.lang); renderStatic(); renderDynamic(); });
+  });
+  ["len-4", "len-3"].forEach(function (id) {
+    $(id).addEventListener("click", function () { state.len = this.dataset.len; save("twt-len", state.len); renderDynamic(); });
+  });
+  $("start-time").addEventListener("change", function () { if (this.value) { state.start = this.value; save("twt-start", state.start); renderDynamic(); } });
+  $("topic").addEventListener("input", function () { state.topic = this.value; save("twt-topic", state.topic); renderDynamic(); });
+  $("year").addEventListener("input", function () { var y = parseInt(this.value, 10); if (isFinite(y) && y >= 2027 && y <= 2300) { state.year = y; save("twt-year", y); renderDynamic(); } });
+  $("host-start").addEventListener("click", startHost);
+  $("hb-end").addEventListener("click", endHost);
+  $("hb-jump").addEventListener("click", function () { var n = nowId && $("b-" + nowId); if (n) n.scrollIntoView({ behavior: "smooth", block: "start" }); });
+  $("arc-bar").addEventListener("click", function (e) {
+    var seg = e.target.closest(".arc-seg"); if (!seg) return;
+    var n = $("b-" + seg.dataset.id); if (n) n.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  document.addEventListener("visibilitychange", function () { if (!document.hidden && state.host) { requestWake(); tick(); } });
+  $("checklist").addEventListener("change", function (e) {
+    if (!e.target.id || e.target.id.indexOf("kit-") !== 0) return;
+    var c = load("twt-kit3", {}); c[e.target.id.slice(4)] = e.target.checked; save("twt-kit3", c);
+  });
+  $("copy-brief").addEventListener("click", function () {
+    var text = $("brief-text").textContent, status = $("copy-status");
+    function fallback() {
+      try { var r = document.createRange(); r.selectNodeContents($("brief-text")); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {}
+      status.textContent = S("selected");
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () { status.textContent = S("copied"); }, fallback);
+      else fallback();
+    } catch (e) { fallback(); }
+  });
+
+  renderStatic();
+  renderDynamic();
+  if (state.host) { requestWake(); timer = setInterval(tick, 15000); }
+})();
+</script>
+
+</body></html>

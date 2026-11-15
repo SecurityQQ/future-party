@@ -1,0 +1,126 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;overflow:hidden;background:#0b0b0d;font-family:Inter,sans-serif}
+    .card{position:absolute;inset:0;background:#0b0b0d}
+    .cin{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
+    .num{font:700 40px/1 Inter,sans-serif;letter-spacing:.14em;color:#ff5315}
+    .word{font-family:'League Gothic',sans-serif;font-size:330px;line-height:.86;color:#fff;text-transform:uppercase;letter-spacing:.01em;white-space:nowrap}
+    .shot{position:absolute;inset:0;overflow:hidden}
+    .shot.burst{background:#000}
+    .mv,.kb{position:absolute;inset:0}
+    .kb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+    .scrim{position:absolute;left:0;right:0;bottom:0;height:72%;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.45) 35%,rgba(0,0,0,.8) 70%,rgba(0,0,0,.9) 100%)}
+    .scrim.strong{height:80%;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.6) 30%,rgba(0,0,0,.88) 65%,rgba(0,0,0,.95) 100%)}
+    .credit{position:absolute;right:96px;bottom:54px;font:500 20px/1.2 Inter,sans-serif;color:rgba(255,255,255,.74)}
+    .cap{position:absolute;left:192px;bottom:124px;width:1520px;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.6)}
+    .kick{font:800 36px/1.15 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#ff5315}
+    .kick i{font-style:normal;font-weight:700;color:rgba(255,255,255,.78)}
+    .hero{font-family:'League Gothic',sans-serif;font-size:136px;line-height:.92;text-transform:uppercase;letter-spacing:.01em;margin-top:12px}
+    .hero span{display:inline-block;margin-right:.2em}
+    .now{font:600 36px/1.25 Inter,sans-serif;color:rgba(255,255,255,.92);margin-top:20px}
+    .now b{font-weight:800;font-size:28px;letter-spacing:.12em;text-transform:uppercase;margin-right:16px;vertical-align:3px}
+    .dip{position:absolute;inset:0}
+    .dipc{position:absolute;inset:0;background:#000}
+    .dipc.ground{background:#0b0b0d}
+  </style>
+  <div id="root" data-composition-id="planet" data-width="1920" data-height="1080">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><filter id="planet-s0-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="planet-s0-fb" stdDeviation="0 0"/></filter><filter id="planet-s1-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="planet-s1-fb" stdDeviation="0 0"/></filter><filter id="planet-s2-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="planet-s2-fb" stdDeviation="0 0"/></filter><filter id="planet-s3-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="planet-s3-fb" stdDeviation="0 0"/></filter><filter id="planet-s4-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB"><feGaussianBlur id="planet-s4-fb" stdDeviation="0 0"/></filter></defs></svg>
+    <div id="planet-card" class="clip card" data-start="0" data-duration="1.2" data-track-index="1" style="z-index:1"><div class="cin" id="planet-cin"><div class="num" id="planet-num">1 / 3</div><div class="word" id="planet-word">The planet</div></div></div>
+    <div id="planet-b0" class="clip shot burst" data-start="1.2" data-duration="0.333333" data-track-index="2" style="z-index:2"><div class="kb" id="planet-b0-kb"><img src="assets/photos/supernight.jpg" alt=""></div><div class="credit" data-layout-ignore>Photo: Johan Jönsson · CC BY-SA 4.0</div></div>
+    <div id="planet-b1" class="clip shot burst" data-start="1.533333" data-duration="0.333334" data-track-index="2" style="z-index:3"><div class="kb" id="planet-b1-kb"><img src="assets/photos/nifworker.jpg" alt=""></div><div class="credit" data-layout-ignore>Photo: Lawrence Livermore National Security · CC BY-SA 3.0</div></div>
+    <div id="planet-b2" class="clip shot burst" data-start="1.866667" data-duration="0.333333" data-track-index="2" style="z-index:4"><div class="kb" id="planet-b2-kb"><img src="assets/photos/aurora2.jpg" alt=""></div><div class="credit" data-layout-ignore>Photo: NASA</div></div>
+    <div id="planet-b3" class="clip shot burst" data-start="2.2" data-duration="0.333333" data-track-index="2" style="z-index:5"><div class="kb" id="planet-b3-kb"><img src="assets/photos/jewelwide.jpg" alt=""></div><div class="credit" data-layout-ignore>Photo: kallerna · CC BY-SA 4.0</div></div>
+    <div id="planet-b4" class="clip shot burst" data-start="2.533333" data-duration="0.333334" data-track-index="2" style="z-index:6"><div class="kb" id="planet-b4-kb"><img src="assets/photos/startrails.jpg" alt=""></div><div class="credit" data-layout-ignore>Photo: NASA, Don Pettit</div></div>
+    <div id="planet-b5" class="clip shot burst" data-start="2.866667" data-duration="0.333333" data-track-index="2" style="z-index:7"><div class="kb" id="planet-b5-kb"><img src="assets/photos/mammothrbc.jpg" alt=""></div><div class="credit" data-layout-ignore>Photo: WolfmanSF · CC BY-SA 3.0</div></div>
+    <div id="planet-b6" class="clip shot burst" data-start="3.2" data-duration="0.333333" data-track-index="2" style="z-index:8"><div class="kb" id="planet-b6-kb"><img src="assets/photos/skywalk.jpg" alt=""></div><div class="credit" data-layout-ignore>Photo: Larry Qian · CC0</div></div>
+    <div id="planet-bdip" class="clip dip" data-start="3.2" data-duration="0.333333" data-track-index="3" style="z-index:9"><div class="dipc" id="planet-bdipc"></div></div>
+    <div id="planet-s0" class="clip shot" data-start="3.533333" data-duration="3.6" data-track-index="4" style="z-index:10"><div class="mv" id="planet-s0-mv" style="filter:url(#planet-s0-mb)"><div class="kb" id="planet-s0-kb"><img src="assets/photos/nif.jpg" alt="Power from a star in a bottle"></div><div class="scrim"></div><div class="credit" data-layout-ignore>Photo: Lawrence Livermore National Security · CC BY-SA 3.0</div></div><div class="cap" id="planet-s0-cap"><div class="kick" id="planet-s0-k">By 2035<i> · Spider-Man 2</i></div><div class="hero" id="planet-s0-h"><span id="planet-s0-w0">Power</span><span id="planet-s0-w1">from</span><span id="planet-s0-w2">a</span><span id="planet-s0-w3">star</span><span id="planet-s0-w4">in</span><span id="planet-s0-w5">a</span><span id="planet-s0-w6">bottle</span></div><div class="now" id="planet-s0-n"><b>2022</b>NIF&#x27;s lasers got more fusion energy out than they put in</div></div></div>
+    <div id="planet-s1" class="clip shot" data-start="6.933333" data-duration="3.7" data-track-index="4" style="z-index:11"><div class="mv" id="planet-s1-mv" style="filter:url(#planet-s1-mb)"><div class="kb" id="planet-s1-kb"><img src="assets/photos/mammoth.jpg" alt="Mammoths walk again"></div><div class="scrim strong"></div><div class="credit" data-layout-ignore>Painting: Mauricio Antón · CC BY 2.5</div></div><div class="cap" id="planet-s1-cap"><div class="kick" id="planet-s1-k">By 2030<i> · Jurassic Park</i></div><div class="hero" id="planet-s1-h"><span id="planet-s1-w0">Mammoths</span><span id="planet-s1-w1">walk</span><span id="planet-s1-w2">again</span></div><div class="now" id="planet-s1-n"><b>2025</b>Colossal made woolly mice, step one toward a mammoth calf</div></div></div>
+    <div id="planet-s2" class="clip shot" data-start="10.433333" data-duration="3.7" data-track-index="4" style="z-index:12"><div class="mv" id="planet-s2-mv" style="filter:url(#planet-s2-mb)"><div class="kb" id="planet-s2-kb"><img src="assets/photos/jewel.jpg" alt="Cities that grow like forests"></div><div class="scrim"></div><div class="credit" data-layout-ignore>Photo: Mike Peel · CC BY-SA 4.0</div></div><div class="cap" id="planet-s2-cap"><div class="kick" id="planet-s2-k">By 2050<i> · Black Panther</i></div><div class="hero" id="planet-s2-h"><span id="planet-s2-w0">Cities</span><span id="planet-s2-w1">that</span><span id="planet-s2-w2">grow</span><span id="planet-s2-w3">like</span><span id="planet-s2-w4">forests</span></div><div class="now" id="planet-s2-n"><b>2019</b>Singapore&#x27;s airport grew a rainforest with a 40 m waterfall</div></div></div>
+    <div id="planet-s3" class="clip shot" data-start="13.933333" data-duration="3.7" data-track-index="4" style="z-index:13"><div class="mv" id="planet-s3-mv" style="filter:url(#planet-s3-mb)"><div class="kb" id="planet-s3-kb"><img src="assets/photos/atlas.jpg" alt="A 91 km ring to see past the Higgs"></div><div class="scrim"></div><div class="credit" data-layout-ignore>Photo: SimonWaldherr · CC BY-SA 4.0</div></div><div class="cap" id="planet-s3-cap"><div class="kick" id="planet-s3-k">By 2045</div><div class="hero" id="planet-s3-h"><span id="planet-s3-w0">A</span><span id="planet-s3-w1">91</span><span id="planet-s3-w2">km</span><span id="planet-s3-w3">ring</span><span id="planet-s3-w4">to</span><span id="planet-s3-w5">see</span><span id="planet-s3-w6">past</span><span id="planet-s3-w7">the</span><span id="planet-s3-w8">Higgs</span></div><div class="now" id="planet-s3-n"><b>2026</b>CERN named a 91 km collider its preferred next machine</div></div></div>
+    <div id="planet-s4" class="clip shot" data-start="17.433333" data-duration="3.6" data-track-index="4" style="z-index:14"><div class="mv" id="planet-s4-mv" style="filter:url(#planet-s4-mb)"><div class="kb" id="planet-s4-kb"><img src="assets/photos/aurora.jpg" alt="We heal the sky"></div><div class="scrim"></div><div class="credit" data-layout-ignore>Photo: NASA, ISS Expedition 72</div></div><div class="cap" id="planet-s4-cap"><div class="kick" id="planet-s4-k">By 2040</div><div class="hero" id="planet-s4-h"><span id="planet-s4-w0">We</span><span id="planet-s4-w1">heal</span><span id="planet-s4-w2">the</span><span id="planet-s4-w3">sky</span></div><div class="now" id="planet-s4-n"><b>2023</b>A UN panel found the ozone layer on track to recover</div></div></div>
+    <div id="planet-end" class="clip dip" data-start="20.933333" data-duration="0.1" data-track-index="3" style="z-index:15"><div class="dipc" id="planet-endc"></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo('#planet-num',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0);
+    tl.fromTo('#planet-word',{opacity:0,filter:'blur(10px)'},{opacity:1,filter:'blur(0px)',duration:0.17,ease:'power4.out'},0.03);
+    tl.fromTo('#planet-cin',{scale:1},{scale:6,duration:0.35,ease:'power3.in',immediateRender:false},0.85);
+    tl.fromTo('#planet-b0-kb',{scale:1.06},{scale:1,duration:0.333333,ease:'expo.out'},1.2);
+    tl.fromTo('#planet-b1-kb',{scale:1.06},{scale:1,duration:0.333334,ease:'expo.out'},1.533333);
+    tl.fromTo('#planet-b2-kb',{scale:1.06},{scale:1,duration:0.333333,ease:'expo.out'},1.866667);
+    tl.fromTo('#planet-b3-kb',{scale:1.06},{scale:1,duration:0.333333,ease:'expo.out'},2.2);
+    tl.fromTo('#planet-b4-kb',{scale:1.06},{scale:1,duration:0.333334,ease:'expo.out'},2.533333);
+    tl.fromTo('#planet-b5-kb',{scale:1.06},{scale:1,duration:0.333333,ease:'expo.out'},2.866667);
+    tl.fromTo('#planet-b6-kb',{scale:1.06},{scale:1,duration:0.333333,ease:'expo.out'},3.2);
+    tl.fromTo('#planet-bdipc',{opacity:0},{opacity:0.4,duration:0.1,ease:'none'},3.433333);
+    tl.fromTo('#planet-s0-kb',{scale:1},{scale:1.07,duration:3.6,ease:'none'},3.533333);
+    tl.fromTo('#planet-s0-k',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.17,ease:'power4.out'},3.6533);
+    tl.fromTo('#planet-s0-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},3.7533);
+    tl.fromTo('#planet-s0-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},3.8203);
+    tl.fromTo('#planet-s0-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},3.8873);
+    tl.fromTo('#planet-s0-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},3.9543);
+    tl.fromTo('#planet-s0-w4',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},4.0213);
+    tl.fromTo('#planet-s0-w5',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},4.0883);
+    tl.fromTo('#planet-s0-w6',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},4.1553);
+    tl.fromTo('#planet-s0-n',{opacity:0,color:'#8a8a8a'},{opacity:1,color:'rgba(255,255,255,0.92)',duration:0.2,ease:'power2.out'},4.0333);
+    tl.fromTo('#planet-s0-cap',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},6.7833);
+    tl.fromTo('#planet-s1-kb',{scale:1.06,xPercent:1.6},{scale:1.06,xPercent:-1.6,duration:3.7,ease:'none'},6.933333);
+    tl.fromTo('#planet-s1-k',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.17,ease:'power4.out'},7.1533);
+    tl.fromTo('#planet-s1-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},7.2533);
+    tl.fromTo('#planet-s1-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},7.3203);
+    tl.fromTo('#planet-s1-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},7.3873);
+    tl.fromTo('#planet-s1-n',{opacity:0,color:'#8a8a8a'},{opacity:1,color:'rgba(255,255,255,0.92)',duration:0.2,ease:'power2.out'},7.5333);
+    tl.fromTo('#planet-s1-cap',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},10.2833);
+    tl.fromTo('#planet-s0-mv',{scale:1},{scale:1.35,duration:0.2,ease:'power2.in',immediateRender:false},6.933333);
+    tl.fromTo('#planet-s1-mv',{scale:1.3,opacity:0},{scale:1,opacity:1,duration:0.2,ease:'power3.out'},6.933333);
+    tl.fromTo('#planet-s1-fb',{attr:{stdDeviation:'16 16'}},{attr:{stdDeviation:'0 0'},duration:0.2,ease:'power2.out'},6.933333);
+    tl.fromTo('#planet-s2-kb',{scale:1.07},{scale:1,duration:3.7,ease:'none'},10.433333);
+    tl.fromTo('#planet-s2-k',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.17,ease:'power4.out'},10.6533);
+    tl.fromTo('#planet-s2-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},10.7533);
+    tl.fromTo('#planet-s2-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},10.8203);
+    tl.fromTo('#planet-s2-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},10.8873);
+    tl.fromTo('#planet-s2-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},10.9543);
+    tl.fromTo('#planet-s2-w4',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},11.0213);
+    tl.fromTo('#planet-s2-n',{opacity:0,color:'#8a8a8a'},{opacity:1,color:'rgba(255,255,255,0.92)',duration:0.2,ease:'power2.out'},11.0333);
+    tl.fromTo('#planet-s2-cap',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},13.7833);
+    tl.fromTo('#planet-s1-mv',{xPercent:0},{xPercent:100,duration:0.2,ease:'power2.inOut',immediateRender:false},10.433333);
+    tl.fromTo('#planet-s2-mv',{xPercent:-100},{xPercent:0,duration:0.2,ease:'power2.inOut'},10.433333);
+    tl.fromTo('#planet-s1-fb',{attr:{stdDeviation:'0 0'}},{attr:{stdDeviation:'40 0'},duration:0.1,ease:'power2.in',immediateRender:false},10.433333);
+    tl.fromTo('#planet-s1-fb',{attr:{stdDeviation:'40 0'}},{attr:{stdDeviation:'0 0'},duration:0.1,ease:'power2.out',immediateRender:false},10.533333);
+    tl.fromTo('#planet-s2-fb',{attr:{stdDeviation:'0 0'}},{attr:{stdDeviation:'40 0'},duration:0.1,ease:'power2.in',immediateRender:false},10.433333);
+    tl.fromTo('#planet-s2-fb',{attr:{stdDeviation:'40 0'}},{attr:{stdDeviation:'0 0'},duration:0.1,ease:'power2.out',immediateRender:false},10.533333);
+    tl.fromTo('#planet-s3-kb',{scale:1.06,xPercent:-1.6},{scale:1.06,xPercent:1.6,duration:3.7,ease:'none'},13.933333);
+    tl.fromTo('#planet-s3-k',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.17,ease:'power4.out'},14.1533);
+    tl.fromTo('#planet-s3-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},14.2533);
+    tl.fromTo('#planet-s3-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},14.3203);
+    tl.fromTo('#planet-s3-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},14.3873);
+    tl.fromTo('#planet-s3-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},14.4543);
+    tl.fromTo('#planet-s3-w4',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},14.5213);
+    tl.fromTo('#planet-s3-w5',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},14.5883);
+    tl.fromTo('#planet-s3-w6',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},14.6553);
+    tl.fromTo('#planet-s3-w7',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},14.7223);
+    tl.fromTo('#planet-s3-w8',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},14.7893);
+    tl.fromTo('#planet-s3-n',{opacity:0,color:'#8a8a8a'},{opacity:1,color:'rgba(255,255,255,0.92)',duration:0.2,ease:'power2.out'},14.5333);
+    tl.fromTo('#planet-s3-cap',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},17.2833);
+    tl.fromTo('#planet-s2-mv',{scale:1},{scale:1.35,duration:0.2,ease:'power2.in',immediateRender:false},13.933333);
+    tl.fromTo('#planet-s3-mv',{scale:1.3,opacity:0},{scale:1,opacity:1,duration:0.2,ease:'power3.out'},13.933333);
+    tl.fromTo('#planet-s3-fb',{attr:{stdDeviation:'16 16'}},{attr:{stdDeviation:'0 0'},duration:0.2,ease:'power2.out'},13.933333);
+    tl.fromTo('#planet-s4-kb',{scale:1},{scale:1.07,duration:3.6,ease:'none'},17.433333);
+    tl.fromTo('#planet-s4-k',{opacity:0,filter:'blur(8px)'},{opacity:1,filter:'blur(0px)',duration:0.17,ease:'power4.out'},17.6533);
+    tl.fromTo('#planet-s4-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},17.7533);
+    tl.fromTo('#planet-s4-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},17.8203);
+    tl.fromTo('#planet-s4-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},17.8873);
+    tl.fromTo('#planet-s4-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},17.9543);
+    tl.fromTo('#planet-s4-n',{opacity:0,color:'#8a8a8a'},{opacity:1,color:'rgba(255,255,255,0.92)',duration:0.2,ease:'power2.out'},18.0333);
+    tl.fromTo('#planet-s4-cap',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},20.7833);
+    tl.fromTo('#planet-s3-mv',{xPercent:0},{xPercent:100,duration:0.2,ease:'power2.inOut',immediateRender:false},17.433333);
+    tl.fromTo('#planet-s4-mv',{xPercent:-100},{xPercent:0,duration:0.2,ease:'power2.inOut'},17.433333);
+    tl.fromTo('#planet-s3-fb',{attr:{stdDeviation:'0 0'}},{attr:{stdDeviation:'40 0'},duration:0.1,ease:'power2.in',immediateRender:false},17.433333);
+    tl.fromTo('#planet-s3-fb',{attr:{stdDeviation:'40 0'}},{attr:{stdDeviation:'0 0'},duration:0.1,ease:'power2.out',immediateRender:false},17.533333);
+    tl.fromTo('#planet-s4-fb',{attr:{stdDeviation:'0 0'}},{attr:{stdDeviation:'40 0'},duration:0.1,ease:'power2.in',immediateRender:false},17.433333);
+    tl.fromTo('#planet-s4-fb',{attr:{stdDeviation:'40 0'}},{attr:{stdDeviation:'0 0'},duration:0.1,ease:'power2.out',immediateRender:false},17.533333);
+    tl.fromTo('#planet-endc',{opacity:0},{opacity:0.4,duration:0.1,ease:'none'},20.933333);
+    window.__timelines["planet"] = tl;
+  </script>
+</template>

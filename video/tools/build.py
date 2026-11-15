@@ -3,10 +3,11 @@ import html, json, os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FPS = 30
-CARD, BURST, SLIDE, OVER, INTRO, OUTRO = 36, 10, 90, 3, 105, 120
+CARD, BURST, SLIDE, OVER, INTRO, OUTRO = 36, 10, 105, 3, 105, 120
 GROUND, ACCENT = "#0b0b0d", "#ff5315"
 KB = ["push", "panl", "pull", "panr"]
-CONTAIN = {"saturn", "blackhole"}
+CONTAIN = set()
+TR = ["whip", "zoom", "whip", "zoom"]  # default transition cycle; a slide may set "tr"
 
 
 def s(f):
@@ -37,12 +38,14 @@ CHAPTER_CSS = f"""
     .mv,.kb{{position:absolute;inset:0}}
     .kb img{{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}}
     .scrim{{position:absolute;left:0;right:0;bottom:0;height:72%;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.45) 35%,rgba(0,0,0,.8) 70%,rgba(0,0,0,.9) 100%)}}
+    .scrim.strong{{height:80%;background:linear-gradient(to bottom,rgba(0,0,0,0) 0%,rgba(0,0,0,.6) 30%,rgba(0,0,0,.88) 65%,rgba(0,0,0,.95) 100%)}}
     .credit{{position:absolute;right:96px;bottom:54px;font:500 20px/1.2 Inter,sans-serif;color:rgba(255,255,255,.74)}}
     .cap{{position:absolute;left:192px;bottom:124px;width:1520px;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.6)}}
-    .kick{{font:700 34px/1.15 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:{ACCENT}}}
-    .hero{{font-family:'League Gothic',sans-serif;font-size:128px;line-height:.92;text-transform:uppercase;letter-spacing:.01em;margin-top:12px}}
+    .kick{{font:800 36px/1.15 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:{ACCENT}}}
+    .kick i{{font-style:normal;font-weight:700;color:rgba(255,255,255,.78)}}
+    .hero{{font-family:'League Gothic',sans-serif;font-size:136px;line-height:.92;text-transform:uppercase;letter-spacing:.01em;margin-top:12px}}
     .hero span{{display:inline-block;margin-right:.2em}}
-    .now{{font:600 38px/1.25 Inter,sans-serif;color:rgba(255,255,255,.92);margin-top:20px}}
+    .now{{font:600 36px/1.25 Inter,sans-serif;color:rgba(255,255,255,.92);margin-top:20px}}
     .now b{{font-weight:800;font-size:28px;letter-spacing:.12em;text-transform:uppercase;margin-right:16px;vertical-align:3px}}
     .dip{{position:absolute;inset:0}}
     .dipc{{position:absolute;inset:0;background:#000}}
@@ -50,7 +53,7 @@ CHAPTER_CSS = f"""
 """
 
 
-def chapter(ch, photos):
+def chapter(ch, credits, last):
     cid = ch["id"]
     sign = -1 if ch["dir"] == "left" else 1
     els, js, defs = [], [], []
@@ -69,7 +72,8 @@ def chapter(ch, photos):
         st = s(f0 + j * BURST)
         du = round(s(f0 + (j + 1) * BURST) - st, 6)
         els.append(f'<div id="{cid}-b{j}" class="clip shot burst" data-start="{st}" data-duration="{du}" data-track-index="2" style="z-index:{z}">'
-                   f'<div class="kb" id="{cid}-b{j}-kb"><img src="assets/photos/{key}.jpg" alt=""></div></div>')
+                   f'<div class="kb" id="{cid}-b{j}-kb"><img src="assets/photos/{key}.jpg" alt=""></div>'
+                   + (f'<div class="credit" data-layout-ignore>{e(credits[key])}</div>' if credits.get(key) else '') + '</div>')
         js.append(f"tl.fromTo('#{cid}-b{j}-kb',{{scale:1.06}},{{scale:1,duration:{du},ease:'expo.out'}},{st});")
     last_b = f0 + (len(ch["burst"]) - 1) * BURST
     z += 1
@@ -88,18 +92,22 @@ def chapter(ch, photos):
         a = starts[i] - (OVER if i > 0 else 0)
         b = (starts[i + 1] + OVER) if i < n - 1 else end
         z += 1
-        defs.append(f'<filter id="{base}-mb" x="-20%" y="0" width="140%" height="100%" color-interpolation-filters="sRGB">'
+        defs.append(f'<filter id="{base}-mb" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">'
                     f'<feGaussianBlur id="{base}-fb" stdDeviation="0 0"/></filter>')
         words = "".join(f'<span id="{base}-w{k}">{e(w)}</span>' for k, w in enumerate(sl["hero"].split()))
-        label = sl.get("label", "Now")
+        label = sl.get("seed_year") or sl.get("label", "Now")
+        kick = e(sl.get("year", sl.get("film", "")))
+        if sl.get("year") and sl.get("film"):
+            kick += f'<i> · {e(sl["film"])}</i>'
+        nowtxt = sl.get("seed") or sl.get("now", "")
         els.append(
             f'<div id="{base}" class="clip shot" data-start="{s(a)}" data-duration="{round(s(b) - s(a), 6)}" data-track-index="4" style="z-index:{z}">'
             f'<div class="mv" id="{base}-mv" style="filter:url(#{base}-mb)">'
-            f'<div class="kb" id="{base}-kb"><img src="assets/photos/{key}.jpg" alt="{e(sl["now"])}"></div>'
-            f'<div class="scrim"></div><div class="credit" data-layout-ignore>{e(sl["credit"])}</div></div>'
-            f'<div class="cap" id="{base}-cap"><div class="kick" id="{base}-k">{e(sl["film"])}</div>'
+            f'<div class="kb" id="{base}-kb"><img src="assets/photos/{key}.jpg" alt="{e(sl["hero"])}"></div>'
+            f'<div class="scrim{" strong" if sl.get("scrim") == "strong" else ""}"></div><div class="credit" data-layout-ignore>{e(sl["credit"])}</div></div>'
+            f'<div class="cap" id="{base}-cap"><div class="kick" id="{base}-k">{kick}</div>'
             f'<div class="hero" id="{base}-h">{words}</div>'
-            f'<div class="now" id="{base}-n"><b>{e(label)}</b>{e(sl["now"])}</div></div></div>')
+            f'<div class="now" id="{base}-n"><b>{e(label)}</b>{e(nowtxt)}</div></div></div>')
         mode = "push" if key in CONTAIN else KB[i % 4]
         js.append(kb_tween(f"#{base}-kb", mode, s(a), round(s(b) - s(a), 6)))
         ts, te = s(starts[i]), s(starts[i + 1]) if i < n - 1 else s(end)
@@ -107,9 +115,17 @@ def chapter(ch, photos):
         for k, _ in enumerate(sl["hero"].split()):
             js.append(f"tl.fromTo('#{base}-w{k}',{{opacity:0,filter:'blur(6px)'}},{{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'}},{round(ts + 0.22 + k * 0.067, 4)});")
         js.append(f"tl.fromTo('#{base}-n',{{opacity:0,color:'#8a8a8a'}},{{opacity:1,color:'rgba(255,255,255,0.92)',duration:0.2,ease:'power2.out'}},{round(ts + 0.5, 4)});")
-        exit_at = round(te - (0.55 if i == n - 1 and cid == 'space' else 0.25), 4)
+        exit_at = round(te - (0.55 if i == n - 1 and last else 0.25), 4)
         js.append(f"tl.fromTo('#{base}-cap',{{opacity:1,filter:'blur(0px)'}},{{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false}},{exit_at});")
-        if i > 0:  # whip from the previous slide into this one
+        tr = sl.get("tr") or TR[i % len(TR)]
+        if i > 0 and tr == "zoom":  # push through the old frame into the new one
+            t0 = s(starts[i] - OVER)
+            prev = f"{cid}-s{i - 1}"
+            js += [f"tl.fromTo('#{prev}-mv',{{scale:1}},{{scale:1.35,duration:{s(2 * OVER)},ease:'power2.in',immediateRender:false}},{t0});",
+                   f"tl.fromTo('#{base}-mv',{{scale:1.3,opacity:0}},{{scale:1,opacity:1,duration:{s(2 * OVER)},ease:'power3.out'}},{t0});",
+                   f"tl.fromTo('#{base}-fb',{{attr:{{stdDeviation:'16 16'}}}},{{attr:{{stdDeviation:'0 0'}},duration:{s(2 * OVER)},ease:'power2.out'}},{t0});"]
+        elif i > 0:  # whip from the previous slide into this one
+            sign = -sign if tr == "whip" and i % 4 == 2 else sign
             t0 = s(starts[i] - OVER)
             prev = f"{cid}-s{i - 1}"
             js += [f"tl.fromTo('#{prev}-mv',{{xPercent:0}},{{xPercent:{sign * 100},duration:{s(2 * OVER)},ease:'power2.inOut',immediateRender:false}},{t0});",
@@ -119,8 +135,8 @@ def chapter(ch, photos):
                        f"tl.fromTo('{fb}',{{attr:{{stdDeviation:'40 0'}}}},{{attr:{{stdDeviation:'0 0'}},duration:{s(OVER)},ease:'power2.out',immediateRender:false}},{s(starts[i])});"]
     # chapter exit: dip before the next card, or fade to ground before the outro
     z += 1
-    if cid == "space":
-        els.append(f'<div id="{cid}-end" class="clip dip" data-start="{s(end - 12)}" data-duration="{round(s(end) - s(end - 12), 6)}" data-track-index="3" style="z-index:{z}"><div class="dipc ground" id="{cid}-endc"></div></div>')
+    if last:
+        els.append(f'<div id="{cid}-end" class="clip dip" data-layout-allow-occlusion data-start="{s(end - 12)}" data-duration="{round(s(end) - s(end - 12), 6)}" data-track-index="3" style="z-index:{z}"><div class="dipc ground" id="{cid}-endc"></div></div>')
         js.append(f"tl.fromTo('#{cid}-endc',{{opacity:0}},{{opacity:1,duration:{s(10)},ease:'power2.inOut'}},{s(end - 12)});")
     else:
         els.append(f'<div id="{cid}-end" class="clip dip" data-start="{s(end - 3)}" data-duration="{round(s(end) - s(end - 3), 6)}" data-track-index="3" style="z-index:{z}"><div class="dipc" id="{cid}-endc"></div></div>')
@@ -190,8 +206,8 @@ def main():
     outro(d["outro"])
     hosts, t = [], INTRO
     hosts.append(("intro", 0, INTRO))
-    for ch in d["chapters"]:
-        n = chapter(ch, None)
+    for ci, ch in enumerate(d["chapters"]):
+        n = chapter(ch, d.get("credits", {}), ci == len(d["chapters"]) - 1)
         hosts.append((ch["id"], t, n))
         t += n
     hosts.append(("outro", t, OUTRO))
@@ -200,12 +216,13 @@ def main():
         f'      <div id="{h}" data-composition-id="{h}" data-composition-src="compositions/{h}.html" data-start="{s(a)}" '
         f'data-duration="{s(n)}" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>'
         for h, a, n in hosts)
+    TITLE = e(d.get("title", "Already Here · Projection 2050"))
     index = f"""<!doctype html>
 <html lang="en" data-resolution="landscape">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
-    <title>Already Here · Projection 2050</title>
+    <title>{TITLE}</title>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <style>
       :root {{ --ground: {GROUND}; --ink: #ffffff; --accent: {ACCENT}; }}
