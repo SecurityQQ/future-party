@@ -1,6 +1,6 @@
-# Contact 2050
+# Play 2050
 
-A Makey Makey soundboard for Future Party 2050. There are twelve pins, eight kits and 2,038 sounds from TidalCycles' [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) library. Jam mode keeps every touch in time and in key, and stage mode is for the projector. It is one HTML page with nothing to install.
+A Makey Makey soundboard for Future Party 2050. It was called Contact 2050 until November 2026; the built file keeps the old name, `dist/contact2050.html`. There are twelve pins, eight kits and 2,038 sounds from TidalCycles' [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) library. Jam mode keeps every touch in time and in key, and stage mode is for the projector. It is one HTML page with nothing to install.
 
 It is part of [Future Party 2050](../README.md), and it is online at [future-party-2050.vercel.app/soundboard](https://future-party-2050.vercel.app/soundboard), listed on the party's front page.
 

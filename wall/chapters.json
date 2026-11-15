@@ -1,0 +1,90 @@
+{
+  "about": "The Big Wall: every piece on the wall in one loop, by theme. build.py reads the six sources and sorts them into these chapters. Quotes go to the chapter of their book unless quote_overrides names the quote by its first words; ideas go by their block unless idea_overrides names the headline; tweets go by the block of their topic in tweets/tweets.json; pictures go by their theme in concept-art/tweets.json, one after every two text slides, or after every slide in a chapter whose pictures is dense. Every Further slide and every Six Facts fact must be named in exactly one chapter.",
+  "chapters": [
+    {
+      "id": "planet", "title": "Planet", "color": "#2fbf71",
+      "sub": "Energy, climate, food and the cities we live in",
+      "facts": ["c1", "c2"],
+      "further": ["nif", "mammoth", "jewel", "aurora"],
+      "tweet_blocks": ["planet"],
+      "idea_blocks": ["air"],
+      "art": ["city", "nature", "abstract"]
+    },
+    {
+      "id": "machines", "title": "Machines", "color": "#ff5315",
+      "sub": "When strong AI arrives, what it does to work, and what it is like to live with it",
+      "facts": ["c6"],
+      "further": ["atlas"],
+      "tweet_blocks": ["machines"],
+      "idea_blocks": ["ai"],
+      "art": ["robot", "interior"]
+    },
+    {
+      "id": "people", "title": "People", "color": "#f2b134",
+      "sub": "How many of us, how long we live, where we move and what for",
+      "facts": ["c3", "c4"],
+      "further": [],
+      "tweet_blocks": ["people"],
+      "idea_blocks": [],
+      "art": ["people", "architecture", "city"]
+    },
+    {
+      "id": "power", "title": "Power", "color": "#8b7cff",
+      "sub": "Countries, money, war and who decides",
+      "facts": ["c5"],
+      "further": [],
+      "tweet_blocks": ["power"],
+      "idea_blocks": [],
+      "art": ["architecture", "city", "vehicle"]
+    },
+    {
+      "id": "beyond", "title": "Beyond", "color": "#3aa0ff",
+      "sub": "Getting around the planet and leaving it",
+      "facts": [],
+      "further": ["starship", "moon", "torus", "elevator", "bennu", "marsbase", "havoc", "europa", "elt", "sail"],
+      "tweet_blocks": ["beyond"],
+      "idea_blocks": [],
+      "art": ["space", "vehicle"],
+      "pictures": "dense"
+    },
+    {
+      "id": "finale", "title": "2050", "color": "#ff5315",
+      "sub": "The future is a choice",
+      "facts": [],
+      "further": ["smiled"],
+      "tweet_blocks": [],
+      "idea_blocks": ["fin"],
+      "art": ["space"]
+    }
+  ],
+  "books": {
+    "figueres": "planet", "ritchie": "planet", "drawdown": "planet", "limits": "planet", "porritt": "planet",
+    "kelly": "machines", "ai2041": "machines", "chiang": "machines", "klara": "machines", "kurzweil": "machines", "lem": "machines",
+    "randers": "people", "smith": "people",
+    "megachange": "power", "earth4all": "power", "ministry": "power",
+    "cityonmars": "beyond", "kaku": "beyond", "clarke": "beyond", "sagan": "beyond"
+  },
+  "quote_overrides": {
+    "Any sufficiently advanced technology": "machines",
+    "…there’s never been a generation": "people",
+    "Science fiction could even become 2050 fact": "people",
+    "Perhaps we will eventually gain a kind of longevity": "people",
+    "The lesson here is that it is very dangerous": "finale",
+    "History, we are told over and over again": "finale",
+    "Belief that a better world is genuinely possible": "finale",
+    "Look again at that dot": "finale",
+    "Today truly is a wide-open frontier": "finale",
+    "There is only one more thing for me to say": "finale",
+    "Our future is unwritten": "finale",
+    "…we will keep going": "finale"
+  },
+  "idea_overrides": {
+    "An agency that protects the unborn": "power",
+    "Central banks pay for carbon left in the ground": "power",
+    "Five turnarounds instead of one miracle": "power",
+    "Humanity stops growing": "people",
+    "One person in five lives in Africa": "people",
+    "The North becomes a magnet": "people",
+    "The Moon first, Mars later": "beyond"
+  }
+}

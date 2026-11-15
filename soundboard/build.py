@@ -1,4 +1,4 @@
-"""Build Contact 2050, the Makey Makey soundboard: inject kits.json and dirt-samples.json into template.html.
+"""Build Play 2050 (formerly Contact 2050), the Makey Makey soundboard: inject kits.json and dirt-samples.json into template.html.
 
   python3 -I build.py             writes dist/contact2050.html (streams sounds from the Dirt-Samples CDN)
   python3 -I build.py --offline   also writes dist/contact2050-offline.html with every kit sound and a

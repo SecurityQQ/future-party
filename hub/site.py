@@ -2,10 +2,12 @@
 
 The site keeps the repo's paths, so every relative link works the same as in the folder:
 - index.html is the front page in web mode: the 720p films, the 1080p masters on the GitHub releases, no claude.ai links;
+- admin.html is the host's page (pre-flight, short addresses, the pieces off the front page), linked from nowhere;
+  /admin forwards to it, so it keeps the front page's relative links;
 - every page in build.PAGES, the two walls and the Resonance player are copied. A page saved as a claude.ai
   fragment (no <!doctype>) gets the same document shell the books and tweets builds use for their wall pages;
 - every claude.ai link to one of these pages points at the copy on the site instead;
-- the 720p films and posters in video/dist/media are copied;
+- the 720p films and posters in video/dist/media are copied, and the photos the Big Wall loads (wall/dist/manifest.json);
 - each short address in build.SHORT gets a page that forwards to it: /quotes, /tweets, /programme ...
 
 Run from anywhere: python3 -I hub/site.py, then serve site/ (python3 -m http.server -d site).
@@ -26,8 +28,9 @@ _spec.loader.exec_module(B)
 PAGES = sorted(set(B.PAGES.values()) | {
     "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html"})
 MEDIA = "video/dist/media"
-# Other files the pages load from the repo (the front page shows the Mirror 2050 preview)
-ASSETS = ["mirror/preview.jpg"]
+# Other files the pages load from the repo: the Mirror 2050 preview, and every file the Big Wall lists in its manifest
+# (Further's photos in video/assets/photos; its films are in MEDIA)
+ASSETS = ["mirror/preview.jpg"] + B.load("wall/dist/manifest.json")["files"]
 # Folders the pages load from: the Imagined Futures pictures (concept-art/images/, the originals, stay off the site)
 ASSET_DIRS = ["concept-art/thumbs"]
 SHELL = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
@@ -64,6 +67,9 @@ def main():
         shutil.rmtree(OUT)
     OUT.mkdir()
     (OUT / "index.html").write_text(B.build(web=True), encoding="utf8")
+    (OUT / "admin.html").write_text(B.admin(web=True), encoding="utf8")
+    (OUT / "admin").mkdir()
+    (OUT / "admin" / "index.html").write_text(forward("admin.html"), encoding="utf8")
     for rel in PAGES:
         dst = OUT / rel
         dst.parent.mkdir(parents=True, exist_ok=True)
@@ -72,6 +78,8 @@ def main():
     for rel in ASSET_DIRS:
         shutil.copytree(ROOT / rel, OUT / rel, ignore=shutil.ignore_patterns(".*"))
     for rel in ASSETS:
+        if (OUT / rel).exists():
+            continue
         (OUT / rel).parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(ROOT / rel, OUT / rel)
     for name, target in B.SHORT.items():
