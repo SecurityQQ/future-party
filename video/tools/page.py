@@ -11,6 +11,8 @@ import base64, html, json, os, re, subprocess, sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FPS, CARD, BURST, SLIDE, INTRO = 30, 36, 10, 105, 105
 RENDER = os.path.join(ROOT, "renders", "further-2050-1080p.mp4")
+# Already Here, rendered from slides_v1.json by tools/build_v1.py (release v3.0); --frames cuts the v1 frames from it when it is here
+RENDER_V1 = os.path.join(ROOT, "renders", "already-here-2050-1080p.mp4")
 
 SOURCES = {
  "nif": [("DOE: fusion ignition at NIF, Dec 2022", "https://www.energy.gov/articles/doe-national-laboratory-makes-history-achieving-fusion-ignition"),
@@ -67,6 +69,22 @@ def v2_frames(d):
         t = f
 
 
+def v1_frames():
+    """One frame per v1 slide (fNN.jpg, numbered from 1 as in ROAST.md), 1.8 s in, when its caption has landed."""
+    if not os.path.exists(RENDER_V1):
+        print("no", RENDER_V1, "- the v1 frames stay as they are")
+        return
+    os.makedirs(os.path.join(ROOT, "snapshots", "roast-v1"), exist_ok=True)
+    f, n = INTRO, 0
+    for ch in json.load(open(os.path.join(ROOT, "slides_v1.json")))["chapters"]:
+        f += CARD + len(ch["burst"]) * BURST
+        for sl in ch["slides"]:
+            n += 1
+            subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-ss", f"{(f + 54) / FPS:.3f}", "-i", RENDER_V1, "-frames:v", "1",
+                            "-vf", "scale=960:-2", "-q:v", "3", os.path.join(ROOT, "snapshots", "roast-v1", f"f{n:02d}.jpg")], check=True)
+            f += int(round(sl.get("hold", 3) * FPS))
+
+
 def roast_rows():
     rows = []
     for line in open(os.path.join(ROOT, "ROAST.md")):
@@ -87,6 +105,7 @@ def main():
         SOURCES[k] = [(label, credits[k]["page"])]
     if "--frames" in sys.argv:
         v2_frames(d)
+        v1_frames()
     rows = roast_rows()
     verdict_class = {"Cut": "cut", "Burst only": "burst", "Burst": "burst", "Keep, promote": "keep", "Replace": "swap", "Replace the closer": "swap"}
     roast_html = []
@@ -222,7 +241,7 @@ ul.cav li {{ margin-bottom: 10px }}
     <figure class="film"><video controls playsinline preload="metadata" poster="media/roast-poster.jpg" src="media/the-roast-720p.mp4"></video>
       <figcaption><b>The roast</b><span>How v1 became v2. 62.7 s with sound: 11 exhibits stamped, then the recut.</span></figcaption></figure>
   </div>
-  <p class="files">Previews here are 720p. Full 1080p masters: <code>video/renders/further-2050-1080p.mp4</code> and <code>roast/renders/the-roast-2050-1080p.mp4</code>. Notes: <code>video/ROAST.md</code>, credits <code>video/CREDITS.md</code>.</p>
+  <p class="files">The full 1080p films are on the <a href="https://github.com/SecurityQQ/future-party/releases/tag/v3.0" target="_blank" rel="noopener">v3.0 release</a>.</p>
 
   <h2>The roast</h2>
   <p class="sub">One frame per v1 slide, taken from the render, so this is what guests actually saw. Verdicts: cut, kept only as a one-third-second burst frame, or kept and promoted.</p>

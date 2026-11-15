@@ -227,14 +227,14 @@ def films_list(web):
          "page": None, "online": None, "rebuild": "cd showreel && npm run render"},
         {"id": "roast", "title": "The Roast", "sub": "how v1 became v2", "t": 12, "front": False,
          "file": "roast/renders/the-roast-2050-1080p.mp4", "preview": "video/dist/media/the-roast-720p.mp4",
-         "master": DOWNLOAD + "/v2.0/the-roast-2050-1080p.mp4",
+         "master": DOWNLOAD + "/v3.0/the-roast-2050-1080p.mp4",
          "about": "62 seconds: the weakest v1 slides as exhibits stamped CUT, then the recut. Has sound effects.",
          "page": None, "online": None, "rebuild": "cd roast && npm run render"},
         {"id": "already", "title": "Already Here", "sub": "the wall film, v1", "t": 30, "front": False,
          "file": "video/renders/already-here-2050-1080p.mp4", "preview": "video/dist/media/already-here-720p.mp4",
-         "master": DOWNLOAD + "/v1.0/already-here-2050-1080p.mp4",
+         "master": DOWNLOAD + "/v3.0/already-here-2050-1080p.mp4",
          "about": "Every shot pairs an idea a film imagined with a real photo of it existing today, in three chapters. Silent, loops seamlessly.",
-         "page": None, "online": None, "rebuild": "see video/README and slides_v1.json"},
+         "page": None, "online": None, "rebuild": "python3 -I video/tools/build_v1.py <dir>, then render there"},
     ]
     for f in films:
         use_preview = web or not (ROOT / f["file"]).exists()

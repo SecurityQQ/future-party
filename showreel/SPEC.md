@@ -8,8 +8,9 @@ TIME:    149.5 s = 4,485 frames. "Call to Adventure", 85.6 BPM, about 21 frames 
          because the tempo drifts between 83.5 and 87.9 BPM.
 
 LOOK
-- The wall films' look. Ground #0b0b0d only on the end of the last slide. Ink #ffffff.
-  Accent #ff5315 on kicker lines only: "FACT 1 / 6", the book and its year, the handle and date.
+- The wall films' look, in the site's blue since release v3.0. Ground #030817 only on the end of the last slide.
+  Ink #edf4ff. Accent ice #9dd8ff on kicker lines (Martian Mono) and the big numbers: "FACT 1 / 6", the book and its
+  year, the handle and date. Text in Geologica, numbers and titles in League Gothic, quotes in Instrument Serif.
 - Medium: real footage, full-bleed, cut to 1920 x 1080 at 30 fps. Under a fact the footage is at full
   strength behind a scrim that covers the left 66% (0.80 to 0.18 opacity) and the bottom half (to 0.60),
   so the right and top of every shot stay clean. Under a quote it is dimmed 60%, under a tweet 74%.

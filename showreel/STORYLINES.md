@@ -13,7 +13,7 @@ kept here so a later turn can switch.
 - **First two seconds.** Night at Kennedy Space Center. The title is already on screen and the horizon
   behind it catches fire as Artemis I lifts off.
 - **Beats.** title → 71% → 1972 → 8.1 vs 10.3 → 119 Gt → 38 → 86% vs 7% → "Every future starts here" → 2050.
-- **Look.** The wall films' look (ground #0b0b0d, one accent #ff5315, League Gothic and Inter) over NASA
+- **Look.** The wall films' look (navy ground, one ice accent, League Gothic, Geologica and Martian Mono since v3.0; orange #ff5315 on #0b0b0d with Inter when this was written) over NASA
   footage, with the book serif for quotes.
 - **Sound.** "Call to Adventure" at 86 BPM: quiet opening, first theme at chapter 2, climax under
   chapter 6, last chord on the last slide. A low impact on each fact, a short whoosh into each pair of slides.
