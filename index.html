@@ -6,7 +6,7 @@
 <title>Future Party 2050</title>
 <meta name="theme-color" content="#030817">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307132b'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='%23dce9fb' stroke-width='2'/%3E%3Cellipse cx='32' cy='32' rx='28' ry='10' transform='rotate(-30 32 32)' fill='none' stroke='%239dd8ff' stroke-width='2'/%3E%3C/svg%3E">
-<meta name="description" content="Step into 2050. Films, music, ideas, and other worlds for the Future Party.">
+<meta name="description" content="Step into 2050 for one night: the Big Wall of films and ideas, music from 1400 BCE to the future, six party apps, Mars in 3D and the research behind it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=League+Gothic&family=Geologica:wght@400;500;600;700&family=Martian+Mono:wght@400;500&display=swap">
@@ -255,6 +255,13 @@ tr:last-child td{border-bottom:0}
 th{font:500 10.5px/1.3 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);background:var(--raised)}
 td{color:var(--fg-2)}
 td b{color:var(--fg);font-weight:600}
+/* Follow the host on X: one band at the end of the page */
+.follow{display:flex;align-items:center;flex-wrap:wrap;gap:18px 24px;padding:22px 24px;border:1px solid var(--line-2);border-top-color:#7d9ac0;border-radius:var(--r);background:linear-gradient(145deg,#112441,#07132b 75%);box-shadow:inset 0 1px 0 rgb(220 233 251 / 6%)}
+.follow .xmark{width:48px;height:48px;flex:none;display:grid;place-items:center;border-radius:50%;color:var(--v-chrome);background:radial-gradient(circle at 30% 20%,#395d8d,#0b1b36 70%);box-shadow:inset 0 0 0 1px #91aed2}
+.follow .xmark svg{width:20px;height:20px}
+.follow p{flex:1;min-width:min(100%,260px);display:grid;gap:6px}
+.follow b{font:500 clamp(18px,2vw,24px)/1.25 var(--display);letter-spacing:-.035em;color:var(--v-chrome);text-wrap:balance}
+.follow p span{font:400 11px/1.6 var(--mono);color:var(--muted)}
 footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 11px/1.8 var(--mono);color:var(--muted)}
 
 /* Player: always dark, like the wall */
@@ -400,6 +407,14 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
       <p class="note">What the wall is made from: the books, the tweets, the films and the effects, each with its sources.</p>
     </div>
     <div class="list" id="readList"></div>
+  </section>
+
+  <section id="follow" aria-label="Follow on X">
+    <div class="follow">
+      <span class="xmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
+      <p><b>Please follow @vargastartup on X</b><span>x.com/vargastartup</span></p>
+      <a class="btn" href="https://x.com/vargastartup" target="_blank" rel="noopener">Follow on X <span aria-hidden="true">↗</span></a>
+    </div>
   </section>
 
   <footer id="foot"></footer>
@@ -653,7 +668,7 @@ $('deckLink').insertAdjacentHTML('afterend','<a class="lnk" href="'+esc(P.deck)+
 $('deckCount').textContent=D.deck.slides+' slides, in this order';
 $('deckHow').innerHTML='→ or a click goes on and runs the demo clicks, ← goes back, F is full screen, N shows the speaker notes. '+(WEB?'On the projector laptop, type '+esc(D.site.replace(/^https?:\/\//,''))+'/slides.':'It opens from this folder; only the fonts and the YouTube clip need internet.');
 
-$('foot').innerHTML='Future Party 2050 · built '+esc(D.built)+' · <a href="'+esc(D.repo)+'" target="_blank" rel="noopener">source on GitHub</a>'+(WEB?'':' · <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(D.site.replace(/^https?:\/\//,''))+'</a>');
+$('foot').innerHTML='Future Party 2050 · built '+esc(D.built)+' · <a href="'+esc(D.repo)+'" target="_blank" rel="noopener">source on GitHub</a> · <a href="https://x.com/vargastartup" target="_blank" rel="noopener">follow @vargastartup on X</a>'+(WEB?'':' · <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(D.site.replace(/^https?:\/\//,''))+'</a>');
 
 /* Film player */
 const player=$('player'),pv=$('pv');let idleT=0,prev=null;

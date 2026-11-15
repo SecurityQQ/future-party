@@ -12,6 +12,7 @@ import LiveCard from "@/components/LiveCard";
 import ProfileBlock from "@/components/ProfileBlock";
 import FriendButton, { type FriendState } from "@/components/FriendButton";
 import SharePanel from "@/components/SharePanel";
+import { CARD, OPEN_GRAPH, X } from "@/lib/share";
 
 export const dynamic = "force-dynamic";
 
@@ -21,8 +22,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   if (!p) return { title: "The Future 2050" };
   const title = `${p.character} · ${p.name.split(" ")[0]}’s Kin · The Future 2050`;
   const description = p.prophecy ?? "Every traveler at The Future Party is met by their Kin. Tap to meet this one.";
-  const images = p.image_url ? [{ url: p.image_url, width: 900, height: 1200, alt: p.character }] : [];
-  return { title, description, openGraph: { title, description, images }, twitter: { card: "summary_large_image", title, description, images } };
+  // A page's openGraph replaces the layout's, so the app's card stays the picture until the Kin is drawn
+  const images = p.image_url ? [{ url: p.image_url, width: 900, height: 1200, alt: p.character }] : [CARD];
+  return { title, description, openGraph: { ...OPEN_GRAPH, title, description, images }, twitter: { card: "summary_large_image", site: X, title, description, images } };
 }
 
 export default async function CardPage({ params }: { params: Promise<{ id: string }> }) {
