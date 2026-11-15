@@ -9,7 +9,7 @@ import ScanScreen, { type ScanState } from "@/components/ScanScreen";
 import TopBar from "@/components/TopBar";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Pass · Kin 2050" };
+export const metadata = { title: "Pass · The Future 2050" };
 
 // The URL written on each RFID/NFC card: /t/<code>.
 export default async function ScanPage({ params }: { params: Promise<{ code: string }> }) {

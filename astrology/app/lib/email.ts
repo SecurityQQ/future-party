@@ -1,9 +1,9 @@
 import "server-only";
 
 // Email through Resend's HTTP API (no SDK). Set RESEND_API_KEY, and EMAIL_FROM to an address on a
-// domain verified in Resend, e.g. "Kin 2050 <travelers@example.com>". Resend's test sender,
+// domain verified in Resend, e.g. "The Future 2050 <travelers@example.com>". Resend's test sender,
 // onboarding@resend.dev, only delivers to the Resend account's own address.
-const FROM = () => process.env.EMAIL_FROM || "Kin 2050 <onboarding@resend.dev>";
+const FROM = () => process.env.EMAIL_FROM || "The Future 2050 <onboarding@resend.dev>";
 
 export function emailReady(): boolean {
   return !!process.env.RESEND_API_KEY;
@@ -33,17 +33,17 @@ const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&l
 function frame(body: string): string {
   return `<!doctype html><html><body style="margin:0;background:#03050c;color:#dce7ff;font-family:-apple-system,Segoe UI,Roboto,sans-serif">
 <div style="max-width:480px;margin:0 auto;padding:28px 20px">
-<div style="font-weight:700;letter-spacing:.14em;color:#e2b566;font-size:14px">ZODIAC RANGERS</div>
-<div style="font-size:11px;letter-spacing:.2em;color:#8395b8;margin-bottom:24px">THE FUTURE PARTY · 2050</div>
+<div style="font-weight:700;letter-spacing:.14em;color:#e2b566;font-size:14px">THE FUTURE 2050</div>
+<div style="font-size:11px;letter-spacing:.2em;color:#8395b8;margin-bottom:24px">ARRIVAL STATION</div>
 ${body}
-<p style="color:#4d5d7e;font-size:12px;margin-top:32px">You get this because you joined Kin 2050 at The Future Party.</p>
+<p style="color:#4d5d7e;font-size:12px;margin-top:32px">You get this because you joined The Future 2050.</p>
 </div></body></html>`;
 }
 
 export function loginEmail(o: { name: string; code: string; link: string }) {
   const first = o.name.split(" ")[0];
   return {
-    subject: `${o.code} is your Kin 2050 code`,
+    subject: `${o.code} is your code for The Future 2050`,
     text: `Hi ${first},\n\nYour login code is ${o.code}. It works for 15 minutes.\n\nOr open this link on the phone you want to use:\n${o.link}\n\nIf you did not ask for it, ignore this email.`,
     html: frame(`<p style="font-size:16px">Hi ${esc(first)}, here is your code to get back to your Kin:</p>
 <div style="font-family:Menlo,monospace;font-size:36px;letter-spacing:.3em;color:#84ffb5;background:#040912;border:1px solid #2a3a58;padding:16px;text-align:center;margin:18px 0">${esc(o.code)}</div>

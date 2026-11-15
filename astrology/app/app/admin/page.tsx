@@ -5,7 +5,7 @@ import { styleLabel } from "@/lib/character";
 import AdminPanel from "@/components/AdminPanel";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Admin · Kin 2050", robots: { index: false } };
+export const metadata = { title: "Admin · The Future 2050", robots: { index: false } };
 
 // /admin?key=<ADMIN_KEY>: every character with its status, redraw buttons, and a tag URL generator.
 export default async function AdminPage({ searchParams }: { searchParams: Promise<{ key?: string }> }) {

@@ -18,8 +18,8 @@ export const dynamic = "force-dynamic";
 // A traveler's public card: /c/<card number> (the share link and its QR) or /c/<player id>.
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const p = await findPlayer((await params).id);
-  if (!p) return { title: "Kin 2050" };
-  const title = `${p.character} · ${p.name.split(" ")[0]}’s Kin · Kin 2050`;
+  if (!p) return { title: "The Future 2050" };
+  const title = `${p.character} · ${p.name.split(" ")[0]}’s Kin · The Future 2050`;
   const description = p.prophecy ?? "Every traveler at The Future Party is met by their Kin. Tap to meet this one.";
   const images = p.image_url ? [{ url: p.image_url, width: 900, height: 1200, alt: p.character }] : [];
   return { title, description, openGraph: { title, description, images }, twitter: { card: "summary_large_image", title, description, images } };

@@ -1,4 +1,4 @@
-/* Zodiac Rangers: a retro space-sim console. Beveled steel hulls, brass plates,
+/* The Future 2050: a retro space-sim console. Beveled steel hulls, brass plates,
    green comm text, chamfered corners, a starfield behind everything. */
 
 :root {
@@ -413,3 +413,7 @@ button { font: inherit; }
 
 /* Grid children may shrink below their content, so a long unbroken log line cannot widen the page. */
 .stack > * { min-width: 0; }
+
+/* The Future 2050: the longer brand stays on one line; a long traveler name gets the ellipsis instead. */
+.brand { white-space: nowrap; font-size: 15px; flex: none; }
+.topbar .pilot-chip { min-width: 0; }
