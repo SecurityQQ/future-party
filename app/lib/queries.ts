@@ -62,3 +62,9 @@ export async function hasTag(id: string): Promise<boolean> {
   const { data } = await db().from("tags").select("code").eq("player_id", id).maybeSingle();
   return !!data;
 }
+
+// The code in a traveler's QR: their pass, or their Kin link when they have no pass (see passUrl).
+export async function passCodeOf(p: Pick<Player, "id" | "card_no">): Promise<string> {
+  const { data } = await db().from("tags").select("code").eq("player_id", p.id).maybeSingle();
+  return data?.code ?? `kin-${p.card_no}`;
+}

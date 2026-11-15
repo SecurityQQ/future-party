@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { toProfile, type Player } from "@/lib/db";
-import { cardOf, friendsOf, holdOf, leaderboard } from "@/lib/queries";
+import { cardOf, friendsOf, holdOf, leaderboard, passCodeOf } from "@/lib/queries";
 import { nextRank, rankTitle } from "@/lib/ranks";
-import { cardUrl, qrSvg, siteOrigin } from "@/lib/url";
+import { cardUrl, passUrl, qrSvg, siteOrigin } from "@/lib/url";
 import Hull from "./Hull";
 import TopBar from "./TopBar";
 import MyCharacter from "./MyCharacter";
@@ -14,9 +14,10 @@ import { ProfileDetails, hasProfile } from "./ProfileBlock";
 // The signed-in traveler's home, at / and /me: their Kin, its share link and QR, their profile,
 // their record, friends and orbit.
 export default async function MeView({ me }: { me: Player }) {
-  const [card, hold, board, friends, origin] = await Promise.all([cardOf(me), holdOf(me.id), leaderboard(), friendsOf(me.id), siteOrigin()]);
+  const [card, hold, board, friends, origin, pass] = await Promise.all([cardOf(me), holdOf(me.id), leaderboard(), friendsOf(me.id), siteOrigin(), passCodeOf(me)]);
   const url = cardUrl(origin, me.card_no);
-  const qr = await qrSvg(url);
+  // The QR is the same link as the pass: whoever scans it collects this Kin (or logs in / joins first).
+  const qr = await qrSvg(passUrl(origin, pass));
   const profile = toProfile(me);
   const pos = board.findIndex((r) => r.id === me.id) + 1;
   const others = Math.max(board.length - 1, hold.length);
@@ -31,17 +32,12 @@ export default async function MeView({ me }: { me: Player }) {
 
       {!me.email && (
         <Hull title="Add your email" led="amber">
-          <p style={{ marginTop: 0 }}>So you can get back in on any phone: enter it at the Station and we email you a code.</p>
+          <p style={{ marginTop: 0 }}>Your way back in on any phone: log in with your email and we send you a code. No password.</p>
           <Link className="btn ghost small" href="/app/me/profile">Add email</Link>
         </Hull>
       )}
 
       <SharePanel url={url} qr={qr} title={`${me.character} · ${first}’s Kin`} character={me.character} />
-
-      <Hull title="Mirror" code="CAMERA">
-        <p style={{ marginTop: 0 }}>Take your Kin into the mirror: open your palm in front of the camera and it lands on your hand, with your orbit circling around you. Eight more camera effects that went viral on X come with it. The camera stays on your phone.</p>
-        <a className="btn" href="/app/mirror?fx=kin">Open the mirror</a>
-      </Hull>
 
       <Hull title="Your profile" code="OPTIONAL">
         {hasProfile(profile) ? (

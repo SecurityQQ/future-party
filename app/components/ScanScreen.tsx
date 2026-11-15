@@ -1,13 +1,15 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { PublicCard } from "@/lib/db";
 import Hull from "./Hull";
 import { TypedComm } from "./Comm";
 import LiveCard from "./LiveCard";
 import MyCharacter from "./MyCharacter";
 import RegisterQuest from "./RegisterQuest";
+import EmailLogin from "./EmailLogin";
+import KinReveal from "./KinReveal";
 
 export type ScanState = "register" | "claim" | "busy" | "own" | "collected" | "visitor";
 type Me = { id: string; name: string; card: PublicCard; hasTag: boolean } | null;
@@ -19,11 +21,30 @@ const NavButtons = () => (
   </div>
 );
 
-// Everything that can happen when a pass (RFID/NFC tag) is scanned.
-export default function ScanScreen({ state, code, owner, me, newCollect, hold, total }: {
-  state: ScanState; code: string; owner: PublicCard | null; me: Me; newCollect: boolean; hold: number; total: number;
+// Everything that can happen when a pass (RFID/NFC tag) is tapped or a traveler's QR code is opened
+// (link: a Kin link, /t/kin-<n>, not a physical pass). A phone with no traveler logs in by email first;
+// creating a new traveler is the second choice.
+export default function ScanScreen({ state, code, link = false, owner, me, newCollect, hold, total }: {
+  state: ScanState; code: string; link?: boolean; owner: PublicCard | null; me: Me; newCollect: boolean; hold: number; total: number;
 }) {
   const router = useRouter();
+  const [mode, setMode] = useState<"login" | "new">("login");
+  const [reveal, setReveal] = useState<PublicCard | null>(null);
+  // A new Kin in your orbit (also right after logging in on this page): the glass reveal.
+  useEffect(() => {
+    if (state === "collected" && newCollect && owner) setReveal(owner);
+  }, [state, newCollect, owner]);
+  const overlay = reveal && (
+    <KinReveal
+      image={reveal.image_url}
+      sign={reveal.sign}
+      kicker="+1 · IN YOUR ORBIT"
+      title={reveal.character}
+      line={`${reveal.name.split(" ")[0]}’s Kin joined your orbit.`}
+      onClose={() => setReveal(null)}
+    />
+  );
+  const next = `/app/t/${code}`;
   const [mine, setMine] = useState<PublicCard | null>(null); // a character registered on this screen
   const [restoring, setRestoring] = useState(false);
   const [birthday, setBirthday] = useState("");
@@ -34,6 +55,7 @@ export default function ScanScreen({ state, code, owner, me, newCollect, hold, t
     const j = await (await fetch(`/api/players/${id}`, { cache: "no-store" })).json();
     setMine({ ...j, collected_by: 0 });
     window.dispatchEvent(new Event("zr:pilot"));
+    if (state === "visitor" && owner) setReveal(owner);
   }
 
   async function post(url: string, body: unknown) {
@@ -62,8 +84,21 @@ export default function ScanScreen({ state, code, owner, me, newCollect, hold, t
           </Hull>
         </MyCharacter>
       </div>
+    ) : mode === "login" ? (
+      <div className="stack login-first">
+        <EmailLogin
+          next={next}
+          title="Blank pass · Log in"
+          intro="A blank pass. Already a traveler? Log in with your email and I bind this pass to your Kin."
+        />
+        <div className="or">or</div>
+        <button className="btn ghost" onClick={() => setMode("new")}>I’m new here: meet my Kin</button>
+      </div>
     ) : (
-      <RegisterQuest tag={code} onRegistered={registered} />
+      <div className="stack">
+        <RegisterQuest tag={code} onRegistered={registered} />
+        <button className="btn ghost small" onClick={() => setMode("login")}>I already have a Kin: log in with email</button>
+      </div>
     );
 
   // Someone else's card, scanned by a phone without a pilot.
@@ -71,13 +106,30 @@ export default function ScanScreen({ state, code, owner, me, newCollect, hold, t
     if (mine)
       return (
         <div className="stack">
+          {overlay}
           <div className="banner">+1 · {owner.name} added to your orbit</div>
           <MyCharacter card={mine} redraw={{ used: 0, hasPrev: false }}>
             <Hull title="Your orbit" code={`1/${total}`}>
-              <p style={{ marginTop: 0 }}>You collected <b>{owner.character}</b>. Find your own pass and scan it to bind it to your Kin, then keep scanning other travelers.</p>
+              <p style={{ marginTop: 0 }}>You collected <b>{owner.character}</b>. Got a pass? Tap it to bind it to your Kin, then keep collecting: tap passes or scan travelers’ QR codes.</p>
               <NavButtons />
             </Hull>
           </MyCharacter>
+        </div>
+      );
+    const first = owner.name.split(" ")[0];
+    if (mode === "login" && !restoring)
+      return (
+        <div className="stack login-first">
+          <EmailLogin
+            next={next}
+            title="Log in to collect"
+            intro={`This is ${first}’s Kin. Log in with your email and ${owner.character} joins your orbit.`}
+            autoFocus={false}
+          />
+          <div className="or">or</div>
+          <button className="btn ghost" onClick={() => setMode("new")}>I’m new here: meet my Kin</button>
+          {!link && <button className="btn ghost small" onClick={() => setRestoring(true)}>This is my pass</button>}
+          <LiveCard card={owner} />
         </div>
       );
     return (
@@ -90,7 +142,7 @@ export default function ScanScreen({ state, code, owner, me, newCollect, hold, t
                 <input className="input" type="date" required value={birthday} onChange={(e) => setBirthday(e.target.value)} aria-label="Date of birth" />
                 {error && <div className="error">{error}</div>}
                 <div className="btns back">
-                  <button type="button" className="btn ghost" onClick={() => setRestoring(false)}>Back</button>
+                  <button type="button" className="btn ghost" onClick={() => { setRestoring(false); setMode("login"); }}>Back</button>
                   <button className="btn" disabled={busy}>{busy ? "Checking…" : "Unlock"}</button>
                 </div>
               </form>
@@ -99,7 +151,7 @@ export default function ScanScreen({ state, code, owner, me, newCollect, hold, t
         ) : (
           <>
             <RegisterQuest from={code} ownerName={owner.name} onRegistered={registered} />
-            <button className="btn ghost small" onClick={() => setRestoring(true)}>This is my card</button>
+            <button className="btn ghost small" onClick={() => setMode("login")}>I already have a Kin: log in with email</button>
           </>
         )}
       </div>
@@ -140,7 +192,7 @@ export default function ScanScreen({ state, code, owner, me, newCollect, hold, t
         <MyCharacter card={me.card}>
           <Hull title="Your pass" code={code}>
             <p style={{ marginTop: 0 }}>
-              This is your card. Hold it out: every traveler who scans it adds <b>{me.card.character}</b> to their orbit.
+              {link ? "This is your own link, the one in your QR code." : "This is your card."} Hold it out: every traveler who {link ? "opens it" : "taps it"} adds <b>{me.card.character}</b> to their orbit.
               {me.card.collected_by ? ` Collected ${me.card.collected_by} time${me.card.collected_by === 1 ? "" : "s"} so far.` : ""}
             </p>
             <NavButtons />
@@ -153,6 +205,7 @@ export default function ScanScreen({ state, code, owner, me, newCollect, hold, t
   if (state === "collected" && owner && me)
     return (
       <div className="stack">
+        {overlay}
         <div className={`banner ${newCollect ? "" : "info"}`}>{newCollect ? `+1 · Added to your orbit` : "Already in your orbit"}</div>
         <LiveCard card={owner} reveal={newCollect} />
         <Hull title="Your orbit" code={`${hold}/${Math.max(total - 1, hold)}`}>

@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { currentPlayer } from "@/lib/session";
-import { recordScan, TAG_RE } from "@/lib/guests";
+import { KIN_LINK, recordScan, TAG_RE } from "@/lib/guests";
 
 // Link an unclaimed card to the signed-in pilot (someone who registered by scanning another card first).
 export async function POST(req: Request) {
   const { tag } = (await req.json().catch(() => ({}))) as { tag?: string };
-  if (!tag || !TAG_RE.test(tag)) return NextResponse.json({ error: "Bad card code" }, { status: 400 });
+  if (!tag || !TAG_RE.test(tag) || KIN_LINK.test(tag)) return NextResponse.json({ error: "Bad card code" }, { status: 400 });
   const me = await currentPlayer();
   if (!me) return NextResponse.json({ error: "Register first" }, { status: 401 });
   const { data: mine } = await db().from("tags").select("code").eq("player_id", me.id).maybeSingle();

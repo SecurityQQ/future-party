@@ -7,7 +7,9 @@ import { Comm } from "./Comm";
 // Log back in on any phone: email -> six-digit code from the email -> signed in. The link in the
 // email opens /login?email=..&code=.. and signs in by itself (the POST runs in the page, so mail
 // scanners that pre-open links cannot use up the code).
-export default function EmailLogin({ initialEmail = "", initialCode = "", next = "/app" }: { initialEmail?: string; initialCode?: string; next?: string }) {
+export default function EmailLogin({
+  initialEmail = "", initialCode = "", next = "/app", title = "Log in with email", intro, autoFocus = true,
+}: { initialEmail?: string; initialCode?: string; next?: string; title?: string; intro?: string; autoFocus?: boolean }) {
   const router = useRouter();
   const [step, setStep] = useState<"email" | "code">(initialCode ? "code" : "email");
   const [email, setEmail] = useState(initialEmail);
@@ -61,16 +63,16 @@ export default function EmailLogin({ initialEmail = "", initialCode = "", next =
   }, []);
 
   return (
-    <Hull title="Arrival Station · Log in" code={step === "email" ? "1/2" : "2/2"}>
+    <Hull title={title} code={step === "email" ? "EMAIL · 1/2" : "EMAIL · 2/2"} led="green">
       {step === "email" ? (
-        <Comm who="GRUMM" text="Lost your way back? Give me the email you left at the Station and I will send you a six-digit code.">
+        <Comm who="GRUMM" text={intro ?? "Already a traveler? Give me the email you left at the Station and I send you a six-digit code. No password."}>
           <form className="stack" style={{ marginTop: 14 }} onSubmit={(e) => { e.preventDefault(); send(); }}>
             <div className="field">
               <label htmlFor="login-email">Email</label>
-              <input id="login-email" className="input" type="email" inputMode="email" autoComplete="email" autoCapitalize="none" autoFocus required placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input id="login-email" className="input" type="email" inputMode="email" autoComplete="email" autoCapitalize="none" autoFocus={autoFocus} required placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             {error && <div className="error">{error}</div>}
-            <button className="btn" disabled={busy}>{busy ? "Sending…" : "Send me a code"}</button>
+            <button className="btn" disabled={busy}>{busy ? "Sending…" : "Email me a login code"}</button>
           </form>
         </Comm>
       ) : (

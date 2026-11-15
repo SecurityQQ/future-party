@@ -4,8 +4,8 @@ import { notFound } from "next/navigation";
 import { db, toProfile } from "@/lib/db";
 import { currentPlayer } from "@/lib/session";
 import { findPlayer } from "@/lib/character";
-import { areFriends, cardOf } from "@/lib/queries";
-import { cardUrl, qrSvg, siteOrigin } from "@/lib/url";
+import { areFriends, cardOf, passCodeOf } from "@/lib/queries";
+import { cardUrl, passUrl, qrSvg, siteOrigin } from "@/lib/url";
 import Hull from "@/components/Hull";
 import TopBar from "@/components/TopBar";
 import LiveCard from "@/components/LiveCard";
@@ -47,17 +47,25 @@ export default async function CardPage({ params }: { params: Promise<{ id: strin
   return (
     <main className="shell stack">
       <TopBar me={me} />
-      {!own && <FriendButton target={String(p.card_no)} name={p.name} initial={friendState} back={`/app/c/${p.card_no}`} />}
+      {!own && (
+        <FriendButton
+          target={String(p.card_no)}
+          name={p.name}
+          initial={friendState}
+          back={`/app/c/${p.card_no}`}
+          kin={{ image: p.image_url, character: p.character, sign: p.sign }}
+        />
+      )}
       <LiveCard card={card} />
       <ProfileBlock name={p.name} profile={toProfile(p)} />
       {own ? (
-        <SharePanel url={url} qr={await qrSvg(url)} title={`${p.character} · ${p.name.split(" ")[0]}’s Kin`} character={p.character} />
+        <SharePanel url={url} qr={await qrSvg(passUrl(origin, await passCodeOf(p)))} title={`${p.character} · ${p.name.split(" ")[0]}’s Kin`} character={p.character} />
       ) : (
         <Hull title={inOrbit ? "In your orbit" : "Not in your orbit yet"} led={inOrbit ? "green" : "amber"}>
           <p style={{ marginTop: 0 }}>
             {inOrbit
               ? `You collected ${p.name}'s ${p.character}.`
-              : `Find ${p.name.split(" ")[0]} at the party and tap their pass to bring ${p.character} into your orbit.`}
+              : `Find ${p.name.split(" ")[0]} at the party and tap their pass or scan their QR code to bring ${p.character} into your orbit.`}
           </p>
           <div className="btns two">
             <Link className="btn ghost" href="/app">{me ? "My Kin" : "The Station"}</Link>
