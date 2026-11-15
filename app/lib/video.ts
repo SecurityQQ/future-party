@@ -4,12 +4,13 @@ import { jobState, startVideo } from "./varg";
 
 // The H3 step: every finished Kin picture is animated once with MiniMax H3 (image to video). The
 // picture is both the first and the last frame, so the 5-second clip loops on the card without a
-// jump. 720p (768x1024), about 30¢ and 80-90 s a clip (tested 2026-11-15). The MP4 is kept next to
-// the picture in Supabase Storage, and the `videos` row keeps picture, clip and job together.
+// jump. 720p (768x1024), about 30¢ and 80-90 s a clip (tested 2026-11-15). The MP4 stays on varg's
+// CDN (s3.varg.ai behind Cloudflare: video/mp4, range requests, edge cache), nothing is copied;
+// the `videos` row keeps picture, clip and job together. Pictures stay in Supabase Storage: the
+// Mirror draws them on a canvas, which needs Supabase's CORS header (varg's CDN sends none).
 export const CLIP = { model: "minimax_h3", aspect: "3:4", duration: 5, resolution: "720p", loop: true };
 const MAX_ATTEMPTS = 2; // one retry, then the card keeps its still picture
 const START_STALE_MS = 90_000; // a submit that never finished (the function was stopped)
-const FINAL_STALE_MS = 120_000; // a store that never finished
 const TIMEOUT_MS = 10 * 60_000;
 
 export type Video = {
@@ -19,9 +20,9 @@ export type Video = {
   prompt: string | null;
   job_id: string | null;
   attempts: number;
-  status: "starting" | "retry" | "generating" | "finalizing" | "done" | "failed";
+  status: "starting" | "retry" | "generating" | "finalizing" | "done" | "failed"; // finalizing: only rows from before 2026-11-15 ~10:00
   error: string | null;
-  video_url: string | null;
+  video_url: string | null; // the MP4 on varg's CDN (Supabase Storage for the first clip, card 2)
   source_url: string | null;
   created_at: string;
   updated_at: string;
@@ -108,18 +109,6 @@ async function submit(v: Video): Promise<Video | null> {
   }
 }
 
-// Keep the MP4 in the characters bucket, in the player's folder next to their pictures.
-async function store(v: Video, url: string): Promise<string> {
-  const res = await fetch(url, { cache: "no-store" });
-  if (!res.ok) throw new Error(`download ${res.status}`);
-  const body = Buffer.from(await res.arrayBuffer());
-  const path = `${v.player_id}/clip-${Date.now().toString(36)}.mp4`;
-  const bucket = db().storage.from("characters");
-  const { error } = await bucket.upload(path, body, { contentType: "video/mp4", upsert: true, cacheControl: "31536000" });
-  if (error) throw new Error(`upload: ${error.message}`);
-  return bucket.getPublicUrl(path).data.publicUrl;
-}
-
 // Put the clip on the card, if its picture is still the one the card shows.
 async function show(v: Video) {
   await db().from("players").update({ video_url: v.video_url }).eq("id", v.player_id).eq("image_url", v.image_url);
@@ -155,12 +144,9 @@ export async function advanceClip(p: Player): Promise<Video | null> {
       const mine = await move(v, { status: "starting" });
       return mine ? submit(mine) : getVideo(v.image_url);
     }
-    case "finalizing":
-      if (age(v) < FINAL_STALE_MS) return v;
-      return (await move(v, { status: "generating" })) ?? getVideo(v.image_url);
   }
 
-  // generating
+  // generating (or a "finalizing" row left from when clips were copied to Supabase)
   if (!v.job_id) return (await move(v, { status: "retry" })) ?? v;
   let st;
   try {
@@ -177,14 +163,8 @@ export async function advanceClip(p: Player): Promise<Video | null> {
     const mine = await move(v, { status: "starting", error: st.error.slice(0, 500) });
     return mine ? submit(mine) : getVideo(v.image_url);
   }
-  const locked = await move(v, { status: "finalizing" });
-  if (!locked) return getVideo(v.image_url);
-  try {
-    const url = await store(locked, st.url);
-    const done = await move(locked, { status: "done", video_url: url, source_url: st.url, error: null });
-    if (done) await show(done);
-    return done;
-  } catch (e) {
-    return (await move(locked, { status: "generating", error: msg(e) })) ?? locked;
-  }
+  // Done: the clip is served from varg's CDN as it is. One poller wins the move and shows it.
+  const done = await move(v, { status: "done", video_url: st.url, source_url: st.url, error: null });
+  if (done) await show(done);
+  return done ?? getVideo(v.image_url);
 }

@@ -140,7 +140,7 @@ create table if not exists videos (
   attempts    int not null default 0,
   status      text not null default 'starting',  -- starting | retry | generating | finalizing | done | failed
   error       text,
-  video_url   text,                              -- the MP4 kept in Supabase Storage
+  video_url   text,                              -- the MP4 on varg's CDN (s3.varg.ai)
   source_url  text,                              -- varg's original file
   created_at  timestamptz not null default now(),
   updated_at  timestamptz not null default now()
