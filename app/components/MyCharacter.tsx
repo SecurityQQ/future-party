@@ -74,7 +74,8 @@ export default function MyCharacter({ card, redraw, children }: { card: PublicCa
   );
 }
 
-// Supabase serves a stored file as a download when its link asks for one (?download=<file name>).
+// The picture: Supabase serves a stored file as a download when its link asks (?download=<name>).
+// The video lives on varg's CDN, which cannot, so /api/players/<id>/clip hands it over as one.
 function SaveKin({ card, clip }: { card: PublicCard; clip: ClipState }) {
   if (!card.image_url) return null;
   const name = `${card.character}-${String(card.card_no).padStart(3, "0")}`.replace(/[^\p{L}\p{N}]+/gu, "-");
@@ -83,7 +84,7 @@ function SaveKin({ card, clip }: { card: PublicCard; clip: ClipState }) {
     <div className={`btns ${clip.url || clip.pending ? "two" : ""}`}>
       <a className="btn ghost small" href={save(card.image_url, "webp")}>Save picture</a>
       {clip.url ? (
-        <a className="btn ghost small" href={save(clip.url, "mp4")}>Save video</a>
+        <a className="btn ghost small" href={`/api/players/${card.id}/clip`}>Save video</a>
       ) : clip.pending ? (
         <button className="btn ghost small" disabled>Coming alive…</button>
       ) : null}
