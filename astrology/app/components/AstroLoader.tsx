@@ -27,7 +27,7 @@ function StarChart({ sign }: { sign: string }) {
       {pts.map((p, i) => (
         <circle key={i} cx={p.x} cy={p.y} r={i % 3 ? 1.8 : 2.8} style={{ animationDelay: `${i * 0.4}s` }} />
       ))}
-      <text x="320" y="112" textAnchor="end" fill="#5df4ff" opacity="0.6" fontSize="26">{GLYPH[sign]}</text>
+      <text x="320" y="112" textAnchor="end" fill="var(--cyan)" opacity="0.6" fontSize="26">{GLYPH[sign]}</text>
     </svg>
   );
 }

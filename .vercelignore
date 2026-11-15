@@ -11,6 +11,11 @@
 !/reel
 !/mirror
 !/concept-art
+!/mars3d
+!/vibes
+/vibes/*
+!/vibes/tokens.css
+!/vibes/assets
 /video/*
 !/video/dist
 /tweets/avatars
@@ -20,3 +25,4 @@
 /concept-art/images
 /concept-art/.cache
 /concept-art/dist
+/mars3d/raw

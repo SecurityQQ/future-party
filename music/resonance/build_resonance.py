@@ -199,6 +199,27 @@ html = html.replace(FILM, '\0FILM\0')
 assert html.count('2040') == 12, html.count('2040')
 html = html.replace('2040', '2050').replace('\0FILM\0', FILM)
 
+# The page is called History of Music 2050 (it began as the user's "Resonance"). Only what a
+# visitor sees or saves is renamed; code names (window.ResonanceRelay…), URLs and files keep it.
+NAME = 'History of Music 2050'
+for old, new, count in [
+    ('<title>Resonance — Music, then & next</title>', f'<title>{NAME}</title>', 1),
+    ('aria-label="Resonance, first stop"', f'aria-label="{NAME}, first stop"', 1),
+    ('<span>Resonance <span class="brand-dot">/</span> 2050</span>', '<span>History of Music <span class="brand-dot">/</span> 2050</span>', 2),
+    ('— Resonance Future Lab', f'— Future Lab · {NAME}', 1),
+    ('— Resonance`', f'— {NAME}`', 1),
+    ("— Resonance'", f"— {NAME}'", 5),
+    ('Resonance Radio', 'Radio 2050', 9),
+    ('RESONANCE RADIO', 'RADIO 2050', 1),
+    ('Resonance-track-list.txt', 'History-of-Music-2050-track-list.txt', 1),
+    ('Resonance-Future-Listening-Notes.txt', 'History-of-Music-2050-Future-Listening-Notes.txt', 1),
+    ("'Resonance player'", f"'{NAME} player'", 1),
+]:
+    html = rep(html, old, new, count)
+
+exec(open(P('patch_history_layout.py'), encoding='utf-8').read())
+exec(open(P('patch_future_layout.py'), encoding='utf-8').read())
+
 # ---------- 7. Write ----------
 os.makedirs(P('dist'), exist_ok=True)
 open(P('dist', 'Resonance_History_and_Future.html'), 'w', encoding='utf-8').write(html)

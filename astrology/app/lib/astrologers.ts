@@ -1,8 +1,8 @@
 // The three oracles of the Arrival Station who read your stars while your Kin materializes.
 export const ASTROLOGERS = {
-  VEXA: { key: "VEXA", name: "Vexa Orrin", title: "Star Cartographer", img: "/img/vexa.webp", color: "#c9a2ff" },
-  GRUMM: { key: "GRUMM", name: "Grumm Tal", title: "Keeper of the Archive", img: "/img/grumm.webp", color: "#ffb347" },
-  ILU: { key: "ILU", name: "Ilu", title: "Oracle of Probabilities", img: "/img/ilu.webp", color: "#59f3ff" },
+  VEXA: { key: "VEXA", name: "Vexa Orrin", title: "Star Cartographer", img: "/img/vexa.webp", color: "var(--r-epic)" },
+  GRUMM: { key: "GRUMM", name: "Grumm Tal", title: "Keeper of the Archive", img: "/img/grumm.webp", color: "var(--chrome)" },
+  ILU: { key: "ILU", name: "Ilu", title: "Oracle of Probabilities", img: "/img/ilu.webp", color: "var(--cyan)" },
 } as const;
 
 export type Speaker = keyof typeof ASTROLOGERS | "PROPHECY";

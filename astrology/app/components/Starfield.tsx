@@ -42,7 +42,8 @@ function makeNoise(rand: Rand) {
 }
 type Noise = ReturnType<typeof makeNoise>;
 
-const STAR_COLORS: RGB[] = [[255, 255, 255], [207, 230, 255], [255, 233, 196], [191, 248, 255], [228, 212, 255], [255, 205, 180]];
+// Navy space, cobalt atmosphere and silver-white reflections from the vibes reference board.
+const STAR_COLORS: RGB[] = [[239, 246, 255], [207, 230, 255], [168, 201, 255], [191, 228, 255], [225, 235, 255], [119, 169, 255]];
 
 // ---------- far layer: nebula + Milky Way + static stars ----------
 function paintNebula(c: HTMLCanvasElement, seed: number) {
@@ -68,7 +69,7 @@ function paintNebula(c: HTMLCanvasElement, seed: number) {
   const theta = (rand() < 0.5 ? -1 : 1) * (0.5 + rand() * 0.25);
   const sn = Math.sin(theta), cs = Math.cos(theta);
   const bx = 0.5 + (rand() - 0.5) * 0.2, by = 0.42 + (rand() - 0.5) * 0.15;
-  const violet: RGB = [128, 70, 215], teal: RGB = [10, 175, 200], magenta: RGB = [225, 75, 150], blue: RGB = [50, 80, 200];
+  const navy: RGB = [20, 40, 100], cobalt: RGB = [34, 96, 220], silver: RGB = [146, 184, 230], blue: RGB = [40, 73, 168];
 
   for (let y = 0; y < nh; y++) {
     for (let x = 0; x < nw; x++) {
@@ -87,8 +88,8 @@ function paintNebula(c: HTMLCanvasElement, seed: number) {
       const core = dens * dens * dens;
       const i = (y * nw + x) * 4;
       for (let ch = 0; ch < 3; ch++) {
-        let v = violet[ch] + (teal[ch] - violet[ch]) * hs;
-        v += (magenta[ch] - v) * ms;
+        let v = navy[ch] + (cobalt[ch] - navy[ch]) * hs;
+        v += (silver[ch] - v) * ms;
         v += (blue[ch] - v) * bs;
         d[i + ch] = Math.min(255, v + core * 80 + band * 14);
       }
@@ -135,8 +136,8 @@ function paintNebula(c: HTMLCanvasElement, seed: number) {
 
 // ---------- the ringed planet ----------
 const RAMP: [number, RGB][] = [
-  [0, [8, 30, 52]], [0.28, [16, 82, 104]], [0.52, [36, 158, 156]], [0.7, [136, 214, 200]],
-  [0.84, [216, 190, 138]], [1, [70, 150, 160]],
+  [0, [7, 19, 48]], [0.28, [22, 58, 126]], [0.52, [45, 107, 208]], [0.7, [128, 177, 237]],
+  [0.84, [222, 234, 250]], [1, [73, 128, 210]],
 ];
 function ramp(v: number, ch: number) {
   for (let i = 1; i < RAMP.length; i++) {
@@ -164,9 +165,9 @@ function paintPlanet(c: HTMLCanvasElement, seed: number) {
 
   // Atmosphere halo, pulled toward the light.
   const halo = ctx.createRadialGradient(cx + lx * R * 0.06, cy + ly * R * 0.06, R * 0.9, cx, cy, R * 1.22);
-  halo.addColorStop(0, "rgba(93,244,255,0.32)");
-  halo.addColorStop(0.35, "rgba(93,200,255,0.12)");
-  halo.addColorStop(1, "rgba(93,200,255,0)");
+  halo.addColorStop(0, "rgba(122,176,255,0.32)");
+  halo.addColorStop(0.35, "rgba(75,132,255,0.12)");
+  halo.addColorStop(1, "rgba(75,132,255,0)");
   ctx.fillStyle = halo;
   ctx.fillRect(0, 0, P, P);
 
@@ -179,7 +180,7 @@ function paintPlanet(c: HTMLCanvasElement, seed: number) {
       if (t > 0.56 && t < 0.63) a *= 0.07;
       a *= smooth(0, 0.05, t) * (1 - smooth(0.88, 1, t));
       const m = noise(t * 5, 9.7);
-      const cr = 226 + (150 - 226) * m, cg = 200 + (205 - 200) * m, cb = 150 + (220 - 150) * m;
+      const cr = 226 + (109 - 226) * m, cg = 236 + (156 - 236) * m, cb = 252 + (226 - 252) * m;
       ctx.strokeStyle = `rgba(${cr | 0},${cg | 0},${cb | 0},${(a * 0.62).toFixed(3)})`;
       ctx.beginPath();
       ctx.ellipse(cx, cy, r, r * squash, tilt, from, to);
@@ -214,9 +215,9 @@ function paintPlanet(c: HTMLCanvasElement, seed: number) {
       const shade = 0.03 + 0.85 * lit;
       const rim = (1 - z) ** 2.5 * lit;
       const i = (py * D + px) * 4;
-      d[i] = Math.min(255, ramp(v, 0) * shade + 50 * rim);
-      d[i + 1] = Math.min(255, ramp(v, 1) * shade + 190 * rim);
-      d[i + 2] = Math.min(255, ramp(v, 2) * shade + 215 * rim);
+      d[i] = Math.min(255, ramp(v, 0) * shade + 100 * rim);
+      d[i + 1] = Math.min(255, ramp(v, 1) * shade + 160 * rim);
+      d[i + 2] = Math.min(255, ramp(v, 2) * shade + 250 * rim);
       d[i + 3] = 255 * clamp01(edge);
     }
   }
@@ -234,9 +235,10 @@ export default function Starfield() {
   useEffect(() => {
     const c = starRef.current!, neb = nebRef.current!, planet = planetRef.current!;
     const ctx = c.getContext("2d")!;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let reduce = motion.matches;
     const seed = (Math.random() * 2 ** 31) | 0;
-    let w = 0, h = 0, raf = 0, last = 0, builtW = 0, builtH = 0, idle = 0;
+    let w = 0, h = 0, raf = 0, last = 0, elapsed = 0, builtW = 0, builtH = 0, idle = 0;
 
     // One soft glow sprite per star colour.
     const sprites = STAR_COLORS.map(([r, g, b]) => {
@@ -257,7 +259,7 @@ export default function Starfield() {
     type Meteor = { x: number; y: number; vx: number; vy: number; age: number; life: number; len: number };
     let stars: Star[] = [];
     let meteor: Meteor | null = null;
-    let nextMeteor = 2.5 + Math.random() * 4;
+    let nextMeteor = 12 + Math.random() * 10;
 
     const paintFar = () => {
       paintNebula(neb, seed);
@@ -274,8 +276,8 @@ export default function Starfield() {
       const n = Math.round((w * h) / 4200);
       stars = Array.from({ length: n }, () => ({
         x: Math.random() * w, y: Math.random() * h, z: Math.random() ** 2.4,
-        p: Math.random() * Math.PI * 2, sp: 0.6 + Math.random() * 1.8,
-        tw: Math.random() < 0.35 ? 0.55 : 0.18, c: (Math.random() * STAR_COLORS.length) | 0,
+        p: Math.random() * Math.PI * 2, sp: 0.18 + Math.random() * 0.37,
+        tw: Math.random() < 0.35 ? 0.25 : 0.08, c: (Math.random() * STAR_COLORS.length) | 0,
       }));
       // The far layer is costly to repaint, so skip it when only the browser bar moved.
       if (w !== builtW || Math.abs(h - builtH) > 140) {
@@ -283,17 +285,22 @@ export default function Starfield() {
         clearTimeout(idle);
         idle = window.setTimeout(paintFar, 30);
       }
-      if (reduce) draw(0);
+      if (!raf) draw(performance.now());
     };
 
     const draw = (time: number) => {
-      const t = time / 1000;
-      const dt = last ? Math.min(0.05, t - last) : 0;
-      last = t;
+      raf = 0;
+      const animate = !reduce && !document.hidden;
+      const now = time / 1000;
+      const dt = animate && last ? Math.min(0.05, now - last) : 0;
+      last = animate ? now : 0;
+      // Animation time pauses with the tab, so stars never jump on returning.
+      elapsed += dt;
+      const t = elapsed;
       ctx.clearRect(0, 0, w, h);
       for (const s of stars) {
-        if (!reduce) {
-          const v = 3 + s.z * 15;
+        if (animate) {
+          const v = 1 + s.z * 4;
           s.y += v * dt; s.x -= v * 0.28 * dt;
           if (s.y > h + 12) { s.y = -12; s.x = Math.random() * w; }
           if (s.x < -12) s.x = w + 12;
@@ -319,21 +326,21 @@ export default function Starfield() {
       }
       ctx.globalAlpha = 1;
 
-      if (!reduce) {
+      if (animate) {
         if (!meteor && t > nextMeteor) {
           const dir = Math.random() < 0.5 ? -1 : 1;
-          const ang = 0.35 + Math.random() * 0.4, sp = 650 + Math.random() * 450;
+          const ang = 0.35 + Math.random() * 0.4, sp = 240 + Math.random() * 160;
           meteor = {
             x: w * (0.5 - dir * (0.1 + Math.random() * 0.4)), y: h * Math.random() * 0.45,
             vx: dir * Math.cos(ang) * sp, vy: Math.sin(ang) * sp,
-            age: 0, life: 0.55 + Math.random() * 0.45, len: 110 + Math.random() * 110,
+            age: 0, life: 1.2 + Math.random() * 0.6, len: 80 + Math.random() * 60,
           };
         }
         if (meteor) {
           const m = meteor;
           m.age += dt; m.x += m.vx * dt; m.y += m.vy * dt;
           const f = m.age / m.life;
-          if (f >= 1) { meteor = null; nextMeteor = t + 5 + Math.random() * 9; }
+          if (f >= 1) { meteor = null; nextMeteor = t + 18 + Math.random() * 14; }
           else {
             const a = Math.sin(Math.PI * f);
             const sp = Math.hypot(m.vx, m.vy);
@@ -341,7 +348,7 @@ export default function Starfield() {
             const tx = m.x - (m.vx / sp) * len, ty = m.y - (m.vy / sp) * len;
             const g = ctx.createLinearGradient(m.x, m.y, tx, ty);
             g.addColorStop(0, `rgba(255,255,255,${a})`);
-            g.addColorStop(0.25, `rgba(160,235,255,${a * 0.5})`);
+            g.addColorStop(0.25, `rgba(160,205,255,${a * 0.5})`);
             g.addColorStop(1, "rgba(120,160,255,0)");
             ctx.strokeStyle = g; ctx.lineWidth = 1.6; ctx.lineCap = "round";
             ctx.beginPath(); ctx.moveTo(m.x, m.y); ctx.lineTo(tx, ty); ctx.stroke();
@@ -354,10 +361,28 @@ export default function Starfield() {
       }
     };
 
+    const syncMotion = () => {
+      cancelAnimationFrame(raf);
+      raf = 0;
+      last = 0;
+      reduce = motion.matches;
+      meteor = null;
+      nextMeteor = elapsed + 12 + Math.random() * 10;
+      // Render one still frame when reduced motion or a hidden tab stops the loop.
+      draw(performance.now());
+    };
+
     resize();
-    if (!reduce) raf = requestAnimationFrame(draw);
+    motion.addEventListener("change", syncMotion);
+    document.addEventListener("visibilitychange", syncMotion);
     window.addEventListener("resize", resize);
-    return () => { cancelAnimationFrame(raf); clearTimeout(idle); window.removeEventListener("resize", resize); };
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(idle);
+      motion.removeEventListener("change", syncMotion);
+      document.removeEventListener("visibilitychange", syncMotion);
+      window.removeEventListener("resize", resize);
+    };
   }, []);
 
   return (

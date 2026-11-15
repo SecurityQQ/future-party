@@ -57,6 +57,8 @@ PAGES = {
     "mirror_research": "mirror/viral-webcam-effects.html",
     # Imagined Futures reads its pictures from concept-art/thumbs/, which site.py copies too
     "concept": "concept-art/imagined-futures.html",
+    # Mars in 3D is served from its own folder (/mars3d); site.py copies its pictures, globe maps and three.js
+    "mars3d": "mars3d/index.html",
 }
 # Earlier claude.ai copies of the same pages.
 ALIASES = {"https://claude.ai/artifact/65pctWFWHMQZ3ezNrrA7P1": "futurists_ru"}
@@ -77,6 +79,7 @@ SHORT = {
     "films": PAGES["films"],
     "futurists": PAGES["futurists"],
     "art": PAGES["concept"] + "#wall",
+    "mars": PAGES["mars3d"],
 }
 # Apps for the night that run on their own servers. Zodiac Rangers lives in astrology/app; link its home page, never /admin.
 APPS = {"rangers": "https://zodiac-rangers.vercel.app"}
@@ -138,6 +141,11 @@ def tweets_numbers():
 def concept_numbers():
     posts = load("concept-art/tweets.json")
     return {"pictures": sum(len(p["photos"]) for p in posts), "posts": len(posts)}
+
+
+def mars3d_numbers():
+    s = load("mars3d/slides.json")
+    return {"pictures": sum(len(c["slides"]) for c in s["chapters"]), "missions": len(s["chapters"])}
 
 
 def soundtrack_numbers():
@@ -208,6 +216,9 @@ def resources(web, films, b, t, s):
             ["Tweet wall", f"{t['tweets']} posts by {t['authors']} futurists on X.", "", [["start", SHORT["tweets"]], ["short version", SHORT["tweets-short"]]]],
             ["Imagined Futures", f"{c['pictures']} pictures of concept art about the future from {c['posts']} posts on X. The wall says what each picture shows and who made it.", "", [["start", SHORT["art"]], ["page", PAGES["concept"]]]],
         ]],
+        ["3D glasses", [
+            ["Mars in 3D", f"{mars3d_numbers()['pictures']} real stereo pictures of Mars from rovers, landers, a helicopter and orbiters, with a live 3D globe that flies to each landing site. For red/cyan glasses; runs by itself, about 13 minutes a loop.", "", [["start", PAGES["mars3d"]], ["globe", PAGES["mars3d"] + "?globe"], ["README", doc(web, "mars3d/README.md")]]],
+        ]],
         ["The evening", [
             ["Tea With Tomorrow", "The programme: a three-hour Futures Literacy Lab over tea, with a party clock.", "", [["open", PAGES["program"]]]],
             ["Contact 2050", "A Makey Makey soundboard for guests: 12 pins, 8 kits, jam mode, stage mode for the projector.", "", [["open", PAGES["contact"]], ["README", doc(web, "soundboard/README.md")]]],
@@ -217,7 +228,7 @@ def resources(web, films, b, t, s):
         ]],
         ["Sound", [
             ["Soundtrack 2050", f"The running order: {s['tracks']} tracks and voices in three blocks.", "", [["page", PAGES["soundtrack"]], ["YouTube ↗", PLAYLISTS["soundtrack"]]]],
-            ["Resonance", "Music history and what comes next: 60 stops, a Future Lab and a radio.", "", [["page", PAGES["resonance"]], ["YouTube ↗", PLAYLISTS["resonance"]]]],
+            ["History of Music 2050", "Music history and what comes next: 60 stops, music of the future and a radio.", "", [["page", PAGES["resonance"]], ["YouTube ↗", PLAYLISTS["resonance"]]]],
             ["Why Music Changes", "Four thousand years in thirteen eras.", "", [["page", PAGES["why"]], ["YouTube ↗", PLAYLISTS["history"]]]],
         ]],
         ["Research", [
@@ -257,6 +268,10 @@ def build(web=False):
     }
     missing = [p for p, ok in data["exists"].items() if not ok]
     tpl = (HUB / "template.html").read_text(encoding="utf8")
+    theme_slot = "/*VIBES_TOKENS*/"
+    if theme_slot not in tpl:
+        sys.exit("template.html is missing the shared vibe token slot")
+    tpl = tpl.replace(theme_slot, (ROOT / "vibes" / "tokens.css").read_text(encoding="utf8"), 1)
     slot = "const D=/*DATA*/{};"
     if slot not in tpl:
         sys.exit("template.html is missing the const D=/*DATA*/{}; slot")

@@ -1,0 +1,363 @@
+{
+ "title": "Mars in 3D",
+ "note": "Real stereo pictures of Mars for red/cyan 3D glasses (red lens on the left eye). Every picture was taken by a machine on or above Mars and published as an anaglyph by NASA or ESA. Captions are short versions of the agencies' own descriptions. Sources and licences: CREDITS.md, written by tools/build.py.",
+ "chapters": [
+  {
+   "id": "pathfinder",
+   "mission": "Mars Pathfinder",
+   "years": "1997",
+   "place": "Ares Vallis",
+   "lat": 19.13,
+   "lon": -33.22,
+   "line": "The first rover on Mars, Sojourner, was the size of a microwave oven.",
+   "slides": [
+    {
+     "id": "PIA00679",
+     "title": "Forward ramp and Twin Peaks",
+     "when": "July 1997",
+     "caption": "The lander's ramp, unrolled for Sojourner. Flat Top and Little Flat Top are at the centre, the Twin Peaks on the horizon."
+    },
+    {
+     "id": "PIA00678",
+     "title": "Sojourner's favourite rocks",
+     "when": "July 1997",
+     "caption": "Wedge at lower left; Shark, Half Dome and Pumpkin at the centre. The team named every rock."
+    },
+    {
+     "id": "PIA00688",
+     "title": "Yogi",
+     "when": "July 1997",
+     "caption": "A rock taller than the rover that drove up to it."
+    }
+   ]
+  },
+  {
+   "id": "spirit",
+   "mission": "Spirit",
+   "years": "2004–2010",
+   "place": "Gusev crater",
+   "lat": -14.57,
+   "lon": 175.47,
+   "line": "Built for 90 days on Mars. It worked for six years.",
+   "slides": [
+    {
+     "id": "PIA06049",
+     "title": "Spirit's shadow",
+     "when": "Sol 153, June 2004",
+     "caption": "The rover's own shadow on the plain, with the Columbia Hills ahead."
+    },
+    {
+     "id": "PIA07958",
+     "title": "Larry's Lookout",
+     "when": "February–March 2005",
+     "caption": "A panorama from a spot the team called Larry's Lookout, on the climb up Husband Hill.",
+     "crop": [
+      0.0,
+      0.215,
+      1.0,
+      0.86
+     ]
+    },
+    {
+     "id": "PIA10215",
+     "title": "West Valley",
+     "when": "Late 2007",
+     "caption": "Looking west from the low plateau where Spirit spent the last months of 2007."
+    },
+    {
+     "id": "PIA11803",
+     "title": "Beside Home Plate",
+     "when": "Sol 1809, February 2009",
+     "caption": "A 120-degree view to the south, after a short drive."
+    },
+    {
+     "id": "PIA11960",
+     "title": "A dust devil",
+     "when": "Sol 1854, March 2009",
+     "caption": "West is at the centre, where a dust devil is crossing the plain in the distance."
+    }
+   ]
+  },
+  {
+   "id": "opportunity",
+   "mission": "Opportunity",
+   "years": "2004–2018",
+   "place": "Meridiani Planum",
+   "lat": -1.95,
+   "lon": -5.53,
+   "line": "Also built for 90 days. It drove 45 kilometres in fourteen years.",
+   "slides": [
+    {
+     "id": "PIA05284",
+     "title": "Blueberries",
+     "when": "February 2004",
+     "caption": "Round grains a few millimetres across, nicknamed blueberries, on the floor of Eagle crater. They formed in water, long ago."
+    },
+    {
+     "id": "PIA06702",
+     "title": "Inside Endurance crater",
+     "when": "Sol 171, July 2004",
+     "caption": "A full circle around the rover, 11 metres inside the crater."
+    },
+    {
+     "id": "PIA08578",
+     "title": "Burns Cliff",
+     "when": "November 2004",
+     "caption": "The inner wall of Endurance crater, layer on layer, from its foot."
+    },
+    {
+     "id": "PIA10228",
+     "title": "Duck Bay, Victoria crater",
+     "when": "Late 2007",
+     "caption": "Inside an alcove of Victoria crater, where Opportunity studied the rocks.",
+     "crop": [
+      0.6,
+      0.03,
+      0.995,
+      0.68
+     ]
+    },
+    {
+     "id": "PIA12165",
+     "title": "Block Island",
+     "when": "Sol 1961, August 2009",
+     "caption": "An iron-nickel meteorite, lying on the surface of Mars."
+    },
+    {
+     "id": "PIA13796",
+     "title": "Santa Maria crater",
+     "when": "January 2011",
+     "caption": "Opportunity's seventh anniversary on Mars. The crater is about as wide as a football field is long."
+    },
+    {
+     "id": "PIA18395",
+     "title": "Pillinger Point",
+     "when": "2014",
+     "caption": "A point on the western rim of Endeavour crater, with the crater beyond."
+    },
+    {
+     "id": "PIA19395",
+     "title": "Spirit of St. Louis crater",
+     "when": "March 2015",
+     "caption": "A rock spire in a shallow crater 34 metres long."
+    },
+    {
+     "id": "PIA21721",
+     "title": "Above Perseverance Valley",
+     "when": "June 2017",
+     "caption": "On the rim of Endeavour crater. A year later a planet-wide dust storm ended the mission."
+    }
+   ]
+  },
+  {
+   "id": "phoenix",
+   "mission": "Phoenix",
+   "years": "2008",
+   "place": "Vastitas Borealis",
+   "lat": 68.22,
+   "lon": -125.7,
+   "line": "A lander in the Martian arctic that dug down to ice.",
+   "slides": [
+    {
+     "id": "PIA10977",
+     "title": "Snow White trench",
+     "when": "July 2008",
+     "caption": "A trench scraped by the lander's robotic arm."
+    },
+    {
+     "id": "PIA11130",
+     "title": "La Mancha trench",
+     "when": "October 2008",
+     "caption": "The depth of the trench, and the ice layer under the soil."
+    }
+   ]
+  },
+  {
+   "id": "curiosity",
+   "mission": "Curiosity",
+   "years": "since 2012",
+   "place": "Gale crater",
+   "lat": -4.59,
+   "lon": 137.44,
+   "line": "A rover the size of a car, climbing Mount Sharp.",
+   "slides": [
+    {
+     "id": "PIA16925",
+     "title": "From John Klein to Mount Sharp",
+     "when": "Early 2013",
+     "caption": "The rover's deck at its first drilling site, with Mount Sharp on the horizon."
+    },
+    {
+     "id": "PIA16223",
+     "title": "Hottah",
+     "when": "September 2012",
+     "caption": "Pebbles cemented into rock: evidence of a stream that once ran fast here."
+    },
+    {
+     "id": "PIA17764",
+     "title": "Dingo Gap",
+     "when": "Sol 524, January 2014",
+     "caption": "The full circle around the rover, on its way to a gap between dunes."
+    },
+    {
+     "id": "PIA17948",
+     "title": "Rock rows and Mount Sharp",
+     "when": "February 2014",
+     "caption": "Rows of rock at a spot called Junda, and Mount Sharp on the horizon."
+    },
+    {
+     "id": "PIA18074",
+     "title": "The Kimberley",
+     "when": "April 2014",
+     "caption": "Several kinds of rock at one waypoint, the day the rover arrived."
+    },
+    {
+     "id": "PIA19678",
+     "title": "Sol 1000",
+     "when": "May 2015",
+     "caption": "A full circle in a valley below Marias Pass, on the lower slopes of Mount Sharp.",
+     "crop": [
+      0.0,
+      0.17,
+      1.0,
+      0.57
+     ]
+    },
+    {
+     "id": "PIA20282",
+     "title": "Namib Dune",
+     "when": "Sol 1196, December 2015",
+     "caption": "The downwind face of a moving sand dune, four metres high: the first close look at an active dune on another planet."
+    },
+    {
+     "id": "PIA22212",
+     "title": "Funzie",
+     "when": "2018",
+     "caption": "Six and a half centimetres of rock, with hollows shaped like gypsum crystals."
+    }
+   ]
+  },
+  {
+   "id": "perseverance",
+   "mission": "Perseverance and Ingenuity",
+   "years": "since 2021",
+   "place": "Jezero crater",
+   "lat": 18.44,
+   "lon": 77.45,
+   "line": "A rover, and the first aircraft to fly on another planet.",
+   "slides": [
+    {
+     "id": "PIA24670",
+     "title": "Ingenuity",
+     "when": "Sol 105, June 2021",
+     "caption": "The helicopter on the crater floor, seen by the rover's two Mastcam-Z cameras.",
+     "crop": [
+      0.035,
+      0.0,
+      0.88,
+      1.0
+     ]
+    },
+    {
+     "id": "PIA24522",
+     "title": "Ingenuity flies",
+     "when": "25 April 2021",
+     "caption": "Its third flight, filmed by Perseverance."
+    },
+    {
+     "id": "PIA24688",
+     "title": "Raised Ridges, from the air",
+     "when": "Flight 10, July 2021",
+     "caption": "Two photos taken metres apart by the helicopter make the depth."
+    },
+    {
+     "id": "PIA24811",
+     "title": "Faillefeu, from the air",
+     "when": "Flight 13, September 2021",
+     "caption": "A mound the rover team was thinking of visiting, photographed twice from 5 metres apart.",
+     "crop": [
+      0.075,
+      0.0,
+      0.895,
+      1.0
+     ]
+    }
+   ]
+  },
+  {
+   "id": "orbit",
+   "mission": "From orbit",
+   "years": "1997 to now",
+   "place": "Mars Express and Mars Reconnaissance Orbiter",
+   "lat": -6,
+   "lon": -75,
+   "line": "One place photographed from two angles as the spacecraft passes over it.",
+   "slides": [
+    {
+     "id": "ESA211204",
+     "title": "Noctis Labyrinthus",
+     "when": "June 2006",
+     "caption": "The Labyrinth of the Night, a maze of canyons at the head of Valles Marineris.",
+     "by": "Mars Express (ESA)"
+    },
+    {
+     "id": "ESA228571",
+     "title": "Juventae Chasma",
+     "when": "March 2004",
+     "caption": "A deep basin north of Valles Marineris. North is to the left.",
+     "by": "Mars Express (ESA)"
+    },
+    {
+     "id": "ESA202923",
+     "title": "Aram Chaos",
+     "when": "October 2004",
+     "caption": "Broken, jumbled ground inside an old crater.",
+     "by": "Mars Express (ESA)"
+    },
+    {
+     "id": "PIA09558",
+     "title": "Eberswalde delta",
+     "when": "2007",
+     "caption": "River meanders in an old delta: water flowed here for a long time.",
+     "by": "Mars Reconnaissance Orbiter (NASA)"
+    },
+    {
+     "id": "PIA21265",
+     "title": "Blade-like walls",
+     "when": "2017",
+     "caption": "Rock ridges as tall as a 16-storey building meet at angles and draw polygons.",
+     "by": "Mars Reconnaissance Orbiter (NASA)"
+    },
+    {
+     "id": "PIA01883",
+     "title": "Victoria crater",
+     "when": "October 2006",
+     "caption": "The crater Opportunity drove to, seen from orbit: about 750 metres across.",
+     "by": "Mars Reconnaissance Orbiter (NASA)"
+    },
+    {
+     "id": "ESA21793981",
+     "title": "North polar ice cap",
+     "when": "Published 2020",
+     "caption": "Part of the ice cap at the north pole. North is to the upper right.",
+     "by": "Mars Express (ESA)"
+    },
+    {
+     "id": "PIA10371",
+     "title": "Phobos",
+     "when": "March 2008",
+     "caption": "The larger moon of Mars, about 22 kilometres across, photographed twice within ten minutes.",
+     "by": "Mars Reconnaissance Orbiter (NASA)"
+    },
+    {
+     "id": "ESA200429",
+     "title": "The whole planet",
+     "when": "25 February 2007",
+     "caption": "The Rosetta probe flew past Mars on its way to a comet and took two pictures six minutes apart.",
+     "by": "Rosetta (ESA), flying past",
+     "crop": false
+    }
+   ]
+  }
+ ]
+}

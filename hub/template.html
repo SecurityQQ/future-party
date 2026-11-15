@@ -4,42 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Future Party 2050</title>
+<meta name="theme-color" content="#030817">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307132b'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='%23dce9fb' stroke-width='2'/%3E%3Cellipse cx='32' cy='32' rx='28' ry='10' transform='rotate(-30 32 32)' fill='none' stroke='%239dd8ff' stroke-width='2'/%3E%3C/svg%3E">
+<meta name="description" content="Step into 2050. Films, music, ideas, and other worlds for the Future Party.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Instrument+Serif&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Geologica:wght@400;500;600;700&family=Martian+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: the projectionist's desk for the night. The wall comes first (the films with real frames,
-   three slide walls drawn in their own type), then the programme, the sound, what to read, the
-   pre-flight list and how to rebuild. The display face is League Gothic, the wall films' own type.
-   Dark-first; light supported. Everything is a relative link, so the page works from the folder offline.
-   D.mode is "folder" (index.html, from hub/build.py) or "web" (site/index.html, from hub/site.py): the web mode plays
-   the 720p previews, opens Markdown on GitHub and drops the claude.ai copies, since every page is on the site. */
+/* Shared blue futurism: tokens are inlined by hub/build.py for offline use. */
+/*VIBES_TOKENS*/
 :root{
-  --bg:#070708; --raised:#0e0e10; --fg:#ffffff; --fg-2:#d4d4d8; --muted:#a1a1a6;
-  --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.20);
-  --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#ff6a33; --on-accent:#070708;
-  --ok:#67fc5c; --warn:#ffad31;
-  --display:"League Gothic","Impact","Arial Narrow",sans-serif;
-  --font:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
-  --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;
-  --r:10px;
-  color-scheme:dark;
-}
-@media (prefers-color-scheme: light){
-  :root:not([data-theme="dark"]){
-    --bg:#ffffff; --raised:#f5f5f6; --fg:#070708; --fg-2:#2a2a2e; --muted:#6e6e73;
-    --line:#e5e5e7; --line-2:#cfcfd4; --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#c2410c; --on-accent:#070708;
-    --ok:#16883a; --warn:#a35f00; color-scheme:light;
-  }
-}
-:root[data-theme="light"]{
-  --bg:#ffffff; --raised:#f5f5f6; --fg:#070708; --fg-2:#2a2a2e; --muted:#6e6e73;
-  --line:#e5e5e7; --line-2:#cfcfd4; --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#c2410c; --on-accent:#070708;
-  --ok:#16883a; --warn:#a35f00; color-scheme:light;
+  --bg:var(--v-space); --raised:var(--v-navy); --fg:var(--v-ink); --fg-2:#c4d4ec; --muted:var(--v-muted);
+  --line:rgb(143 170 207 / 20%); --line-2:rgb(143 170 207 / 42%);
+  --accent:var(--v-ice); --accent-hot:#cce9ff; --accent-ink:var(--v-ice); --on-accent:var(--v-navy);
+  --ok:var(--v-ice); --warn:var(--v-warning);
+  --display:"Unbounded",system-ui,sans-serif;
+  --font:"Geologica",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Martian Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --serif:var(--font); --r:16px; color-scheme:dark;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--font);-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 var(--font);-webkit-font-smoothing:antialiased}
 [hidden]{display:none!important}
 a{color:inherit;text-decoration-color:var(--line-2);text-underline-offset:3px}
 a:hover{text-decoration-color:var(--accent)}
@@ -48,23 +33,34 @@ code{font:13px var(--mono);background:var(--raised);border:1px solid var(--line)
 .wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .eyebrow{font:500 12px/1.3 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0}
 h1,h2,h3{margin:0;text-wrap:balance}
-h2{font-size:clamp(26px,3.4vw,38px);line-height:1.08;letter-spacing:-.03em;font-weight:700;margin-top:8px}
+h2{font:500 clamp(23px,2.6vw,34px)/1.25 var(--display);letter-spacing:-.035em;margin-top:8px}
 p{margin:0}
 section{padding-block:56px;border-top:1px solid var(--line)}
 .sec-head{display:grid;gap:6px;margin-bottom:28px;max-width:760px}
 .sec-head .note{color:var(--muted);font-size:15px;margin-top:6px}
 
-nav.top{display:flex;flex-wrap:wrap;gap:6px 18px;padding-block:18px;font:500 13px/1 var(--mono);letter-spacing:.04em}
+nav.top{display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;padding-block:22px;border-bottom:1px solid var(--line);font:400 11px/1.4 var(--mono);letter-spacing:.03em}
 nav.top a{text-decoration:none;color:var(--muted)}
 nav.top a:hover{color:var(--fg)}
-nav.top .brand{color:var(--fg);margin-right:auto}
+nav.top .brand{display:flex;align-items:center;gap:10px;color:var(--v-chrome);margin-right:auto;font:500 12px/1.4 var(--display);letter-spacing:-.02em}
+nav.top .brand svg{width:30px;height:30px;flex:none;color:var(--v-ice)}
 
-.hero{padding-block:28px 48px}
-.hero h1{font:400 clamp(72px,15vw,200px)/.86 var(--display);text-transform:uppercase;letter-spacing:.005em;margin-top:14px}
-.hero h1 .yr{color:var(--accent)}
-.lead{font-size:clamp(18px,2vw,21px);line-height:1.5;color:var(--fg-2);max-width:62ch;margin-top:22px}
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:36px;padding-block:48px 56px;isolation:isolate}
+.hero-copy{position:relative;z-index:1;min-width:0}
+.hero-art{position:relative;min-width:0;overflow:hidden;border-radius:180px 20px 180px 20px;border:1px solid #617fa6;box-shadow:inset 0 0 0 1px #dce9fb,0 20px 80px rgb(21 59 126 / 22%);background:var(--v-space)}
+.hero-art img{position:absolute;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.88;animation:chrome-drift 24s ease-in-out infinite alternate}
+.hero-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 65%,rgb(3 8 23 / 70%));pointer-events:none}
+.art-label{position:absolute;z-index:1;left:28px;right:28px;bottom:32px;font:400 10px/1.8 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--v-chrome)}
+.art-label span{display:block;color:var(--v-muted);font-size:9px;letter-spacing:.08em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:16px 22px;align-items:center;margin-top:28px}
+.hero-actions .lnk{font-size:14px;color:var(--cyan,var(--v-ice))}
+@keyframes chrome-drift{to{transform:scale(1.06) translateY(-1%)}}
+
+.hero h1{font:500 clamp(44px,6.1vw,82px)/1.06 var(--display);text-transform:uppercase;letter-spacing:-.055em;margin-top:22px}
+.hero h1 .yr{display:block;margin-top:6px;background:var(--v-chrome-surface);background-clip:text;-webkit-background-clip:text;color:transparent;font-weight:600;letter-spacing:-.045em}
+.lead{font-size:clamp(15px,1.4vw,17px);line-height:1.8;color:var(--fg-2);max-width:55ch;margin-top:26px}
 .lead b{color:var(--fg);font-weight:600}
-.facts{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:22px;font:400 13px var(--mono);color:var(--muted)}
+.facts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px 28px;padding:20px 0 0;border-top:1px solid var(--line);font:400 11px/1.8 var(--mono);color:var(--muted)}
 .facts b{color:var(--fg);font-weight:500;font-variant-numeric:tabular-nums}
 
 /* All resources: one dense list, grouped */
@@ -88,24 +84,24 @@ nav.top .brand{color:var(--fg);margin-right:auto}
 @media (max-width:640px){.tiles{grid-template-columns:1fr}}
 .tiles + .row-label{margin-top:40px}
 .tile{display:flex;flex-direction:column;gap:14px;min-width:0}
-.screen{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:8px;overflow:hidden;background:#0b0b0d;border:1px solid var(--line)}
-.screen video{width:100%;height:100%;object-fit:cover;display:block;background:#0b0b0d}
+.screen{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:8px;overflow:hidden;background:var(--v-space);border:1px solid var(--line)}
+.screen video{width:100%;height:100%;object-fit:cover;display:block;background:var(--v-space)}
 .screen .len{position:absolute;right:8px;bottom:8px;font:500 12px var(--mono);color:#fff;background:rgba(0,0,0,.66);padding:3px 7px;border-radius:5px;font-variant-numeric:tabular-nums}
-.screen .missing{position:absolute;inset:0;display:grid;place-content:center;gap:6px;text-align:center;padding:16px;color:#a1a1a6;font:400 13px/1.5 var(--mono)}
-.screen .missing b{color:#ffad31;font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:12px}
-.screen.slide{display:flex;flex-direction:column;justify-content:center;padding:7% 8%;gap:8px;color:#fff;background:radial-gradient(circle at 20% 80%,rgba(255,83,21,.18),transparent 55%),#060607}
-.slide .k{font:500 clamp(8px,.75vw,10px)/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#ff6a33}
+.screen .missing{position:absolute;inset:0;display:grid;place-content:center;gap:6px;text-align:center;padding:16px;color:var(--muted);font:400 13px/1.5 var(--mono)}
+.screen .missing b{color:var(--warn);font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:12px}
+.screen.slide{display:flex;flex-direction:column;justify-content:center;padding:7% 8%;gap:8px;color:#fff;background:radial-gradient(circle at 20% 80%,rgb(67 133 255 / 24%),transparent 55%),var(--v-navy)}
+.slide .k{font:500 clamp(8px,.75vw,10px)/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink)}
 .slide .qt{font:400 clamp(16px,1.9vw,24px)/1.12 var(--serif);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-.slide .qt i{color:#ff6a33;font-style:normal}
+.slide .qt i{color:var(--accent-ink);font-style:normal}
 .slide .ht{font:800 clamp(17px,2vw,26px)/1.02 var(--font);letter-spacing:-.04em;max-width:16ch}
 .slide .tw{font:500 clamp(13px,1.35vw,17px)/1.35 var(--font);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;max-width:30ch}
-.slide .by{font:400 clamp(8px,.75vw,10px)/1.3 var(--mono);color:#9a9aa3}
+.slide .by{font:400 clamp(8px,.75vw,10px)/1.3 var(--mono);color:var(--muted)}
 .tile h4{margin:0;font:600 20px/1.2 var(--font);letter-spacing:-.02em}
 .tile h4 small{display:block;font:400 13px/1.5 var(--mono);color:var(--muted);letter-spacing:0;margin-top:3px}
 .tile p{color:var(--fg-2);font-size:14.5px}
 .actions{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:auto}
-.btn{display:inline-flex;align-items:center;gap:9px;font:600 14px/1 var(--font);color:var(--on-accent);background:var(--accent);border:0;border-radius:999px;padding:11px 16px;cursor:pointer;text-decoration:none}
-.btn:hover{background:var(--accent-hot)}
+.btn{display:inline-flex;align-items:center;gap:9px;font:600 14px/1 var(--font);color:var(--on-accent);background:var(--v-chrome-surface);background-size:130% 100%;border:1px solid #c8ddf7;border-radius:10px;padding:13px 18px;box-shadow:inset 0 1px 0 #fff,0 4px 16px rgb(67 133 255 / 12%);transition:background-position var(--v-fast),box-shadow var(--v-fast);cursor:pointer;text-decoration:none}
+.btn:hover{background-position:100% 50%;box-shadow:inset 0 1px 0 #fff,0 0 24px rgb(67 133 255 / 25%)}
 .btn .tri{width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
 .btn[disabled]{background:var(--line-2);color:var(--muted);cursor:not-allowed}
 .lnk{font-size:14px;color:var(--fg-2);text-decoration:none}
@@ -115,7 +111,7 @@ nav.top .brand{color:var(--fg);margin-right:auto}
 /* Programme */
 .program{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:start}
 @media (max-width:860px){.program{grid-template-columns:1fr;gap:28px}}
-.program h3{font:400 clamp(44px,6vw,72px)/.92 var(--display);text-transform:uppercase}
+.program h3{font:500 clamp(32px,4vw,52px)/1.15 var(--display);letter-spacing:-.045em;text-transform:uppercase}
 .program p{color:var(--fg-2);margin-top:14px;max-width:60ch}
 .arc{display:grid;gap:10px;border-top:1px solid var(--line);padding-top:16px}
 .arc div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;font-size:14.5px;color:var(--fg-2);padding-bottom:10px;border-bottom:1px solid var(--line)}
@@ -124,7 +120,7 @@ nav.top .brand{color:var(--fg);margin-right:auto}
 /* Lists */
 /* Mirror 2050 */
 .mirror-shot{display:block;width:100%;height:auto;border-radius:var(--r);border:1px solid var(--line);background:var(--raised)}
-#mirror .arc div{grid-template-columns:128px minmax(0,1fr)}
+#mirror .arc div,#mars .arc div{grid-template-columns:128px minmax(0,1fr)}
 #mirror .how{color:var(--fg-2);font-size:14.5px;margin-top:14px;max-width:62ch}
 #mirror .how a{color:var(--fg);text-decoration:underline;text-underline-offset:2px}
 .list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px}
@@ -167,20 +163,77 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12.5px/
 .pbar span{font:500 13px var(--mono);color:#cfcfd4;margin-right:8px}
 .pbar button{font:500 13.5px/1 var(--font);color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:10px 14px;cursor:pointer}
 .pbar button:hover{background:rgba(255,255,255,.16)}
-@media (prefers-reduced-motion: reduce){.pbar{transition:none}}
+/* Chrome-edged resource panels keep the long index readable. */
+body{background-image:radial-gradient(ellipse at 88% 5%,rgb(30 75 151 / 24%),transparent 35%)}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+::selection{color:var(--v-navy);background:var(--v-ice)}
+.grp{padding:22px;border:1px solid var(--line-2);border-top-color:#7d9ac0;border-radius:var(--r);background:linear-gradient(145deg,#112441,#07132b 75%);box-shadow:inset 0 1px 0 rgb(220 233 251 / 6%)}
+.grp h3{color:var(--v-ice);font-size:11px;margin-bottom:16px}
+.grp li:last-child{padding-bottom:0}
+.index{gap:20px}
+.shorts{gap:8px;font-size:11px}
+.shorts a{padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--raised)}
+.tile{background:linear-gradient(145deg,#0b1b36,#07132b);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.tile .screen{border-color:var(--line-2)}
+.tile h4{font-size:19px;line-height:1.35}
+.slide .k,.slide .by{font-size:10px}
+.slide .qt{font-weight:400;line-height:1.3}
+.item .links a{color:var(--accent-ink)}
+.row-label span{font-size:11px;line-height:1.7}
+.eyebrow{color:var(--v-ice);font-size:11px}
+.arc b{font-size:11px}
+.table-wrap{background:var(--v-navy)}
+.check input:checked + span{opacity:.72}
+.check-tools button{background:var(--raised);border-radius:8px}
+.check-tools button:hover{border-color:var(--v-ice)}
+.player .pbar{background:linear-gradient(transparent,rgb(3 8 23 / 94%))}
+.player .pbar button{background:#142d52;border-color:#617fa6;border-radius:8px}
+@media(max-width:900px){
+  .hero{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px}
+  .hero h1{font-size:clamp(44px,7.6vw,68px)}
+  .hero-art{border-radius:100px 16px 100px 16px}
+  nav.top .brand{flex-basis:100%}
+}
+@media(max-width:620px){
+  .hero{display:block;padding-block:36px 32px;overflow:hidden}
+  .hero-copy{padding-bottom:28px}
+  .hero h1{font-size:clamp(42px,12.8vw,68px);max-width:100%;letter-spacing:-.06em}
+  .hero-art{position:absolute;z-index:-1;top:16px;right:-24%;width:80%;height:440px;border:0;border-radius:0;box-shadow:none;opacity:.2;mask-image:linear-gradient(90deg,transparent,#000 40%,#000)}
+  .hero-art .art-label{display:none}
+  .lead{max-width:100%;font-size:15px;text-shadow:0 1px 8px var(--v-space)}
+  .hero-actions{gap:16px;font-size:13px}
+  .facts{font-size:10px;gap:10px 20px}
+  section{padding-block:40px}
+  .sec-head{margin-bottom:22px}
+  .row-label{display:block}.row-label span{display:block;margin-top:6px}
+  .grp{padding:18px}.tile{padding:14px}
+  nav.top{gap:12px 16px;font-size:10px}
+  .check-tools{font-size:11px;flex-wrap:wrap}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
   <nav class="top" aria-label="Sections">
-    <span class="brand">FUTURE PARTY / 2050</span>
-    <a href="#all">All</a><a href="#wall">Wall</a><a href="#programme">Programme</a><a href="#mirror">Mirror</a><a href="#sound">Sound</a><a href="#read">Read</a><a href="#preflight">Before the night</a><a href="#rebuild">Rebuild</a>
+    <span class="brand"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="16" cy="16" r="7"/><ellipse cx="16" cy="16" rx="15" ry="5" transform="rotate(-25 16 16)"/></svg>FUTURE PARTY / 2050</span>
+    <a href="#all">All</a><a href="#wall">Wall</a><a href="#programme">Programme</a><a href="#mirror">Mirror</a><a href="#mars">Mars 3D</a><a href="#sound">Sound</a><a href="#read">Read</a><a href="#preflight">Before the night</a><a href="#rebuild">Rebuild</a>
   </nav>
 
   <header class="hero">
-    <p class="eyebrow" id="eyebrow">The front page of this folder</p>
-    <h1>Future Party <span class="yr">2050</span></h1>
-    <p class="lead" id="lead"></p>
+    <div class="hero-copy">
+      <p class="eyebrow" id="eyebrow">The front page of this folder</p>
+      <h1>Future<br>Party <span class="yr">2050</span></h1>
+      <p class="lead" id="lead"></p>
+      <div class="hero-actions"><a class="btn" href="#all">Explore the night <span aria-hidden="true">↗</span></a><a class="lnk" href="music/resonance/dist/local/index.html">Enter History of Music 2050 <span aria-hidden="true">↗</span></a></div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <img src="vibes/assets/chrome-orbit.webp" width="736" height="1308" alt="" fetchpriority="high">
+      <div class="art-label">Other worlds. One night.<span>Music · ideas · future encounters</span></div>
+    </div>
     <div class="facts" id="facts"></div>
   </header>
 
@@ -247,6 +300,31 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12.5px/
         <div><b>6 Time Warp</b><span>Lower rows are older frames; point a finger and time ripples from it.</span></div>
         <div><b>7 Matrix</b><span>You turn into falling code; your hands show the real colours.</span></div>
         <div><b>8 Cloak</b><span>Your body shows the room behind you. A fist decloaks.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mars">
+    <div class="sec-head">
+      <p class="eyebrow">For 3D glasses</p>
+      <h2>Mars in 3D</h2>
+      <p class="note">Real stereo pictures of Mars, taken by the rovers, landers, the Ingenuity helicopter and orbiters, with a live 3D globe that flies to each landing site. Red/cyan glasses, red lens on the left eye. It runs by itself, about 13 minutes a loop, and works offline.</p>
+    </div>
+    <div class="program">
+      <div>
+        <img class="mirror-shot" id="marsShot" src="mars3d/preview.jpg" width="1280" height="720" loading="lazy" alt="Curiosity's deck and Mount Sharp on the horizon, as a red/cyan anaglyph">
+        <div class="actions" style="margin-top:20px"><a class="btn" id="marsLink"><span class="tri" aria-hidden="true"></span>Start Mars in 3D</a></div>
+        <p class="how">The intro has a glasses test. Arrow keys skip, G opens the globe alone (drag to turn it), I lists every picture with its source. NASA pictures are public domain, ESA's are CC BY-SA 3.0 IGO.</p>
+      </div>
+      <div class="arc" aria-label="The missions in the loop">
+        <p class="eyebrow" style="margin-bottom:4px">Seven missions, keys 1–7</p>
+        <div><b>1 Pathfinder</b><span>1997, Ares Vallis: the first rover, Sojourner, and its rocks.</span></div>
+        <div><b>2 Spirit</b><span>2004–2010, Gusev crater: its own shadow, a dust devil, Husband Hill.</span></div>
+        <div><b>3 Opportunity</b><span>2004–2018, Meridiani: blueberries, an iron meteorite, Endeavour crater.</span></div>
+        <div><b>4 Phoenix</b><span>2008, the arctic: trenches dug down to ice.</span></div>
+        <div><b>5 Curiosity</b><span>Since 2012, Gale crater: Mount Sharp, a moving dune.</span></div>
+        <div><b>6 Perseverance</b><span>Since 2021, Jezero: Ingenuity flying, and the ground seen from it.</span></div>
+        <div><b>7 From orbit</b><span>Canyons, an ancient delta, the north polar cap, Phobos.</span></div>
       </div>
     </div>
   </section>
@@ -389,7 +467,7 @@ const P=D.pages;
 $('soundList').innerHTML=[
   item('Soundtrack 2050','The party’s running order: '+S.tracks+' tracks and spoken voices in three blocks, each scored for plausibility and inspiration, plus '+S.bench+' spares.',
     [['YouTube playlist ↗',D.playlists.soundtrack],loc('page',P.soundtrack),['online ↗',D.online.soundtrack]]),
-  item('Resonance',WEB?'Music history and what comes next: 60 stops from 1400 BCE, a Future Lab and a radio, with a YouTube player in the page.':'Music history and what comes next: 60 stops from 1400 BCE, a Future Lab and a radio. Its built-in YouTube player needs a small local server: double-click <code>music/resonance/dist/local/Open Resonance.command</code>.',
+  item('History of Music 2050',WEB?'Music history and what comes next: 60 stops from 1400 BCE, music of the future and a radio, with a YouTube player in the page.':'Music history and what comes next: 60 stops from 1400 BCE, music of the future and a radio. Its built-in YouTube player needs a small local server: double-click <code>music/resonance/dist/local/Open Resonance.command</code>.',
     [['YouTube playlist ↗',D.playlists.resonance],loc(WEB?'page':'page (no player)',P.resonance),['online ↗',D.online.resonance]]),
   item('Why Music Changes','Four thousand years in thirteen eras: who paid, who ruled, what people believed, and the technology and contact that changed the sound.',
     [['History of Music playlist ↗',D.playlists.history],loc('page',P.why),['online ↗',D.online.why]]),
@@ -419,6 +497,10 @@ if(D.exists['mirror/preview.jpg']===false)$('mirrorShot').hidden=true;
 $('mirrorLink').insertAdjacentHTML('afterend',['<a class="lnk" href="'+esc(P.mirror)+'?party">party mode</a>','<a class="lnk" href="'+esc(P.mirror_research)+'">the research: viral webcam effects</a>','<a class="lnk" href="'+esc(doc('mirror/README.md'))+'"'+ext(doc('mirror/README.md'))+'>README</a>',on(D.online.mirror_research)].filter(Boolean).join(''));
 $('mirrorHow').innerHTML=WEB?'Works on any laptop or phone with a camera, best in Chrome or Edge: allow the camera, then use your hands. Party mode hides the controls and changes the effect every 25 seconds.':'The camera needs a local server: run <code>python3 -m http.server 8050 -d mirror</code> from this folder, then open <a class="lnk" href="http://localhost:8050">localhost:8050</a> (<a class="lnk" href="http://localhost:8050/?party">party mode</a>). For a laptop without internet, run <code>mirror/tools/vendor.sh</code> once while online, so hand tracking works offline.';
 
+/* Mars in 3D */
+$('marsLink').href=P.mars3d;
+if(D.exists['mars3d/index.html']===false){$('marsShot').hidden=true;$('marsLink').removeAttribute('href');}
+
 /* Pre-flight */
 const CHECK=[
   ['Get the 1080p films onto that laptop.','A fresh clone of the repo plays the 720p previews. For the wall, download the 1080p masters from the <a href="'+esc(D.repo)+'/releases" target="_blank" rel="noopener">GitHub releases</a> into <code>video/renders</code> and <code>roast/renders</code>, or copy the whole folder with its renders.'],
@@ -445,7 +527,7 @@ const RB=[
   ['Book Projection, quote and idea walls','<code>books/quotes.json</code>, <code>books/template.html</code>','cd books && python3 -I build.py'],
   ['Tweet wall and tweet page','<code>tweets/tweets.json</code>, <code>tweets/avatars/</code>','cd tweets && python3 -I build.py'],
   ['Soundtrack 2050, Why Music Changes','<code>music/soundtrack.json</code>, <code>music/eras.json</code>','cd music && python3 -I build.py'],
-  ['Resonance','<code>music/resonance/additions.json</code>','cd music/resonance && python3 -I build_resonance.py'],
+  ['History of Music 2050','<code>music/resonance/additions.json</code>','cd music/resonance && python3 -I build_resonance.py'],
   ['Contact 2050 soundboard','<code>soundboard/kits.json</code>, <code>soundboard/template.html</code>','cd soundboard && python3 -I build.py'],
   ['Mirror 2050','<code>mirror/index.html</code>, one file; the research page and <code>mirror/preview.jpg</code> beside it','no build · offline: mirror/tools/vendor.sh'],
   ['Programme, Futurists on 2050, Projection 2050','Saved copies of the claude.ai pages, in <code>programme/</code>, <code>tweets/research/</code> and <code>reel/</code>','no build: save the page again'],

@@ -1,0 +1,93 @@
+/* One chronological period strip, then the selected video and its context. */
+#history-view .history-visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+#history-view .history-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:14px 20px;padding:20px 0 18px;border-bottom:1px solid var(--line)}
+#history-view .history-period-picker{grid-column:1/-1;min-width:0}
+#history-view .history-period-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:6px}
+#history-view .history-period-heading>span,#history-view .history-field label{font:400 10px/1.5 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--v-muted)}
+#history-view .history-period-scroll{display:flex;gap:6px}
+#history-view .history-period-scroll .icon-button{width:28px;height:28px;font-size:15px;border-radius:7px}
+#history-view .history-period-strip{position:relative;display:flex;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:var(--v-chrome-low) transparent;padding:3px 2px 9px;gap:0}
+#history-view .history-period{position:relative;display:flex;flex-direction:column;align-items:flex-start;flex:1 0 152px;min-width:0;max-width:180px;padding:4px 12px 7px 0;text-align:left;scroll-snap-align:start;color:var(--v-muted);background:transparent;border:0;border-radius:0}
+#history-view .history-period-range{font:400 10px/1.6 var(--mono);white-space:nowrap;min-height:17px}
+#history-view .history-period-point{position:relative;display:flex;align-items:center;height:22px;width:calc(100% + 12px)}
+#history-view .history-period-point::before{content:"";height:1px;position:absolute;left:0;right:0;background:var(--line)}
+#history-view .history-period:last-child .history-period-point::before{right:35%}
+#history-view .history-period-point i{position:relative;z-index:1;display:block;width:7px;height:7px;border:1px solid #7398c5;border-radius:50%;background:var(--v-space)}
+#history-view .history-period-name{font:400 12px/1.5 var(--font);display:block;max-width:145px;min-height:36px}
+#history-view .history-period:hover{color:var(--v-ink)}
+#history-view .history-period.active{color:var(--v-chrome)}
+#history-view .history-period.active .history-period-range{color:var(--v-ice);font-weight:500}
+#history-view .history-period.active .history-period-name{font-weight:600}
+#history-view .history-period.active .history-period-point i{background:var(--v-chrome-surface);border-color:var(--v-ice);box-shadow:0 0 0 3px var(--v-space),0 0 0 4px #537cae,0 0 16px rgb(67 133 255 / 45%)}
+#history-view .history-period:focus-visible{outline-offset:-2px;border-radius:5px}
+#history-view .history-field{display:grid;gap:7px;min-width:0}
+#history-view .history-field select{display:block;width:100%;min-width:0;max-width:100%;height:46px;padding:10px 34px 10px 13px;border:1px solid #45678e;border-radius:9px;background-color:var(--v-navy);color:var(--v-ink);font:400 13px/1.5 var(--font);text-overflow:ellipsis;cursor:pointer}
+#history-view .history-field select:hover{border-color:var(--v-chrome-mid)}
+#history-view .history-field select:focus-visible{outline:2px solid var(--v-ice);outline-offset:3px}
+#history-view .history-step-controls{display:flex;align-items:center;justify-content:center;gap:10px;height:46px}
+#history-view .history-step-controls .icon-button{width:42px;height:42px;flex:none;border-radius:9px}
+#history-view #history-position{font:400 11px/1.5 var(--mono);color:var(--v-chrome);min-width:65px;text-align:center;white-space:nowrap}
+#history-view .story{padding-top:10px;scroll-margin-top:12px}
+#history-view .story-heading{justify-content:flex-end;margin-bottom:10px;min-height:34px}
+#history-view .story-tools{gap:20px}
+#history-view .story-tools .quiet-button{font-size:12px;padding-block:4px}
+#history-view .story-grid{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:start}
+#history-view .listening-panel,#history-view .story-text{min-width:0}
+#history-view .story-meta{margin-top:0;gap:16px}
+#history-view .story-year{font-size:24px;line-height:1.4}
+#history-view h2#story-title{font:500 clamp(24px,2.4vw,34px)/1.3 var(--display);letter-spacing:-.04em;margin:12px 0 16px}
+#history-view .context-section{margin-top:22px}
+#history-view .context-section p{font-size:14px;line-height:1.85}
+#history-view .artwork-wrap{height:auto;aspect-ratio:16/9;min-height:200px}
+#history-view .embed-container iframe{min-height:0;min-width:0}
+#history-view .recording-info{padding:20px}
+#history-view .recording-info h3{font-size:22px;line-height:1.35;margin:5px 0 9px}
+#history-view .video-credit{margin-bottom:13px}
+#history-view .player-top{min-height:42px;height:42px}
+#history-view .player-top .eyebrow{font-size:9px}
+#history-view .listening-prompt{padding-top:22px}
+#history-view .journey-footer{justify-content:flex-end;margin-top:24px;padding:16px 0}
+#history-view .future-bridge{margin:16px 0;padding:20px 24px}
+#history-view .future-bridge strong{font-size:22px;line-height:1.4}
+#history-view .future-bridge .eyebrow{margin-bottom:7px}
+@media(max-width:1050px){#history-view .story-grid{gap:28px}}
+@media(max-width:760px){
+ #history-view .story-grid{grid-template-columns:minmax(0,1fr);gap:28px}
+ #history-view .listening-panel{display:contents}
+ #history-view .recording-card{grid-row:1}
+ #history-view .story-text{grid-row:2}
+ #history-view .listening-prompt{grid-row:3;padding-top:0}
+ #history-view .recording-note{grid-row:4;margin-top:-14px}
+ #history-view .story-heading{margin-bottom:9px}
+ #history-view .context-section p{font-size:14px}
+}
+@media(max-width:620px){
+ #history-view .history-controls{gap:10px 12px;padding:14px 0 14px}
+ #history-view .history-period-heading{margin-bottom:2px}
+ #history-view .history-period-heading>span,#history-view .history-field label{font-size:9px}
+ #history-view .history-period{flex-basis:138px;max-width:150px;padding-bottom:4px}
+ #history-view .history-period-range{font-size:9px}
+ #history-view .history-period-name{font-size:11px;max-width:128px;min-height:33px}
+ #history-view .history-period-strip{padding-bottom:7px}
+ #history-view .history-field{gap:6px}
+ #history-view .history-field select{font-size:16px;height:44px;padding:9px 30px 9px 12px}
+ #history-view .history-step-controls{height:44px;gap:5px}
+ #history-view .history-step-controls .icon-button{height:36px;width:32px}
+ #history-view #history-position{font-size:9px;min-width:46px}
+ #history-view .story{padding-top:7px}
+ #history-view .story-tools{gap:18px}
+ #history-view .story-tools .quiet-button{font-size:11px}
+ #history-view .recording-info{padding:18px}
+ #history-view .recording-info h3{font-size:21px}
+ #history-view .player-top{padding-inline:16px}
+ #history-view .story-year{font-size:23px}
+ #history-view h2#story-title{font-size:26px}
+ #history-view .future-bridge{padding:18px}
+ #history-view .future-bridge strong{font-size:20px}
+}
+@media(max-width:359px){
+ #history-view .history-controls{gap:10px 7px}
+ #history-view .history-step-controls{gap:3px}
+ #history-view #history-position{font-size:8px;min-width:40px}
+ #history-view .history-step-controls .icon-button{width:28px}
+}
