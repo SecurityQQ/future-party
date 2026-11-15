@@ -45,6 +45,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
 h2{font:500 clamp(23px,2.6vw,34px)/1.25 var(--display);letter-spacing:-.035em;margin-top:8px}
 p{margin:0}
 section{padding-block:56px;border-top:1px solid var(--line);scroll-margin-top:8px}
+#mars{scroll-margin-top:24px}
 .sec-head{display:grid;gap:6px;margin-bottom:28px;max-width:760px}
 .sec-head .note{color:var(--muted);font-size:15px;margin-top:6px}
 
@@ -242,7 +243,7 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 11px/1.
 <div class="wrap">
   <nav class="top" aria-label="Sections">
     <span class="brand"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="16" cy="16" r="7"/><ellipse cx="16" cy="16" rx="15" ry="5" transform="rotate(-25 16 16)"/></svg>FUTURE PARTY / 2050</span>
-    <a href="#wall">Wall</a><a href="#music">Music</a><a href="#guests">Guests</a><a href="#slides">Slides</a><a href="#research">Research</a>
+    <a href="#wall">Wall</a><a href="#music">Music</a><a href="#guests">Guests</a><a href="#mars">Mars 3D</a><a href="#slides">Slides</a><a href="#research">Research</a>
   </nav>
 
   <header class="hero">
@@ -502,7 +503,8 @@ $('marsLink').href=P.mars3d;
 $('marsLink').insertAdjacentHTML('afterend','<a class="lnk" href="'+esc(P.mars3d)+'?globe">the globe alone</a>');
 if(D.exists['mars3d/preview.jpg']===false)$('marsShot').hidden=true;
 $('marsHow').innerHTML=D.mars.pictures+' real stereo pictures of Mars from the rovers, landers, the Ingenuity helicopter and orbiters, with a live 3D globe that flies to each landing site. Red lens on the left eye; the intro has a glasses test. It runs by itself, about 13 minutes a loop, and works offline. Arrow keys skip, G opens the globe alone, I lists every picture with its source.';
-$('appLink').href=D.apps.party;
+$('appLink').href=WEB?'/app':D.apps.party;
+if(WEB){$('appLink').removeAttribute('target');$('appLink').textContent='Open the app';}
 
 /* Party slides */
 $('deckLink').href=P.deck;

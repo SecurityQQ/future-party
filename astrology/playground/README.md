@@ -26,7 +26,7 @@ The varg key is read from `VARG_API_KEY` or `~/.varg/credentials` and stays on t
 | `runs/<id>/` | One folder per batch: `run.json` (inputs, exact prompt per image, model, cost, rating, note) and the images. |
 | `.cache/` | Thumbnails and the varg URLs of uploaded reference images. |
 
-**The party app** (`../app`, https://zodiac-rangers.vercel.app) draws every guest's character with master **v6** and these styles as card finishes. After changing `presets.json`, run `bun scripts/sync-presets.ts` in `../app` and redeploy.
+**The party app** (`../../app`, https://www.vargafutureparty.com/app) draws every guest's character with master **v6** and these styles as card finishes. After changing `presets.json`, run `bun scripts/sync-presets.ts` in `../../app` and redeploy.
 
 Placeholders in the master prompt: `{subject} {sign} {traits} {palette} {style} {scene} {backdrop}`. A line whose placeholder is empty is dropped, so deselecting every scene removes the `Setting:` line.
 

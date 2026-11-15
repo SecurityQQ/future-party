@@ -2,7 +2,7 @@
 
 The host's deck for Future Party 2050, 26 slides: the vision, the goal, the three rules, the NFC game, one mini demo for each of the six things on the walls and the nine stations, then predicting the future and the question for the room. Every slide has speaker notes that say how to run its demo.
 
-**Online:** [future-party-2050.vercel.app/slides](https://future-party-2050.vercel.app/slides), or the Slides tab on the front page. From the folder, open `slides/dist/party-deck.html`.
+**Online:** [www.vargafutureparty.com/slides](https://www.vargafutureparty.com/slides), or the Slides tab on the front page. From the folder, open `slides/dist/party-deck.html`.
 
 ## Presenting
 

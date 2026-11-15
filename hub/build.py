@@ -18,7 +18,7 @@ sys.dont_write_bytecode = True  # loading wall/build.py below would otherwise le
 HUB = Path(__file__).resolve().parent
 ROOT = HUB.parent
 
-SITE = "https://future-party-2050.vercel.app"
+SITE = "https://www.vargafutureparty.com"
 REPO = "https://github.com/SecurityQQ/future-party"
 DOWNLOAD = REPO + "/releases/download"
 
@@ -71,7 +71,7 @@ PAGES = {
 }
 # Earlier claude.ai copies of the same pages.
 ALIASES = {"https://claude.ai/artifact/65pctWFWHMQZ3ezNrrA7P1": "futurists_ru"}
-# Short addresses on the website, for typing on the projector laptop: future-party-2050.vercel.app/wall
+# Short addresses on the website, for typing on the projector laptop: vargafutureparty.com/wall
 SHORT = {
     "wall": PAGES["bigwall"],
     "quotes": "books/dist/quote-wall.html#quote-wall",
@@ -95,8 +95,8 @@ SHORT = {
 }
 # The picture in the Slides section: the deck's "Tonight at the party" slide
 DECK_SHOT = "slides/assets/preview.jpg"
-# Apps for the night that run on their own servers. The Future 2050 lives in astrology/app; link its home page, never /admin.
-APPS = {"party": "https://the-future-2050.vercel.app"}
+# The party app, The Future 2050 (app/ in this repo), is served at /app on the same site; link its home page, never /app/admin.
+APPS = {"party": SITE + "/app"}
 PLAYLISTS = {
     "soundtrack": "https://www.youtube.com/playlist?list=PLJdg5B9vQ1oA",
     "history": "https://www.youtube.com/playlist?list=PLeo45sxoQ8gE",
