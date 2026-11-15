@@ -34,6 +34,8 @@ ONLINE = {
     "resonance": "https://claude.ai/artifact/PVooRbA3UqweX19eBy7Q4k",
     "contact": "https://claude.ai/artifact/AiFrTg6V1BipqTvsJTmkmA",
     "tea": "https://claude.ai/artifact/JSq3U75PR1zGnLmkPea8Yz",
+    "mirror_research": "https://claude.ai/artifact/EQ2izi4He8XwvMRmsknaqs",
+    "concept": "https://claude.ai/artifact/Dqk9BpYrVUoFXQaiyfHKBD",
 }
 # Where each of those pages lives in this repo. hub/site.py points every claude.ai link at these copies.
 # "tea" (a claude.ai sheet) has no copy here.
@@ -50,6 +52,11 @@ PAGES = {
     "why": "music/dist/why-music-changes.html",
     "resonance": "music/resonance/dist/local/index.html",
     "contact": "soundboard/dist/contact2050.html",
+    # Mirror 2050 is served from its own folder, so the site answers /mirror without a short address
+    "mirror": "mirror/index.html",
+    "mirror_research": "mirror/viral-webcam-effects.html",
+    # Imagined Futures reads its pictures from concept-art/thumbs/, which site.py copies too
+    "concept": "concept-art/imagined-futures.html",
 }
 # Earlier claude.ai copies of the same pages.
 ALIASES = {"https://claude.ai/artifact/65pctWFWHMQZ3ezNrrA7P1": "futurists_ru"}
@@ -69,6 +76,7 @@ SHORT = {
     "further": PAGES["further"],
     "films": PAGES["films"],
     "futurists": PAGES["futurists"],
+    "art": PAGES["concept"] + "#wall",
 }
 # Apps for the night that run on their own servers. Zodiac Rangers lives in astrology/app; link its home page, never /admin.
 APPS = {"rangers": "https://zodiac-rangers.vercel.app"}
@@ -127,6 +135,11 @@ def tweets_numbers():
             "sample_by": author.get("name") or first["h"]}
 
 
+def concept_numbers():
+    posts = load("concept-art/tweets.json")
+    return {"pictures": sum(len(p["photos"]) for p in posts), "posts": len(posts)}
+
+
 def soundtrack_numbers():
     s = load("music/soundtrack.json")
     secs = sum(t.get("d") or 0 for t in s["tracks"])
@@ -178,6 +191,7 @@ def doc(web, rel):
 def resources(web, films, b, t, s):
     """Every resource in one list, grouped: [group, [[title, about, tag, [[label, href], ...]], ...]]."""
     film = {f["id"]: f for f in films}
+    c = concept_numbers()
     def play(f):
         links = [["play", f["file"]]] if f["probe"] else []
         if (web or f["is_preview"]) and f["master"]:
@@ -192,11 +206,13 @@ def resources(web, films, b, t, s):
             ["Quote wall", f"{b['quotes']} verbatim quotes from {b['quote_books']} books.", "", [["start", SHORT["quotes"]]]],
             ["Idea wall", f"{b['ideas']} slides of plausible ideas for 2050.", "", [["start", SHORT["ideas"]], ["quotes and ideas", SHORT["mix"]]]],
             ["Tweet wall", f"{t['tweets']} posts by {t['authors']} futurists on X.", "", [["start", SHORT["tweets"]], ["short version", SHORT["tweets-short"]]]],
+            ["Imagined Futures", f"{c['pictures']} pictures of concept art about the future from {c['posts']} posts on X. The wall says what each picture shows and who made it.", "", [["start", SHORT["art"]], ["page", PAGES["concept"]]]],
         ]],
         ["The evening", [
             ["Tea With Tomorrow", "The programme: a three-hour Futures Literacy Lab over tea, with a party clock.", "", [["open", PAGES["program"]]]],
             ["Contact 2050", "A Makey Makey soundboard for guests: 12 pins, 8 kits, jam mode, stage mode for the projector.", "", [["open", PAGES["contact"]], ["README", doc(web, "soundboard/README.md")]]],
             ["Zodiac Rangers", "The party app: guests tap their NFC ranger card, give a name and birthday, get a zodiac creature, then scan each other's cards for the ranking.", "", [["open ↗", APPS["rangers"]]]],
+            ["Mirror 2050", "A live camera for the guests: eight effects that went viral on X, played with the hands. Party mode cycles them on a screen.", "", [["open", PAGES["mirror"]], ["party mode", PAGES["mirror"] + "?party"], ["README", doc(web, "mirror/README.md")]]],
             ["Tea comparison", "The teas for the tables, compared.", "claude.ai", [["open ↗", ONLINE["tea"]]]],
         ]],
         ["Sound", [
@@ -211,6 +227,7 @@ def resources(web, films, b, t, s):
             ["2050 in Futurists’ Tweets", "The short version: six findings and 43 tweets by theme.", "", [["English", PAGES["futurists_short"]], ["Russian", PAGES["futurists_ru"]]]],
             ["Further 2050", "The wall film’s claims with their seeds, dates and films.", "", [["page", PAGES["further"]]]],
             ["Projection 2050", "Eighteen films about 2050, scored, with checked clips for a reel.", "", [["page", PAGES["films"]], ["reel notes", doc(web, "reel/links.md")]]],
+            ["Viral Webcam Effects", "Which camera effects went viral on X and how they are built: 18 posts with their numbers, behind Mirror 2050.", "", [["page", PAGES["mirror_research"]]]],
         ]],
         ["Tools and source", [
             ["Zodiac Creatures playground", "Tunes the prompt behind the zodiac companion characters. Runs on a local server.", "local", [["README", doc(web, "astrology/playground/README.md")]]],
@@ -236,7 +253,7 @@ def build(web=False):
         "exists": {p: (ROOT / p).exists() for p in [
             "books/dist/quote-wall.html", "books/dist/book-projection-2050.html", "tweets/dist/tweet-wall.html",
             "tweets/dist/tweets-2050.html", "music/resonance/dist/local/player.html",
-            "reel/links.md", *PAGES.values()]},
+            "reel/links.md", "mirror/preview.jpg", *PAGES.values()]},
     }
     missing = [p for p, ok in data["exists"].items() if not ok]
     tpl = (HUB / "template.html").read_text(encoding="utf8")

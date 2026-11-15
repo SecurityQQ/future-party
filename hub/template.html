@@ -122,6 +122,11 @@ nav.top .brand{color:var(--fg);margin-right:auto}
 .arc b{font:500 12px/1.9 var(--mono);color:var(--muted);font-weight:500}
 
 /* Lists */
+/* Mirror 2050 */
+.mirror-shot{display:block;width:100%;height:auto;border-radius:var(--r);border:1px solid var(--line);background:var(--raised)}
+#mirror .arc div{grid-template-columns:128px minmax(0,1fr)}
+#mirror .how{color:var(--fg-2);font-size:14.5px;margin-top:14px;max-width:62ch}
+#mirror .how a{color:var(--fg);text-decoration:underline;text-underline-offset:2px}
 .list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px}
 @media (max-width:760px){.list{grid-template-columns:1fr}}
 .item{display:grid;gap:6px;padding:18px 0;border-top:1px solid var(--line);min-width:0}
@@ -169,7 +174,7 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12.5px/
 <div class="wrap">
   <nav class="top" aria-label="Sections">
     <span class="brand">FUTURE PARTY / 2050</span>
-    <a href="#all">All</a><a href="#wall">Wall</a><a href="#programme">Programme</a><a href="#sound">Sound</a><a href="#read">Read</a><a href="#preflight">Before the night</a><a href="#rebuild">Rebuild</a>
+    <a href="#all">All</a><a href="#wall">Wall</a><a href="#programme">Programme</a><a href="#mirror">Mirror</a><a href="#sound">Sound</a><a href="#read">Read</a><a href="#preflight">Before the night</a><a href="#rebuild">Rebuild</a>
   </nav>
 
   <header class="hero">
@@ -216,6 +221,32 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12.5px/
         <div><b>Tea breaks</b><span>Tweet wall, or Further again.</span></div>
         <div><b>Before the futurist</b><span>The Roast once, as a 62-second opener.</span></div>
         <p class="alt" style="margin-top:4px">A suggestion. The programme page sets the actual times.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="mirror">
+    <div class="sec-head">
+      <p class="eyebrow">Camera mirror</p>
+      <h2>Mirror 2050</h2>
+      <p class="note">A live camera for the guests: eight effects that went viral on X, rebuilt in one page and played with the hands. Nothing is filmed or uploaded; the camera stays in the browser.</p>
+    </div>
+    <div class="program">
+      <div>
+        <img class="mirror-shot" id="mirrorShot" src="mirror/preview.jpg" width="1932" height="544" loading="lazy" alt="The eight effects: glass hands, particle words, a hologram cube, a portal, shattered tiles, time trails, falling code and a see-through cloak">
+        <div class="actions" style="margin-top:20px"><a class="btn" id="mirrorLink"><span class="tri" aria-hidden="true"></span>Open the mirror</a></div>
+        <p class="how" id="mirrorHow"></p>
+      </div>
+      <div class="arc" aria-label="The eight effects and how to play them">
+        <p class="eyebrow" style="margin-bottom:4px">Keys 1–8, or party mode</p>
+        <div><b>1 Liquid Air</b><span>Your hands turn to glass and the air ripples.</span></div>
+        <div><b>2 Neon Swarm</b><span>Show 1 to 4 fingers to write a word in particles; open palm for a nebula, fist for an orb.</span></div>
+        <div><b>3 Holo Cube</b><span>You become a hologram, with a glitching cube held between your hands.</span></div>
+        <div><b>4 Portal</b><span>An open palm opens a portal; pinch with both hands to tear a window into 2050.</span></div>
+        <div><b>5 Shatter</b><span>An open hand blows the picture into glass tiles; a fist pulls it back.</span></div>
+        <div><b>6 Time Warp</b><span>Lower rows are older frames; point a finger and time ripples from it.</span></div>
+        <div><b>7 Matrix</b><span>You turn into falling code; your hands show the real colours.</span></div>
+        <div><b>8 Cloak</b><span>Your body shows the room behind you. A fist decloaks.</span></div>
       </div>
     </div>
   </section>
@@ -382,6 +413,12 @@ $('readList').innerHTML=[
     [WEB?null:['http://localhost:4300','http://localhost:4300'],loc('README','astrology/playground/README.md')],'needs a server')
 ].join('');
 
+/* Mirror 2050 */
+$('mirrorLink').href=P.mirror;
+if(D.exists['mirror/preview.jpg']===false)$('mirrorShot').hidden=true;
+$('mirrorLink').insertAdjacentHTML('afterend',['<a class="lnk" href="'+esc(P.mirror)+'?party">party mode</a>','<a class="lnk" href="'+esc(P.mirror_research)+'">the research: viral webcam effects</a>','<a class="lnk" href="'+esc(doc('mirror/README.md'))+'"'+ext(doc('mirror/README.md'))+'>README</a>',on(D.online.mirror_research)].filter(Boolean).join(''));
+$('mirrorHow').innerHTML=WEB?'Works on any laptop or phone with a camera, best in Chrome or Edge: allow the camera, then use your hands. Party mode hides the controls and changes the effect every 25 seconds.':'The camera needs a local server: run <code>python3 -m http.server 8050 -d mirror</code> from this folder, then open <a class="lnk" href="http://localhost:8050">localhost:8050</a> (<a class="lnk" href="http://localhost:8050/?party">party mode</a>). For a laptop without internet, run <code>mirror/tools/vendor.sh</code> once while online, so hand tracking works offline.';
+
 /* Pre-flight */
 const CHECK=[
   ['Get the 1080p films onto that laptop.','A fresh clone of the repo plays the 720p previews. For the wall, download the 1080p masters from the <a href="'+esc(D.repo)+'/releases" target="_blank" rel="noopener">GitHub releases</a> into <code>video/renders</code> and <code>roast/renders</code>, or copy the whole folder with its renders.'],
@@ -389,7 +426,8 @@ const CHECK=[
   ['Set the projector to 1920×1080 and mirror the screen.','Every film and wall is made for 16:9. F goes fullscreen.'],
   ['Turn off sleep, the screen saver and notifications.','The slide walls ask the browser to keep the screen on, but the laptop’s own power settings can override that.'],
   ['Cue the soundtrack playlist on a separate speaker.','Further and Already Here are silent. The Roast has sound effects, so lower the music while it plays.'],
-  ['Decide between online and offline.','Online, every page is at <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(siteName)+'</a> with no login. Offline, open <code>index.html</code> from the folder: the films, walls and pages play from disk, but the YouTube playlists and the soundboard need the internet (build the soundboard’s offline copy with <code>python3 -I soundboard/build.py --offline</code>).']
+  ['Decide between online and offline.','Online, every page is at <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(siteName)+'</a> with no login. Offline, open <code>index.html</code> from the folder: the films, walls and pages play from disk, but the YouTube playlists and the soundboard need the internet (build the soundboard’s offline copy with <code>python3 -I soundboard/build.py --offline</code>).'],
+  ['Try Mirror 2050 with the webcam you will use.','Open it, allow the camera and hold up a hand: the HANDS pill at the top should count it. Without internet it needs a local server and <code>mirror/tools/vendor.sh</code> run once beforehand.']
 ];
 const KEY='fp2050-check';let ticks={};
 try{ticks=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
@@ -409,6 +447,7 @@ const RB=[
   ['Soundtrack 2050, Why Music Changes','<code>music/soundtrack.json</code>, <code>music/eras.json</code>','cd music && python3 -I build.py'],
   ['Resonance','<code>music/resonance/additions.json</code>','cd music/resonance && python3 -I build_resonance.py'],
   ['Contact 2050 soundboard','<code>soundboard/kits.json</code>, <code>soundboard/template.html</code>','cd soundboard && python3 -I build.py'],
+  ['Mirror 2050','<code>mirror/index.html</code>, one file; the research page and <code>mirror/preview.jpg</code> beside it','no build · offline: mirror/tools/vendor.sh'],
   ['Programme, Futurists on 2050, Projection 2050','Saved copies of the claude.ai pages, in <code>programme/</code>, <code>tweets/research/</code> and <code>reel/</code>','no build: save the page again'],
   ['The front page','<code>hub/template.html</code>, plus the numbers above','python3 -I hub/build.py'],
   ['The website','<code>hub/site.py</code>, <code>vercel.json</code>; Vercel runs it on every deploy','python3 -I hub/site.py']

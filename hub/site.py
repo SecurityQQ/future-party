@@ -26,6 +26,10 @@ _spec.loader.exec_module(B)
 PAGES = sorted(set(B.PAGES.values()) | {
     "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html"})
 MEDIA = "video/dist/media"
+# Other files the pages load from the repo (the front page shows the Mirror 2050 preview)
+ASSETS = ["mirror/preview.jpg"]
+# Folders the pages load from: the Imagined Futures pictures (concept-art/images/, the originals, stay off the site)
+ASSET_DIRS = ["concept-art/thumbs"]
 SHELL = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
          '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
          '<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>\n')
@@ -65,6 +69,11 @@ def main():
         dst.parent.mkdir(parents=True, exist_ok=True)
         dst.write_text(html_page(rel), encoding="utf8")
     shutil.copytree(ROOT / MEDIA, OUT / MEDIA, ignore=shutil.ignore_patterns(".*"))
+    for rel in ASSET_DIRS:
+        shutil.copytree(ROOT / rel, OUT / rel, ignore=shutil.ignore_patterns(".*"))
+    for rel in ASSETS:
+        (OUT / rel).parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(ROOT / rel, OUT / rel)
     for name, target in B.SHORT.items():
         # /programme, /books and /tweets are also folders of the site: the forward becomes their index page
         if (OUT / name / "index.html").exists() or (OUT / name).is_file():

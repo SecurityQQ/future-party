@@ -9,8 +9,14 @@
 !/soundboard
 !/programme
 !/reel
+!/mirror
+!/concept-art
 /video/*
 !/video/dist
 /tweets/avatars
 /soundboard/.cache
 /soundboard/dist/contact2050-offline.html
+/mirror/vendor
+/concept-art/images
+/concept-art/.cache
+/concept-art/dist
