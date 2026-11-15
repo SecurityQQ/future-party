@@ -2,14 +2,16 @@
 
 A Makey Makey soundboard for Future Party 2050. There are twelve pins, eight kits and 2,038 sounds from TidalCycles' [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) library. Jam mode keeps every touch in time and in key, and stage mode is for the projector. It is one HTML page with nothing to install.
 
+It is part of [Future Party 2050](../README.md), and it is online at [future-party-2050.vercel.app/soundboard](https://future-party-2050.vercel.app/soundboard), listed on the party's front page.
+
 ## Play
 
-1. Open `dist/contact2050.html` in Chrome.
+1. Open `dist/contact2050.html` in Chrome, or the [online copy](https://future-party-2050.vercel.app/soundboard).
 2. Plug in the Makey Makey. It shows up as a keyboard and a mouse.
 3. Hold the EARTH clip and touch a pin.
 4. Press Enter for stage mode on the projector.
 
-The **Setup** button in the page has the wiring guide, the pin map and party ideas. A keyboard works too: arrows, Space and W A S D F G, with digits 1 to 8 to change kit.
+The **Setup** button in the page has the wiring guide, the pin map and party ideas. A keyboard works too: arrows, Space and W A S D F G, with digits 1 to 8 to change kit. "Future Party 2050" at the top opens the party's front page in a new tab.
 
 | Kit | Pads |
 | --- | --- |
