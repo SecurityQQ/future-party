@@ -81,7 +81,7 @@ python3 -I build_resonance.py   # writes dist/local/index.html, the Resonance pa
 
 ## The soundboard
 
-Open `soundboard/dist/contact2050.html` in Chrome, plug in the Makey Makey, hold EARTH and touch a pin. Press Enter for stage mode on the projector.
+Open `soundboard/dist/contact2050.html` in Chrome, or [/soundboard](https://future-party-2050.vercel.app/soundboard) on the website, plug in the Makey Makey, hold EARTH and touch a pin. Press Enter for stage mode on the projector.
 
 It has eight kits, from Liftoff and Rave 2050 to Magic Keys, a horn section you can't play wrong. Jam mode keeps every touch in time and in key, and the beat builds and falls with how busy the room is. The look is space, kept minimal: a black sky that follows the music, with a planet's rim in the colour of the chord and an animation for each pin.
 
