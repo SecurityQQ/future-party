@@ -6,7 +6,7 @@ and writes the pages from template.html and admin.html. Run from anywhere:
     python3 -I hub/build.py          # rebuilds the Big Wall, then ../index.html and ../admin.html (work offline)
     python3 -I hub/site.py           # site/, the website Vercel serves (calls build(web=True) and admin(web=True))
 
-The front page is for everyone: the wall, the music, the guests' corner and the research. The admin page holds what only
+The front page is for everyone: the wall, the music, the apps and the research. The admin page holds what only
 the host needs (the pre-flight list, the short addresses, the pieces kept off the front page and how to rebuild each one).
 No page links to it: open admin.html in the folder, or /admin on the website (it forwards to /admin.html). Nothing here is fetched from the network.
 """
@@ -74,6 +74,7 @@ ALIASES = {"https://claude.ai/artifact/65pctWFWHMQZ3ezNrrA7P1": "futurists_ru"}
 # Short addresses on the website, for typing on the projector laptop: vargafutureparty.com/wall
 SHORT = {
     "wall": PAGES["bigwall"],
+    "apps": "index.html#apps",
     "quotes": "books/dist/quote-wall.html#quote-wall",
     "ideas": "books/dist/quote-wall.html#projection",
     "mix": "books/dist/quote-wall.html#mix-wall",
@@ -102,6 +103,9 @@ PLAYLISTS = {
     "history": "https://www.youtube.com/playlist?list=PLeo45sxoQ8gE",
     "resonance": "https://www.youtube.com/playlist?list=PLSfq0dmq_K78",
 }
+# The previews of the Apps section, 1280x720: made by hub/apps/previews.py, except Mars in 3D's own picture
+APP_SHOTS = {"party": "hub/apps/app.jpg", "mirror": "hub/apps/mirror.jpg", "music": "hub/apps/music.jpg",
+             "play": "hub/apps/play.jpg", "mars": "mars3d/preview.jpg", "art": "hub/apps/art.jpg"}
 # The picture on the Imagined Futures tile: the Prometheus Ring, a spinning habitat orbiting Saturn
 ART_TILE = "concept-art/thumbs/2118267091262333357-1.jpg"
 # The photo behind the Big Wall tile: Earth seen through Saturn's rings, Further's last slide
@@ -259,10 +263,10 @@ def build(web=False):
         sys.exit("wall/dist/manifest.json is missing: run python3 -I wall/build.py")
     data = dict(common(web), **{
         "films": [f for f in films if f["front"]],
-        "books": b, "tweets": t, "sound": s, "art": c, "wall": w, "mars": mars3d_numbers(),
+        "books": b, "tweets": t, "sound": s, "art": c, "wall": w, "mars": mars3d_numbers(), "shots": APP_SHOTS,
         "exists": {p: (ROOT / p).exists() for p in [
             "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html",
-            "reel/links.md", "mirror/preview.jpg", "mars3d/preview.jpg", DECK_SHOT, ART_TILE, WALL_TILE, *PAGES.values()]},
+            "reel/links.md", DECK_SHOT, ART_TILE, WALL_TILE, *APP_SHOTS.values(), *PAGES.values()]},
         "deck": {"shot": DECK_SHOT, "slides": len(load("slides/deck/deck.json")["order"])},
     })
     missing = [p for p, ok in data["exists"].items() if not ok]
