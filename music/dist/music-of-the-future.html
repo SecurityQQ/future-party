@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Music of the Future</title>
+<meta name="theme-color" content="#030817">
+<meta name="description" content="The host's picks for the Future Party 2050: music videos for the projector, then the long sets, with a player in the page.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307132b'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='%23dce9fb' stroke-width='2'/%3E%3Cellipse cx='32' cy='32' rx='28' ry='10' transform='rotate(-30 32 32)' fill='none' stroke='%239dd8ff' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&family=Geologica:wght@400;500;600;700&family=Martian+Mono:wght@400;500&display=swap">
+<style>
+/* Music of the Future: the host's own picks, in the look of the front page (Blue futurism, vibes/README.md).
+   Built by music/build.py from future_music.json; the tokens are inlined there. On the website the player in the page
+   plays the whole list in the order of the YouTube playlist. Opened from disk, YouTube refuses to play inside the
+   file, so every track opens on YouTube instead. */
+/* Blue futurism · canonical palette and materials for The Future 2050.
+   Run python3 vibes/sync.py from the repository root after editing. */
+:root {
+  --v-space: #030817;
+  --v-navy: #07132b;
+  --v-panel: #0b1b36;
+  --v-panel-hi: #142d52;
+  --v-ink: #edf4ff;
+  --v-muted: #a2b6d4;
+  --v-dim: #8197b8;
+  --v-blue: #4385ff;
+  --v-ice: #9dd8ff;
+  --v-chrome: #dce9fb;
+  --v-chrome-mid: #8faacf;
+  --v-chrome-low: #304e78;
+  --v-line: #2d486d;
+  --v-error: #ff8595;
+  --v-warning: #f4c58d;
+  --v-chrome-surface: linear-gradient(118deg, #f2f7ff 0%, #aec6e8 21%, #edf6ff 42%, #7da2d1 44%, #b8d6f7 68%, #e2efff 100%);
+  --v-chrome-edge: linear-gradient(145deg, #e9f4ff 0%, #82a4d1 17%, #244672 35%, #b8d8ff 48%, #eef8ff 50%, #426a9d 54%, #122d54 78%, #8bb9ec 100%);
+  --v-holo: linear-gradient(115deg, transparent 25%, rgb(67 133 255 / 18%) 40%, rgb(225 242 255 / 28%) 50%, rgb(130 199 255 / 20%) 58%, transparent 72%);
+  --v-ease: cubic-bezier(.2, .7, .2, 1);
+  --v-fast: 180ms;
+  --v-reveal: 800ms;
+  --v-orbit: 12s;
+  color-scheme: dark;
+}
+
+:root{
+  --bg:var(--v-space); --fg:var(--v-ink); --fg-2:#c4d4ec; --muted:var(--v-muted);
+  --line:rgb(143 170 207 / 20%); --line-2:rgb(143 170 207 / 42%); --accent:var(--v-ice);
+  --display:"Unbounded",system-ui,sans-serif;
+  --font:"Geologica",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Martian Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --r:16px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg) radial-gradient(ellipse at 88% 5%,rgb(30 75 151 / 24%),transparent 35%) no-repeat;color:var(--fg);font:16px/1.65 var(--font);-webkit-font-smoothing:antialiased}
+::selection{color:var(--v-navy);background:var(--v-ice)}
+[hidden]{display:none!important}
+a{color:inherit;text-decoration-color:var(--line-2);text-underline-offset:3px}
+a:hover{text-decoration-color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3,p{margin:0}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font:500 11px/1.3 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--v-ice)}
+
+nav.top{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;padding-block:22px;border-bottom:1px solid var(--line);font:400 11px/1.4 var(--mono);letter-spacing:.03em}
+nav.top a{text-decoration:none;color:var(--muted)}
+nav.top a:hover{color:var(--fg)}
+nav.top .home{margin-right:auto;color:var(--v-chrome)}
+
+header{padding-block:44px 32px}
+h1{font:500 clamp(36px,5.6vw,72px)/1.06 var(--display);text-transform:uppercase;letter-spacing:-.055em;margin-top:18px}
+h1 span{display:block;background:var(--v-chrome-surface);background-clip:text;-webkit-background-clip:text;color:transparent;font-weight:600}
+.lead{font-size:clamp(15px,1.4vw,17px);line-height:1.8;color:var(--fg-2);max-width:62ch;margin-top:22px}
+.lead b{color:var(--fg);font-weight:600}
+.actions{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:9px;font:600 14px/1 var(--font);color:var(--v-navy);background:var(--v-chrome-surface);background-size:130% 100%;border:1px solid #c8ddf7;border-radius:10px;padding:13px 18px;box-shadow:inset 0 1px 0 #fff,0 4px 16px rgb(67 133 255 / 12%);transition:background-position var(--v-fast),box-shadow var(--v-fast);cursor:pointer;text-decoration:none}
+.btn:hover{background-position:100% 50%;box-shadow:inset 0 1px 0 #fff,0 0 24px rgb(67 133 255 / 25%)}
+.btn.ghost{color:var(--v-chrome);background:transparent;border-color:var(--line-2);box-shadow:none}
+.btn.ghost:hover{border-color:var(--v-ice)}
+.tri{width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.lnk{color:var(--v-ice);font-size:15px}
+
+/* The player: a chrome-edged screen, sticky on wide screens so the list scrolls beside it */
+.stage{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:28px;align-items:start;padding-bottom:64px}
+@media (max-width:900px){.stage{grid-template-columns:1fr}}
+.deck{position:sticky;top:16px;display:grid;gap:12px}
+@media (max-width:900px){.deck{position:static}}
+.screen{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:var(--v-space);border:1px solid #617fa6;box-shadow:inset 0 0 0 1px rgb(220 233 251 / 20%),0 20px 70px rgb(21 59 126 / 25%)}
+.screen iframe,.screen #player{position:absolute;inset:0;width:100%;height:100%;border:0}
+.screen .off{position:absolute;inset:0;display:grid;place-content:center;gap:10px;text-align:center;padding:24px;color:var(--fg-2);font-size:15px;background:radial-gradient(circle at 25% 80%,rgb(67 133 255 / 22%),transparent 55%),var(--v-navy)}
+.screen .off b{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--v-warning)}
+.now{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;font:400 12px/1.5 var(--mono);color:var(--muted)}
+.now b{font:600 16px/1.35 var(--font);color:var(--fg);letter-spacing:-.01em}
+.ctl{display:flex;flex-wrap:wrap;gap:8px}
+.ctl button{font:500 12px/1 var(--mono);color:var(--v-chrome);background:linear-gradient(145deg,#112441,#07132b 75%);border:1px solid var(--line-2);border-radius:8px;padding:10px 12px;cursor:pointer}
+.ctl button:hover{border-color:var(--v-ice)}
+.ctl .sp{flex:1}
+.hint{font-size:13px;color:var(--muted)}
+
+/* The list: two parts, the host's headings as chapters, one row per video */
+.part{margin-bottom:34px}
+.part-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap;padding-bottom:10px;border-bottom:1px solid var(--line-2)}
+.part-head h2{font:500 clamp(18px,1.8vw,22px)/1.25 var(--display);letter-spacing:-.03em;text-transform:uppercase;color:var(--v-chrome)}
+.part-head span{font:400 11px var(--mono);color:var(--fg-2)}
+.part > p{color:var(--muted);font-size:14px;margin-top:8px}
+.ch{margin-top:22px}
+.ch h3{font:600 15px/1.35 var(--font);letter-spacing:.01em;color:var(--v-ice)}
+.ch > p{font-size:14px;color:var(--fg-2);margin-top:4px;max-width:60ch}
+.ch > p i{font-style:normal;font:400 10px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-left:6px}
+ol{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+li{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:4px 12px;align-items:start;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(145deg,#0b1b36,#07132b);transition:border-color var(--v-fast),box-shadow var(--v-fast)}
+li.on{border-color:var(--v-ice);box-shadow:0 0 24px rgb(67 133 255 / 20%)}
+li .n{font:500 12px/1.9 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+li.on .n{color:var(--v-ice)}
+li .who{font:600 15px/1.4 var(--font);letter-spacing:-.01em}
+li .who small{display:block;font:400 11px/1.6 var(--mono);color:var(--muted);letter-spacing:0}
+li .note{grid-column:2/-1;font-size:13.5px;color:var(--fg-2);line-height:1.55}
+li .go{display:flex;gap:8px;align-items:center}
+li .go button{width:34px;height:34px;display:grid;place-items:center;color:var(--v-navy);background:var(--v-chrome-surface);border:1px solid #c8ddf7;border-radius:50%;cursor:pointer;padding:0}
+li .go button .tri{margin-left:2px}
+li .go a{font:400 11px var(--mono);color:var(--muted);text-decoration:none;white-space:nowrap}
+li .go a:hover{color:var(--fg)}
+footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--muted);font-size:14px;display:grid;gap:8px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top"><a class="home" href="../../index.html">← Future Party 2050</a><a id="ytTop" target="_blank" rel="noopener">YouTube playlist ↗</a><a href="soundtrack2050.html">Fable 5.2’s playlist</a></nav>
+  <header>
+    <p class="eyebrow">The host’s picks · Future Party 2050</p>
+    <h1>Music of the <span>Future</span></h1>
+    <p class="lead" id="lead"></p>
+    <div class="actions">
+      <button class="btn" type="button" id="playAll"><span class="tri" aria-hidden="true"></span>Play from the start</button>
+      <button class="btn ghost" type="button" id="playLate">Jump to the long sets</button>
+      <a class="lnk" id="ytLead" target="_blank" rel="noopener">YouTube playlist ↗</a>
+    </div>
+  </header>
+  <div class="stage">
+    <div class="deck">
+      <div class="screen" id="screen">
+        <div id="player"></div>
+        <div class="off" id="off" hidden><b>Opened from disk</b><span>YouTube won’t play inside a file opened from the folder. Each track opens on YouTube, or play the whole <a id="ytOff" target="_blank" rel="noopener">YouTube playlist</a>. The page plays everything itself at <a href="https://www.vargafutureparty.com/future-music">vargafutureparty.com/future-music</a>.</span></div>
+      </div>
+      <div class="now" id="now"><b>Ready</b><span>press play, or pick a track</span></div>
+      <div class="ctl" id="ctl"><button type="button" id="prev">◀ Previous</button><button type="button" id="next">Next ▶</button><span class="sp"></span><button type="button" id="full">Fullscreen</button></div>
+      <p class="hint" id="hint">It plays straight through. A video YouTube won’t play inside another page is skipped and opens from its row.</p>
+    </div>
+    <div id="list"></div>
+  </div>
+  <footer>
+    <p>Chapter titles are the host’s own headings, and so are the notes marked <i>host</i>. The other notes come from each video’s credits.</p>
+    <p>For the party’s running order picked by Fable 5.2, with the spoken voices, see <a href="soundtrack2050.html">Fable 5.2’s playlist about the future</a>.</p>
+  </footer>
+</div>
+<script>
+const D={"_about":"Music of the Future: the host's own picks (sent 14 November 2026), in the order of the YouTube playlist. Chapter titles are the host's headings; notes marked host are the host's words, the rest come from each video's own credits. d = seconds on YouTube. embed: false = YouTube will not play it inside another page (age-restricted), so the page links out. The playlist on YouTube must keep this exact order.","title":"Music of the Future","playlist":"https://www.youtube.com/playlist?list=PLeCO8iyYgFSo","parts":[{"id":"evening","title":"The evening","note":"Short pieces, nearly all with their own videos: made for the projector."},{"id":"late","title":"Long sets","note":"Two albums, a live-coded rave, a live session and a mix, then Arca to close. For later in the night."}],"chapters":[{"id":"liftoff","part":"evening","title":"Lift-off","note":"The old dream of going out there: Carl Sagan's voice over the planets, mission control during Apollo 11, and Tokyo as a city of machines in 1979."},{"id":"proto","part":"evening","title":"Holly Herndon — PROTO","note":"Music co-written with AI, where you can't tell whether you are hearing the AI or real people.","host":true},{"id":"aivisual","part":"evening","title":"AI as the main visual effect"},{"id":"visuals","part":"evening","title":"Futuristic visuals","note":"Three videos from Oneohtrix Point Never's Tranquilizer (2025), each by a different maker, then Björk."},{"id":"robotics","part":"evening","title":"Robotics vibes"},{"id":"minimal","part":"evening","title":"Beautiful minimalism"},{"id":"botanica","part":"evening","title":"Botanica music"},{"id":"bruxia","part":"evening","title":"Bruxia"},{"id":"botanica-long","part":"late","title":"Botanica music, long"},{"id":"algorave","part":"late","title":"Algo raves","note":"Live coding: the music and the visuals are written as code in front of the crowd."},{"id":"live","part":"late","title":"Angine de Poitrine — Full Performance"},{"id":"bruxia-long","part":"late","title":"Bruxia, long"},{"id":"arca","part":"late","title":"Arca — @@@@@","note":"Music as the disintegration of identity, the body, gender and form. Very heavy, yet unexpected.","host":true}],"tracks":[{"yt":"YH3c1QZzRK4","ch":"liftoff","a":"Erik Wernquist","t":"Wanderers","y":2014,"d":230,"note":"A short film: people among the moons and rings of the Solar System, with Carl Sagan reading from Pale Blue Dot."},{"yt":"BHIo6qwJarI","ch":"liftoff","a":"Public Service Broadcasting","t":"Go!","y":2015,"d":238,"note":"Built on mission control's go/no-go poll before the Apollo 11 landing."},{"yt":"di_L7O56ZXE","ch":"liftoff","a":"Yellow Magic Orchestra","t":"Technopolis","y":1979,"d":255,"note":"From Solid State Survivor: T-O-K-Y-O spelled out by a vocoder."},{"yt":"ZFe0Bcngp64","ch":"proto","a":"Holly Herndon","t":"Birth","y":2019,"d":74,"note":"The first track of PROTO."},{"yt":"r4sROgbaeOs","ch":"proto","a":"Holly Herndon","t":"Eternal","y":2019,"d":305,"note":"PROTO's official video."},{"yt":"AVu5p2DMIf8","ch":"aivisual","a":"Grimes","t":"ACCELERANDO","y":2026,"d":272},{"yt":"FljbOmsnozU","ch":"aivisual","a":"Imogen Heap","t":"I AM ___","y":2025,"d":860},{"yt":"CEeCziXT2FE","ch":"visuals","a":"Oneohtrix Point Never","t":"D.I.S.","y":2025,"d":215,"note":"By Elliott Elder of the studio UNCANNY, with imagery from Julien Gobled: a strange simulated world built for the video, featured by It's Nice That."},{"yt":"YfjsyKFbyqM","ch":"visuals","a":"Oneohtrix Point Never","t":"Lifeworld","y":2025,"d":252,"note":"Directed by Daniel Lopatin, OPN himself."},{"yt":"fzC-RV1h0gc","ch":"visuals","a":"Oneohtrix Point Never","t":"Measuring Ruins","y":2025,"d":185,"note":"Directed by the video artist Yoshi Sodeoka."},{"yt":"DhlNRRUH--s","ch":"visuals","a":"Björk","t":"Nerve Bloom","d":674,"note":"At the National Gallery of Iceland."},{"yt":"FWrptyzLzxI","ch":"robotics","a":"Pink Noise","t":"Sky Cry (ft. Zack Slime Fr)","y":2022,"d":310},{"yt":"06WYi6pCMx0","ch":"robotics","a":"Jianbo","t":"For The Honour (ft. Nix Northwest)","y":2025,"d":229},{"yt":"8uO2JYOhwiY","ch":"minimal","a":"Actress","t":"Overchord","y":2026,"d":306,"note":"On the host's list twice: here and under AI as the main visual effect."},{"yt":"Ob_EDY9Eiis","ch":"botanica","a":"Ninajirachi & Porter Robinson","t":"WannaCry","y":2026,"d":219},{"yt":"Jf9iTqMZHVs","ch":"botanica","a":"ickumas, Jcran, Vacatek & vynae","t":"split-path","y":2025,"d":140,"note":"From Upright Volume 5."},{"yt":"_A7egB6-R3M","ch":"bruxia","a":"Moreno & Prieto, Dazed, Val Doering","t":"Vete de Aquí","y":2026,"d":230,"note":"On SORNE."},{"yt":"rBg05xXjObc","ch":"botanica-long","a":"phritz","t":"しりべつのほとりにて","y":2022,"d":1209,"note":"Four pieces: 透水, せせらぎをみつめて, 源流をたどって, はじまりのしずけさ."},{"yt":"D7MymKtevMM","ch":"botanica-long","a":"Alexander Panos","t":"Nascent (full album)","y":2022,"d":2131,"note":"Ten tracks; in his words, an album about becoming."},{"yt":"7qfCeIgtllY","ch":"algorave","a":"DJ_Dave & Char Stiles","t":"Live-coding at Algowave","y":2021,"d":1388,"note":"Wonderville, Brooklyn, 21 August 2021."},{"yt":"0Ssi-9wS1so","ch":"live","a":"Angine de Poitrine","t":"Full Performance (Live on KEXP)","y":2026,"d":1673},{"yt":"sozBNb4oJIA","ch":"bruxia-long","a":"Girl Unit","t":"FACT Mix 154","d":2694},{"yt":"2gjlcSZ9cQE","ch":"arca","a":"Arca","t":"@@@@@","y":2020,"d":3741,"embed":false,"note":"One 62-minute piece. Age-restricted: YouTube plays it only on youtube.com, signed in."}]};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clock=s=>{const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=String(s%60).padStart(2,'0');return h?h+':'+String(m).padStart(2,'0')+':'+x:m+':'+x};
+const span=s=>{const h=Math.floor(s/3600),m=Math.round(s%3600/60);return h?h+' h '+m+' min':m+' min'};
+const FILE=location.protocol==='file:';
+const listId=(D.playlist.match(/list=([\w-]+)/)||[])[1];
+const watch=t=>'https://www.youtube.com/watch?v='+t.yt+(listId?'&list='+listId:'');
+const CH=Object.fromEntries(D.chapters.map(c=>[c.id,c]));
+const partOf=t=>CH[t.ch].part;
+/* The queue the player runs: every track YouTube lets other pages play, in playlist order */
+const Q=D.tracks.filter(t=>t.embed!==false);
+const qIndex=t=>Q.indexOf(t);
+
+['ytTop','ytLead','ytOff'].forEach(id=>$(id).href=D.playlist);
+const total=D.tracks.reduce((a,t)=>a+t.d,0);
+const partSec=p=>D.tracks.filter(t=>partOf(t)===p).reduce((a,t)=>a+t.d,0);
+const n=p=>D.tracks.filter(t=>partOf(t)===p).length;
+$('lead').innerHTML='<b>'+D.tracks.length+' videos</b> the host collected about the future: first <b>'+span(partSec('evening'))+'</b> of short pieces with their own videos, for the projector, then <b>'+span(partSec('late'))+'</b> of long sets for later in the night. '+span(total)+' in all, in the same order as the <a href="'+esc(D.playlist)+'" target="_blank" rel="noopener">YouTube playlist</a>.';
+
+/* The list */
+let k=0;
+$('list').innerHTML=D.parts.map((p,pi)=>{
+  const chs=D.chapters.filter(c=>c.part===p.id);
+  return '<section class="part" id="'+esc(p.id)+'"><div class="part-head"><h2>Part '+(pi+1)+' · '+esc(p.title)+'</h2><span>'+n(p.id)+' videos · '+span(partSec(p.id))+'</span></div><p>'+esc(p.note)+'</p>'+
+    chs.map(c=>'<div class="ch"><h3>'+esc(c.title)+'</h3>'+(c.note?'<p>'+esc(c.note)+(c.host?'<i>host</i>':'')+'</p>':'')+'<ol>'+
+      D.tracks.filter(t=>t.ch===c.id).map(t=>{
+        k++;const q=qIndex(t);
+        return '<li data-q="'+q+'"><span class="n">'+String(k).padStart(2,'0')+'</span><div class="who">'+esc(t.a)+' — '+esc(t.t)+'<small>'+(t.y?t.y+' · ':'')+clock(t.d)+(t.embed===false?' · plays on YouTube only':'')+'</small></div>'+
+          '<div class="go">'+(q>=0&&!FILE?'<button type="button" data-play="'+q+'" aria-label="Play '+esc(t.a+' — '+t.t)+'"><span class="tri" aria-hidden="true"></span></button>':'')+'<a href="'+esc(watch(t))+'" target="_blank" rel="noopener">YouTube ↗</a></div>'+
+          (t.note?'<p class="note">'+esc(t.note)+'</p>':'')+'</li>';
+      }).join('')+'</ol></div>').join('')+'</section>';
+}).join('');
+
+/* The player (YouTube IFrame API). Not on file://, where YouTube refuses to play */
+let player=null,ready=false,pending=null,cur=-1;
+const ids=Q.map(t=>t.yt);
+function mark(i){
+  cur=i;
+  document.querySelectorAll('li.on').forEach(li=>li.classList.remove('on'));
+  const li=document.querySelector('li[data-q="'+i+'"]');
+  if(li)li.classList.add('on');
+  const t=Q[i];
+  if(t)$('now').innerHTML='<span>'+String(D.tracks.indexOf(t)+1).padStart(2,'0')+' / '+D.tracks.length+'</span><b>'+esc(t.a)+' — '+esc(t.t)+'</b><span>'+esc(CH[t.ch].title)+'</span>';
+}
+function play(i){
+  i=Math.max(0,Math.min(Q.length-1,i));
+  if(!ready){pending=i;mark(i);return}
+  /* Once the list is in the player, jump inside it: loadPlaylist on the same list often keeps playing the old video */
+  const pl=player.getPlaylist&&player.getPlaylist();
+  if(pl&&pl.length===ids.length)player.playVideoAt(i);else player.loadPlaylist(ids,i);
+  mark(i);
+}
+if(FILE){
+  $('player').remove();$('off').hidden=false;$('ctl').hidden=true;$('hint').hidden=true;$('now').hidden=true;
+  $('playAll').onclick=()=>window.open(D.playlist,'_blank','noopener');
+  $('playLate').onclick=()=>location.hash='late';
+}else{
+  window.onYouTubeIframeAPIReady=()=>{
+    player=new YT.Player('player',{width:'100%',height:'100%',
+      playerVars:{playsinline:1,rel:0,modestbranding:1},
+      events:{
+        onReady:()=>{ready=true;if(pending!==null){const i=pending;pending=null;play(i)}else player.cuePlaylist(ids,0)},
+        onStateChange:e=>{const i=player.getPlaylistIndex();if(i>=0&&i!==cur&&(e.data===1||e.data===3||e.data===-1))mark(i)},
+        /* A video YouTube won't play here: say so on its row (it still opens on YouTube) and go on to the next one */
+        onError:()=>{const i=player.getPlaylistIndex(),li=document.querySelector('li[data-q="'+i+'"]');
+          if(li&&!li.dataset.blocked){li.dataset.blocked=1;const b=li.querySelector('[data-play]');if(b)b.remove();li.querySelector('small').textContent+=' · plays on YouTube only'}
+          if(i<Q.length-1)setTimeout(()=>player.playVideoAt(i+1),800)}
+      }});
+  };
+  const s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';s.async=true;document.head.appendChild(s);
+  $('playAll').onclick=()=>{play(0);$('screen').scrollIntoView({block:'nearest'})};
+  const firstLate=Q.findIndex(t=>partOf(t)==='late');
+  $('playLate').onclick=()=>{play(firstLate);$('screen').scrollIntoView({block:'nearest'})};
+  $('prev').onclick=()=>play(cur>0?cur-1:0);
+  $('next').onclick=()=>play(cur+1);
+  $('full').onclick=()=>{const el=$('screen');(el.requestFullscreen||el.webkitRequestFullscreen||(()=>{})).call(el)};
+  $('list').addEventListener('click',e=>{const b=e.target.closest('[data-play]');if(b)play(+b.dataset.play)});
+}
+</script>
+</body>
+</html>

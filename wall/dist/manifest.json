@@ -1,6 +1,6 @@
 {
  "page": "wall/dist/big-wall.html",
- "total": 2928,
+ "total": 2960,
  "slides": 278,
  "counts": {
   "facts": 6,
@@ -8,14 +8,18 @@
   "quotes": 50,
   "ideas": 25,
   "tweets": 78,
-  "pictures": 377
+  "pictures": 367
+ },
+ "highlights": {
+  "sec": 40,
+  "shots": 28
  },
  "chapters": [
   {
    "id": "planet",
    "title": "Planet",
    "sub": "Energy, climate, food and the cities we live in",
-   "color": "#2fbf71",
+   "color": "#9dd8ff",
    "sec": 606,
    "slides": 61,
    "has": {
@@ -31,7 +35,7 @@
    "id": "machines",
    "title": "Machines",
    "sub": "When strong AI arrives, what it does to work, and what it is like to live with it",
-   "color": "#ff5315",
+   "color": "#4385ff",
    "sec": 578,
    "slides": 59,
    "has": {
@@ -47,7 +51,7 @@
    "id": "people",
    "title": "People",
    "sub": "How many of us, how long we live, where we move and what for",
-   "color": "#f2b134",
+   "color": "#dce9fb",
    "sec": 465,
    "slides": 44,
    "has": {
@@ -62,7 +66,7 @@
    "id": "power",
    "title": "Power",
    "sub": "Countries, money, war and who decides",
-   "color": "#8b7cff",
+   "color": "#8faacf",
    "sec": 505,
    "slides": 47,
    "has": {
@@ -77,7 +81,7 @@
    "id": "beyond",
    "title": "Beyond",
    "sub": "Getting around the planet and leaving it",
-   "color": "#3aa0ff",
+   "color": "#6aa9ff",
    "sec": 384,
    "slides": 47,
    "has": {
@@ -92,7 +96,7 @@
    "id": "finale",
    "title": "2050",
    "sub": "The future is a choice",
-   "color": "#ff5315",
+   "color": "#4385ff",
    "sec": 159,
    "slides": 17,
    "has": {
@@ -121,6 +125,16 @@
   "video/assets/photos/starship.jpg",
   "video/assets/photos/torus.jpg",
   "video/dist/media/further-720p.mp4",
-  "video/dist/media/six-facts-720p.mp4"
+  "video/dist/media/six-facts-720p.mp4",
+  "wall/media/climb.jpg",
+  "wall/media/climb.mp4",
+  "wall/media/ignite.jpg",
+  "wall/media/ignite.mp4",
+  "wall/media/liftoff.jpg",
+  "wall/media/liftoff.mp4",
+  "wall/media/night.jpg",
+  "wall/media/night.mp4",
+  "wall/media/plume.jpg",
+  "wall/media/plume.mp4"
  ]
 }

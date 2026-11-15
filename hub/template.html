@@ -126,12 +126,11 @@ nav.top .brand svg{width:30px;height:30px;flex:none;color:var(--v-ice)}
 .feature{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:32px;align-items:center;padding:20px;border:1px solid var(--line-2);border-top-color:#7d9ac0;border-radius:var(--r);background:linear-gradient(145deg,#112441,#07132b 75%);box-shadow:inset 0 1px 0 rgb(220 233 251 / 6%)}
 @media (max-width:860px){.feature{grid-template-columns:1fr;gap:22px}}
 .screen.bw{text-decoration:none;background:#000 center/cover no-repeat;display:flex;flex-direction:column;justify-content:flex-end;padding:6% 7%;color:#fff}
-.screen.bw::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.25)),linear-gradient(0deg,rgba(0,0,0,.6),rgba(0,0,0,0) 50%)}
+.screen.bw::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgb(3 8 23/.85),rgb(3 8 23/.25)),linear-gradient(0deg,rgb(3 8 23/.65),rgb(3 8 23/0) 50%)}
 .screen.bw > *{position:relative}
-.bw .k{font:500 clamp(9px,1vw,11px)/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#ff6a33}
-.bw .t{font:400 clamp(56px,9vw,120px)/.84 var(--gothic);color:#ff5315;margin-top:6px}
-.bw .c{font:400 clamp(15px,1.7vw,22px)/1.1 var(--gothic);text-transform:uppercase;margin-top:6px;color:#e4e4e7}
-.bw .c b{font-weight:400;color:#ff6a33}
+.bw .k{font:500 clamp(9px,1vw,11px)/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--v-ice)}
+.bw .t{font:400 clamp(56px,9vw,120px)/.84 var(--gothic);color:var(--v-ink);margin-top:6px}
+.bw .c{font:400 clamp(13px,1.4vw,17px)/1.3 var(--font);margin-top:8px;color:var(--v-muted)}
 .bw .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .bw .chips span{font:500 clamp(8px,.8vw,10px)/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 7px;border-radius:4px;background:rgba(0,0,0,.55);border-left:3px solid var(--c)}
 .feature h3{font:500 clamp(28px,3.4vw,44px)/1.1 var(--display);text-transform:uppercase;letter-spacing:-.05em}
@@ -229,6 +228,13 @@ tr:last-child td{border-bottom:0}
 th{font:500 10.5px/1.3 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);background:var(--raised)}
 td{color:var(--fg-2)}
 td b{color:var(--fg);font-weight:600}
+/* Follow the host on X: one band at the end of the page */
+.follow{display:flex;align-items:center;flex-wrap:wrap;gap:18px 24px;padding:22px 24px;border:1px solid var(--line-2);border-top-color:#7d9ac0;border-radius:var(--r);background:linear-gradient(145deg,#112441,#07132b 75%);box-shadow:inset 0 1px 0 rgb(220 233 251 / 6%)}
+.follow .xmark{width:48px;height:48px;flex:none;display:grid;place-items:center;border-radius:50%;color:var(--v-chrome);background:radial-gradient(circle at 30% 20%,#395d8d,#0b1b36 70%);box-shadow:inset 0 0 0 1px #91aed2}
+.follow .xmark svg{width:20px;height:20px}
+.follow p{flex:1;min-width:min(100%,260px);display:grid;gap:6px}
+.follow b{font:500 clamp(18px,2vw,24px)/1.25 var(--display);letter-spacing:-.035em;color:var(--v-chrome);text-wrap:balance}
+.follow p span{font:400 11px/1.6 var(--mono);color:var(--muted)}
 footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 11px/1.8 var(--mono);color:var(--muted)}
 
 /* Player: always dark, like the wall */
@@ -328,7 +334,7 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
     <div class="sec-head">
       <p class="eyebrow">Sound</p>
       <h2>Music</h2>
-      <p class="note">Further and the slide walls are silent, so the room's sound comes from the playlist. Six Facts has its own music; on the Big Wall it starts muted. To play with music, open <a href="#history-of-music">History of Music 2050</a> or <a href="#play">Play: 2050</a> in Apps.</p>
+      <p class="note">Further and the slide walls are silent, so the room's sound comes from a playlist: the host’s Music of the Future, or the running order Fable 5.2 picked. Six Facts has its own music; on the Big Wall it starts muted. To play with music, open <a href="#history-of-music">History of Music 2050</a> or <a href="#play">Play: 2050</a> in Apps.</p>
     </div>
     <div class="list" id="soundList"></div>
   </section>
@@ -376,6 +382,14 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
     <div class="list" id="readList"></div>
   </section>
 
+  <section id="follow" aria-label="Follow on X">
+    <div class="follow">
+      <span class="xmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
+      <p><b>Please follow @vargastartup on X</b><span>x.com/vargastartup</span></p>
+      <a class="btn" href="https://x.com/vargastartup" target="_blank" rel="noopener">Follow on X <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+
   <footer id="foot"></footer>
 </div>
 
@@ -407,7 +421,7 @@ const isClaude=u=>/^https:\/\/claude\.ai\//.test(u);
 /* Markdown opens on GitHub from the website, from disk in the folder */
 const doc=p=>WEB?D.repo+'/blob/main/'+p:p;
 const ext=u=>/^https?:/.test(u)?' target="_blank" rel="noopener"':'';
-const P=D.pages,B=D.books,T=D.tweets,S=D.sound,A=D.art,W=D.wall;
+const P=D.pages,B=D.books,T=D.tweets,S=D.sound,F=D.future,A=D.art,W=D.wall;
 
 /* Hero */
 $('lead').innerHTML=WEB
@@ -489,7 +503,7 @@ const APPS=[
 /* The doors */
 const DOORS=[
   ['#wall','On the wall','The Big Wall, Further, Six Facts, and the quote, idea, tweet and art walls.','▶ '+mins(W.total)+' a loop'],
-  ['#music','Music','The playlist for the room, and Why Music Changes: four thousand years in thirteen eras.',S.tracks+' tracks'],
+  ['#music','Music','Music of the Future, the host’s picks; Fable 5.2’s playlist about the future; and Why Music Changes: four thousand years in thirteen eras.','2 playlists · '+(F.tracks+S.tracks)+' videos'],
   ['#apps','Apps','The Future 2050, the NFC game; Mirror 2050, History of Music 2050, Play: 2050, Mars in 3D and Imagined Futures.',APPS.length+' apps'],
   ['#research','2050 Research','The books, the tweets, the films and the effects behind the wall.','7 pages']
 ];
@@ -497,9 +511,9 @@ $('doors').innerHTML=DOORS.map((d,i)=>'<a class="door" href="'+d[0]+'"><span cla
 
 /* The Big Wall */
 const C=W.counts;
-$('bigwall').innerHTML='<a class="screen bw" href="'+esc(P.bigwall)+'#play" style="background-image:url(\''+esc(W.tile)+'\')" aria-label="Start the Big Wall"><span class="k">The Big Wall · one loop</span><span class="t">2050</span><span class="c">'+[[C.facts,'facts'],[C.further,'predictions'],[C.quotes,'quotes'],[C.ideas,'ideas'],[C.tweets,'tweets'],[C.pictures,'pictures']].map(r=>'<b>'+r[0]+'</b> '+r[1]).join(' · ')+'</span><span class="chips">'+W.chapters.map(c=>'<span style="--c:'+esc(c.color)+'">'+esc(c.title)+'</span>').join('')+'</span></a>'+
-  '<div><h3>The Big <span>Wall</span></h3><p>Everything on the wall as one long show reel: '+C.facts+' facts, '+C.further+' predictions from Further over their photos, '+C.quotes+' quotes from the books, '+C.ideas+' ideas, '+C.tweets+' tweets and the concept art, in six chapters. It opens with Six Facts and closes with Further. Each loop shows the next pictures.</p>'+
-  '<ol class="chlist">'+W.chapters.map(c=>'<li><a href="'+esc(P.bigwall)+'#'+esc(c.id)+'" style="--c:'+esc(c.color)+'"><i></i><b>'+esc(c.title)+'</b><span>'+mmss(c.sec)+'</span></a></li>').join('')+'</ol>'+
+$('bigwall').innerHTML='<a class="screen bw" href="'+esc(P.bigwall)+'#play" style="background-image:url(\''+esc(W.tile)+'\')" aria-label="Start the Big Wall"><span class="k">The Big Wall</span><span class="t">2050</span><span class="c">The films dreamed it. Here is how far it goes.</span><span class="chips">'+W.chapters.map(c=>'<span style="--c:'+esc(c.color)+'">'+esc(c.title)+'</span>').join('')+'</span></a>'+
+  '<div><h3>The Big <span>Wall</span></h3><p>Everything on the wall in one loop. It opens with '+Math.round(W.highlights.sec)+' fast seconds of highlights in the look of Further, then Six Facts and six chapters of facts, predictions, quotes, ideas, tweets and concept art, and closes with Further. Each loop shows the next pictures.</p>'+
+  '<ol class="chlist">'+[{id:'highlights',title:'Highlights',color:'#dce9fb',sec:W.highlights.sec}].concat(W.chapters).map(c=>'<li><a href="'+esc(P.bigwall)+'#'+esc(c.id)+'" style="--c:'+esc(c.color)+'"><i></i><b>'+esc(c.title)+'</b><span>'+mmss(c.sec)+'</span></a></li>').join('')+'</ol>'+
   '<div class="actions" style="margin-top:20px"><a class="btn big" href="'+esc(P.bigwall)+'#play"><span class="tri" aria-hidden="true"></span>Start the Big Wall</a><a class="lnk" href="'+esc(P.bigwall)+'">chapters and keys</a><span class="alt">'+mins(W.total)+' a loop</span></div></div>';
 
 /* Films */
@@ -557,7 +571,9 @@ const item=(h,p,links,pre)=>{
 };
 const loc=(t,p)=>D.exists[p]===false?null:[t,/\.md$/.test(p)?doc(p):p];
 $('soundList').innerHTML=[
-  item('Playlist','Soundtrack 2050, the party’s running order: '+S.tracks+' tracks and spoken voices in three blocks, each scored for plausibility and inspiration, plus '+S.bench+' spares.',
+  item('Music of the Future','The host’s own picks: '+F.tracks+' videos. First '+mins(F.evening)+' of music videos for the projector (lift-off, music written with AI, futuristic visuals, robotics, minimalism, botanica, bruxia), then '+Math.round(F.late/1800)/2+' hours of long sets, with Arca last. '+(WEB?'The page plays them all in order.':'Its player works on the website; from the folder each track opens on YouTube.'),
+    [loc(WEB?'open':'open (no player)',P.future_music),['YouTube playlist ↗',D.playlists.future]]),
+  item('Fable 5.2’s playlist about the future','Soundtrack 2050, the party’s running order picked by Fable 5.2: '+S.tracks+' tracks and spoken voices in three blocks, each scored for plausibility and inspiration, plus '+S.bench+' spares.',
     [['YouTube playlist ↗',D.playlists.soundtrack],loc('the running order',P.soundtrack),['online ↗',D.online.soundtrack]]),
   item('Why Music Changes','Four thousand years in thirteen eras: who paid, who ruled, what people believed, and the technology and contact that changed the sound.',
     [loc('open',P.why),['History of Music playlist ↗',D.playlists.history],['online ↗',D.online.why]],'Research')
@@ -625,7 +641,7 @@ $('deckLink').insertAdjacentHTML('afterend','<a class="lnk" href="'+esc(P.deck)+
 $('deckCount').textContent=D.deck.slides+' slides, in this order';
 $('deckHow').innerHTML='→ or a click goes on and runs the demo clicks, ← goes back, F is full screen, N shows the speaker notes. '+(WEB?'On the projector laptop, type '+esc(D.site.replace(/^https?:\/\//,''))+'/slides.':'It opens from this folder; only the fonts and the YouTube clip need internet.');
 
-$('foot').innerHTML='Future Party 2050 · built '+esc(D.built)+' · <a href="'+esc(D.repo)+'" target="_blank" rel="noopener">source on GitHub</a>'+(WEB?'':' · <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(D.site.replace(/^https?:\/\//,''))+'</a>');
+$('foot').innerHTML='Future Party 2050 · built '+esc(D.built)+' · <a href="'+esc(D.repo)+'" target="_blank" rel="noopener">source on GitHub</a> · <a href="https://x.com/vargastartup" target="_blank" rel="noopener">follow @vargastartup on X</a>'+(WEB?'':' · <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(D.site.replace(/^https?:\/\//,''))+'</a>');
 
 /* Film player */
 const player=$('player'),pv=$('pv');let idleT=0,prev=null;

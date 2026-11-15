@@ -52,7 +52,10 @@ PAGES = {
     "further": "video/dist/further-2050.html",
     "books": "books/dist/book-projection-2050.html",
     "tweets": "tweets/dist/tweets-2050.html",
+    # Soundtrack 2050, Fable 5.2's playlist about the future (the party's running order)
     "soundtrack": "music/dist/soundtrack2050.html",
+    # Music of the Future, the host's own picks, with a player in the page
+    "future_music": "music/dist/music-of-the-future.html",
     "why": "music/dist/why-music-changes.html",
     "resonance": "music/resonance/dist/local/index.html",
     # Play 2050, the Makey Makey soundboard (formerly Contact 2050; the file keeps that name)
@@ -85,6 +88,7 @@ SHORT = {
     "play": PAGES["contact"],
     "soundboard": PAGES["contact"],
     "soundtrack": PAGES["soundtrack"],
+    "future-music": PAGES["future_music"],
     "resonance": PAGES["resonance"],
     "music-history": PAGES["why"],
     "books": PAGES["books"],
@@ -99,7 +103,10 @@ DECK_SHOT = "slides/assets/preview.jpg"
 # The party app, The Future 2050 (app/ in this repo), is served at /app on the same site; link its home page, never /app/admin.
 APPS = {"party": SITE + "/app"}
 PLAYLISTS = {
+    # "Fable 5.2 · a playlist about the future" (Soundtrack 2050), unlisted
     "soundtrack": "https://www.youtube.com/playlist?list=PLJdg5B9vQ1oA",
+    # "Music of the Future", the host's picks in the order of music/future_music.json, unlisted
+    "future": "https://www.youtube.com/playlist?list=PLeCO8iyYgFSo",
     "history": "https://www.youtube.com/playlist?list=PLeo45sxoQ8gE",
     "resonance": "https://www.youtube.com/playlist?list=PLSfq0dmq_K78",
 }
@@ -176,6 +183,14 @@ def soundtrack_numbers():
     return {"tracks": len(s["tracks"]), "bench": len(s.get("bench", [])), "sec": secs}
 
 
+def future_music_numbers():
+    f = load("music/future_music.json")
+    part = {c["id"]: c["part"] for c in f["chapters"]}
+    secs = lambda p: sum(t["d"] for t in f["tracks"] if part[t["ch"]] == p)
+    return {"tracks": len(f["tracks"]), "sec": sum(t["d"] for t in f["tracks"]),
+            "evening": secs("evening"), "late": secs("late")}
+
+
 def wall_numbers():
     """The Big Wall's chapters and loop length, from the manifest wall/build.py writes."""
     m = ROOT / "wall/dist/manifest.json"
@@ -183,6 +198,7 @@ def wall_numbers():
         return None
     w = json.loads(m.read_text(encoding="utf8"))
     return {"total": w["total"], "slides": w["slides"], "counts": w["counts"], "files": w["files"], "tile": WALL_TILE,
+            "highlights": w["highlights"],
             "chapters": [{k: c[k] for k in ("id", "title", "color", "sec")} for c in w["chapters"]]}
 
 
@@ -263,7 +279,7 @@ def build(web=False):
         sys.exit("wall/dist/manifest.json is missing: run python3 -I wall/build.py")
     data = dict(common(web), **{
         "films": [f for f in films if f["front"]],
-        "books": b, "tweets": t, "sound": s, "art": c, "wall": w, "mars": mars3d_numbers(), "shots": APP_SHOTS,
+        "books": b, "tweets": t, "sound": s, "future": future_music_numbers(), "art": c, "wall": w, "mars": mars3d_numbers(), "shots": APP_SHOTS,
         "exists": {p: (ROOT / p).exists() for p in [
             "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html",
             "reel/links.md", DECK_SHOT, ART_TILE, WALL_TILE, *APP_SHOTS.values(), *PAGES.values()]},

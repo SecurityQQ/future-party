@@ -11,6 +11,8 @@ import html, json, re
 
 SITE = "https://www.vargafutureparty.com"
 NAME = "Future Party 2050"
+# The host on X, as on the front page's Follow band: X cards name it
+X = "@vargastartup"
 # Files hub/site.py copies to the root of the site: site path -> repo path
 FILES = {"og.jpg": "hub/og/site.jpg", "og-app.jpg": "hub/og/app.jpg",
          "favicon.ico": "hub/og/favicon.ico", "apple-touch-icon.png": "hub/og/apple-touch-icon.png"}
@@ -37,9 +39,10 @@ META = {
                 ("hub/apps/art.jpg", 1280, 720, "Six pictures from Imagined Futures")),
     "deck": ("Party slides · " + NAME, None,
              ("slides/assets/preview.jpg", 1280, 720, "The deck’s Tonight at the party slide")),
+    "future_music": ("Music of the Future · " + NAME, None, None),
     "soundtrack": ("Soundtrack 2050 · " + NAME,
-                   "The party’s running order: tracks and spoken voices in three blocks, each scored for "
-                   "plausibility and inspiration.", None),
+                   "A playlist about the future picked by Fable 5.2: tracks and spoken voices in three blocks, each "
+                   "scored for plausibility and inspiration.", None),
     "why": ("Why Music Changes · " + NAME,
             "Four thousand years of music in thirteen eras: who paid, who ruled, what people believed, and the "
             "technology and contact that changed the sound.", None),
@@ -114,6 +117,7 @@ def tags(rel, page, meta):
             f'<meta property="og:image:type" content="image/jpeg">',
             f'<meta property="og:image:alt" content="{a(pic[3])}">',
             '<meta name="twitter:card" content="summary_large_image">',
+            f'<meta name="twitter:site" content="{X}">',
             f'<meta name="twitter:title" content="{a(title)}">']
     if desc:
         out.append(f'<meta name="twitter:description" content="{a(desc)}">')
@@ -181,8 +185,8 @@ APP = ("The Future 2050 (party app)", SITE + "/app",
        "everyone you meet; a live ranking counts the cards each traveler has scanned.")
 GROUPS = [("The night", ["index", "bigwall", "further", "deck"]),
           ("Apps", ["app", "mirror", "resonance", "contact", "mars3d", "concept"]),
-          ("Research", ["books", "tweets", "futurists", "futurists_short", "films", "soundtrack", "why",
-                        "mirror_research"])]
+          ("Music", ["future_music", "soundtrack", "why"]),
+          ("Research", ["books", "tweets", "futurists", "futurists_short", "films", "mirror_research"])]
 
 
 def llms(pages, built):

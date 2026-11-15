@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geologica, Martian_Mono, Unbounded } from "next/font/google";
 import Starfield from "@/components/Starfield";
 import Deck from "@/components/Deck";
-import { CARD, DESCRIPTION, OPEN_GRAPH, SITE } from "@/lib/share";
+import { CARD, DESCRIPTION, OPEN_GRAPH, SITE, X } from "@/lib/share";
 import "./globals.css";
 
 const display = Unbounded({ subsets: ["latin", "cyrillic"], variable: "--font-display" });
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: "The Future 2050",
   description: DESCRIPTION,
   openGraph: { ...OPEN_GRAPH, title: "The Future 2050", description: DESCRIPTION, images: [CARD] },
-  twitter: { card: "summary_large_image", title: "The Future 2050", description: DESCRIPTION, images: [CARD] },
+  twitter: { card: "summary_large_image", site: X, title: "The Future 2050", description: DESCRIPTION, images: [CARD] },
 };
 export const viewport: Viewport = { themeColor: "#030817", width: "device-width", initialScale: 1, viewportFit: "cover" };
 
