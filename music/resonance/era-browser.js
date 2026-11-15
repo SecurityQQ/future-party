@@ -2,8 +2,9 @@
  *
  * Two pieces, written for this framework-free page after two React components:
  * - Eras are glass folders (after Glass Folder Cards): generated liquid art on the
- *   back panel, a frosted front that leans open on its bottom hinge, and sheets
- *   peeking out of the pocket that rise when the era is open.
+ *   back panel, the era's recordings as sheets in the pocket (with their ring art),
+ *   a frosted front that leans on its bottom hinge, and a key that plays the era.
+ *   The current era is open: its glass falls forward and the recordings fan out.
  * - The recordings of the open era sit on a molten ring (after Molten Ring
  *   Carousel): each card is a rounded-box distance field and one WebGL2 pass takes
  *   a smooth minimum over all of them, so cards pour out of the era as one drop,
@@ -811,49 +812,100 @@ void main(){
   }
 
   // ---------------------------------------------------------------------------
-  // Era folders: back-panel art, accents, and a light that follows the pointer.
+  // Folders: back-panel art, the items' ring art on the sheets, a light and a tilt
+  // that follow the pointer, an entrance the first time each is on screen, and the
+  // clicks a folder handles itself (a sheet picks its item, the key plays the group,
+  // anywhere else opens the group through its own button).
 
-  function dressFolders(strip, {attr, palette, seed}) {
-    const selector = `[data-${attr.replace(/[A-Z]/g, c => '-' + c.toLowerCase())}]`;
-    strip.querySelectorAll(selector).forEach(button => {
-      const era = Number(button.dataset[attr]), p = palette(era);
-      button.style.setProperty('--era-a', p.colors[2]);
-      button.style.setProperty('--era-b', p.colors[5]);
-      const canvas = button.querySelector('canvas[data-era-art]');
-      if (!canvas) return;
-      const w = 176, h = 124;
-      paint(p, seed(era), w, h, 1).then(src => {
-        canvas.width = src.width; canvas.height = src.height;
-        canvas.getContext('2d')?.drawImage(src, 0, 0);
-        canvas.dataset.ready = '';
+  function dressFolders(strip, {palette, seed, groups, reducedMotion, onSelect, onPlay}) {
+    const folders = [...strip.querySelectorAll('.era-folder')];
+    const k = parseFloat(getComputedStyle(strip).getPropertyValue('--k')) || .68;
+    const density = Math.min(1.5, Math.max(1, window.devicePixelRatio || 1)) * k;
+    folders.forEach(folder => {
+      const g = Number(folder.dataset.group), p = palette(g);
+      folder.style.setProperty('--era-a', p.colors[2]);
+      folder.style.setProperty('--era-b', p.colors[5]);
+      const back = folder.querySelector('canvas[data-era-art]');
+      if (back) paint(p, seed(g), Math.round(364 * density), Math.round(296 * density), 1).then(src => {
+        back.width = src.width; back.height = src.height;
+        back.getContext('2d')?.drawImage(src, 0, 0);
+        back.dataset.ready = '';
+      });
+      // The same art as the item's card on the ring (same recipe and seed, so one painting).
+      folder.querySelectorAll('.gf-sheet[data-item]').forEach(sheet => {
+        const item = groups?.[g]?.[Number(sheet.dataset.item)], canvas = sheet.querySelector('canvas[data-sheet-art]');
+        if (!item || !canvas) return;
+        paint(p, item.seed, ART_W, ART_H, 2).then(src => {
+          const sw = Math.min(src.width, src.height * 272 / 184), sh = sw * 184 / 272;
+          canvas.width = Math.round(sw); canvas.height = Math.round(sh);
+          canvas.getContext('2d')?.drawImage(src, (src.width - sw) / 2, (src.height - sh) / 2, sw, sh, 0, 0, canvas.width, canvas.height);
+          canvas.dataset.ready = '';
+        });
       });
     });
+
+    strip.addEventListener('click', e => {
+      const folder = e.target.closest('.era-folder');
+      if (!folder || e.target.closest('.gf-hit')) return;
+      const g = Number(folder.dataset.group), sheet = e.target.closest('[data-item]');
+      if (sheet) onSelect?.(g, Number(sheet.dataset.item));
+      else if (e.target.closest('.gf-key')) onPlay ? onPlay(g) : onSelect?.(g, 0);
+      else folder.querySelector('.gf-hit')?.click();
+    });
+
     let raf = 0, target = null, px = 0, py = 0;
     const write = () => { raf = 0; if (!target) return; target.style.setProperty('--px', px.toFixed(3)); target.style.setProperty('--py', py.toFixed(3)); };
+    const rest = folder => { folder?.style.setProperty('--px', '0'); folder?.style.setProperty('--py', '0'); };
     strip.addEventListener('pointermove', e => {
       if (e.pointerType === 'touch') return;
-      const folder = e.target.closest(selector);
-      if (folder !== target && target) { target.style.setProperty('--px', '0'); target.style.setProperty('--py', '0'); }
+      const folder = e.target.closest('.era-folder');
+      if (folder !== target) rest(target);
       target = folder;
       if (!folder) return;
       const r = folder.getBoundingClientRect();
-      px = (e.clientX - r.left) / r.width * 2 - 1; py = (e.clientY - r.top) / r.height * 2 - 1;
+      px = clamp((e.clientX - r.left) / r.width * 2 - 1, -1, 1); py = clamp((e.clientY - r.top) / r.height * 2 - 1, -1, 1);
       if (!raf) raf = requestAnimationFrame(write);
     });
-    strip.addEventListener('pointerleave', () => { if (target) { target.style.setProperty('--px', '0'); target.style.setProperty('--py', '0'); } target = null; });
+    strip.addEventListener('pointerleave', () => { rest(target); target = null; });
+
+    if (!reducedMotion && typeof IntersectionObserver !== 'undefined') {
+      folders.forEach(folder => folder.setAttribute('data-assemble', ''));
+      const io = new IntersectionObserver(entries => {
+        let n = 0;
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          io.unobserve(entry.target);
+          setTimeout(() => entry.target.setAttribute('data-entered', ''), 90 * n++);
+        });
+      }, {threshold: .25});
+      folders.forEach(folder => io.observe(folder));
+    }
+
+    return {
+      /** The open group fans out its sheets; the current item's sheet is marked. */
+      open(g, i) {
+        folders.forEach(folder => {
+          const on = Number(folder.dataset.group) === g;
+          folder.toggleAttribute('data-open', on);
+          folder.querySelector('.gf-files')?.toggleAttribute('inert', !on);
+          folder.querySelectorAll('[data-item]').forEach(sheet => sheet.classList.toggle('current', on && Number(sheet.dataset.item) === i));
+        });
+      },
+    };
   }
 
   window.ResonanceEras = {
     /**
      * groups: one array per folder, items {seed, date, genre, artist, title}.
-     * folderAttr: the camelCase data attribute holding each folder's group index.
-     * palettes: 'eras' or 'future'. onSelect(group, index) picks an item.
+     * palettes: 'eras' or 'future'. onSelect(group, index) picks an item; onPlay(group),
+     * if given, is what a folder's key does (otherwise it picks the first item).
      */
-    mount({root, strip, groups, folderAttr = 'historyPeriod', palettes = 'eras', folderSeed = g => g * 7 + 3, reducedMotion = false, onSelect, label}) {
+    mount({root, strip, groups, palettes = 'eras', folderSeed = g => g * 7 + 3, reducedMotion = false, onSelect, onPlay, label}) {
       const pal = paletteOf(SETS[palettes] || PALETTES);
-      if (strip) dressFolders(strip, {attr: folderAttr, palette: pal, seed: folderSeed});
-      const ring = root ? createRing(root, {groups, palette: pal, reducedMotion, onSelect, label}) : null;
-      return {update(g, i) { ring?.update(g, i); }};
+      const folders = strip ? dressFolders(strip, {palette: pal, seed: folderSeed, groups, reducedMotion, onSelect, onPlay}) : null;
+      let ring = null;
+      try { ring = root ? createRing(root, {groups, palette: pal, reducedMotion, onSelect, label}) : null; } catch (error) { console.warn('The ring could not start', error); }
+      return {update(g, i) { folders?.open(g, i); ring?.update(g, i); }};
     },
     hash: hashString,
   };

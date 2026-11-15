@@ -9,6 +9,7 @@ storage keys, playback and the library, signals and horizon pages are unchanged.
 """
 
 known_works = {w['id'] for w in future['works']}
+works_by_id = {w['id']: w for w in future['works']}
 
 
 def examples(c):
@@ -19,7 +20,9 @@ def examples(c):
 
 route_length = sum(len(examples(c)) for c in future['concepts'])
 future_folders = ''.join(
-    glass_folder(g, 'future-concept', f'{c["number"]:02d} · {c["category"].upper()}', c['title'], len(examples(c)), 'future-recording future-detail')
+    glass_folder(g, 'future-concept', f'{c["number"]:02d} · {c["category"].upper()}', c['title'], 'future-recording future-detail',
+                 [(w['artist'], str(w['year']) if w.get('year') else 'Undated', f'{w["artist"]}, {w["title"]}') for w in (works_by_id[x] for x in examples(c))],
+                 ('example', 'examples'), f'Play {c["title"]} from its first example')
     for g, c in enumerate(future['concepts']))
 future_controls = f'''<section class="history-controls future-controls" id="future-controls" hidden aria-label="Choose a direction and an example">
     <h1 class="history-visually-hidden">Music of the Future</h1>
@@ -81,13 +84,16 @@ future_init = r'''  // Directions as glass folders and examples on the molten ri
   const FUTURE_GROUPS=data.concepts.map(c=>listFor(c).map(id=>works.get(id)));
   const ROUTE=FUTURE_GROUPS.flatMap((list,g)=>list.map((w,i)=>({c:data.concepts[g].id,w:w.id,g,i})));
   let futureEras=null,lastConcept=null;
-  try{futureEras=window.ResonanceEras?.mount({root:$('future-recording'),strip:$('future-period'),folderAttr:'futureConcept',palettes:'future',folderSeed:g=>g*11+5,
+  try{futureEras=window.ResonanceEras?.mount({root:$('future-recording'),strip:$('future-period'),palettes:'future',folderSeed:g=>g*11+5,
     groups:FUTURE_GROUPS.map((list,g)=>list.map(w=>({seed:(window.ResonanceEras.hash(w.id)%9973)+g,date:w.year?String(w.year):'Undated',genre:w.format,artist:w.artist,title:w.title}))),
-    reducedMotion:reduced,label:'Examples of this direction',onSelect:(g,i)=>navigate(data.concepts[g].id,FUTURE_GROUPS[g][i].id)})||null;}catch(error){console.warn('Future directions could not start',error);}
+    reducedMotion:reduced,label:'Examples of this direction',onSelect:(g,i)=>navigate(data.concepts[g].id,FUTURE_GROUPS[g][i].id),
+    // The key plays the direction's first example: open it, then press its play button once it is on the page.
+    onPlay:g=>{const c=data.concepts[g],w=FUTURE_GROUPS[g][0];if(currentConcept===c.id&&currentWork===w.id){$('future-play-sample')?.click();return;}
+      window.addEventListener('hashchange',()=>setTimeout(()=>$('future-play-sample')?.click()),{once:true});navigate(c.id,w.id);}})||null;}catch(error){console.warn('Future directions could not start',error);}
   function routeIndex(){return ROUTE.findIndex(r=>r.c===currentConcept&&r.w===currentWork);}
   function stepFuture(step){const r=ROUTE[routeIndex()+step];if(r)navigate(r.c,r.w);}
   function updateFuturePeriodScroll(){const s=$('future-period');$('future-period-earlier').disabled=s.scrollLeft<=2;$('future-period-later').disabled=s.scrollLeft+s.clientWidth>=s.scrollWidth-2;s.classList.toggle('can-earlier',!$('future-period-earlier').disabled);s.classList.toggle('can-later',!$('future-period-later').disabled);}
-  function centerFuturePeriod(smooth=true){if(document.body.dataset.view!=='future'||$('future-controls').hidden)return;const s=$('future-period'),a=s.querySelector('.active');if(!a)return;s.scrollTo({left:a.offsetLeft-(s.clientWidth-a.offsetWidth)/2,behavior:smooth&&!reduced?'smooth':'instant'});updateFuturePeriodScroll();}
+  function centerFuturePeriod(smooth=true){if(document.body.dataset.view!=='future'||$('future-controls').hidden)return;const s=$('future-period'),a=s.querySelector('.active')?.closest('.era-folder');if(!a)return;s.scrollTo({left:a.offsetLeft-(s.clientWidth-a.offsetWidth)/2,behavior:smooth&&!reduced?'smooth':'instant'});updateFuturePeriodScroll();}
   function renderFutureChoices(g,i){
     $('future-period').querySelectorAll('[data-future-concept]').forEach(b=>{const on=Number(b.dataset.futureConcept)===g;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));});
     requestAnimationFrame(()=>centerFuturePeriod());
@@ -112,5 +118,5 @@ future_init = r'''  // Directions as glass folders and examples on the molten ri
 html = rep(html, '  renderAtlas();renderHorizon();route(true);\n})();', future_init + '  renderAtlas();renderHorizon();route(true);\n})();')
 html = rep(html, '</style>', '\n' + open(P('future-eras.css'), encoding='utf-8').read() + '\n</style>')
 
-assert html.count('id="future-controls"') == 1 and html.count('era-folder" data-future-concept="') == len(future['concepts'])
+assert html.count('id="future-controls"') == 1 and html.count('gf-hit" data-future-concept="') == len(future['concepts'])
 assert 'class="next-concept-bar"' not in html and 'class="sample-nav"' not in html
