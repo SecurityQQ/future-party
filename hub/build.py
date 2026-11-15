@@ -257,6 +257,7 @@ def build(web=False):
 def admin(web=False):
     """Return the admin page as a string: the host's page, linked from nowhere."""
     films = films_list(web)
+    # The admin page reuses the front page's style block. The front page itself never names the admin page.
     tpl = (HUB / "template.html").read_text(encoding="utf8")
     css = re.search(r"<style>.*?</style>", tpl, re.S).group(0)
     data = dict(common(web), **{"films": films, "wall": wall_numbers(),
