@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<title>Admin · Future Party 2050</title>
+<title>Admin · Varga Future Party 2050</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <meta name="theme-color" content="#030817">
@@ -86,6 +86,9 @@ nav.top .brand svg{width:30px;height:30px;flex:none;color:var(--v-ice)}
 .hero-copy{position:relative;padding-block:44px 48px}
 .hero h1{font:500 clamp(42px,calc(24px + 5.6vw),104px)/1.04 var(--display);text-transform:uppercase;letter-spacing:0;text-wrap:nowrap}
 .hero h1 span{display:block}
+/* The host’s name over the party’s: VARGA, wide and in ice, with a line running out to the right */
+.hero h1 .by{display:flex;align-items:center;gap:.5em;margin-bottom:.42em;font-size:max(.3em,15px);font-weight:600;line-height:1;letter-spacing:.46em;color:var(--v-ice)}
+.hero h1 .by::after{content:"";flex:0 0 3.4em;height:1px;background:linear-gradient(90deg,var(--v-ice),transparent)}
 .hero h1 .yr{font-weight:600;background:var(--v-chrome-surface);background-clip:text;-webkit-background-clip:text;color:transparent;padding-bottom:.04em}
 .hero-art{position:absolute;z-index:-1;inset:0;overflow:hidden;pointer-events:none;mask-image:linear-gradient(#000 65%,transparent 94%);-webkit-mask-image:linear-gradient(#000 65%,transparent 94%)}
 .hero-art img{position:absolute;right:0;top:0;width:70%;height:100%;object-fit:cover;object-position:center 40%;opacity:.86;mask-image:linear-gradient(90deg,transparent,#000 28%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 28%)}
@@ -334,7 +337,7 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
 <body>
 <div class="wrap">
   <nav class="top" aria-label="Sections">
-    <span class="brand">FUTURE PARTY / 2050 · ADMIN</span>
+    <span class="brand">VARGA FUTURE PARTY / 2050 · ADMIN</span>
     <a href="#preflight">Pre-flight</a><a href="#short">Addresses</a><a href="#off">Off the front page</a><a href="#rebuild">Rebuild</a><a href="index.html">Front page</a>
   </nav>
 
@@ -466,7 +469,7 @@ const RB=[
   ['The website','<code>hub/site.py</code>, <code>vercel.json</code>','python3 -I hub/site.py']
 ];
 $('rebuildBody').innerHTML=RB.map(r=>'<tr><td><b>'+esc(r[0])+'</b></td><td>'+r[1]+'</td><td><code>'+esc(r[2])+'</code></td></tr>').join('');
-$('foot').innerHTML='Future Party 2050 · admin, built '+esc(D.built)+' · <a href="index.html">front page</a> · <a href="'+esc(D.repo)+'" target="_blank" rel="noopener">source on GitHub</a> · <a href="'+esc(D.repo)+'/releases" target="_blank" rel="noopener">releases</a>';
+$('foot').innerHTML='Varga Future Party 2050 · admin, built '+esc(D.built)+' · <a href="index.html">front page</a> · <a href="'+esc(D.repo)+'" target="_blank" rel="noopener">source on GitHub</a> · <a href="'+esc(D.repo)+'/releases" target="_blank" rel="noopener">releases</a>';
 })();
 </script>
 </body>

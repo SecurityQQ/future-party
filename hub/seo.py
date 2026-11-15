@@ -10,13 +10,13 @@ Pages in HIDDEN get noindex instead and stay out of the sitemap. The party app a
 import html, json, re
 
 SITE = "https://www.vargafutureparty.com"
-NAME = "Future Party 2050"
+NAME = "Varga Future Party 2050"
 # The host on X, as on the front page's Follow band: X cards name it
 X = "@vargastartup"
 # Files hub/site.py copies to the root of the site: site path -> repo path
 FILES = {"og.jpg": "hub/og/site.jpg", "og-app.jpg": "hub/og/app.jpg",
          "favicon.ico": "hub/og/favicon.ico", "apple-touch-icon.png": "hub/og/apple-touch-icon.png"}
-CARD = ("og.jpg", 1200, 630, "Future Party 2050: Step into 2050. The Big Wall, music, six apps and Mars in 3D for one night.")
+CARD = ("og.jpg", 1200, 630, "Varga Future Party 2050: Step into 2050. The Big Wall, music, six apps and Mars in 3D for one night.")
 WALL = ("video/assets/photos/smiled.jpg", 2304, 1296, "Earth seen through Saturn’s rings")
 
 # The front page and every page in hub/build.py PAGES, by its key there: (title, description, picture).
@@ -126,7 +126,7 @@ def tags(rel, page, meta):
             '<link rel="icon" href="/favicon.ico" sizes="48x48">',
             '<link rel="apple-touch-icon" href="/apple-touch-icon.png">']
     if rel == "index.html":
-        site = {"@context": "https://schema.org", "@type": "WebSite", "name": NAME, "url": SITE + "/",
+        site = {"@context": "https://schema.org", "@type": "WebSite", "name": NAME, "alternateName": "Future Party 2050", "url": SITE + "/",
                 "description": desc, "inLanguage": "en"}
         out.append('<script type="application/ld+json">' + json.dumps(site, ensure_ascii=False) + "</script>")
     return out
@@ -175,7 +175,7 @@ def sitemap(pages):
 
 # /llms.txt (llmstxt.org): the site in a few lines for AI assistants and answer engines, by front-page section
 REPO = "https://github.com/SecurityQQ/future-party"
-SUMMARY = ("Future Party 2050 is a party set in the year 2050, and this site holds everything for the night: the Big "
+SUMMARY = ("Varga Future Party 2050 is a party set in the year 2050, and this site holds everything for the night: the Big "
            "Wall that plays every film and slide wall in one loop on the projector, the music, six apps for the "
            "guests (an NFC party game, webcam effects played with the hands, a Makey Makey soundboard, Mars for "
            "red/cyan 3D glasses, a gallery of concept art) and the research behind it: books, futurists' posts and "

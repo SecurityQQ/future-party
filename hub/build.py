@@ -1,4 +1,4 @@
-"""Build the front page of the Future Party 2050 folder, and the admin page beside it.
+"""Build the front page of the Varga Future Party 2050 folder, and the admin page beside it.
 
 Reads the real numbers from the other projects (the Big Wall, quotes, ideas, tweets, pictures, soundtrack, film renders)
 and writes the pages from template.html and admin.html. Run from anywhere:

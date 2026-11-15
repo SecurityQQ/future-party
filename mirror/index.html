@@ -221,7 +221,7 @@ body.idle{cursor:none}
 <video id="cam" playsinline muted autoplay></video>
 
 <header id="top" class="chrome">
-  <div class="brand">Mirror <b>2050</b><small>FUTURE PARTY · LIVE CAMERA</small></div>
+  <div class="brand">Mirror <b>2050</b><small>VARGA FUTURE PARTY · LIVE CAMERA</small></div>
   <div class="pills">
     <span id="pCam" class="pill">CAM —</span>
     <span id="pHands" class="pill">HANDS —</span>
@@ -271,7 +271,7 @@ body.idle{cursor:none}
 
 <div id="gate">
   <div class="gate-in">
-    <div class="kicker"><a href="../index.html#mirror" style="color:inherit;text-decoration:none" title="The party’s apps">FUTURE PARTY 2050</a> · CAMERA</div>
+    <div class="kicker"><a href="../index.html#mirror" style="color:inherit;text-decoration:none" title="The party’s apps">VARGA FUTURE PARTY 2050</a> · CAMERA</div>
     <h1>Mirror <b>2050</b></h1>
     <p>Eight camera effects that went viral on X, rebuilt for the browser: liquid air, a particle swarm, a hologram cube, portals and more. Use your hands. The camera never leaves this computer.</p>
     <button id="go">Start camera</button>
@@ -1390,7 +1390,7 @@ function snapshot(){
   x.drawImage(glc, 0, 0); x.drawImage(hud, 0, 0);
   const d = S.dpr; x.font = `${30*d}px "League Gothic", Impact, sans-serif`; x.fillStyle = '#fff'; x.textAlign = 'right';
   x.fillText('MIRROR 2050', S.W - 20*d, S.H - 22*d); x.fillStyle = '#4385ff'; x.font = `500 ${10*d}px "Martian Mono", monospace`;
-  x.fillText(`FUTURE PARTY · ${FX[cur].name.toUpperCase()}`, S.W - 20*d, S.H - 56*d);
+  x.fillText(`VARGA FUTURE PARTY · ${FX[cur].name.toUpperCase()}`, S.W - 20*d, S.H - 56*d);
   c.toBlob(b => { const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = `mirror-2050-${FX[cur].id}-${Date.now()}.png`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 4000); });
   const fl = $('#flash'); fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
 }

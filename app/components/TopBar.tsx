@@ -7,7 +7,7 @@ export default function TopBar({ me }: { me: Player | null }) {
     <header className="topbar">
       <Link href="/app" className="brand">
         THE FUTURE<i>2050</i>
-        <small>ARRIVAL STATION</small>
+        <small>VARGA FUTURE PARTY</small>
       </Link>
       <PilotChip initial={me ? { name: me.name, sign: me.sign, card_no: me.card_no } : null} />
     </header>

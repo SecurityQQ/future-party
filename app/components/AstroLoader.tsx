@@ -109,7 +109,7 @@ export default function AstroLoader({ playerId, sign, onReveal }: { playerId: st
   const lines = [
     "Comm link to the oracles of 2050: open",
     `Birth sky locked: ${sign}`,
-    "Archive query: guest records of The Future Party",
+    "Archive query: guest records of Varga Future Party",
     card ? `Companion assigned: ${card.character}` : "Searching companion registry…",
     card ? `Finish: ${finishLabel(card.style)}` : "Calibrating finish…",
     "Folding your Kin into three dimensions",

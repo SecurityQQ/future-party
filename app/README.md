@@ -1,6 +1,6 @@
 # The Future 2050
 
-The party app for The Future Party 2050: **https://www.vargafutureparty.com/app**, on the party's own site. One Vercel project, `the-future-2050` (root directory `app/`), serves the app under `/app` and the party site everywhere else (the static pages `npm run site` builds from the repo into `public/`).
+The party app for Varga Future Party 2050: **https://www.vargafutureparty.com/app**, on the party's own site. One Vercel project, `the-future-2050` (root directory `app/`), serves the app under `/app` and the party site everywhere else (the static pages `npm run site` builds from the repo into `public/`).
 
 Passes written with the first address, `zodiac-rangers.vercel.app/t/<code>`, keep working: that address and the-future-2050.vercel.app still belong to the project. A phone without a traveler is sent from them to vargafutureparty.com; a phone that already has one stays on its address, where its session cookie is. The app's old paths (`/t/<code>`, `/c/<n>`, `/me`, `/login`, `/scan`, `/leaderboard`, `/admin?key=`) redirect to `/app/...` (`next.config.ts`).
 
