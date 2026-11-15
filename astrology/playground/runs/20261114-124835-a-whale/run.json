@@ -1,0 +1,277 @@
+{
+  "id": "20261114-124835-a-whale",
+  "created": "2026-11-14T20:48:35.811Z",
+  "subject": "A whale",
+  "sign": "2050 zodiac",
+  "traits": "curious, playful, a little mischievous",
+  "palette": "harmonious accents that suit the scene",
+  "master": {
+    "id": "v3",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "aspect": "3:4",
+  "refs": [],
+  "refMode": "match",
+  "autoRefs": {
+    "style": true,
+    "scene": false
+  },
+  "ab": false,
+  "compare": true,
+  "vary": {
+    "style": true,
+    "scene": true,
+    "model": true
+  },
+  "note": "",
+  "images": [
+    {
+      "i": 0,
+      "prompt": "A whale as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: curious, playful, a little mischievous. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: harmonious accents that suit the scene.\nSetting: high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "porcelain",
+      "scene": "citylights",
+      "refs": [
+        "character ideas/13969f9c58bcb10a78fc7d0848f4e6c9.jpg",
+        "character ideas/4033d1b946aa55bdf4b6c2e81f01a2aa.jpg"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689315813,
+      "jobId": "job_94388299412a",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_be9e56625af5.png",
+      "cost": 8,
+      "file": "00.png",
+      "finished": 1794689352386,
+      "stars": 4,
+      "contrast": {
+        "dL": 9,
+        "dE": 9
+      },
+      "transparent": false
+    },
+    {
+      "i": 1,
+      "prompt": "A whale as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: curious, playful, a little mischievous. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: harmonious accents that suit the scene.\nSetting: high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "nano_banana_2_1",
+      "style": "porcelain",
+      "scene": "citylights",
+      "refs": [
+        "character ideas/13969f9c58bcb10a78fc7d0848f4e6c9.jpg",
+        "character ideas/4033d1b946aa55bdf4b6c2e81f01a2aa.jpg"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689315813,
+      "jobId": "job_31c7ad44eb87",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_ca8ee4f85217.png",
+      "cost": 5,
+      "file": "01.png",
+      "finished": 1794689342536,
+      "stars": 2,
+      "contrast": {
+        "dL": 19,
+        "dE": 19
+      },
+      "transparent": false
+    },
+    {
+      "i": 2,
+      "prompt": "A whale as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: curious, playful, a little mischievous. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: harmonious accents that suit the scene.\nSetting: high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "seedream_5_5",
+      "style": "porcelain",
+      "scene": "citylights",
+      "refs": [
+        "character ideas/13969f9c58bcb10a78fc7d0848f4e6c9.jpg",
+        "character ideas/4033d1b946aa55bdf4b6c2e81f01a2aa.jpg"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689315813,
+      "jobId": "job_ced094d354d8",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_d5c5667c4fd1.png",
+      "cost": 6,
+      "file": "02.png",
+      "finished": 1794689354709,
+      "stars": 4,
+      "contrast": {
+        "dL": 16,
+        "dE": 17
+      },
+      "transparent": false
+    },
+    {
+      "i": 3,
+      "prompt": "A whale as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: curious, playful, a little mischievous. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: harmonious accents that suit the scene.\nSetting: high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "nano_banana_pro",
+      "style": "porcelain",
+      "scene": "citylights",
+      "refs": [
+        "character ideas/13969f9c58bcb10a78fc7d0848f4e6c9.jpg",
+        "character ideas/4033d1b946aa55bdf4b6c2e81f01a2aa.jpg"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689315813,
+      "jobId": "job_a0e230649a64",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_41c51af5f2ce.jpg",
+      "cost": 14,
+      "file": "03.jpg",
+      "finished": 1794689344397,
+      "stars": 2,
+      "contrast": {
+        "dL": 22,
+        "dE": 22
+      },
+      "transparent": false
+    },
+    {
+      "i": 4,
+      "prompt": "A whale as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: curious, playful, a little mischievous. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: harmonious accents that suit the scene.\nSetting: high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "flux_3_image",
+      "style": "porcelain",
+      "scene": "citylights",
+      "refs": [
+        "character ideas/13969f9c58bcb10a78fc7d0848f4e6c9.jpg",
+        "character ideas/4033d1b946aa55bdf4b6c2e81f01a2aa.jpg"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689315813,
+      "jobId": "job_0b200890dff5",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_ff2d114e7f96.jpg",
+      "cost": 6,
+      "file": "04.jpg",
+      "finished": 1794689450918,
+      "contrast": {
+        "dL": 17,
+        "dE": 18
+      },
+      "transparent": false
+    },
+    {
+      "i": 5,
+      "prompt": "A whale as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: curious, playful, a little mischievous. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: harmonious accents that suit the scene.\nSetting: high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "krea_3",
+      "style": "porcelain",
+      "scene": "citylights",
+      "refs": [
+        "character ideas/13969f9c58bcb10a78fc7d0848f4e6c9.jpg",
+        "character ideas/4033d1b946aa55bdf4b6c2e81f01a2aa.jpg"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689315813,
+      "jobId": "job_557bf7e59758",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_7e93746894da.png",
+      "cost": 7,
+      "file": "05.png",
+      "finished": 1794689405457,
+      "stars": 3,
+      "contrast": {
+        "dL": 24,
+        "dE": 30
+      },
+      "transparent": false
+    },
+    {
+      "i": 6,
+      "prompt": "A whale as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: curious, playful, a little mischievous. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: harmonious accents that suit the scene.\nSetting: high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "mai_image_2_5",
+      "style": "porcelain",
+      "scene": "citylights",
+      "refs": [
+        "character ideas/13969f9c58bcb10a78fc7d0848f4e6c9.jpg",
+        "character ideas/4033d1b946aa55bdf4b6c2e81f01a2aa.jpg"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689315813,
+      "jobId": "job_62b7cdfa2d17",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_1532b273a972.png",
+      "cost": 5,
+      "file": "06.png",
+      "finished": 1794689386553,
+      "stars": 3,
+      "contrast": {
+        "dL": 18,
+        "dE": 18
+      },
+      "transparent": false
+    },
+    {
+      "i": 7,
+      "prompt": "A whale as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: curious, playful, a little mischievous. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: harmonious accents that suit the scene.\nSetting: high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "seedream_5_pro",
+      "style": "porcelain",
+      "scene": "citylights",
+      "refs": [
+        "character ideas/13969f9c58bcb10a78fc7d0848f4e6c9.jpg",
+        "character ideas/4033d1b946aa55bdf4b6c2e81f01a2aa.jpg"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689315813,
+      "jobId": "job_06944bb886bd",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_ff8db6b984e4.jpg",
+      "cost": 5,
+      "file": "07.jpg",
+      "finished": 1794689443182,
+      "contrast": {
+        "dL": 13,
+        "dE": 14
+      },
+      "transparent": false
+    },
+    {
+      "i": 8,
+      "prompt": "A whale as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: curious, playful, a little mischievous. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: harmonious accents that suit the scene.\nSetting: high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "qwen_image_3",
+      "style": "porcelain",
+      "scene": "citylights",
+      "refs": [
+        "character ideas/13969f9c58bcb10a78fc7d0848f4e6c9.jpg",
+        "character ideas/4033d1b946aa55bdf4b6c2e81f01a2aa.jpg"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689315813,
+      "jobId": "job_8a96001defd1",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_04bc7dac9253.png",
+      "cost": 4,
+      "file": "08.png",
+      "finished": 1794689446340,
+      "contrast": {
+        "dL": 18,
+        "dE": 18
+      },
+      "transparent": false
+    },
+    {
+      "i": 9,
+      "prompt": "A whale as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: curious, playful, a little mischievous. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: harmonious accents that suit the scene.\nSetting: high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "grok_imagine_image_2",
+      "style": "porcelain",
+      "scene": "citylights",
+      "refs": [
+        "character ideas/13969f9c58bcb10a78fc7d0848f4e6c9.jpg",
+        "character ideas/4033d1b946aa55bdf4b6c2e81f01a2aa.jpg"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689315813,
+      "jobId": "job_2a0baabcf015",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_d1fb82407cbc.jpg",
+      "cost": 7,
+      "file": "09.jpg",
+      "finished": 1794689353449,
+      "stars": 4,
+      "contrast": {
+        "dL": 23,
+        "dE": 23
+      },
+      "transparent": false
+    }
+  ]
+}

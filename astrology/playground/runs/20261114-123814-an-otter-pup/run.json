@@ -1,0 +1,500 @@
+{
+  "id": "20261114-123814-an-otter-pup",
+  "created": "2026-11-14T20:38:14.099Z",
+  "subject": "an otter pup",
+  "sign": "Taurus",
+  "traits": "cozy, loyal, stubborn, loves comfort and snacks",
+  "palette": "moss green, terracotta and warm cream",
+  "master": {
+    "id": "v3",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "aspect": "3:4",
+  "refs": [],
+  "refMode": "match",
+  "autoRefs": {
+    "style": true,
+    "scene": false
+  },
+  "ab": false,
+  "compare": true,
+  "vary": {
+    "style": true,
+    "scene": true,
+    "model": true
+  },
+  "note": "",
+  "images": [
+    {
+      "i": 0,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: moss green, terracotta and warm cream.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "nano_banana_2_1",
+      "style": "plush",
+      "scene": "portal",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_005650f7ce80",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_dbc61a65e593.png",
+      "cost": 5,
+      "file": "00.png",
+      "finished": 1794688731721,
+      "contrast": {
+        "dL": 10,
+        "dE": 11
+      },
+      "transparent": false
+    },
+    {
+      "i": 1,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: moss green, terracotta and warm cream.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "plush",
+      "scene": "portal",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_68a368a994a7",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_7a94d467a645.png",
+      "cost": 8,
+      "file": "01.png",
+      "finished": 1794688721253,
+      "contrast": {
+        "dL": 19,
+        "dE": 25
+      },
+      "transparent": false
+    },
+    {
+      "i": 2,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: moss green, terracotta and warm cream.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "seedream_5_5",
+      "style": "plush",
+      "scene": "portal",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_c081688d119d",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_1e98e0876da8.png",
+      "cost": 6,
+      "file": "02.png",
+      "finished": 1794688735422,
+      "contrast": {
+        "dL": 5,
+        "dE": 10
+      },
+      "transparent": false
+    },
+    {
+      "i": 3,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: moss green, terracotta and warm cream.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "nano_banana_pro",
+      "style": "plush",
+      "scene": "portal",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_e588ddaead56",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_b1ce124a6db6.jpg",
+      "cost": 14,
+      "file": "03.jpg",
+      "finished": 1794688719807,
+      "contrast": {
+        "dL": 1,
+        "dE": 10
+      },
+      "transparent": false
+    },
+    {
+      "i": 4,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: moss green, terracotta and warm cream.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "flux_3_image",
+      "style": "plush",
+      "scene": "portal",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_c5911c4d0c95",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_d1ea7b381736.jpg",
+      "cost": 6,
+      "file": "04.jpg",
+      "finished": 1794688735830,
+      "contrast": {
+        "dL": 4,
+        "dE": 18
+      },
+      "transparent": false
+    },
+    {
+      "i": 5,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: moss green, terracotta and warm cream.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "krea_3",
+      "style": "plush",
+      "scene": "portal",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_c8a0b558c025",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_0eb950de544a.png",
+      "cost": 7,
+      "file": "05.png",
+      "finished": 1794688750338,
+      "contrast": {
+        "dL": 9,
+        "dE": 20
+      },
+      "transparent": false
+    },
+    {
+      "i": 6,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: moss green, terracotta and warm cream.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "mai_image_2_5",
+      "style": "plush",
+      "scene": "portal",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794688873820,
+      "jobId": "job_f8c6b0cb64f8",
+      "finished": 1794688923722,
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_c2b94d027b6a.png",
+      "cost": 5,
+      "file": "06.png",
+      "contrast": {
+        "dL": 7,
+        "dE": 15
+      },
+      "transparent": false
+    },
+    {
+      "i": 7,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: moss green, terracotta and warm cream.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "seedream_5_pro",
+      "style": "plush",
+      "scene": "portal",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_22e4fbb075c1",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_b3b9170079a3.jpg",
+      "cost": 5,
+      "file": "07.jpg",
+      "finished": 1794688806869,
+      "contrast": {
+        "dL": 7,
+        "dE": 15
+      },
+      "transparent": false
+    },
+    {
+      "i": 8,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: moss green, terracotta and warm cream.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "qwen_image_3",
+      "style": "plush",
+      "scene": "portal",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_9450affaabce",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_b8b6af4fe8d3.png",
+      "cost": 4,
+      "file": "08.png",
+      "finished": 1794688797960,
+      "contrast": {
+        "dL": 3,
+        "dE": 17
+      },
+      "transparent": false
+    },
+    {
+      "i": 9,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: moss green, terracotta and warm cream.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "grok_imagine_image_2",
+      "style": "plush",
+      "scene": "portal",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_4ba1c9358ea2",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_a53a3dcee145.jpg",
+      "cost": 7,
+      "file": "09.jpg",
+      "finished": 1794688746145,
+      "contrast": {
+        "dL": 9,
+        "dE": 17
+      },
+      "transparent": false
+    },
+    {
+      "i": 10,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate.\nColor accents: moss green, terracotta and warm cream.\nSetting: rolling velvet hills covered in glowing violet flowers under a deep blue twilight sky with two thin crescent moons. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "nano_banana_2_1",
+      "style": "crystal",
+      "scene": "vapor_hills",
+      "refs": [
+        "character ideas/fdb022571d4f32d3f115e49ecec27f47.jpg"
+      ],
+      "group": "Prompt 2",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_2cf6f9a261d4",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_3c7d084b1f07.png",
+      "cost": 5,
+      "file": "10.png",
+      "finished": 1794688717482,
+      "contrast": {
+        "dL": 21,
+        "dE": 32
+      },
+      "transparent": false
+    },
+    {
+      "i": 11,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate.\nColor accents: moss green, terracotta and warm cream.\nSetting: rolling velvet hills covered in glowing violet flowers under a deep blue twilight sky with two thin crescent moons. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "crystal",
+      "scene": "vapor_hills",
+      "refs": [
+        "character ideas/fdb022571d4f32d3f115e49ecec27f47.jpg"
+      ],
+      "group": "Prompt 2",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_8e63d67cca4f",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_69f6bed52fed.png",
+      "cost": 7,
+      "file": "11.png",
+      "finished": 1794688721108,
+      "contrast": {
+        "dL": 16,
+        "dE": 39
+      },
+      "transparent": false
+    },
+    {
+      "i": 12,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate.\nColor accents: moss green, terracotta and warm cream.\nSetting: rolling velvet hills covered in glowing violet flowers under a deep blue twilight sky with two thin crescent moons. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "seedream_5_5",
+      "style": "crystal",
+      "scene": "vapor_hills",
+      "refs": [
+        "character ideas/fdb022571d4f32d3f115e49ecec27f47.jpg"
+      ],
+      "group": "Prompt 2",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_2e2e0d2d0d0a",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_e02a4fcf1df9.png",
+      "cost": 5,
+      "file": "12.png",
+      "finished": 1794688729526,
+      "contrast": {
+        "dL": 21,
+        "dE": 32
+      },
+      "transparent": false
+    },
+    {
+      "i": 13,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate.\nColor accents: moss green, terracotta and warm cream.\nSetting: rolling velvet hills covered in glowing violet flowers under a deep blue twilight sky with two thin crescent moons. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "nano_banana_pro",
+      "style": "crystal",
+      "scene": "vapor_hills",
+      "refs": [
+        "character ideas/fdb022571d4f32d3f115e49ecec27f47.jpg"
+      ],
+      "group": "Prompt 2",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_79c9f1c5135e",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_588672f19295.jpg",
+      "cost": 14,
+      "file": "13.jpg",
+      "finished": 1794688717875,
+      "contrast": {
+        "dL": 23,
+        "dE": 40
+      },
+      "transparent": false
+    },
+    {
+      "i": 14,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate.\nColor accents: moss green, terracotta and warm cream.\nSetting: rolling velvet hills covered in glowing violet flowers under a deep blue twilight sky with two thin crescent moons. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "flux_3_image",
+      "style": "crystal",
+      "scene": "vapor_hills",
+      "refs": [
+        "character ideas/fdb022571d4f32d3f115e49ecec27f47.jpg"
+      ],
+      "group": "Prompt 2",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_80ec82403e4a",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_82b19fd7b5f2.jpg",
+      "cost": 6,
+      "file": "14.jpg",
+      "finished": 1794688736416,
+      "contrast": {
+        "dL": 16,
+        "dE": 23
+      },
+      "transparent": false
+    },
+    {
+      "i": 15,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate.\nColor accents: moss green, terracotta and warm cream.\nSetting: rolling velvet hills covered in glowing violet flowers under a deep blue twilight sky with two thin crescent moons. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "krea_3",
+      "style": "crystal",
+      "scene": "vapor_hills",
+      "refs": [
+        "character ideas/fdb022571d4f32d3f115e49ecec27f47.jpg"
+      ],
+      "group": "Prompt 2",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_e0927fd107e1",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_a50a08e90ba0.png",
+      "cost": 5,
+      "file": "15.png",
+      "finished": 1794688745500,
+      "contrast": {
+        "dL": 10,
+        "dE": 26
+      },
+      "transparent": false
+    },
+    {
+      "i": 16,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate.\nColor accents: moss green, terracotta and warm cream.\nSetting: rolling velvet hills covered in glowing violet flowers under a deep blue twilight sky with two thin crescent moons. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "mai_image_2_5",
+      "style": "crystal",
+      "scene": "vapor_hills",
+      "refs": [
+        "character ideas/fdb022571d4f32d3f115e49ecec27f47.jpg"
+      ],
+      "group": "Prompt 2",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_70344402bcbe",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_83e2086a8be8.png",
+      "cost": 5,
+      "file": "16.png",
+      "finished": 1794688742227,
+      "contrast": {
+        "dL": 19,
+        "dE": 30
+      },
+      "transparent": false
+    },
+    {
+      "i": 17,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate.\nColor accents: moss green, terracotta and warm cream.\nSetting: rolling velvet hills covered in glowing violet flowers under a deep blue twilight sky with two thin crescent moons. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "seedream_5_pro",
+      "style": "crystal",
+      "scene": "vapor_hills",
+      "refs": [
+        "character ideas/fdb022571d4f32d3f115e49ecec27f47.jpg"
+      ],
+      "group": "Prompt 2",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_c5e38aa4e6dd",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_abd4bdd9bd31.jpg",
+      "cost": 5,
+      "file": "17.jpg",
+      "finished": 1794688808175,
+      "contrast": {
+        "dL": 16,
+        "dE": 25
+      },
+      "transparent": false
+    },
+    {
+      "i": 18,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate.\nColor accents: moss green, terracotta and warm cream.\nSetting: rolling velvet hills covered in glowing violet flowers under a deep blue twilight sky with two thin crescent moons. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "qwen_image_3",
+      "style": "crystal",
+      "scene": "vapor_hills",
+      "refs": [
+        "character ideas/fdb022571d4f32d3f115e49ecec27f47.jpg"
+      ],
+      "group": "Prompt 2",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_6d07d1bdde29",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_21e9d3a7767f.png",
+      "cost": 4,
+      "file": "18.png",
+      "finished": 1794688856395,
+      "contrast": {
+        "dL": 24,
+        "dE": 33
+      },
+      "transparent": false
+    },
+    {
+      "i": 19,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate.\nColor accents: moss green, terracotta and warm cream.\nSetting: rolling velvet hills covered in glowing violet flowers under a deep blue twilight sky with two thin crescent moons. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "grok_imagine_image_2",
+      "style": "crystal",
+      "scene": "vapor_hills",
+      "refs": [
+        "character ideas/fdb022571d4f32d3f115e49ecec27f47.jpg"
+      ],
+      "group": "Prompt 2",
+      "status": "done",
+      "started": 1794688694101,
+      "jobId": "job_eabe7987a330",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_fc8ab30885c5.jpg",
+      "cost": 7,
+      "file": "19.jpg",
+      "finished": 1794688746333,
+      "contrast": {
+        "dL": 28,
+        "dE": 35
+      },
+      "transparent": false
+    }
+  ]
+}

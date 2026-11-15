@@ -108,7 +108,7 @@ details[open] > summary .label::after { content: "–"; }
 .drop label { color: var(--accent); cursor: pointer; }
 .used { display: flex; gap: 6px; flex-wrap: wrap; }
 .used img { width: 64px; height: 84px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); }
-.tag.refs { color: var(--accent-2); border-color: rgba(110,231,216,0.35); }
+.tag.reftag { color: var(--accent-2); border-color: rgba(110,231,216,0.35); }
 
 .go {
   position: sticky; bottom: -18px; padding: 14px 0 18px; margin-top: auto;
@@ -155,7 +155,11 @@ details[open] > summary .label::after { content: "–"; }
 .tags { display: flex; flex-wrap: wrap; gap: 4px; }
 .tag { font-size: 11px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; }
 .note-in { font-size: 12.5px; padding: 6px 9px; border-radius: 8px; }
-.card-actions { display: flex; gap: 6px; }
+.card-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.group-head { display: flex; align-items: baseline; gap: 10px; margin: 26px 0 10px; flex-wrap: wrap; }
+.group-head h3 { font-size: 16px; }
+.group-head .hint { font-size: 12.5px; }
+.card .badge b { font-weight: 600; }
 .card-actions .btn { padding: 4px 8px; font-size: 12px; }
 
 .history { display: flex; flex-direction: column; gap: 6px; }
@@ -192,6 +196,15 @@ details[open] > summary .label::after { content: "–"; }
 .lb pre { white-space: pre-wrap; font-size: 12px; color: var(--muted); background: var(--bg); padding: 10px; border-radius: 10px; border: 1px solid var(--line); margin: 0; }
 .kbd { font-size: 11.5px; color: var(--muted); }
 .kbd b { border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; color: var(--text); font-weight: 500; }
+.zset { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+.zcell { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+.zcell .hero { aspect-ratio: 3/4; background: var(--panel-2); display: grid; place-items: center; color: var(--muted); font-size: 12.5px; cursor: zoom-in; position: relative; }
+.zcell .hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.zcell .hero .st { position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.55); border-radius: 999px; padding: 2px 8px; font-size: 11px; color: var(--star); }
+.zcell .thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px; }
+.zcell .thumbs img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 6px; cursor: zoom-in; display: block; }
+.zcell .info { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 6px; }
+.zcell .info b { font-family: "Space Grotesk"; font-size: 16px; }
 .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--panel-2); border: 1px solid var(--line); padding: 9px 16px; border-radius: 10px; z-index: 30; display: none; }
 
 @media (max-width: 900px) {
@@ -209,6 +222,7 @@ details[open] > summary .label::after { content: "–"; }
   <nav>
     <button data-tab="gen" class="on">Generate</button>
     <button data-tab="best">Best</button>
+    <button data-tab="set">Zodiac set</button>
     <button data-tab="insights">Insights</button>
   </nav>
   <div class="balance" id="balance"></div>
@@ -232,10 +246,13 @@ details[open] > summary .label::after { content: "–"; }
     <details>
       <summary><div class="label">Zodiac fields</div></summary>
       <div class="collapsible-body">
-        <div class="hint">These fill {sign}, {traits} and {palette} in the master prompt.</div>
+        <div class="hint">These fill {sign}, {traits}, {palette} and {backdrop} in the master prompt.</div>
         <input type="text" id="sign" placeholder="sign, e.g. Scorpio">
         <input type="text" id="traits" placeholder="traits">
         <input type="text" id="palette" placeholder="palette">
+        <div class="row" style="gap:8px"><span class="hint" style="flex:0 0 auto">Creature tone</span>
+          <select id="tone"><option value="mid">mid</option><option value="light">light</option><option value="dark">dark</option></select></div>
+        <div class="hint">Tone picks the background treatment ({backdrop}): a dark creature gets a bright, airy scene, a light one dusk and a vignette. Glowing styles always get night.</div>
       </div>
     </details>
 
@@ -248,8 +265,10 @@ details[open] > summary .label::after { content: "–"; }
         <input type="text" id="masterNote" placeholder="what changed (for the new version)">
         <button class="btn" id="saveMaster" style="flex:0 0 auto">Save as new</button>
       </div>
+      <div class="row" style="gap:8px"><span class="hint" style="flex:0 0 auto">Compare with</span><select id="masterB" style="padding:5px 8px"></select></div>
+      <div class="hint" id="masterBHint" style="display:none">Each combination is drawn with both versions, side by side.</div>
       <textarea id="masterFb" placeholder="Feedback on this master prompt version: what it gets wrong, what's missing, what to cut" style="min-height:54px"></textarea>
-      <div class="hint" id="masterHint">Placeholders: {subject} {sign} {traits} {palette} {style} {scene}. A line whose placeholder is empty is dropped.</div>
+      <div class="hint" id="masterHint">Placeholders: {subject} {sign} {traits} {palette} {style} {scene} {backdrop}. A line whose placeholder is empty is dropped.</div>
     </div>
 
     <div class="field">
@@ -266,11 +285,12 @@ details[open] > summary .label::after { content: "–"; }
     <div class="field">
       <div class="label">Models <span class="right"><button class="linkbtn" data-all="models">all</button></span></div>
       <div class="chips" id="models"></div>
+      <label class="check"><input type="checkbox" id="compare"> <span>Compare: send the identical prompt to every selected model</span></label>
     </div>
 
     <div class="row">
       <div class="field">
-        <div class="label">Images <span class="right" id="nVal">10</span></div>
+        <div class="label"><span id="nLabel">Images</span> <span class="right" id="nVal">10</span></div>
         <input type="range" id="n" min="1" max="24" value="10">
       </div>
       <div class="field">
@@ -317,6 +337,16 @@ details[open] > summary .label::after { content: "–"; }
     <div class="meta">Everything you rated <select id="bestMin" style="width:auto;padding:3px 8px"><option value="5">5 ★</option><option value="4" selected>4 ★ and up</option><option value="3">3 ★ and up</option></select> across all runs</div>
   </div>
   <div class="grid" id="bestGrid"></div>
+</main></div>
+
+<div id="tab-set" style="display:none"><main>
+  <div class="run-head"><h2>Zodiac set</h2>
+    <div class="meta">One cell per sign: the best images you rated for it (newest first while unrated). Generating uses the settings in the Generate tab, with each sign's animal, traits, palette and tone.</div>
+    <div class="tools"><span class="hint" style="align-self:center">per sign</span><select id="setN" style="width:auto;padding:5px 8px"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>6</option></select>
+      <button class="btn" id="setAll">Generate all 12</button></div>
+  </div>
+  <div class="hint" id="setCost" style="margin:-4px 0 14px"></div>
+  <div class="zset" id="zset"></div>
 </main></div>
 
 <div id="tab-insights" style="display:none"><main>
@@ -368,39 +398,54 @@ async function init() {
   const f = store.get("form", {});
   $("#subject").value = f.subject ?? cfg.defaults.subject;
   $("#sign").value = f.sign ?? ""; $("#traits").value = f.traits ?? ""; $("#palette").value = f.palette ?? "";
+  $("#tone").value = f.tone ?? cfg.zodiac.find((z) => z.sign === f.sign)?.tone ?? "mid";
   $("#birthday").value = f.birthday ?? "";
-  $("#n").value = f.n ?? 10; $("#nVal").textContent = $("#n").value;
+  $("#compare").checked = !!f.compare;
+  nState.images = f.n ?? 10; nState.prompts = f.prompts ?? 1;
+  syncN();
   $("#aspect").value = f.aspect ?? "3:4";
   (f.styles ?? cfg.styles.slice(0, 10).map((s) => s.id)).forEach((id) => sel.styles.add(id));
   (f.scenes ?? cfg.scenes.map((s) => s.id)).forEach((id) => sel.scenes.add(id));
-  (f.models ?? ["nano_banana_2_1"]).forEach((id) => sel.models.add(id));
+  // When presets name a new default model, move the selection to it once.
+  const defModels = cfg.defaults.models || ["nano_banana_2_1"];
+  const seen = store.get("defaultModels", null);
+  const models = f.models && JSON.stringify(seen) === JSON.stringify(defModels) ? f.models : defModels;
+  store.set("defaultModels", defModels);
+  models.forEach((id) => sel.models.add(id));
+  if (f.masterB) $("#masterB").value = f.masterB;
+  syncMasterB();
   (f.refs ?? []).forEach((id) => sel.refs.add(id));
   $("#refMode").value = f.refMode ?? cfg.refModes[0].id;
   $("#autoStyle").checked = f.autoStyle ?? true;
   $("#autoScene").checked = f.autoScene ?? false;
   $("#ab").checked = f.ab ?? false;
-  if (f.masterId && cfg.masters.some((m) => m.id === f.masterId)) $("#masterSel").value = f.masterId;
-  $("#master").value = f.masterText ?? currentMaster().text;
+  // Keep the remembered version only if it was hand-edited; otherwise move to the newest version.
+  const kept = cfg.masters.find((m) => m.id === f.masterId);
+  const edited = kept && f.masterText != null && f.masterText.trim() !== kept.text.trim();
+  if (edited) $("#masterSel").value = kept.id;
+  $("#master").value = edited ? f.masterText : currentMaster().text;
+  $("#masterFb").value = currentMaster().feedback || "";
   syncChips(); markSign(); masterEdited();
 
   $("#birthday").addEventListener("change", () => { const z = signFor($("#birthday").value); if (z) applySign(z); });
   $("#signs").addEventListener("click", (e) => { const s = e.target.dataset.sign; if (s) applySign(cfg.zodiac.find((z) => z.sign === s)); });
   $("#animals").addEventListener("click", (e) => { const a = e.target.dataset.animal; if (a) { $("#subject").value = a; persist(); } });
-  $("#clearSign").onclick = () => { ["#sign", "#traits", "#palette", "#birthday"].forEach((s) => ($(s).value = "")); markSign(); persist(); };
+  $("#clearSign").onclick = () => { ["#sign", "#traits", "#palette", "#birthday"].forEach((s) => ($(s).value = "")); $("#tone").value = "mid"; markSign(); persist(); };
+  $("#masterB").onchange = () => { syncMasterB(); syncN(); updateCost(); persist(); };
   $("#masterSel").onchange = () => { $("#master").value = currentMaster().text; $("#masterFb").value = currentMaster().feedback || ""; masterEdited(); persist(); };
-  $("#masterFb").value = currentMaster().feedback || "";
   $("#masterFb").addEventListener("change", async (e) => {
     const m = await api(`/api/masters/${currentMaster().id}/feedback`, { feedback: e.target.value.trim() });
     Object.assign(currentMaster(), m); toast(`Feedback on ${m.id} saved`);
   });
   $("#master").addEventListener("input", () => { masterEdited(); persist(); });
   $("#saveMaster").onclick = saveMaster;
-  $("#n").addEventListener("input", () => { $("#nVal").textContent = $("#n").value; updateCost(); persist(); });
+  $("#n").addEventListener("input", () => { nState[$("#compare").checked ? "prompts" : "images"] = +$("#n").value; syncN(); updateCost(); persist(); });
+  $("#compare").addEventListener("change", () => { if ($("#compare").checked && sel.models.size < 2) { cfg.models.forEach((m) => sel.models.add(m.id)); syncChips(); } syncN(); updateCost(); persist(); });
   $$("input[type=text], select").forEach((el) => el.addEventListener("change", persist));
   $$("[data-all]").forEach((b) => (b.onclick = () => { const k = b.dataset.all; cfg[k].forEach((x) => sel[k].add(x.id)); syncChips(); persist(); }));
   $$("[data-none]").forEach((b) => (b.onclick = () => { sel[b.dataset.none].clear(); syncChips(); persist(); }));
   $("#go").onclick = generate;
-  ["#refMode", "#autoStyle", "#autoScene", "#ab"].forEach((q) => $(q).addEventListener("change", () => { syncChips(); persist(); }));
+  ["#refMode", "#autoStyle", "#autoScene", "#ab"].forEach((q) => $(q).addEventListener("change", () => { syncN(); syncChips(); persist(); }));
   $("#fileIn").addEventListener("change", (e) => { uploadFiles([...e.target.files]); e.target.value = ""; });
   $("#refUrlBtn").onclick = addRefUrl;
   $("#refUrl").addEventListener("keydown", (e) => { if (e.key === "Enter") addRefUrl(); });
@@ -420,10 +465,15 @@ async function init() {
   document.addEventListener("keydown", (e) => { if ((e.metaKey || e.ctrlKey) && e.key === "Enter") generate(); });
   $$("nav button").forEach((b) => (b.onclick = () => showTab(b.dataset.tab)));
   $("#bestMin").onchange = renderBest;
+  $("#setN").onchange = renderSet;
+  $("#setAll").onclick = generateSet;
 
   loadBalance();
   await loadHistory();
-  const last = store.get("run", null);
+  const hashTab = new URLSearchParams(location.hash.slice(1)).get("tab");
+  if (["gen", "best", "set", "insights"].includes(hashTab)) showTab(hashTab);
+  const linked = new URLSearchParams(location.hash.slice(1)).get("run");
+  const last = linked || store.get("run", null);
   if (last) openRun(last).catch(() => renderRun());
   else renderRun();
 }
@@ -454,13 +504,20 @@ function syncChips() {
 
 function renderMasters() {
   $("#masterSel").innerHTML = [...cfg.masters].reverse().map((m) => `<option value="${m.id}">${m.id}${m.note ? " · " + esc(m.note.slice(0, 40)) : ""}</option>`).join("");
+  const keep = $("#masterB").value;
+  $("#masterB").innerHTML = `<option value="">nothing (one version)</option>` + [...cfg.masters].reverse().map((m) => `<option value="${m.id}">${m.id}</option>`).join("");
+  $("#masterB").value = keep;
+}
+const masterB = () => cfg.masters.find((m) => m.id === $("#masterB").value && m.id !== $("#masterSel").value) || null;
+function syncMasterB() {
+  $("#masterBHint").style.display = masterB() ? "" : "none";
 }
 const currentMaster = () => cfg.masters.find((m) => m.id === $("#masterSel").value) || cfg.masters.at(-1);
 function masterEdited() {
   const edited = $("#master").value.trim() !== currentMaster().text.trim();
   $("#masterHint").innerHTML = edited
     ? `<span style="color:var(--pink)">Edited from ${currentMaster().id}.</span> Runs record the exact text. Save it as a new version when it works.`
-    : `Placeholders: {subject} {sign} {traits} {palette} {style} {scene}. A line whose placeholder is empty is dropped.`;
+    : `Placeholders: {subject} {sign} {traits} {palette} {style} {scene} {backdrop}. A line whose placeholder is empty is dropped.`;
   return edited;
 }
 async function saveMaster() {
@@ -517,6 +574,7 @@ function applySign(z) {
   $("#sign").value = z.sign;
   $("#traits").value = z.traits;
   $("#palette").value = cfg.elements[z.element] || "";
+  $("#tone").value = z.tone || "mid";
   markSign(); persist();
 }
 function markSign() {
@@ -528,13 +586,27 @@ function markSign() {
   if (z) card.innerHTML = `<b>${z.sign}</b> · ${z.element} · ${esc(z.animal)}<br><span class="hint">${esc(z.traits)}</span>`;
 }
 
+// The slider means images normally, and prompts in compare mode (each prompt goes to every model).
+const nState = { images: 10, prompts: 1 };
+const variantsPerPrompt = () => ($("#ab").checked ? 2 : 1) * (masterB() ? 2 : 1);
+function totalImages() {
+  return $("#compare").checked ? nState.prompts * sel.models.size * variantsPerPrompt() : masterB() ? nState.images * 2 : nState.images;
+}
+function syncN() {
+  const cmp = $("#compare").checked;
+  $("#n").max = cmp ? 4 : 24;
+  $("#n").value = cmp ? nState.prompts : nState.images;
+  $("#nLabel").textContent = cmp ? "Prompts" : "Images";
+  $("#nLabel").textContent = cmp || masterB() ? "Prompts" : "Images";
+  $("#nVal").textContent = cmp || masterB() ? `${cmp ? nState.prompts : nState.images} → ${totalImages()} images` : nState.images;
+}
 function persist() {
   store.set("form", {
-    subject: $("#subject").value, sign: $("#sign").value, traits: $("#traits").value, palette: $("#palette").value,
-    birthday: $("#birthday").value, n: +$("#n").value, aspect: $("#aspect").value,
+    subject: $("#subject").value, sign: $("#sign").value, traits: $("#traits").value, palette: $("#palette").value, tone: $("#tone").value,
+    birthday: $("#birthday").value, n: nState.images, prompts: nState.prompts, compare: $("#compare").checked, aspect: $("#aspect").value,
     styles: [...sel.styles], scenes: [...sel.scenes], models: [...sel.models], refs: [...sel.refs],
     refMode: $("#refMode").value, autoStyle: $("#autoStyle").checked, autoScene: $("#autoScene").checked, ab: $("#ab").checked,
-    masterId: $("#masterSel").value, masterText: $("#master").value,
+    masterId: $("#masterSel").value, masterText: $("#master").value, masterB: $("#masterB").value,
   });
   markSign();
 }
@@ -548,7 +620,8 @@ async function updateCost() {
     for (const [m, c] of Object.entries(got)) prices[m + refs] = c;
   }
   $$(".price").forEach((p) => { const c = prices[p.dataset.m + refs]; p.textContent = c == null ? "" : `${c}¢`; });
-  const n = +$("#n").value;
+  if ($("#compare").checked) syncN();
+  const n = totalImages();
   const per = models.map((m) => prices[m + refs]).filter((c) => c != null);
   if (!per.length) return ($("#cost").textContent = "");
   const avg = per.reduce((a, b) => a + b, 0) / per.length;
@@ -560,6 +633,21 @@ async function loadBalance() {
 }
 
 // ---------- generate & runs ----------
+function runBody(z, n) {
+  const edited = masterEdited();
+  const fromSign = z ? { subject: z.animal, sign: z.sign, traits: z.traits, palette: cfg.elements[z.element] || "", tone: z.tone || "mid" } : null;
+  return {
+    ...(fromSign || {
+      subject: $("#subject").value.trim(),
+      sign: $("#sign").value.trim(), traits: $("#traits").value.trim(), palette: $("#palette").value.trim(), tone: $("#tone").value,
+    }),
+    master: { id: currentMaster().id, text: $("#master").value.trim(), edited },
+    masterB: masterB() ? { id: masterB().id, text: masterB().text, edited: false } : null,
+    styles: [...sel.styles], scenes: [...sel.scenes], models: [...sel.models], refs: [...sel.refs],
+    refMode: $("#refMode").value, autoRefs: { style: $("#autoStyle").checked, scene: $("#autoScene").checked }, ab: $("#ab").checked,
+    n: n ?? totalImages(), compare: z ? false : $("#compare").checked, aspect: $("#aspect").value,
+  };
+}
 async function generate() {
   const btn = $("#go");
   if (btn.disabled) return;
@@ -568,11 +656,12 @@ async function generate() {
     const edited = masterEdited();
     const r = await api("/api/runs", {
       subject: $("#subject").value.trim(),
-      sign: $("#sign").value.trim(), traits: $("#traits").value.trim(), palette: $("#palette").value.trim(),
+      sign: $("#sign").value.trim(), traits: $("#traits").value.trim(), palette: $("#palette").value.trim(), tone: $("#tone").value,
       master: { id: currentMaster().id, text: $("#master").value.trim(), edited },
+      masterB: masterB() ? { id: masterB().id, text: masterB().text, edited: false } : null,
       styles: [...sel.styles], scenes: [...sel.scenes], models: [...sel.models], refs: [...sel.refs],
       refMode: $("#refMode").value, autoRefs: { style: $("#autoStyle").checked, scene: $("#autoScene").checked }, ab: $("#ab").checked,
-      n: +$("#n").value, aspect: $("#aspect").value,
+      n: totalImages(), compare: $("#compare").checked, aspect: $("#aspect").value,
     });
     run = r; store.set("run", r.id);
     showTab("gen"); renderRun(); loadHistory(); startPolling();
@@ -629,14 +718,14 @@ function renderRun() {
   el.innerHTML = `
     <div class="run-head">
       <h2>${esc(run.subject)}</h2>
-      <div class="meta">${esc(run.sign)} · master ${run.master.id}${run.master.edited ? "*" : ""} · ${done}/${run.images.length} done · ${cost}¢ · ${new Date(run.created).toLocaleString()}${refSummary(run)}</div>
+      <div class="meta">${esc(run.sign)} · master ${run.master.id}${run.master.edited ? "*" : ""}${run.masterB ? ` vs ${run.masterB.id}` : ""} · ${done}/${run.images.length} done · ${cost}¢ · ${new Date(run.created).toLocaleString()}${refSummary(run)}</div>
       <div class="tools">
         <button class="btn" id="sortBtn">${sortByStars ? "Original order" : "Sort by rating"}</button>
         <button class="btn" id="reuseBtn" title="Load this run's settings into the form">Reuse settings</button>
       </div>
     </div>
     <textarea id="runNote" placeholder="Overall feedback on this batch: what works, what doesn't, what to try next">${esc(run.note)}</textarea>
-    <div class="grid">${order.map((img) => card(img, w, h)).join("")}</div>`;
+    ${renderGroups(order, w, h)}`;
   $("#sortBtn").onclick = () => { sortByStars = !sortByStars; renderRun(); };
   $("#reuseBtn").onclick = reuseRun;
   $("#runNote").addEventListener("change", (e) => api(`/api/runs/${run.id}/note`, { note: e.target.value }).then(() => toast("Note saved")));
@@ -644,6 +733,22 @@ function renderRun() {
   updateElapsed();
 }
 
+function renderGroups(order, w, h) {
+  const loose = order.filter((i) => !i.group);
+  const groups = [];
+  for (const img of order) if (img.group && !groups.includes(img.group)) groups.push(img.group);
+  let html = loose.length ? `<div class="grid">${loose.map((img) => card(img, w, h)).join("")}</div>` : "";
+  for (const g of groups) {
+    const imgs = order.filter((i) => i.group === g);
+    const first = imgs[0];
+    const rated = imgs.filter((i) => i.stars);
+    const top = rated.length ? rated.reduce((a, b) => ((b.stars || 0) > (a.stars || 0) ? b : a)) : null;
+    html += `<div class="group-head"><h3>${esc(g)}</h3>
+      <span class="hint">${[first.style && labelOf("styles", first.style), first.scene && labelOf("scenes", first.scene)].filter(Boolean).map(esc).join(" · ")} · ${imgs.some((i) => i.master) ? [...new Set(imgs.map((i) => i.master))].join(" vs ") : `same prompt on ${imgs.length} models`}${top ? ` · best so far: ${esc(top.master || labelOf("models", top.model))} ${"★".repeat(top.stars)}` : ""}</span></div>
+      <div class="grid">${imgs.map((img) => card(img, w, h)).join("")}</div>`;
+  }
+  return html;
+}
 function card(img, w, h, runId) {
   const src = img.file ? `/runs/${encodeURIComponent(runId || run.id)}/${img.file}` : "";
   let inner;
@@ -651,7 +756,7 @@ function card(img, w, h, runId) {
   else if (img.status === "failed") inner = `<div class="status err"><div>Failed<br>${esc(img.error || "")}${runId ? "" : `<br><br><button class="btn retry">Retry</button>`}</div></div>`;
   else inner = `<div class="shimmer"></div><div class="status"><div><div class="spinner"></div><span class="elapsed" data-start="${img.started}"></span></div></div>`;
   return `<div class="card" data-i="${img.i}" data-run="${esc(runId || run.id)}">
-    <div class="pic" style="aspect-ratio:${w}/${h}">${inner}<span class="badge">#${img.i + 1}${img.parent != null ? ` ← #${img.parent + 1}` : ""}</span></div>
+    <div class="pic" style="aspect-ratio:${w}/${h}">${inner}<span class="badge">#${img.i + 1}${badgeLabel(img, runId)}</span></div>
     <div class="body">
       ${stars(img.stars)}
       <div class="tags">
@@ -659,18 +764,28 @@ function card(img, w, h, runId) {
         ${img.scene ? `<span class="tag">${esc(labelOf("scenes", img.scene))}</span>` : ""}
         <span class="tag">${esc(labelOf("models", img.model))}</span>
         ${refTag(img, runId)}
+        ${img.transparent ? `<span class="tag" style="color:var(--bad);border-color:var(--bad)" title="The model returned a partly transparent background, which shows as pixel mosaic. Fixed for new images; press +4 to redraw.">transparent bg</span>` : ""}
+        ${img.contrast ? `<span class="tag" title="Rough figure/ground contrast: colour difference between the centre of the frame and its edges (higher = the creature stands out more)">contrast ${img.contrast.dE}</span>` : ""}
         ${img.promptNote ? `<span class="tag" title="${esc(img.promptNote)}">prompt ✎</span>` : ""}
       </div>
       <input type="text" class="note-in" placeholder="note (optional)" value="${esc(img.note || "")}">
-      ${runId ? "" : `<div class="card-actions"><button class="btn more" ${img.status === "done" ? "" : "disabled"}>+4 like this</button><button class="btn useref" ${img.status === "done" ? "" : "disabled"} title="Send this image as a reference in the next batch">Use as ref</button><button class="btn pfb" ${img.status === "done" ? "" : "disabled"} title="Read the prompt and say how well it is designed">Prompt ✎</button></div>`}
+      ${runId ? "" : `<div class="card-actions"><button class="btn more" ${img.status === "done" ? "" : "disabled"} title="4 more with the same prompt and model">+4</button><button class="btn allm" ${img.status === "done" ? "" : "disabled"} title="This exact prompt on every other model">All models</button><button class="btn useref" ${img.status === "done" ? "" : "disabled"} title="Send this image as a reference in the next batch">Use as ref</button><button class="btn pfb" ${img.status === "done" ? "" : "disabled"} title="Read the prompt and say how well it is designed">Prompt ✎</button></div>`}
     </div></div>`;
+}
+function badgeLabel(img, runId) {
+  const r = runId ? null : run;
+  const parts = [];
+  if (img.master) parts.push(img.master);
+  if (r?.compare || (img.group && !img.master)) parts.push(labelOf("models", img.model));
+  if (parts.length) return ` · <b>${parts.map(esc).join(" · ")}</b>`;
+  return img.parent != null ? ` ← #${img.parent + 1}` : "";
 }
 function refTag(img, runId) {
   const r = runId ? null : run;
   const n = refsOf(img, r).length;
   const used = r ? (r.refs.length || r.autoRefs?.style || r.autoRefs?.scene) : n;
   if (!used) return "";
-  return `<span class="tag refs">${n ? `${n} ref${n > 1 ? "s" : ""}` : "no refs"}</span>`;
+  return `<span class="tag reftag">${n ? `${n} ref${n > 1 ? "s" : ""}` : "no refs"}</span>`;
 }
 const stars = (n) => `<div class="stars">${[1, 2, 3, 4, 5].map((k) => `<button data-s="${k}" class="${(n || 0) >= k ? "on" : ""}">★</button>`).join("")}</div>`;
 
@@ -683,6 +798,11 @@ function bindCards(root, runObj, onRate) {
     c.querySelector(".pic").onclick = () => { const img = getImg(); if (img?.status === "done") openLightbox(rid, i, runObj); };
     const more = c.querySelector(".more");
     if (more) more.onclick = async () => { run = await api(`/api/runs/${rid}/more`, { i, count: 4 }); renderRun(); startPolling(); };
+    const allm = c.querySelector(".allm");
+    if (allm) allm.onclick = async () => {
+      run = await api(`/api/runs/${rid}/more`, { i, models: cfg.models.map((m) => m.id) });
+      toast(`Same prompt sent to ${cfg.models.length - 1} more models`); renderRun(); startPolling();
+    };
     const retry = c.querySelector(".retry");
     if (retry) retry.onclick = async (e) => { e.stopPropagation(); run = await api(`/api/runs/${rid}/retry`, { i }); renderRun(); startPolling(); };
     const useref = c.querySelector(".useref");
@@ -708,6 +828,7 @@ function reuseRun() {
   $("#sign").value = run.sign === cfg.defaults.sign ? "" : run.sign;
   $("#traits").value = run.traits === cfg.defaults.traits ? "" : run.traits;
   $("#palette").value = run.palette === cfg.defaults.palette ? "" : run.palette;
+  $("#tone").value = run.tone || "mid";
   if (cfg.masters.some((m) => m.id === run.master.id)) $("#masterSel").value = run.master.id;
   $("#master").value = run.master.text;
   $("#aspect").value = run.aspect;
@@ -715,6 +836,8 @@ function reuseRun() {
   sel.styles = new Set(uniq("style")); sel.scenes = new Set(uniq("scene")); sel.models = new Set(uniq("model")); sel.refs = new Set(run.refs);
   if (run.refMode) $("#refMode").value = run.refMode;
   $("#autoStyle").checked = !!run.autoRefs?.style; $("#autoScene").checked = !!run.autoRefs?.scene; $("#ab").checked = !!run.ab;
+  $("#compare").checked = !!run.compare;
+  $("#masterB").value = run.masterB?.id || ""; syncMasterB(); syncN();
   syncChips(); masterEdited(); persist(); toast("Settings loaded into the form");
 }
 
@@ -808,6 +931,8 @@ function showTab(t) {
   $("#tab-gen").style.display = t === "gen" ? "" : "none";
   $("#tab-best").style.display = t === "best" ? "" : "none";
   $("#tab-insights").style.display = t === "insights" ? "" : "none";
+  $("#tab-set").style.display = t === "set" ? "" : "none";
+  if (t === "set") renderSet();
   if (t === "best") renderBest();
   if (t === "insights") renderInsights();
 }
@@ -819,8 +944,51 @@ async function renderBest() {
   bindCards($("#bestGrid"), null);
 }
 const runAspect = {};
+async function renderSet() {
+  const set = await api("/api/set");
+  const n = +$("#setN").value;
+  const per = [...sel.models].map((m) => prices[m + (sel.refs.size > 0 || $("#autoStyle").checked || $("#autoScene").checked)]).filter((c) => c != null);
+  const avg = per.length ? per.reduce((a, b) => a + b, 0) / per.length : null;
+  $("#setCost").textContent = `Settings from the Generate tab: master ${currentMaster().id}${masterEdited() ? "*" : ""}, ${[...sel.models].map((m) => labelOf("models", m)).join(", ")}, ${sel.styles.size} styles, ${sel.scenes.size} scenes${$("#autoStyle").checked ? ", style refs" : ""}.` +
+    (avg != null ? ` All 12 × ${n} ≈ $${((avg * n * 12) / 100).toFixed(2)}.` : "");
+  const src = (x) => `/runs/${encodeURIComponent(x.run)}/${x.file}`;
+  $("#zset").innerHTML = set.map((z) => {
+    const [hero, ...rest] = z.top;
+    return `<div class="zcell" data-sign="${z.sign}">
+      <div class="hero" ${hero ? `data-run="${esc(hero.run)}" data-i="${hero.i}"` : ""}>${hero ? `<img src="${src(hero)}" loading="lazy">${hero.stars ? `<span class="st">${"★".repeat(hero.stars)}</span>` : ""}` : "no images yet"}</div>
+      ${rest.length ? `<div class="thumbs">${rest.slice(0, 3).map((x) => `<img src="${src(x)}" loading="lazy" data-run="${esc(x.run)}" data-i="${x.i}" title="${x.stars ? x.stars + "★ · " : ""}${esc(labelOf("styles", x.style))} · ${esc(labelOf("scenes", x.scene))}">`).join("")}</div>` : ""}
+      <div class="info"><b>${z.sign} · ${esc(z.animal.replace(/^an? /, ""))}</b>
+        <span class="hint">${z.from.replace("-", "/")}–${z.to.replace("-", "/")} · ${z.element} · tone ${z.tone || "mid"} · ${z.count} images, ${z.rated} rated</span>
+        <span class="hint">${esc(z.traits)}</span>
+        <div class="card-actions"><button class="btn" data-gen="${z.sign}">Generate ${n}</button><button class="btn" data-open="${z.sign}">Open in Generate</button></div>
+      </div></div>`;
+  }).join("");
+  $$("#zset [data-gen]").forEach((b) => (b.onclick = async () => {
+    const z = cfg.zodiac.find((x) => x.sign === b.dataset.gen);
+    b.disabled = true;
+    try { await api("/api/runs", runBody(z, n)); toast(`${z.sign}: ${n} on the way`); loadHistory(); setTimeout(renderSet, 1500); }
+    catch (e) { toast(e.message); b.disabled = false; }
+  }));
+  $$("#zset [data-open]").forEach((b) => (b.onclick = () => { applySign(cfg.zodiac.find((x) => x.sign === b.dataset.open)); showTab("gen"); }));
+  $$("#zset [data-run]").forEach((el) => (el.onclick = async () => {
+    const r = await api("/api/runs/" + encodeURIComponent(el.dataset.run));
+    openLightbox(r.id, +el.dataset.i, r);
+  }));
+}
+async function generateSet() {
+  const n = +$("#setN").value;
+  $("#setAll").disabled = true;
+  try {
+    for (const z of cfg.zodiac) await api("/api/runs", runBody(z, n));
+    toast(`12 batches of ${n} started`); loadHistory();
+    const tick = setInterval(() => { if ($("#tab-set").style.display === "none") return clearInterval(tick); renderSet(); }, 6000);
+    setTimeout(() => clearInterval(tick), 6 * 60_000);
+  } catch (e) { toast(e.message); }
+  finally { $("#setAll").disabled = false; }
+}
+
 async function renderInsights() {
-  const s = await api("/api/stats");
+  const [s, con] = await Promise.all([api("/api/stats"), api("/api/contrast")]);
   const names = { style: "Styles", scene: "Scenes", model: "Models", refs: "References", master: "Master prompt versions", subject: "Subjects" };
   const lab = { style: "styles", scene: "scenes", model: "models" };
   $("#insights").innerHTML = Object.entries(names).map(([g, title]) => `
@@ -829,7 +997,12 @@ async function renderInsights() {
         <div class="bar-row"><div class="k" title="${esc(r.key)}">${esc(lab[g] ? labelOf(lab[g], r.key) : r.key)}</div>
         <div class="bar"><i style="width:${(r.avg / 5) * 100}%"></i></div>
         <div class="v">${r.avg.toFixed(2)}★ · ${r.n}</div></div>`).join("") : `<div class="hint">No ratings yet.</div>`}
-    </div>`).join("");
+    </div>`).join("") + `
+    <div class="box"><h3>Figure / ground contrast (automatic)</h3>
+      <div class="hint" style="margin-bottom:8px">Average colour gap between the centre of the frame and its edges, for every image. Rough: higher means the creature stands out more.</div>
+      ${["master", "scene", "style", "model"].map((g) => `<div class="label" style="margin-top:10px">${{ master: "Master versions", scene: "Scenes", style: "Styles", model: "Models" }[g]}</div>` +
+        (con[g] || []).map((r) => `<div class="bar-row"><div class="k">${esc(lab[g] ? labelOf(lab[g], r.key) : r.key)}</div><div class="bar"><i style="width:${Math.min(100, (r.avg / 50) * 100)}%"></i></div><div class="v">${r.avg.toFixed(0)} · ${r.n}</div></div>`).join("")).join("")}
+    </div>`;
 }
 
 init();

@@ -1,0 +1,100 @@
+{
+  "id": "20261114-144554-a-black-panther-cub",
+  "created": "2026-11-14T22:45:54.970Z",
+  "subject": "a black panther cub",
+  "sign": "Leo",
+  "traits": "proud, dramatic, generous, loves the spotlight",
+  "palette": "ember orange, gold and crimson",
+  "tone": "dark",
+  "master": {
+    "id": "v5",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}.\nFigure and ground, more important than the scene description: {backdrop} The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "aspect": "3:4",
+  "refs": [],
+  "refMode": "match",
+  "autoRefs": {
+    "style": true,
+    "scene": false
+  },
+  "ab": false,
+  "compare": false,
+  "vary": {
+    "style": true,
+    "scene": true,
+    "model": false
+  },
+  "note": "",
+  "images": [
+    {
+      "i": 0,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: entirely encrusted with thousands of tiny silver rhinestones and diamonds, glittering macro detail, luxurious fashion editorial.\nColor accents: ember orange, gold and crimson.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure.\nFigure and ground, more important than the scene description: the creature is dark, so the scene behind it is bright and airy: pale haze, soft high-key daylight and a luminous glow directly behind its head and body, background values much lighter than the creature. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "rhinestone",
+      "scene": "portal",
+      "refs": [
+        "character ideas/c9b0f22a74a634b491b9c3db3eac55ed.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.38 AM.png"
+      ],
+      "status": "done",
+      "started": 1794696354970,
+      "jobId": "job_81a73f5c4313",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_26f6b1dacbf5.png",
+      "cost": 8,
+      "file": "00.png",
+      "contrast": {
+        "dL": 40,
+        "dE": 40
+      },
+      "finished": 1794696421318,
+      "transparent": false
+    },
+    {
+      "i": 1,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: ember orange, gold and crimson.\nSetting: a terracotta Mars desert colony with a white dome city and launch towers, a pale moon in a dusty sky.\nFigure and ground, more important than the scene description: the creature is dark, so the scene behind it is bright and airy: pale haze, soft high-key daylight and a luminous glow directly behind its head and body, background values much lighter than the creature. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "plush",
+      "scene": "mars",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "status": "done",
+      "started": 1794696354970,
+      "jobId": "job_57159a9747a9",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_04ecf5fd9b3a.png",
+      "cost": 8,
+      "file": "01.png",
+      "contrast": {
+        "dL": 24,
+        "dE": 28
+      },
+      "finished": 1794696421892,
+      "transparent": false
+    },
+    {
+      "i": 2,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: ember orange, gold and crimson.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light.\nFigure and ground, more important than the scene description: the creature is dark, so the scene behind it is bright and airy: pale haze, soft high-key daylight and a luminous glow directly behind its head and body, background values much lighter than the creature. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "porcelain",
+      "scene": "solarpunk",
+      "refs": [
+        "character ideas/13969f9c58bcb10a78fc7d0848f4e6c9.jpg",
+        "character ideas/4033d1b946aa55bdf4b6c2e81f01a2aa.jpg"
+      ],
+      "status": "done",
+      "started": 1794696354970,
+      "jobId": "job_7978149d0337",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_d7edf818a53c.png",
+      "cost": 8,
+      "file": "02.png",
+      "contrast": {
+        "dL": 31,
+        "dE": 31
+      },
+      "finished": 1794696420363,
+      "transparent": false
+    }
+  ]
+}
