@@ -1,0 +1,64 @@
+import "server-only";
+import { CARD_FIELDS, db, type Player, type PublicCard, toCard } from "./db";
+
+export type Ranger = {
+  id: string; card_no: number; name: string; character: string; sign: string; element: string;
+  style: string; status: Player["status"]; image_url: string | null;
+  collected: number; scans: number; collected_by: number; last_collect_at: string | null;
+};
+
+export async function leaderboard(): Promise<Ranger[]> {
+  const { data, error } = await db().from("leaderboard").select("*").limit(500);
+  if (error) throw new Error(`leaderboard: ${error.message}`);
+  return ((data ?? []) as Ranger[]).sort(
+    (a, b) => b.collected - a.collected || (a.last_collect_at ?? "9").localeCompare(b.last_collect_at ?? "9") || a.card_no - b.card_no,
+  );
+}
+
+export async function collectedBy(id: string): Promise<number> {
+  const { count } = await db().from("collections").select("owner_id", { count: "exact", head: true }).eq("owner_id", id);
+  return count ?? 0;
+}
+
+export async function cardOf(p: Player): Promise<PublicCard> {
+  return { ...toCard(p), collected_by: await collectedBy(p.id) };
+}
+
+// The cards this player has collected, newest first.
+export async function holdOf(id: string): Promise<PublicCard[]> {
+  const { data } = await db()
+    .from("collections")
+    .select(`created_at, owner:players!collections_owner_id_fkey(${CARD_FIELDS})`)
+    .eq("collector_id", id)
+    .order("created_at", { ascending: false });
+  return (data ?? []).map((r: any) => toCard(r.owner));
+}
+
+export async function totals() {
+  const [players, collections, scans] = await Promise.all([
+    db().from("players").select("id", { count: "exact", head: true }),
+    db().from("collections").select("owner_id", { count: "exact", head: true }),
+    db().from("scans").select("id", { count: "exact", head: true }),
+  ]);
+  return { players: players.count ?? 0, collections: collections.count ?? 0, scans: scans.count ?? 0 };
+}
+
+// Friends are mutual: one row per direction, so a single lookup each way.
+export async function friendsOf(id: string): Promise<PublicCard[]> {
+  const { data } = await db()
+    .from("friends")
+    .select(`created_at, friend:players!friends_friend_id_fkey(${CARD_FIELDS})`)
+    .eq("player_id", id)
+    .order("created_at", { ascending: false });
+  return (data ?? []).map((r: any) => toCard(r.friend));
+}
+
+export async function areFriends(a: string, b: string): Promise<boolean> {
+  const { data } = await db().from("friends").select("friend_id").eq("player_id", a).eq("friend_id", b).maybeSingle();
+  return !!data;
+}
+
+export async function hasTag(id: string): Promise<boolean> {
+  const { data } = await db().from("tags").select("code").eq("player_id", id).maybeSingle();
+  return !!data;
+}
