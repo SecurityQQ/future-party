@@ -26,7 +26,20 @@
     {style: 'streak', colors: ['#f7f8fa', '#d9e2ea', '#9fb4c7', '#e8edf2', '#7d9cc0', '#ffffff'], scale: .7, warp: 1.6, angle: .35, gloss: .25, veins: 0},
     {style: 'marble', colors: ['#030817', '#0b1b36', '#2c5fd6', '#4385ff', '#9dd8ff', '#e1f2ff', '#7a5cff'], scale: .62, warp: 3.2, angle: -.5, gloss: .55, veins: .6},
   ].map((p, i) => ({...p, key: 'era' + i}));
-  const palette = era => PALETTES[era % PALETTES.length];
+  /* Music of the Future: chrome, ultraviolet, aurora, neon, electric, mercury. */
+  const FUTURE = [
+    {style: 'streak', colors: ['#f2f7ff', '#aec6e8', '#3b5f97', '#0b1b36', '#7da2d1', '#e2efff'], scale: .7, warp: 1.5, angle: -.5, gloss: .25, veins: 0},
+    {style: 'marble', colors: ['#07061a', '#1d1550', '#5a3fd1', '#0d0b26', '#7a5cff', '#c7b8ff', '#f1ecff'], scale: .68, warp: 3.4, angle: .7, gloss: .55, veins: .5},
+    {style: 'marble', colors: ['#03121a', '#0a3a4a', '#1fa3b8', '#06202b', '#5ce1e6', '#c9fbff', '#f2ffff'], scale: .7, warp: 3.2, angle: 2.2, gloss: .5, veins: .45},
+    {style: 'streak', colors: ['#f3eefa', '#ffb3e1', '#ff4fa3', '#1c1440', '#283e8c', '#4385ff', '#dfeaff'], scale: .7, warp: 1.4, angle: -.7, gloss: .2, veins: 0},
+    {style: 'marble', colors: ['#020615', '#0a1d4a', '#2a6bff', '#071232', '#9dd8ff', '#e8f6ff', '#5a8cff'], scale: .62, warp: 3.4, angle: -.3, gloss: .55, veins: .6},
+    {style: 'streak', colors: ['#f7f8fa', '#cfd8e3', '#8ea3bd', '#2c3a52', '#a9b8cc', '#ffffff'], scale: .7, warp: 1.6, angle: .4, gloss: .3, veins: 0},
+  ].map((p, i) => ({...p, key: 'future' + i}));
+  const SETS = {eras: PALETTES, future: FUTURE};
+  const paletteOf = set => group => set[group % set.length];
+  const palette = paletteOf(PALETTES);
+  /** A stable small integer for a string, so an item's art follows its name. */
+  const hashString = text => { let h = 2166136261; for (let i = 0; i < text.length; i++) h = Math.imul(h ^ text.charCodeAt(i), 16777619); return h >>> 0; };
 
   const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
   const inOutCubic = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -375,7 +388,7 @@ void main(){
     ctx.textBaseline = 'alphabetic';
     // date chip
     ctx.font = `500 19px ${mono}`;
-    const date = String(track.date), dw = ctx.measureText(date).width + 26;
+    const date = String(track.date || ''), dw = ctx.measureText(date).width + 26;
     roundRect(ctx, x + P - 4, y + P - 4, dw, 36, 18);
     ctx.fillStyle = 'rgba(3,8,23,.5)'; ctx.fill();
     ctx.strokeStyle = 'rgba(157,216,255,.45)'; ctx.lineWidth = 1.5; ctx.stroke();
@@ -393,22 +406,25 @@ void main(){
     while (size > 26 && ctx.measureText(track.artist).width > max) { size -= 2; ctx.font = `600 ${size}px ${font}`; }
     ctx.fillStyle = '#f4f8ff'; ctx.fillText(fit(ctx, track.artist, max), x + P, y + H - P - 38);
     ctx.font = `400 26px ${font}`; ctx.fillStyle = 'rgba(220,233,251,.86)';
-    ctx.fillText(fit(ctx, track.shortTitle || track.title, max), x + P, y + H - P);
+    ctx.fillText(fit(ctx, track.title || '', max), x + P, y + H - P);
     ctx.restore();
   }
 
-  function createRing(root, {tracks, chapters, reducedMotion, onSelect}) {
+  /** groups: arrays of {seed, date, genre, artist, title}; onSelect(group, index). */
+  function createRing(root, {groups, palette, reducedMotion, onSelect, label}) {
     const canvas = root.querySelector('canvas');
-    const eraItems = chapters.map((_, era) => tracks.filter(t => t.chapter === era).slice(0, MAX_CARDS));
+    const eraItems = groups.map(list => list.slice(0, MAX_CARDS));
+    const uid = (root.id || 'molten') + '-opt';
     const css = rootStyle();
     const fonts = {font: css.getPropertyValue('--font').trim() || 'system-ui, sans-serif', mono: css.getPropertyValue('--mono').trim() || 'ui-monospace, monospace'};
-    let current = 0, era = -1, targetEra = -1, targetIdx = 0, items = [];
+    let cur = {g: -1, i: -1}, era = -1, targetEra = -1, targetIdx = 0, items = [];
 
-    const listText = list => list.map((t, i) => `<span role="option" id="molten-opt-${t.id}" aria-selected="false" aria-posinset="${i + 1}" aria-setsize="${list.length}">${esc(t.date)}: ${esc(t.artist)}, ${esc(t.shortTitle || t.title)}</span>`).join('');
+    const listText = (list, g) => list.map((t, i) => `<span role="option" id="${uid}-${g}-${i}" aria-selected="false" aria-posinset="${i + 1}" aria-setsize="${list.length}">${t.date ? esc(t.date) + ': ' : ''}${esc(t.artist)}, ${esc(t.title)}</span>`).join('');
     const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
     const markOptions = () => {
-      canvas.querySelectorAll('[role=option]').forEach(o => o.setAttribute('aria-selected', String(o.id === 'molten-opt-' + current)));
-      canvas.setAttribute('aria-activedescendant', 'molten-opt-' + current);
+      const id = `${uid}-${cur.g}-${cur.i}`;
+      canvas.querySelectorAll('[role=option]').forEach(o => o.setAttribute('aria-selected', String(o.id === id)));
+      if (canvas.querySelector('#' + CSS.escape(id))) canvas.setAttribute('aria-activedescendant', id); else canvas.removeAttribute('aria-activedescendant');
     };
 
     // ---- flat fallback: a row of buttons -----------------------------------
@@ -419,21 +435,20 @@ void main(){
       flat = document.createElement('div');
       flat.className = 'molten-row';
       flat.setAttribute('role', 'group');
-      flat.setAttribute('aria-label', 'Recordings in this era');
+      flat.setAttribute('aria-label', label || 'Choose one');
       root.append(flat);
-      flat.addEventListener('click', e => { const b = e.target.closest('[data-id]'); if (b) onSelect(Number(b.dataset.id)); });
+      flat.addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (b) onSelect(flatEra, Number(b.dataset.i)); });
       renderFlat(true);
     };
     let flatEra = -1;
     const renderFlat = force => {
-      if (!flat || !tracks[current - 1]) return;
-      const t = tracks[current - 1];
-      if (force || flatEra !== t.chapter) {
-        flatEra = t.chapter;
-        flat.innerHTML = eraItems[flatEra].map(item => `<button type="button" class="molten-chip" data-id="${item.id}"><span>${esc(item.date)}</span><b>${esc(item.artist)}</b><i>${esc(item.shortTitle || item.title)}</i></button>`).join('');
+      if (!flat || !eraItems[cur.g]) return;
+      if (force || flatEra !== cur.g) {
+        flatEra = cur.g;
+        flat.innerHTML = eraItems[flatEra].map((item, i) => `<button type="button" class="molten-chip" data-i="${i}"><span>${esc(item.date)}</span><b>${esc(item.artist)}</b><i>${esc(item.title)}</i></button>`).join('');
       }
-      flat.querySelectorAll('[data-id]').forEach(b => {
-        const on = Number(b.dataset.id) === current;
+      flat.querySelectorAll('[data-i]').forEach(b => {
+        const on = Number(b.dataset.i) === cur.i;
         b.classList.toggle('active', on);
         if (on) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
         if (on) flat.scrollTo({left: b.offsetLeft - (flat.clientWidth - b.offsetWidth) / 2, behavior: reducedMotion ? 'instant' : 'smooth'});
@@ -444,7 +459,7 @@ void main(){
     const program = gl && build(gl);
     if (!gl || !program) {
       goFlat();
-      return {update(id) { current = id; renderFlat(); }};
+      return {update(g, i) { cur = {g, i}; renderFlat(); }};
     }
     const u = (() => { const cache = new Map(); return name => { let l = cache.get(name); if (l === undefined) { l = gl.getUniformLocation(program, name); cache.set(name, l); } return l; }; })();
     const quad = gl.createVertexArray();
@@ -459,12 +474,12 @@ void main(){
 
     // ---- atlases, one per era, the three most recent kept ------------------
     const atlases = new Map(), building = new Set();
-    const artFor = (t, priority) => paint(palette(t.chapter), t.id * 13 + 1, ART_W, ART_H, priority);
+    const artFor = (e, t, priority) => paint(palette(e), t.seed, ART_W, ART_H, priority);
     const ensureAtlas = e => {
       if (atlases.has(e) || building.has(e)) return;
       building.add(e);
       const list = eraItems[e];
-      Promise.all([Promise.all(list.map(t => artFor(t, 0))), loadFonts(fonts.font, fonts.mono)]).then(([arts]) => {
+      Promise.all([Promise.all(list.map(t => artFor(e, t, 0))), loadFonts(fonts.font, fonts.mono)]).then(([arts]) => {
         building.delete(e);
         if (lost) return;
         const cols = Math.min(3, list.length), rows = Math.ceil(list.length / cols);
@@ -487,7 +502,7 @@ void main(){
           gl.deleteTexture(atlases.get(oldest).tex); atlases.delete(oldest);
         }
         // The neighbouring eras are the likeliest next stop.
-        for (const n of [e + 1, e - 1]) if (eraItems[n]) eraItems[n].forEach(t => artFor(t, 3));
+        for (const n of [e + 1, e - 1]) if (eraItems[n]) eraItems[n].forEach(t => artFor(n, t, 3));
         wake();
       }).catch(error => {
         // A ring that never pours is worse than plain buttons.
@@ -524,18 +539,18 @@ void main(){
     document.addEventListener('visibilitychange', () => { if (!document.hidden) wake(); });
 
     const startTween = to => { tween = {from: goal, to, at: performance.now()}; snapped = true; wake(); };
-    const commit = idx => { const t = items[idx]; if (t && t.id !== current) onSelect(t.id); };
+    const commit = idx => { if (items[idx] && !(era === cur.g && idx === cur.i)) onSelect(era, idx); };
     const goTo = (idx, select) => { startTween(idx); if (select) commit(idx); };
     const crossEra = dir => {
-      const id = dir > 0 ? items[items.length - 1].id + 1 : items[0].id - 1;
-      if (id < 1 || id > tracks.length) return false;
-      onSelect(id); return true;
+      const g = era + dir;
+      if (!eraItems[g] || !eraItems[g].length) return false;
+      onSelect(g, dir > 0 ? 0 : eraItems[g].length - 1); return true;
     };
     const swapEra = () => {
       era = targetEra; items = eraItems[era];
       progress = goal = targetIdx; tween = null; snapped = true; hovered = -1;
       leanX.fill(0); leanY.fill(0); swell.fill(0); dim.fill(0);
-      canvas.innerHTML = listText(items); markOptions();
+      canvas.innerHTML = listText(items, era); markOptions();
       phase = 'wait'; spread = 0; entry = 0;
       ensureAtlas(era);
     };
@@ -773,10 +788,12 @@ void main(){
     }
 
     return {
-      update(id) {
-        current = id;
+      update(g, i) {
+        if (!eraItems[g]) return;
+        const idx = clamp(i, 0, eraItems[g].length - 1);
+        cur = {g, i: idx};
         if (flat) { renderFlat(); return; }
-        const t = tracks[id - 1], idx = Math.max(0, eraItems[t.chapter].indexOf(t));
+        const t = {chapter: g};
         targetIdx = idx;
         if (era < 0) { targetEra = t.chapter; swapEra(); }
         else if (t.chapter !== targetEra) {
@@ -796,15 +813,16 @@ void main(){
   // ---------------------------------------------------------------------------
   // Era folders: back-panel art, accents, and a light that follows the pointer.
 
-  function dressFolders(strip, chapters) {
-    strip.querySelectorAll('[data-history-period]').forEach(button => {
-      const era = Number(button.dataset.historyPeriod), p = palette(era);
+  function dressFolders(strip, {attr, palette, seed}) {
+    const selector = `[data-${attr.replace(/[A-Z]/g, c => '-' + c.toLowerCase())}]`;
+    strip.querySelectorAll(selector).forEach(button => {
+      const era = Number(button.dataset[attr]), p = palette(era);
       button.style.setProperty('--era-a', p.colors[2]);
       button.style.setProperty('--era-b', p.colors[5]);
       const canvas = button.querySelector('canvas[data-era-art]');
       if (!canvas) return;
       const w = 176, h = 124;
-      paint(p, era * 7 + 3, w, h, 1).then(src => {
+      paint(p, seed(era), w, h, 1).then(src => {
         canvas.width = src.width; canvas.height = src.height;
         canvas.getContext('2d')?.drawImage(src, 0, 0);
         canvas.dataset.ready = '';
@@ -814,7 +832,7 @@ void main(){
     const write = () => { raf = 0; if (!target) return; target.style.setProperty('--px', px.toFixed(3)); target.style.setProperty('--py', py.toFixed(3)); };
     strip.addEventListener('pointermove', e => {
       if (e.pointerType === 'touch') return;
-      const folder = e.target.closest('[data-history-period]');
+      const folder = e.target.closest(selector);
       if (folder !== target && target) { target.style.setProperty('--px', '0'); target.style.setProperty('--py', '0'); }
       target = folder;
       if (!folder) return;
@@ -826,10 +844,17 @@ void main(){
   }
 
   window.ResonanceEras = {
-    mount({root, strip, tracks, chapters, reducedMotion = false, onSelect}) {
-      if (strip) dressFolders(strip, chapters);
-      const ring = root ? createRing(root, {tracks, chapters, reducedMotion, onSelect}) : null;
-      return {update(id) { ring?.update(id); }};
+    /**
+     * groups: one array per folder, items {seed, date, genre, artist, title}.
+     * folderAttr: the camelCase data attribute holding each folder's group index.
+     * palettes: 'eras' or 'future'. onSelect(group, index) picks an item.
+     */
+    mount({root, strip, groups, folderAttr = 'historyPeriod', palettes = 'eras', folderSeed = g => g * 7 + 3, reducedMotion = false, onSelect, label}) {
+      const pal = paletteOf(SETS[palettes] || PALETTES);
+      if (strip) dressFolders(strip, {attr: folderAttr, palette: pal, seed: folderSeed});
+      const ring = root ? createRing(root, {groups, palette: pal, reducedMotion, onSelect, label}) : null;
+      return {update(g, i) { ring?.update(g, i); }};
     },
+    hash: hashString,
   };
 })();
