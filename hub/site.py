@@ -40,9 +40,11 @@ PAGES = sorted(set(B.PAGES.values()) | {
     "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html"})
 MEDIA = "video/dist/media"
 # Other files the pages load from the repo: the Mirror 2050 preview, the Blue futurism chrome texture, Mars in 3D's
-# slides, the previews of the Apps section, and every file the Big Muse lists in its manifest (Further's photos;
-# its films are in MEDIA)
+# slides, the previews of the Apps section, the figures of the 2050 Research papers (the front page and the end of
+# every research page show them), and every file the Big Muse lists in its manifest (Further's photos; its films are
+# in MEDIA)
 ASSETS = (["mirror/preview.jpg", "vibes/assets/chrome-orbit.webp", "mars3d/slides.js", *B.APP_SHOTS.values()]
+          + [p["shot"] for p in B.research_papers()]
           + B.load("wall/dist/manifest.json")["files"])
 # Folders the pages load from: the Imagined Futures pictures (concept-art/images/, the originals, stay off the site)
 # and Mars in 3D's pictures, globe maps and three.js (mars3d/raw/, the originals, stay off the site),
