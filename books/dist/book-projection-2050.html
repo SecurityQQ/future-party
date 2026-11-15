@@ -2,32 +2,31 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: a library shelf for 2050. Hero = book spines in publication order; then answer, findings, map, cards, ideas table, and a fullscreen wall projection built from the same ideas. Dark-first (varg look), light supported; the projection itself is always dark. */
 :root{
-  --bg:#070708; --raised:#0e0e10; --fg:#ffffff; --fg-2:#d6d6d6; --muted:#a1a1a1;
+  --bg:#030817; --raised:#07132b; --fg:#ffffff; --fg-2:#d6d6d6; --muted:#a1a1a1;
   --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.20);
-  --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#ff6a33; --accent-soft:rgba(255,83,21,.13);
-  --dot:#5c5c62; --pos:#67fc5c; --warn:#ffad31; --idle:#a1a1a1;
-  --font:"Aeonik","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --accent:#4385ff; --accent-hot:#cce9ff; --accent-ink:#9dd8ff; --accent-soft:rgba(67,133,255,.13);
+  --dot:#5c5c62; --pos:#9dd8ff; --warn:#f4c58d; --idle:#a1a1a1;
+  --font:"Geologica",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Martian Mono",ui-monospace,"SF Mono",Menlo,monospace;
   --r:10px; --r-s:6px;
   color-scheme:dark;
 }
 @media (prefers-color-scheme: light){
   :root:not([data-theme="dark"]){
-    --bg:#ffffff; --raised:#f6f6f6; --fg:#070708; --fg-2:#2c2c30; --muted:#737373;
+    --bg:#ffffff; --raised:#f6f6f6; --fg:#030817; --fg-2:#2c2c30; --muted:#737373;
     --line:#e5e5e5; --line-2:#cfcfcf;
-    --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#c63a05; --accent-soft:rgba(255,83,21,.10);
+    --accent:#4385ff; --accent-hot:#cce9ff; --accent-ink:#9dd8ff; --accent-soft:rgba(67,133,255,.10);
     --dot:#b9b9bd; --pos:#16883a; --warn:#a35f00; --idle:#737373;
     color-scheme:light;
   }
 }
 :root[data-theme="light"]{
-  --bg:#ffffff; --raised:#f6f6f6; --fg:#070708; --fg-2:#2c2c30; --muted:#737373;
+  --bg:#ffffff; --raised:#f6f6f6; --fg:#030817; --fg-2:#2c2c30; --muted:#737373;
   --line:#e5e5e5; --line-2:#cfcfcf;
-  --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#c63a05; --accent-soft:rgba(255,83,21,.10);
+  --accent:#4385ff; --accent-hot:#cce9ff; --accent-ink:#9dd8ff; --accent-soft:rgba(67,133,255,.10);
   --dot:#b9b9bd; --pos:#16883a; --warn:#a35f00; --idle:#737373;
   color-scheme:light;
 }
@@ -233,7 +232,7 @@ td.go{width:1%;white-space:nowrap}
 footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12px/1.6 var(--mono);color:var(--muted)}
 
 /* Projection overlay: a single dark world for the wall */
-.pj{position:fixed;inset:0;z-index:100;background:#050506;color:#ffffff;overflow:hidden;font-family:var(--font)}
+.pj{position:fixed;inset:0;z-index:100;background:#030817;color:#ffffff;overflow:hidden;font-family:var(--font)}
 .pj.idle{cursor:none}
 .pj-stage{position:absolute;inset:0;cursor:pointer}
 .pj.idle .pj-stage{cursor:none}
@@ -241,7 +240,7 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12px/1.
 .pj-slide.out{animation:pjOut .45s ease both}
 .pj-glow{position:absolute;inset:-15%;background:radial-gradient(circle at var(--gx) var(--gy),var(--c) 0%,transparent 46%);opacity:.34;animation:pjDrift 16s ease-in-out infinite alternate}
 .pj-inner{position:relative;width:100%;max-width:1560px;padding-left:max(7vw,calc(env(safe-area-inset-left,0px) + 20px));padding-right:max(7vw,calc(env(safe-area-inset-right,0px) + 20px));padding-block:6vh 12vh}
-.pj-eb{margin:0;font:500 clamp(12px,1.05vw,19px)/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#ff6a33}
+.pj-eb{margin:0;font:500 clamp(12px,1.05vw,19px)/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#9dd8ff}
 .pj-h{margin:.4em 0 0;font-weight:800;font-size:clamp(36px,6.3vw,124px);line-height:.98;letter-spacing:-.045em;max-width:15ch;text-wrap:balance}
 .pj-t{margin:.95em 0 0;font-size:clamp(17px,1.95vw,35px);line-height:1.42;color:#cfcfd4;max-width:44ch;text-wrap:pretty}
 .pj-src{margin:2.1em 0 0;font:400 clamp(12px,1.05vw,19px)/1.5 var(--mono);color:#9a9aa3;display:flex;gap:.9em;align-items:center}
@@ -267,10 +266,10 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12px/1.
 .pj.idle .pj-bar{opacity:0;pointer-events:none}
 .pj-bar button{font:500 13.5px/1 var(--font);color:#ffffff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:10px 14px;cursor:pointer}
 .pj-bar button:hover{background:rgba(255,255,255,.16)}
-.pj-bar button:focus-visible{outline:2px solid #ff5315;outline-offset:2px}
+.pj-bar button:focus-visible{outline:2px solid #4385ff;outline-offset:2px}
 .pj-count{font:400 12.5px var(--mono);color:#a1a1a1;min-width:72px;text-align:center;font-variant-numeric:tabular-nums}
 .pj-prog{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.08)}
-.pj-prog i{display:block;height:100%;width:0;background:#ff5315}
+.pj-prog i{display:block;height:100%;width:0;background:#4385ff}
 .pj{--wtl-mono:var(--mono);--wtl-fg:#ffffff;--wtl-muted:#a1a1a1;--wtl-line:rgba(255,255,255,.22)}
 .pj-paused{position:absolute;top:calc(18px + env(safe-area-inset-top,0px));right:max(20px,env(safe-area-inset-right,0px));font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#a1a1a1}
 
@@ -279,7 +278,106 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12px/1.
   .pj-glow{animation:none}
   .pj-slide .pj-h,.pj-slide .pj-t,.pj-slide .pj-src,.pj-slide .pj-eb{animation:pjFade .4s ease both}
 }
+</style><!--vibes:start--><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&family=Geologica:wght@300;400;500;600;700&family=Martian+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"><script>document.documentElement.setAttribute("data-vibe","books")</script><meta name="theme-color" content="#030817"><style>
+/* Blue futurism: vibes/tokens.css and vibes/pages.css, put here by vibes/restyle.py */
+/* Blue futurism · canonical palette and materials for The Future 2050.
+   Run python3 vibes/sync.py from the repository root after editing. */
+:root {
+  --v-space: #030817;
+  --v-navy: #07132b;
+  --v-panel: #0b1b36;
+  --v-panel-hi: #142d52;
+  --v-ink: #edf4ff;
+  --v-muted: #a2b6d4;
+  --v-dim: #8197b8;
+  --v-blue: #4385ff;
+  --v-ice: #9dd8ff;
+  --v-chrome: #dce9fb;
+  --v-chrome-mid: #8faacf;
+  --v-chrome-low: #304e78;
+  --v-line: #2d486d;
+  --v-error: #ff8595;
+  --v-warning: #f4c58d;
+  --v-chrome-surface: linear-gradient(118deg, #f2f7ff 0%, #aec6e8 21%, #edf6ff 42%, #7da2d1 44%, #b8d6f7 68%, #e2efff 100%);
+  --v-chrome-edge: linear-gradient(145deg, #e9f4ff 0%, #82a4d1 17%, #244672 35%, #b8d8ff 48%, #eef8ff 50%, #426a9d 54%, #122d54 78%, #8bb9ec 100%);
+  --v-holo: linear-gradient(115deg, transparent 25%, rgb(67 133 255 / 18%) 40%, rgb(225 242 255 / 28%) 50%, rgb(130 199 255 / 20%) 58%, transparent 72%);
+  --v-ease: cubic-bezier(.2, .7, .2, 1);
+  --v-fast: 180ms;
+  --v-reveal: 800ms;
+  --v-orbit: 12s;
+  color-scheme: dark;
+}
+
+/* Blue futurism for the pages first made in the earlier orange look (orange on near-black, Inter and a mono face):
+   the research pages, the books, the tweets, the playlists, Further, Projection, Mirror 2050 and Play 2050.
+   vibes/restyle.py puts tokens.css and this file after each page's own style, so the page keeps its layout and takes
+   the front page's palette, type and materials. Dark only, like the front page: the pages' light themes are overruled.
+   Everything is scoped to :root[data-vibe], which restyle.py sets, so it outranks the pages' own rules. */
+
+/* The palette: the old names, pointed at the tokens (the same mapping as hub/template.html) */
+:root:root[data-vibe]{
+  --bg:var(--v-space); --raised:var(--v-navy); --raise:var(--v-panel); --raised-2:var(--v-panel); --panel:var(--v-navy); --wall:var(--v-space);
+  --fg:var(--v-ink); --ink:var(--v-ink); --fg-2:#c4d4ec; --muted:var(--v-muted); --idle:var(--v-muted); --dot:var(--v-chrome-low);
+  --line:rgb(143 170 207 / 20%); --line-2:rgb(143 170 207 / 42%);
+  --accent:var(--v-ice); --accent-hot:#cce9ff; --accent-ink:var(--v-ice); --accent-text:var(--v-ice);
+  --accent-soft:rgb(67 133 255 / 16%); --accent-mid:rgb(67 133 255 / 45%); --on-accent:var(--v-navy);
+  --pos:var(--v-ice); --warn:var(--v-warning); --bad:var(--v-error); --cyan:var(--v-ice); --glass:rgb(3 8 23 / 66%);
+  --tea:#5fc8b4; --listen:var(--v-chrome-low); --frame:var(--v-line);
+  --font:"Geologica",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --text:var(--font);
+  --mono:"Martian Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --vb-display:"Unbounded",system-ui,sans-serif;
+  color-scheme:dark;
+}
+:root[data-vibe] body{background:var(--v-space) radial-gradient(ellipse at 88% 5%,rgb(30 75 151 / 24%),transparent 35%) no-repeat;color:var(--fg);-webkit-font-smoothing:antialiased}
+:root[data-vibe] ::selection{color:var(--v-navy);background:var(--v-ice)}
+:root[data-vibe] :focus-visible{outline:2px solid var(--v-ice);outline-offset:3px}
+
+/* Headings: the page title in Unbounded at the size of Music of the Future's, its highlighted word in chrome, like the
+   front page. Mirror 2050 keeps its own (the effect names over the camera are in League Gothic, like the Big Wall's). */
+:root[data-vibe]:not([data-vibe="mirror"]) h1{font-family:var(--vb-display);font-weight:500;text-transform:uppercase;letter-spacing:-.055em;line-height:1.06}
+:root[data-vibe]:not([data-vibe="mirror"],[data-vibe="play"]) h1{font-size:clamp(36px,5.6vw,72px)}
+:root[data-vibe]:is([data-vibe="research"],[data-vibe="mirror-research"]) h1{font-size:clamp(28px,3.9vw,50px);line-height:1.1}
+:root[data-vibe]:not([data-vibe="mirror"]) h1 :is(span,em,b,i){background:var(--v-chrome-surface);background-clip:text;-webkit-background-clip:text;color:transparent;font-style:normal;font-weight:600}
+:root[data-vibe] h1 .dim{opacity:.72}
+:root[data-vibe]:not([data-vibe="mirror"],[data-vibe="play"]) h2{font-family:var(--vb-display);font-weight:500;font-size:clamp(22px,2.6vw,34px);line-height:1.2;letter-spacing:-.035em;text-transform:none}
+:root[data-vibe] .eyebrow,:root[data-vibe] .kicker{font-family:var(--mono);color:var(--v-ice)}
+
+/* Primary buttons: liquid chrome with navy ink, the way the front page's Start buttons look */
+:root[data-vibe] :is(.btn.primary,.hero-cta .btn:first-child,.s-copy,.yt-btn,.open,#go){color:var(--v-navy);background:var(--v-chrome-surface);background-size:130% 100%;border-color:#c8ddf7;box-shadow:inset 0 1px 0 #fff,0 4px 16px rgb(67 133 255 / 12%);transition:background-position var(--v-fast),box-shadow var(--v-fast)}
+:root[data-vibe] :is(.btn.primary,.hero-cta .btn:first-child,.s-copy,.yt-btn,.open,#go):hover{background-position:100% 50%;box-shadow:inset 0 1px 0 #fff,0 0 24px rgb(67 133 255 / 25%);color:var(--v-navy)}
+
+/* The way home: the party's mark at the top left of every page, pointing back to the page's section on the front page */
+:root[data-vibe] .vb-brand{display:inline-flex;align-items:center;gap:10px;color:var(--v-chrome);font:500 12px/1.4 var(--vb-display);letter-spacing:-.02em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+:root[data-vibe] .vb-brand svg{width:26px;height:26px;flex:none;color:var(--v-ice)}
+:root[data-vibe] .vb-brand:hover{color:#fff}
+:root[data-vibe] nav.top .vb-brand{margin-right:auto}
+:root[data-vibe] .vb-bar{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;padding-block:20px;border-bottom:1px solid var(--line);font:400 11px/1.4 var(--mono);letter-spacing:.03em}
+:root[data-vibe] .vb-bar .vb-brand{margin-right:auto}
+:root[data-vibe] .vb-bar .vb-back{color:var(--muted);text-decoration:none}
+:root[data-vibe] .vb-bar .vb-back:hover{color:var(--fg)}
+@media print{:root[data-vibe] .vb-bar{display:none}}
+
+/* Phones: wide tables scroll inside their frame instead of widening the page, and long source links wrap
+   (Martian Mono is wider than the mono face these pages were laid out in) */
+:root[data-vibe] :is(.table-wrap,.table-scroll){overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch}
+:root[data-vibe] .table-wrap{border:1px solid var(--line);border-radius:var(--r,10px)}
+:root[data-vibe] .sig a{white-space:normal;overflow-wrap:anywhere}
+
+/* Mirror 2050: the titles of the app's own Mirror (app/public/app/mirror/index.html), Unbounded with a chrome 2050,
+   so /mirror and /app/mirror look like one app */
+:root[data-vibe="mirror"]{--display:"Unbounded","Arial Black",system-ui,sans-serif}
+:root[data-vibe="mirror"] .brand{font:700 14px/1.05 var(--display);letter-spacing:.05em}
+:root[data-vibe="mirror"] .brand b{color:var(--v-ice);font-weight:700;margin-left:.2em}
+:root[data-vibe="mirror"] .brand small{font-size:9px;letter-spacing:.16em;margin-top:3px}
+:root[data-vibe="mirror"] #title .num{font-size:11px;letter-spacing:.16em;color:var(--v-ice)}
+:root[data-vibe="mirror"] #title h1{font:600 clamp(34px,6.2vw,88px)/1 var(--display);letter-spacing:-.01em;margin-top:8px;text-transform:none}
+:root[data-vibe="mirror"] #gate h1{font:700 clamp(54px,13vw,128px)/.92 var(--display);letter-spacing:-.02em;text-transform:none}
+:root[data-vibe="mirror"] #gate h1 b{color:transparent;background:var(--v-chrome-surface);-webkit-background-clip:text;background-clip:text;font-weight:700}
+:root[data-vibe="mirror"] #info h2{font:700 30px/1 var(--display);letter-spacing:-.01em;text-transform:none}
+@media (max-width:640px){:root[data-vibe="mirror"] .brand{font-size:12px}}
 </style>
+<!--vibes:end-->
 
 <style>
 /* Quotes: a book serif for words taken from the books; everything else stays in the sans. */
@@ -303,7 +401,7 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12px/1.
 .pj-q{margin:.4em 0 0;font:400 clamp(36px,6.2vw,120px)/1.06 var(--serif);letter-spacing:-.008em;max-width:18ch;text-wrap:balance}
 .pj-q.m{font-size:clamp(30px,4.8vw,92px);max-width:24ch;line-height:1.08}
 .pj-q.s{font-size:clamp(26px,3.9vw,75px);max-width:32ch;line-height:1.12}
-.pj-q .qm{color:#ff6a33}
+.pj-q .qm{color:#9dd8ff}
 .pj-by{flex-wrap:wrap;margin:1.5em 0 0;font:400 clamp(13px,1.15vw,21px)/1.5 var(--mono);color:#a1a1a1;display:flex;gap:.9em;align-items:center;animation:pjFade .8s ease 1.4s both}
 .pj-by::before{content:"";flex:none;width:2.4em;height:2px;background:var(--c)}
 .pj-by b{color:#e8e8ea;font-weight:500}
@@ -316,7 +414,7 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12px/1.
 
 <div class="wrap">
   <nav class="top" aria-label="Sections">
-    <span class="brand">BOOKS / 2050</span>
+    <a class="brand vb-brand" href="../../index.html#research" title="Back to 2050 Research on the party’s front page"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="16" cy="16" r="7"/><ellipse cx="16" cy="16" rx="15" ry="5" transform="rotate(-25 16 16)"/></svg>FUTURE PARTY / 2050</a>
     <a href="#core">Core</a><a href="#map">Map</a><a href="#books">Books</a><a href="#ideas">Ideas</a><a href="#quotes">Quotes</a><a href="#wall">Projection</a><a href="#sources">Sources</a>
     <a class="ext" href="https://claude.ai/artifact/EX8V3LEzvAEtW2p2y2NLBu" target="_blank" rel="noopener">Films: Projection 2050 ↗</a>
   </nav>
@@ -1185,9 +1283,9 @@ function seekTo(i,t){
   progI.style.width=Math.min(100,t/P.dur*100)+'%';
 }
 const TL=WallTimeline({
-  bar:document.getElementById('pjBar'),host:pj,active:()=>P.open,poke:()=>poke(),accent:'#ff5315',
+  bar:document.getElementById('pjBar'),host:pj,active:()=>P.open,poke:()=>poke(),accent:'#4385ff',
   items:()=>PL.map(durOf),
-  marks:()=>{const out=[];let prev=null;PL.forEach((it,i)=>{if(it.k!=='i')return;const bl=I[it.i].bl;if(bl!==prev){prev=bl;out.push({i:i,label:blockName(bl),color:'#ff5315'})}});if(out.length)out[0].i=0;return out},
+  marks:()=>{const out=[];let prev=null;PL.forEach((it,i)=>{if(it.k!=='i')return;const bl=I[it.i].bl;if(bl!==prev){prev=bl;out.push({i:i,label:blockName(bl),color:'#4385ff'})}});if(out.length)out[0].i=0;return out},
   label:i=>{const it=PL[i];if(!it)return '';if(it.k==='i')return I[it.i].h;const x=Q[it.i];return 'Quote: '+(x.by||bookOf(x.b).au)},
   pos:()=>({i:P.i,t:P.elapsed}),
   seek:seekTo

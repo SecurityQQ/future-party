@@ -129,6 +129,13 @@ def main():
            + head + "</style>\n</head>\n<body>" + body + "</body>\n</html>\n")
     out = os.path.join(ROOT, "dist", "further-2050.html")
     open(out, "w").write(doc)
+    # the website's copy wears the site's Blue futurism (vibes/restyle.py); the artifact body keeps the original look
+    import importlib.util
+    sys.dont_write_bytecode = True
+    spec = importlib.util.spec_from_file_location("vibes_restyle", os.path.join(ROOT, "..", "vibes", "restyle.py"))
+    vibes = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(vibes)
+    vibes.restyle_file(out, "video/dist/further-2050.html")
     print(out, round(len(doc) / 1e6, 2), "MB;", art)
 
 

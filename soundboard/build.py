@@ -99,6 +99,16 @@ def page(audio, build, bare=False):
             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n' + html)
 
 
+def blue(path):
+    """Dress a written page in the website's Blue futurism (vibes/restyle.py), like every other page of the site."""
+    import importlib.util
+    sys.dont_write_bytecode = True
+    spec = importlib.util.spec_from_file_location("vibes_restyle", os.path.join(HERE, '..', 'vibes', 'restyle.py'))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    mod.restyle_file(path)
+
+
 def write(name, html):
     os.makedirs(os.path.join(HERE, 'dist'), exist_ok=True)
     with open(os.path.join(HERE, 'dist', name), 'w', encoding='utf-8') as fh:
@@ -108,6 +118,7 @@ def write(name, html):
 
 today = date.today().isoformat()
 size = write('contact2050.html', page(None, {'mode': 'online', 'built': today}))
+blue(os.path.join(HERE, 'dist', 'contact2050.html'))  # the website's copy wears the site's Blue futurism
 pads = sum(len(k['pads']) for k in kits['kits'])
 print(f"built dist/contact2050.html ({size:,} bytes); {len(kits['kits'])} kits, {pads} pads, "
       f"{len(kit_paths)} kit samples, library of {len(files)} sounds in {len(lib['folders'])} folders")

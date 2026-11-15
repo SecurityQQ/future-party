@@ -5,7 +5,8 @@ quotes.json is the quote list in play order. Each item has b (book id), q (exact
 the book text, 2 = two or more matching sources), src (links) and note.
 Books and idea slides live in template.html. Run: python3 -I build.py
 Writes dist/book-projection-2050.html (publish to the artifact) and
-dist/quote-wall.html (a standalone copy that opens in any browser, for the projector).
+dist/quote-wall.html (a standalone copy that opens in any browser, for the projector),
+both in the website's Blue futurism (vibes/restyle.py).
 """
 import json, re, sys
 from pathlib import Path
@@ -31,6 +32,16 @@ def check(quotes):
     if len(set(keys)) != len(keys): errors.append("duplicate quotes")
     return errors
 
+def blue(path):
+    """Dress a written page in the website's Blue futurism (vibes/restyle.py), like every other page of the site."""
+    import importlib.util
+    sys.dont_write_bytecode = True
+    spec = importlib.util.spec_from_file_location("vibes_restyle", Path(__file__).resolve().parents[1] / "vibes" / "restyle.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    mod.restyle_file(path)
+
+
 def main():
     quotes = json.loads((HERE / "quotes.json").read_text(encoding="utf8"))
     errors = check(quotes)
@@ -49,6 +60,7 @@ def main():
              '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
              '<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>\n')
     (out / "quote-wall.html").write_text(shell + page + "\n</html>\n", encoding="utf8")
+    blue(out / "book-projection-2050.html"); blue(out / "quote-wall.html")
     print(f"{len(quotes)} quotes from {len({x['b'] for x in quotes})} books -> dist/")
 
 if __name__ == "__main__":

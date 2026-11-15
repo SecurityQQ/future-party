@@ -30,6 +30,9 @@
 !/vibes/tokens.css
 # the wall timeline, inlined into the Big Wall and the front page's film player when the site is built
 !/vibes/timeline.js
+# hub/site.py dresses the pages first made in the orange look in Blue futurism with these two
+!/vibes/restyle.py
+!/vibes/pages.css
 !/vibes/assets
 /video/*
 !/video/dist

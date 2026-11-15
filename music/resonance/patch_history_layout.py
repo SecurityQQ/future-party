@@ -8,35 +8,71 @@ from html import escape as escape_html
 history_data_before = {match[1]: match[2] for match in re.finditer(
     r'<script id="([^"]+)" type="application/json">(.*?)</script>', html, re.S)}
 
-# Eras are glass folders (era-browser.css/js): art on the back panel, sheets in the
-# pocket, a frosted front on a bottom hinge. Paths are fixed px, as clip-path needs.
-FOLDER_W, BACK_H, FRONT_H = 156, 104, 70
-BACK_PATH = (f'M0 20a12 12 0 0 1 12-12h{FOLDER_W - 88}c11 0 13-8 24-8h40a12 12 0 0 1 12 12'
-             f'v{BACK_H - 24}a12 12 0 0 1-12 12H12A12 12 0 0 1 0 {BACK_H - 12}Z')
-FRONT_PATH = (f'M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h{FOLDER_W - 98}a12 12 0 0 1 12 12'
-              f'v{FRONT_H - 32}a12 12 0 0 1-12 12H12A12 12 0 0 1 0 {FRONT_H - 12}Z')
-era_counts = [sum(1 for t in merged if t['chapter'] == i) for i in range(len(add['chapters']))]
+# Eras (and the Future directions) are glass folders (era-browser.css/js), after Glass
+# Folder Cards: generated art on the back panel, the group's items as sheets in the
+# pocket, a frosted front on a bottom hinge and a key that plays the group. Drawn at
+# 340 x 272 and scaled by --k in CSS, so the clip paths can stay fixed. The open group
+# fans its sheets out of the pocket; a sheet picks its item, as a card on the ring does.
+import random
+FOLDER_W, FOLDER_H, FRONT_TOP, SHEETS = 340, 272, 74, 4
+FRONT_H = FOLDER_H - FRONT_TOP
+BACK_PATH = ('M0 56A22 22 0 0 1 22 34L146 34C170 34 172 0 198 0L318 0A22 22 0 0 1 340 22'
+             'L340 250A22 22 0 0 1 318 272L22 272A22 22 0 0 1 0 250Z')
+FRONT_PATH = (f'M0 22A22 22 0 0 1 22 0L118 0C144 0 146 32 172 32L318 32A22 22 0 0 1 340 54L340 {FRONT_H - 22}'
+              f'A22 22 0 0 1 318 {FRONT_H}L22 {FRONT_H}A22 22 0 0 1 0 {FRONT_H - 22}Z')
+
+
+def glass_folder(i, attr, top, name, controls, items, nouns=('recording', 'recordings'), play=''):
+    """One glass folder. items: (name, meta, label) for every item of the group, in the
+    ring's order; up to four, spread across the group, become sheets (oldest left,
+    newest in front). Music of the Future reuses it for its directions."""
+    n = len(items)
+    shown = sorted({round(j * (n - 1) / (SHEETS - 1)) for j in range(SHEETS)}) if n > SHEETS else list(range(n))
+    sheets = []
+    for v, j in enumerate(shown):
+        item_name, meta, label = items[j]
+        slot = 0 if len(shown) == 1 else v / (len(shown) - 1) * 2 - 1
+        jitter = random.Random(f'{attr}-{i}-{j}')
+        jx, jr = (jitter.random() - .5) * 10, (jitter.random() - .5) * 3.2
+        sheets.append(
+            f'<div role="listitem" class="gf-slot"><button type="button" class="gf-sheet" data-item="{j}" aria-label="{escape_html(label)}" '
+            f'style="--slot:{slot:.3f};--depth:{len(shown) - 1 - v};--jx:{jx:.2f}px;--jr:{jr:.2f}deg;z-index:{v + 1}">'
+            '<canvas class="gf-sheet-art" data-sheet-art width="1" height="1" aria-hidden="true"></canvas>'
+            f'<span class="gf-sheet-head" aria-hidden="true"><span class="gf-sheet-name">{escape_html(item_name)}</span>'
+            f'<span class="gf-sheet-meta">{escape_html(meta)}</span></span></button></div>')
+    count = f'{n} {nouns[0] if n == 1 else nouns[1]}'
+    key = (f'<button type="button" class="gf-key" aria-label="{escape_html(play)}"><svg class="gf-glyph" viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
+           '<path d="M8.5 5.6v12.8c0 .8.9 1.3 1.6.9l10-6.4c.6-.4.6-1.4 0-1.8l-10-6.4c-.7-.4-1.6.1-1.6.9z"/></svg></button>') if play else ''
+    return (
+        f'<div class="era-folder" data-group="{i}" style="--i:{i}"><div class="gf-stage"><div class="gf-tilt">'
+        '<span class="gf-shadow" aria-hidden="true"></span>'
+        f'<div class="gf-back" style="clip-path:path(\'{BACK_PATH}\')" aria-hidden="true"><canvas class="gf-art" data-era-art width="1" height="1"></canvas><span class="gf-back-sheen"></span></div>'
+        f'<svg class="gf-rim gf-back-rim" viewBox="0 0 {FOLDER_W} {FOLDER_H}" aria-hidden="true" focusable="false"><path d="{BACK_PATH}"/></svg>'
+        f'<div class="gf-front" style="clip-path:path(\'{FRONT_PATH}\')"><span class="gf-tint" aria-hidden="true"></span><span class="gf-spec" aria-hidden="true"></span>'
+        f'<svg class="gf-rim gf-front-rim" viewBox="0 0 {FOLDER_W} {FRONT_H}" aria-hidden="true" focusable="false"><path d="{FRONT_PATH}"/></svg>'
+        f'<button type="button" class="history-period gf-hit" data-{attr}="{i}" aria-pressed="false" aria-controls="{controls}" aria-label="{escape_html(top)}: {escape_html(name)}, {count}"></button>'
+        f'<span class="gf-count" aria-hidden="true">{count}</span>'
+        f'<span class="gf-label" aria-hidden="true"><span class="gf-title">{escape_html(name)}</span><span class="gf-meta">{escape_html(top)}</span></span></div>'
+        f'<div class="gf-files" role="list" aria-label="{escape_html(name)}: {nouns[1]}" inert>{"".join(sheets)}</div>'
+        f'{key}</div></div></div>')
+
+
+era_tracks = [[t for t in merged if t['chapter'] == i] for i in range(len(add['chapters']))]
 period_buttons = ''.join(
-    f'<button type="button" class="history-period era-folder" data-history-period="{i}" aria-pressed="false" aria-controls="history-recording story" style="--i:{i}">'
-    f'<span class="era-back" style="clip-path:path(\'{BACK_PATH}\')" aria-hidden="true"><canvas class="era-art" data-era-art="{i}" width="1" height="1"></canvas><span class="era-back-sheen"></span></span>'
-    f'<svg class="era-back-rim" viewBox="0 0 {FOLDER_W} {BACK_H}" aria-hidden="true" focusable="false"><path d="{BACK_PATH}"/></svg>'
-    '<span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span>'
-    f'<span class="era-front" style="clip-path:path(\'{FRONT_PATH}\')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span>'
-    f'<svg class="era-front-rim" viewBox="0 0 {FOLDER_W} {FRONT_H}" aria-hidden="true" focusable="false"><path d="{FRONT_PATH}"/></svg>'
-    f'<span class="era-label"><span class="history-period-range">{escape_html(chapter["range"])}</span><span class="history-period-name">{escape_html(chapter["short"])}</span></span>'
-    f'<span class="era-count">{era_counts[i]:02d}<span class="history-visually-hidden"> recordings</span></span></span></button>'
-    for i, chapter in enumerate(add['chapters'])
-)
+    glass_folder(i, 'history-period', chapter['range'], chapter['short'], 'history-recording story',
+                 [(t['artist'], t['date'], f'{t["artist"]}, {t.get("shortTitle") or t["title"]} ({t["date"]})') for t in era_tracks[i]],
+                 play=f'Play {chapter["short"]} from its first recording')
+    for i, chapter in enumerate(add['chapters']))
 rim_defs = ('<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>'
             '<linearGradient id="era-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset=".4" stop-color="#dce9fb" stop-opacity=".26"/><stop offset="1" stop-color="#dce9fb" stop-opacity=".1"/></linearGradient>'
             '<linearGradient id="era-rim-on" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".35" stop-color="#9dd8ff" stop-opacity=".7"/><stop offset="1" stop-color="#4385ff" stop-opacity=".35"/></linearGradient>'
             '</defs></svg>')
 controls = f'''<section class="history-controls" aria-label="Choose an era and a recording">
-  <h1 class="history-visually-hidden">Music history</h1>{rim_defs}
+  <h1 class="history-visually-hidden">Music history</h1>
   <div class="era-picker"><span id="history-period-label" class="history-visually-hidden">Eras</span><button id="history-period-earlier" class="icon-button era-scroll era-scroll-prev" aria-label="Scroll to earlier eras">←</button><div id="history-period" class="era-strip" role="group" aria-labelledby="history-period-label">{period_buttons}</div><button id="history-period-later" class="icon-button era-scroll era-scroll-next" aria-label="Scroll to later eras">→</button></div>
   <div class="recordings">
     <div class="recordings-head"><p class="recordings-title" id="history-recording-label"><span>In this era</span><b id="history-era-name"></b><span id="history-era-position"></span></p>
-    <div class="history-step-controls" aria-label="Move through the full history route"><button id="history-previous" class="icon-button" aria-label="Previous recording">←</button><output id="history-position" aria-live="polite" aria-atomic="true">01 / {N}</output><button id="history-next" class="icon-button" aria-label="Next recording">→</button></div></div>
+    <div class="history-step-controls" aria-label="Move through the full history route"><button id="history-previous" class="icon-button" aria-label="Previous recording">←</button><output id="history-position" class="era-position" aria-live="polite" aria-atomic="true">01 / {N}</output><button id="history-next" class="icon-button" aria-label="Next recording">→</button></div></div>
     <div id="history-recording" class="molten" aria-controls="story"><canvas tabindex="0" role="listbox" aria-labelledby="history-recording-label"></canvas><p class="molten-hint" aria-hidden="true">drag · swipe · ← →</p></div>
   </div>
 </section>'''
@@ -44,6 +80,7 @@ controls = f'''<section class="history-controls" aria-label="Choose an era and a
 intro = re.search(r'<section class="intro" aria-labelledby="page-title">.*?</section>', html, re.S)
 assert intro, 'Expected the original History hero'
 html = html[:intro.start()] + controls + html[intro.end():]
+html = rep(html, '<div id="history-view">', rim_defs + '\n<div id="history-view">')
 # The old nodes retain the established listeners and listened-state hooks, but
 # are absent from both the visual layout and keyboard/accessibility tree.
 html = rep(html, '<section class="journey" aria-label="Music history timeline">',
@@ -67,7 +104,7 @@ choices_js = r'''  function renderHistoryChoices() {
     const inEra=tracks.filter(item=>item.chapter===track.chapter);
     $('history-era-name').textContent=chapters[track.chapter].name;
     $('history-era-position').textContent=`${pad(inEra.indexOf(track)+1)} / ${pad(inEra.length)}`;
-    try{eras?.update(current);}catch(error){console.warn('History eras could not update',error);}
+    try{eras?.update(track.chapter,inEra.indexOf(track));}catch(error){console.warn('History eras could not update',error);}
     $('history-position').textContent=`${pad(current)} / ${tracks.length}`;
     $('history-position').setAttribute('aria-label',`Recording ${current} of ${tracks.length}`);
     for(const [id,step] of [['history-previous',-1],['history-next',1]]){
@@ -84,7 +121,7 @@ choices_js = r'''  function renderHistoryChoices() {
   }
   function centerHistoryPeriod(smooth=true) {
     if(document.body.dataset.view!=='history')return;
-    const strip=$('history-period'),active=strip.querySelector('.active');
+    const strip=$('history-period'),active=strip.querySelector('.active')?.closest('.era-folder');
     if(!active)return;
     strip.scrollTo({left:active.offsetLeft-(strip.clientWidth-active.offsetWidth)/2,behavior:smooth&&!reducedMotion?'smooth':'instant'});
     updateHistoryPeriodScroll();
@@ -120,7 +157,9 @@ listeners = r'''  $('history-period').addEventListener('click',event=>{
   window.addEventListener('resize',()=>centerHistoryPeriod(false));
   // The eras and the ring are decoration over select(): if they fail, History still works.
   let eras=null;
-  try{eras=window.ResonanceEras?.mount({root:$('history-recording'),strip:$('history-period'),tracks,chapters,reducedMotion,onSelect:id=>select(id,{smooth:false})})||null;}catch(error){console.warn('History eras could not start',error);}
+  const eraTracks=chapters.map((_,i)=>tracks.filter(t=>t.chapter===i));
+  try{eras=window.ResonanceEras?.mount({root:$('history-recording'),strip:$('history-period'),groups:eraTracks.map(list=>list.map(t=>({seed:t.id*13+1,date:t.date,genre:t.genre,artist:t.artist,title:t.shortTitle||t.title}))),reducedMotion,label:'Recordings in this era',onSelect:(g,i)=>select(eraTracks[g][i].id,{smooth:false}),
+    onPlay:g=>{select(eraTracks[g][0].id,{smooth:false});$('play-sample').click();}})||null;}catch(error){console.warn('History eras could not start',error);}
   $('history-previous').addEventListener('click',()=>select(current-1,{smooth:false}));
   $('history-next').addEventListener('click',()=>select(current+1,{smooth:false}));
 '''
