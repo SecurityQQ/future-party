@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Share card</title>
+<!-- The picture a link to the site shows in messengers and social networks (og:image), 1200x630.
+     hub/og/make.py screenshots it twice: ?card=site for the party site, ?card=app for the party app at /app. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600&family=Geologica:wght@400;500&family=Martian+Mono:wght@400;500&display=swap">
+<style>
+:root{--space:#030817;--navy:#07132b;--ink:#edf4ff;--muted:#a2b6d4;--ice:#9dd8ff;--chrome:#dce9fb;
+  --chrome-surface:linear-gradient(118deg,#f2f7ff 0%,#aec6e8 21%,#edf6ff 42%,#7da2d1 44%,#b8d6f7 68%,#e2efff 100%)}
+*{box-sizing:border-box;margin:0}
+html,body{width:1200px;height:630px;overflow:hidden}
+body{position:relative;background:var(--space);color:var(--ink);font-family:"Geologica",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.glow{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 82% 30%,rgb(30 75 151 / 38%),transparent 70%),radial-gradient(ellipse 40% 50% at 8% 100%,rgb(67 133 255 / 14%),transparent 70%)}
+.stars{position:absolute;inset:0;opacity:.55;background-image:
+  radial-gradient(1.4px 1.4px at 140px 90px,#fff,transparent),radial-gradient(1px 1px at 420px 40px,#cfe6ff,transparent),
+  radial-gradient(1.2px 1.2px at 610px 520px,#fff,transparent),radial-gradient(1px 1px at 300px 560px,#cfe6ff,transparent),
+  radial-gradient(1.6px 1.6px at 560px 150px,#fff,transparent),radial-gradient(1px 1px at 40px 300px,#fff,transparent),
+  radial-gradient(1px 1px at 690px 330px,#cfe6ff,transparent),radial-gradient(1.3px 1.3px at 230px 250px,#fff,transparent)}
+.copy{position:absolute;left:72px;top:64px;bottom:60px;width:640px;display:flex;flex-direction:column}
+.eyebrow{font:500 17px/1.3 "Martian Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--ice)}
+h1{margin-top:26px;font:500 86px/1.02 "Unbounded",sans-serif;text-transform:uppercase;letter-spacing:-.055em;color:var(--ink)}
+h1 .yr{display:block;margin-top:4px;font-size:140px;line-height:1;font-weight:600;letter-spacing:-.05em;background:var(--chrome-surface);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{margin-top:18px;font:400 27px/1.35 "Geologica",sans-serif;color:#c4d4ec;max-width:600px}
+.lead b{font-weight:500;color:var(--ink)}
+.url{margin-top:auto;display:flex;align-items:center;gap:14px;font:400 19px/1 "Martian Mono",monospace;color:var(--chrome);letter-spacing:.01em}
+.url svg{width:34px;height:34px;color:var(--ice);flex:none}
+/* The site: the front page's chrome orbit in the hero's shape */
+.art{position:absolute;right:56px;top:44px;width:410px;height:542px;overflow:hidden;border-radius:170px 20px 170px 20px;border:1px solid #617fa6;box-shadow:inset 0 0 0 1px #dce9fb,0 20px 80px rgb(21 59 126 / 35%)}
+.art img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 62%,rgb(3 8 23 / 72%))}
+.art span{position:absolute;left:28px;right:28px;bottom:26px;z-index:1;font:500 15px/1.35 "Martian Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--chrome)}
+/* The app: three Kin from the Apps preview, on an orbit */
+.kins{position:absolute;right:40px;top:0;width:470px;height:630px}
+.ring{position:absolute;left:-30px;top:220px;width:540px;height:190px;border:2px solid rgb(157 216 255 / 45%);border-radius:50%;transform:rotate(-18deg)}
+.kin{position:absolute;width:232px;height:232px;border-radius:26px;border:1.5px solid #9dd8ff;overflow:hidden;box-shadow:0 0 0 1px rgb(220 233 251 / 25%),0 24px 70px rgb(3 8 23 / 80%);background:url(../apps/app.jpg) no-repeat;background-size:1388px auto}
+.k1{left:0;top:250px;background-position:-74px -279px}
+.k2{left:120px;top:70px;width:262px;height:262px;background-size:1567px auto;background-position:-382px -253px;z-index:2}
+.k3{left:236px;top:300px;background-position:-604px -279px;z-index:1}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="glow"></div><div class="stars"></div>
+<div class="copy">
+  <p class="eyebrow" id="eyebrow">Everything for the night</p>
+  <h1 id="title">Future Party<span class="yr">2050</span></h1>
+  <p class="lead" id="lead"><b>Step into 2050.</b> The Big Wall, music, six apps and Mars in 3D for one night.</p>
+  <p class="url"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="16" cy="16" r="7"/><ellipse cx="16" cy="16" rx="15" ry="5" transform="rotate(-25 16 16)"/></svg><span id="url">vargafutureparty.com</span></p>
+</div>
+<div class="art" id="site"><img src="../../vibes/assets/chrome-orbit.webp" alt=""><span>Other worlds. One night.</span></div>
+<div class="kins" id="app" hidden><div class="ring"></div><div class="kin k1"></div><div class="kin k2"></div><div class="kin k3"></div></div>
+<script>
+if (new URLSearchParams(location.search).get("card") === "app") {
+  document.getElementById("site").hidden = true;
+  document.getElementById("app").hidden = false;
+  document.getElementById("eyebrow").textContent = "The party app";
+  document.getElementById("title").innerHTML = 'The Future<span class="yr">2050</span>';
+  document.getElementById("lead").innerHTML = "<b>The future is who you meet.</b> Tap your pass, meet your Kin, collect the room.";
+  document.getElementById("url").textContent = "vargafutureparty.com/app";
+}
+</script>
+</body>
+</html>
