@@ -1,17 +1,20 @@
-"""Build the front page of the Future Party 2050 folder.
+"""Build the front page of the Future Party 2050 folder, and the admin page beside it.
 
-Reads the real numbers from the other projects (quotes, ideas, tweets, soundtrack, film renders)
-and writes the page from template.html. Run from anywhere:
+Reads the real numbers from the other projects (the Big Wall, quotes, ideas, tweets, pictures, soundtrack, film renders)
+and writes the pages from template.html and admin.html. Run from anywhere:
 
-    python3 -I hub/build.py          # ../index.html, the folder's front page (works offline)
-    python3 -I hub/site.py           # site/, the website Vercel serves (calls build(web=True))
+    python3 -I hub/build.py          # rebuilds the Big Wall, then ../index.html and ../admin.html (work offline)
+    python3 -I hub/site.py           # site/, the website Vercel serves (calls build(web=True) and admin(web=True))
 
-Nothing here is fetched from the network.
+The front page is for everyone: the wall, the music, the guests' corner and the research. The admin page holds what only
+the host needs (the pre-flight list, the short addresses, the pieces kept off the front page and how to rebuild each one).
+No page links to it: open admin.html in the folder, or /admin on the website (it forwards to /admin.html). Nothing here is fetched from the network.
 """
-import json, re, shutil, subprocess, sys
+import importlib.util, json, re, shutil, subprocess, sys
 from datetime import date
 from pathlib import Path
 
+sys.dont_write_bytecode = True  # loading wall/build.py below would otherwise leave wall/__pycache__ in the repo
 HUB = Path(__file__).resolve().parent
 ROOT = HUB.parent
 
@@ -19,7 +22,7 @@ SITE = "https://future-party-2050.vercel.app"
 REPO = "https://github.com/SecurityQQ/future-party"
 DOWNLOAD = REPO + "/releases/download"
 
-# The claude.ai copies of the pages (private, need a login). The folder's front page links them as "online".
+# The claude.ai copies of the pages (private, need a login). The folder's pages link them as "online".
 ONLINE = {
     "program": "https://claude.ai/artifact/GTAQtSieprLL7VaHcbwBVC",
     "futurists": "https://claude.ai/artifact/P2jenFADX1YbeZjJm9eJpW",
@@ -51,25 +54,31 @@ PAGES = {
     "soundtrack": "music/dist/soundtrack2050.html",
     "why": "music/dist/why-music-changes.html",
     "resonance": "music/resonance/dist/local/index.html",
+    # Play 2050, the Makey Makey soundboard (formerly Contact 2050; the file keeps that name)
     "contact": "soundboard/dist/contact2050.html",
     # Mirror 2050 is served from its own folder, so the site answers /mirror without a short address
     "mirror": "mirror/index.html",
     "mirror_research": "mirror/viral-webcam-effects.html",
     # Imagined Futures reads its pictures from concept-art/thumbs/, which site.py copies too
     "concept": "concept-art/imagined-futures.html",
+    # The Big Wall, built by wall/build.py; site.py copies the photos and films it loads
+    "bigwall": "wall/dist/big-wall.html",
     # Mars in 3D is served from its own folder (/mars3d); site.py copies its pictures, globe maps and three.js
     "mars3d": "mars3d/index.html",
 }
 # Earlier claude.ai copies of the same pages.
 ALIASES = {"https://claude.ai/artifact/65pctWFWHMQZ3ezNrrA7P1": "futurists_ru"}
-# Short addresses on the website, for typing on the projector laptop: future-party-2050.vercel.app/quotes
+# Short addresses on the website, for typing on the projector laptop: future-party-2050.vercel.app/wall
 SHORT = {
-    "programme": PAGES["program"],
+    "wall": PAGES["bigwall"],
     "quotes": "books/dist/quote-wall.html#quote-wall",
     "ideas": "books/dist/quote-wall.html#projection",
     "mix": "books/dist/quote-wall.html#mix-wall",
     "tweets": "tweets/dist/tweet-wall.html#tweet-wall",
     "tweets-short": "tweets/dist/tweet-wall.html#short-wall",
+    "art": PAGES["concept"] + "#wall",
+    "mars": PAGES["mars3d"],
+    "play": PAGES["contact"],
     "soundboard": PAGES["contact"],
     "soundtrack": PAGES["soundtrack"],
     "resonance": PAGES["resonance"],
@@ -78,16 +87,19 @@ SHORT = {
     "further": PAGES["further"],
     "films": PAGES["films"],
     "futurists": PAGES["futurists"],
-    "art": PAGES["concept"] + "#wall",
-    "mars": PAGES["mars3d"],
+    "programme": PAGES["program"],
 }
-# Apps for the night that run on their own servers. Zodiac Rangers lives in astrology/app; link its home page, never /admin.
-APPS = {"rangers": "https://zodiac-rangers.vercel.app"}
+# Apps for the night that run on their own servers. The Future 2050 lives in astrology/app; link its home page, never /admin.
+APPS = {"party": "https://the-future-2050.vercel.app"}
 PLAYLISTS = {
     "soundtrack": "https://www.youtube.com/playlist?list=PLJdg5B9vQ1oA",
     "history": "https://www.youtube.com/playlist?list=PLeo45sxoQ8gE",
     "resonance": "https://www.youtube.com/playlist?list=PLSfq0dmq_K78",
 }
+# The picture on the Imagined Futures tile: the Prometheus Ring, a spinning habitat orbiting Saturn
+ART_TILE = "concept-art/thumbs/2118267091262333357-1.jpg"
+# The photo behind the Big Wall tile: Earth seen through Saturn's rings, Further's last slide
+WALL_TILE = "video/assets/photos/smiled.jpg"
 
 
 def load(rel):
@@ -140,7 +152,7 @@ def tweets_numbers():
 
 def concept_numbers():
     posts = load("concept-art/tweets.json")
-    return {"pictures": sum(len(p["photos"]) for p in posts), "posts": len(posts)}
+    return {"pictures": sum(len(p["photos"]) for p in posts), "posts": len(posts), "tile": ART_TILE}
 
 
 def mars3d_numbers():
@@ -154,29 +166,48 @@ def soundtrack_numbers():
     return {"tracks": len(s["tracks"]), "bench": len(s.get("bench", [])), "sec": secs}
 
 
+def wall_numbers():
+    """The Big Wall's chapters and loop length, from the manifest wall/build.py writes."""
+    m = ROOT / "wall/dist/manifest.json"
+    if not m.exists():
+        return None
+    w = json.loads(m.read_text(encoding="utf8"))
+    return {"total": w["total"], "slides": w["slides"], "counts": w["counts"], "files": w["files"], "tile": WALL_TILE,
+            "chapters": [{k: c[k] for k in ("id", "title", "color", "sec")} for c in w["chapters"]]}
+
+
+def build_wall():
+    """Rebuild the Big Wall from its six sources, so the front page never shows an old one."""
+    spec = importlib.util.spec_from_file_location("wall_build", ROOT / "wall/build.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    mod.main()
+
+
 def films_list(web):
     """The films. The folder plays the 1080p renders and falls back to the 720p previews kept in the repo;
-    the website always plays the previews and links the 1080p masters on the GitHub releases."""
+    the website always plays the previews and links the 1080p masters on the GitHub releases.
+    "front": shown on the front page; the others are on the admin page only."""
     films = [
-        {"id": "further", "title": "Further", "sub": "the wall film, v2", "t": 8,
+        {"id": "further", "title": "Further", "sub": "the wall film", "t": 8, "front": True,
          "file": "video/renders/further-2050-1080p.mp4", "preview": "video/dist/media/further-720p.mp4",
          "master": DOWNLOAD + "/v2.0/further-2050-1080p.mp4",
          "about": "Sixteen bold claims for 2030–2050, each with a dated real seed and a film that imagined it, over 37 public-domain and CC photos. Silent, loops seamlessly.",
          "page": PAGES["further"], "online": ONLINE["further"], "rebuild": "cd video && npm run render"},
-        {"id": "roast", "title": "The Roast", "sub": "how v1 became v2", "t": 12,
-         "file": "roast/renders/the-roast-2050-1080p.mp4", "preview": "video/dist/media/the-roast-720p.mp4",
-         "master": DOWNLOAD + "/v2.0/the-roast-2050-1080p.mp4",
-         "about": "62 seconds: the weakest v1 slides as exhibits stamped CUT, then the recut. Made for the gap between loops. Has sound effects.",
-         "page": None, "online": None, "rebuild": "cd roast && npm run render"},
-        {"id": "sixfacts", "title": "Six Facts", "sub": "the show reel", "t": 9,
+        {"id": "sixfacts", "title": "Six Facts", "sub": "the show reel", "t": 9, "front": True,
          "file": "showreel/renders/six-facts-2050-1080p.mp4", "preview": "video/dist/media/six-facts-720p.mp4",
          "master": None,  # not on a release yet
          "about": "Two and a half minutes with music: the six facts about how books guess the future, each answered by a book, a post on X and two predictions from Further, over NASA footage.",
          "page": None, "online": None, "rebuild": "cd showreel && npm run render"},
-        {"id": "already", "title": "Already Here", "sub": "the wall film, v1", "t": 30,
+        {"id": "roast", "title": "The Roast", "sub": "how v1 became v2", "t": 12, "front": False,
+         "file": "roast/renders/the-roast-2050-1080p.mp4", "preview": "video/dist/media/the-roast-720p.mp4",
+         "master": DOWNLOAD + "/v2.0/the-roast-2050-1080p.mp4",
+         "about": "62 seconds: the weakest v1 slides as exhibits stamped CUT, then the recut. Has sound effects.",
+         "page": None, "online": None, "rebuild": "cd roast && npm run render"},
+        {"id": "already", "title": "Already Here", "sub": "the wall film, v1", "t": 30, "front": False,
          "file": "video/renders/already-here-2050-1080p.mp4", "preview": "video/dist/media/already-here-720p.mp4",
          "master": DOWNLOAD + "/v1.0/already-here-2050-1080p.mp4",
-         "about": "Every shot pairs an idea a film imagined with a real photo of it existing today, in three chapters. Silent, loops seamlessly. Kept as the alternate.",
+         "about": "Every shot pairs an idea a film imagined with a real photo of it existing today, in three chapters. Silent, loops seamlessly.",
          "page": None, "online": None, "rebuild": "see video/README and slides_v1.json"},
     ]
     for f in films:
@@ -191,100 +222,71 @@ def films_list(web):
     return films
 
 
-def doc(web, rel):
-    """A Markdown file or folder: on the website it opens on GitHub, in the folder it opens from disk."""
-    return f"{REPO}/blob/main/{rel}" if web else rel
+def fill(template, data):
+    tpl = (HUB / template).read_text(encoding="utf8")
+    # Blue futurism: the palette, chrome materials and timing shared with the party app and Resonance
+    # (vibes/tokens.css), inlined so the pages work offline
+    theme_slot = "/*VIBES_TOKENS*/"
+    if theme_slot in tpl:
+        tpl = tpl.replace(theme_slot, (ROOT / "vibes" / "tokens.css").read_text(encoding="utf8"), 1)
+    elif template == "template.html":
+        sys.exit("template.html is missing the shared vibe token slot")
+    slot = "const D=/*DATA*/{};"
+    if slot not in tpl:
+        sys.exit(f"{template} is missing the const D=/*DATA*/{{}}; slot")
+    return tpl.replace(slot, "const D=/*DATA*/" + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + ";", 1)
 
 
-def resources(web, films, b, t, s):
-    """Every resource in one list, grouped: [group, [[title, about, tag, [[label, href], ...]], ...]]."""
-    film = {f["id"]: f for f in films}
-    c = concept_numbers()
-    def play(f):
-        links = [["play", f["file"]]] if f["probe"] else []
-        if (web or f["is_preview"]) and f["master"]:
-            links.append(["1080p master ↓", f["master"]])
-        return links
-    return [
-        ["On the wall", [
-            ["Further", "The wall film, v2. 16 claims for 2030–2050, silent loop.", "", play(film["further"]) + [["page", PAGES["further"]]]],
-            ["The Roast", "How v1 became v2, 62 seconds with sound.", "", play(film["roast"])],
-            ["Six Facts", "The show reel: six facts, six quotes, six posts and 13 predictions over NASA footage. Two and a half minutes with music.", "", play(film["sixfacts"])],
-            ["Already Here", "The wall film, v1. Three chapters, silent loop.", "", play(film["already"])],
-            ["Quote wall", f"{b['quotes']} verbatim quotes from {b['quote_books']} books.", "", [["start", SHORT["quotes"]]]],
-            ["Idea wall", f"{b['ideas']} slides of plausible ideas for 2050.", "", [["start", SHORT["ideas"]], ["quotes and ideas", SHORT["mix"]]]],
-            ["Tweet wall", f"{t['tweets']} posts by {t['authors']} futurists on X.", "", [["start", SHORT["tweets"]], ["short version", SHORT["tweets-short"]]]],
-            ["Imagined Futures", f"{c['pictures']} pictures of concept art about the future from {c['posts']} posts on X. The wall says what each picture shows and who made it.", "", [["start", SHORT["art"]], ["page", PAGES["concept"]]]],
-        ]],
-        ["3D glasses", [
-            ["Mars in 3D", f"{mars3d_numbers()['pictures']} real stereo pictures of Mars from rovers, landers, a helicopter and orbiters, with a live 3D globe that flies to each landing site. For red/cyan glasses; runs by itself, about 13 minutes a loop.", "", [["start", PAGES["mars3d"]], ["globe", PAGES["mars3d"] + "?globe"], ["README", doc(web, "mars3d/README.md")]]],
-        ]],
-        ["The evening", [
-            ["Tea With Tomorrow", "The programme: a three-hour Futures Literacy Lab over tea, with a party clock.", "", [["open", PAGES["program"]]]],
-            ["Contact 2050", "A Makey Makey soundboard for guests: 12 pins, 8 kits, jam mode, stage mode for the projector.", "", [["open", PAGES["contact"]], ["README", doc(web, "soundboard/README.md")]]],
-            ["Zodiac Rangers", "The party app: guests tap their NFC ranger card, give a name and birthday, get a zodiac creature, then scan each other's cards for the ranking.", "", [["open ↗", APPS["rangers"]]]],
-            ["Mirror 2050", "A live camera for the guests: eight effects that went viral on X, played with the hands. Party mode cycles them on a screen.", "", [["open", PAGES["mirror"]], ["party mode", PAGES["mirror"] + "?party"], ["README", doc(web, "mirror/README.md")]]],
-            ["Tea comparison", "The teas for the tables, compared.", "claude.ai", [["open ↗", ONLINE["tea"]]]],
-        ]],
-        ["Sound", [
-            ["Soundtrack 2050", f"The running order: {s['tracks']} tracks and voices in three blocks.", "", [["page", PAGES["soundtrack"]], ["YouTube ↗", PLAYLISTS["soundtrack"]]]],
-            ["History of Music 2050", "Music history and what comes next: 60 stops, music of the future and a radio.", "", [["page", PAGES["resonance"]], ["YouTube ↗", PLAYLISTS["resonance"]]]],
-            ["Why Music Changes", "Four thousand years in thirteen eras.", "", [["page", PAGES["why"]], ["YouTube ↗", PLAYLISTS["history"]]]],
-        ]],
-        ["Research", [
-            ["Book Projection 2050", "Eighteen books about the world around 2050, with their ideas and quotes.", "", [["page", PAGES["books"]]]],
-            ["2050 in 78 Tweets", "Every tweet behind the tweet wall, by topic and author.", "", [["page", PAGES["tweets"]]]],
-            ["Futurists on 2050", "The full research: what futurists wrote about 2050, in their own words.", "", [["page", PAGES["futurists"]]]],
-            ["2050 in Futurists’ Tweets", "The short version: six findings and 43 tweets by theme.", "", [["English", PAGES["futurists_short"]], ["Russian", PAGES["futurists_ru"]]]],
-            ["Further 2050", "The wall film’s claims with their seeds, dates and films.", "", [["page", PAGES["further"]]]],
-            ["Projection 2050", "Eighteen films about 2050, scored, with checked clips for a reel.", "", [["page", PAGES["films"]], ["reel notes", doc(web, "reel/links.md")]]],
-            ["Viral Webcam Effects", "Which camera effects went viral on X and how they are built: 18 posts with their numbers, behind Mirror 2050.", "", [["page", PAGES["mirror_research"]]]],
-        ]],
-        ["Tools and source", [
-            ["Zodiac Creatures playground", "Tunes the prompt behind the zodiac companion characters. Runs on a local server.", "local", [["README", doc(web, "astrology/playground/README.md")]]],
-            ["The repository", "Every page, data file and build script, and the film masters on the releases.", "", [["GitHub ↗", REPO], ["releases ↗", REPO + "/releases"]]],
-        ]],
-    ]
+def common(web):
+    return {"mode": "web" if web else "folder", "site": SITE, "repo": REPO,
+            "built": date.today().strftime("%-d %B %Y"),
+            # The website links its own copies, so it only carries the claude.ai pages that have none
+            "online": {k: v for k, v in ONLINE.items() if not web or k not in PAGES},
+            "pages": PAGES, "short": SHORT, "playlists": PLAYLISTS, "apps": APPS}
 
 
 def build(web=False):
-    """Return the page as a string."""
+    """Return the front page as a string."""
     films = films_list(web)
-    b, t, s = books_numbers(), tweets_numbers(), soundtrack_numbers()
-    data = {
-        "mode": "web" if web else "folder",
-        "site": SITE, "repo": REPO,
-        "built": date.today().strftime("%-d %B %Y"),
-        # The website links its own copies, so it only carries the claude.ai pages that have none
-        "online": {k: v for k, v in ONLINE.items() if not web or k not in PAGES},
-        "pages": PAGES, "short": SHORT, "playlists": PLAYLISTS,
-        "films": films,
-        "books": b, "tweets": t, "sound": s,
-        "resources": resources(web, films, b, t, s),
+    b, t, s, c, w = books_numbers(), tweets_numbers(), soundtrack_numbers(), concept_numbers(), wall_numbers()
+    if not w:
+        sys.exit("wall/dist/manifest.json is missing: run python3 -I wall/build.py")
+    data = dict(common(web), **{
+        "films": [f for f in films if f["front"]],
+        "books": b, "tweets": t, "sound": s, "art": c, "wall": w, "mars": mars3d_numbers(),
         "exists": {p: (ROOT / p).exists() for p in [
-            "books/dist/quote-wall.html", "books/dist/book-projection-2050.html", "tweets/dist/tweet-wall.html",
-            "tweets/dist/tweets-2050.html", "music/resonance/dist/local/player.html",
-            "reel/links.md", "mirror/preview.jpg", *PAGES.values()]},
-    }
+            "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html",
+            "reel/links.md", "mirror/preview.jpg", "mars3d/preview.jpg", ART_TILE, WALL_TILE, *PAGES.values()]},
+    })
     missing = [p for p, ok in data["exists"].items() if not ok]
+    page = fill("template.html", data)
+    front = [f for f in films if f["front"]]
+    films_ok = sum(1 for f in front if f["probe"])
+    previews = sum(1 for f in front if f["probe"] and f["is_preview"])
+    print(f"{'site' if web else 'folder'} front page: the Big Wall ({w['total'] // 60} min), {films_ok}/{len(front)} films ({previews} as 720p previews), "
+          f"{b['quotes']} quotes, {b['ideas']} ideas, {t['tweets']} tweets, {c['pictures']} pictures, {s['tracks']} tracks"
+          + (f"; missing: {missing}" if missing else ""))
+    return page
+
+
+def admin(web=False):
+    """Return the admin page as a string: the host's page, linked from nowhere."""
+    films = films_list(web)
+    # The admin page reuses the front page's style block. The front page itself never names the admin page.
     tpl = (HUB / "template.html").read_text(encoding="utf8")
-    theme_slot = "/*VIBES_TOKENS*/"
-    if theme_slot not in tpl:
-        sys.exit("template.html is missing the shared vibe token slot")
-    tpl = tpl.replace(theme_slot, (ROOT / "vibes" / "tokens.css").read_text(encoding="utf8"), 1)
-    slot = "const D=/*DATA*/{};"
-    if slot not in tpl:
-        sys.exit("template.html is missing the const D=/*DATA*/{}; slot")
-    page = tpl.replace(slot, "const D=/*DATA*/" + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + ";", 1)
-    films_ok = sum(1 for f in films if f["probe"])
-    previews = sum(1 for f in films if f["probe"] and f["is_preview"])
-    print(f"{'site' if web else 'folder'} page: {films_ok}/{len(films)} films ({previews} as 720p previews), {b['quotes']} quotes, {b['ideas']} ideas, "
-          f"{t['tweets']} tweets, {s['tracks']} tracks" + (f"; missing: {missing}" if missing else ""))
+    css = re.search(r"<style>.*?</style>", tpl, re.S).group(0).replace(
+        "/*VIBES_TOKENS*/", (ROOT / "vibes" / "tokens.css").read_text(encoding="utf8"), 1)
+    data = dict(common(web), **{"films": films, "wall": wall_numbers(),
+                                "exists": {p: (ROOT / p).exists() for p in PAGES.values()}})
+    page = fill("admin.html", data).replace("<!--CSS-->", css, 1)
+    print(f"{'site' if web else 'folder'} admin page: {sum(1 for f in films if f['probe'])}/{len(films)} films, {len(SHORT)} short addresses")
     return page
 
 
 def main():
+    build_wall()
     (ROOT / "index.html").write_text(build(web=False), encoding="utf8")
+    (ROOT / "admin.html").write_text(admin(web=False), encoding="utf8")
 
 
 if __name__ == "__main__":

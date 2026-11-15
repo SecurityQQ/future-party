@@ -1,10 +1,10 @@
-# Jam mode: how Contact 2050 makes every touch sound good
+# Jam mode: how Play 2050 makes every touch sound good
 
 Guests at a party touch bananas whenever they like. Left alone, that gives hits off the beat and samples in whatever key they were recorded in, and most of the Dirt-Samples library was recorded in no particular key. Jam mode (on by default; `J` toggles it) borrows the guardrails that "no wrong notes" music tools use, so whatever people touch lands in time and in tune.
 
 ## The strategies
 
-| Strategy | Where it comes from | What Contact 2050 does |
+| Strategy | Where it comes from | What Play 2050 does |
 | --- | --- | --- |
 | One tempo, one key, one chord loop | Incredibox-style loop sets, where every layer is written in the same tempo and key, so any combination fits | Each kit has a `jam` block: tempo, key, scale and a four-chord loop (for example Am F C G at 124 BPM). A backing beat plays drums from Dirt-Samples plus a synth bass, pad chords and arpeggios that follow the chords. |
 | Launch quantization | Ableton Live's Global Quantization, which starts clips on the next bar or beat | A touch waits for the next sixteenth note, and loops wait for the next beat. A touch that lands up to 35 ms after a grid line plays at once, because that still sounds on the beat. |
@@ -19,7 +19,7 @@ Guests at a party touch bananas whenever they like. Left alone, that gives hits 
 
 A second pass looked at what live coders, toy makers and mix engineers post on X, and at the source of open-source music toys on GitHub. These are the ideas that made it in.
 
-| Idea | Where it comes from | What Contact 2050 does |
+| Idea | Where it comes from | What Play 2050 does |
 | --- | --- | --- |
 | The beat follows the room | Producers build tracks in layers and change them on phrase lines; Generative.fm pieces change over time | Every touch adds energy and silence drains it (it halves in about 17 seconds). Every four bars the beat picks a level: intro (pad and bass behind a closed filter), groove (kick and hats), full, or peak (sixteenth hats, crashes). It rises at once and falls one level per phrase. A drum fill announces each change, and a "gap" (the beat drops out for a beat) comes before the jump to peak. After 16 bars at peak there is a 4-bar breakdown: drums out, then a 2-bar build with a riser and a snare roll, and a drop with a crash. An empty room steps down and stops. |
 | Hooks, not coin tosses | Strudel's random-but-repeating patterns (randomness as a function of time) | Each melody pad has its own seeded two-bar motif on the pentatonic scale. A touch plays the motif note for the sixteenth it lands on, so tapping the same rhythm plays the same tune every two bars. |

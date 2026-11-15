@@ -1,4 +1,4 @@
-"""Build Contact 2050, the Makey Makey soundboard: inject kits.json and dirt-samples.json into template.html.
+"""Build Play 2050 (formerly Contact 2050), the Makey Makey soundboard: inject kits.json and dirt-samples.json into template.html.
 
   python3 -I build.py             writes dist/contact2050.html (streams sounds from the Dirt-Samples CDN)
   python3 -I build.py --offline   also writes dist/contact2050-offline.html with every kit sound and a
@@ -17,6 +17,8 @@ SCALES = {'major', 'minor', 'dorian', 'mixolydian'}
 CHORD = re.compile(r'[A-G][#b]?(m(?!aj))?(maj7|7|sus2|sus4|add9)?')
 STEPS = re.compile(r'[xo.]{16}')  # one bar of sixteenths: x = hit, o = soft hit
 OFFLINE_LIMIT = 15_000_000  # Artifact pages must stay under 16 MB
+HOME = 'href="../../index.html"'  # the party's front page: the repo and the website keep the same paths
+SITE = 'https://future-party-2050.vercel.app/'
 
 
 def load(name):
@@ -27,7 +29,7 @@ def load(name):
 kits, lib = load('kits.json'), load('dirt-samples.json')
 tpl = open(os.path.join(HERE, 'template.html'), encoding='utf-8').read()
 KEYS = ('__KITS_JSON__', '__LIBRARY_JSON__', '__AUDIO_JSON__', '__BUILD_JSON__')
-for key in KEYS:
+for key in KEYS + (HOME,):
     assert tpl.count(key) == 1, key
 files = {f'{folder}/{name}' for folder, items in lib['folders'].items() for name, _, _ in items}
 
@@ -89,8 +91,8 @@ kit_paths = sorted({p for kit in kits['kits'] for pad in kit['pads'].values() fo
 def page(audio, build, bare=False):
     html = (tpl.replace('__KITS_JSON__', js(kits)).replace('__LIBRARY_JSON__', js(lib))
                .replace('__AUDIO_JSON__', js(audio)).replace('__BUILD_JSON__', js(build)))
-    if bare:  # the Artifact host adds its own document skeleton
-        return html
+    if bare:  # the Artifact host adds its own document skeleton; off the site, the front page needs its full address
+        return html.replace(HOME, f'href="{SITE}"')
     if audio:  # the offline copy makes no requests at all: it falls back from Inter to the system font
         html = re.sub(r'<link [^>]*fonts\.(googleapis|gstatic)\.com[^>]*>\n', '', html)
     return ('<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n'

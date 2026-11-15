@@ -73,6 +73,8 @@ vercel deploy --prod
 | `supabase/schema.sql` | Tables, the `leaderboard` view, RLS, the storage bucket. |
 | `scripts/` | Guest import, presets sync, reset. |
 | `public/img/` | The three oracles and the station (generated with GPT Image 2.6). |
+| `public/mirror/index.html` | The Mirror (`/mirror`): the camera page, its shaders and hand tracking in one file. |
+| `app/api/mirror/route.ts` | The Kin the mirror shows: yours and your orbit, or tonight's when signed out. |
 
 ## Logging in, profiles, friends, sharing
 
@@ -90,3 +92,21 @@ Added 14 November 2026. They need the additive part of `supabase/schema.sql` (ne
 - **Registration** asks for an email after the birthday (it can be skipped and added later in the profile) and sends a welcome email when Resend is set up.
 - **Redraw**: right after the reveal, a traveler can redraw their Kin once with notes on what to change (`/api/players/<id>/redraw`). The notes are added to the image prompt; the first picture is kept, and they can switch between the two versions.
 - **No rarity on screen**: the frame takes the element's color and see-through finishes keep the holo sheen. The `rarity` column is still written but never shown.
+
+## The Mirror
+
+Added 14 November 2026. **Mirror 2050** (`mirror/` in the repository root, eight camera effects that went viral on X) lives inside the app at **`/mirror`**, with the traveler's Kin as a ninth effect. It is the fourth knob on the deck, and **My Kin** has an "Open the mirror" panel.
+
+| Effect | What it does |
+| --- | --- |
+| 1 · Your Kin | Open your palm and your Kin lands on it as a hologram; a fist hides it. The Kin in your orbit circle around your head and fade when they pass behind you (body segmentation). Signed out, tonight's Kin circle instead, and each new open palm catches the next one. Mouse or finger drag carries the Kin without hand tracking. |
+| 2–9 | Liquid Air, Neon Swarm, Holo Cube, Portal, Shatter, Time Warp, Matrix, Cloak: the effects of Mirror 2050, unchanged except for the app's look (blue futurism, Unbounded / Geologica / Martian Mono). |
+
+- **One static file.** `public/mirror/index.html` is served at `/mirror` by a rewrite in `next.config.ts`. It is a page of its own, outside the React layout, so the camera runs at the top level and the starfield and deck do not draw underneath it. Links to it are plain `<a>` tags, not `<Link>`.
+- **Data.** On load it asks `GET /api/mirror` (no cache): signed in, `{me, orbit}`; signed out, `party` (up to 12 random drawn Kin). Only first name, card number, Kin name and picture, the same as the ranking. The route only reads the database. Pictures come from the public `characters` bucket, which sends `Access-Control-Allow-Origin: *`, so snapshots with a Kin in them can still be saved.
+- **Camera and models.** Camera frames stay in the browser. MediaPipe Tasks (hands, selfie segmentation) and its models load from jsDelivr and Google's model storage, so the mirror needs the internet (the standalone `mirror/` can run offline from its `vendor/`).
+- **Snapshot** (`S` or the Snapshot button): a JPEG signed THE FUTURE 2050, with the traveler's card number when signed in. A sheet shows it with **Share** (the phone's share sheet, where the browser can share files) and **Save**.
+- **Addresses**: `/mirror?fx=kin` (or `liquid`, `swarm`, `holo`, `portal`, `shatter`, `time`, `matrix`, `cloak`) opens on one effect; `?party` starts at once, hides the controls and changes effect every 25 s (the projector); `?hands=0`, `?hud=0`, `?mirror=0`, `?delegate=cpu` as in Mirror 2050. A phone's rear camera is not mirrored.
+- **Keys**: `1`–`9` effects, `←` `→`, `H` hand HUD, `A` party mode, `S` snapshot, `C` next camera, `M` mirror, `B` relearn the room (Cloak), `F` fullscreen, `I` sources, `Space` hide the controls.
+- **Changing it**: edit `public/mirror/index.html` directly; it has no build step. Effects from `mirror/index.html` can be copied over: the effect objects and shaders are the same.
+

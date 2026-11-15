@@ -2,6 +2,8 @@
 
 A live camera mirror for the party: eight effects that went viral on X, rebuilt for the browser and driven by your hands. One HTML file. WebGL2 shaders draw the effects, and [MediaPipe Tasks](https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker) tracks hands (21 points each) and the body outline. Camera frames stay on the computer.
 
+**In the party app:** the same mirror runs at `/mirror` on [The Future 2050](https://the-future-2050.vercel.app/mirror), with the traveler's Kin as a ninth effect (`astrology/app/public/mirror/index.html`, see `astrology/app/README.md`). That copy has its own look and loads MediaPipe from the CDN only; carry effect changes over by hand.
+
 ## Start it
 
 ```bash

@@ -11,6 +11,7 @@
 !/reel
 !/mirror
 !/concept-art
+!/wall
 !/mars3d
 !/vibes
 /vibes/*
@@ -18,6 +19,10 @@
 !/vibes/assets
 /video/*
 !/video/dist
+# the Big Wall shows Further's photos (site.py copies only the ones in wall/dist/manifest.json)
+!/video/assets
+/video/assets/*
+!/video/assets/photos
 /tweets/avatars
 /soundboard/.cache
 /soundboard/dist/contact2050-offline.html

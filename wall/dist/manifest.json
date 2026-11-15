@@ -1,0 +1,126 @@
+{
+ "page": "wall/dist/big-wall.html",
+ "total": 2928,
+ "slides": 278,
+ "counts": {
+  "facts": 6,
+  "further": 16,
+  "quotes": 50,
+  "ideas": 25,
+  "tweets": 78,
+  "pictures": 377
+ },
+ "chapters": [
+  {
+   "id": "planet",
+   "title": "Planet",
+   "sub": "Energy, climate, food and the cities we live in",
+   "color": "#2fbf71",
+   "sec": 606,
+   "slides": 61,
+   "has": {
+    "facts": 2,
+    "further": 4,
+    "quotes": 11,
+    "ideas": 7,
+    "tweets": 18
+   },
+   "pictures": 18
+  },
+  {
+   "id": "machines",
+   "title": "Machines",
+   "sub": "When strong AI arrives, what it does to work, and what it is like to live with it",
+   "color": "#ff5315",
+   "sec": 578,
+   "slides": 59,
+   "has": {
+    "facts": 1,
+    "further": 1,
+    "quotes": 15,
+    "ideas": 9,
+    "tweets": 13
+   },
+   "pictures": 19
+  },
+  {
+   "id": "people",
+   "title": "People",
+   "sub": "How many of us, how long we live, where we move and what for",
+   "color": "#f2b134",
+   "sec": 465,
+   "slides": 44,
+   "has": {
+    "facts": 2,
+    "quotes": 6,
+    "ideas": 3,
+    "tweets": 18
+   },
+   "pictures": 14
+  },
+  {
+   "id": "power",
+   "title": "Power",
+   "sub": "Countries, money, war and who decides",
+   "color": "#8b7cff",
+   "sec": 505,
+   "slides": 47,
+   "has": {
+    "facts": 1,
+    "quotes": 5,
+    "ideas": 3,
+    "tweets": 22
+   },
+   "pictures": 15
+  },
+  {
+   "id": "beyond",
+   "title": "Beyond",
+   "sub": "Getting around the planet and leaving it",
+   "color": "#3aa0ff",
+   "sec": 384,
+   "slides": 47,
+   "has": {
+    "further": 10,
+    "quotes": 5,
+    "ideas": 1,
+    "tweets": 7
+   },
+   "pictures": 23
+  },
+  {
+   "id": "finale",
+   "title": "2050",
+   "sub": "The future is a choice",
+   "color": "#ff5315",
+   "sec": 159,
+   "slides": 17,
+   "has": {
+    "further": 1,
+    "quotes": 8,
+    "ideas": 2
+   },
+   "pictures": 5
+  }
+ ],
+ "files": [
+  "video/assets/photos/atlas.jpg",
+  "video/assets/photos/aurora.jpg",
+  "video/assets/photos/bennu.jpg",
+  "video/assets/photos/elevator.jpg",
+  "video/assets/photos/elt.jpg",
+  "video/assets/photos/europa.jpg",
+  "video/assets/photos/havoc.jpg",
+  "video/assets/photos/jewel.jpg",
+  "video/assets/photos/mammoth.jpg",
+  "video/assets/photos/marsbase.jpg",
+  "video/assets/photos/moon.jpg",
+  "video/assets/photos/nif.jpg",
+  "video/assets/photos/sail.jpg",
+  "video/assets/photos/smiled.jpg",
+  "video/assets/photos/starship.jpg",
+  "video/assets/photos/torus.jpg",
+  "video/dist/media/further-720p.mp4",
+  "video/dist/media/six-facts-720p.mp4"
+ ]
+}
