@@ -106,7 +106,7 @@ count();
 /* Short addresses */
 const WHAT={wall:'the Big Wall',quotes:'quote wall',ideas:'idea wall',mix:'quotes and ideas',tweets:'tweet wall',
   'tweets-short':'tweet wall, short',art:'Imagined Futures wall',play:'Play: 2050',soundboard:'Play: 2050 (old address)',
-  soundtrack:'the playlist page',resonance:'Resonance','music-history':'Why Music Changes',books:'Book Projection 2050',
+  soundtrack:'the playlist page',resonance:'History of Music 2050','music-history':'Why Music Changes',books:'Book Projection 2050',
   further:'Further 2050',films:'Projection 2050',futurists:'Futurists on 2050',programme:'Tea With Tomorrow'};
 $('shortNote').innerHTML=WEB?'Type <code>'+esc(siteName)+'/wall</code> and so on. Each forwards to the page.':'These work on the website, <code>'+esc(siteName)+'/wall</code> and so on. From the folder, the links below open the same pages from disk.';
 $('shorts').innerHTML=Object.keys(D.short).map(k=>{const href=WEB?'/'+k:D.short[k];return '<div><a href="'+esc(href)+'">/'+esc(k)+'</a><span>'+esc(WHAT[k]||D.short[k])+'</span></div>'}).join('')+
@@ -137,7 +137,7 @@ const RB=[
   ['Tweet wall and tweet page','<code>tweets/tweets.json</code>, <code>tweets/avatars/</code>','cd tweets && python3 -I build.py'],
   ['Imagined Futures','<code>concept-art/picks.json</code>, <code>concept-art/tweets.json</code>','cd concept-art && python3 -I build.py'],
   ['Playlist page, Why Music Changes','<code>music/soundtrack.json</code>, <code>music/eras.json</code>','cd music && python3 -I build.py'],
-  ['Resonance','<code>music/resonance/additions.json</code>','cd music/resonance && python3 -I build_resonance.py'],
+  ['History of Music 2050','<code>music/resonance/additions.json</code>','cd music/resonance && python3 -I build_resonance.py'],
   ['Play: 2050 soundboard','<code>soundboard/kits.json</code>, <code>soundboard/template.html</code>','cd soundboard && python3 -I build.py'],
   ['Mirror 2050','<code>mirror/index.html</code>, one file; the research page and <code>mirror/preview.jpg</code> beside it','no build · offline: mirror/tools/vendor.sh'],
   ['Programme, Futurists on 2050, Projection 2050','Saved copies of the claude.ai pages, in <code>programme/</code>, <code>tweets/research/</code> and <code>reel/</code>','no build: save the page again'],

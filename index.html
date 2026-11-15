@@ -321,7 +321,7 @@ $('heroAlt').textContent=WEB?'or type '+D.site.replace(/^https?:\/\//,'')+'/wall
 /* The doors */
 const DOORS=[
   ['#wall','On the wall','The Big Wall, Further, Six Facts, and the quote, idea, tweet and art walls.','▶ '+mins(W.total)+' a loop'],
-  ['#music','Music','Playlist, Resonance, Why Music Changes, and Play: 2050 for the guests.',S.tracks+' tracks'],
+  ['#music','Music','Playlist, History of Music 2050, Why Music Changes, and Play: 2050 for the guests.',S.tracks+' tracks'],
   ['#guests','Guests','Mirror 2050, the camera played with the hands, and The Future 2050, the party app.','2 things to try'],
   ['#research','2050 Research','The books, the tweets, the films and the effects behind the wall.','7 pages']
 ];
@@ -391,7 +391,7 @@ const loc=(t,p)=>D.exists[p]===false?null:[t,/\.md$/.test(p)?doc(p):p];
 $('soundList').innerHTML=[
   item('Playlist','Soundtrack 2050, the party’s running order: '+S.tracks+' tracks and spoken voices in three blocks, each scored for plausibility and inspiration, plus '+S.bench+' spares.',
     [['YouTube playlist ↗',D.playlists.soundtrack],loc('the running order',P.soundtrack),['online ↗',D.online.soundtrack]]),
-  item('Resonance',WEB?'Music history and what comes next: 60 stops from 1400 BCE, a Future Lab and a radio, with a YouTube player in the page.':'Music history and what comes next: 60 stops from 1400 BCE, a Future Lab and a radio. Its built-in YouTube player needs a small local server: double-click <code>music/resonance/dist/local/Open Resonance.command</code>.',
+  item('History of Music 2050',WEB?'Music history and what comes next: 60 stops from 1400 BCE, a Future Lab and a radio, with a YouTube player in the page.':'Music history and what comes next: 60 stops from 1400 BCE, a Future Lab and a radio. Its built-in YouTube player needs a small local server: double-click <code>music/resonance/dist/local/Open Resonance.command</code>.',
     [loc(WEB?'open':'open (no player)',P.resonance),['YouTube playlist ↗',D.playlists.resonance],['online ↗',D.online.resonance]]),
   item('Why Music Changes','Four thousand years in thirteen eras: who paid, who ruled, what people believed, and the technology and contact that changed the sound.',
     [loc('open',P.why),['History of Music playlist ↗',D.playlists.history],['online ↗',D.online.why]],'Research'),
