@@ -19,9 +19,10 @@ export default function PilotChip({ initial }: { initial: Pilot }) {
         LOG IN<br /><span className="muted">WITH EMAIL</span>
       </a>
     );
+  // Your name opens your profile.
   return (
-    <div className="pilot-chip">
-      {GLYPH[me.sign]} {me.name}<br /><span className="muted">№ {String(me.card_no).padStart(3, "0")}</span>
-    </div>
+    <a className="pilot-chip" href="/app/me/profile" aria-label={`${me.name}: your profile`}>
+      {GLYPH[me.sign]}{"\uFE0E"} {me.name} ›<br /><span className="muted">PROFILE · № {String(me.card_no).padStart(3, "0")}</span>
+    </a>
   );
 }

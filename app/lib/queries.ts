@@ -43,21 +43,6 @@ export async function totals() {
   return { players: players.count ?? 0, collections: collections.count ?? 0, scans: scans.count ?? 0 };
 }
 
-// Friends are mutual: one row per direction, so a single lookup each way.
-export async function friendsOf(id: string): Promise<PublicCard[]> {
-  const { data } = await db()
-    .from("friends")
-    .select(`created_at, friend:players!friends_friend_id_fkey(${CARD_FIELDS})`)
-    .eq("player_id", id)
-    .order("created_at", { ascending: false });
-  return (data ?? []).map((r: any) => toCard(r.friend));
-}
-
-export async function areFriends(a: string, b: string): Promise<boolean> {
-  const { data } = await db().from("friends").select("friend_id").eq("player_id", a).eq("friend_id", b).maybeSingle();
-  return !!data;
-}
-
 export async function hasTag(id: string): Promise<boolean> {
   const { data } = await db().from("tags").select("code").eq("player_id", id).maybeSingle();
   return !!data;
@@ -69,16 +54,19 @@ export async function passCodeOf(p: Pick<Player, "id" | "card_no">): Promise<str
   return data?.code ?? `kin-${p.card_no}`;
 }
 
-// Everyone the traveler is close to: friends, the Kin they collected and the travelers who collected theirs.
-// Whole rows (with birthdays) for the server's pair arithmetic only; never send them to the browser as is.
+// Everyone in the traveler's orbit, either way (collections), plus old mutual "friends" pairs (since PR #56 a
+// one-way friends row is only a pending orbit request, so it does not count). Whole rows (with birthdays)
+// for the server's pair arithmetic only; never send them to the browser as is.
 export async function circleOf(id: string): Promise<Player[]> {
-  const [f, mine, theirs] = await Promise.all([
+  const [out, inc, mine, theirs] = await Promise.all([
     db().from("friends").select("friend_id").eq("player_id", id),
+    db().from("friends").select("player_id").eq("friend_id", id),
     db().from("collections").select("owner_id").eq("collector_id", id),
     db().from("collections").select("collector_id").eq("owner_id", id),
   ]);
+  const asked = new Set((out.data ?? []).map((r: any) => r.friend_id as string));
   const ids = new Set<string>([
-    ...(f.data ?? []).map((r: any) => r.friend_id),
+    ...(inc.data ?? []).map((r: any) => r.player_id as string).filter((x) => asked.has(x)),
     ...(mine.data ?? []).map((r: any) => r.owner_id),
     ...(theirs.data ?? []).map((r: any) => r.collector_id),
   ]);

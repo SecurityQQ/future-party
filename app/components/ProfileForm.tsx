@@ -14,6 +14,7 @@ export default function ProfileForm({ initial }: { initial: Initial }) {
   const [f, setF] = useState(initial);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
+  const [saved, setSaved] = useState(false);
   const set = (k: keyof Initial, v: string) => setF((x) => ({ ...x, [k]: v }));
   const setLink = (k: keyof Links, v: string) => setF((x) => ({ ...x, links: { ...x.links, [k]: v } }));
 
@@ -26,17 +27,19 @@ export default function ProfileForm({ initial }: { initial: Initial }) {
       const j = await res.json();
       if (!res.ok) throw new Error(j.error || "Could not save. Try again.");
       window.dispatchEvent(new Event("zr:pilot"));
-      router.push("/app");
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2500);
       router.refresh();
     } catch (e: any) {
       setError(e.message);
+    } finally {
       setBusy(false);
     }
   }
 
   return (
     <form className="stack" onSubmit={save}>
-      <Hull title="Your profile" code="OPTIONAL">
+      <Hull title="About you" code="ON YOUR CARD">
         <div className="stack" style={{ gap: 14 }}>
           <div className="field">
             <label htmlFor="p-name">Name</label>
@@ -53,7 +56,7 @@ export default function ProfileForm({ initial }: { initial: Initial }) {
         </div>
       </Hull>
 
-      <Hull title="Links">
+      <Hull title="Links" code="ON YOUR CARD">
         <div className="stack" style={{ gap: 12 }}>
           {LINKS.map((l) => (
             <div className="field" key={l.key}>
@@ -64,19 +67,17 @@ export default function ProfileForm({ initial }: { initial: Initial }) {
         </div>
       </Hull>
 
-      <Hull title="Email for logging in">
+      <Hull title="Login email" code="PRIVATE">
         <div className="field">
           <label htmlFor="p-email">Email</label>
           <input id="p-email" className="input" type="email" inputMode="email" autoComplete="email" autoCapitalize="none" placeholder="you@example.com" value={f.email} onChange={(e) => set("email", e.target.value)} />
         </div>
-        <p className="small muted" style={{ marginBottom: 0 }}>Never shown to anyone. On a new phone, enter it at the Station and we email you a code to get straight back in.</p>
+        <p className="small muted" style={{ marginBottom: 0 }}>Never shown to anyone. This is how you log in on any phone: enter it and we email you a six-digit code. No password.</p>
       </Hull>
 
       {error && <div className="error">{error}</div>}
-      <div className="btns back">
-        <button type="button" className="btn ghost" onClick={() => router.back()} disabled={busy}>Back</button>
-        <button className="btn" disabled={busy}>{busy ? "Saving…" : "Save profile"}</button>
-      </div>
+      {saved && <div className="banner info">Saved</div>}
+      <button className="btn" disabled={busy}>{busy ? "Saving…" : "Save profile"}</button>
     </form>
   );
 }

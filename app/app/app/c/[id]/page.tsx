@@ -4,13 +4,14 @@ import { notFound } from "next/navigation";
 import { db, toProfile } from "@/lib/db";
 import { currentPlayer } from "@/lib/session";
 import { findPlayer } from "@/lib/character";
-import { areFriends, cardOf, passCodeOf } from "@/lib/queries";
+import { cardOf, passCodeOf } from "@/lib/queries";
+import { orbitState, type OrbitState } from "@/lib/orbit";
 import { cardUrl, passUrl, qrSvg, siteOrigin } from "@/lib/url";
 import Hull from "@/components/Hull";
 import TopBar from "@/components/TopBar";
 import LiveCard from "@/components/LiveCard";
 import ProfileBlock from "@/components/ProfileBlock";
-import FriendButton, { type FriendState } from "@/components/FriendButton";
+import OrbitButton from "@/components/OrbitButton";
 import SharePanel from "@/components/SharePanel";
 import { CARD, OPEN_GRAPH, X } from "@/lib/share";
 import FableReading from "@/components/FableReading";
@@ -41,10 +42,9 @@ export default async function CardPage({ params }: { params: Promise<{ id: strin
   const [p, me] = await Promise.all([findPlayer(id), currentPlayer()]);
   if (!p) notFound();
   const own = me?.id === p.id;
-  const [card, inOrbit, friends, origin, lang] = await Promise.all([
+  const [card, state, origin, lang] = await Promise.all([
     cardOf(p),
-    me && !own ? db().from("collections").select("owner_id").eq("collector_id", me.id).eq("owner_id", p.id).maybeSingle().then((r) => !!r.data) : false,
-    me && !own ? areFriends(me.id, p.id) : false,
+    me && !own ? orbitState(me.id, p.id) : ("none" as OrbitState),
     siteOrigin(),
     getLang(),
   ]);
@@ -53,16 +53,16 @@ export default async function CardPage({ params }: { params: Promise<{ id: strin
   const pair = me && !own ? pairFor(me, p) : null;
   const glyph = (sign: string) => `${GLYPH[sign] ?? ""}\uFE0E`;
   const url = cardUrl(origin, p.card_no);
-  const friendState: FriendState = !me ? "anon" : friends ? "friends" : "none";
 
   return (
     <main className="shell stack">
       <TopBar me={me} />
       {!own && (
-        <FriendButton
+        <OrbitButton
           target={String(p.card_no)}
           name={p.name}
-          initial={friendState}
+          initial={state}
+          signedIn={!!me}
           back={`/app/c/${p.card_no}`}
           kin={{ image: p.image_url, character: p.character, sign: p.sign }}
         />
@@ -88,17 +88,10 @@ export default async function CardPage({ params }: { params: Promise<{ id: strin
       {own ? (
         <SharePanel url={url} qr={await qrSvg(passUrl(origin, await passCodeOf(p)))} title={`${p.character} · ${p.name.split(" ")[0]}’s Kin`} character={p.character} />
       ) : (
-        <Hull title={inOrbit ? "In your orbit" : "Not in your orbit yet"} led={inOrbit ? "green" : "amber"}>
-          <p style={{ marginTop: 0 }}>
-            {inOrbit
-              ? `You collected ${p.name}'s ${p.character}.`
-              : `Find ${p.name.split(" ")[0]} at the party and tap their pass or scan their QR code to bring ${p.character} into your orbit.`}
-          </p>
-          <div className="btns two">
-            <Link className="btn ghost" href="/app">{me ? "My Kin" : "The Station"}</Link>
-            <Link className="btn ghost" href="/app/leaderboard">Ranking</Link>
-          </div>
-        </Hull>
+        <div className="btns two">
+          <Link className="btn ghost" href="/app">{me ? "My Kin" : "The Station"}</Link>
+          <Link className="btn ghost" href="/app/leaderboard">Ranking</Link>
+        </div>
       )}
     </main>
   );
