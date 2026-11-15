@@ -40,7 +40,7 @@
     {
       "id": "liftoff",
       "name": "Liftoff",
-      "color": "#ff7a4d",
+      "color": "#9dd8ff",
       "blurb": "Hype for the big moments: horns, drops, lasers, a UFO.",
       "jam": {"bpm": 124, "key": "A", "scale": "minor", "chords": ["Am", "F", "C", "G"], "groove": "house"},
       "pads": {
@@ -61,7 +61,7 @@
     {
       "id": "robots",
       "name": "Robot Choir",
-      "color": "#7fd8ff",
+      "color": "#6fa8ff",
       "blurb": "Voices from old speech chips, and an announcer who has seen 2050.",
       "jam": {"bpm": 96, "key": "Bb", "scale": "major", "chords": ["Bb", "F", "Gm", "Eb"], "groove": "hiphop"},
       "pads": {
@@ -82,7 +82,7 @@
     {
       "id": "rave",
       "name": "Rave 2050",
-      "color": "#c99bff",
+      "color": "#b48cff",
       "blurb": "Drums and stabs. Put the kick under someone's foot.",
       "jam": {"bpm": 140, "key": "F", "scale": "minor", "chords": ["Fm", "Bbm", "Fm", "Cm"], "groove": "rave"},
       "pads": {
@@ -124,7 +124,7 @@
     {
       "id": "arcade",
       "name": "Arcade Attack",
-      "color": "#ff7ab6",
+      "color": "#e7a8ff",
       "blurb": "Lasers, coins and explosions sampled from old arcade boards.",
       "jam": {"bpm": 132, "key": "E", "scale": "minor", "chords": ["Em", "C", "G", "D"], "groove": "chip"},
       "pads": {
@@ -187,7 +187,7 @@
     {
       "id": "keys",
       "name": "Magic Keys",
-      "color": "#f6e3a1",
+      "color": "#dce9fb",
       "blurb": "The back row W A S D F G is a horn section you can't play wrong: move right to climb, left to fall.",
       "jam": {"bpm": 116, "key": "F", "scale": "major", "chords": ["F", "Am", "Bb", "C"], "groove": "pop"},
       "pads": {

@@ -35,7 +35,7 @@ body.idle{cursor:none}
 .pills{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:60vw}
 .pill{font:500 11px/1 var(--mono);padding:7px 9px;border:1px solid var(--line);border-radius:999px;background:var(--glass);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--muted);letter-spacing:.06em;white-space:nowrap}
 .pill.ok{color:var(--cyan);border-color:rgba(95,245,255,.35)}
-.pill.warn{color:var(--warn);border-color:rgba(255,173,49,.35)}
+.pill.warn{color:var(--warn);border-color:rgba(244,197,141,.35)}
 .pill.hot{color:var(--bg);background:var(--accent);border-color:var(--accent)}
 
 #dock{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;gap:4px;padding:5px;border:1px solid var(--line);border-radius:14px;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);max-width:calc(100vw - 32px);overflow-x:auto;scrollbar-width:none}
@@ -59,7 +59,7 @@ body.idle{cursor:none}
 #title h1{font-family:var(--display);font-weight:400;font-size:clamp(64px,10vw,132px);line-height:.86;margin:6px 0 0;text-transform:uppercase;text-shadow:0 2px 40px rgba(0,0,0,.55)}
 #title .hint{margin:10px 0 0;font-size:17px;line-height:1.4;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.9)}
 #title .credit{margin:8px 0 0;font:12px/1.4 var(--mono);color:var(--fg-2);text-shadow:0 1px 8px rgba(0,0,0,.9)}
-#note{position:fixed;left:50%;top:84px;transform:translateX(-50%);font:500 12px/1.3 var(--mono);color:var(--warn);background:var(--glass);border:1px solid rgba(255,173,49,.35);padding:8px 12px;border-radius:10px;pointer-events:none;opacity:0;transition:opacity .4s;max-width:calc(100vw - 32px);text-align:center}
+#note{position:fixed;left:50%;top:84px;transform:translateX(-50%);font:500 12px/1.3 var(--mono);color:var(--warn);background:var(--glass);border:1px solid rgba(244,197,141,.35);padding:8px 12px;border-radius:10px;pointer-events:none;opacity:0;transition:opacity .4s;max-width:calc(100vw - 32px);text-align:center}
 #note.show{opacity:1}
 
 #gate{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:24px;background:radial-gradient(1200px 700px at 70% 20%,rgba(67,133,255,.18),transparent 60%),radial-gradient(900px 600px at 10% 90%,rgba(95,245,255,.10),transparent 60%),var(--bg)}

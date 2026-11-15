@@ -2,7 +2,7 @@
 
     python3 -I tools/prepare_assets.py
 
-- assets/further/<key>.mp4   the prediction slides, cut from the Further master (video/renders/, or release v2.0)
+- assets/further/<key>.mp4   the prediction slides, cut from the Further master (video/renders/, or release v3.0)
 - assets/music/call-to-adventure.mp3   the score, trimmed to the film and brought under -1.5 dBTP
 - assets/avatars/, assets/sfx/, assets/fonts/   copied from tweets/, roast/ and Google Fonts
 """
@@ -14,7 +14,7 @@ A = os.path.join(ROOT, "assets")
 REEL = json.load(open(os.path.join(ROOT, "reel.json")))
 FPS = 30
 MASTER = os.path.join(REPO, "video", "renders", "further-2050-1080p.mp4")
-MASTER_URL = "https://github.com/SecurityQQ/future-party/releases/download/v2.0/further-2050-1080p.mp4"
+MASTER_URL = "https://github.com/SecurityQQ/future-party/releases/download/v3.0/further-2050-1080p.mp4"
 MUSIC_URL = "https://incompetech.com/music/royalty-free/mp3-royaltyfree/Call%20to%20Adventure.mp3"
 FONTS = {
     "InstrumentSerif-Regular.woff2": "https://fonts.gstatic.com/s/instrumentserif/v5/jizBRFtNs2ka5fXjeivQ4LroWlx-6zUTjnTLgNs.woff2",
@@ -48,7 +48,7 @@ def further():
     if not os.path.exists(src):
         src = os.path.join(A, "further", "_master.mp4")
         if not os.path.exists(src):
-            print("downloading the Further master from release v2.0 …")
+            print("downloading the Further master from release v3.0 …")
             get(MASTER_URL, src)
     starts = slide_starts()
     keys = [k for ch in REEL["chapters"] for k in ch["slides"]] + [REEL["finale"]["slide"]]

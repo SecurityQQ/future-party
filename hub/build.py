@@ -216,14 +216,14 @@ def films_list(web):
     "front": shown on the front page; the others are on the admin page only."""
     films = [
         {"id": "further", "title": "Further", "sub": "the wall film", "t": 8, "front": True,
-         "file": "video/renders/further-2050-1080p.mp4", "preview": "video/dist/media/further-720p.mp4",
-         "master": DOWNLOAD + "/v2.0/further-2050-1080p.mp4",
-         "about": "Sixteen bold claims for 2030–2050, each with a dated real seed and a film that imagined it, over 37 public-domain and CC photos. Silent, loops seamlessly.",
+         "file": "video/renders/further-2050-1080p.mp4", "preview": "video/dist/media/further-720p.mp4", "poster": "video/dist/media/further-poster.jpg",
+         "master": DOWNLOAD + "/v3.0/further-2050-1080p.mp4",  # Blue futurism cut; v2.0 holds the orange one
+         "about": "Sixteen claims for 2030–2050, each over a photo of what already exists. Silent.",
          "page": PAGES["further"], "online": ONLINE["further"], "rebuild": "cd video && npm run render"},
         {"id": "sixfacts", "title": "Six Facts", "sub": "the show reel", "t": 9, "front": True,
-         "file": "showreel/renders/six-facts-2050-1080p.mp4", "preview": "video/dist/media/six-facts-720p.mp4",
-         "master": None,  # not on a release yet
-         "about": "Two and a half minutes with music: the six facts about how books guess the future, each answered by a book, a post on X and two predictions from Further, over NASA footage.",
+         "file": "showreel/renders/six-facts-2050-1080p.mp4", "preview": "video/dist/media/six-facts-720p.mp4", "poster": "video/dist/media/six-facts-poster.jpg",
+         "master": DOWNLOAD + "/v3.0/six-facts-2050-1080p.mp4",
+         "about": "Six facts about how books guess the future, with music, over NASA footage.",
          "page": None, "online": None, "rebuild": "cd showreel && npm run render"},
         {"id": "roast", "title": "The Roast", "sub": "how v1 became v2", "t": 12, "front": False,
          "file": "roast/renders/the-roast-2050-1080p.mp4", "preview": "video/dist/media/the-roast-720p.mp4",

@@ -4,31 +4,31 @@
    "id": "machines",
    "title": "Machines",
    "sub": "When strong AI arrives, what it does to work, and whether we survive it",
-   "color": "#ff5315"
+   "color": "#4385ff"
   },
   {
    "id": "planet",
    "title": "Planet",
    "sub": "Energy, nuclear, climate, food and water",
-   "color": "#2fbf71"
+   "color": "#9dd8ff"
   },
   {
    "id": "people",
    "title": "People",
    "sub": "How many of us, how long we live, where we move and what for",
-   "color": "#f2b134"
+   "color": "#dce9fb"
   },
   {
    "id": "power",
    "title": "Power",
    "sub": "Countries, war, democracy and money",
-   "color": "#8b7cff"
+   "color": "#8faacf"
   },
   {
    "id": "beyond",
    "title": "Beyond",
    "sub": "Getting around the planet and leaving it",
-   "color": "#3aa0ff"
+   "color": "#6aa9ff"
   }
  ],
  "topics": [

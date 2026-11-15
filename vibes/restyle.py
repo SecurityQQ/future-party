@@ -54,7 +54,7 @@ HEX = {  # old hex -> Blue futurism; matched as #rrggbb and as %23rrggbb (inside
     "0b0b0d": "030817", "141417": "0b1b36", "151518": "0b1b36",
 }
 SWAPS = [(rf"(#|%23){old}\b", rf"\g<1>{new}") for old, new in HEX.items()] + [
-    (r"rgba\(\s*255\s*,\s*83\s*,\s*21\s*,", "rgba(67,133,255,"), (r"rgba\(\s*7\s*,\s*7\s*,\s*8\s*,", "rgba(3,8,23,"),
+    (r"rgba\(\s*255\s*,\s*83\s*,\s*21\s*,", "rgba(67,133,255,"), (r"rgba\(\s*255\s*,\s*173\s*,\s*49\s*,", "rgba(244,197,141,"), (r"rgba\(\s*7\s*,\s*7\s*,\s*8\s*,", "rgba(3,8,23,"),
     (r"([\"'])Aeonik\1\s*,\s*", ""), (r"([\"'])Inter\1", r"\1Geologica\1"), (r"([\"'])JetBrains Mono\1", r"\1Martian Mono\1"),
 ]
 # Swaps for one page only: Play 2050 draws its sky on a canvas, black until now
