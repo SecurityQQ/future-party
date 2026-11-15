@@ -13,6 +13,12 @@ import ProfileBlock from "@/components/ProfileBlock";
 import FriendButton, { type FriendState } from "@/components/FriendButton";
 import SharePanel from "@/components/SharePanel";
 import { CARD, OPEN_GRAPH, X } from "@/lib/share";
+import FableReading from "@/components/FableReading";
+import LangPicker from "@/components/LangPicker";
+import { pairFor } from "@/lib/fable";
+import { getLang } from "@/lib/lang";
+import { DICTS, signName, t } from "@/lib/i18n";
+import { GLYPH } from "@/lib/zodiac";
 
 export const dynamic = "force-dynamic";
 
@@ -35,12 +41,17 @@ export default async function CardPage({ params }: { params: Promise<{ id: strin
   const [p, me] = await Promise.all([findPlayer(id), currentPlayer()]);
   if (!p) notFound();
   const own = me?.id === p.id;
-  const [card, inOrbit, friends, origin] = await Promise.all([
+  const [card, inOrbit, friends, origin, lang] = await Promise.all([
     cardOf(p),
     me && !own ? db().from("collections").select("owner_id").eq("collector_id", me.id).eq("owner_id", p.id).maybeSingle().then((r) => !!r.data) : false,
     me && !own ? areFriends(me.id, p.id) : false,
     siteOrigin(),
+    getLang(),
   ]);
+  const d = DICTS[lang];
+  const first = p.name.split(" ")[0];
+  const pair = me && !own ? pairFor(me, p) : null;
+  const glyph = (sign: string) => `${GLYPH[sign] ?? ""}\uFE0E`;
   const url = cardUrl(origin, p.card_no);
   const friendState: FriendState = !me ? "anon" : friends ? "friends" : "none";
 
@@ -58,6 +69,22 @@ export default async function CardPage({ params }: { params: Promise<{ id: strin
       )}
       <LiveCard card={card} />
       <ProfileBlock name={p.name} profile={toProfile(p)} />
+      {me && pair && (
+        <Hull title={t(lang, "youAnd", { name: first })} code={<LangPicker lang={lang} label={d.language} />} className="pair-card">
+          <div className="pair-head">
+            <b>{glyph(me.sign)} {signName(lang, me.sign)} + {glyph(p.sign)} {signName(lang, p.sign)} · {t(lang, `pair_${pair.key}`)}</b>
+            <span className="score">{pair.score}%</span>
+          </div>
+          <FableReading id={p.id} pair lang={lang} words={{ reading: d.pairReading, lost: d.lost }} />
+          <div className="btns two">
+            <Link className="btn ghost" href="/app/fable#friends">{d.tabFriends}</Link>
+            <Link className="btn ghost" href="/app/fable#party">{d.tabParty}</Link>
+          </div>
+        </Hull>
+      )}
+      <Hull title={t(lang, "readsYou", { name: first })} code={`${glyph(p.sign)} ${signName(lang, p.sign).toUpperCase()}`}>
+        <FableReading id={p.id} lang={lang} words={{ reading: d.reading, lost: d.lost }} />
+      </Hull>
       {own ? (
         <SharePanel url={url} qr={await qrSvg(passUrl(origin, await passCodeOf(p)))} title={`${p.character} · ${p.name.split(" ")[0]}’s Kin`} character={p.character} />
       ) : (

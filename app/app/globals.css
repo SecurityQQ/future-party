@@ -552,3 +552,37 @@ a.pilot-chip { text-decoration: none; }
 .fable-row .meta { font-size: 12px; color: var(--muted); }
 .fable-row .say { margin: 6px 0 0; min-height: 0; font-size: 15px; }
 .fable-big .say { font-size: 18px; line-height: 1.55; }
+
+/* Fable: title row with the language pill, the You · Friends · Party tabs, sky chips, matches, pair scores */
+.fable-title { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.lang { position: relative; flex: none; margin-top: 6px; }
+.lang-btn { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px; border: 1px solid #2a4468; border-radius: 17px; background: #071328; color: var(--ink); font: 600 12px/1 var(--font-mono), monospace; letter-spacing: 0.08em; cursor: pointer; }
+.lang-btn svg { width: 16px; height: 16px; color: var(--cyan); }
+.lang-btn[aria-expanded="true"], .lang-btn:hover { border-color: var(--cyan); }
+.lang-menu { position: absolute; right: 0; top: 40px; z-index: 30; min-width: 168px; margin: 0; padding: 6px; list-style: none; border: 1px solid #2a4468; border-radius: 12px; background: #06101f; box-shadow: 0 12px 32px rgb(0 0 0 / 50%); }
+.lang-menu button { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 0; border-radius: 8px; background: none; color: var(--ink); font-size: 15px; text-align: left; cursor: pointer; }
+.lang-menu button:hover { background: #0b1b36; }
+.lang-menu button[aria-selected="true"] { color: #fff; background: #0e2546; }
+.lang-menu small { font-family: var(--font-mono), monospace; font-size: 11px; color: var(--muted); }
+.fable-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px; border: 1px solid #2a4468; border-radius: 14px; background: #061024; position: sticky; top: 8px; z-index: 5; }
+.fable-tabs button { height: 40px; border: 0; border-radius: 10px; background: none; color: var(--muted); font: 600 14px/1 var(--font-display), sans-serif; letter-spacing: 0.04em; cursor: pointer; }
+.fable-tabs button[aria-selected="true"] { color: #031026; background: linear-gradient(180deg, #e6f4ff, #9dd8ff); box-shadow: 0 0 14px rgb(157 216 255 / 35%); }
+.sky-chips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0; }
+.sky-chips > div { padding: 10px 12px; border: 1px solid #2a4468; border-radius: 10px; background: #071328; }
+.sky-chips dt { font: 600 11px/1.2 var(--font-mono), monospace; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.sky-chips dd { margin: 4px 0 0; font-size: 16px; color: #fff; }
+.sky-chips small { display: block; margin-top: 3px; font-size: 12px; line-height: 1.35; color: var(--muted); }
+.tonight { margin: 12px 0 0; line-height: 1.55; color: var(--ink); }
+.suits { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.suits li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 10px; align-items: start; padding: 10px 12px; border: 1px solid #2a4468; border-radius: 10px; background: #071328; }
+.suits li.opposition { border-style: dashed; }
+.suits .g { font-size: 26px; line-height: 40px; text-align: center; color: var(--cyan); }
+.suits b { display: block; color: #fff; }
+.suits .why { display: block; font-size: 13px; color: var(--muted); }
+.suits .here { display: block; margin-top: 4px; font-size: 14px; }
+.suits .here a, .who-sign a.me { color: var(--cyan); }
+.pair-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.pair-head .score { flex: none; padding: 3px 9px; border-radius: 12px; font: 700 13px/1.2 var(--font-mono), monospace; color: #031026; background: linear-gradient(180deg, #e6f4ff, #9dd8ff); }
+.hull-head .lang { margin-top: 0; } .hull-head .lang-btn { height: 28px; padding: 0 10px; }
+.pair-card .say { margin-bottom: 12px; }
+[role="tabpanel"][hidden] { display: none !important; }

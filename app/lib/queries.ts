@@ -68,3 +68,22 @@ export async function passCodeOf(p: Pick<Player, "id" | "card_no">): Promise<str
   const { data } = await db().from("tags").select("code").eq("player_id", p.id).maybeSingle();
   return data?.code ?? `kin-${p.card_no}`;
 }
+
+// Everyone the traveler is close to: friends, the Kin they collected and the travelers who collected theirs.
+// Whole rows (with birthdays) for the server's pair arithmetic only; never send them to the browser as is.
+export async function circleOf(id: string): Promise<Player[]> {
+  const [f, mine, theirs] = await Promise.all([
+    db().from("friends").select("friend_id").eq("player_id", id),
+    db().from("collections").select("owner_id").eq("collector_id", id),
+    db().from("collections").select("collector_id").eq("owner_id", id),
+  ]);
+  const ids = new Set<string>([
+    ...(f.data ?? []).map((r: any) => r.friend_id),
+    ...(mine.data ?? []).map((r: any) => r.owner_id),
+    ...(theirs.data ?? []).map((r: any) => r.collector_id),
+  ]);
+  ids.delete(id);
+  if (!ids.size) return [];
+  const { data } = await db().from("players").select("*").in("id", [...ids]);
+  return (data ?? []) as Player[];
+}
