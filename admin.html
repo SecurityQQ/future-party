@@ -257,6 +257,41 @@ tr:last-child td{border-bottom:0}
 th{font:500 10.5px/1.3 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);background:var(--raised)}
 td{color:var(--fg-2)}
 td b{color:var(--fg);font-weight:600}
+
+/* 2050 Research, read like a preprint server from 2050 (hub/research/README.md). The paper space: each paper is a star
+   and the specks on its orbit are its sources, in the party mark's tilt; lines join papers that share sources. Then one
+   card per paper: its figure (the visual abstract, hub/research/figures.py), its number and source trail, its finding
+   in one sentence, Read, and its one other form (a wall, the film, an app, the Russian copy). */
+.paperspace{position:relative;height:clamp(230px,23vw,290px);margin-bottom:20px;border:1px solid var(--line-2);border-top-color:#7d9ac0;border-radius:var(--r);overflow:hidden;background:radial-gradient(ellipse at 50% 135%,rgb(67 133 255 / 20%),transparent 62%),linear-gradient(145deg,#0b1b36,#030817 72%);box-shadow:inset 0 1px 0 rgb(220 233 251 / 6%)}
+.paperspace canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
+.paperspace .cap{position:absolute;left:16px;bottom:12px;right:16px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;font:400 10.5px/1.5 var(--mono);color:var(--muted);pointer-events:none}
+.paperspace .cap b{font-weight:500;color:var(--v-ice);letter-spacing:.08em;text-transform:uppercase;margin-right:8px}
+.paperspace .tip{position:absolute;z-index:1;transform:translate(-50%,calc(-100% - 10px));padding:7px 10px;border:1px solid rgb(157 216 255 / 40%);border-radius:8px;background:rgb(3 8 23 / 88%);font:600 13px/1.3 var(--font);color:var(--v-ink);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity var(--v-fast)}
+.paperspace .tip span{display:block;font:500 10px/1.4 var(--mono);color:var(--v-ice);letter-spacing:.06em}
+.paperspace .tip.on{opacity:1}
+.papers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width:1100px){.papers{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.papers{grid-template-columns:1fr}}
+.paper{display:grid;grid-row:span 5;grid-template-rows:subgrid;row-gap:10px;align-content:start;min-width:0;padding:12px 12px 16px;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(145deg,#0b1b36,#07132b);scroll-margin-top:24px;transition:border-color var(--v-fast),box-shadow var(--v-fast)}
+@supports not (grid-template-rows:subgrid){.papers{align-items:start}.paper{display:flex;flex-direction:column;gap:10px}}
+.paper.lit,.paper:target{border-color:var(--v-ice);box-shadow:0 0 28px rgb(67 133 255 / 22%)}
+.paper .fig{position:relative;display:block;aspect-ratio:16/9;border-radius:10px;overflow:hidden;border:1px solid var(--line-2);background:var(--v-space)}
+.paper .fig img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--v-ease)}
+.paper .fig:hover img{transform:scale(1.04)}
+.paper .fig::after{content:"";position:absolute;inset:0;background:var(--v-holo);background-size:260% 100%;background-position:120% 0;opacity:0;transition:opacity var(--v-fast),background-position .9s var(--v-ease)}
+.paper .fig:hover::after{opacity:1;background-position:-20% 0}
+.paper .pid{position:absolute;left:8px;top:8px;z-index:1;font:500 10px/1 var(--mono);letter-spacing:.06em;padding:5px 7px;border-radius:6px;background:rgb(3 8 23 / 82%);color:var(--v-ice);border:1px solid rgb(157 216 255 / 30%)}
+.paper .meta{font:400 10.5px/1.5 var(--mono);color:var(--muted)}
+.paper .meta span{color:var(--v-ice);letter-spacing:.08em;text-transform:uppercase;margin-right:8px}
+.paper h3{font:600 19px/1.3 var(--font);letter-spacing:-.02em}
+.paper h3 a{text-decoration:none}
+.paper h3 a:hover{color:var(--accent-ink)}
+.paper .find{color:var(--fg-2);font-size:14.5px;line-height:1.55}
+.paper .actions{gap:8px 14px}
+.paper .btn{padding:11px 16px}
+.paper button.lnk{background:none;border:0;padding:0;font:inherit;font-size:14px;cursor:pointer}
+@media (max-width:700px){.paperspace{height:320px}.paperspace .cap{bottom:10px}}
+
 /* Follow the host on X: one band at the end of the page */
 .follow{display:flex;align-items:center;flex-wrap:wrap;gap:18px 24px;padding:22px 24px;border:1px solid var(--line-2);border-top-color:#7d9ac0;border-radius:var(--r);background:linear-gradient(145deg,#112441,#07132b 75%);box-shadow:inset 0 1px 0 rgb(220 233 251 / 6%)}
 .follow .xmark{width:48px;height:48px;flex:none;display:grid;place-items:center;border-radius:50%;color:var(--v-chrome);background:radial-gradient(circle at 30% 20%,#395d8d,#0b1b36 70%);box-shadow:inset 0 0 0 1px #91aed2}
@@ -466,6 +501,7 @@ const RB=[
   ['Blue futurism (the look)','<code>vibes/tokens.css</code>, shared with the party app and History of Music 2050','python3 vibes/sync.py, then rebuild the pages'],
   ['Mirror 2050','<code>mirror/index.html</code>, one file; the research page and <code>mirror/preview.jpg</code> beside it','no build · offline: mirror/tools/vendor.sh'],
   ['Programme, Futurists on 2050, Projection 2050','Saved copies of the claude.ai pages, in <code>programme/</code>, <code>tweets/research/</code> and <code>reel/</code>','no build: save the page again'],
+  ['2050 Research (papers, figures)','<code>hub/research/papers.json</code> (the papers, their findings and sources); the figures come from the papers’ own pages','python3 -I hub/research/figures.py, then python3 -I vibes/restyle.py'],
   ['The front page and this page','<code>hub/template.html</code>, <code>hub/admin.html</code>; rebuilds the Big Muse first','python3 -I hub/build.py'],
   ['The website','<code>hub/site.py</code>, <code>vercel.json</code>','python3 -I hub/site.py']
 ];

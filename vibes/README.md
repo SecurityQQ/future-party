@@ -79,6 +79,11 @@ python3 -I vibes/restyle.py          # restyle every page in its PAGES list
 python3 -I vibes/restyle.py --check  # exit 1 if a page is not restyled
 ```
 
+The eight papers of 2050 Research (`hub/research/papers.json`) also wear, through `restyle.py`, the hero's chrome
+orbit behind their title (dimmed, faded into the navy on the left and under the nav) and end on the previous and the
+next paper with their figures, so they read as one series; see `hub/research/README.md`. Notes meant only for the
+folder copy (how to serve a folder) carry `class="vb-file-only"` and show only when the page is opened as a file.
+
 A new page made in the old look goes in `PAGES` in `restyle.py`. Page-specific fixes go in `pages.css` under
 `:root[data-vibe="<name>"]`. Mars in 3D keeps its red/cyan accents on black (they are for the 3D glasses). League Gothic stays on the
 Big Muse's slides and in the films; the pages about them (the wall's start screen, the Further notes, the

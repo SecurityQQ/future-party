@@ -192,6 +192,18 @@ def future_music_numbers():
             "evening": secs("evening"), "late": secs("late")}
 
 
+def research_papers():
+    """The papers of 2050 Research (hub/research/papers.json), each checked against PAGES."""
+    spec = importlib.util.spec_from_file_location("research_papers", HUB / "research" / "papers.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    papers = mod.load()
+    wrong = [p["key"] for p in papers if PAGES.get(p["key"]) != p["page"]]
+    if wrong:
+        sys.exit(f"hub/research/papers.json: page is not PAGES[key] for {wrong}")
+    return papers
+
+
 def wall_numbers():
     """The Big Muse's chapters and loop length, from the manifest wall/build.py writes."""
     m = ROOT / "wall/dist/manifest.json"
@@ -281,14 +293,17 @@ def build(web=False):
     """Return the front page as a string."""
     films = films_list(web)
     b, t, s, c, w = books_numbers(), tweets_numbers(), soundtrack_numbers(), concept_numbers(), wall_numbers()
+    papers = research_papers()
     if not w:
         sys.exit("wall/dist/manifest.json is missing: run python3 -I wall/build.py")
     data = dict(common(web), **{
         "films": [f for f in films if f["front"]],
+        "papers": papers,
         "books": b, "tweets": t, "sound": s, "future": future_music_numbers(), "art": c, "wall": w, "mars": mars3d_numbers(), "shots": APP_SHOTS,
         "exists": {p: (ROOT / p).exists() for p in [
             "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html",
-            "reel/links.md", DECK_SHOT, ART_TILE, WALL_TILE, *APP_SHOTS.values(), *PAGES.values()]},
+            "reel/links.md", DECK_SHOT, ART_TILE, WALL_TILE, *APP_SHOTS.values(), *PAGES.values(),
+            *(p["shot"] for p in papers)]},
         "deck": {"shot": DECK_SHOT, "slides": len(load("slides/deck/deck.json")["order"])},
     })
     missing = [p for p, ok in data["exists"].items() if not ok]

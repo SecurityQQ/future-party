@@ -231,6 +231,41 @@ tr:last-child td{border-bottom:0}
 th{font:500 10.5px/1.3 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);background:var(--raised)}
 td{color:var(--fg-2)}
 td b{color:var(--fg);font-weight:600}
+
+/* 2050 Research, read like a preprint server from 2050 (hub/research/README.md). The paper space: each paper is a star
+   and the specks on its orbit are its sources, in the party mark's tilt; lines join papers that share sources. Then one
+   card per paper: its figure (the visual abstract, hub/research/figures.py), its number and source trail, its finding
+   in one sentence, Read, and its one other form (a wall, the film, an app, the Russian copy). */
+.paperspace{position:relative;height:clamp(230px,23vw,290px);margin-bottom:20px;border:1px solid var(--line-2);border-top-color:#7d9ac0;border-radius:var(--r);overflow:hidden;background:radial-gradient(ellipse at 50% 135%,rgb(67 133 255 / 20%),transparent 62%),linear-gradient(145deg,#0b1b36,#030817 72%);box-shadow:inset 0 1px 0 rgb(220 233 251 / 6%)}
+.paperspace canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:pan-y}
+.paperspace .cap{position:absolute;left:16px;bottom:12px;right:16px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;font:400 10.5px/1.5 var(--mono);color:var(--muted);pointer-events:none}
+.paperspace .cap b{font-weight:500;color:var(--v-ice);letter-spacing:.08em;text-transform:uppercase;margin-right:8px}
+.paperspace .tip{position:absolute;z-index:1;transform:translate(-50%,calc(-100% - 10px));padding:7px 10px;border:1px solid rgb(157 216 255 / 40%);border-radius:8px;background:rgb(3 8 23 / 88%);font:600 13px/1.3 var(--font);color:var(--v-ink);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity var(--v-fast)}
+.paperspace .tip span{display:block;font:500 10px/1.4 var(--mono);color:var(--v-ice);letter-spacing:.06em}
+.paperspace .tip.on{opacity:1}
+.papers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+@media (max-width:1100px){.papers{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.papers{grid-template-columns:1fr}}
+.paper{display:grid;grid-row:span 5;grid-template-rows:subgrid;row-gap:10px;align-content:start;min-width:0;padding:12px 12px 16px;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(145deg,#0b1b36,#07132b);scroll-margin-top:24px;transition:border-color var(--v-fast),box-shadow var(--v-fast)}
+@supports not (grid-template-rows:subgrid){.papers{align-items:start}.paper{display:flex;flex-direction:column;gap:10px}}
+.paper.lit,.paper:target{border-color:var(--v-ice);box-shadow:0 0 28px rgb(67 133 255 / 22%)}
+.paper .fig{position:relative;display:block;aspect-ratio:16/9;border-radius:10px;overflow:hidden;border:1px solid var(--line-2);background:var(--v-space)}
+.paper .fig img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--v-ease)}
+.paper .fig:hover img{transform:scale(1.04)}
+.paper .fig::after{content:"";position:absolute;inset:0;background:var(--v-holo);background-size:260% 100%;background-position:120% 0;opacity:0;transition:opacity var(--v-fast),background-position .9s var(--v-ease)}
+.paper .fig:hover::after{opacity:1;background-position:-20% 0}
+.paper .pid{position:absolute;left:8px;top:8px;z-index:1;font:500 10px/1 var(--mono);letter-spacing:.06em;padding:5px 7px;border-radius:6px;background:rgb(3 8 23 / 82%);color:var(--v-ice);border:1px solid rgb(157 216 255 / 30%)}
+.paper .meta{font:400 10.5px/1.5 var(--mono);color:var(--muted)}
+.paper .meta span{color:var(--v-ice);letter-spacing:.08em;text-transform:uppercase;margin-right:8px}
+.paper h3{font:600 19px/1.3 var(--font);letter-spacing:-.02em}
+.paper h3 a{text-decoration:none}
+.paper h3 a:hover{color:var(--accent-ink)}
+.paper .find{color:var(--fg-2);font-size:14.5px;line-height:1.55}
+.paper .actions{gap:8px 14px}
+.paper .btn{padding:11px 16px}
+.paper button.lnk{background:none;border:0;padding:0;font:inherit;font-size:14px;cursor:pointer}
+@media (max-width:700px){.paperspace{height:320px}.paperspace .cap{bottom:10px}}
+
 /* Follow the host on X: one band at the end of the page */
 .follow{display:flex;align-items:center;flex-wrap:wrap;gap:18px 24px;padding:22px 24px;border:1px solid var(--line-2);border-top-color:#7d9ac0;border-radius:var(--r);background:linear-gradient(145deg,#112441,#07132b 75%);box-shadow:inset 0 1px 0 rgb(220 233 251 / 6%)}
 .follow .xmark{width:48px;height:48px;flex:none;display:grid;place-items:center;border-radius:50%;color:var(--v-chrome);background:radial-gradient(circle at 30% 20%,#395d8d,#0b1b36 70%);box-shadow:inset 0 0 0 1px #91aed2}
@@ -384,9 +419,14 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
     <div class="sec-head">
       <p class="eyebrow">Research</p>
       <h2>2050 Research</h2>
-      <p class="note">The books, posts and films behind the wall, with their sources.</p>
+      <p class="note" id="paperNote">The papers behind the wall: what books, futurists, films and music say about 2050, each with its sources.</p>
     </div>
-    <div class="list" id="readList"></div>
+    <div class="paperspace" id="paperSpace">
+      <canvas aria-hidden="true"></canvas>
+      <div class="tip" id="paperTip" aria-hidden="true"></div>
+      <p class="cap"><span><b>Paper space</b>Each star is a paper, each speck one of its sources</span><span id="paperHint">Point at a star</span></p>
+    </div>
+    <div class="papers" id="paperGrid"></div>
   </section>
 
   <section id="follow" aria-label="The host on X">
@@ -511,7 +551,7 @@ const DOORS=[
   ['#wall','On the wall',mins(W.total)+' a loop'],
   ['#music','Music','2 playlists · '+(F.tracks+S.tracks)+' videos'],
   ['#apps','Apps',APPS.length+' apps'],
-  ['#research','2050 Research','Books · films · ideas']
+  ['#research','2050 Research',D.papers.length+' papers with sources']
 ];
 $('doors').innerHTML=DOORS.map((d,i)=>'<a class="door" href="'+d[0]+'"><span class="n" aria-hidden="true">0'+(i+1)+'</span><b>'+esc(d[1])+'</b><i>'+esc(d[2])+'</i></a>').join('');
 
@@ -563,7 +603,7 @@ walls.forEach(w=>{
   wallsEl.appendChild(el);
 });
 
-/* Music and research lists */
+/* Music list */
 /* The title opens the first link, so each item is one click away */
 const item=(h,p,links,pre)=>{
   const L=links.filter(l=>l&&l[1]&&!(WEB&&isClaude(l[1])));
@@ -579,22 +619,124 @@ $('soundList').innerHTML=[
   item('Why Music Changes','Four thousand years of music in thirteen eras, and what changed the sound.',
     [loc('open',P.why),['online ↗',D.online.why]],'Research')
 ].join('');
-$('readList').innerHTML=[
-  item('Book Projection 2050','Eighteen books about the world around 2050, with their ideas and checked quotes.',
-    [loc('open',P.books),['online ↗',D.online.books]]),
-  item('2050 in '+T.tweets+' Tweets','Every post behind the tweet wall, by topic and author.',
-    [loc('open',P.tweets),['online ↗',D.online.tweets]]),
-  item('Futurists on 2050','What futurists wrote about 2050, in their own words.',
-    [loc('open',P.futurists),['online ↗',D.online.futurists]]),
-  item('2050 in Futurists’ Tweets','The short version: six findings and the posts behind them.',
-    [loc('English',P.futurists_short),loc('Russian',P.futurists_ru),['online ↗',D.online.futurists_short]]),
-  item('Further 2050','The sixteen claims of Further, each with what already happened and the film that imagined it.',
-    [loc('open',P.further),['online ↗',D.online.further]]),
-  item('Projection 2050','Eighteen films about 2050, scored for plausibility and beauty.',
-    [loc('open',P.films),['online ↗',D.online.films]]),
-  item('Viral Webcam Effects','The camera effects behind Mirror 2050, and how they are built.',
-    [loc('open',P.mirror_research),['online ↗',D.online.mirror_research]])
-].join('');
+/* 2050 Research: one card per paper (hub/research/papers.json), its figure, number and source trail, its finding,
+   Read, and its one other form. "film:<id>" plays that film in the page's player. */
+const PAPERS=D.papers;
+$('paperGrid').innerHTML=PAPERS.map(p=>{
+  const a=p.also;
+  const alt=!a?'':/^film:/.test(a[1])?'<button type="button" class="lnk" data-film="'+esc(a[1].slice(5))+'">'+esc(a[0])+'</button>'
+    :'<a class="lnk" href="'+esc(a[1])+'"'+ext(a[1])+'>'+esc(a[0])+'</a>';
+  return '<article class="paper" id="paper-'+esc(p.key)+'" data-key="'+esc(p.key)+'">'+
+    '<a class="fig" href="'+esc(p.page)+'" tabindex="-1" aria-hidden="true">'+(D.exists[p.shot]!==false?'<img src="'+esc(p.shot)+'" width="1280" height="720" loading="lazy" alt="">':'')+'<span class="pid">'+esc(p.id)+'</span></a>'+
+    '<p class="meta"><span>'+esc(p.field)+'</span>'+esc(p.sources)+'</p>'+
+    '<h3><a href="'+esc(p.page)+'">'+esc(p.title)+'</a></h3>'+
+    '<p class="find">'+esc(p.finding)+'</p>'+
+    '<div class="actions"><a class="btn" href="'+esc(p.page)+'"><span class="tri" aria-hidden="true"></span>Read</a>'+alt+'</div></article>';
+}).join('');
+
+/* The paper space: each paper a chrome star, its sources specks on an orbit tilted like the party's mark, lines between
+   papers that share sources. Pointing at a star names it and lights its card; pointing at a card lights its star;
+   a star opens its card. It draws only while on screen; reduced motion draws it once, still. */
+(function(){
+  const box=$('paperSpace'),cv=box.querySelector('canvas'),tip=$('paperTip'),ctx=cv.getContext('2d');
+  if(!ctx){box.hidden=true;return}
+  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const TILT=-25*Math.PI/180,CT=Math.cos(TILT),ST=Math.sin(TILT);
+  let W=0,H=0,dpr=1,stars=[],dust=[],hot=null,raf=0,seen=false,seed=1;
+  const rnd=()=>(seed=seed*16807%2147483647)/2147483647;
+  const byKey=k=>stars.find(s=>s.p.key===k);
+  function layout(){
+    const r=box.getBoundingClientRect();
+    W=r.width;H=r.height;dpr=Math.min(2,devicePixelRatio||1);
+    cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);
+    seed=2050;
+    const n=PAPERS.length,narrow=W<700,cols=narrow?Math.ceil(n/2):n,cell=W/cols;
+    const big=Math.max(...PAPERS.map(p=>Math.sqrt(p.n)));
+    const k=Math.min(1.3,(cell*.47)/(14+big*5.6));
+    stars=PAPERS.map((p,i)=>{
+      const c=i%cols,row=Math.floor(i/cols);
+      const x=cell*(c+.5),y=narrow?H*(row?.56:.22)+(c%2?8:-8):H*(.42+.17*Math.sin(i*1.7+.4));
+      const q=Math.sqrt(p.n),R=(4.5+q*.85)*Math.max(.8,k),rx=(14+q*5.6)*k,ry=rx*.36;
+      const specks=Array.from({length:p.n},()=>({a:rnd()*6.283,d:.78+rnd()*.44,s:.9+rnd()*1.3,tw:rnd()*6.283}));
+      return {p,x,y,R,rx,ry,specks,spin:(.1+rnd()*.12)*(i%2?-1:1)};
+    });
+    dust=Array.from({length:Math.round(W*H/1800)},()=>({x:rnd()*W,y:rnd()*H,s:.4+rnd()*.9,tw:rnd()*6.283}));
+  }
+  function ring(s,half,lit){
+    ctx.save();ctx.translate(s.x,s.y);ctx.rotate(TILT);
+    ctx.beginPath();ctx.ellipse(0,0,s.rx,s.ry,0,half?Math.PI:0,half?2*Math.PI:Math.PI);
+    ctx.strokeStyle=lit?'rgba(220,233,251,.7)':'rgba(143,170,207,.26)';ctx.lineWidth=lit?1.2:1;ctx.stroke();ctx.restore();
+  }
+  function specks(s,t,back,lit,dim){
+    const turn=t*.00025*s.spin;
+    for(const d of s.specks){
+      const a=d.a+turn,sn=Math.sin(a);
+      if((sn<0)!==back)continue;
+      const lx=Math.cos(a)*s.rx*d.d,ly=sn*s.ry*d.d;
+      const x=s.x+lx*CT-ly*ST,y=s.y+lx*ST+ly*CT;
+      const glow=.55+.45*Math.sin(t*.002+d.tw);
+      ctx.globalAlpha=(dim?.25:back?.45:.9)*glow;
+      ctx.fillStyle=lit?'#edf4ff':'#9dd8ff';
+      ctx.beginPath();ctx.arc(x,y,d.s*(lit?1.25:1),0,6.283);ctx.fill();
+    }
+    ctx.globalAlpha=1;
+  }
+  function body(s,lit,dim){
+    const g=ctx.createRadialGradient(s.x-s.R*.35,s.y-s.R*.4,s.R*.1,s.x,s.y,s.R);
+    g.addColorStop(0,'#f2f7ff');g.addColorStop(.45,'#aec6e8');g.addColorStop(.75,'#4c74a8');g.addColorStop(1,'#142d52');
+    ctx.save();ctx.globalAlpha=dim?.45:1;ctx.shadowColor=lit?'rgba(157,216,255,.95)':'rgba(67,133,255,.65)';ctx.shadowBlur=lit?26:14;
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(s.x,s.y,s.R*(lit?1.15:1),0,6.283);ctx.fill();ctx.restore();
+    ctx.font='500 10px "Martian Mono",ui-monospace,monospace';ctx.textAlign='center';
+    ctx.fillStyle=lit?'#9dd8ff':dim?'rgba(162,182,212,.45)':'rgba(162,182,212,.85)';
+    const ly=s.y+s.ry+s.R+16;
+    ctx.fillText(s.p.id,s.x,ly);
+    if(W>=700){ctx.font='400 9.5px "Martian Mono",ui-monospace,monospace';ctx.fillStyle=lit?'#edf4ff':dim?'rgba(162,182,212,.35)':'rgba(162,182,212,.6)';ctx.fillText(s.p.field.toUpperCase(),s.x,ly+14)}
+  }
+  function draw(t){
+    ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
+    for(const d of dust){ctx.globalAlpha=.18+.22*Math.sin(t*.0009+d.tw);ctx.fillStyle='#dce9fb';ctx.fillRect(d.x,d.y,d.s,d.s)}
+    ctx.globalAlpha=1;
+    for(const s of stars)for(const k of s.p.links){
+      const o=byKey(k);if(!o)continue;
+      const lit=hot&&(hot===s.p.key||hot===k);
+      const g=ctx.createLinearGradient(s.x,s.y,o.x,o.y);
+      g.addColorStop(0,lit?'rgba(157,216,255,.75)':'rgba(157,216,255,.22)');g.addColorStop(.5,lit?'rgba(220,233,251,.9)':'rgba(67,133,255,.32)');g.addColorStop(1,lit?'rgba(157,216,255,.75)':'rgba(157,216,255,.22)');
+      ctx.strokeStyle=g;ctx.lineWidth=lit?1.4:1;ctx.setLineDash(lit?[]:[2,5]);
+      ctx.beginPath();ctx.moveTo(s.x,s.y);ctx.quadraticCurveTo((s.x+o.x)/2,Math.min(s.y,o.y)-28,o.x,o.y);ctx.stroke();
+    }
+    ctx.setLineDash([]);
+    for(const s of stars){
+      const lit=hot===s.p.key,dim=!!hot&&!lit;
+      ring(s,true,lit);specks(s,t,true,lit,dim);body(s,lit,dim);ring(s,false,lit);specks(s,t,false,lit,dim);
+    }
+  }
+  const frame=t=>{draw(t);raf=seen&&!document.hidden&&!still?requestAnimationFrame(frame):0};
+  const kick=()=>{if(still){draw(0);return}if(!raf&&seen&&!document.hidden)raf=requestAnimationFrame(frame)};
+  function light(k){
+    if(hot===k)return;hot=k;
+    document.querySelectorAll('.paper.lit').forEach(c=>c.classList.remove('lit'));
+    const s=k&&byKey(k);
+    if(s){$('paper-'+k).classList.add('lit');tip.innerHTML='<span>'+esc(s.p.id+' · '+s.p.field)+'</span>'+esc(s.p.title);
+      tip.style.left=Math.min(Math.max(s.x,90),W-90)+'px';tip.style.top=(s.y-s.ry-s.R)+'px';tip.classList.add('on');box.style.cursor='pointer'}
+    else{tip.classList.remove('on');box.style.cursor=''}
+    if(still)draw(0);
+  }
+  const at=e=>{const r=cv.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;let best=null,bd=1e9;
+    for(const s of stars){const d=Math.hypot(x-s.x,(y-s.y)*1.6);if(d<Math.max(s.rx,26)&&d<bd){bd=d;best=s}}return best};
+  cv.addEventListener('pointermove',e=>{const s=at(e);light(s?s.p.key:null)});
+  cv.addEventListener('pointerleave',()=>light(null));
+  cv.addEventListener('click',e=>{const s=at(e);if(s)location.hash='paper-'+s.p.key});
+  $('paperGrid').addEventListener('pointerover',e=>{const c=e.target.closest('.paper');light(c?c.dataset.key:null)});
+  $('paperGrid').addEventListener('pointerleave',()=>light(null));
+  $('paperGrid').addEventListener('focusin',e=>{const c=e.target.closest('.paper');if(c)light(c.dataset.key)});
+  $('paperGrid').addEventListener('focusout',e=>{if(!$('paperGrid').contains(e.relatedTarget))light(null)});
+  if(matchMedia('(hover: none)').matches)$('paperHint').textContent='Tap a star';
+  layout();draw(0);
+  if('IntersectionObserver' in window)new IntersectionObserver(es=>{seen=es[0].isIntersecting;kick()}).observe(box);else{seen=true;kick()}
+  document.addEventListener('visibilitychange',kick);
+  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{layout();hot=null;tip.classList.remove('on');draw(performance.now());kick()},120)});
+  if(document.fonts)document.fonts.ready.then(()=>draw(performance.now()));
+})();
 
 /* Apps */
 $('appGrid').innerHTML=APPS.map(a=>{
