@@ -5,7 +5,7 @@ The site keeps the repo's paths, so every relative link works the same as in the
 - every page in build.PAGES, the two walls and the Resonance player are copied. A page saved as a claude.ai
   fragment (no <!doctype>) gets the same document shell the books and tweets builds use for their wall pages;
 - every claude.ai link to one of these pages points at the copy on the site instead;
-- the 720p films and posters in video/dist/media are copied;
+- the 720p films and posters in video/dist/media are copied, and the folders of pictures pages load (ASSET_DIRS);
 - each short address in build.SHORT gets a page that forwards to it: /quotes, /tweets, /programme ...
 
 Run from anywhere: python3 -I hub/site.py, then serve site/ (python3 -m http.server -d site).
@@ -26,6 +26,8 @@ _spec.loader.exec_module(B)
 PAGES = sorted(set(B.PAGES.values()) | {
     "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html"})
 MEDIA = "video/dist/media"
+# Folders of pictures the pages load: the party slides' pictures
+ASSET_DIRS = ["slides/assets"]
 SHELL = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
          '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
          '<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>\n')
@@ -65,6 +67,8 @@ def main():
         dst.parent.mkdir(parents=True, exist_ok=True)
         dst.write_text(html_page(rel), encoding="utf8")
     shutil.copytree(ROOT / MEDIA, OUT / MEDIA, ignore=shutil.ignore_patterns(".*"))
+    for rel in ASSET_DIRS:
+        shutil.copytree(ROOT / rel, OUT / rel, ignore=shutil.ignore_patterns(".*"))
     for name, target in B.SHORT.items():
         # /programme, /books and /tweets are also folders of the site: the forward becomes their index page
         if (OUT / name / "index.html").exists() or (OUT / name).is_file():

@@ -15,6 +15,7 @@ Start at **`index.html`**, the front page: an index of every resource, the films
 | `roast/` | **The Roast**, a 63-second film with sound that tells how v1 became v2: 11 v1 slides stamped CUT or KEEP, the tally, then the recut. Its own HyperFrames project (`SPEC.md`, `REVIEW.md`). |
 | `showreel/` | **Six Facts**, the show reel: two and a half minutes with music that cut together the six facts about how books guess the future, six quotes from the books, six posts from X, 13 predictions from *Further* and NASA footage (the Artemis I and Saturn V launches, the Sun, Earth and a hurricane from the ISS). Its own HyperFrames project (`SPEC.md`, `STORYLINES.md`, `REVIEW.md`, `CREDITS.md`). |
 | `programme/` | **Tea With Tomorrow**, the programme for the evening: a three-hour Futures Literacy Lab (the UNESCO method) with tea on the tables, in two lengths, with a party clock for the host. |
+| `slides/` | **Party slides**, the host's deck: 26 slides with the vision, the goal, the three rules, a mini demo for each wall topic and each station (soundboard, camera, teas, miracle berries, 3D and diffraction glasses …), and the 2050 question, with speaker notes. A full-screen player in one page; its own [README](slides/README.md). |
 | `music/` | **Soundtrack 2050** and **Why Music Changes**: data (`soundtrack.json`, `history.json`, `eras.json`) and the templates that build the two pages in `dist/`. `music/resonance/` is **Resonance**, music history and what comes next, with an in-page YouTube player. |
 | `soundboard/` | **Contact 2050**, a Makey Makey soundboard: twelve pins, eight kits, and 2,038 sounds from TidalCycles' [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) library. Jam mode keeps everything in time and in key; stage mode is for the projector. A sub-project with its own [README](soundboard/README.md). |
 | `books/` | **Book Projection 2050**: 18 books about the world around 2050, 25 idea slides and 50 verified verbatim quotes, with a fullscreen wall projection. `quotes.json` is the quote list in play order; `template.html` holds the books and ideas. |
@@ -79,6 +80,14 @@ cd resonance
 python3 -I build_resonance.py   # writes dist/local/index.html, the Resonance page
 ```
 
+## The party slides
+
+Open `slides/dist/party-deck.html` (on the website, `/slides`). → or a click goes on, ← goes back, F is full screen, N shows the speaker notes. [`slides/README.md`](slides/README.md) has the keys, the demos and the files.
+
+```bash
+python3 -I slides/build.py   # writes slides/dist/party-deck.html from slides/deck/
+```
+
 ## The soundboard
 
 Open `soundboard/dist/contact2050.html` in Chrome, or [/soundboard](https://future-party-2050.vercel.app/soundboard) on the website, plug in the Makey Makey, hold EARTH and touch a pin. Press Enter for stage mode on the projector.
@@ -117,7 +126,7 @@ python3 -I build.py   # writes dist/tweets-2050.html (the published page) and di
 
 - `index.html` is the front page in web mode: it plays the 720p previews, links the 1080p masters on the releases, and opens Markdown files on GitHub.
 - Every page keeps its path from the repo, so `/books/dist/quote-wall.html#quote-wall` is the quote wall. A page saved as a claude.ai fragment gets a full document shell, and every link to a claude.ai copy of one of these pages points at the copy on the site. The one left on claude.ai is the tea comparison sheet.
-- Short addresses for typing on the projector laptop: `/quotes`, `/ideas`, `/mix`, `/tweets`, `/tweets-short`, `/programme`, `/soundboard`, `/soundtrack`, `/resonance`, `/music-history`, `/books`, `/further`, `/films`, `/futurists`. They are listed in `SHORT` in `hub/build.py`.
+- Short addresses for typing on the projector laptop: `/quotes`, `/ideas`, `/mix`, `/tweets`, `/tweets-short`, `/programme`, `/soundboard`, `/soundtrack`, `/resonance`, `/music-history`, `/books`, `/further`, `/films`, `/futurists`, `/slides`. They are listed in `SHORT` in `hub/build.py`.
 
 To check it locally:
 

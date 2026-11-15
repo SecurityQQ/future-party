@@ -34,6 +34,7 @@ ONLINE = {
     "resonance": "https://claude.ai/artifact/PVooRbA3UqweX19eBy7Q4k",
     "contact": "https://claude.ai/artifact/AiFrTg6V1BipqTvsJTmkmA",
     "tea": "https://claude.ai/artifact/JSq3U75PR1zGnLmkPea8Yz",
+    "deck": "https://claude.ai/artifact/BkSJQMeXHfnDBZJaYmezXP",
 }
 # Where each of those pages lives in this repo. hub/site.py points every claude.ai link at these copies.
 # "tea" (a claude.ai sheet) has no copy here.
@@ -50,6 +51,8 @@ PAGES = {
     "why": "music/dist/why-music-changes.html",
     "resonance": "music/resonance/dist/local/index.html",
     "contact": "soundboard/dist/contact2050.html",
+    # The host's slides, built by slides/build.py; site.py copies the pictures in slides/assets
+    "deck": "slides/dist/party-deck.html",
 }
 # Earlier claude.ai copies of the same pages.
 ALIASES = {"https://claude.ai/artifact/65pctWFWHMQZ3ezNrrA7P1": "futurists_ru"}
@@ -69,6 +72,7 @@ SHORT = {
     "further": PAGES["further"],
     "films": PAGES["films"],
     "futurists": PAGES["futurists"],
+    "slides": PAGES["deck"],
 }
 # Apps for the night that run on their own servers. Zodiac Rangers lives in astrology/app; link its home page, never /admin.
 APPS = {"rangers": "https://zodiac-rangers.vercel.app"}
@@ -194,6 +198,7 @@ def resources(web, films, b, t, s):
             ["Tweet wall", f"{t['tweets']} posts by {t['authors']} futurists on X.", "", [["start", SHORT["tweets"]], ["short version", SHORT["tweets-short"]]]],
         ]],
         ["The evening", [
+            ["Party slides", "The host's deck: the vision, the goal, three rules, a mini demo for every station and the 2050 question. Arrows or click to go on, F for full screen, N for notes.", "", [["present", PAGES["deck"]], ["README", doc(web, "slides/README.md")]]],
             ["Tea With Tomorrow", "The programme: a three-hour Futures Literacy Lab over tea, with a party clock.", "", [["open", PAGES["program"]]]],
             ["Contact 2050", "A Makey Makey soundboard for guests: 12 pins, 8 kits, jam mode, stage mode for the projector.", "", [["open", PAGES["contact"]], ["README", doc(web, "soundboard/README.md")]]],
             ["Zodiac Rangers", "The party app: guests tap their NFC ranger card, give a name and birthday, get a zodiac creature, then scan each other's cards for the ranking.", "", [["open ↗", APPS["rangers"]]]],

@@ -9,6 +9,7 @@
 !/soundboard
 !/programme
 !/reel
+!/slides
 /video/*
 !/video/dist
 /tweets/avatars
