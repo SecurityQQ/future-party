@@ -24,6 +24,7 @@
 !/concept-art
 !/wall
 !/mars3d
+!/trip
 !/slides
 !/vibes
 /vibes/*
@@ -48,3 +49,5 @@
 /concept-art/.cache
 /concept-art/dist
 /mars3d/raw
+/trip/.cache
+/trip/tools

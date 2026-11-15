@@ -28,6 +28,7 @@ A one-night party where the guests step into 2050, and this repository is the wh
 ### On the wall and behind it
 
 - **[The Big Muse](https://vargafutureparty.com/wall)**: every piece below in one loop of about 49 minutes, in six chapters (Planet, Machines, People, Power, Beyond, 2050).
+- **[Trip 2050](https://vargafutureparty.com/trip/index.html)**: a light show for the dancing hours. MilkDrop visuals that move with the room's music, the concept art as kaleidoscopes and tunnels, and 24 innovators from Archimedes to CRISPR as pop-art posters.
 - **Films**: *Further* (16 claims about 2030–2050, each with a dated real seed and the film that imagined it) and *Six Facts* (the show reel), made with [HyperFrames](https://hyperframes.heygen.com), HTML rendered to video. 1080p masters are on the [releases](../../releases).
 - **Slide walls**: the [quote wall](https://vargafutureparty.com/quotes), the [idea wall](https://vargafutureparty.com/ideas), the [tweet wall](https://vargafutureparty.com/tweets) and [Imagined Futures](https://vargafutureparty.com/art).
 - **2050 Research**, eight papers read like a preprint server from 2050 (a paper space of stars and their sources, a card with a figure and a finding for each, and every paper ending on the next): [Book Projection 2050](https://vargafutureparty.com/books/dist/book-projection-2050.html) (18 books), [2050 in 78 Tweets](https://vargafutureparty.com/tweets/dist/tweets-2050.html), [Futurists on 2050](https://vargafutureparty.com/tweets/research/futurists-on-2050.html), [2050 in Futurists’ Tweets](https://vargafutureparty.com/tweets/research/2050-in-futurists-tweets.html), [Further 2050](https://vargafutureparty.com/video/dist/further-2050.html), [Projection 2050](https://vargafutureparty.com/reel/projection-2050.html) (18 films), [Why Music Changes](https://vargafutureparty.com/music/dist/why-music-changes.html), [Viral Webcam Effects](https://vargafutureparty.com/mirror/viral-webcam-effects.html).
@@ -71,6 +72,7 @@ Start at **`index.html`**, the front page: four doors (the wall, the music, the 
 | `roast/` | **The Roast**, a 63-second film with sound that tells how v1 became v2: 11 v1 slides stamped CUT or KEEP, the tally, then the recut. Its own HyperFrames project (`SPEC.md`, `REVIEW.md`). |
 | `showreel/` | **Six Facts**, the show reel: two and a half minutes with music that cut together the six facts about how books guess the future, six quotes from the books, six posts from X, 13 predictions from *Further* and NASA footage (the Artemis I and Saturn V launches, the Sun, Earth and a hurricane from the ISS). Its own HyperFrames project (`SPEC.md`, `STORYLINES.md`, `REVIEW.md`, `CREDITS.md`). |
 | `wall/` | **The Big Muse**: every piece on the wall in one loop, like one long show reel. The six facts, Further's 16 predictions over their photos, the 50 quotes, 25 ideas and 78 tweets, and the concept art, sorted into six chapters (Planet, Machines, People, Power, Beyond, 2050), after a 40-second opening reel (the Highlights) and between the Six Facts film and Further. About 49 minutes a loop. `chapters.json` says what goes where, `highlights.json` what the opening shows; `build.py` reads the six pieces from their own folders. |
+| `trip/` | **Trip 2050**, the light show: 33 MilkDrop visuals (Butterchurn) that follow the music through the microphone, the 377 Imagined Futures pictures as kaleidoscopes, tunnels and liquid paint, and 24 innovators with public-domain and Creative Commons portraits in poster colours. One page drawn live in WebGL; on the website at `/trip`. Its own [README](trip/README.md) and [credits](trip/CREDITS.md). |
 | `programme/` | **Tea With Tomorrow**, the programme for the evening: a three-hour Futures Literacy Lab (the UNESCO method) with tea on the tables, in two lengths, with a party clock for the host. Off the front page; linked from `admin.html`. |
 | `music/` | **Music of the Future** (the host's own picks, with a player in the page), **Soundtrack 2050** (Fable 5.2's playlist about the future, the party's running order) and **Why Music Changes**: data (`future_music.json`, `soundtrack.json`, `history.json`, `eras.json`) and the templates that build the three pages in `dist/`. `future_music.json` keeps the order of the YouTube playlist. `music/resonance/` is **History of Music 2050** (first called Resonance), music history and what comes next, with an in-page YouTube player. |
 | `soundboard/` | **Play 2050** (formerly Contact 2050), a Makey Makey soundboard: twelve pins, eight kits, and 2,038 sounds from TidalCycles' [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) library. Jam mode keeps everything in time and in key; stage mode is for the projector. A sub-project with its own [README](soundboard/README.md). |
@@ -177,6 +179,17 @@ python3 -I build.py             # writes dist/contact2050.html, which streams so
 python3 -I build.py --offline   # also writes dist/contact2050-offline.html with the sounds built in, for a venue without wifi
 ```
 
+## The light show
+
+**Trip 2050** is for the hours when nobody reads the wall any more. It needs a local server for its pictures (or the website):
+
+```bash
+python3 -m http.server 4620            # in the repo folder, then open http://localhost:4620/trip/
+python3 -I trip/build.py               # after changing trip/presets.json, trip/innovators.json or Imagined Futures
+```
+
+Start with the microphone, press F. Space skips to the next scene, 1 to 6 keep one scene, B switches to a built-in beat when the laptop cannot hear the music. [`trip/README.md`](trip/README.md) has the addresses, the keys and how it is drawn.
+
 ## The camera mirror
 
 The camera only starts on `localhost` or https, so serve the folder:
@@ -239,6 +252,6 @@ The front page lists it under On the wall; on the website `/art` starts the wall
 
 ## Credits and licences
 
-The code, the build scripts and the original writing in this repository are under the [MIT licence](LICENSE). The material they show is not ours and keeps its own licence: the verbatim book quotes and posts from X (each with its source), the concept art in `concept-art/` (each picture links to its post and artist), the photos and footage below, the Mars stereo pictures (NASA, public domain; ESA, CC BY-SA 3.0 IGO; see [`mars3d/README.md`](mars3d/README.md)) and three.js (MIT, `mars3d/vendor/LICENSE-three.txt`).
+The code, the build scripts and the original writing in this repository are under the [MIT licence](LICENSE). The material they show is not ours and keeps its own licence: the verbatim book quotes and posts from X (each with its source), the concept art in `concept-art/` (each picture links to its post and artist), the photos and footage below, the Mars stereo pictures (NASA, public domain; ESA, CC BY-SA 3.0 IGO; see [`mars3d/README.md`](mars3d/README.md)) three.js (MIT, `mars3d/vendor/LICENSE-three.txt`), and for Trip 2050 the innovators' portraits from Wikimedia Commons (public domain, CC BY and CC BY-SA), Butterchurn and its MilkDrop presets (MIT), all listed in [`trip/CREDITS.md`](trip/CREDITS.md).
 
 All photographs are from Wikimedia Commons: public-domain works (mostly NASA) and CC BY / CC BY-SA images credited on screen. The full list with authors and licences is in [`video/CREDITS.md`](video/CREDITS.md) and `video/assets/photos/credits.json`. Each photo keeps its own licence. The films are named in the video, never shown. The soundboard plays [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) pinned to commit `c74fc80`. That repo has no licence file, so its audio is streamed rather than committed here, and the offline copy is built locally and git-ignored.

@@ -40,16 +40,18 @@ PAGES = sorted(set(B.PAGES.values()) | {
     "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html"})
 MEDIA = "video/dist/media"
 # Other files the pages load from the repo: the Mirror 2050 preview, the Blue futurism chrome texture, Mars in 3D's
-# slides, the previews of the Apps section, the figures of the 2050 Research papers (the front page and the end of
-# every research page show them), and every file the Big Muse lists in its manifest (Further's photos; its films are
-# in MEDIA)
-ASSETS = (["mirror/preview.jpg", "vibes/assets/chrome-orbit.webp", "mars3d/slides.js", *B.APP_SHOTS.values()]
+# slides, Trip 2050's data, the previews of the Apps section, the figures of the 2050 Research papers (the front page
+# and the end of every research page show them), and every file the Big Muse lists in its manifest (Further's photos;
+# its films are in MEDIA)
+ASSETS = (["mirror/preview.jpg", "vibes/assets/chrome-orbit.webp", "mars3d/slides.js", "trip/data.js", "trip/presets.js",
+           B.TRIP_SHOT, *B.APP_SHOTS.values()]
           + [p["shot"] for p in B.research_papers()]
           + B.load("wall/dist/manifest.json")["files"])
 # Folders the pages load from: the Imagined Futures pictures (concept-art/images/, the originals, stay off the site)
 # and Mars in 3D's pictures, globe maps and three.js (mars3d/raw/, the originals, stay off the site),
-# and the party slides' pictures
-ASSET_DIRS = ["concept-art/thumbs", "mars3d/img", "mars3d/globe", "mars3d/vendor", "slides/assets"]
+# the party slides' pictures, and Trip 2050's portraits and Butterchurn (it also plays concept-art/thumbs)
+ASSET_DIRS = ["concept-art/thumbs", "mars3d/img", "mars3d/globe", "mars3d/vendor", "slides/assets", "trip/portraits",
+              "trip/vendor"]
 SHELL = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
          '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
          '<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>\n')

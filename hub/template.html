@@ -379,6 +379,8 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
     <div class="tiles two" id="films"></div>
     <div class="row-label"><h3>Slide walls</h3></div>
     <div class="tiles four" id="walls"></div>
+    <div class="row-label"><h3>Light show</h3><span>plays on its own, to the room’s music</span></div>
+    <div class="feature" id="trip"></div>
   </section>
 
   <section id="music">
@@ -559,8 +561,16 @@ $('doors').innerHTML=DOORS.map((d,i)=>'<a class="door" href="'+d[0]+'"><span cla
 const C=W.counts;
 $('bigwall').innerHTML='<a class="screen bw" href="'+esc(P.bigwall)+'#play" style="background-image:url(\''+esc(W.tile)+'\')" aria-label="Start the Big Muse"><span class="k">The Big Muse</span><span class="t">2050</span><span class="c">The films dreamed it. Here is how far it goes.</span><span class="chips">'+W.chapters.map(c=>'<span style="--c:'+esc(c.color)+'">'+esc(c.title)+'</span>').join('')+'</span></a>'+
   '<div><h3>The Big <span>Muse</span></h3><p>Everything below in one '+Math.round(W.total/60)+'-minute loop, in six chapters.</p>'+
-  '<ol class="chlist">'+[{id:'highlights',title:'Highlights',color:'#dce9fb',sec:W.highlights.sec}].concat(W.chapters).map(c=>'<li><a href="'+esc(P.bigwall)+'#'+esc(c.id)+'" style="--c:'+esc(c.color)+'"><i></i><b>'+esc(c.title)+'</b><span>'+mmss(c.sec)+'</span></a></li>').join('')+'</ol>'+
+  '<ol class="chlist">'+[{id:'highlights',title:'Highlights',color:'#dce9fb',sec:W.highlights.sec}].concat(W.chapters).map(c=>'<li><a href="'+esc(P.bigwall)+'#'+esc(c.id)+'" style="--c:'+esc(c.color)+'"><i></i><b>'+esc(c.title)+'</b><span>'+mmss(c.sec)+'</span></a></li>').join('')+
+  /* Trip 2050 is not in the loop: it is the wall's other mode, for when the music takes over */
+  '<li><a href="'+esc(P.trip)+'" style="--c:#ff2e93"><i></i><b>Trip 2050</b><span>light show</span></a></li></ol>'+
   '<div class="actions" style="margin-top:20px"><a class="btn big" href="'+esc(P.bigwall)+'#play"><span class="tri" aria-hidden="true"></span>Start the Big Muse</a></div></div>';
+
+/* Trip 2050, the light show */
+$('trip').innerHTML='<a class="screen" href="'+esc(P.trip)+'" aria-label="Start Trip 2050"><img src="'+esc(D.trip.shot)+'" alt="Four moments of Trip 2050: a kaleidoscope, Hedy Lamarr as four posters, a tunnel and a street in liquid colour" loading="lazy"></a>'+
+  '<div><h3>Trip <span>2050</span></h3><p>For the dancing hours. '+D.trip.visuals+' MilkDrop visuals move with the music the microphone hears, the '+A.pictures+' Imagined Futures pictures turn into kaleidoscopes, tunnels and liquid paint, and '+D.trip.people+' innovators from Archimedes to CRISPR come on as pop-art posters.</p>'+
+  '<p>Fast motion and flashing colours.</p>'+
+  '<div class="actions" style="margin-top:20px"><a class="btn big" href="'+esc(P.trip)+'"><span class="tri" aria-hidden="true"></span>Start Trip 2050</a></div></div>';
 
 /* Films */
 const films=$('films');

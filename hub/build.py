@@ -71,6 +71,8 @@ PAGES = {
     "mars3d": "mars3d/index.html",
     # The host's slides, built by slides/build.py; site.py copies its pictures in slides/assets
     "deck": "slides/dist/party-deck.html",
+    # Trip 2050, the light show, is served from its own folder (/trip); site.py copies its data, portraits and Butterchurn
+    "trip": "trip/index.html",
 }
 # Earlier claude.ai copies of the same pages.
 ALIASES = {"https://claude.ai/artifact/65pctWFWHMQZ3ezNrrA7P1": "futurists_ru"}
@@ -114,6 +116,8 @@ PLAYLISTS = {
 # The previews of the Apps section, 1280x720: made by hub/apps/previews.py, except Mars in 3D's own picture
 APP_SHOTS = {"party": "hub/apps/app.jpg", "mirror": "hub/apps/mirror.jpg", "music": "hub/apps/music.jpg",
              "play": "hub/apps/play.jpg", "mars": "mars3d/preview.jpg", "art": "hub/apps/art.jpg"}
+# The picture in the Light show row: four moments of Trip 2050 (a kaleidoscope, four posters, a tunnel, liquid colour)
+TRIP_SHOT = "trip/preview.jpg"
 # The picture on the Imagined Futures tile: the Prometheus Ring, a spinning habitat orbiting Saturn
 ART_TILE = "concept-art/thumbs/2118267091262333357-1.jpg"
 # The photo behind the Big Muse tile: Earth seen through Saturn's rings, Further's last slide
@@ -223,6 +227,11 @@ def build_wall():
     mod.main()
 
 
+def trip_numbers():
+    return {"shot": TRIP_SHOT, "people": len(load("trip/innovators.json")["people"]),
+            "visuals": len(load("trip/presets.json")["presets"])}
+
+
 def films_list(web):
     """The films. The folder plays the 1080p renders and falls back to the 720p previews kept in the repo;
     the website always plays the previews and links the 1080p masters on the GitHub releases.
@@ -299,10 +308,10 @@ def build(web=False):
     data = dict(common(web), **{
         "films": [f for f in films if f["front"]],
         "papers": papers,
-        "books": b, "tweets": t, "sound": s, "future": future_music_numbers(), "art": c, "wall": w, "mars": mars3d_numbers(), "shots": APP_SHOTS,
+        "books": b, "tweets": t, "sound": s, "future": future_music_numbers(), "art": c, "wall": w, "mars": mars3d_numbers(), "trip": trip_numbers(), "shots": APP_SHOTS,
         "exists": {p: (ROOT / p).exists() for p in [
             "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html",
-            "reel/links.md", DECK_SHOT, ART_TILE, WALL_TILE, *APP_SHOTS.values(), *PAGES.values(),
+            "reel/links.md", DECK_SHOT, TRIP_SHOT, ART_TILE, WALL_TILE, *APP_SHOTS.values(), *PAGES.values(),
             *(p["shot"] for p in papers)]},
         "deck": {"shot": DECK_SHOT, "slides": len(load("slides/deck/deck.json")["order"])},
     })

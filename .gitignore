@@ -60,3 +60,7 @@ showreel/assets/music/_call-to-adventure-full.mp3
 # Mars in 3D: the original pictures, the Viking map and the MOLA grid are re-fetchable with
 # python3 -I mars3d/tools/fetch.py; img/, globe/textures.js and slides.js are committed
 mars3d/raw/
+
+# Trip 2050: the portraits as downloaded from Wikimedia Commons and the butterchurn-presets package are re-fetchable
+# with python3 -I trip/tools/fetch_portraits.py and python3 -I trip/build.py; portraits/ and presets.js are committed
+trip/.cache/
