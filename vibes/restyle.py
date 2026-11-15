@@ -7,7 +7,7 @@ restyle(html, rel) returns the page with:
   site's fonts (Unbounded, Geologica, Martian Mono; League Gothic and Instrument Serif only where the page uses them)
   in place of Inter and JetBrains Mono;
 - the old orange, near-black and green literals swapped for their Blue futurism counterparts;
-- the party's mark (FUTURE PARTY / 2050) at the top left, linking back to the page's section on the front page.
+- the party's mark (VARGA FUTURE PARTY / 2050) at the top left, linking back to the page's section on the front page.
 
 It is idempotent: what it adds sits between <!--vibes:start--> and <!--vibes:end--> (and <!--vibes:bar-->) and is
 replaced on every run. The builds of books/, tweets/, music/, soundboard/ and video/ call it on what they write,
@@ -45,7 +45,7 @@ PAGES = {
 }
 
 MARK = ('<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="16" cy="16" r="7"/>'
-        '<ellipse cx="16" cy="16" rx="15" ry="5" transform="rotate(-25 16 16)"/></svg>FUTURE PARTY / 2050')
+        '<ellipse cx="16" cy="16" rx="15" ry="5" transform="rotate(-25 16 16)"/></svg>VARGA FUTURE PARTY / 2050')
 
 # Old literal -> Blue futurism. The accents become electric blue or ice, the near-blacks navy, the green ice.
 HEX = {  # old hex -> Blue futurism; matched as #rrggbb and as %23rrggbb (inside SVG data URIs, like favicons)
@@ -119,7 +119,7 @@ def restyle(html, rel):
             if not n:
                 raise ValueError(f"{rel}: no <nav class=\"top\"> with a brand to turn into the party's mark")
         else:
-            bar = (f'<!--vibes:bar--><div class="wrap"><nav class="vb-bar" aria-label="Future Party 2050">{brand}'
+            bar = (f'<!--vibes:bar--><div class="wrap"><nav class="vb-bar" aria-label="Varga Future Party 2050">{brand}'
                    f'<a class="vb-back" href="{href}">← {label}</a></nav></div>\n<!--/vibes:bar-->')
             anchor = re.search(r"<header\b" if where == "bar" else r"<body\b[^>]*>", html)
             if not anchor:

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Future Party 2050</title>
+<title>Varga Future Party 2050</title>
 <meta name="theme-color" content="#030817">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307132b'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='%23dce9fb' stroke-width='2'/%3E%3Cellipse cx='32' cy='32' rx='28' ry='10' transform='rotate(-30 32 32)' fill='none' stroke='%239dd8ff' stroke-width='2'/%3E%3C/svg%3E">
 <meta name="description" content="Step into 2050 for one night: the Big Wall of films and ideas, music from 1400 BCE to the future, six party apps, Mars in 3D and the research behind it.">
@@ -87,6 +87,9 @@ nav.top .brand svg{width:30px;height:30px;flex:none;color:var(--v-ice)}
 .hero-copy{position:relative;padding-block:44px 48px}
 .hero h1{font:500 clamp(42px,calc(24px + 5.6vw),104px)/1.04 var(--display);text-transform:uppercase;letter-spacing:0;text-wrap:nowrap}
 .hero h1 span{display:block}
+/* The host’s name over the party’s: VARGA, wide and in ice, with a line running out to the right */
+.hero h1 .by{display:flex;align-items:center;gap:.5em;margin-bottom:.42em;font-size:max(.3em,15px);font-weight:600;line-height:1;letter-spacing:.46em;color:var(--v-ice)}
+.hero h1 .by::after{content:"";flex:0 0 3.4em;height:1px;background:linear-gradient(90deg,var(--v-ice),transparent)}
 .hero h1 .yr{font-weight:600;background:var(--v-chrome-surface);background-clip:text;-webkit-background-clip:text;color:transparent;padding-bottom:.04em}
 .hero-art{position:absolute;z-index:-1;inset:0;overflow:hidden;pointer-events:none;mask-image:linear-gradient(#000 65%,transparent 94%);-webkit-mask-image:linear-gradient(#000 65%,transparent 94%)}
 .hero-art img{position:absolute;right:0;top:0;width:70%;height:100%;object-fit:cover;object-position:center 40%;opacity:.86;mask-image:linear-gradient(90deg,transparent,#000 28%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 28%)}
@@ -337,14 +340,14 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
   </div>
 <div class="wrap">
   <nav class="top" aria-label="Sections">
-    <span class="brand"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="16" cy="16" r="7"/><ellipse cx="16" cy="16" rx="15" ry="5" transform="rotate(-25 16 16)"/></svg>FUTURE PARTY / 2050</span>
+    <span class="brand"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="16" cy="16" r="7"/><ellipse cx="16" cy="16" rx="15" ry="5" transform="rotate(-25 16 16)"/></svg>VARGA FUTURE PARTY / 2050</span>
     <a href="#wall">Wall</a><a href="#music">Music</a><a href="#apps">Apps</a><a href="#mars">Mars 3D</a><a href="#slides">Slides</a><a href="#research">Research</a>
     <a class="to-app" id="navApp" href="/app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="11" height="15" rx="1"/><path d="M8 3h11a1 1 0 0 1 1 1v13"/><path d="M6 15l2.5-3 2 2 1.5-2"/></svg>Open the app</a>
   </nav>
 
   <header class="hero" aria-labelledby="hero-title">
     <div class="hero-copy">
-      <h1 id="hero-title"><span>FUTURE</span><span>PARTY</span><span class="yr">2050</span></h1>
+      <h1 id="hero-title"><span class="by">VARGA</span><span>FUTURE</span><span>PARTY</span><span class="yr">2050</span></h1>
       <div class="hero-actions">
         <a class="btn big" id="heroStart" href="wall/dist/big-wall.html#play"><span class="tri" aria-hidden="true"></span>Start the Big Wall</a>
         <a class="lnk" id="heroMusic" href="music/resonance/dist/local/index.html">Enter History of Music 2050 <span aria-hidden="true">↗</span></a>
@@ -853,7 +856,7 @@ $('deckShot').src=D.deck.shot;
 if(D.exists[D.deck.shot]===false)$('deckShot').hidden=true;
 $('deckAbout').textContent+=' '+D.deck.slides+' slides.';
 
-$('foot').innerHTML='Future Party 2050 · <a href="'+esc(D.repo)+'" target="_blank" rel="noopener">source on GitHub</a> · <a href="https://x.com/vargastartup" target="_blank" rel="noopener">follow @vargastartup on X</a>'+(WEB?'':' · <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(D.site.replace(/^https?:\/\//,''))+'</a>');
+$('foot').innerHTML='Varga Future Party 2050 · <a href="'+esc(D.repo)+'" target="_blank" rel="noopener">source on GitHub</a> · <a href="https://x.com/vargastartup" target="_blank" rel="noopener">follow @vargastartup on X</a>'+(WEB?'':' · <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(D.site.replace(/^https?:\/\//,''))+'</a>');
 
 /* Film player */
 const player=$('player'),pv=$('pv');let idleT=0,prev=null;

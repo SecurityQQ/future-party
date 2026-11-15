@@ -1,4 +1,4 @@
-# Future Party 2050
+# Varga Future Party 2050
 
 **Everything for a party set in the year 2050**: a Big Wall that plays films, quotes, futurists' posts and concept art in one loop on the projector, six apps for the guests, the music, and the research behind all of it. Live, with no login, at **[vargafutureparty.com](https://www.vargafutureparty.com)**.
 
@@ -6,11 +6,11 @@
 [![Release](https://img.shields.io/github/v/release/SecurityQQ/future-party?label=films&style=flat-square)](../../releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-9dd8ff?style=flat-square)](LICENSE)
 
-[![Future Party 2050: Step into 2050. The Big Wall, music, six apps and Mars in 3D for one night.](hub/og/site.jpg)](https://www.vargafutureparty.com)
+[![Varga Future Party 2050: Step into 2050. The Big Wall, music, six apps and Mars in 3D for one night.](hub/og/site.jpg)](https://www.vargafutureparty.com)
 
 **[Open the site](https://www.vargafutureparty.com)** · **[The party app](https://www.vargafutureparty.com/app)** · [The Big Wall](https://www.vargafutureparty.com/wall) · [Mars in 3D](https://www.vargafutureparty.com/mars3d/index.html) · [Films (1080p)](../../releases)
 
-## What is Future Party 2050?
+## What is Varga Future Party 2050?
 
 A one-night party where the guests step into 2050, and this repository is the whole night as code and data. Guests tap an NFC pass to meet their Kin, play with webcam effects and a Makey Makey soundboard, look at Mars through red/cyan glasses, and watch the Big Wall: two films, 50 quotes and 25 ideas from books about 2050, 78 posts by futurists and 377 pictures of concept art, sorted into six chapters. Every claim on the wall has a source: quotes are checked against the books, posts are verbatim from X, photos come from NASA, ESA and Wikimedia Commons with their licences.
 

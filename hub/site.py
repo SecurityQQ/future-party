@@ -1,4 +1,4 @@
-"""Write site/, the Future Party 2050 website. The app's build runs it on every deploy (npm run site in app/,
+"""Write site/, the Varga Future Party 2050 website. The app's build runs it on every deploy (npm run site in app/,
 which copies site/ into app/public/: one Next.js project serves the site and the party app at /app).
 
 The site keeps the repo's paths, so every relative link works the same as in the folder:
@@ -71,7 +71,7 @@ def html_page(rel):
 
 def forward(target):
     url = "/" + target
-    return ('<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Future Party 2050</title>'
+    return ('<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Varga Future Party 2050</title>'
             f'<meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url={url}">'
             f'<script>location.replace({url!r})</script></head>'
             '<body style="margin:0;padding:24px 16px;background:#030817;color:#edf4ff;font:16px/1.5 system-ui,sans-serif">'

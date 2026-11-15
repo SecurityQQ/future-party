@@ -1,6 +1,6 @@
 """Make the pictures a shared link shows: the share cards (og:image) and the site's icons, into hub/og/.
 
-- site.jpg: the party site's card, 1200x630 (card.html?card=site): Future Party 2050 and the chrome orbit;
+- site.jpg: the party site's card, 1200x630 (card.html?card=site): Varga Future Party 2050 and the chrome orbit;
 - app.jpg: the party app's card, 1200x630 (card.html?card=app): The Future 2050 and three Kin;
 - favicon.ico (16, 32, 48) and apple-touch-icon.png (180), drawn from the app's icon, app/app/icon.svg.
 

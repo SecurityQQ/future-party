@@ -1,4 +1,4 @@
-/* Future Party 2050 in Blue futurism, the website's look (vibes/README.md): deep navy space, liquid chrome, electric blue
+/* Varga Future Party 2050 in Blue futurism, the website's look (vibes/README.md): deep navy space, liquid chrome, electric blue
    and ice. Unbounded for short headings, Geologica for reading and for the words people said, Martian Mono for labels and
    addresses. The palette comes from vibes/tokens.css, which slides/build.py puts in front of this file. */
 body { font-family: 'Geologica', system-ui, sans-serif; color: var(--v-ink); }
@@ -26,6 +26,9 @@ body { font-family: 'Geologica', system-ui, sans-serif; color: var(--v-ink); }
 .meta { font: 400 20px/1.6 'Martian Mono', ui-monospace, monospace; letter-spacing: .02em; color: var(--v-muted); }
 .strong { font-weight: 600; color: var(--v-ink); }
 .ice { color: var(--v-ice); }
+/* The host's name over the party's on the cover: VARGA, wide, with a line running out to the right */
+.title .by { display: flex; align-items: center; gap: 28px; margin-bottom: 26px; font-size: 44px; font-weight: 600; line-height: 1; letter-spacing: .46em; color: var(--v-ice); }
+.title .by::after { content: ""; width: 150px; height: 2px; background: linear-gradient(90deg, var(--v-ice), transparent); }
 .shine { background: var(--v-chrome-surface); background-clip: text; -webkit-background-clip: text; color: transparent; }
 .lemon { color: #f2d34a; }
 a { color: var(--v-ice); text-decoration-color: rgb(157 216 255 / 45%); text-underline-offset: 6px; }

@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#030817">
-<title>Future Party 2050 · Slides</title>
-<meta name="description" content="The host's deck for Future Party 2050: the vision, the goal, the three rules, a mini demo for every station, and the question for the room.">
+<title>Varga Future Party 2050 · Slides</title>
+<meta name="description" content="The host's deck for Varga Future Party 2050: the vision, the goal, the three rules, a mini demo for every station, and the question for the room.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&display=swap">
@@ -62,7 +62,7 @@ aside{display:none}
 #hint{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);padding:8px 14px;border-radius:999px;background:rgb(7 19 43 / 90%);border:1px solid rgb(143 170 207 / 32%);color:var(--v-muted);font:400 11px/1.4 'Martian Mono',ui-monospace,monospace;letter-spacing:.03em;white-space:nowrap;z-index:9;transition:opacity .6s ease;pointer-events:none}
 #hint.gone{opacity:0}
 body.idle,body.idle *{cursor:none!important}
-/* Future Party 2050 in Blue futurism, the website's look (vibes/README.md): deep navy space, liquid chrome, electric blue
+/* Varga Future Party 2050 in Blue futurism, the website's look (vibes/README.md): deep navy space, liquid chrome, electric blue
    and ice. Unbounded for short headings, Geologica for reading and for the words people said, Martian Mono for labels and
    addresses. The palette comes from vibes/tokens.css, which slides/build.py puts in front of this file. */
 body { font-family: 'Geologica', system-ui, sans-serif; color: var(--v-ink); }
@@ -90,6 +90,9 @@ body { font-family: 'Geologica', system-ui, sans-serif; color: var(--v-ink); }
 .meta { font: 400 20px/1.6 'Martian Mono', ui-monospace, monospace; letter-spacing: .02em; color: var(--v-muted); }
 .strong { font-weight: 600; color: var(--v-ink); }
 .ice { color: var(--v-ice); }
+/* The host's name over the party's on the cover: VARGA, wide, with a line running out to the right */
+.title .by { display: flex; align-items: center; gap: 28px; margin-bottom: 26px; font-size: 44px; font-weight: 600; line-height: 1; letter-spacing: .46em; color: var(--v-ice); }
+.title .by::after { content: ""; width: 150px; height: 2px; background: linear-gradient(90deg, var(--v-ice), transparent); }
 .shine { background: var(--v-chrome-surface); background-clip: text; -webkit-background-clip: text; color: transparent; }
 .lemon { color: #f2d34a; }
 a { color: var(--v-ice); text-decoration-color: rgb(157 216 255 / 45%); text-underline-offset: 6px; }
@@ -185,9 +188,9 @@ u { text-decoration-thickness: 6px; text-underline-offset: 16px; }
 <p>Other worlds. One night.<span>vargafutureparty.com</span></p>
 </div>
 <p class="eyebrow in">Welcome to</p>
-<p class="title in" style="--i:1">Future<br>Party<br><span class="shine">2050</span></p>
+<p class="title in" style="--i:1"><span class="by">Varga</span>Future<br>Party<br><span class="shine">2050</span></p>
 <p class="serif in" style="--i:2"><i>The future is who you meet</i></p>
-<aside>Welcome everyone. This is Future Party 2050. Tonight everything here is about the future, and the future is who you meet.</aside>
+<aside>Welcome everyone. This is Varga Future Party 2050. Tonight everything here is about the future, and the future is who you meet.</aside>
 </section>
 <section id="vision" class="dark spread" data-transition="fade">
 <div class="head">

@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const p = await findPlayer((await params).id);
   if (!p) return { title: "The Future 2050" };
   const title = `${p.character} · ${p.name.split(" ")[0]}’s Kin · The Future 2050`;
-  const description = p.prophecy ?? "Every traveler at The Future Party is met by their Kin. Tap to meet this one.";
+  const description = p.prophecy ?? "Every traveler at Varga Future Party is met by their Kin. Tap to meet this one.";
   // A page's openGraph replaces the layout's, so the app's card stays the picture until the Kin is drawn
   const images = p.image_url ? [{ url: p.image_url, width: 900, height: 1200, alt: p.character }] : [CARD];
   return { title, description, openGraph: { ...OPEN_GRAPH, title, description, images }, twitter: { card: "summary_large_image", site: X, title, description, images } };

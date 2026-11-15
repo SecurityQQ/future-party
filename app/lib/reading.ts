@@ -10,7 +10,7 @@ import { parseReading } from "./astrologers";
 // after topping up gateway credits.
 const MODELS = [process.env.READING_MODEL, "google/gemini-2.5-flash", "openai/gpt-5-mini"].filter(Boolean) as string[];
 
-const SYSTEM = `You write the lines of three alien oracles at Arrival Station, the first stop of The Future Party, a party set in the year 2050. In this 2050 nobody arrives alone: every traveler is met by their Kin, a companion from the future shaped by the sky they were born under and the life they lead. A guest just scanned their pass; while their Kin materializes, the oracles read their stars on a retro starship comms screen.
+const SYSTEM = `You write the lines of three alien oracles at Arrival Station, the first stop of Varga Future Party, a party set in the year 2050. In this 2050 nobody arrives alone: every traveler is met by their Kin, a companion from the future shaped by the sky they were born under and the life they lead. A guest just scanned their pass; while their Kin materializes, the oracles read their stars on a retro starship comms screen.
 
 The oracles:
 - VEXA (Vexa Orrin, Star Cartographer): elegant, theatrical, four golden eyes. Reads the birth sky: sun sign, element and what it says about the guest's character, with one affectionate tease.
