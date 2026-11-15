@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Resonance player</title>
+<style>html,body{margin:0;height:100%;background:#111;overflow:hidden}#p,iframe{width:100%;height:100%;border:0;display:block}</style>
+</head><body><div id="p"></div>
+<script>
+/* Resonance relay player: player.html?id=&ids=a,b,c&i=0[&start=&end=] */
+(()=>{'use strict';
+const q=new URLSearchParams(location.search),id=q.get('id')||'',ids=(q.get('ids')||'').split(',').filter(x=>/^[\w-]{11}$/.test(x));
+const start=+q.get('start')||0,end=+q.get('end')||0;
+let i=Math.max(0,Math.min(+q.get('i')||0,ids.length-1)),player=null,skip=0;
+const post=m=>{try{parent.postMessage(Object.assign({resonance:1,id},m),'*');}catch{}};
+const vars=()=>{const v={autoplay:1,playsinline:1,rel:0};if(location.origin&&location.origin!=='null')v.origin=location.origin;if(ids.length===1){if(start)v.start=start;if(end)v.end=end;}return v;};
+function go(n){if(!player)return;if(n<0||n>=ids.length){post({type:'state',state:0,i,last:true});return;}clearTimeout(skip);i=n;post({type:'index',i});player.loadVideoById(ids[i]);}
+post({type:'hello',count:ids.length});
+if(String(self.origin)==='null'){post({type:'blocked',reason:'no-origin'});return;}
+if(!ids.length)return;
+window.onYouTubeIframeAPIReady=()=>{
+  player=new YT.Player('p',{host:'https://www.youtube-nocookie.com',videoId:ids[i],playerVars:vars(),events:{
+    onReady:e=>{e.target.playVideo();post({type:'ready',i,video:ids[i]});},
+    onStateChange:e=>{post({type:'state',state:e.data,i,video:ids[i],time:player.getCurrentTime()});if(e.data===0&&ids.length>1&&i<ids.length-1)go(i+1);},
+    onError:e=>{post({type:'error',code:e.data,i,video:ids[i]});if(ids.length>1&&i<ids.length-1)skip=setTimeout(()=>go(i+1),2500);}}});
+  setInterval(()=>{try{post({type:'tick',state:player.getPlayerState(),i,video:(player.getVideoData()||{}).video_id||ids[i],time:player.getCurrentTime()});}catch{}},1500);
+};
+addEventListener('message',e=>{if(e.source!==parent||!player)return;const d=e.data||{};
+  if(d.resonanceCmd==='go')go(+d.i);
+  if(d.resonanceCmd==='seekEnd')player.seekTo(Math.max(0,player.getDuration()-2),true);});
+const s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';s.onerror=()=>post({type:'error',code:'api',i});document.head.append(s);
+})();
+</script></body></html>

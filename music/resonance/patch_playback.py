@@ -21,15 +21,15 @@ html = rep(html, "            if(event.data===0)$('player-status').textContent=f
 html = rep(html, '<button id="play-full" class="secondary-button">Full recording <span aria-hidden="true">↗</span></button></div>',
            '<button id="play-full" class="secondary-button">Full recording <span aria-hidden="true">↗</span></button><button id="auto-next" class="secondary-button" aria-pressed="false" title="When a recording ends, go to the next stop and keep playing">⟳ Continuous: off</button></div>')
 html = rep(html, "$('play-sample').addEventListener('click',()=>play(false));",
-           "if(LOCAL){$('auto-next').textContent='▶ Built-in player ↗';$('auto-next').title='Open the hosted copy, where music plays inside the page';$('auto-next').removeAttribute('aria-pressed');$('auto-next').addEventListener('click',()=>openExternal('"+WEB+"/#track='+current));}else $('auto-next').addEventListener('click',()=>{autoNext=!autoNext;$('auto-next').setAttribute('aria-pressed',String(autoNext));$('auto-next').textContent=autoNext?'⟳ Continuous: on':'⟳ Continuous: off';toast(autoNext?'Continuous play on: each stop leads into the next.':'Continuous play off.');});document.addEventListener('resonance:play',e=>{if(e.detail!=='history')cleanPlayer();});\n  $('play-sample').addEventListener('click',()=>play(false));")
+           "$('auto-next').addEventListener('click',()=>{autoNext=!autoNext;$('auto-next').setAttribute('aria-pressed',String(autoNext));$('auto-next').textContent=autoNext?'⟳ Continuous: on':'⟳ Continuous: off';toast(autoNext?'Continuous play on: each stop leads into the next.':'Continuous play off.');});document.addEventListener('resonance:play',e=>{if(e.detail!=='history')cleanPlayer();});\n  $('play-sample').addEventListener('click',()=>play(false));")
 html = rep(html, "const myGeneration=generation,start=w.start||0",
            "document.dispatchEvent(new CustomEvent('resonance:play',{detail:'future'}));const myGeneration=generation,start=w.start||0")
 html = rep(html, "document.addEventListener('resonance:history',()=>setMode('history'));",
            "document.addEventListener('resonance:history',()=>setMode('history'));document.addEventListener('resonance:play',e=>{if(e.detail!=='future')cleanup();});")
 html = rep(html, "(FRAMED?'Playback opens on YouTube in a new tab.':'Local preview: playback opens on YouTube. Run the included server for the in-page player.')",
-           f"(FRAMED?'On this page playback opens on YouTube. Music plays inside the page at {WEB_HOST}.':'Local file: playback opens on YouTube. Music plays inside the page at {WEB_HOST}.')")
+           f"'Press play to listen here. In this copy the player loads from {WEB_HOST}.'")
 html = rep(html, "(FRAMED?'Playback opens on YouTube in a new tab.':'Local file: playback opens on YouTube. Serve this app for the in-page player.')",
-           f"(FRAMED?'On this page playback opens on YouTube. Music plays inside the page at {WEB_HOST}.':'Local file: playback opens on YouTube. Music plays inside the page at {WEB_HOST}.')")
+           f"'Press play to listen here. In this copy the player loads from {WEB_HOST}.'")
 
 html = rep(html, "            $('player-status').textContent=(messages[event.data]||'YouTube could not play this video.')+' Use “Open on YouTube” or “Find another recording” below.';",
            "            $('player-status').textContent=(messages[event.data]||'YouTube could not play this video.')+' Use “Open on YouTube” or “Find another recording” below.';\n            if(autoNext&&current<tracks.length){$('player-status').textContent+=' Continuous play: skipping to the next stop…';setTimeout(()=>{if(generation!==playerGeneration)return;select(current+1);play(lastFull);},2500);}")
