@@ -4,85 +4,88 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Future Party 2050</title>
+<meta name="theme-color" content="#030817">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307132b'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='%23dce9fb' stroke-width='2'/%3E%3Cellipse cx='32' cy='32' rx='28' ry='10' transform='rotate(-30 32 32)' fill='none' stroke='%239dd8ff' stroke-width='2'/%3E%3C/svg%3E">
+<meta name="description" content="Step into 2050. Films, music, ideas, and other worlds for the Future Party.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Instrument+Serif&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=League+Gothic&family=Geologica:wght@400;500;600;700&family=Martian+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: the party's front page. Four doors at the top (the wall, the music, the guests' corner, the research),
-   then one section for each. The wall comes first: the Big Wall, the two films and four slide walls.
-   The display face is League Gothic, the wall films' own type. Dark-first; light supported. Everything is a relative
-   link, so the page works from the folder offline. D.mode is "folder" (index.html, from hub/build.py) or "web"
-   (site/index.html, from hub/site.py): the web mode plays the 720p previews, opens Markdown on GitHub and drops the
-   claude.ai copies, since every page is on the site. */
+/* The party's front page in Blue futurism, the look shared with the party app and History of Music 2050
+   (vibes/README.md): deep navy space, liquid chrome, electric blue and ice. Four doors at the top (the wall, the
+   music, the guests' corner, the research), then one section for each, the Big Wall first. Unbounded for short
+   headings, Geologica for reading, Martian Mono for metadata. Dark only. The slide previews keep each wall's own look.
+   Everything is a relative link, so the page works from the folder offline. D.mode is "folder" (index.html, from
+   hub/build.py) or "web" (site/index.html, from hub/site.py): the web mode plays the 720p previews, opens Markdown on
+   GitHub and drops the claude.ai copies, since every page is on the site. The tokens are inlined by hub/build.py. */
+/*VIBES_TOKENS*/
 :root{
-  --bg:#070708; --raised:#0e0e10; --fg:#ffffff; --fg-2:#d4d4d8; --muted:#a1a1a6;
-  --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.20);
-  --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#ff6a33; --on-accent:#070708;
-  --ok:#67fc5c; --warn:#ffad31;
-  --display:"League Gothic","Impact","Arial Narrow",sans-serif;
-  --font:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
-  --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;
-  --r:10px;
-  color-scheme:dark;
-}
-@media (prefers-color-scheme: light){
-  :root:not([data-theme="dark"]){
-    --bg:#ffffff; --raised:#f5f5f6; --fg:#070708; --fg-2:#2a2a2e; --muted:#6e6e73;
-    --line:#e5e5e7; --line-2:#cfcfd4; --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#c2410c; --on-accent:#070708;
-    --ok:#16883a; --warn:#a35f00; color-scheme:light;
-  }
-}
-:root[data-theme="light"]{
-  --bg:#ffffff; --raised:#f5f5f6; --fg:#070708; --fg-2:#2a2a2e; --muted:#6e6e73;
-  --line:#e5e5e7; --line-2:#cfcfd4; --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#c2410c; --on-accent:#070708;
-  --ok:#16883a; --warn:#a35f00; color-scheme:light;
+  --bg:var(--v-space); --raised:var(--v-navy); --fg:var(--v-ink); --fg-2:#c4d4ec; --muted:var(--v-muted);
+  --line:rgb(143 170 207 / 20%); --line-2:rgb(143 170 207 / 42%);
+  --accent:var(--v-ice); --accent-hot:#cce9ff; --accent-ink:var(--v-ice); --on-accent:var(--v-navy);
+  --ok:var(--v-ice); --warn:var(--v-warning);
+  --display:"Unbounded",system-ui,sans-serif;
+  --gothic:"League Gothic","Impact","Arial Narrow",sans-serif;
+  --font:"Geologica",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Martian Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --serif:var(--font); --r:16px; color-scheme:dark;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--font);-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{margin:0;background:var(--bg) radial-gradient(ellipse at 88% 5%,rgb(30 75 151 / 24%),transparent 35%) no-repeat;color:var(--fg);font:16px/1.65 var(--font);-webkit-font-smoothing:antialiased}
+::selection{color:var(--v-navy);background:var(--v-ice)}
 [hidden]{display:none!important}
 a{color:inherit;text-decoration-color:var(--line-2);text-underline-offset:3px}
 a:hover{text-decoration-color:var(--accent)}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-code{font:13px var(--mono);background:var(--raised);border:1px solid var(--line);border-radius:5px;padding:1px 5px;word-break:break-word}
+code{font:12px var(--mono);background:var(--raised);border:1px solid var(--line);border-radius:5px;padding:1px 5px;word-break:break-word}
 .wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.eyebrow{font:500 12px/1.3 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0}
+.eyebrow{font:500 11px/1.3 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--v-ice);margin:0}
 h1,h2,h3{margin:0;text-wrap:balance}
-h2{font-size:clamp(26px,3.4vw,38px);line-height:1.08;letter-spacing:-.03em;font-weight:700;margin-top:8px}
+h2{font:500 clamp(23px,2.6vw,34px)/1.25 var(--display);letter-spacing:-.035em;margin-top:8px}
 p{margin:0}
 section{padding-block:56px;border-top:1px solid var(--line);scroll-margin-top:8px}
 .sec-head{display:grid;gap:6px;margin-bottom:28px;max-width:760px}
 .sec-head .note{color:var(--muted);font-size:15px;margin-top:6px}
 
-nav.top{display:flex;flex-wrap:wrap;gap:6px 18px;padding-block:18px;font:500 13px/1 var(--mono);letter-spacing:.04em}
+nav.top{display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;padding-block:22px;border-bottom:1px solid var(--line);font:400 11px/1.4 var(--mono);letter-spacing:.03em}
 nav.top a{text-decoration:none;color:var(--muted)}
 nav.top a:hover{color:var(--fg)}
-nav.top .brand{color:var(--fg);margin-right:auto}
+nav.top .brand{display:flex;align-items:center;gap:10px;color:var(--v-chrome);margin-right:auto;font:500 12px/1.4 var(--display);letter-spacing:-.02em}
+nav.top .brand svg{width:30px;height:30px;flex:none;color:var(--v-ice)}
 
-.hero{padding-block:28px 40px}
-.hero h1{font:400 clamp(72px,15vw,200px)/.86 var(--display);text-transform:uppercase;letter-spacing:.005em;margin-top:14px}
-.hero h1 .yr{color:var(--accent)}
-.lead{font-size:clamp(18px,2vw,21px);line-height:1.5;color:var(--fg-2);max-width:62ch;margin-top:22px}
+/* Hero: the copy and the chrome orbit, then the four doors */
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:36px;padding-block:48px 56px;isolation:isolate}
+.hero-copy{position:relative;z-index:1;min-width:0}
+.hero-art{position:relative;min-width:0;min-height:340px;overflow:hidden;border-radius:180px 20px 180px 20px;border:1px solid #617fa6;box-shadow:inset 0 0 0 1px #dce9fb,0 20px 80px rgb(21 59 126 / 22%);background:var(--v-space)}
+.hero-art img{position:absolute;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.88;animation:chrome-drift 24s ease-in-out infinite alternate}
+.hero-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 65%,rgb(3 8 23 / 70%));pointer-events:none}
+.art-label{position:absolute;z-index:1;left:28px;right:28px;bottom:32px;font:400 10px/1.8 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--v-chrome)}
+.art-label span{display:block;color:var(--v-muted);font-size:9px;letter-spacing:.08em}
+@keyframes chrome-drift{to{transform:scale(1.06) translateY(-1%)}}
+.hero h1{font:500 clamp(44px,6.1vw,82px)/1.06 var(--display);text-transform:uppercase;letter-spacing:-.055em;margin-top:22px}
+.hero h1 .yr{display:block;margin-top:6px;background:var(--v-chrome-surface);background-clip:text;-webkit-background-clip:text;color:transparent;font-weight:600;letter-spacing:-.045em}
+.lead{font-size:clamp(15px,1.4vw,17px);line-height:1.8;color:var(--fg-2);max-width:55ch;margin-top:26px}
 .lead b{color:var(--fg);font-weight:600}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;margin-top:28px}
+.hero-actions .lnk{color:var(--v-ice)}
+.hero-actions .alt{flex-basis:100%}
 
-/* The doors: one card per section, the way into the page */
-.doors{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:34px}
+/* The doors: one chrome-edged panel per section, the way into the page */
+.doors{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 @media (max-width:980px){.doors{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:520px){.doors{grid-template-columns:1fr}}
-.door{display:flex;flex-direction:column;gap:8px;min-width:0;padding:18px 18px 16px;border:1px solid var(--line);border-radius:var(--r);background:var(--raised);text-decoration:none;transition:border-color .2s,transform .2s}
-.door:hover{border-color:var(--accent);transform:translateY(-2px)}
-@media (prefers-reduced-motion: reduce){.door{transition:none}.door:hover{transform:none}}
-.door .n{font:500 12px var(--mono);color:var(--accent-ink);letter-spacing:.06em}
-.door b{font:400 clamp(34px,3.6vw,44px)/.95 var(--display);text-transform:uppercase;letter-spacing:.01em}
-.door span{font-size:14px;color:var(--muted);line-height:1.45}
-.door i{font-style:normal;margin-top:auto;padding-top:6px;font:500 13px var(--mono);color:var(--fg-2)}
+.door{display:flex;flex-direction:column;gap:8px;min-width:0;padding:20px;border:1px solid var(--line-2);border-top-color:#7d9ac0;border-radius:var(--r);background:linear-gradient(145deg,#112441,#07132b 75%);box-shadow:inset 0 1px 0 rgb(220 233 251 / 6%);text-decoration:none;transition:border-color var(--v-fast),box-shadow var(--v-fast),transform var(--v-fast)}
+.door:hover{border-color:var(--v-ice);box-shadow:inset 0 1px 0 rgb(220 233 251 / 10%),0 0 28px rgb(67 133 255 / 22%);transform:translateY(-2px)}
+.door .n{font:400 11px var(--mono);color:var(--v-ice);letter-spacing:.08em}
+.door b{font:500 clamp(16px,1.5vw,19px)/1.25 var(--display);letter-spacing:-.03em;text-transform:uppercase;color:var(--v-chrome)}
+.door span{font-size:14px;color:var(--muted);line-height:1.5}
+.door i{font-style:normal;margin-top:auto;padding-top:6px;font:400 11px var(--mono);color:var(--fg-2)}
 
 /* Wall tiles */
 .row-label{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 14px;flex-wrap:wrap}
 .row-label h3{font:600 15px var(--font);letter-spacing:.01em}
-.row-label span{font:400 12.5px var(--mono);color:var(--muted)}
+.row-label span{font:400 11px/1.7 var(--mono);color:var(--muted)}
 .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 .tiles.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 .tiles.four{grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -90,49 +93,49 @@ nav.top .brand{color:var(--fg);margin-right:auto}
 @media (max-width:980px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.tiles,.tiles.two,.tiles.four{grid-template-columns:1fr}}
 .tiles + .row-label,.feature + .row-label{margin-top:44px}
-.tile{display:flex;flex-direction:column;gap:14px;min-width:0}
-.screen{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:8px;overflow:hidden;background:#0b0b0d;border:1px solid var(--line)}
-.screen video{width:100%;height:100%;object-fit:cover;display:block;background:#0b0b0d}
-.screen .len{position:absolute;right:8px;bottom:8px;font:500 12px var(--mono);color:#fff;background:rgba(0,0,0,.66);padding:3px 7px;border-radius:5px;font-variant-numeric:tabular-nums}
-.screen .missing{position:absolute;inset:0;display:grid;place-content:center;gap:6px;text-align:center;padding:16px;color:#a1a1a6;font:400 13px/1.5 var(--mono)}
-.screen .missing b{color:#ffad31;font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:12px}
-.screen.slide{display:flex;flex-direction:column;justify-content:center;padding:7% 8%;gap:8px;color:#fff;background:radial-gradient(circle at 20% 80%,rgba(255,83,21,.18),transparent 55%),#060607}
-.screen.art{background:#060607 center/cover no-repeat;justify-content:flex-end}
-.screen.art::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.85),rgba(0,0,0,.35) 55%,rgba(0,0,0,0))}
+.tile{display:flex;flex-direction:column;gap:14px;min-width:0;background:linear-gradient(145deg,#0b1b36,#07132b);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.screen{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:10px;overflow:hidden;background:var(--v-space);border:1px solid var(--line-2)}
+.screen video{width:100%;height:100%;object-fit:cover;display:block;background:var(--v-space)}
+.screen .len{position:absolute;right:8px;bottom:8px;font:500 11px var(--mono);color:#fff;background:rgb(3 8 23 / 72%);padding:3px 7px;border-radius:5px;font-variant-numeric:tabular-nums}
+.screen .missing{position:absolute;inset:0;display:grid;place-content:center;gap:6px;text-align:center;padding:16px;color:var(--muted);font:400 12px/1.5 var(--mono)}
+.screen .missing b{color:var(--warn);font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:11px}
+.screen.slide{display:flex;flex-direction:column;justify-content:center;padding:7% 8%;gap:8px;color:#fff;background:radial-gradient(circle at 20% 80%,rgb(67 133 255 / 24%),transparent 55%),var(--v-navy)}
+.screen.art{background:var(--v-space) center/cover no-repeat;justify-content:flex-end}
+.screen.art::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgb(3 8 23 / 88%),rgb(3 8 23 / 35%) 55%,rgb(3 8 23 / 0%))}
 .screen.art > *{position:relative}
-.slide .k{font:500 clamp(8px,.75vw,10px)/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#ff6a33}
-.slide .qt{font:400 clamp(16px,1.9vw,22px)/1.12 var(--serif);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.slide .qt i{color:#ff6a33;font-style:normal}
-.slide .ht{font:800 clamp(16px,1.8vw,22px)/1.02 var(--font);letter-spacing:-.04em;max-width:16ch}
-.slide .tw{font:500 clamp(12px,1.25vw,15px)/1.35 var(--font);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;max-width:30ch}
-.slide .by{font:400 clamp(8px,.75vw,10px)/1.3 var(--mono);color:#9a9aa3}
-.tile h4{margin:0;font:600 20px/1.2 var(--font);letter-spacing:-.02em}
-.tile h4 small{display:block;font:400 13px/1.5 var(--mono);color:var(--muted);letter-spacing:0;margin-top:3px}
+.slide .k{font:500 10px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink)}
+.slide .qt{font:400 clamp(15px,1.7vw,20px)/1.3 var(--serif);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.slide .qt i{color:var(--accent-ink);font-style:normal}
+.slide .ht{font:700 clamp(15px,1.7vw,21px)/1.1 var(--font);letter-spacing:-.03em;max-width:16ch}
+.slide .tw{font:500 clamp(12px,1.2vw,15px)/1.4 var(--font);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;max-width:30ch}
+.slide .by{font:400 10px/1.3 var(--mono);color:var(--muted)}
+.tile h4{margin:0;font:600 19px/1.35 var(--font);letter-spacing:-.02em}
+.tile h4 small{display:block;font:400 11px/1.6 var(--mono);color:var(--muted);letter-spacing:0;margin-top:4px}
 .tile p{color:var(--fg-2);font-size:14.5px}
 .actions{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:auto}
-.btn{display:inline-flex;align-items:center;gap:9px;font:600 14px/1 var(--font);color:var(--on-accent);background:var(--accent);border:0;border-radius:999px;padding:11px 16px;cursor:pointer;text-decoration:none}
-.btn:hover{background:var(--accent-hot)}
+.btn{display:inline-flex;align-items:center;gap:9px;font:600 14px/1 var(--font);color:var(--on-accent);background:var(--v-chrome-surface);background-size:130% 100%;border:1px solid #c8ddf7;border-radius:10px;padding:13px 18px;box-shadow:inset 0 1px 0 #fff,0 4px 16px rgb(67 133 255 / 12%);transition:background-position var(--v-fast),box-shadow var(--v-fast);cursor:pointer;text-decoration:none}
+.btn:hover{background-position:100% 50%;box-shadow:inset 0 1px 0 #fff,0 0 24px rgb(67 133 255 / 25%)}
 .btn .tri{width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
-.btn[disabled]{background:var(--line-2);color:var(--muted);cursor:not-allowed}
-.btn.big{font-size:16px;padding:14px 20px}
+.btn[disabled]{background:var(--line-2);border-color:var(--line-2);box-shadow:none;color:var(--muted);cursor:not-allowed}
+.btn.big{font-size:15px;padding:15px 22px}
 .lnk{font-size:14px;color:var(--fg-2);text-decoration:none}
 .lnk:hover{color:var(--accent-ink)}
-.alt{font:400 12.5px var(--mono);color:var(--muted)}
+.alt{font:400 11px/1.7 var(--mono);color:var(--muted)}
 
-/* The Big Wall: the feature tile */
-.feature{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:32px;align-items:center}
+/* The Big Wall: the feature panel. Its preview keeps the wall's own colours, the chapters keep theirs. */
+.feature{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:32px;align-items:center;padding:20px;border:1px solid var(--line-2);border-top-color:#7d9ac0;border-radius:var(--r);background:linear-gradient(145deg,#112441,#07132b 75%);box-shadow:inset 0 1px 0 rgb(220 233 251 / 6%)}
 @media (max-width:860px){.feature{grid-template-columns:1fr;gap:22px}}
 .screen.bw{text-decoration:none;background:#000 center/cover no-repeat;display:flex;flex-direction:column;justify-content:flex-end;padding:6% 7%;color:#fff}
 .screen.bw::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.25)),linear-gradient(0deg,rgba(0,0,0,.6),rgba(0,0,0,0) 50%)}
 .screen.bw > *{position:relative}
-.bw .k{font:500 clamp(9px,1vw,12px)/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#ff6a33}
-.bw .t{font:400 clamp(56px,9vw,120px)/.84 var(--display);color:#ff5315;margin-top:6px}
-.bw .c{font:400 clamp(15px,1.7vw,22px)/1.1 var(--display);text-transform:uppercase;margin-top:6px;color:#e4e4e7}
+.bw .k{font:500 clamp(9px,1vw,11px)/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#ff6a33}
+.bw .t{font:400 clamp(56px,9vw,120px)/.84 var(--gothic);color:#ff5315;margin-top:6px}
+.bw .c{font:400 clamp(15px,1.7vw,22px)/1.1 var(--gothic);text-transform:uppercase;margin-top:6px;color:#e4e4e7}
 .bw .c b{font-weight:400;color:#ff6a33}
 .bw .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.bw .chips span{font:500 clamp(9px,.9vw,11px)/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 7px;border-radius:4px;background:rgba(0,0,0,.55);border-left:3px solid var(--c)}
-.feature h3{font:400 clamp(48px,6vw,76px)/.9 var(--display);text-transform:uppercase}
-.feature h3 span{color:var(--accent)}
+.bw .chips span{font:500 clamp(8px,.8vw,10px)/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 7px;border-radius:4px;background:rgba(0,0,0,.55);border-left:3px solid var(--c)}
+.feature h3{font:500 clamp(28px,3.4vw,44px)/1.1 var(--display);text-transform:uppercase;letter-spacing:-.05em}
+.feature h3 span{background:var(--v-chrome-surface);background-clip:text;-webkit-background-clip:text;color:transparent}
 .feature p{color:var(--fg-2);margin-top:14px;max-width:56ch}
 .chlist{list-style:none;margin:18px 0 0;padding:0;border-top:1px solid var(--line)}
 .chlist li{border-bottom:1px solid var(--line)}
@@ -140,39 +143,39 @@ nav.top .brand{color:var(--fg);margin-right:auto}
 .chlist a:hover b{color:var(--accent-ink)}
 .chlist i{width:10px;height:10px;border-radius:50%;background:var(--c)}
 .chlist b{font-weight:600}
-.chlist span{font:400 12.5px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.chlist span{font:400 11px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
 
-/* Two columns: a picture or a big name on the left, a list on the right */
+/* Two columns: a picture on the left, a list on the right */
 .program{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:start}
 @media (max-width:860px){.program{grid-template-columns:1fr;gap:28px}}
+.program + .program{margin-top:48px;padding-top:40px;border-top:1px solid var(--line)}
+.program h3{font:500 clamp(22px,2.4vw,30px)/1.2 var(--display);letter-spacing:-.04em;margin-bottom:14px}
 .arc{display:grid;gap:10px;border-top:1px solid var(--line);padding-top:16px}
-.arc div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;font-size:14.5px;color:var(--fg-2);padding-bottom:10px;border-bottom:1px solid var(--line)}
-.arc b{font:500 12px/1.9 var(--mono);color:var(--muted);font-weight:500}
+.arc div{display:grid;grid-template-columns:128px minmax(0,1fr);gap:12px;font-size:14.5px;color:var(--fg-2);padding-bottom:10px;border-bottom:1px solid var(--line)}
+.arc b{font:500 11px/1.9 var(--mono);color:var(--muted);font-weight:500}
 
-/* Mirror 2050 and the party app */
-.mirror-shot{display:block;width:100%;height:auto;border-radius:var(--r);border:1px solid var(--line);background:var(--raised)}
-#guests .arc div{grid-template-columns:128px minmax(0,1fr)}
+/* Mirror 2050, Mars in 3D and the party app */
+.mirror-shot{display:block;width:100%;height:auto;border-radius:var(--r);border:1px solid var(--line-2);background:var(--raised)}
 #guests .how{color:var(--fg-2);font-size:14.5px;margin-top:14px;max-width:62ch}
 #guests .how a{color:var(--fg);text-decoration:underline;text-underline-offset:2px}
-.app{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 24px;align-items:center;margin-top:36px;padding:20px 22px;border:1px solid var(--line);border-radius:var(--r);background:var(--raised)}
+.app{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 24px;align-items:center;margin-top:44px;padding:22px;border:1px solid var(--line-2);border-top-color:#7d9ac0;border-radius:var(--r);background:linear-gradient(145deg,#112441,#07132b 75%);box-shadow:inset 0 1px 0 rgb(220 233 251 / 6%)}
 @media (max-width:640px){.app{grid-template-columns:1fr}}
-.app h3{font:600 20px/1.2 var(--font);letter-spacing:-.02em}
-.app p{color:var(--fg-2);font-size:14.5px;margin-top:4px;max-width:70ch}
+.app h3{font:500 clamp(18px,2vw,22px)/1.25 var(--display);letter-spacing:-.03em;text-transform:uppercase}
+.app p{color:var(--fg-2);font-size:14.5px;margin-top:6px;max-width:70ch}
 
 /* Lists */
 .list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px}
 @media (max-width:760px){.list{grid-template-columns:1fr}}
 .item{display:grid;gap:6px;padding:18px 0;border-top:1px solid var(--line);min-width:0;align-content:start}
-.item h4{margin:0;font:600 18px/1.25 var(--font);letter-spacing:-.015em}
+.item h4{margin:0;font:600 18px/1.3 var(--font);letter-spacing:-.015em}
 .item h4 .pre{color:var(--muted);font-weight:500}
 .item h4 a{text-decoration:none}
 .item h4 a:hover{color:var(--accent-ink)}
 .item p{color:var(--fg-2);font-size:14.5px}
 .item .links{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;margin-top:4px}
-.item .links a{color:var(--fg-2);text-decoration:none}
-.item .links a:first-child{color:var(--accent-ink)}
-.item .links a:hover{color:var(--accent-ink);text-decoration:underline}
-.tag{font:500 10.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 6px;border-radius:4px;border:1px solid var(--line-2);color:var(--muted);vertical-align:2px;margin-left:6px}
+.item .links a{color:var(--accent-ink);text-decoration:none}
+.item .links a:hover{text-decoration:underline}
+.tag{font:500 10px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 6px;border-radius:4px;border:1px solid var(--line-2);color:var(--muted);vertical-align:2px;margin-left:6px}
 
 /* Checklist, address list and table */
 .check{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;counter-reset:c}
@@ -181,47 +184,78 @@ nav.top .brand{color:var(--fg);margin-right:auto}
 .check label{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;cursor:pointer;font-size:15px;color:var(--fg-2)}
 .check input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--accent)}
 .check b{color:var(--fg);font-weight:600;display:block;margin-bottom:2px}
-.check input:checked + span{opacity:.5}
-.check-tools{display:flex;gap:12px;align-items:center;margin-top:16px;font:400 13px var(--mono);color:var(--muted)}
-.check-tools button{font:500 13px var(--font);color:var(--fg-2);background:transparent;border:1px solid var(--line-2);border-radius:999px;padding:7px 12px;cursor:pointer}
+.check input:checked + span{opacity:.72}
+.check-tools{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:16px;font:400 11px var(--mono);color:var(--muted)}
+.check-tools button{font:500 13px var(--font);color:var(--fg-2);background:var(--raised);border:1px solid var(--line-2);border-radius:8px;padding:7px 12px;cursor:pointer}
+.check-tools button:hover{border-color:var(--v-ice)}
 .shorts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:0 32px;font-size:14px}
 .shorts div{display:grid;grid-template-columns:minmax(110px,auto) minmax(0,1fr);gap:12px;padding:10px 0;border-top:1px solid var(--line)}
-.shorts a{font:500 13.5px var(--mono);color:var(--accent-ink);text-decoration:none}
+.shorts a{font:500 12px var(--mono);color:var(--accent-ink);text-decoration:none}
 .shorts a:hover{text-decoration:underline}
 .shorts span{color:var(--muted)}
-.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--v-navy)}
 table{border-collapse:collapse;width:100%;min-width:720px;font-size:14.5px}
 th,td{text-align:left;vertical-align:top;padding:13px 16px;border-bottom:1px solid var(--line)}
 tr:last-child td{border-bottom:0}
-th{font:500 11.5px/1.3 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);background:var(--raised)}
+th{font:500 10.5px/1.3 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);background:var(--raised)}
 td{color:var(--fg-2)}
 td b{color:var(--fg);font-weight:600}
-footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12.5px/1.7 var(--mono);color:var(--muted)}
+footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 11px/1.8 var(--mono);color:var(--muted)}
 
 /* Player: always dark, like the wall */
 .player{position:fixed;inset:0;z-index:50;background:#000;color:#fff}
 .player video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
-.pbar{position:absolute;left:0;right:0;bottom:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;padding:28px max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.75));transition:opacity .35s}
+.pbar{position:absolute;left:0;right:0;bottom:0;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;padding:28px max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:linear-gradient(transparent,rgb(3 8 23 / 94%));transition:opacity .35s}
 .player.idle{cursor:none}
 .player.idle .pbar{opacity:0;pointer-events:none}
-.pbar span{font:500 13px var(--mono);color:#cfcfd4;margin-right:8px}
-.pbar button{font:500 13.5px/1 var(--font);color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:10px 14px;cursor:pointer}
-.pbar button:hover{background:rgba(255,255,255,.16)}
-@media (prefers-reduced-motion: reduce){.pbar{transition:none}}
+.pbar span{font:500 12px var(--mono);color:#cfcfd4;margin-right:8px}
+.pbar button{font:500 13.5px/1 var(--font);color:#fff;background:#142d52;border:1px solid #617fa6;border-radius:8px;padding:10px 14px;cursor:pointer}
+.pbar button:hover{background:#1b3a66}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px}
+  .hero h1{font-size:clamp(44px,7.6vw,68px)}
+  .hero-art{border-radius:100px 16px 100px 16px}
+  nav.top .brand{flex-basis:100%}
+}
+@media(max-width:620px){
+  .hero{display:block;padding-block:36px 32px;overflow:hidden}
+  .hero-copy{padding-bottom:28px}
+  .hero h1{font-size:clamp(42px,12.8vw,68px);max-width:100%;letter-spacing:-.06em}
+  .hero-art{position:absolute;z-index:-1;top:16px;right:-24%;width:80%;height:440px;min-height:0;border:0;border-radius:0;box-shadow:none;opacity:.2;mask-image:linear-gradient(90deg,transparent,#000 40%,#000);-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%,#000)}
+  .hero-art .art-label{display:none}
+  .lead{max-width:100%;font-size:15px;text-shadow:0 1px 8px var(--v-space)}
+  section{padding-block:40px}
+  .sec-head{margin-bottom:22px}
+  .row-label{display:block}.row-label span{display:block;margin-top:6px}
+  .tile,.feature{padding:14px}
+  nav.top{gap:12px 16px;font-size:10px}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .door:hover{transform:none}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
   <nav class="top" aria-label="Sections">
-    <span class="brand">FUTURE PARTY / 2050</span>
+    <span class="brand"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="16" cy="16" r="7"/><ellipse cx="16" cy="16" rx="15" ry="5" transform="rotate(-25 16 16)"/></svg>FUTURE PARTY / 2050</span>
     <a href="#wall">Wall</a><a href="#music">Music</a><a href="#guests">Guests</a><a href="#research">Research</a>
   </nav>
 
   <header class="hero">
-    <p class="eyebrow" id="eyebrow">Everything for the night</p>
-    <h1>Future Party <span class="yr">2050</span></h1>
-    <p class="lead" id="lead"></p>
-    <div class="actions" style="margin-top:24px"><a class="btn big" id="heroStart"><span class="tri" aria-hidden="true"></span>Start the Big Wall</a><span class="alt" id="heroAlt"></span></div>
+    <div class="hero-copy">
+      <p class="eyebrow" id="eyebrow">Everything for the night</p>
+      <h1>Future<br>Party <span class="yr">2050</span></h1>
+      <p class="lead" id="lead"></p>
+      <div class="hero-actions"><a class="btn big" id="heroStart"><span class="tri" aria-hidden="true"></span>Start the Big Wall</a><a class="lnk" id="heroMusic">Enter History of Music 2050 <span aria-hidden="true">↗</span></a><span class="alt" id="heroAlt"></span></div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <img src="vibes/assets/chrome-orbit.webp" width="736" height="1308" alt="" fetchpriority="high">
+      <div class="art-label">Other worlds. One night.<span>Music · ideas · future encounters</span></div>
+    </div>
     <div class="doors" id="doors"></div>
   </header>
 
@@ -250,14 +284,15 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12.5px/
   <section id="guests">
     <div class="sec-head">
       <p class="eyebrow">For the guests</p>
-      <h2>Mirror 2050</h2>
-      <p class="note">A live camera for the guests: eight effects that went viral on X, rebuilt in one page and played with the hands. Nothing is filmed or uploaded; the camera stays in the browser.</p>
+      <h2>Mirror, Mars in 3D and the party app</h2>
+      <p class="note">Things to try on the night: a camera you play with your hands, Mars through red/cyan glasses, and the app on everyone's phone.</p>
     </div>
     <div class="program">
       <div>
+        <h3>Mirror 2050</h3>
         <img class="mirror-shot" id="mirrorShot" src="mirror/preview.jpg" width="1932" height="544" loading="lazy" alt="The eight effects: glass hands, particle words, a hologram cube, a portal, shattered tiles, time trails, falling code and a see-through cloak">
         <div class="actions" style="margin-top:20px"><a class="btn" id="mirrorLink"><span class="tri" aria-hidden="true"></span>Open the mirror</a></div>
-        <p class="how" id="mirrorHow"></p>
+        <p class="how">Eight effects that went viral on X, rebuilt in one page and played with the hands. Nothing is filmed or uploaded; the camera stays in the browser. <span id="mirrorHow"></span></p>
       </div>
       <div class="arc" aria-label="The eight effects and how to play them">
         <p class="eyebrow" style="margin-bottom:4px">Keys 1–8, or party mode</p>
@@ -269,6 +304,24 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12.5px/
         <div><b>6 Time Warp</b><span>Lower rows are older frames; point a finger and time ripples from it.</span></div>
         <div><b>7 Matrix</b><span>You turn into falling code; your hands show the real colours.</span></div>
         <div><b>8 Cloak</b><span>Your body shows the room behind you. A fist decloaks.</span></div>
+      </div>
+    </div>
+    <div class="program" id="mars">
+      <div>
+        <h3>Mars in 3D</h3>
+        <img class="mirror-shot" id="marsShot" src="mars3d/preview.jpg" width="1280" height="720" loading="lazy" alt="Curiosity's deck and Mount Sharp on the horizon, as a red/cyan anaglyph">
+        <div class="actions" style="margin-top:20px"><a class="btn" id="marsLink"><span class="tri" aria-hidden="true"></span>Start Mars in 3D</a></div>
+        <p class="how" id="marsHow"></p>
+      </div>
+      <div class="arc" aria-label="The missions in the loop">
+        <p class="eyebrow" style="margin-bottom:4px">Seven missions, keys 1–7</p>
+        <div><b>1 Pathfinder</b><span>1997, Ares Vallis: the first rover, Sojourner, and its rocks.</span></div>
+        <div><b>2 Spirit</b><span>2004–2010, Gusev crater: its own shadow, a dust devil, Husband Hill.</span></div>
+        <div><b>3 Opportunity</b><span>2004–2018, Meridiani: blueberries, an iron meteorite, Endeavour crater.</span></div>
+        <div><b>4 Phoenix</b><span>2008, the arctic: trenches dug down to ice.</span></div>
+        <div><b>5 Curiosity</b><span>Since 2012, Gale crater: Mount Sharp, a moving dune.</span></div>
+        <div><b>6 Perseverance</b><span>Since 2021, Jezero: Ingenuity flying, and the ground seen from it.</span></div>
+        <div><b>7 From orbit</b><span>Canyons, an ancient delta, the north polar cap, Phobos.</span></div>
       </div>
     </div>
     <div class="app">
@@ -316,13 +369,14 @@ $('lead').innerHTML=WEB
   :'The wall, the music, the guests’ corner and the research behind it, in one place. <b>Open this page on the projector laptop</b>: everything plays straight from the folder, without internet or a login. The same pages are online at <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(D.site.replace(/^https?:\/\//,''))+'</a>.';
 
 $('heroStart').href=P.bigwall+'#play';
+$('heroMusic').href=P.resonance;
 $('heroAlt').textContent=WEB?'or type '+D.site.replace(/^https?:\/\//,'')+'/wall on the projector laptop':'press F on the wall for fullscreen';
 
 /* The doors */
 const DOORS=[
   ['#wall','On the wall','The Big Wall, Further, Six Facts, and the quote, idea, tweet and art walls.','▶ '+mins(W.total)+' a loop'],
   ['#music','Music','Playlist, History of Music 2050, Why Music Changes, and Play: 2050 for the guests.',S.tracks+' tracks'],
-  ['#guests','Guests','Mirror 2050, the camera played with the hands, and The Future 2050, the party app.','2 things to try'],
+  ['#guests','Guests','Mirror 2050, Mars in 3D for red/cyan glasses, and The Future 2050, the party app.','3 things to try'],
   ['#research','2050 Research','The books, the tweets, the films and the effects behind the wall.','7 pages']
 ];
 $('doors').innerHTML=DOORS.map((d,i)=>'<a class="door" href="'+d[0]+'"><span class="n">0'+(i+1)+'</span><b>'+esc(d[1])+'</b><span>'+esc(d[2])+'</span><i>'+esc(d[3])+'</i></a>').join('');
@@ -391,7 +445,7 @@ const loc=(t,p)=>D.exists[p]===false?null:[t,/\.md$/.test(p)?doc(p):p];
 $('soundList').innerHTML=[
   item('Playlist','Soundtrack 2050, the party’s running order: '+S.tracks+' tracks and spoken voices in three blocks, each scored for plausibility and inspiration, plus '+S.bench+' spares.',
     [['YouTube playlist ↗',D.playlists.soundtrack],loc('the running order',P.soundtrack),['online ↗',D.online.soundtrack]]),
-  item('History of Music 2050',WEB?'Music history and what comes next: 60 stops from 1400 BCE, a Future Lab and a radio, with a YouTube player in the page.':'Music history and what comes next: 60 stops from 1400 BCE, a Future Lab and a radio. Its built-in YouTube player needs a small local server: double-click <code>music/resonance/dist/local/Open Resonance.command</code>.',
+  item('History of Music 2050',WEB?'Music history and what comes next: 60 stops from 1400 BCE, music of the future and a radio, with a YouTube player in the page.':'Music history and what comes next: 60 stops from 1400 BCE, music of the future and a radio. Its built-in YouTube player needs a small local server: double-click <code>music/resonance/dist/local/Open Resonance.command</code>.',
     [loc(WEB?'open':'open (no player)',P.resonance),['YouTube playlist ↗',D.playlists.resonance],['online ↗',D.online.resonance]]),
   item('Why Music Changes','Four thousand years in thirteen eras: who paid, who ruled, what people believed, and the technology and contact that changed the sound.',
     [loc('open',P.why),['History of Music playlist ↗',D.playlists.history],['online ↗',D.online.why]],'Research'),
@@ -415,11 +469,15 @@ $('readList').innerHTML=[
     [loc('open',P.mirror_research),['online ↗',D.online.mirror_research]])
 ].join('');
 
-/* Mirror 2050 and the party app */
+/* Mirror 2050, Mars in 3D and the party app */
 $('mirrorLink').href=P.mirror;
 if(D.exists['mirror/preview.jpg']===false)$('mirrorShot').hidden=true;
 $('mirrorLink').insertAdjacentHTML('afterend','<a class="lnk" href="'+esc(P.mirror)+'?party">party mode</a>');
 $('mirrorHow').innerHTML=WEB?'Works on any laptop or phone with a camera, best in Chrome or Edge: allow the camera, then use your hands. Party mode hides the controls and changes the effect every 25 seconds.':'The camera needs a local server: run <code>python3 -m http.server 8050 -d mirror</code> from this folder, then open <a class="lnk" href="http://localhost:8050">localhost:8050</a> (<a class="lnk" href="http://localhost:8050/?party">party mode</a>).';
+$('marsLink').href=P.mars3d;
+$('marsLink').insertAdjacentHTML('afterend','<a class="lnk" href="'+esc(P.mars3d)+'?globe">the globe alone</a>');
+if(D.exists['mars3d/preview.jpg']===false)$('marsShot').hidden=true;
+$('marsHow').innerHTML=D.mars.pictures+' real stereo pictures of Mars from the rovers, landers, the Ingenuity helicopter and orbiters, with a live 3D globe that flies to each landing site. Red lens on the left eye; the intro has a glasses test. It runs by itself, about 13 minutes a loop, and works offline. Arrow keys skip, G opens the globe alone, I lists every picture with its source.';
 $('appLink').href=D.apps.party;
 
 $('foot').innerHTML='Future Party 2050 · built '+esc(D.built)+' · <a href="'+esc(D.repo)+'" target="_blank" rel="noopener">source on GitHub</a>'+(WEB?'':' · <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(D.site.replace(/^https?:\/\//,''))+'</a>');

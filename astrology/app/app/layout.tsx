@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "The Future 2050",
   description: "It is 2050 and nobody arrives alone. Tap your pass, meet your Kin, and collect the Kin of everyone you meet at The Future Party.",
 };
-export const viewport: Viewport = { themeColor: "#03050c", width: "device-width", initialScale: 1, viewportFit: "cover" };
+export const viewport: Viewport = { themeColor: "#030817", width: "device-width", initialScale: 1, viewportFit: "cover" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

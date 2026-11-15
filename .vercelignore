@@ -12,6 +12,11 @@
 !/mirror
 !/concept-art
 !/wall
+!/mars3d
+!/vibes
+/vibes/*
+!/vibes/tokens.css
+!/vibes/assets
 /video/*
 !/video/dist
 # the Big Wall shows Further's photos (site.py copies only the ones in wall/dist/manifest.json)
@@ -25,3 +30,4 @@
 /concept-art/images
 /concept-art/.cache
 /concept-art/dist
+/mars3d/raw

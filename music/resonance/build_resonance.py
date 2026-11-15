@@ -217,6 +217,9 @@ for old, new, count in [
 ]:
     html = rep(html, old, new, count)
 
+exec(open(P('patch_history_layout.py'), encoding='utf-8').read())
+exec(open(P('patch_future_layout.py'), encoding='utf-8').read())
+
 # ---------- 7. Write ----------
 os.makedirs(P('dist'), exist_ok=True)
 open(P('dist', 'Resonance_History_and_Future.html'), 'w', encoding='utf-8').write(html)

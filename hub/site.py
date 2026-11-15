@@ -28,11 +28,13 @@ _spec.loader.exec_module(B)
 PAGES = sorted(set(B.PAGES.values()) | {
     "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html"})
 MEDIA = "video/dist/media"
-# Other files the pages load from the repo: the Mirror 2050 preview, and every file the Big Wall lists in its manifest
-# (Further's photos in video/assets/photos; its films are in MEDIA)
-ASSETS = ["mirror/preview.jpg"] + B.load("wall/dist/manifest.json")["files"]
+# Other files the pages load from the repo: the Mirror 2050 preview, the Blue futurism chrome texture, Mars in 3D's
+# slides and preview, and every file the Big Wall lists in its manifest (Further's photos; its films are in MEDIA)
+ASSETS = (["mirror/preview.jpg", "vibes/assets/chrome-orbit.webp", "mars3d/slides.js", "mars3d/preview.jpg"]
+          + B.load("wall/dist/manifest.json")["files"])
 # Folders the pages load from: the Imagined Futures pictures (concept-art/images/, the originals, stay off the site)
-ASSET_DIRS = ["concept-art/thumbs"]
+# and Mars in 3D's pictures, globe maps and three.js (mars3d/raw/, the originals, stay off the site)
+ASSET_DIRS = ["concept-art/thumbs", "mars3d/img", "mars3d/globe", "mars3d/vendor"]
 SHELL = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
          '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
          '<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>\n')
@@ -55,8 +57,8 @@ def forward(target):
     return ('<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Future Party 2050</title>'
             f'<meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url={url}">'
             f'<script>location.replace({url!r})</script></head>'
-            '<body style="margin:0;padding:24px 16px;background:#070708;color:#fff;font:16px/1.5 system-ui,sans-serif">'
-            f'<a href="{url}" style="color:#ff6a33">Open {target.split("#")[0].rsplit("/", 1)[-1]}</a></body></html>\n')
+            '<body style="margin:0;padding:24px 16px;background:#030817;color:#edf4ff;font:16px/1.5 system-ui,sans-serif">'
+            f'<a href="{url}" style="color:#9dd8ff">Open {target.split("#")[0].rsplit("/", 1)[-1]}</a></body></html>\n')
 
 
 def main():

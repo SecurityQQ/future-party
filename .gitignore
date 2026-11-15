@@ -50,3 +50,7 @@ showreel/snapshots/
 showreel/assets/footage/
 showreel/assets/further/
 showreel/assets/music/_call-to-adventure-full.mp3
+
+# Mars in 3D: the original pictures, the Viking map and the MOLA grid are re-fetchable with
+# python3 -I mars3d/tools/fetch.py; img/, globe/textures.js and slides.js are committed
+mars3d/raw/

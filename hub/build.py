@@ -63,6 +63,8 @@ PAGES = {
     "concept": "concept-art/imagined-futures.html",
     # The Big Wall, built by wall/build.py; site.py copies the photos and films it loads
     "bigwall": "wall/dist/big-wall.html",
+    # Mars in 3D is served from its own folder (/mars3d); site.py copies its pictures, globe maps and three.js
+    "mars3d": "mars3d/index.html",
 }
 # Earlier claude.ai copies of the same pages.
 ALIASES = {"https://claude.ai/artifact/65pctWFWHMQZ3ezNrrA7P1": "futurists_ru"}
@@ -75,6 +77,7 @@ SHORT = {
     "tweets": "tweets/dist/tweet-wall.html#tweet-wall",
     "tweets-short": "tweets/dist/tweet-wall.html#short-wall",
     "art": PAGES["concept"] + "#wall",
+    "mars": PAGES["mars3d"],
     "play": PAGES["contact"],
     "soundboard": PAGES["contact"],
     "soundtrack": PAGES["soundtrack"],
@@ -152,6 +155,11 @@ def concept_numbers():
     return {"pictures": sum(len(p["photos"]) for p in posts), "posts": len(posts), "tile": ART_TILE}
 
 
+def mars3d_numbers():
+    s = load("mars3d/slides.json")
+    return {"pictures": sum(len(c["slides"]) for c in s["chapters"]), "missions": len(s["chapters"])}
+
+
 def soundtrack_numbers():
     s = load("music/soundtrack.json")
     secs = sum(t.get("d") or 0 for t in s["tracks"])
@@ -216,6 +224,13 @@ def films_list(web):
 
 def fill(template, data):
     tpl = (HUB / template).read_text(encoding="utf8")
+    # Blue futurism: the palette, chrome materials and timing shared with the party app and Resonance
+    # (vibes/tokens.css), inlined so the pages work offline
+    theme_slot = "/*VIBES_TOKENS*/"
+    if theme_slot in tpl:
+        tpl = tpl.replace(theme_slot, (ROOT / "vibes" / "tokens.css").read_text(encoding="utf8"), 1)
+    elif template == "template.html":
+        sys.exit("template.html is missing the shared vibe token slot")
     slot = "const D=/*DATA*/{};"
     if slot not in tpl:
         sys.exit(f"{template} is missing the const D=/*DATA*/{{}}; slot")
@@ -238,10 +253,10 @@ def build(web=False):
         sys.exit("wall/dist/manifest.json is missing: run python3 -I wall/build.py")
     data = dict(common(web), **{
         "films": [f for f in films if f["front"]],
-        "books": b, "tweets": t, "sound": s, "art": c, "wall": w,
+        "books": b, "tweets": t, "sound": s, "art": c, "wall": w, "mars": mars3d_numbers(),
         "exists": {p: (ROOT / p).exists() for p in [
             "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html",
-            "reel/links.md", "mirror/preview.jpg", ART_TILE, WALL_TILE, *PAGES.values()]},
+            "reel/links.md", "mirror/preview.jpg", "mars3d/preview.jpg", ART_TILE, WALL_TILE, *PAGES.values()]},
     })
     missing = [p for p, ok in data["exists"].items() if not ok]
     page = fill("template.html", data)
@@ -259,7 +274,8 @@ def admin(web=False):
     films = films_list(web)
     # The admin page reuses the front page's style block. The front page itself never names the admin page.
     tpl = (HUB / "template.html").read_text(encoding="utf8")
-    css = re.search(r"<style>.*?</style>", tpl, re.S).group(0)
+    css = re.search(r"<style>.*?</style>", tpl, re.S).group(0).replace(
+        "/*VIBES_TOKENS*/", (ROOT / "vibes" / "tokens.css").read_text(encoding="utf8"), 1)
     data = dict(common(web), **{"films": films, "wall": wall_numbers(),
                                 "exists": {p: (ROOT / p).exists() for p in PAGES.values()}})
     page = fill("admin.html", data).replace("<!--CSS-->", css, 1)

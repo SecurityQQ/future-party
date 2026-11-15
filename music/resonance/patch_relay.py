@@ -8,7 +8,9 @@
 PLAYER_HTML = r"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
 <title>Resonance player</title>
-<style>html,body{margin:0;height:100%;background:#000;overflow:hidden}#p,iframe{width:100%;height:100%;border:0;display:block}</style>
+<meta name="theme-color" content="#030817"><meta name="color-scheme" content="dark">
+<style>__VIBE_TOKENS__
+html,body{margin:0;height:100%;background:var(--v-space);overflow:hidden;color-scheme:dark}#p,iframe{width:100%;height:100%;border:0;display:block}#p:empty{background:radial-gradient(ellipse at 50% 40%,var(--v-panel-hi),var(--v-space) 75%)}#p:empty::before{content:"";position:absolute;left:calc(50% - 52px);top:calc(50% - 17px);width:104px;height:34px;border:1px solid var(--v-chrome-mid);border-radius:50%;transform:rotate(-25deg);box-shadow:0 0 22px rgb(67 133 255 / 18%);pointer-events:none}</style>
 </head><body><div id="p"></div>
 <script>
 /* Resonance relay player: player.html?id=&ids=a,b,c&i=0[&start=&end=] */
@@ -36,6 +38,8 @@ const s=document.createElement('script');s.src='https://www.youtube.com/iframe_a
 })();
 </script></body></html>
 """
+# The relay is a separately emitted page, so embed the same canonical tokens.
+PLAYER_HTML = PLAYER_HTML.replace('__VIBE_TOKENS__', open(P('..', '..', 'vibes', 'tokens.css'), encoding='utf-8').read())
 os.makedirs(P('dist', 'local'), exist_ok=True)
 open(P('dist', 'local', 'player.html'), 'w', encoding='utf-8').write(PLAYER_HTML)
 
