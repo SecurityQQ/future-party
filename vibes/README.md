@@ -34,7 +34,8 @@ The hub inlines these tokens through `hub/build.py` and ships the texture with
 `hub/site.py`. Resonance reads the same tokens and embeds the texture through
 `music/resonance/patch_style.py`, so its standalone and hub-hosted pages share
 the same appearance. The party slides (`slides/`) put the tokens in front of
-`slides/deck/deck.css` through `slides/build.py`. The compact History controls and Music of the Future card
+`slides/deck/deck.css` through `slides/build.py`. Imagined Futures (`concept-art/`, its page and its `#wall`)
+inlines them through `concept-art/build.py`. The compact History controls and Music of the Future card
 view live in `patch_history_layout.py` / `history-layout.css` and
 `patch_future_layout.py` / `future-layout.css`. Edit these sources, then regenerate
 the HTML.
