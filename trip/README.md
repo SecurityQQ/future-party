@@ -22,19 +22,20 @@ Opened as a file from disk it still plays, but the browser will not give local p
 | Address | What it does |
 | --- | --- |
 | `?src=mic` or `?src=beat` | Starts at once, where the browser allows sound without a click (a kiosk). |
-| `?scene=kaleido` | Keeps one scene: `milk`, `kaleido`, `tunnel`, `melt`, `face`, `title`. |
+| `?scene=kaleido` | Keeps one scene: `milk`, `kaleido`, `tunnel`, `melt`, `face`, `title`, `welcome`. |
 | `?text=0` | No names and no credits. |
 | `?sound=1` | The built-in beat is audible. |
 | `?quality=0.6` | Draws fewer pixels, for a slow laptop. The page also steps down by itself under 40 frames a second. |
 
-**Keys:** `F` full screen · `Space` or `→` next scene · `1`–`6` keep one scene, `0` all scenes · `N` next visual · `A` next picture · `T` text on and off · `M` microphone · `B` built-in beat · `S` its sound · `H` the start screen with these keys.
+**Keys:** `F` full screen · `Space` or `→` next scene · `1`–`7` keep one scene, `0` all scenes · `N` next visual · `A` next picture · `T` text on and off · `M` microphone · `B` built-in beat · `S` its sound · `H` the start screen with these keys.
 
 ## What plays
 
-The director runs the scenes in a fixed order of about five and a half minutes and changes scene on a beat. Pictures and visuals are shuffled, and the innovators continue from where the last scene stopped.
+The director runs the scenes in a fixed order of about six minutes and changes scene on a beat. Pictures and visuals are shuffled, and the innovators continue from where the last scene stopped.
 
 | Scene | What it is |
 | --- | --- |
+| Welcome | Twice a loop: WELCOME TO, then the front page's poster, VARGA / FUTURE / PARTY / 2050 in Unbounded with the year in chrome, one line every two beats. The palette runs through the letters and a band of light crosses them. |
 | Title | FUTURE, PARTY, 2050, one word every two beats, throwing coloured echoes. |
 | Kaleidoscope | A picture folded 6 to 16 times, turning; a new picture every 8 beats. |
 | Portrait | Two innovators a scene: the year, the name, one line on what they did, and the portrait in five flat inks. Each ends as four posters in four colourways. |

@@ -188,7 +188,7 @@ python3 -m http.server 4620            # in the repo folder, then open http://lo
 python3 -I trip/build.py               # after changing trip/presets.json, trip/innovators.json or Imagined Futures
 ```
 
-Start with the microphone, press F. Space skips to the next scene, 1 to 6 keep one scene, B switches to a built-in beat when the laptop cannot hear the music. [`trip/README.md`](trip/README.md) has the addresses, the keys and how it is drawn.
+Start with the microphone, press F. Space skips to the next scene, 1 to 7 keep one scene, B switches to a built-in beat when the laptop cannot hear the music. [`trip/README.md`](trip/README.md) has the addresses, the keys and how it is drawn.
 
 ## The camera mirror
 

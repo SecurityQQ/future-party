@@ -13,7 +13,7 @@ if (/^https?:$/.test(location.protocol) && !/(\/|\.html)$/.test(location.pathnam
 <meta name="description" content="Trip 2050: a light show for the party wall. MilkDrop visuals that move with the music, the Imagined Futures concept art as kaleidoscopes and tunnels, and 24 innovators from Archimedes to CRISPR.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Unbounded:wght@500;700&family=Geologica:wght@400;500;600&family=Martian+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Unbounded:wght@500;600;700&family=Geologica:wght@400;500;600&family=Martian+Mono:wght@400;500&display=swap">
 <style>
 /* Trip 2050, the light show. The start screen wears Blue futurism (vibes/tokens.css); what plays on the wall is the one
    place on the site where every colour is allowed. Type on the wall follows the Big Muse: League Gothic names,
@@ -69,7 +69,7 @@ kbd{font:inherit;color:var(--v-ink);border:1px solid var(--v-line);border-radius
     <p class="note">The microphone only listens for the beat: no sound is recorded or leaves this computer.</p>
     <p class="note warn">Fast motion and flashing colours. Not for guests with photosensitive epilepsy.</p>
     <p class="note" id="file-note" hidden>Opened as a file, the browser keeps local pictures away from the graphics card: the concept art then comes from X (online only) and the innovators appear as names without portraits. For everything, offline too, run <code>python3 -m http.server 4620</code> in the repo folder and open <code>localhost:4620/trip/</code>.</p>
-    <p class="keys"><kbd>F</kbd>full screen <kbd>Space</kbd>next scene <kbd>1</kbd>–<kbd>6</kbd>keep one scene <kbd>0</kbd>all scenes<br>
+    <p class="keys"><kbd>F</kbd>full screen <kbd>Space</kbd>next scene <kbd>1</kbd>–<kbd>7</kbd>keep one scene <kbd>0</kbd>all scenes<br>
       <kbd>N</kbd>next visual <kbd>A</kbd>next picture <kbd>T</kbd>text <kbd>M</kbd>microphone <kbd>B</kbd>built-in beat <kbd>S</kbd>its sound <kbd>H</kbd>these keys</p>
   </div>
 </div>
@@ -219,7 +219,7 @@ void main(){
 const FINAL = COMMON + `
 uniform sampler2D uFb, uMilk, uText, uShadow;
 uniform vec2 uRes;
-uniform float uMilkGain, uOcclude, uAberr, uTextAmt, uCap, uFade;
+uniform float uMilkGain, uOcclude, uAberr, uTextAmt, uCap, uFade, uTextTint, uT;
 void main(){
   vec2 off = (vUv - .5) * uAberr;
   vec4 f = texture(uFb, vUv);
@@ -231,7 +231,10 @@ void main(){
   vec3 col = mk * (1. - clamp(f.a, 0., 1.) * uOcclude) + fb;
   vec4 tx = texture(uText, vUv);
   col *= 1. - .88 * clamp(texture(uShadow, vUv).a * 2.2, 0., 1.) * uTextAmt;
-  col = mix(col, tx.rgb, tx.a * uTextAmt);
+  // The welcome poster's chrome: the palette runs through the letters and a band of light crosses them
+  vec3 ink = tx.rgb * mix(vec3(1.), .5 + .95 * pal(uT * .22 + vUv.x * 1.1 - vUv.y * .7), uTextTint);
+  ink += uTextTint * 1.2 * pow(max(0., 1. - abs(fract(uT * .16) * 2.6 - .8 - vUv.x - vUv.y * .35) * 7.), 2.);
+  col = mix(col, min(ink, 1.), tx.a * uTextAmt);
   col *= mix(.72, 1., smoothstep(1.05, .35, length(vUv - .5) * 1.25));
   o = vec4(min(col, 1.) * uFade, 1.);
 }`;
@@ -491,6 +494,39 @@ function layoutText() {
     y += 34;
     tc.font = '500 40px "Geologica",system-ui,sans-serif'; tc.fillStyle = '#edf4ff';
     for (const l of sub) { y += 54; tc.fillText(l, m, y); }
+  } else if (name === 'welcome') {
+    // The front page's poster: WELCOME TO, then VARGA / FUTURE / PARTY / 2050 in Unbounded, the year in chrome.
+    // The lines arrive one at a time (scene.word counts them); the block is laid out whole so nothing moves.
+    const U = (w, px) => `${w} ${px}px "Unbounded","Arial Black",system-ui,sans-serif`;
+    let size = Math.round(H * .2);
+    tc.font = U(500, size);
+    size = Math.round(Math.min(size, size * W * .62 / tc.measureText('FUTURE').width));
+    tc.font = U(500, size);
+    const bw = Math.max(tc.measureText('FUTURE').width, tc.measureText('PARTY').width), lh = size * 1.06, by = size * .3;
+    const total = 34 + by + size * .24 + lh * 3, x = (W - bw) / 2, shown = scene.word;
+    let y = (H - total) / 2 + 34;
+    const spaced = (px, f) => { try { tc.letterSpacing = px + 'px'; } catch (e) {} f(); try { tc.letterSpacing = '0px'; } catch (e) {} };
+    tc.font = '500 34px "Martian Mono",ui-monospace,Menlo,monospace'; tc.fillStyle = '#edf4ff';
+    spaced(12, () => tc.fillText('WELCOME TO', x + size * .02, y));
+    y += by + size * .12;
+    if (shown >= 1) {
+      tc.font = U(600, by); tc.fillStyle = '#9dd8ff';
+      spaced(by * .46, () => tc.fillText('VARGA', x + size * .02, y));
+      const vx = x + size * .02 + tc.measureText('VARGA').width + by * 5 * .46 + by * .5;
+      const line = tc.createLinearGradient(vx, 0, vx + by * 3.4, 0);
+      line.addColorStop(0, '#9dd8ff'); line.addColorStop(1, 'rgba(157,216,255,0)');
+      tc.fillStyle = line; tc.fillRect(vx, y - by * .38, by * 3.4, Math.max(2, by * .04));
+    }
+    y += size * .12;
+    tc.font = U(500, size); tc.fillStyle = '#fff';
+    ['FUTURE', 'PARTY'].forEach((w, i) => { y += lh; if (shown >= 2 + i) tc.fillText(w, x, y); });
+    y += lh;
+    if (shown >= 4) {
+      tc.font = U(600, size);
+      const w = tc.measureText('2050').width, g = tc.createLinearGradient(x, y - size * .8, x + w, y);
+      [[0, '#f2f7ff'], [.21, '#aec6e8'], [.42, '#edf6ff'], [.44, '#7da2d1'], [.68, '#b8d6f7'], [1, '#e2efff']].forEach(c => g.addColorStop(c[0], c[1]));
+      tc.fillStyle = g; tc.fillText('2050', x, y);
+    }
   } else if (name === 'title' && titleWord) {
     let size = 900;
     tc.font = `400 ${size}px "League Gothic","Impact","Arial Narrow",sans-serif`;
@@ -521,9 +557,10 @@ const SCENES = {
   melt:    {id: 3, dur: 26, milk: .14, occl: 1,   zoom: 1,     turn: 0,     flow: .011, hue: .004, decay: .993, text: 1, glow: 0, art: 16},
   face:    {id: 4, dur: 24, milk: .42, occl: .92, zoom: .984,  turn: 0,     flow: .002, hue: .07,  decay: .972, text: 1, glow: .0},
   title:   {id: 5, dur: 9,  milk: .6,  occl: .85, zoom: .95,   turn: .002,  flow: .003, hue: .12,  decay: .93, text: 1, glow: 1},
+  welcome: {id: 6, dur: 15, milk: .55, occl: .9,  zoom: .968,  turn: .0015, flow: .004, hue: .1,   decay: .945, text: 1, glow: 1, tint: .6},
 };
-const ORDER = ['title', 'kaleido', 'face', 'tunnel', 'milk', 'melt', 'face', 'kaleido', 'milk', 'face', 'tunnel', 'melt', 'face', 'milk'];
-const KEYS = ['milk', 'kaleido', 'tunnel', 'melt', 'face', 'title'];
+const ORDER = ['welcome', 'kaleido', 'face', 'tunnel', 'milk', 'melt', 'face', 'title', 'kaleido', 'milk', 'face', 'welcome', 'tunnel', 'melt', 'face', 'milk'];
+const KEYS = ['milk', 'kaleido', 'tunnel', 'melt', 'face', 'title', 'welcome'];
 // a + b cos(2 pi (c t + d)): acid rainbow, neon, ultraviolet, sunset, ice
 const PALETTES = [
   [[.5, .5, .5], [.5, .5, .5], [1, 1, 1], [0, .33, .67]],
@@ -544,7 +581,7 @@ const POSTERS = [
 let scene = null, orderI = -1, lock = KEYS.includes(Q.get('scene')) ? Q.get('scene') : '', presetNames = [], presetI = 0, lastPreset = 0;
 const hero = () => Object.keys(PRESETS).filter(n => PRESETS[n].kind !== 'bg'), calm = () => Object.keys(PRESETS).filter(n => PRESETS[n].kind !== 'hero');
 function nextPreset(now, blend, forScene) {
-  const pool = forScene === 'milk' || forScene === 'title' ? hero() : calm();
+  const pool = forScene === 'milk' || forScene === 'title' || forScene === 'welcome' ? hero() : calm();
   if (!pool.length) return;
   if (!presetNames.length || presetNames.pool !== pool.length) { presetNames = shuffle(pool); presetNames.pool = pool.length; presetI = 0; }
   viz.loadPreset(PRESETS[presetNames[presetI++ % presetNames.length]].preset, blend);
@@ -582,6 +619,7 @@ function direct(now, dt) {
     if (s.art && sc.beats % s.art === 0 && now - art.last > 3) nextArt(now);
     if (sc.name === 'kaleido' && sc.beats % 16 === 0) sc.n = pick([6, 8, 10, 12, 16]);
     if (sc.name === 'title' && sc.beats % 2 === 0) { titleWord = TITLE[++sc.word % TITLE.length]; layoutText(); }
+    if (sc.name === 'welcome' && sc.beats % 2 === 0 && sc.word < 4) { sc.word++; layoutText(); }
   }
   if (sc.name === 'face') {
     // Two innovators a scene; each ends as four posters
@@ -646,7 +684,7 @@ function frame(ms) {
   uniforms(P2, {
     uFb: dst.tex, uMilk: T.milk, uText: T.text, uShadow: T.shadow, uRes: [view.width, view.height],
     uMilkGain: mixp(1, s.milk) * (1 + .12 * A.beat), uOcclude: s.occl, uAberr: .004 + .014 * A.beat * k,
-    uTextAmt: s.text * k * (textOn ? 1 : 0), uCap: .5, uFade: fade,
+    uTextAmt: s.text * k * (textOn ? 1 : 0), uCap: .5, uFade: fade, uTextTint: s.tint || 0, uT: t,
     uPA: sc.pal[0], uPB: sc.pal[1], uPC: sc.pal[2], uPD: sc.pal[3],
   });
   gl.drawArrays(gl.TRIANGLES, 0, 3);
@@ -677,7 +715,7 @@ async function start(want) {
   if (want === 'mic') { try { await useMic(); } catch (e) { tip('No microphone: playing to the built-in beat', 5000); } }
   if (mode !== 'mic') await useBeat();
   if (document.fonts && document.fonts.load) {
-    await Promise.race([Promise.all(['400 100px "League Gothic"', '500 40px Geologica', '500 38px "Martian Mono"'].map(f => document.fonts.load(f, '2050 Aa').catch(() => {}))),
+    await Promise.race([Promise.all(['400 100px "League Gothic"', '500 40px Geologica', '500 38px "Martian Mono"', '500 100px Unbounded', '600 100px Unbounded'].map(f => document.fonts.load(f, '2050 Aa').catch(() => {}))),
                         new Promise(r => setTimeout(r, 2500))]);
   }
   preloadArt();
@@ -699,7 +737,7 @@ addEventListener('keydown', async e => {
   if (k === 'h') { const s = $('start'); if (running) { s.hidden = !s.hidden; } return; }
   if (!running) { if (k === 'enter') start('mic'); return; }
   if (k === ' ' || k === 'arrowright') { e.preventDefault(); if (scene) scene.out = true; }
-  else if (k >= '1' && k <= '6') { lock = KEYS[+k - 1]; if (available(lock)) { scene.out = true; tip('Only ' + lock + ' · 0 for all scenes'); } else tip('No pictures for ' + lock); }
+  else if (k >= '1' && k <= '7') { lock = KEYS[+k - 1]; if (available(lock)) { scene.out = true; tip('Only ' + lock + ' · 0 for all scenes'); } else tip('No pictures for ' + lock); }
   else if (k === '0') { lock = ''; tip('All scenes'); }
   else if (k === 'n') nextPreset(now, 1.5, scene.name);
   else if (k === 'a') nextArt(now);
