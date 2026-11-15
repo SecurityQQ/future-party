@@ -13,7 +13,15 @@ the chrome orbital texture; `assets/chrome-orbit.webp` is its optimized web copy
   `#9dd8ff` ice, and `#dce9fb` chrome. Warm colors are reserved for warnings/errors.
 - **Type:** Unbounded for short headings, Geologica for readable body copy,
   Martian Mono for coordinates and metadata. Use normal-width body type, relaxed
-  line height, and restrained tracking. Keep Cyrillic support.
+  line height, and restrained tracking. Keep Cyrillic support. On a page, every
+  card title is Geologica 600; Unbounded is for page, section and feature titles.
+  League Gothic is the projection face: only in what plays on the wall (the films
+  and the Big Wall's slides, and pictures of them), never for a page's own text.
+  Instrument Serif only for the books' words.
+- **Films:** the four films (Further, Six Facts, Already Here, The Roast) use the
+  Big Wall's slide look: navy ground, ice kickers and numbers in Martian Mono,
+  Geologica lines, League Gothic titles, navy scrims over photographs. Their
+  generators share the same `GROUND, ACCENT, INK` and font faces.
 - **Materials:** reflective edges around navy panels; silver primary controls;
   blue active rings; translucent ice holograms. Avoid gold controls, green terminal
   text, and rainbow gradients. Keep the original companion artwork in full color.
@@ -72,8 +80,9 @@ python3 -I vibes/restyle.py --check  # exit 1 if a page is not restyled
 ```
 
 A new page made in the old look goes in `PAGES` in `restyle.py`. Page-specific fixes go in `pages.css` under
-`:root[data-vibe="<name>"]`. Mars in 3D keeps its red/cyan accents on black (they are for the 3D glasses), and the
-Big Wall and Further keep League Gothic for titles on the projector.
+`:root[data-vibe="<name>"]`. Mars in 3D keeps its red/cyan accents on black (they are for the 3D glasses). League Gothic stays on the
+Big Wall's slides and in the films; the pages about them (the wall's start screen, the Further notes, the
+webcam research) use Unbounded like every other page.
 
 After editing tokens or the optimized texture, run from the repository root:
 

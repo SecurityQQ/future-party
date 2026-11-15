@@ -1,13 +1,14 @@
 <template>
   <style>
-    #root{position:absolute;inset:0;overflow:hidden;background:#0b0b0d;font-family:Inter,sans-serif;color:#fff}
-    .line{position:absolute;left:192px;right:192px;text-align:center;font:600 60px/1.2 Inter,sans-serif}
+    @font-face{font-family:'Geologica';font-style:normal;font-weight:300 700;src:url('assets/fonts/Geologica-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215}@font-face{font-family:'Geologica';font-style:normal;font-weight:300 700;src:url('assets/fonts/Geologica-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+20A0-20AB,U+20AD-20C4,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Martian Mono';font-style:normal;font-weight:400 500;src:url('assets/fonts/MartianMono-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215}@font-face{font-family:'Martian Mono';font-style:normal;font-weight:400 500;src:url('assets/fonts/MartianMono-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+20A0-20AB,U+20AD-20C4,U+2C60-2C7F,U+A720-A7FF}
+    #root{position:absolute;inset:0;overflow:hidden;background:#030817;font-family:Geologica,sans-serif;color:#edf4ff}
+    .line{position:absolute;left:192px;right:192px;text-align:center;font:500 60px/1.2 Geologica,sans-serif}
     .line span{display:inline-block;margin:0 .13em}
     .big{font-family:'League Gothic',sans-serif;text-transform:uppercase;line-height:.9;letter-spacing:.02em}
 
     .tw{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
-    .ttl{font-size:360px;color:#fff}
-    .tk{font:800 34px/1.2 Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#ff5315}
+    .ttl{font-size:360px;color:#edf4ff}
+    .tk{font:400 30px/1.2 'Martian Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#9dd8ff}
   </style>
   <div id="root" data-composition-id="open" data-width="1920" data-height="1080">
     <div id="open-tw" class="tw clip" data-start="0" data-duration="4.7"><div class="tk">Projection 2050</div><div class="big ttl">The roast</div></div>

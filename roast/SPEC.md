@@ -2,7 +2,7 @@
 
 **Goal.** A 63-second film that tells how the wall film went from *Already Here* (v1) to *Further* (v2). It roasts the worst v1 slides as exhibits, stamps them CUT, then reveals the recut. For the party wall between loops and for sharing with co-hosts. 1920×1080, 30 fps, bundled Pixabay sound effects (no attribution needed), no music.
 
-**Look.** The v1 and v2 films' own look: ground #0b0b0d, one accent #ff5315, League Gothic for display, Inter for text. The real frames from both renders are the pictures, captions included, so guests see exactly what played.
+**Look.** The v1 and v2 films' own look, in the site's blue since release v3.0: ground #030817, one ice accent #9dd8ff (kickers in Martian Mono, CUT stamps), League Gothic for display, Geologica for text; KEEP is filled in ink. The stills in `assets/v1` and `assets/v2` are cut from the two renders by `tools/stills.py`. The real frames from both renders are the pictures, captions included, so guests see exactly what played.
 
 **Story, by frame (30 fps).**
 

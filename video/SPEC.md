@@ -11,11 +11,12 @@ TIME:    about 97 s = about 2,900 frames. No BPM: the rhythm is 3 s slides with 
 LOOK
 - Medium: real photographs, full-bleed, 100% of the frame, prepared at 2304 x 1296 so a
   1.00 -> 1.07 push stays sharp. One NASA Ames painting (1975) is labelled as a painting.
-- Ground #0b0b0d only where no photo is (intro and outro cards). Ink #ffffff.
-  Accent #ff5315 on exactly two things: the film kicker line on each slide and the
-  chapter numeral. Nowhere else.
-- Scrim for legibility on a projector: bottom 55% of the frame, linear gradient from
-  rgba(0,0,0,0) to rgba(0,0,0,0.80). No vignette, no grain, no glow.
+- Ground #030817 (the site's navy) only where no photo is (intro and outro cards). Ink #edf4ff.
+  Accent ice #9dd8ff, in Martian Mono, on exactly two things: the film kicker line on each slide and the
+  chapter numeral; the seed year takes it too. Nowhere else. Text in Geologica, titles in League Gothic.
+  (Until release v3.0 the film was orange, #ff5315 on #0b0b0d with Inter.)
+- Scrim for legibility on a projector: bottom 72% of the frame, linear gradient from
+  rgba(3,8,23,0) to rgba(3,8,23,0.90). No vignette, no grain, no glow.
 - Type (projector at 4-6 m): hero League Gothic, uppercase, 128 px (11.9% of height),
   line-height 0.92, tracking +0.01em, max 2 lines, max 5 words. Kicker Inter 700, 34 px,
   uppercase, tracking +0.08em. "Now" line Inter 600, 38 px, ink at 92%. Credit Inter 500,

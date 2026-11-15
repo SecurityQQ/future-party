@@ -88,7 +88,7 @@ The programme, the two futurist research pages and Projection 2050 were made as 
 
 ## The films
 
-The 1080p masters are on the releases: **Already Here** on [v1.0](../../releases/tag/v1.0), **The Roast** on [v2.0](../../releases/tag/v2.0), **Further** and **Six Facts** in the site's blue look on [v3.0](../../releases/tag/v3.0) (v2.0 keeps the first, orange Further). The repo keeps 720p previews of these three and of **Six Facts** in `video/dist/media/`, which the front page plays when the masters are not in `video/renders/` and `roast/renders/`, and which the website always plays.
+The 1080p masters of all four films, in the site's blue look, are on release [v3.0](../../releases/tag/v3.0); the first orange cuts stay on [v1.0](../../releases/tag/v1.0) (Already Here) and [v2.0](../../releases/tag/v2.0) (Further, The Roast). Already Here is built from `video/slides_v1.json` with `python3 -I video/tools/build_v1.py <dir>` (into another folder, so Further is not overwritten); The Roast's stills are cut from the two renders with `python3 -I roast/tools/stills.py`. The repo keeps 720p previews of these three and of **Six Facts** in `video/dist/media/`, which the front page plays when the masters are not in `video/renders/` and `roast/renders/`, and which the website always plays.
 
 To preview or re-render the wall film yourself (Node.js and ffmpeg):
 

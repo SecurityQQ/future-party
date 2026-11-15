@@ -96,6 +96,18 @@
 :root[data-vibe="mirror"] #gate h1 b{color:transparent;background:var(--v-chrome-surface);-webkit-background-clip:text;background-clip:text;font-weight:700}
 :root[data-vibe="mirror"] #info h2{font:700 30px/1 var(--display);letter-spacing:-.01em;text-transform:none}
 @media (max-width:640px){:root[data-vibe="mirror"] .brand{font-size:12px}}
+
+/* League Gothic is the face of what is projected (the films and the Big Wall's slides). On a page the display face is
+   Unbounded, as everywhere else on the site: the Further notes and the Viral Webcam Effects research take it for their
+   numbers and chapter labels, and their cards take the site's card title (Geologica 600) */
+:root[data-vibe]:is([data-vibe="further"],[data-vibe="mirror-research"]){--display:var(--vb-display)}
+:root[data-vibe="further"] .stats strong{font-weight:500;font-size:clamp(28px,3.4vw,42px);letter-spacing:-.045em}
+:root[data-vibe="further"] .chap{font-weight:500;font-size:clamp(18px,2vw,22px);line-height:1.2;letter-spacing:-.03em}
+:root[data-vibe="further"] .card h4,:root[data-vibe="further"] .film b{font:600 19px/1.3 var(--font);letter-spacing:-.02em;text-transform:none}
+:root[data-vibe="mirror-research"] .stat .n{font-weight:500;font-size:clamp(26px,3vw,34px);letter-spacing:-.045em}
+:root[data-vibe="mirror-research"] .finding .big{font-weight:500;font-size:clamp(26px,3vw,34px);line-height:1;letter-spacing:-.045em}
+/* Code and file names in the site's mono, not the browser's */
+:root[data-vibe] :is(code,kbd,samp,pre){font-family:var(--mono)}
 </style>
 <!--vibes:end--></head><body>
 <title>2050 в твитах футуристов</title>

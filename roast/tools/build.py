@@ -3,7 +3,14 @@ import html, os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FPS = 30
-GROUND, ACCENT = "#0b0b0d", "#ff5315"
+# Blue futurism, as on the Big Wall (wall/template.html): navy ground, ice for what leads, Geologica to read,
+# Martian Mono for kickers and credits; League Gothic stays the film's display face.
+GROUND, ACCENT, INK = "#030817", "#9dd8ff", "#edf4ff"
+FACES = "".join(
+    f"@font-face{{font-family:'{fam}';font-style:normal;font-weight:{w};src:url('assets/fonts/{f}-{sub}.woff2') format('woff2');unicode-range:{rng}}}"
+    for fam, f, w in (("Geologica", "Geologica", "300 700"), ("Martian Mono", "MartianMono", "400 500"))
+    for sub, rng in (("latin", "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215"),
+                     ("latin-ext", "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+20A0-20AB,U+20AD-20C4,U+2C60-2C7F,U+A720-A7FF")))
 OPEN, EX, SCORE, TURN, RC, RC_LAST, END, OVER = 141, 72, 105, 105, 66, 90, 120, 3
 
 EXHIBITS = [
@@ -45,8 +52,9 @@ def out(sel, t, d=0.15):
 
 
 BASE_CSS = f"""
-    #root{{position:absolute;inset:0;overflow:hidden;background:{GROUND};font-family:Inter,sans-serif;color:#fff}}
-    .line{{position:absolute;left:192px;right:192px;text-align:center;font:600 60px/1.2 Inter,sans-serif}}
+    {FACES}
+    #root{{position:absolute;inset:0;overflow:hidden;background:{GROUND};font-family:Geologica,sans-serif;color:{INK}}}
+    .line{{position:absolute;left:192px;right:192px;text-align:center;font:500 60px/1.2 Geologica,sans-serif}}
     .line span{{display:inline-block;margin:0 .13em}}
     .big{{font-family:'League Gothic',sans-serif;text-transform:uppercase;line-height:.9;letter-spacing:.02em}}
 """
@@ -66,8 +74,8 @@ def open_scene():
     l1, l2 = "We made a film about 2050.", "Then we watched it."
     css = """
     .tw{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
-    .ttl{font-size:360px;color:#fff}
-    .tk{font:800 34px/1.2 Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#ff5315}
+    .ttl{font-size:360px;color:#edf4ff}
+    .tk{font:400 30px/1.2 'Martian Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#9dd8ff}
 """
     els = [f'<div id="open-tw" class="tw clip" data-start="0" data-duration="{s(OPEN)}"><div class="tk">Projection 2050</div><div class="big ttl">The roast</div></div>',
            f'<div id="open-l1" class="line clip" data-start="0" data-duration="{s(OPEN)}" style="top:470px">{words("open-l1", l1)}</div>',
@@ -81,15 +89,15 @@ def roast_scene():
     .shot{{position:absolute;inset:0;overflow:hidden;background:#000}}
     .kb{{position:absolute;inset:0}}
     .kb img{{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}}
-    .dim{{position:absolute;inset:0;background:rgba(0,0,0,.22)}}
-    .top{{position:absolute;left:0;right:0;top:0;height:58%;background:linear-gradient(to bottom,rgba(0,0,0,.86) 0%,rgba(0,0,0,.6) 45%,rgba(0,0,0,0) 100%)}}
+    .dim{{position:absolute;inset:0;background:rgba(3,8,23,.22)}}
+    .top{{position:absolute;left:0;right:0;top:0;height:58%;background:linear-gradient(to bottom,rgba(3,8,23,.86) 0%,rgba(3,8,23,.6) 45%,rgba(3,8,23,0) 100%)}}
     .rl{{position:absolute;left:192px;top:118px;width:1300px}}
-    .ek{{font:800 30px/1.2 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:{ACCENT}}}
-    .ek i{{font-style:normal;color:rgba(255,255,255,.7)}}
-    .rt{{font-family:'League Gothic',sans-serif;font-size:124px;line-height:.95;text-transform:uppercase;margin-top:10px;text-shadow:0 3px 18px rgba(0,0,0,.55)}}
+    .ek{{font:400 28px/1.2 'Martian Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:{ACCENT}}}
+    .ek i{{font-style:normal;color:rgba(237,244,255,.7)}}
+    .rt{{font-family:'League Gothic',sans-serif;font-size:124px;line-height:.95;text-transform:uppercase;margin-top:10px;text-shadow:0 3px 18px rgba(3,8,23,.55)}}
     .rt span{{display:inline-block;margin-right:.18em}}
     .stamp{{position:absolute;right:210px;top:330px;text-transform:uppercase;font-family:'League Gothic',sans-serif;font-size:210px;line-height:1;letter-spacing:.05em;padding:6px 40px 0;border:12px solid {ACCENT};color:{ACCENT};background:rgba(11,11,13,.35);border-radius:14px}}
-    .stamp.keep{{border-color:#fff;color:#0b0b0d;background:#fff}}
+    .stamp.keep{{border-color:{INK};color:{GROUND};background:{INK}}}
 """
     els, js = [], []
     n = len(EXHIBITS)
@@ -117,8 +125,8 @@ def score_scene():
     .row{position:absolute;left:192px;right:192px;top:300px;display:flex;justify-content:space-between}
     .sc{display:flex;flex-direction:column;align-items:center;width:340px}
     .sc b{font-family:'League Gothic',sans-serif;font-weight:400;font-size:300px;line-height:.9}
-    .sc span{font:700 36px/1.2 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-top:8px}
-    .sc.hi b{color:#ff5315}
+    .sc span{font:400 30px/1.2 'Martian Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:rgba(237,244,255,.75);margin-top:8px}
+    .sc.hi b{color:#9dd8ff}
 """
     cells = "".join(f'<div class="sc{" hi" if k == 0 else ""}" id="sc{k}"><b>{e(nm)}</b><span>{e(lb)}</span></div>' for k, (nm, lb) in enumerate(SCORES))
     els = [f'<div id="score-row" class="row clip" data-start="0" data-duration="{s(SCORE)}">{cells}</div>']
@@ -131,10 +139,10 @@ def turn_scene():
     l1, l2 = "The future isn’t what already exists.", "It’s what’s next."
     css = """
     .tw{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-    .ttl{font-size:420px;color:#fff}
+    .ttl{font-size:420px;color:#edf4ff}
 """
     els = [f'<div id="turn-l1" class="line clip" data-start="0" data-duration="{s(TURN)}" style="top:470px">{words("turn-l1", l1)}</div>',
-           f'<div id="turn-l2" class="line clip" data-start="0" data-duration="{s(TURN)}" style="top:470px;color:#ff5315">{words("turn-l2", l2)}</div>',
+           f'<div id="turn-l2" class="line clip" data-start="0" data-duration="{s(TURN)}" style="top:470px;color:{ACCENT}">{words("turn-l2", l2)}</div>',
            f'<div id="turn-tw" class="tw clip" data-start="0" data-duration="{s(TURN)}"><div class="big ttl" id="turn-t">Further</div></div>']
     js = word_in("turn-l1", l1, 0.15) + [out("#turn-l1", 1.45)] + word_in("turn-l2", l2, 1.6) + [out("#turn-l2", 2.45)]
     js += [f"tl.fromTo('#turn-t',{{opacity:0,filter:'blur(12px)'}},{{opacity:1,filter:'blur(0px)',duration:0.2,ease:'power4.out'}},2.6);",
@@ -185,10 +193,10 @@ def recut_scene():
 def end_scene():
     css = """
     .stack{position:absolute;left:192px;right:192px;top:250px;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center}
-    .ttl{font-size:330px;color:#fff}
-    .sub{font:700 34px/1.2 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#ff5315}
-    .st{font:500 34px/1.3 Inter,sans-serif;color:rgba(255,255,255,.8)}
-    .q{font:600 54px/1.2 Inter,sans-serif;margin-top:18px}
+    .ttl{font-size:330px;color:#edf4ff}
+    .sub{font:400 30px/1.2 'Martian Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#9dd8ff}
+    .st{font:400 34px/1.3 Geologica,sans-serif;color:rgba(237,244,255,.8)}
+    .q{font:500 54px/1.2 Geologica,sans-serif;margin-top:18px}
 """
     els = [f'<div id="end-stack" class="stack clip" data-start="0" data-duration="{s(END)}">'
            f'<div class="big ttl" id="end-t">Further</div><div class="sub" id="end-s">Projection 2050 · the wall film, recut</div>'
@@ -249,7 +257,7 @@ def main():
     <title>The Roast · Projection 2050</title>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <style>
-      :root {{ --ground: {GROUND}; --ink: #ffffff; --accent: {ACCENT}; }}
+      :root {{ --ground: {GROUND}; --ink: {INK}; --accent: {ACCENT}; }}
       * {{ margin: 0; padding: 0; box-sizing: border-box; }}
       html, body {{ margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--ground); }}
       #root {{ position: relative; width: 100%; height: 100%; background: var(--ground); }}

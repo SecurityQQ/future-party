@@ -1,22 +1,23 @@
 <template>
   <style>
-    #root{position:absolute;inset:0;overflow:hidden;background:#0b0b0d;font-family:Inter,sans-serif;color:#fff}
-    .line{position:absolute;left:192px;right:192px;text-align:center;font:600 60px/1.2 Inter,sans-serif}
+    @font-face{font-family:'Geologica';font-style:normal;font-weight:300 700;src:url('assets/fonts/Geologica-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215}@font-face{font-family:'Geologica';font-style:normal;font-weight:300 700;src:url('assets/fonts/Geologica-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+20A0-20AB,U+20AD-20C4,U+2C60-2C7F,U+A720-A7FF}@font-face{font-family:'Martian Mono';font-style:normal;font-weight:400 500;src:url('assets/fonts/MartianMono-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215}@font-face{font-family:'Martian Mono';font-style:normal;font-weight:400 500;src:url('assets/fonts/MartianMono-latin-ext.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+20A0-20AB,U+20AD-20C4,U+2C60-2C7F,U+A720-A7FF}
+    #root{position:absolute;inset:0;overflow:hidden;background:#030817;font-family:Geologica,sans-serif;color:#edf4ff}
+    .line{position:absolute;left:192px;right:192px;text-align:center;font:500 60px/1.2 Geologica,sans-serif}
     .line span{display:inline-block;margin:0 .13em}
     .big{font-family:'League Gothic',sans-serif;text-transform:uppercase;line-height:.9;letter-spacing:.02em}
 
     .shot{position:absolute;inset:0;overflow:hidden;background:#000}
     .kb{position:absolute;inset:0}
     .kb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-    .dim{position:absolute;inset:0;background:rgba(0,0,0,.22)}
-    .top{position:absolute;left:0;right:0;top:0;height:58%;background:linear-gradient(to bottom,rgba(0,0,0,.86) 0%,rgba(0,0,0,.6) 45%,rgba(0,0,0,0) 100%)}
+    .dim{position:absolute;inset:0;background:rgba(3,8,23,.22)}
+    .top{position:absolute;left:0;right:0;top:0;height:58%;background:linear-gradient(to bottom,rgba(3,8,23,.86) 0%,rgba(3,8,23,.6) 45%,rgba(3,8,23,0) 100%)}
     .rl{position:absolute;left:192px;top:118px;width:1300px}
-    .ek{font:800 30px/1.2 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#ff5315}
-    .ek i{font-style:normal;color:rgba(255,255,255,.7)}
-    .rt{font-family:'League Gothic',sans-serif;font-size:124px;line-height:.95;text-transform:uppercase;margin-top:10px;text-shadow:0 3px 18px rgba(0,0,0,.55)}
+    .ek{font:400 28px/1.2 'Martian Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#9dd8ff}
+    .ek i{font-style:normal;color:rgba(237,244,255,.7)}
+    .rt{font-family:'League Gothic',sans-serif;font-size:124px;line-height:.95;text-transform:uppercase;margin-top:10px;text-shadow:0 3px 18px rgba(3,8,23,.55)}
     .rt span{display:inline-block;margin-right:.18em}
-    .stamp{position:absolute;right:210px;top:330px;text-transform:uppercase;font-family:'League Gothic',sans-serif;font-size:210px;line-height:1;letter-spacing:.05em;padding:6px 40px 0;border:12px solid #ff5315;color:#ff5315;background:rgba(11,11,13,.35);border-radius:14px}
-    .stamp.keep{border-color:#fff;color:#0b0b0d;background:#fff}
+    .stamp{position:absolute;right:210px;top:330px;text-transform:uppercase;font-family:'League Gothic',sans-serif;font-size:210px;line-height:1;letter-spacing:.05em;padding:6px 40px 0;border:12px solid #9dd8ff;color:#9dd8ff;background:rgba(11,11,13,.35);border-radius:14px}
+    .stamp.keep{border-color:#edf4ff;color:#030817;background:#edf4ff}
   </style>
   <div id="root" data-composition-id="roast" data-width="1920" data-height="1080">
     <div id="ex0" class="clip shot" data-start="0.0" data-duration="2.4" data-track-index="1" style="z-index:1"><div class="kb" id="ex0-kb"><img src="assets/v1/barrier.jpg" alt="v1 slide: barrier"></div><div class="dim"></div><div class="top"></div><div class="rl"><div class="ek" id="ex0-k">Exhibit 01<i> · Already Here, v1</i></div><div class="rt" id="ex0-t"><span id="ex0-t-w0">A</span><span id="ex0-t-w1">1982</span><span id="ex0-t-w2">river</span><span id="ex0-t-w3">gate.</span><span id="ex0-t-w4">In</span><span id="ex0-t-w5">fog.</span></div></div><div class="stamp" id="ex0-st">Cut</div></div>
