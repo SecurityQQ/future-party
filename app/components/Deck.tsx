@@ -1,8 +1,13 @@
 "use client";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const icons = {
+  // The party site's mark: a planet in a tilted orbit, as in the front page's top bar
+  party: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="12" cy="12" r="5" /><ellipse cx="12" cy="12" rx="11" ry="3.8" transform="rotate(-25 12 12)" /></svg>
+  ),
   station: (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6"><circle cx="12" cy="12" r="3.2" /><ellipse cx="12" cy="12" rx="10" ry="4" /><path d="M12 2v4M12 18v4" /></svg>
   ),
@@ -20,11 +25,22 @@ const icons = {
   ),
 };
 
-// The fixed control deck at the bottom: round knobs like a cockpit console. The mirror is a
-// full-screen camera page outside the React shell (public/app/mirror), so it gets a plain link.
+// The site's address. On the app's old addresses / is the app itself (next.config.ts), so the Party knob goes here.
+const MAIN = "https://www.vargafutureparty.com/";
+const OLD_HOST = /^(?:zodiac-rangers|the-future-2050)\.vercel\.app$/;
+
+// The fixed control deck at the bottom: round knobs like a cockpit console. The party's front page (/) shows the
+// same deck with Party lit (hub/template.html), so a phone switches between the site and the app with one tap.
+// The front page and the mirror (a full-screen camera page, public/app/mirror) are outside the React shell,
+// so they get plain links.
 export default function Deck() {
   const path = usePathname();
+  const [party, setParty] = useState("/");
+  useEffect(() => {
+    if (OLD_HOST.test(location.hostname)) setParty(MAIN);
+  }, []);
   const items = [
+    { href: party, label: "Party", icon: icons.party, on: false, page: true },
     { href: "/app", label: "My Kin", icon: icons.hold, on: path === "/app" || path.startsWith("/app/me") },
     { href: "/app/scan", label: "Scan", icon: icons.scan, on: path.startsWith("/app/scan"), main: true },
     { href: "/app/mirror", label: "Mirror", icon: icons.mirror, on: false, page: true },
