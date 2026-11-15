@@ -30,7 +30,7 @@ export default function SharePanel({ url, qr, title, character }: { url: string;
           <a className="btn" href={post} target="_blank" rel="noopener">Post on X</a>
           <div className="btns two">
             {canShare && <button className="btn ghost small" onClick={() => navigator.share({ title, url }).catch(() => {})}>Share</button>}
-            <button className="btn ghost small" onClick={copy} style={canShare ? undefined : { gridColumn: "1 / -1" }}>{copied ? "Copied" : "Copy"}</button>
+            <button className="btn ghost small" data-haptic="success" onClick={copy} style={canShare ? undefined : { gridColumn: "1 / -1" }}>{copied ? "Copied" : "Copy"}</button>
           </div>
         </div>
       </div>

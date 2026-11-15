@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Hull from "./Hull";
+import { haptic } from "@/lib/haptics";
 
 type Platform = "android-nfc" | "ios" | "other";
 type Status = "idle" | "scanning" | "found" | "error";
@@ -40,12 +41,14 @@ export default function NfcScan({ signedIn, compact = false }: { signedIn: boole
           const m = value.match(CODE_RE);
           if (m) {
             setStatus("found");
+            haptic("kin");
             abort.current?.abort();
             router.push(`/app/t/${m[1]}`);
             return;
           }
         }
         setError("That tag is not a pass for The Future 2050.");
+        haptic("error");
       };
       reader.onreadingerror = () => setError("Could not read the pass. Hold it still against the back of the phone.");
       await reader.scan({ signal: abort.current.signal });
