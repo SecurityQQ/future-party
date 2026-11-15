@@ -13,7 +13,7 @@ REPO = os.path.dirname(ROOT)
 REEL = json.load(open(os.path.join(ROOT, "reel.json")))
 BARS = REEL["bars"]
 FPS = 30
-# Blue futurism, as on the Big Wall (wall/template.html): navy ground, ice for what leads, Geologica to read,
+# Blue futurism, as on the Big Muse (wall/template.html): navy ground, ice for what leads, Geologica to read,
 # Martian Mono for kickers and sources, Instrument Serif for the books' words; League Gothic stays the display face.
 GROUND, ACCENT, INK = "#030817", "#9dd8ff", "#edf4ff"
 FACES = "".join(

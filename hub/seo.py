@@ -16,14 +16,14 @@ X = "@vargastartup"
 # Files hub/site.py copies to the root of the site: site path -> repo path
 FILES = {"og.jpg": "hub/og/site.jpg", "og-app.jpg": "hub/og/app.jpg",
          "favicon.ico": "hub/og/favicon.ico", "apple-touch-icon.png": "hub/og/apple-touch-icon.png"}
-CARD = ("og.jpg", 1200, 630, "Varga Future Party 2050: Step into 2050. The Big Wall, music, six apps and Mars in 3D for one night.")
+CARD = ("og.jpg", 1200, 630, "Varga Future Party 2050: Step into 2050. The Big Muse, music, six apps and Mars in 3D for one night.")
 WALL = ("video/assets/photos/smiled.jpg", 2304, 1296, "Earth seen through Saturn’s rings")
 
 # The front page and every page in hub/build.py PAGES, by its key there: (title, description, picture).
 # A description of None keeps the page's own <meta name="description">; a picture of None is the party's card.
 META = {
     "index": (NAME, None, None),
-    "bigwall": ("The Big Wall · " + NAME,
+    "bigwall": ("The Big Muse · " + NAME,
                 "Every film and slide wall of the party in one loop for the projector: two films about 2050, quotes "
                 "and ideas from books, futurists’ posts and concept art of the future.", WALL),
     "further": ("Further 2050 · " + NAME,
@@ -143,7 +143,7 @@ def insert(page, block):
 
 def page(rel, s, pages, target=None, source=None):
     """Page rel (its HTML is s) with its tags. A short address is a forward page: target is the page it forwards to
-    and source that page's HTML, whose tags it gets, so a shared /wall shows the Big Wall."""
+    and source that page's HTML, whose tags it gets, so a shared /wall shows the Big Muse."""
     key = (target or rel).split("#")[0]
     if key in HIDDEN or rel in HIDDEN:
         if re.search(r'<meta\s+name="robots"', s, re.I):
@@ -176,12 +176,12 @@ def sitemap(pages):
 # /llms.txt (llmstxt.org): the site in a few lines for AI assistants and answer engines, by front-page section
 REPO = "https://github.com/SecurityQQ/future-party"
 SUMMARY = ("Varga Future Party 2050 is a party set in the year 2050, and this site holds everything for the night: the Big "
-           "Wall that plays every film and slide wall in one loop on the projector, the music, six apps for the "
-           "guests (an NFC party game, webcam effects played with the hands, a Makey Makey soundboard, Mars for "
+           "Muse, the wall that plays every film and slide wall in one loop on the projector, the music, six apps for the "
+           "guests (the party App, webcam effects played with the hands, a Makey Makey soundboard, Mars for "
            "red/cyan 3D glasses, a gallery of concept art) and the research behind it: books, futurists' posts and "
            "films about 2050, each with its sources. Nothing needs a login.")
 APP = ("The Future 2050 (party app)", SITE + "/app",
-       "The party's NFC game. Tap your pass, meet your Kin (a zodiac creature from 2050), and collect the Kin of "
+       "The party App. Tap your pass, meet your Kin (a zodiac creature from 2050), and collect the Kin of "
        "everyone you meet; a live ranking counts the cards each traveler has scanned.")
 GROUPS = [("The night", ["index", "bigwall", "further", "deck"]),
           ("Apps", ["app", "mirror", "resonance", "contact", "mars3d", "concept"]),
