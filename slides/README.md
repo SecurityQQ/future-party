@@ -14,7 +14,7 @@ The host's deck for Varga Future Party 2050, 27 slides: the vision (20 people, t
 | N | speaker notes and the slide number, at the bottom |
 | Home, End | first and last slide |
 
-The App slide (`#app`, "We are all cyborgs") loops a six-second animation: a phone taps a party chip and a Kin appears on its screen, which is the live app's pass scanner. Next to it is a QR code for vargafutureparty.com. The six inspiration slides each name their page on the website in the same place, top right (bottom on the quotes slide), and the addresses are links.
+The App slide (`#app`, "We are all cyborgs") loops a six-second animation: a phone taps a party chip, a round NFC tag drawn in chrome (coil antenna, chip and bridge), the coil lights up, and a Kin appears on the phone's screen, which is the live app's pass scanner. Next to it is a QR code for vargafutureparty.com. The six inspiration slides each name their page on the website in the same place, top right (bottom on the quotes slide), and the addresses are links.
 
 A presenter clicker works: it sends PageDown and PageUp. On a phone, swipe. The address keeps the slide number (`#12`), and a slide's id works too: `#tonight` opens the overview of everything at the party, `#walls` the six wall topics.
 
@@ -32,6 +32,7 @@ The deck wears the website's Blue futurism (`vibes/README.md`): deep navy space,
 | `assets/` | The pictures, listed under **Pictures** below, and `preview.jpg` (the Tonight slide, for the front page) |
 | `template.html` | The player: scales the 1920×1080 slides to the window, steps through clicks, plays the clip, loads YouTube on its slide |
 | `build.py` | Joins the website's tokens, the deck and the player into `dist/party-deck.html`, and checks every picture and film a slide points at |
+| `tools/nfc_tag.py` | Draws the round NFC tag on the App slide as inline SVG (`--write` puts it into `deck/slides/app.html`) |
 | `dist/party-deck.html` | The built page (committed, like the other pages) |
 
 Slides point at files by paths relative to `dist/`: `../assets/kin-ilu.jpg`, `../../video/dist/media/six-facts-720p.mp4`.
