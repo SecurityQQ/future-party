@@ -32,6 +32,13 @@ chrome Big Wall button, History of Music link, app pill and four section buttons
 keep their materials, names and destinations; the section buttons carry only a
 short factual detail. Content below the hero keeps its existing layout and behavior.
 
+The artwork moves (the last script in `hub/template.html`): a WebGL canvas takes the
+picture's box, crop, opacity and mask, starts as the still picture, then flows it like
+liquid metal, lets the stars twinkle and the bubbles glint, bends the chrome around a
+mouse pointer and sends a chrome sweep across the poster, 2050 included, every 12 s.
+Reduced motion keeps the still picture; without WebGL, or opened from the folder as a
+file, the picture drifts slowly in CSS. It draws only while the hero is on screen.
+
 ## Source of truth
 
 `tokens.css` owns the palette, chrome materials, and timing. App components and
