@@ -13,7 +13,7 @@
 <style>
 /* The party's front page in Blue futurism, the look shared with the party app and History of Music 2050
    (vibes/README.md): deep navy space, liquid chrome, electric blue and ice. Four doors at the top (the wall, the
-   music, the guests' corner, the research), then one section for each, the Big Wall first. Unbounded for short
+   music, the apps, the research), then one section for each, the Big Wall first. Unbounded for short
    headings, Geologica for reading, Martian Mono for metadata. Dark only. The slide previews keep each wall's own look.
    Everything is a relative link, so the page works from the folder offline. D.mode is "folder" (index.html, from
    hub/build.py) or "web" (site/index.html, from hub/site.py): the web mode plays the 720p previews, opens Markdown on
@@ -72,7 +72,6 @@ h1,h2,h3{margin:0;text-wrap:balance}
 h2{font:500 clamp(23px,2.6vw,34px)/1.25 var(--display);letter-spacing:-.035em;margin-top:8px}
 p{margin:0}
 section{padding-block:56px;border-top:1px solid var(--line);scroll-margin-top:8px}
-#mars{scroll-margin-top:24px}
 .sec-head{display:grid;gap:6px;margin-bottom:28px;max-width:760px}
 .sec-head .note{color:var(--muted);font-size:15px;margin-top:6px}
 
@@ -182,14 +181,43 @@ nav.top .brand svg{width:30px;height:30px;flex:none;color:var(--v-ice)}
 .arc div{display:grid;grid-template-columns:128px minmax(0,1fr);gap:12px;font-size:14.5px;color:var(--fg-2);padding-bottom:10px;border-bottom:1px solid var(--line)}
 .arc b{font:500 11px/1.9 var(--mono);color:var(--muted);font-weight:500}
 
-/* Mirror 2050, Mars in 3D and the party app */
+/* The picture and the notes of the Slides section */
 .mirror-shot{display:block;width:100%;height:auto;border-radius:var(--r);border:1px solid var(--line-2);background:var(--raised)}
-#guests .how,#slides .how{color:var(--fg-2);font-size:14.5px;margin-top:14px;max-width:62ch}
-#guests .how a,#slides .how a{color:var(--fg);text-decoration:underline;text-underline-offset:2px}
-.app{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 24px;align-items:center;margin-top:44px;padding:22px;border:1px solid var(--line-2);border-top-color:#7d9ac0;border-radius:var(--r);background:linear-gradient(145deg,#112441,#07132b 75%);box-shadow:inset 0 1px 0 rgb(220 233 251 / 6%)}
-@media (max-width:640px){.app{grid-template-columns:1fr}}
-.app h3{font:500 clamp(18px,2vw,22px)/1.25 var(--display);letter-spacing:-.03em;text-transform:uppercase}
-.app p{color:var(--fg-2);font-size:14.5px;margin-top:6px;max-width:70ch}
+#slides .how{color:var(--fg-2);font-size:14.5px;margin-top:14px;max-width:62ch}
+#slides .how a{color:var(--fg);text-decoration:underline;text-underline-offset:2px}
+/* Apps: a jump bar that stays on screen through the section, then one card per app with its preview.
+   Each card has an address (#party-app, #mirror, #history-of-music, #play, #mars, #imagined-futures). */
+.appnav{position:sticky;top:0;z-index:5;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 0 22px;padding:10px 0 14px;background:linear-gradient(var(--bg) 78%,rgb(3 8 23 / 0%))}
+.appnav::-webkit-scrollbar{display:none}
+.appnav a{flex:none;display:flex;align-items:center;gap:9px;padding:5px 14px 5px 5px;border:1px solid var(--line-2);border-radius:999px;background:var(--raised);text-decoration:none;font:500 13px/1.2 var(--font);color:var(--fg-2);white-space:nowrap;transition:border-color var(--v-fast),color var(--v-fast),background var(--v-fast)}
+.appnav img{width:44px;height:28px;object-fit:cover;border-radius:999px;background:var(--v-space)}
+.appnav a:hover{border-color:var(--v-ice);color:var(--fg)}
+.appnav a[aria-current="true"]{border-color:var(--v-ice);color:var(--v-navy);background:var(--v-chrome)}
+/* Each card spans five rows of the grid (preview, title, text, buttons, fold) through subgrid, so the buttons line
+   up across a row and an open fold only lengthens the last row */
+.apps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:1020px){.apps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.apps{grid-template-columns:1fr}}
+.appcard{display:grid;grid-row:span 5;grid-template-rows:subgrid;row-gap:12px;align-content:start;min-width:0;padding:14px;border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(145deg,#0b1b36,#07132b);scroll-margin-top:76px;transition:border-color var(--v-fast),box-shadow var(--v-fast)}
+@supports not (grid-template-rows:subgrid){.apps{align-items:start}.appcard{display:flex;flex-direction:column;gap:12px}}
+.appcard:target{border-color:var(--v-ice);box-shadow:0 0 28px rgb(67 133 255 / 22%)}
+.appcard .shot{position:relative;display:block;aspect-ratio:16/9;border-radius:10px;overflow:hidden;border:1px solid var(--line-2);background:var(--v-space)}
+.appcard .shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--v-ease)}
+.appcard .shot:hover img{transform:scale(1.035)}
+.appcard .kind{position:absolute;left:10px;bottom:10px;font:500 10px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:6px 8px;border-radius:6px;background:rgb(3 8 23 / 80%);color:var(--v-ice);border:1px solid rgb(157 216 255 / 30%)}
+.appcard h3{font:500 clamp(17px,1.6vw,20px)/1.25 var(--display);letter-spacing:-.03em;text-transform:uppercase;color:var(--v-chrome)}
+.appcard h3 a{text-decoration:none}
+.appcard .where{display:block;margin-top:5px;font:400 11px/1.6 var(--mono);color:var(--muted);letter-spacing:0;text-transform:none}
+.appcard p{color:var(--fg-2);font-size:14.5px}
+.appcard details{border-top:1px solid var(--line);padding-top:10px}
+.appcard summary{cursor:pointer;list-style:none;font:500 11px/1.6 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--v-ice)}
+.appcard summary::-webkit-details-marker{display:none}
+.appcard summary::after{content:" +"}
+.appcard details[open] summary::after{content:" −"}
+.appcard .arc{margin-top:10px;border-top:0;padding-top:0}
+.appcard .arc div{grid-template-columns:118px minmax(0,1fr);font-size:14px}
+.appcard .how{color:var(--fg-2);font-size:14px;margin-top:10px}
+.appcard .how a{color:var(--fg);text-decoration:underline;text-underline-offset:2px}
 
 /* Lists */
 .list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px}
@@ -292,7 +320,7 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
 <div class="wrap">
   <nav class="top" aria-label="Sections">
     <span class="brand"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="16" cy="16" r="7"/><ellipse cx="16" cy="16" rx="15" ry="5" transform="rotate(-25 16 16)"/></svg>FUTURE PARTY / 2050</span>
-    <a href="#wall">Wall</a><a href="#music">Music</a><a href="#guests">Guests</a><a href="#mars">Mars 3D</a><a href="#slides">Slides</a><a href="#research">Research</a>
+    <a href="#wall">Wall</a><a href="#music">Music</a><a href="#apps">Apps</a><a href="#mars">Mars 3D</a><a href="#slides">Slides</a><a href="#research">Research</a>
     <a class="to-app" id="navApp" href="/app"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="11" height="15" rx="1"/><path d="M8 3h11a1 1 0 0 1 1 1v13"/><path d="M6 15l2.5-3 2 2 1.5-2"/></svg>Open the app</a>
   </nav>
 
@@ -327,58 +355,19 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
     <div class="sec-head">
       <p class="eyebrow">Sound</p>
       <h2>Music</h2>
-      <p class="note">Further and the slide walls are silent, so the room's sound comes from the playlist. Six Facts has its own music; on the Big Wall it starts muted.</p>
+      <p class="note">Further and the slide walls are silent, so the room's sound comes from the playlist. Six Facts has its own music; on the Big Wall it starts muted. To play with music, open <a href="#history-of-music">History of Music 2050</a> or <a href="#play">Play: 2050</a> in Apps.</p>
     </div>
     <div class="list" id="soundList"></div>
   </section>
 
-  <section id="guests">
+  <section id="apps">
     <div class="sec-head">
-      <p class="eyebrow">For the guests</p>
-      <h2>Mirror, Mars in 3D and the party app</h2>
-      <p class="note">Things to try on the night: a camera you play with your hands, Mars through red/cyan glasses, and the app on everyone's phone.</p>
+      <p class="eyebrow">Apps</p>
+      <h2>Six apps for the night</h2>
+      <p class="note">The games and toys made for the party: one on every phone, one in front of a camera, one you play by touching things, one through red/cyan glasses, and two to get lost in. Each opens in its own page; its party link brings you back here.</p>
     </div>
-    <div class="program">
-      <div>
-        <h3>Mirror 2050</h3>
-        <img class="mirror-shot" id="mirrorShot" src="mirror/preview.jpg" width="1932" height="544" loading="lazy" alt="The eight effects: glass hands, particle words, a hologram cube, a portal, shattered tiles, time trails, falling code and a see-through cloak">
-        <div class="actions" style="margin-top:20px"><a class="btn" id="mirrorLink"><span class="tri" aria-hidden="true"></span>Open the mirror</a></div>
-        <p class="how">Eight effects that went viral on X, rebuilt in one page and played with the hands. Nothing is filmed or uploaded; the camera stays in the browser. <span id="mirrorHow"></span></p>
-      </div>
-      <div class="arc" aria-label="The eight effects and how to play them">
-        <p class="eyebrow" style="margin-bottom:4px">Keys 1–8, or party mode</p>
-        <div><b>1 Liquid Air</b><span>Your hands turn to glass and the air ripples.</span></div>
-        <div><b>2 Neon Swarm</b><span>Show 1 to 4 fingers to write a word in particles; open palm for a nebula, fist for an orb.</span></div>
-        <div><b>3 Holo Cube</b><span>You become a hologram, with a glitching cube held between your hands.</span></div>
-        <div><b>4 Portal</b><span>An open palm opens a portal; pinch with both hands to tear a window into 2050.</span></div>
-        <div><b>5 Shatter</b><span>An open hand blows the picture into glass tiles; a fist pulls it back.</span></div>
-        <div><b>6 Time Warp</b><span>Lower rows are older frames; point a finger and time ripples from it.</span></div>
-        <div><b>7 Matrix</b><span>You turn into falling code; your hands show the real colours.</span></div>
-        <div><b>8 Cloak</b><span>Your body shows the room behind you. A fist decloaks.</span></div>
-      </div>
-    </div>
-    <div class="program" id="mars">
-      <div>
-        <h3>Mars in 3D</h3>
-        <img class="mirror-shot" id="marsShot" src="mars3d/preview.jpg" width="1280" height="720" loading="lazy" alt="Curiosity's deck and Mount Sharp on the horizon, as a red/cyan anaglyph">
-        <div class="actions" style="margin-top:20px"><a class="btn" id="marsLink"><span class="tri" aria-hidden="true"></span>Start Mars in 3D</a></div>
-        <p class="how" id="marsHow"></p>
-      </div>
-      <div class="arc" aria-label="The missions in the loop">
-        <p class="eyebrow" style="margin-bottom:4px">Seven missions, keys 1–7</p>
-        <div><b>1 Pathfinder</b><span>1997, Ares Vallis: the first rover, Sojourner, and its rocks.</span></div>
-        <div><b>2 Spirit</b><span>2004–2010, Gusev crater: its own shadow, a dust devil, Husband Hill.</span></div>
-        <div><b>3 Opportunity</b><span>2004–2018, Meridiani: blueberries, an iron meteorite, Endeavour crater.</span></div>
-        <div><b>4 Phoenix</b><span>2008, the arctic: trenches dug down to ice.</span></div>
-        <div><b>5 Curiosity</b><span>Since 2012, Gale crater: Mount Sharp, a moving dune.</span></div>
-        <div><b>6 Perseverance</b><span>Since 2021, Jezero: Ingenuity flying, and the ground seen from it.</span></div>
-        <div><b>7 From orbit</b><span>Canyons, an ancient delta, the north polar cap, Phobos.</span></div>
-      </div>
-    </div>
-    <div class="app">
-      <div><h3>The Future 2050</h3><p>The party app: guests tap their NFC pass, give a name and birthday, meet their Kin, a zodiac creature, then tap each other's passes to fill their orbit.</p></div>
-      <div class="actions"><a class="btn" id="appLink" target="_blank" rel="noopener">Open the app ↗</a></div>
-    </div>
+    <nav class="appnav" id="appNav" aria-label="Apps"></nav>
+    <div class="apps" id="appGrid"></div>
   </section>
 
   <section id="slides">
@@ -433,7 +422,7 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
 
 <script>
 (function(){
-const D=/*DATA*/{"mode": "folder", "site": "https://www.vargafutureparty.com", "repo": "https://github.com/SecurityQQ/future-party", "built": "14 November 2026", "online": {"program": "https://claude.ai/artifact/GTAQtSieprLL7VaHcbwBVC", "futurists": "https://claude.ai/artifact/P2jenFADX1YbeZjJm9eJpW", "futurists_short": "https://claude.ai/artifact/K7mQoafbtuLc9f1NQuMc1X", "futurists_ru": "https://claude.ai/artifact/G2pBtXXsKGaz5rDnuL5Zmn", "films": "https://claude.ai/artifact/EX8V3LEzvAEtW2p2y2NLBu", "further": "https://claude.ai/artifact/8zQjJUnHQXxsWWD1aQKYnx", "books": "https://claude.ai/artifact/1P94dXNkbjwjofDd2DzaUi", "tweets": "https://claude.ai/artifact/M6b8HYpuvdwA4cU4GvEfqG", "soundtrack": "https://claude.ai/artifact/WfgPk8RRF5sTM8spzwC1zp", "why": "https://claude.ai/artifact/Abby2s8iw3xuiJQX9Qwfph", "resonance": "https://claude.ai/artifact/PVooRbA3UqweX19eBy7Q4k", "contact": "https://claude.ai/artifact/AiFrTg6V1BipqTvsJTmkmA", "tea": "https://claude.ai/artifact/JSq3U75PR1zGnLmkPea8Yz", "mirror_research": "https://claude.ai/artifact/EQ2izi4He8XwvMRmsknaqs", "concept": "https://claude.ai/artifact/Dqk9BpYrVUoFXQaiyfHKBD", "deck": "https://claude.ai/artifact/BkSJQMeXHfnDBZJaYmezXP"}, "pages": {"program": "programme/tea-with-tomorrow.html", "futurists": "tweets/research/futurists-on-2050.html", "futurists_short": "tweets/research/2050-in-futurists-tweets.html", "futurists_ru": "tweets/research/2050-in-futurists-tweets.ru.html", "films": "reel/projection-2050.html", "further": "video/dist/further-2050.html", "books": "books/dist/book-projection-2050.html", "tweets": "tweets/dist/tweets-2050.html", "soundtrack": "music/dist/soundtrack2050.html", "why": "music/dist/why-music-changes.html", "resonance": "music/resonance/dist/local/index.html", "contact": "soundboard/dist/contact2050.html", "mirror": "mirror/index.html", "mirror_research": "mirror/viral-webcam-effects.html", "concept": "concept-art/imagined-futures.html", "bigwall": "wall/dist/big-wall.html", "mars3d": "mars3d/index.html", "deck": "slides/dist/party-deck.html"}, "short": {"wall": "wall/dist/big-wall.html", "quotes": "books/dist/quote-wall.html#quote-wall", "ideas": "books/dist/quote-wall.html#projection", "mix": "books/dist/quote-wall.html#mix-wall", "tweets": "tweets/dist/tweet-wall.html#tweet-wall", "tweets-short": "tweets/dist/tweet-wall.html#short-wall", "art": "concept-art/imagined-futures.html#wall", "mars": "mars3d/index.html", "play": "soundboard/dist/contact2050.html", "soundboard": "soundboard/dist/contact2050.html", "soundtrack": "music/dist/soundtrack2050.html", "resonance": "music/resonance/dist/local/index.html", "music-history": "music/dist/why-music-changes.html", "books": "books/dist/book-projection-2050.html", "further": "video/dist/further-2050.html", "films": "reel/projection-2050.html", "futurists": "tweets/research/futurists-on-2050.html", "programme": "programme/tea-with-tomorrow.html", "slides": "slides/dist/party-deck.html"}, "playlists": {"soundtrack": "https://www.youtube.com/playlist?list=PLJdg5B9vQ1oA", "history": "https://www.youtube.com/playlist?list=PLeo45sxoQ8gE", "resonance": "https://www.youtube.com/playlist?list=PLSfq0dmq_K78"}, "apps": {"party": "https://www.vargafutureparty.com/app"}, "films": [{"id": "further", "title": "Further", "sub": "the wall film", "t": 8, "front": true, "file": "video/dist/media/further-720p.mp4", "preview": "video/dist/media/further-720p.mp4", "master": "https://github.com/SecurityQQ/future-party/releases/download/v2.0/further-2050-1080p.mp4", "about": "Sixteen bold claims for 2030–2050, each with a dated real seed and a film that imagined it, over 37 public-domain and CC photos. Silent, loops seamlessly.", "page": "video/dist/further-2050.html", "online": "https://claude.ai/artifact/8zQjJUnHQXxsWWD1aQKYnx", "rebuild": "cd video && npm run render", "is_preview": true, "probe": {"mb": 6, "sec": 74.6}}, {"id": "sixfacts", "title": "Six Facts", "sub": "the show reel", "t": 9, "front": true, "file": "video/dist/media/six-facts-720p.mp4", "preview": "video/dist/media/six-facts-720p.mp4", "master": null, "about": "Two and a half minutes with music: the six facts about how books guess the future, each answered by a book, a post on X and two predictions from Further, over NASA footage.", "page": null, "online": null, "rebuild": "cd showreel && npm run render", "is_preview": true, "probe": {"mb": 20, "sec": 149.5}}], "books": {"quotes": 50, "quote_books": 20, "quote_loop": 499, "first_quote": "It is 2050. We have been successful at halving emissions every decade since 2020. We are heading for a world that will be no more than 1.5 degrees Celsius warmer by 2100.", "ideas": 25, "idea_loop": 261, "first_idea": "City air is cleaner than before the Industrial Revolution"}, "tweets": {"tweets": 78, "authors": 39, "blocks": 5, "sample": "#1: Expertise will be near free: We will be capable of having near free AI doctors for every person & AI tutors for every child, 24x7", "sample_by": "Vinod Khosla"}, "sound": {"tracks": 34, "bench": 14, "sec": 7664}, "art": {"pictures": 377, "posts": 171, "tile": "concept-art/thumbs/2118267091262333357-1.jpg"}, "wall": {"total": 2928, "slides": 278, "counts": {"facts": 6, "further": 16, "quotes": 50, "ideas": 25, "tweets": 78, "pictures": 377}, "files": ["video/assets/photos/atlas.jpg", "video/assets/photos/aurora.jpg", "video/assets/photos/bennu.jpg", "video/assets/photos/elevator.jpg", "video/assets/photos/elt.jpg", "video/assets/photos/europa.jpg", "video/assets/photos/havoc.jpg", "video/assets/photos/jewel.jpg", "video/assets/photos/mammoth.jpg", "video/assets/photos/marsbase.jpg", "video/assets/photos/moon.jpg", "video/assets/photos/nif.jpg", "video/assets/photos/sail.jpg", "video/assets/photos/smiled.jpg", "video/assets/photos/starship.jpg", "video/assets/photos/torus.jpg", "video/dist/media/further-720p.mp4", "video/dist/media/six-facts-720p.mp4"], "tile": "video/assets/photos/smiled.jpg", "chapters": [{"id": "planet", "title": "Planet", "color": "#2fbf71", "sec": 606}, {"id": "machines", "title": "Machines", "color": "#ff5315", "sec": 578}, {"id": "people", "title": "People", "color": "#f2b134", "sec": 465}, {"id": "power", "title": "Power", "color": "#8b7cff", "sec": 505}, {"id": "beyond", "title": "Beyond", "color": "#3aa0ff", "sec": 384}, {"id": "finale", "title": "2050", "color": "#ff5315", "sec": 159}]}, "mars": {"pictures": 40, "missions": 7}, "exists": {"books/dist/quote-wall.html": true, "tweets/dist/tweet-wall.html": true, "music/resonance/dist/local/player.html": true, "reel/links.md": true, "mirror/preview.jpg": true, "mars3d/preview.jpg": true, "slides/assets/preview.jpg": true, "concept-art/thumbs/2118267091262333357-1.jpg": true, "video/assets/photos/smiled.jpg": true, "programme/tea-with-tomorrow.html": true, "tweets/research/futurists-on-2050.html": true, "tweets/research/2050-in-futurists-tweets.html": true, "tweets/research/2050-in-futurists-tweets.ru.html": true, "reel/projection-2050.html": true, "video/dist/further-2050.html": true, "books/dist/book-projection-2050.html": true, "tweets/dist/tweets-2050.html": true, "music/dist/soundtrack2050.html": true, "music/dist/why-music-changes.html": true, "music/resonance/dist/local/index.html": true, "soundboard/dist/contact2050.html": true, "mirror/index.html": true, "mirror/viral-webcam-effects.html": true, "concept-art/imagined-futures.html": true, "wall/dist/big-wall.html": true, "mars3d/index.html": true, "slides/dist/party-deck.html": true}, "deck": {"shot": "slides/assets/preview.jpg", "slides": 26}};
+const D=/*DATA*/{"mode": "folder", "site": "https://www.vargafutureparty.com", "repo": "https://github.com/SecurityQQ/future-party", "built": "14 November 2026", "online": {"program": "https://claude.ai/artifact/GTAQtSieprLL7VaHcbwBVC", "futurists": "https://claude.ai/artifact/P2jenFADX1YbeZjJm9eJpW", "futurists_short": "https://claude.ai/artifact/K7mQoafbtuLc9f1NQuMc1X", "futurists_ru": "https://claude.ai/artifact/G2pBtXXsKGaz5rDnuL5Zmn", "films": "https://claude.ai/artifact/EX8V3LEzvAEtW2p2y2NLBu", "further": "https://claude.ai/artifact/8zQjJUnHQXxsWWD1aQKYnx", "books": "https://claude.ai/artifact/1P94dXNkbjwjofDd2DzaUi", "tweets": "https://claude.ai/artifact/M6b8HYpuvdwA4cU4GvEfqG", "soundtrack": "https://claude.ai/artifact/WfgPk8RRF5sTM8spzwC1zp", "why": "https://claude.ai/artifact/Abby2s8iw3xuiJQX9Qwfph", "resonance": "https://claude.ai/artifact/PVooRbA3UqweX19eBy7Q4k", "contact": "https://claude.ai/artifact/AiFrTg6V1BipqTvsJTmkmA", "tea": "https://claude.ai/artifact/JSq3U75PR1zGnLmkPea8Yz", "mirror_research": "https://claude.ai/artifact/EQ2izi4He8XwvMRmsknaqs", "concept": "https://claude.ai/artifact/Dqk9BpYrVUoFXQaiyfHKBD", "deck": "https://claude.ai/artifact/BkSJQMeXHfnDBZJaYmezXP"}, "pages": {"program": "programme/tea-with-tomorrow.html", "futurists": "tweets/research/futurists-on-2050.html", "futurists_short": "tweets/research/2050-in-futurists-tweets.html", "futurists_ru": "tweets/research/2050-in-futurists-tweets.ru.html", "films": "reel/projection-2050.html", "further": "video/dist/further-2050.html", "books": "books/dist/book-projection-2050.html", "tweets": "tweets/dist/tweets-2050.html", "soundtrack": "music/dist/soundtrack2050.html", "why": "music/dist/why-music-changes.html", "resonance": "music/resonance/dist/local/index.html", "contact": "soundboard/dist/contact2050.html", "mirror": "mirror/index.html", "mirror_research": "mirror/viral-webcam-effects.html", "concept": "concept-art/imagined-futures.html", "bigwall": "wall/dist/big-wall.html", "mars3d": "mars3d/index.html", "deck": "slides/dist/party-deck.html"}, "short": {"wall": "wall/dist/big-wall.html", "apps": "index.html#apps", "quotes": "books/dist/quote-wall.html#quote-wall", "ideas": "books/dist/quote-wall.html#projection", "mix": "books/dist/quote-wall.html#mix-wall", "tweets": "tweets/dist/tweet-wall.html#tweet-wall", "tweets-short": "tweets/dist/tweet-wall.html#short-wall", "art": "concept-art/imagined-futures.html#wall", "mars": "mars3d/index.html", "play": "soundboard/dist/contact2050.html", "soundboard": "soundboard/dist/contact2050.html", "soundtrack": "music/dist/soundtrack2050.html", "resonance": "music/resonance/dist/local/index.html", "music-history": "music/dist/why-music-changes.html", "books": "books/dist/book-projection-2050.html", "further": "video/dist/further-2050.html", "films": "reel/projection-2050.html", "futurists": "tweets/research/futurists-on-2050.html", "programme": "programme/tea-with-tomorrow.html", "slides": "slides/dist/party-deck.html"}, "playlists": {"soundtrack": "https://www.youtube.com/playlist?list=PLJdg5B9vQ1oA", "history": "https://www.youtube.com/playlist?list=PLeo45sxoQ8gE", "resonance": "https://www.youtube.com/playlist?list=PLSfq0dmq_K78"}, "apps": {"party": "https://www.vargafutureparty.com/app"}, "films": [{"id": "further", "title": "Further", "sub": "the wall film", "t": 8, "front": true, "file": "video/dist/media/further-720p.mp4", "preview": "video/dist/media/further-720p.mp4", "master": "https://github.com/SecurityQQ/future-party/releases/download/v2.0/further-2050-1080p.mp4", "about": "Sixteen bold claims for 2030–2050, each with a dated real seed and a film that imagined it, over 37 public-domain and CC photos. Silent, loops seamlessly.", "page": "video/dist/further-2050.html", "online": "https://claude.ai/artifact/8zQjJUnHQXxsWWD1aQKYnx", "rebuild": "cd video && npm run render", "is_preview": true, "probe": {"mb": 6, "sec": 74.6}}, {"id": "sixfacts", "title": "Six Facts", "sub": "the show reel", "t": 9, "front": true, "file": "video/dist/media/six-facts-720p.mp4", "preview": "video/dist/media/six-facts-720p.mp4", "master": null, "about": "Two and a half minutes with music: the six facts about how books guess the future, each answered by a book, a post on X and two predictions from Further, over NASA footage.", "page": null, "online": null, "rebuild": "cd showreel && npm run render", "is_preview": true, "probe": {"mb": 20, "sec": 149.5}}], "books": {"quotes": 50, "quote_books": 20, "quote_loop": 499, "first_quote": "It is 2050. We have been successful at halving emissions every decade since 2020. We are heading for a world that will be no more than 1.5 degrees Celsius warmer by 2100.", "ideas": 25, "idea_loop": 261, "first_idea": "City air is cleaner than before the Industrial Revolution"}, "tweets": {"tweets": 78, "authors": 39, "blocks": 5, "sample": "#1: Expertise will be near free: We will be capable of having near free AI doctors for every person & AI tutors for every child, 24x7", "sample_by": "Vinod Khosla"}, "sound": {"tracks": 34, "bench": 14, "sec": 7664}, "art": {"pictures": 377, "posts": 171, "tile": "concept-art/thumbs/2118267091262333357-1.jpg"}, "wall": {"total": 2928, "slides": 278, "counts": {"facts": 6, "further": 16, "quotes": 50, "ideas": 25, "tweets": 78, "pictures": 377}, "files": ["video/assets/photos/atlas.jpg", "video/assets/photos/aurora.jpg", "video/assets/photos/bennu.jpg", "video/assets/photos/elevator.jpg", "video/assets/photos/elt.jpg", "video/assets/photos/europa.jpg", "video/assets/photos/havoc.jpg", "video/assets/photos/jewel.jpg", "video/assets/photos/mammoth.jpg", "video/assets/photos/marsbase.jpg", "video/assets/photos/moon.jpg", "video/assets/photos/nif.jpg", "video/assets/photos/sail.jpg", "video/assets/photos/smiled.jpg", "video/assets/photos/starship.jpg", "video/assets/photos/torus.jpg", "video/dist/media/further-720p.mp4", "video/dist/media/six-facts-720p.mp4"], "tile": "video/assets/photos/smiled.jpg", "chapters": [{"id": "planet", "title": "Planet", "color": "#2fbf71", "sec": 606}, {"id": "machines", "title": "Machines", "color": "#ff5315", "sec": 578}, {"id": "people", "title": "People", "color": "#f2b134", "sec": 465}, {"id": "power", "title": "Power", "color": "#8b7cff", "sec": 505}, {"id": "beyond", "title": "Beyond", "color": "#3aa0ff", "sec": 384}, {"id": "finale", "title": "2050", "color": "#ff5315", "sec": 159}]}, "mars": {"pictures": 40, "missions": 7}, "shots": {"party": "hub/apps/app.jpg", "mirror": "hub/apps/mirror.jpg", "music": "hub/apps/music.jpg", "play": "hub/apps/play.jpg", "mars": "mars3d/preview.jpg", "art": "hub/apps/art.jpg"}, "exists": {"books/dist/quote-wall.html": true, "tweets/dist/tweet-wall.html": true, "music/resonance/dist/local/player.html": true, "reel/links.md": true, "slides/assets/preview.jpg": true, "concept-art/thumbs/2118267091262333357-1.jpg": true, "video/assets/photos/smiled.jpg": true, "hub/apps/app.jpg": true, "hub/apps/mirror.jpg": true, "hub/apps/music.jpg": true, "hub/apps/play.jpg": true, "mars3d/preview.jpg": true, "hub/apps/art.jpg": true, "programme/tea-with-tomorrow.html": true, "tweets/research/futurists-on-2050.html": true, "tweets/research/2050-in-futurists-tweets.html": true, "tweets/research/2050-in-futurists-tweets.ru.html": true, "reel/projection-2050.html": true, "video/dist/further-2050.html": true, "books/dist/book-projection-2050.html": true, "tweets/dist/tweets-2050.html": true, "music/dist/soundtrack2050.html": true, "music/dist/why-music-changes.html": true, "music/resonance/dist/local/index.html": true, "soundboard/dist/contact2050.html": true, "mirror/index.html": true, "mirror/viral-webcam-effects.html": true, "concept-art/imagined-futures.html": true, "wall/dist/big-wall.html": true, "mars3d/index.html": true, "slides/dist/party-deck.html": true}, "deck": {"shot": "slides/assets/preview.jpg", "slides": 26}};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const mmss=s=>{s=Math.round(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
@@ -449,18 +438,86 @@ const P=D.pages,B=D.books,T=D.tweets,S=D.sound,A=D.art,W=D.wall;
 
 /* Hero */
 $('lead').innerHTML=WEB
-  ?'The wall, the music, the guests’ corner and the research behind it, in one place. <b>Nothing here needs a login.</b> To run the night, open the Big Wall on the projector and press F.'
-  :'The wall, the music, the guests’ corner and the research behind it, in one place. <b>Open this page on the projector laptop</b>: everything plays straight from the folder, without internet or a login. The same pages are online at <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(D.site.replace(/^https?:\/\//,''))+'</a>.';
+  ?'The wall, the music, the apps and the research behind it, in one place. <b>Nothing here needs a login.</b> To run the night, open the Big Wall on the projector and press F.'
+  :'The wall, the music, the apps and the research behind it, in one place. <b>Open this page on the projector laptop</b>: everything plays straight from the folder, without internet or a login. The same pages are online at <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(D.site.replace(/^https?:\/\//,''))+'</a>.';
 
 $('heroStart').href=P.bigwall+'#play';
 $('heroMusic').href=P.resonance;
 $('heroAlt').textContent=WEB?'or type '+D.site.replace(/^https?:\/\//,'')+'/wall on the projector laptop':'press F on the wall for fullscreen';
 
+/* The apps, in the order of the Apps section: the address of each card on this page, the page it opens (the party
+   app is /app on the website, the full address from the folder), its preview
+   (hub/apps/, made by hub/apps/previews.py), what you need, and a fold with how to play. */
+const SH=D.shots;
+const APPS=[
+  {id:'party-app',short:'The Future 2050',title:'The Future 2050',kind:'NFC game',where:'on every phone · tap your NFC pass',
+   href:WEB?'/app':D.apps.party,open:WEB?'Open the app':'Open the app ↗',shot:SH.party,
+   about:'The party game. Tap your NFC pass on the back of your phone, give a name and birthday and meet your Kin, a zodiac creature from 2050. Then tap other travelers’ passes to fill your orbit and climb the ranking.',
+   links:[WEB?['ranking','/app/leaderboard']:['ranking ↗',D.apps.party+'/leaderboard']],
+   how:[['1 Tap','Hold your pass to the back of your phone. The Station opens by itself, nothing to install.'],
+        ['2 Arrive','Give a name and birthday; your Kin is drawn for you.'],
+        ['3 Meet','Tap another traveler’s pass to add them to your orbit.'],
+        ['4 Rank','The galactic ranking counts the cards each traveler has scanned, live on any screen.']]},
+  {id:'mirror',short:'Mirror 2050',title:'Mirror 2050',kind:'Camera',where:'laptop or phone with a camera · best in Chrome or Edge',
+   href:P.mirror,open:'Open the mirror',shot:SH.mirror,
+   about:'Eight camera effects that went viral on X, rebuilt in one page and played with your hands: glass hands, particle words, a hologram cube, a portal and more. Nothing is filmed or uploaded; the camera stays in the browser.',
+   links:[['party mode',P.mirror+'?party']],howTitle:'The eight effects',
+   how:[['1 Liquid Air','Your hands turn to glass and the air ripples.'],
+        ['2 Neon Swarm','Show 1 to 4 fingers to write a word in particles; open palm for a nebula, fist for an orb.'],
+        ['3 Holo Cube','You become a hologram, with a glitching cube held between your hands.'],
+        ['4 Portal','An open palm opens a portal; pinch with both hands to tear a window into 2050.'],
+        ['5 Shatter','An open hand blows the picture into glass tiles; a fist pulls it back.'],
+        ['6 Time Warp','Lower rows are older frames; point a finger and time ripples from it.'],
+        ['7 Matrix','You turn into falling code; your hands show the real colours.'],
+        ['8 Cloak','Your body shows the room behind you. A fist decloaks.']],
+   note:WEB?'Allow the camera, then use your hands. Keys 1–8 switch effects. Party mode hides the controls and changes the effect every 25 seconds.':'The camera needs a local server: run <code>python3 -m http.server 8050 -d mirror</code> from this folder, then open <a href="http://localhost:8050">localhost:8050</a> (<a href="http://localhost:8050/?party">party mode</a>).'},
+  {id:'history-of-music',short:'History of Music',title:'History of Music 2050',kind:'Music',where:'any screen · with sound',
+   href:P.resonance,open:WEB?'Start listening':'Open (no player)',shot:SH.music,
+   about:'Music history and what comes next: 60 stops from 1400 BCE to now, each with a recording and why it sounded that way, then twelve directions for the music of the future and Radio 2050, the party’s soundtrack.',
+   links:[['YouTube playlist ↗',D.playlists.resonance],WEB?null:['online ↗',D.online.resonance]],howTitle:'What is inside',
+   how:[['History','60 stops in eight periods, c.1400 BCE to 2024. The arrows step through them; each plays its recording.'],
+        ['Music of the Future','Twelve directions, 27 listening references, 21 signals already here, and 2050, maybe.'],
+        ['Research','Five forces scored across thirteen eras, and the core changes in music with their sources.'],
+        ['Radio 2050','The party’s soundtrack as a radio, from the button in the corner.'],
+        ['Find a sound','Press / to search every stop.']],
+   note:WEB?'':'Its built-in YouTube player needs a small local server: double-click <code>music/resonance/dist/local/Open Resonance.command</code>.'},
+  {id:'play',short:'Play: 2050',title:'Play: 2050',kind:'Makey Makey',where:'a Makey Makey board · laptop or projector · needs the internet',
+   href:P.contact,open:'Open the soundboard',shot:SH.play,
+   about:'A soundboard you play by touching things: twelve Makey Makey pins, eight kits and 2,038 sounds, with a jam mode that keeps every touch in time and in key. Enter starts stage mode for the projector.',
+   links:[['README',doc('soundboard/README.md')],WEB?null:['online ↗',D.online.contact]],
+   how:[['Front','Arrows, Space and click: the pins on the front of the board.'],
+        ['Back','W A S D F G: the jumper wires on the back.'],
+        ['Kits','Liftoff, Robot Choir, Rave 2050, Alien Zoo, Arcade Attack, Deep Space, Jam Session, Magic Keys.'],
+        ['Keys','Enter stage mode · J jam · H setup · Esc stops every sound.']],
+   note:WEB?'':'It streams its sounds, so it needs the internet unless you build the offline copy with <code>python3 -I soundboard/build.py --offline</code>.'},
+  {id:'mars',short:'Mars in 3D',title:'Mars in 3D',kind:'Red/cyan glasses',where:'projector or any screen · red lens on the left eye',
+   href:P.mars3d,open:'Start Mars in 3D',shot:SH.mars,
+   about:D.mars.pictures+' real stereo pictures of Mars from the rovers, landers, the Ingenuity helicopter and orbiters, with a live 3D globe that flies to each landing site. It runs by itself, about 13 minutes a loop, and works offline.',
+   links:[['the globe alone',P.mars3d+'?globe']],howTitle:'Seven missions, keys 1–7',
+   how:[['1 Pathfinder','1997, Ares Vallis: the first rover, Sojourner, and its rocks.'],
+        ['2 Spirit','2004–2010, Gusev crater: its own shadow, a dust devil, Husband Hill.'],
+        ['3 Opportunity','2004–2018, Meridiani: blueberries, an iron meteorite, Endeavour crater.'],
+        ['4 Phoenix','2008, the arctic: trenches dug down to ice.'],
+        ['5 Curiosity','Since 2012, Gale crater: Mount Sharp, a moving dune.'],
+        ['6 Perseverance','Since 2021, Jezero: Ingenuity flying, and the ground seen from it.'],
+        ['7 From orbit','Canyons, an ancient delta, the north polar cap, Phobos.']],
+   note:'The intro has a glasses test. Arrow keys skip, G opens the globe alone, I lists every picture with its source.'},
+  {id:'imagined-futures',short:'Imagined Futures',title:'Imagined Futures',kind:'Gallery',where:'phone, laptop or projector',
+   href:P.concept,open:'Open the gallery',shot:SH.art,
+   about:A.pictures+' pictures of concept art about the future from '+A.posts+' posts on X: space colonies, cities, vehicles, robots and the people in them, from 1970s paperback covers to today’s film and game design.',
+   links:[['play as a wall',P.concept+'#wall']],howTitle:'How to browse',
+   how:[['Subject','Space, cities, architecture, vehicles, robots, people, interiors.'],
+        ['Era','Retro (paintings, paperback and magazine covers, NASA art) or contemporary.'],
+        ['Search','By artist, account or word.'],
+        ['A picture','Opens big, with what it shows, who made it and the post it came from.'],
+        ['Play as a wall','Fullscreen, one picture at a time, to read across the room.']]}
+];
+
 /* The doors */
 const DOORS=[
   ['#wall','On the wall','The Big Wall, Further, Six Facts, and the quote, idea, tweet and art walls.','▶ '+mins(W.total)+' a loop'],
-  ['#music','Music','Playlist, History of Music 2050, Why Music Changes, and Play: 2050 for the guests.',S.tracks+' tracks'],
-  ['#guests','Guests','Mirror 2050, Mars in 3D for red/cyan glasses, and The Future 2050, the party app.','3 things to try'],
+  ['#music','Music','The playlist for the room, and Why Music Changes: four thousand years in thirteen eras.',S.tracks+' tracks'],
+  ['#apps','Apps','The Future 2050, the NFC game; Mirror 2050, History of Music 2050, Play: 2050, Mars in 3D and Imagined Futures.',APPS.length+' apps'],
   ['#research','2050 Research','The books, the tweets, the films and the effects behind the wall.','7 pages']
 ];
 $('doors').innerHTML=DOORS.map((d,i)=>'<a class="door" href="'+d[0]+'"><span class="n">0'+(i+1)+'</span><b>'+esc(d[1])+'</b><span>'+esc(d[2])+'</span><i>'+esc(d[3])+'</i></a>').join('');
@@ -529,12 +586,8 @@ const loc=(t,p)=>D.exists[p]===false?null:[t,/\.md$/.test(p)?doc(p):p];
 $('soundList').innerHTML=[
   item('Playlist','Soundtrack 2050, the party’s running order: '+S.tracks+' tracks and spoken voices in three blocks, each scored for plausibility and inspiration, plus '+S.bench+' spares.',
     [['YouTube playlist ↗',D.playlists.soundtrack],loc('the running order',P.soundtrack),['online ↗',D.online.soundtrack]]),
-  item('History of Music 2050',WEB?'Music history and what comes next: 60 stops from 1400 BCE, music of the future and a radio, with a YouTube player in the page.':'Music history and what comes next: 60 stops from 1400 BCE, music of the future and a radio. Its built-in YouTube player needs a small local server: double-click <code>music/resonance/dist/local/Open Resonance.command</code>.',
-    [loc(WEB?'open':'open (no player)',P.resonance),['YouTube playlist ↗',D.playlists.resonance],['online ↗',D.online.resonance]]),
   item('Why Music Changes','Four thousand years in thirteen eras: who paid, who ruled, what people believed, and the technology and contact that changed the sound.',
-    [loc('open',P.why),['History of Music playlist ↗',D.playlists.history],['online ↗',D.online.why]],'Research'),
-  item('2050','A Makey Makey soundboard for the guests: twelve pins, eight kits and 2,038 sounds, with a jam mode that keeps every touch in time and in key. Enter starts stage mode for the projector. It streams its sounds, so it needs the internet'+(WEB?'.':' unless you build the offline copy with <code>python3 -I soundboard/build.py --offline</code>.'),
-    [loc('open',P.contact),['README',doc('soundboard/README.md')],['online ↗',D.online.contact]],'Play')
+    [loc('open',P.why),['History of Music playlist ↗',D.playlists.history],['online ↗',D.online.why]],'Research')
 ].join('');
 $('readList').innerHTML=[
   item('Book Projection 2050','Eighteen authoritative books about the world around 2050, scored for authority, plausibility and inspiration, with their ideas and verified quotes.',
@@ -553,17 +606,36 @@ $('readList').innerHTML=[
     [loc('open',P.mirror_research),['online ↗',D.online.mirror_research]])
 ].join('');
 
-/* Mirror 2050, Mars in 3D and the party app */
-$('mirrorLink').href=P.mirror;
-if(D.exists['mirror/preview.jpg']===false)$('mirrorShot').hidden=true;
-$('mirrorLink').insertAdjacentHTML('afterend','<a class="lnk" href="'+esc(P.mirror)+'?party">party mode</a>');
-$('mirrorHow').innerHTML=WEB?'Works on any laptop or phone with a camera, best in Chrome or Edge: allow the camera, then use your hands. Party mode hides the controls and changes the effect every 25 seconds.':'The camera needs a local server: run <code>python3 -m http.server 8050 -d mirror</code> from this folder, then open <a class="lnk" href="http://localhost:8050">localhost:8050</a> (<a class="lnk" href="http://localhost:8050/?party">party mode</a>).';
-$('marsLink').href=P.mars3d;
-$('marsLink').insertAdjacentHTML('afterend','<a class="lnk" href="'+esc(P.mars3d)+'?globe">the globe alone</a>');
-if(D.exists['mars3d/preview.jpg']===false)$('marsShot').hidden=true;
-$('marsHow').innerHTML=D.mars.pictures+' real stereo pictures of Mars from the rovers, landers, the Ingenuity helicopter and orbiters, with a live 3D globe that flies to each landing site. Red lens on the left eye; the intro has a glasses test. It runs by itself, about 13 minutes a loop, and works offline. Arrow keys skip, G opens the globe alone, I lists every picture with its source.';
-$('appLink').href=WEB?'/app':D.apps.party;
-if(WEB){$('appLink').removeAttribute('target');$('appLink').textContent='Open the app';}
+/* Apps */
+$('appGrid').innerHTML=APPS.map(a=>{
+  const shot=D.exists[a.shot]!==false;
+  const links=a.links.filter(l=>l&&l[1]);
+  return '<article class="appcard" id="'+a.id+'">'+
+    '<a class="shot" href="'+esc(a.href)+'"'+ext(a.href)+' tabindex="-1" aria-hidden="true">'+(shot?'<img src="'+esc(a.shot)+'" width="1280" height="720" loading="lazy" alt="">':'')+'<span class="kind">'+esc(a.kind)+'</span></a>'+
+    '<h3><a href="'+esc(a.href)+'"'+ext(a.href)+'>'+esc(a.title)+'</a><span class="where">'+esc(a.where)+'</span></h3><p>'+a.about+'</p>'+
+    '<div class="actions"><a class="btn" href="'+esc(a.href)+'"'+ext(a.href)+'><span class="tri" aria-hidden="true"></span>'+esc(a.open)+'</a>'+
+    links.map(l=>'<a class="lnk" href="'+esc(l[1])+'"'+ext(l[1])+'>'+esc(l[0])+'</a>').join('')+'</div>'+
+    '<details><summary>'+esc(a.howTitle||'How to play')+'</summary><div class="arc">'+a.how.map(r=>'<div><b>'+esc(r[0])+'</b><span>'+r[1]+'</span></div>').join('')+'</div>'+(a.note?'<p class="how">'+a.note+'</p>':'')+'</details>'+
+    '</article>';
+}).join('');
+$('appNav').innerHTML=APPS.map(a=>'<a href="#'+a.id+'">'+(D.exists[a.shot]!==false?'<img src="'+esc(a.shot)+'" width="44" height="28" alt="" loading="lazy">':'')+esc(a.short)+'</a>').join('');
+/* The jump bar marks the app on screen and keeps its chip in view: the app named in the address while it is on
+   screen, otherwise the one showing the most of itself (cards side by side tie; the first wins) */
+if('IntersectionObserver' in window){
+  const bar=$('appNav'),chips=[...bar.querySelectorAll('a')],seen=new Map();
+  const mark=()=>{
+    const h=location.hash.slice(1);
+    let best=seen.get(h)>0?h:null;
+    if(!best){let most=0;APPS.forEach(a=>{const v=seen.get(a.id)||0;if(v>most){most=v;best=a.id}})}
+    let cur=null;
+    chips.forEach(c=>{const on=c.getAttribute('href')==='#'+best;c.setAttribute('aria-current',String(on));if(on)cur=c});
+    if(cur&&bar.scrollWidth>bar.clientWidth)bar.scrollTo({left:Math.max(0,cur.offsetLeft-bar.offsetLeft-(bar.clientWidth-cur.clientWidth)/2),behavior:'smooth'});
+  };
+  const io=new IntersectionObserver(es=>{es.forEach(e=>seen.set(e.target.id,e.isIntersecting?e.intersectionRect.height:0));mark()},
+    {threshold:[0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1],rootMargin:'-70px 0px -15% 0px'});
+  APPS.forEach(a=>io.observe($(a.id)));
+  addEventListener('hashchange',mark);
+}
 
 /* The app one tap away: the deck at the bottom on a phone, Open the app in the top bar on a wide screen. On the site
    Party is the page you are on, so its knob goes back to the top. The folder copy has no deck and opens the app online. */

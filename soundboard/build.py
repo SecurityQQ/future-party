@@ -17,7 +17,7 @@ SCALES = {'major', 'minor', 'dorian', 'mixolydian'}
 CHORD = re.compile(r'[A-G][#b]?(m(?!aj))?(maj7|7|sus2|sus4|add9)?')
 STEPS = re.compile(r'[xo.]{16}')  # one bar of sixteenths: x = hit, o = soft hit
 OFFLINE_LIMIT = 15_000_000  # Artifact pages must stay under 16 MB
-HOME = 'href="../../index.html"'  # the party's front page: the repo and the website keep the same paths
+HOME = 'href="../../index.html#play"'  # its card in the Apps on the party's front page: the repo and the website keep the same paths
 SITE = 'https://future-party-2050.vercel.app/'
 
 
@@ -92,7 +92,7 @@ def page(audio, build, bare=False):
     html = (tpl.replace('__KITS_JSON__', js(kits)).replace('__LIBRARY_JSON__', js(lib))
                .replace('__AUDIO_JSON__', js(audio)).replace('__BUILD_JSON__', js(build)))
     if bare:  # the Artifact host adds its own document skeleton; off the site, the front page needs its full address
-        return html.replace(HOME, f'href="{SITE}"')
+        return html.replace(HOME, f'href="{SITE}#play"')
     if audio:  # the offline copy makes no requests at all: it falls back from Inter to the system font
         html = re.sub(r'<link [^>]*fonts\.(googleapis|gstatic)\.com[^>]*>\n', '', html)
     return ('<!doctype html>\n<html lang="en">\n<meta charset="utf-8">\n'
