@@ -1,8 +1,8 @@
 {
-  "about": "The Big Wall: every piece on the wall in one loop, by theme. build.py reads the six sources and sorts them into these chapters. Quotes go to the chapter of their book unless quote_overrides names the quote by its first words; ideas go by their block unless idea_overrides names the headline; tweets go by the block of their topic in tweets/tweets.json; pictures go by their theme in concept-art/tweets.json, one after every two text slides, or after every slide in a chapter whose pictures is dense. Every Further slide and every Six Facts fact must be named in exactly one chapter.",
+  "about": "The Big Wall: every piece on the wall in one loop, by theme, after the Highlights (highlights.json). Chapter colours are the site's Blue futurism family. build.py reads the six sources and sorts them into these chapters. Quotes go to the chapter of their book unless quote_overrides names the quote by its first words; ideas go by their block unless idea_overrides names the headline; tweets go by the block of their topic in tweets/tweets.json; pictures go by their theme in concept-art/tweets.json, one after every two text slides, or after every slide in a chapter whose pictures is dense. Every Further slide and every Six Facts fact must be named in exactly one chapter.",
   "chapters": [
     {
-      "id": "planet", "title": "Planet", "color": "#2fbf71",
+      "id": "planet", "title": "Planet", "color": "#9dd8ff",
       "sub": "Energy, climate, food and the cities we live in",
       "facts": ["c1", "c2"],
       "further": ["nif", "mammoth", "jewel", "aurora"],
@@ -11,7 +11,7 @@
       "art": ["city", "nature", "abstract"]
     },
     {
-      "id": "machines", "title": "Machines", "color": "#ff5315",
+      "id": "machines", "title": "Machines", "color": "#4385ff",
       "sub": "When strong AI arrives, what it does to work, and what it is like to live with it",
       "facts": ["c6"],
       "further": ["atlas"],
@@ -20,7 +20,7 @@
       "art": ["robot", "interior"]
     },
     {
-      "id": "people", "title": "People", "color": "#f2b134",
+      "id": "people", "title": "People", "color": "#dce9fb",
       "sub": "How many of us, how long we live, where we move and what for",
       "facts": ["c3", "c4"],
       "further": [],
@@ -29,7 +29,7 @@
       "art": ["people", "architecture", "city"]
     },
     {
-      "id": "power", "title": "Power", "color": "#8b7cff",
+      "id": "power", "title": "Power", "color": "#8faacf",
       "sub": "Countries, money, war and who decides",
       "facts": ["c5"],
       "further": [],
@@ -38,7 +38,7 @@
       "art": ["architecture", "city", "vehicle"]
     },
     {
-      "id": "beyond", "title": "Beyond", "color": "#3aa0ff",
+      "id": "beyond", "title": "Beyond", "color": "#6aa9ff",
       "sub": "Getting around the planet and leaving it",
       "facts": [],
       "further": ["starship", "moon", "torus", "elevator", "bennu", "marsbase", "havoc", "europa", "elt", "sail"],
@@ -48,7 +48,7 @@
       "pictures": "dense"
     },
     {
-      "id": "finale", "title": "2050", "color": "#ff5315",
+      "id": "finale", "title": "2050", "color": "#4385ff",
       "sub": "The future is a choice",
       "facts": [],
       "further": ["smiled"],

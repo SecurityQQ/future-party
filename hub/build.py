@@ -173,6 +173,7 @@ def wall_numbers():
         return None
     w = json.loads(m.read_text(encoding="utf8"))
     return {"total": w["total"], "slides": w["slides"], "counts": w["counts"], "files": w["files"], "tile": WALL_TILE,
+            "highlights": w["highlights"],
             "chapters": [{k: c[k] for k in ("id", "title", "color", "sec")} for c in w["chapters"]]}
 
 
