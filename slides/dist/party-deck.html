@@ -3,120 +3,168 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#030817">
 <title>Future Party 2050 · Slides</title>
 <meta name="description" content="The host's deck for Future Party 2050: the vision, the goal, the three rules, a mini demo for every station, and the question for the room.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@400;500&display=swap">
 <style>
-/* The player: one 1920×1080 slide at a time, scaled to the window, black around it. */
-html,body{margin:0;height:100%;background:#000000;overflow:hidden}
+/* The player: one 1920×1080 slide at a time, scaled to the window, deep space around it. The palette is the website's
+   Blue futurism (vibes/tokens.css), put here by slides/build.py. */
+/* Blue futurism · canonical palette and materials for The Future 2050.
+   Run python3 vibes/sync.py from the repository root after editing. */
+:root {
+  --v-space: #030817;
+  --v-navy: #07132b;
+  --v-panel: #0b1b36;
+  --v-panel-hi: #142d52;
+  --v-ink: #edf4ff;
+  --v-muted: #a2b6d4;
+  --v-dim: #8197b8;
+  --v-blue: #4385ff;
+  --v-ice: #9dd8ff;
+  --v-chrome: #dce9fb;
+  --v-chrome-mid: #8faacf;
+  --v-chrome-low: #304e78;
+  --v-line: #2d486d;
+  --v-error: #ff8595;
+  --v-warning: #f4c58d;
+  --v-chrome-surface: linear-gradient(118deg, #f2f7ff 0%, #aec6e8 21%, #edf6ff 42%, #7da2d1 44%, #b8d6f7 68%, #e2efff 100%);
+  --v-chrome-edge: linear-gradient(145deg, #e9f4ff 0%, #82a4d1 17%, #244672 35%, #b8d8ff 48%, #eef8ff 50%, #426a9d 54%, #122d54 78%, #8bb9ec 100%);
+  --v-holo: linear-gradient(115deg, transparent 25%, rgb(67 133 255 / 18%) 40%, rgb(225 242 255 / 28%) 50%, rgb(130 199 255 / 20%) 58%, transparent 72%);
+  --v-ease: cubic-bezier(.2, .7, .2, 1);
+  --v-fast: 180ms;
+  --v-reveal: 800ms;
+  --v-orbit: 12s;
+  color-scheme: dark;
+}
+html,body{margin:0;height:100%;background:var(--v-space);overflow:hidden}
 *{margin:0}
-body{font:32px/1.2 'Inter',Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font:32px/1.2 'Geologica',system-ui,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 #stage{position:fixed;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
 #stage>section{position:absolute;left:0;top:0;width:1920px;height:1080px;box-sizing:border-box;overflow:hidden;isolation:isolate}
 #stage>section:not(.on){display:none!important}
 #stage>section.on{animation:deckIn .35s ease both}
 @keyframes deckIn{from{opacity:0}}
+@media (prefers-reduced-motion:reduce){#stage>section.on{animation:none}}
 /* A full-bleed picture or drawing listed first stays behind the slide's text */
 #stage>section>svg:first-child,#stage>section>img:first-child{z-index:-1}
 h1{font-size:96px;font-weight:600}h2{font-size:64px;font-weight:600}h3{font-size:44px;font-weight:600}
 img,video,iframe{display:block;border:0}
 aside{display:none}
 /* Host helpers: N shows the speaker notes, the hint shows once on open */
-#notes{position:fixed;left:16px;right:16px;bottom:16px;max-width:1100px;margin:0 auto;padding:14px 18px;border-radius:14px;background:rgba(14,14,16,.94);color:#F2EFE8;font:16px/1.5 'Inter',system-ui,sans-serif;border:1px solid rgba(242,239,232,.16);display:none;z-index:10}
+#notes{position:fixed;left:16px;right:16px;bottom:16px;max-width:1100px;margin:0 auto;padding:14px 18px;border-radius:14px;background:rgb(7 19 43 / 96%);color:var(--v-ink);font:16px/1.55 'Geologica',system-ui,sans-serif;border:1px solid rgb(143 170 207 / 42%);border-top-color:#7d9ac0;box-shadow:inset 0 1px 0 rgb(220 233 251 / 8%);display:none;z-index:10}
 #notes.show{display:block}
-#notes b{display:block;margin-bottom:4px;color:#FF5315;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
-#hint{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);padding:8px 14px;border-radius:999px;background:rgba(14,14,16,.88);color:#C9C6BF;font:13px/1.4 'Inter',system-ui,sans-serif;letter-spacing:.02em;white-space:nowrap;z-index:9;transition:opacity .6s ease;pointer-events:none}
+#notes b{display:block;margin-bottom:4px;color:var(--v-ice);font:500 11px/1.4 'Martian Mono',ui-monospace,monospace;letter-spacing:.09em;text-transform:uppercase}
+#hint{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);padding:8px 14px;border-radius:999px;background:rgb(7 19 43 / 90%);border:1px solid rgb(143 170 207 / 32%);color:var(--v-muted);font:400 11px/1.4 'Martian Mono',ui-monospace,monospace;letter-spacing:.03em;white-space:nowrap;z-index:9;transition:opacity .6s ease;pointer-events:none}
 #hint.gone{opacity:0}
 body.idle,body.idle *{cursor:none!important}
-/* Future Party 2050 — the party's look: black sky, one orange, League Gothic over Inter, Instrument Serif for words people said. */
-body { font-family: 'Inter', Arial, sans-serif; color: #F2EFE8; }
+/* Future Party 2050 in Blue futurism, the website's look (vibes/README.md): deep navy space, liquid chrome, electric blue
+   and ice. Unbounded for short headings, Geologica for reading and for the words people said, Martian Mono for labels and
+   addresses. The palette comes from vibes/tokens.css, which slides/build.py puts in front of this file. */
+body { font-family: 'Geologica', system-ui, sans-serif; color: var(--v-ink); }
 
-/* Slide grounds */
-.dark { background: #070708; color: #F2EFE8; padding: 128px; display: flex; flex-direction: column; gap: 48px; }
-.paper { background: #F2EFE8; color: #070708; padding: 128px; display: flex; flex-direction: column; gap: 48px; }
-.accent { background: #FF5315; color: #070708; padding: 128px; display: flex; flex-direction: column; gap: 48px; }
+/* Slide grounds: space (most slides), raised navy (the website's panels), liquid chrome (one slide) */
+.dark, .navy, .chrome { padding: 128px; display: flex; flex-direction: column; gap: 48px; }
+.dark { background: radial-gradient(ellipse at 88% 5%, rgb(30 75 151 / 30%), transparent 42%), var(--v-space); color: var(--v-ink); }
+.navy { background: radial-gradient(ellipse at 8% 100%, rgb(67 133 255 / 16%), transparent 48%), linear-gradient(145deg, #112441, var(--v-navy) 72%); color: var(--v-ink); }
+.chrome { background: var(--v-holo), var(--v-chrome-surface); color: var(--v-navy); }
 .center { justify-content: center; }
 .spread { justify-content: space-between; }
 
-/* Type scale: 320 / 200 / 120 / 72 / 32 / 24 */
-.eyebrow { font-size: 24px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; line-height: 1.3; color: #FF5315; }
-.paper .eyebrow { color: #B83A0A; }
-.accent .eyebrow { color: #070708; }
-.mega { font-family: 'League Gothic', 'Arial Narrow', Arial, sans-serif; font-size: 320px; font-weight: 400; line-height: 0.9; text-transform: uppercase; }
-.big { font-family: 'League Gothic', 'Arial Narrow', Arial, sans-serif; font-size: 200px; font-weight: 400; line-height: 0.95; text-transform: uppercase; }
-.h { font-family: 'League Gothic', 'Arial Narrow', Arial, sans-serif; font-size: 120px; font-weight: 400; line-height: 1; letter-spacing: 1px; text-transform: uppercase; }
-.serif { font-family: 'Instrument Serif', Georgia, serif; font-size: 72px; font-weight: 400; line-height: 1.1; }
-.serif-xl { font-family: 'Instrument Serif', Georgia, serif; font-size: 120px; font-weight: 400; line-height: 1.05; letter-spacing: -1px; }
-.body { font-size: 32px; line-height: 1.4; color: #C9C6BF; }
-.paper .body { color: #3D3B37; }
-.small { font-size: 24px; line-height: 1.4; color: #9B9893; }
-.paper .small { color: #5E5B55; }
-.strong { font-weight: 600; color: #F2EFE8; }
-.paper .strong { color: #070708; }
-.orange { color: #FF5315; }
-.paper .orange { color: #D9420C; }
-.lemon { color: #F2D34A; }
-a { color: #FF5315; text-decoration: underline; }
+/* Type scale: 240 / 168 / 128 / 76 headings, 92 / 60 said, 32 / 24 reading, 22 / 20 labels */
+.eyebrow { font: 500 22px/1.3 'Martian Mono', ui-monospace, monospace; letter-spacing: .09em; text-transform: uppercase; color: var(--v-ice); }
+.chrome .eyebrow { color: var(--v-panel-hi); }
+.mega { font-family: 'Unbounded', system-ui, sans-serif; font-size: 240px; font-weight: 500; line-height: .95; letter-spacing: -.055em; text-transform: uppercase; }
+.title { font-family: 'Unbounded', system-ui, sans-serif; font-size: 168px; font-weight: 500; line-height: 1; letter-spacing: -.055em; text-transform: uppercase; }
+.big { font-family: 'Unbounded', system-ui, sans-serif; font-size: 128px; font-weight: 500; line-height: 1.04; letter-spacing: -.05em; text-transform: uppercase; }
+.h { font-family: 'Unbounded', system-ui, sans-serif; font-size: 76px; font-weight: 500; line-height: 1.12; letter-spacing: -.04em; text-wrap: balance; }
+.serif { font-family: 'Geologica', system-ui, sans-serif; font-size: 60px; font-weight: 300; line-height: 1.25; letter-spacing: -.02em; }
+.serif-xl { font-family: 'Geologica', system-ui, sans-serif; font-size: 92px; font-weight: 300; line-height: 1.14; letter-spacing: -.03em; text-wrap: balance; }
+.serif i, .serif-xl i { font-style: normal; color: var(--v-ice); }
+.body { font-size: 32px; line-height: 1.55; color: #c4d4ec; }
+.small { font-size: 24px; line-height: 1.5; color: var(--v-muted); }
+.meta { font: 400 20px/1.6 'Martian Mono', ui-monospace, monospace; letter-spacing: .02em; color: var(--v-muted); }
+.strong { font-weight: 600; color: var(--v-ink); }
+.ice { color: var(--v-ice); }
+.shine { background: var(--v-chrome-surface); background-clip: text; -webkit-background-clip: text; color: transparent; }
+.lemon { color: #f2d34a; }
+a { color: var(--v-ice); text-decoration-color: rgb(157 216 255 / 45%); text-underline-offset: 6px; }
+u { text-decoration-thickness: 6px; text-underline-offset: 16px; }
 
 /* Layout pieces */
-.head { display: flex; flex-direction: column; gap: 16px; }
+.head { display: flex; flex-direction: column; gap: 20px; }
 .row { display: flex; gap: 64px; }
 .col { width: 520px; display: flex; flex-direction: column; gap: 24px; }
-.shot { border-radius: 16px; border: 1px solid rgba(242,239,232,.14); }
-.card { background: #121215; border: 1px solid rgba(242,239,232,.12); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 12px; }
-.paper .card { background: #FBF9F4; border: 1px solid #DCD6CA; }
+.shot { border-radius: 20px; border: 1px solid rgb(143 170 207 / 42%); box-shadow: 0 24px 90px rgb(21 59 126 / 28%); }
+.card { background: linear-gradient(145deg, #112441, var(--v-navy) 75%); border: 1px solid rgb(143 170 207 / 42%); border-top-color: #7d9ac0; border-radius: 24px; box-shadow: inset 0 1px 0 rgb(220 233 251 / 8%); padding: 36px; display: flex; flex-direction: column; gap: 12px; }
+.navy .card { background: rgb(3 8 23 / 45%); }
+
+/* Cover: the website's hero, the chrome orbit in its asymmetric frame */
+.orbit { position: absolute; right: 128px; top: 128px; width: 620px; height: 824px; overflow: hidden; border-radius: 300px 32px 300px 32px; border: 1px solid #617fa6; box-shadow: 0 30px 140px rgb(21 59 126 / 34%); background: var(--v-space); }
+.orbit img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .9; animation: drift 24s ease-in-out infinite alternate; }
+.orbit::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 2px #dce9fb; background: linear-gradient(180deg, transparent 62%, rgb(3 8 23 / 72%)); }
+.orbit p { position: absolute; z-index: 1; left: 56px; right: 56px; bottom: 60px; font: 400 18px/1.8 'Martian Mono', ui-monospace, monospace; letter-spacing: .12em; text-transform: uppercase; color: var(--v-chrome); }
+.orbit p span { display: block; color: var(--v-muted); font-size: 16px; letter-spacing: .08em; }
+@keyframes drift { to { transform: scale(1.06) translateY(-1%); } }
 
 /* Rules */
 .rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
-.rule { border-top: 3px solid #070708; padding-top: 32px; display: flex; flex-direction: column; gap: 24px; }
+.rule { border-top: 2px solid #7d9ac0; padding-top: 40px; display: flex; flex-direction: column; gap: 28px; }
 
 /* NFC game */
-.steps { display: flex; flex-direction: column; gap: 12px; }
+.steps { display: flex; flex-direction: column; gap: 14px; }
+.step-n { font: 500 24px 'Martian Mono', ui-monospace, monospace; color: var(--v-ice); margin-right: 18px; }
 .kin { display: flex; gap: 24px; }
-.kin img { width: 280px; height: 560px; object-fit: cover; border-radius: 20px; border: 1px solid rgba(242,239,232,.14); }
+.kin img { width: 280px; height: 560px; object-fit: cover; border-radius: 24px; border: 1px solid #617fa6; box-shadow: 0 24px 90px rgb(21 59 126 / 30%); }
 
-/* Posters */
-.poster { display: flex; flex-wrap: wrap; column-gap: 40px; row-gap: 8px; }
+/* Tonight: one door per station, like the website's doors */
+.doors { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 24px; flex: 1; }
+.door { justify-content: space-between; padding: 32px 22px; }
+.door .num { font: 400 20px 'Martian Mono', ui-monospace, monospace; letter-spacing: .08em; color: var(--v-ice); }
+.door b { font: 500 30px/1.2 'Unbounded', system-ui, sans-serif; letter-spacing: -.03em; text-transform: uppercase; color: var(--v-chrome); }
 
 /* Topics and ideas */
 .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 24px; flex: 1; }
 .grid2 { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: 1fr 1fr; gap: 24px; flex: 1; }
 .tile { justify-content: space-between; }
 .art { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.art img { width: 544px; height: 264px; object-fit: cover; border-radius: 12px; }
+.art img { box-sizing: border-box; width: 544px; height: 264px; object-fit: cover; border-radius: 16px; border: 1px solid rgb(143 170 207 / 42%); }
 
-/* Tweet card and avatars */
-.tweet { width: 1320px; background: #121215; border: 1px solid rgba(242,239,232,.12); border-radius: 24px; padding: 48px; display: flex; flex-direction: column; gap: 32px; }
+/* Quote rule, tweet card and avatars */
+.quote { display: flex; flex-direction: column; gap: 32px; border-left: 3px solid var(--v-ice); padding-left: 56px; }
+.tweet { width: 1320px; padding: 48px; gap: 32px; }
 .who { display: flex; gap: 24px; align-items: center; }
 .who-text { display: flex; flex-direction: column; gap: 4px; }
 .avs { display: flex; gap: 24px; }
-.av { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(242,239,232,.18); }
-.tw-av { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+.av { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; border: 2px solid #617fa6; box-shadow: 0 0 0 4px rgb(3 8 23 / 80%), 0 0 24px rgb(67 133 255 / 22%); }
+.tw-av { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 2px solid #617fa6; }
 
 /* Tea */
-.teas { display: flex; flex-direction: column; }
-.tea { display: flex; gap: 32px; align-items: center; padding: 14px 0; border-bottom: 1px solid #DCD6CA; }
-.swatch { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(7,7,8,.18); }
-.tea-name { width: 360px; font-size: 32px; font-weight: 600; line-height: 1.3; color: #070708; }
-.tea-what { font-size: 32px; line-height: 1.3; color: #3D3B37; }
+.teas { display: flex; flex-direction: column; border-top: 1px solid rgb(143 170 207 / 24%); }
+.tea { display: flex; gap: 32px; align-items: center; padding: 14px 0; border-bottom: 1px solid rgb(143 170 207 / 24%); }
+.swatch { width: 48px; height: 48px; border-radius: 50%; box-shadow: 0 0 0 2px rgb(220 233 251 / 40%), 0 0 18px rgb(67 133 255 / 18%); }
+.tea-name { width: 380px; font-size: 32px; font-weight: 600; line-height: 1.3; color: var(--v-ink); }
+.tea-what { font-size: 32px; line-height: 1.3; color: #c4d4ec; }
 
 /* Demos */
 .stage { position: relative; width: 1080px; height: 608px; }
-.disc { border-radius: 50%; border: 18px solid #E9E4DA; }
-.disc-blue { background: radial-gradient(#4A78FF, #1B2D9A); }
-.disc-purple { background: radial-gradient(#B45CF0, #5A1C8C); }
-.strike { background: #F2EFE8; border-radius: 8px; }
-.panel { background: rgba(7,7,8,.8); border: 1px solid rgba(242,239,232,.14); border-radius: 24px; padding: 48px; display: flex; flex-direction: column; gap: 20px; }
-.anaglyph { color: #F2EFE8; text-shadow: -6px 0 0 #FF2A2A, 6px 0 0 #00E1FF; }
+.disc { border-radius: 50%; border: 16px solid #c9dcf3; box-shadow: inset 0 0 0 2px #edf6ff, 0 0 120px rgb(67 133 255 / 28%); }
+.disc-blue { background: radial-gradient(#4a78ff, #1b2d9a); }
+.disc-purple { background: radial-gradient(#b45cf0, #5a1c8c); box-shadow: inset 0 0 0 2px #edf6ff, 0 0 120px rgb(180 92 240 / 34%); }
+.purple, .purple i { color: #c99cff; }
+.strike { background: var(--v-ink); border-radius: 8px; }
+.panel { background: rgb(3 8 23 / 84%); border: 1px solid rgb(143 170 207 / 42%); border-top-color: #7d9ac0; border-radius: 24px; padding: 48px; display: flex; flex-direction: column; gap: 20px; }
+.panel .h { font-size: 64px; }
+.anaglyph { color: var(--v-ink); text-shadow: -6px 0 0 #ff2a2a, 6px 0 0 #00e1ff; }
 
-/* Motion: everything arrives within a second; clicks are for the host */
+/* Motion: everything arrives within a second, softly; clicks are for the host */
 @keyframes rise { from { opacity: 0; transform: translateY(32px); } }
 @keyframes fade { from { opacity: 0; } }
-.in { --i: 0; animation: rise .8s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i) * 140ms); }
+.in { --i: 0; animation: rise var(--v-reveal) var(--v-ease) both; animation-delay: calc(var(--i) * 140ms); }
 .fadein { --i: 0; animation: fade 1.2s ease both; animation-delay: calc(var(--i) * 140ms); }
 @property --n { syntax: '<integer>'; inherits: false; initial-value: 0 }
 @keyframes count { from { --n: 0 } }
@@ -124,14 +172,20 @@ a { color: #FF5315; text-decoration: underline; }
 .fragment { opacity: 0; transition: opacity .8s ease; }
 .fragment.visible { opacity: 1; }
 .slow.fragment { transition: opacity 2.6s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .in, .fadein, .orbit img { animation: none; }
+}
 </style>
 </head>
 <body>
 <main id="stage">
 <section id="cover" class="dark center" data-transition="fade">
-<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" style="position:absolute; left:0; top:0; width:1920px; height:1080px"><defs><filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="22"/></filter><linearGradient id="planet" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22110B"/><stop offset="0.06" stop-color="#0B0B0E"/><stop offset="1" stop-color="#070708"/></linearGradient></defs><g fill="#F2EFE8"><circle cx="120" cy="90" r="1.5" opacity=".5"/><circle cx="260" cy="210" r="1" opacity=".4"/><circle cx="410" cy="60" r="2" opacity=".7"/><circle cx="530" cy="330" r="1.2" opacity=".35"/><circle cx="690" cy="140" r="1.6" opacity=".6"/><circle cx="820" cy="260" r="1" opacity=".4"/><circle cx="980" cy="70" r="1.4" opacity=".5"/><circle cx="1110" cy="190" r="2.2" opacity=".8"/><circle cx="1240" cy="320" r="1" opacity=".35"/><circle cx="1370" cy="110" r="1.5" opacity=".55"/><circle cx="1500" cy="240" r="1.2" opacity=".45"/><circle cx="1650" cy="80" r="1.8" opacity=".7"/><circle cx="1790" cy="200" r="1" opacity=".4"/><circle cx="1860" cy="360" r="1.4" opacity=".5"/><circle cx="70" cy="420" r="1.2" opacity=".4"/><circle cx="1180" cy="560" r="1.6" opacity=".6"/><circle cx="1440" cy="470" r="1" opacity=".4"/><circle cx="1700" cy="580" r="2" opacity=".7"/><circle cx="1580" cy="730" r="1.1" opacity=".4"/><circle cx="1820" cy="820" r="1.5" opacity=".55"/><circle cx="1320" cy="780" r="1.4" opacity=".5"/><circle cx="40" cy="880" r="1" opacity=".35"/><circle cx="200" cy="760" r="1.2" opacity=".4"/></g><circle cx="960" cy="3500" r="2600" fill="none" stroke="#FF5315" stroke-width="34" opacity=".5" filter="url(#glow)"/><circle cx="960" cy="3500" r="2600" fill="url(#planet)" stroke="#FF7A45" stroke-width="2"/></svg>
-<p class="eyebrow in">Future Party</p>
-<p class="mega in" style="--i:1">2050</p>
+<div class="orbit fadein" style="--i:1">
+<img src="../../vibes/assets/chrome-orbit.webp" alt="">
+<p>Other worlds. One night.<span>vargafutureparty.com</span></p>
+</div>
+<p class="eyebrow in">Welcome to</p>
+<p class="title in" style="--i:1">Future<br>Party<br><span class="shine">2050</span></p>
 <p class="serif in" style="--i:2"><i>The future is who you meet</i></p>
 <aside>Welcome everyone. This is Future Party 2050. Tonight everything here is about the future, and the future is who you meet.</aside>
 </section>
@@ -141,7 +195,7 @@ a { color: #FF5315; text-decoration: underline; }
 <p class="serif in" style="--i:1; width:1400px">If you put the 20 smartest people in the room, you can change the world.</p>
 </div>
 <div style="display:flex; align-items:flex-end; gap:64px">
-<p class="mega orange n">50</p>
+<p class="mega shine n">50</p>
 <div style="display:flex; flex-direction:column; gap:16px; padding-bottom:24px">
 <p class="h in" style="--i:4">We have 50.</p>
 <p class="serif in" style="--i:5; width:1100px">It’s enough to change the world at least twice.</p>
@@ -149,27 +203,27 @@ a { color: #FF5315; text-decoration: underline; }
 </div>
 <aside>They say if you put the twenty smartest people in one room, you can change the world. Tonight we have fifty. That is enough to change the world at least twice.</aside>
 </section>
-<section id="goal" class="accent center" data-transition="fade">
+<section id="goal" class="chrome center" data-transition="fade">
 <p class="eyebrow in">Goal</p>
 <p class="big in" style="--i:1; width:1664px"><u>Make 2050 real with people in this room</u></p>
 <aside>Our goal for tonight: make 2050 real, with the people in this room.</aside>
 </section>
-<section id="rules" class="paper" data-transition="fade">
+<section id="rules" class="navy" data-transition="fade">
 <div class="head">
 <p class="eyebrow in">Rules</p>
 <h2 class="h in" style="--i:1">Three rules of the future party</h2>
 </div>
 <div class="rules">
 <div class="rule in" style="--i:2">
-<p class="big orange">1</p>
+<p class="big shine">1</p>
 <p class="serif">No past.</p>
 </div>
 <div class="rule in" style="--i:3">
-<p class="big orange">2</p>
+<p class="big shine">2</p>
 <p class="serif">Help others unleash creativity.</p>
 </div>
 <div class="rule in" style="--i:4">
-<p class="big orange">3</p>
+<p class="big shine">3</p>
 <p class="serif">Meet new people.</p>
 </div>
 </div>
@@ -184,9 +238,9 @@ a { color: #FF5315; text-decoration: underline; }
 <div class="col" style="width:712px; gap:40px">
 <p class="body in" style="--i:2">Tap someone’s card with your phone. You meet their Kin, a creature drawn from their birthday, and it joins your collection.</p>
 <div class="steps in" style="--i:3">
-<p class="body strong"><span class="orange">01</span>  Tap a card</p>
-<p class="body strong"><span class="orange">02</span>  Meet their Kin</p>
-<p class="body strong"><span class="orange">03</span>  Collect everyone in the room</p>
+<p class="body strong"><span class="step-n">01</span>  Tap a card</p>
+<p class="body strong"><span class="step-n">02</span>  Meet their Kin</p>
+<p class="body strong"><span class="step-n">03</span>  Collect everyone in the room</p>
 </div>
 <p class="small in" style="--i:4">vargafutureparty.com/app</p>
 </div>
@@ -207,32 +261,32 @@ a { color: #FF5315; text-decoration: underline; }
 <div class="card in" style="--i:2">
 <p class="body strong">Future 2050: the show reel</p>
 <p class="small">Six facts about how books guess the future</p>
-<div style="flex:1"></div><p class="small orange">/films</p>
+<div style="flex:1"></div><p class="meta ice">/films</p>
 </div>
 <div class="card in" style="--i:3">
 <p class="body strong">Quotes from the best books</p>
 <p class="small">50 quotes from 18 books about the future</p>
-<div style="flex:1"></div><p class="small orange">/quotes</p>
+<div style="flex:1"></div><p class="meta ice">/quotes</p>
 </div>
 <div class="card in" style="--i:4">
 <p class="body strong">Ideas of 2050</p>
 <p class="small">25 ideas from the books, and what exists today</p>
-<div style="flex:1"></div><p class="small orange">/ideas</p>
+<div style="flex:1"></div><p class="meta ice">/ideas</p>
 </div>
 <div class="card in" style="--i:5">
 <p class="body strong">2050 in 78 tweets</p>
 <p class="small">What people wrote on X about 2050</p>
-<div style="flex:1"></div><p class="small orange">/tweets</p>
+<div style="flex:1"></div><p class="meta ice">/tweets</p>
 </div>
 <div class="card in" style="--i:6">
 <p class="body strong">Futurists on 2050</p>
 <p class="small">12 futurists, 43 quotes, where they agree</p>
-<div style="flex:1"></div><p class="small orange">/futurists</p>
+<div style="flex:1"></div><p class="meta ice">/futurists</p>
 </div>
 <div class="card in" style="--i:7">
 <p class="body strong">Futuristic concept art</p>
 <p class="small">377 pictures of the future from X</p>
-<div style="flex:1"></div><p class="small orange">/art</p>
+<div style="flex:1"></div><p class="meta ice">/art</p>
 </div>
 </div>
 <aside>Six things play on the walls tonight. Every one has a short address on vargafutureparty.com, so you can open it on your phone too. The next six slides show one piece of each.</aside>
@@ -251,12 +305,12 @@ a { color: #FF5315; text-decoration: underline; }
 </div>
 <aside>This is the first fourteen seconds of the show reel. The whole film is two and a half minutes and loops on the wall all night.</aside>
 </section>
-<section id="quotes" class="paper" data-transition="fade">
+<section id="quotes" class="navy" data-transition="fade">
 <div class="head">
 <p class="eyebrow in">Inspiration 2 of 6</p>
 <h2 class="h in" style="--i:1">Quotes from the best books</h2>
 </div>
-<div style="display:flex; flex-direction:column; gap:32px; border-left:4px solid #D9420C; padding-left:48px">
+<div class="quote">
 <p class="serif-xl in" style="--i:2; width:1500px">“There has never been a better day in the whole history of the world to invent something.”</p>
 <p class="body in" style="--i:3">Kevin Kelly, <i>The Inevitable</i> (2016)</p>
 </div>
@@ -270,19 +324,19 @@ a { color: #FF5315; text-decoration: underline; }
 </div>
 <div class="grid2">
 <div class="card tile in" style="--i:2; padding:40px; gap:16px">
-<p class="small orange">AI 2041</p>
+<p class="meta ice">AI 2041</p>
 <p class="serif">Every child has an AI tutor</p>
 </div>
 <div class="card tile in" style="--i:3; padding:40px; gap:16px">
-<p class="small orange">Summa Technologiae</p>
+<p class="meta ice">Summa Technologiae</p>
 <p class="serif">You can wear reality</p>
 </div>
 <div class="card tile in" style="--i:4; padding:40px; gap:16px">
-<p class="small orange">The Singularity Is Nearer</p>
+<p class="meta ice">The Singularity Is Nearer</p>
 <p class="serif">The brain connects to the cloud</p>
 </div>
 <div class="card tile in" style="--i:5; padding:40px; gap:16px">
-<p class="small orange">A City on Mars</p>
+<p class="meta ice">A City on Mars</p>
 <p class="serif">The Moon first, Mars later</p>
 </div>
 </div>
@@ -293,7 +347,7 @@ a { color: #FF5315; text-decoration: underline; }
 <p class="eyebrow in">Inspiration 4 of 6</p>
 <h2 class="h in" style="--i:1">2050 in 78 tweets</h2>
 </div>
-<div class="tweet in" style="--i:2">
+<div class="card tweet in" style="--i:2">
 <div class="who">
 <img class="tw-av" src="../assets/av-elonmusk.jpg" alt="Elon Musk">
 <div class="who-text">
@@ -357,17 +411,17 @@ a { color: #FF5315; text-decoration: underline; }
 </section>
 <section id="tonight" class="dark" data-transition="fade">
 <p class="eyebrow in">Tonight at the party</p>
-<div class="poster">
-<p class="h in" style="--i:1">NFC game <span class="orange">·</span></p>
-<p class="h in" style="--i:2">Contact 2050 soundboard <span class="orange">·</span></p>
-<p class="h in" style="--i:3">Visual effect camera <span class="orange">·</span></p>
-<p class="h in" style="--i:4">Tea ceremony <span class="orange">·</span></p>
-<p class="h in" style="--i:5">Miracle berries <span class="orange">·</span></p>
-<p class="h in" style="--i:6">Dumplings <span class="orange">·</span></p>
-<p class="h in" style="--i:7">Robot <span class="orange">·</span></p>
-<p class="h in" style="--i:8">Mini-printer <span class="orange">·</span></p>
-<p class="h in" style="--i:9">3D glasses <span class="orange">·</span></p>
-<p class="h in" style="--i:10">Diffraction glasses</p>
+<div class="doors">
+<div class="card door in" style="--i:1"><p class="num">01</p><b>NFC game</b></div>
+<div class="card door in" style="--i:2"><p class="num">02</p><b>Contact 2050 soundboard</b></div>
+<div class="card door in" style="--i:3"><p class="num">03</p><b>Visual effect camera</b></div>
+<div class="card door in" style="--i:4"><p class="num">04</p><b>Tea ceremony</b></div>
+<div class="card door in" style="--i:5"><p class="num">05</p><b>Miracle berries</b></div>
+<div class="card door in" style="--i:6"><p class="num">06</p><b>Dumplings</b></div>
+<div class="card door in" style="--i:7"><p class="num">07</p><b>Robot</b></div>
+<div class="card door in" style="--i:8"><p class="num">08</p><b>Mini-printer</b></div>
+<div class="card door in" style="--i:9"><p class="num">09</p><b>3D glasses</b></div>
+<div class="card door in" style="--i:10"><p class="num">10</p><b>Diffraction glasses</b></div>
 </div>
 <p class="serif in" style="--i:11"><i>Try every one of them tonight.</i></p>
 <aside>Here is everything we have at the party tonight. The next slides show each one with a small demo.</aside>
@@ -396,7 +450,7 @@ a { color: #FF5315; text-decoration: underline; }
 <p class="body in" style="--i:3; width:1500px">Stand in front of the camera and use your hands: liquid air, a particle swarm, a hologram cube, portals and four more effects that went viral on X.</p>
 <aside>Demo: open /mirror/ and wave. Keys 1 to 8 switch effects, A starts party mode, S saves a picture for the mini-printer. The preview frames come from the original posts on X.</aside>
 </section>
-<section id="tea" class="paper" data-transition="fade">
+<section id="tea" class="navy" data-transition="fade">
 <div class="head">
 <p class="eyebrow in">Station 3 of 9</p>
 <h2 class="h in" style="--i:1">Tea ceremony</h2>
@@ -421,7 +475,7 @@ a { color: #FF5315; text-decoration: underline; }
 <div class="col">
 <p class="body in" style="--i:2">Blue tea is butterfly pea flower. It changes colour with acid.</p>
 <p class="body strong in" style="--i:3">Add lemon and watch.</p>
-<p class="serif orange fragment slow" data-fragment-index="1"><i>Purple.</i></p>
+<p class="serif purple fragment slow" data-fragment-index="1"><i>Purple.</i></p>
 </div>
 <div class="stage" style="height:600px">
 <div class="disc disc-blue" style="position:absolute; left:250px; top:20px; width:560px; height:560px; box-sizing:border-box"></div>
@@ -441,16 +495,18 @@ a { color: #FF5315; text-decoration: underline; }
 <p class="body strong in" style="--i:3">The lemon tastes sweet.</p>
 </div>
 <div class="stage" style="height:600px">
-<p class="mega lemon" style="position:absolute; left:0; top:0; width:1080px">Sour</p>
-<div class="strike fragment" data-fragment-index="1" style="position:absolute; left:-16px; top:128px; width:560px; height:20px"></div>
-<p class="mega orange fragment slow" data-fragment-index="1" style="position:absolute; left:0; top:304px; width:1080px">Sweet</p>
+<div style="position:absolute; left:0; top:24px">
+<p class="mega lemon">Sour</p>
+<div class="strike fragment" data-fragment-index="1" style="position:absolute; left:-20px; right:-4px; top:calc(50% - 10px); height:20px"></div>
+</div>
+<p class="mega shine fragment slow" data-fragment-index="1" style="position:absolute; left:0; top:320px; width:1080px">Sweet</p>
 </div>
 </div>
 <aside>Demo: give one person a berry, wait a minute, hand them a lemon slice. Click when they bite: sour is crossed out and sweet comes up.</aside>
 </section>
 <section id="food" class="dark center" data-transition="fade">
 <p class="eyebrow in">Station 5 of 9 · Food</p>
-<p class="mega in" style="--i:1">Dumplings</p>
+<p class="mega shine in" style="--i:1; font-size:216px">Dumplings</p>
 <p class="serif in" style="--i:2"><i>Fuel for the future.</i></p>
 <aside>Food tonight: dumplings.</aside>
 </section>
@@ -460,7 +516,7 @@ a { color: #FF5315; text-decoration: underline; }
 <p class="body in" style="--i:2">We have one here tonight. Go say hi.</p>
 <aside>Bring the robot in front of the screen for this one.</aside>
 </section>
-<section id="printer" class="paper center" data-transition="fade">
+<section id="printer" class="navy center" data-transition="fade">
 <p class="eyebrow in">Station 7 of 9 · Mini-printer</p>
 <p class="mega in" style="--i:1">Print it</p>
 <p class="serif in" style="--i:2; width:1300px"><i>A mini-printer for your pictures. Take a piece of 2050 home.</i></p>
@@ -476,7 +532,7 @@ a { color: #FF5315; text-decoration: underline; }
 </div>
 <aside>Demo: hand out the red-blue glasses and keep this slide up. The rocks pop out of the screen. Then start Mars in 3D at /mars: real stereo pictures from the rovers and a 3D globe.</aside>
 </section>
-<section id="diffraction" class="dark" style="background:#040405" data-transition="fade">
+<section id="diffraction" class="dark" style="background:#020610" data-transition="fade">
 <svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" style="position:absolute; left:0; top:0; width:1920px; height:1080px"><defs><filter id="halo" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="9"/></filter></defs><g fill="#FFFFFF" opacity=".55" filter="url(#halo)"><circle cx="160" cy="560" r="12"/><circle cx="254" cy="548" r="12"/><circle cx="348" cy="538" r="12"/><circle cx="442" cy="530" r="12"/><circle cx="536" cy="524" r="12"/><circle cx="630" cy="520" r="12"/><circle cx="724" cy="518" r="12"/><circle cx="818" cy="518" r="12"/><circle cx="912" cy="520" r="12"/><circle cx="1006" cy="524" r="12"/><circle cx="1100" cy="530" r="12"/><circle cx="1194" cy="538" r="12"/><circle cx="1288" cy="548" r="12"/><circle cx="1382" cy="560" r="12"/><circle cx="1476" cy="574" r="12"/><circle cx="1570" cy="590" r="12"/><circle cx="1664" cy="608" r="12"/><circle cx="1758" cy="628" r="12"/><circle cx="220" cy="760" r="18"/><circle cx="610" cy="720" r="20"/><circle cx="960" cy="790" r="24"/><circle cx="1290" cy="700" r="16"/><circle cx="1460" cy="850" r="20"/><circle cx="1780" cy="920" r="18"/></g><g fill="#FFFFFF"><circle cx="160" cy="560" r="6"/><circle cx="254" cy="548" r="6"/><circle cx="348" cy="538" r="6"/><circle cx="442" cy="530" r="6"/><circle cx="536" cy="524" r="6"/><circle cx="630" cy="520" r="6"/><circle cx="724" cy="518" r="6"/><circle cx="818" cy="518" r="6"/><circle cx="912" cy="520" r="6"/><circle cx="1006" cy="524" r="6"/><circle cx="1100" cy="530" r="6"/><circle cx="1194" cy="538" r="6"/><circle cx="1288" cy="548" r="6"/><circle cx="1382" cy="560" r="6"/><circle cx="1476" cy="574" r="6"/><circle cx="1570" cy="590" r="6"/><circle cx="1664" cy="608" r="6"/><circle cx="1758" cy="628" r="6"/><circle cx="220" cy="760" r="10"/><circle cx="420" cy="880" r="6"/><circle cx="610" cy="720" r="12"/><circle cx="790" cy="930" r="8"/><circle cx="960" cy="790" r="14"/><circle cx="1130" cy="900" r="7"/><circle cx="1290" cy="700" r="9"/><circle cx="1460" cy="850" r="12"/><circle cx="1640" cy="760" r="6"/><circle cx="1780" cy="920" r="10"/><circle cx="330" cy="960" r="8"/><circle cx="1020" cy="980" r="6"/><circle cx="1560" cy="980" r="8"/><circle cx="700" cy="830" r="5"/><circle cx="1220" cy="820" r="5"/><circle cx="1380" cy="960" r="6"/><circle cx="500" cy="700" r="6"/><circle cx="880" cy="660" r="7"/></g></svg>
 <div class="head">
 <p class="eyebrow in">Station 9 of 9</p>
@@ -514,7 +570,7 @@ a { color: #FF5315; text-decoration: underline; }
 <aside>Play the clip from one minute in. Clarke in 1964, sixty-two years ago, describing the world we live in now.</aside>
 </section>
 <section id="question" class="dark center" data-transition="fade">
-<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" style="position:absolute; left:0; top:0; width:1920px; height:1080px"><defs><filter id="glow2" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="22"/></filter><linearGradient id="planet2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22110B"/><stop offset="0.06" stop-color="#0B0B0E"/><stop offset="1" stop-color="#070708"/></linearGradient></defs><g fill="#F2EFE8"><circle cx="120" cy="90" r="1.5" opacity=".5"/><circle cx="410" cy="60" r="2" opacity=".7"/><circle cx="690" cy="140" r="1.6" opacity=".6"/><circle cx="980" cy="70" r="1.4" opacity=".5"/><circle cx="1110" cy="190" r="2.2" opacity=".8"/><circle cx="1370" cy="110" r="1.5" opacity=".55"/><circle cx="1650" cy="80" r="1.8" opacity=".7"/><circle cx="1860" cy="360" r="1.4" opacity=".5"/><circle cx="70" cy="420" r="1.2" opacity=".4"/><circle cx="1790" cy="200" r="1" opacity=".4"/><circle cx="1820" cy="820" r="1.5" opacity=".55"/><circle cx="40" cy="880" r="1" opacity=".35"/><circle cx="1880" cy="600" r="1.2" opacity=".45"/><circle cx="60" cy="640" r="1.4" opacity=".5"/></g><circle cx="960" cy="3500" r="2600" fill="none" stroke="#FF5315" stroke-width="34" opacity=".5" filter="url(#glow2)"/><circle cx="960" cy="3500" r="2600" fill="url(#planet2)" stroke="#FF7A45" stroke-width="2"/></svg>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" style="position:absolute; left:0; top:0; width:1920px; height:1080px"><defs><filter id="glow2" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="22"/></filter><linearGradient id="planet2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#142d52"/><stop offset="0.06" stop-color="#07132b"/><stop offset="1" stop-color="#030817"/></linearGradient></defs><g fill="#edf4ff"><circle cx="120" cy="90" r="1.5" opacity=".5"/><circle cx="410" cy="60" r="2" opacity=".7"/><circle cx="690" cy="140" r="1.6" opacity=".6"/><circle cx="980" cy="70" r="1.4" opacity=".5"/><circle cx="1110" cy="190" r="2.2" opacity=".8"/><circle cx="1370" cy="110" r="1.5" opacity=".55"/><circle cx="1650" cy="80" r="1.8" opacity=".7"/><circle cx="1860" cy="360" r="1.4" opacity=".5"/><circle cx="70" cy="420" r="1.2" opacity=".4"/><circle cx="1790" cy="200" r="1" opacity=".4"/><circle cx="1820" cy="820" r="1.5" opacity=".55"/><circle cx="40" cy="880" r="1" opacity=".35"/><circle cx="1880" cy="600" r="1.2" opacity=".45"/><circle cx="60" cy="640" r="1.4" opacity=".5"/></g><circle cx="960" cy="3500" r="2600" fill="none" stroke="#4385ff" stroke-width="34" opacity=".6" filter="url(#glow2)"/><circle cx="960" cy="3500" r="2600" fill="url(#planet2)" stroke="#9dd8ff" stroke-width="2"/></svg>
 <p class="eyebrow in">Question for the room</p>
 <p class="serif-xl in" style="--i:1; width:1600px">It’s a Tuesday in San Francisco in 2050. What would a teenager find absurd about something we do every day in 2026?</p>
 <aside>Talk to the people next to you. Find one thing we all do every day that a teenager in 2050 would laugh at. Then share the best ones with the room.</aside>
