@@ -8,15 +8,37 @@ from html import escape as escape_html
 history_data_before = {match[1]: match[2] for match in re.finditer(
     r'<script id="([^"]+)" type="application/json">(.*?)</script>', html, re.S)}
 
+# Eras are glass folders (era-browser.css/js): art on the back panel, sheets in the
+# pocket, a frosted front on a bottom hinge. Paths are fixed px, as clip-path needs.
+FOLDER_W, BACK_H, FRONT_H = 156, 104, 70
+BACK_PATH = (f'M0 20a12 12 0 0 1 12-12h{FOLDER_W - 88}c11 0 13-8 24-8h40a12 12 0 0 1 12 12'
+             f'v{BACK_H - 24}a12 12 0 0 1-12 12H12A12 12 0 0 1 0 {BACK_H - 12}Z')
+FRONT_PATH = (f'M0 12a12 12 0 0 1 12-12h50c11 0 13 8 24 8h{FOLDER_W - 98}a12 12 0 0 1 12 12'
+              f'v{FRONT_H - 32}a12 12 0 0 1-12 12H12A12 12 0 0 1 0 {FRONT_H - 12}Z')
+era_counts = [sum(1 for t in merged if t['chapter'] == i) for i in range(len(add['chapters']))]
 period_buttons = ''.join(
-    f'<button type="button" class="history-period" data-history-period="{i}" aria-pressed="false" aria-controls="history-recording story"><span class="history-period-range">{escape_html(chapter["range"])}</span><span class="history-period-point" aria-hidden="true"><i></i></span><span class="history-period-name">{escape_html(chapter["short"])}</span></button>'
+    f'<button type="button" class="history-period era-folder" data-history-period="{i}" aria-pressed="false" aria-controls="history-recording story" style="--i:{i}">'
+    f'<span class="era-back" style="clip-path:path(\'{BACK_PATH}\')" aria-hidden="true"><canvas class="era-art" data-era-art="{i}" width="1" height="1"></canvas><span class="era-back-sheen"></span></span>'
+    f'<svg class="era-back-rim" viewBox="0 0 {FOLDER_W} {BACK_H}" aria-hidden="true" focusable="false"><path d="{BACK_PATH}"/></svg>'
+    '<span class="era-files" aria-hidden="true"><i></i><i></i><i></i></span>'
+    f'<span class="era-front" style="clip-path:path(\'{FRONT_PATH}\')"><span class="era-tint" aria-hidden="true"></span><span class="era-spec" aria-hidden="true"></span>'
+    f'<svg class="era-front-rim" viewBox="0 0 {FOLDER_W} {FRONT_H}" aria-hidden="true" focusable="false"><path d="{FRONT_PATH}"/></svg>'
+    f'<span class="era-label"><span class="history-period-range">{escape_html(chapter["range"])}</span><span class="history-period-name">{escape_html(chapter["short"])}</span></span>'
+    f'<span class="era-count">{era_counts[i]:02d}<span class="history-visually-hidden"> recordings</span></span></span></button>'
     for i, chapter in enumerate(add['chapters'])
 )
-controls = f'''<section class="history-controls" aria-label="Choose a period and recording">
-  <h1 class="history-visually-hidden">Music history</h1>
-  <div class="history-period-picker"><div class="history-period-heading"><span id="history-period-label">Period</span><div class="history-period-scroll"><button id="history-period-earlier" class="icon-button" aria-label="Scroll to earlier periods">←</button><button id="history-period-later" class="icon-button" aria-label="Scroll to later periods">→</button></div></div><div id="history-period" class="history-period-strip" role="group" aria-labelledby="history-period-label">{period_buttons}</div></div>
-  <div class="history-field history-recording-field"><label for="history-recording">Recording</label><select id="history-recording" aria-controls="story"></select></div>
-  <div class="history-step-controls" aria-label="Move through the full history route"><button id="history-previous" class="icon-button" aria-label="Previous recording">←</button><output id="history-position" aria-live="polite" aria-atomic="true">01 / {N}</output><button id="history-next" class="icon-button" aria-label="Next recording">→</button></div>
+rim_defs = ('<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>'
+            '<linearGradient id="era-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset=".4" stop-color="#dce9fb" stop-opacity=".26"/><stop offset="1" stop-color="#dce9fb" stop-opacity=".1"/></linearGradient>'
+            '<linearGradient id="era-rim-on" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="1"/><stop offset=".35" stop-color="#9dd8ff" stop-opacity=".7"/><stop offset="1" stop-color="#4385ff" stop-opacity=".35"/></linearGradient>'
+            '</defs></svg>')
+controls = f'''<section class="history-controls" aria-label="Choose an era and a recording">
+  <h1 class="history-visually-hidden">Music history</h1>{rim_defs}
+  <div class="era-picker"><span id="history-period-label" class="history-visually-hidden">Eras</span><button id="history-period-earlier" class="icon-button era-scroll era-scroll-prev" aria-label="Scroll to earlier eras">←</button><div id="history-period" class="era-strip" role="group" aria-labelledby="history-period-label">{period_buttons}</div><button id="history-period-later" class="icon-button era-scroll era-scroll-next" aria-label="Scroll to later eras">→</button></div>
+  <div class="recordings">
+    <div class="recordings-head"><p class="recordings-title" id="history-recording-label"><span>In this era</span><b id="history-era-name"></b><span id="history-era-position"></span></p>
+    <div class="history-step-controls" aria-label="Move through the full history route"><button id="history-previous" class="icon-button" aria-label="Previous recording">←</button><output id="history-position" aria-live="polite" aria-atomic="true">01 / {N}</output><button id="history-next" class="icon-button" aria-label="Next recording">→</button></div></div>
+    <div id="history-recording" class="molten" aria-controls="story"><canvas tabindex="0" role="listbox" aria-labelledby="history-recording-label"></canvas><p class="molten-hint" aria-hidden="true">drag · swipe · ← →</p></div>
+  </div>
 </section>'''
 
 intro = re.search(r'<section class="intro" aria-labelledby="page-title">.*?</section>', html, re.S)
@@ -42,9 +64,10 @@ choices_js = r'''  function renderHistoryChoices() {
       button.classList.toggle('active',active);button.setAttribute('aria-pressed',String(active));
     });
     requestAnimationFrame(()=>centerHistoryPeriod());
-    $('history-recording').innerHTML=tracks.filter(item=>item.chapter===track.chapter).map(item=>
-      `<option value="${item.id}">${esc(item.date)} · ${esc(item.artist)} — ${esc(item.shortTitle)}</option>`).join('');
-    $('history-recording').value=String(current);
+    const inEra=tracks.filter(item=>item.chapter===track.chapter);
+    $('history-era-name').textContent=chapters[track.chapter].name;
+    $('history-era-position').textContent=`${pad(inEra.indexOf(track)+1)} / ${pad(inEra.length)}`;
+    try{eras?.update(current);}catch(error){console.warn('History eras could not update',error);}
     $('history-position').textContent=`${pad(current)} / ${tracks.length}`;
     $('history-position').setAttribute('aria-label',`Recording ${current} of ${tracks.length}`);
     for(const [id,step] of [['history-previous',-1],['history-next',1]]){
@@ -57,6 +80,7 @@ choices_js = r'''  function renderHistoryChoices() {
     const strip=$('history-period');
     $('history-period-earlier').disabled=strip.scrollLeft<=2;
     $('history-period-later').disabled=strip.scrollLeft+strip.clientWidth>=strip.scrollWidth-2;
+    strip.classList.toggle('can-earlier',!$('history-period-earlier').disabled);strip.classList.toggle('can-later',!$('history-period-later').disabled);
   }
   function centerHistoryPeriod(smooth=true) {
     if(document.body.dataset.view!=='history')return;
@@ -94,7 +118,9 @@ listeners = r'''  $('history-period').addEventListener('click',event=>{
     $(id).addEventListener('click',()=>{$('history-period').scrollBy({left:direction*Math.max(180,$('history-period').clientWidth*.7),behavior:reducedMotion?'instant':'smooth'});});
   }
   window.addEventListener('resize',()=>centerHistoryPeriod(false));
-  $('history-recording').addEventListener('change',event=>select(Number(event.target.value),{smooth:false}));
+  // The eras and the ring are decoration over select(): if they fail, History still works.
+  let eras=null;
+  try{eras=window.ResonanceEras?.mount({root:$('history-recording'),strip:$('history-period'),tracks,chapters,reducedMotion,onSelect:id=>select(id,{smooth:false})})||null;}catch(error){console.warn('History eras could not start',error);}
   $('history-previous').addEventListener('click',()=>select(current-1,{smooth:false}));
   $('history-next').addEventListener('click',()=>select(current+1,{smooth:false}));
 '''
@@ -140,7 +166,8 @@ html = rep(html, '<p id="player-status" class="player-status" aria-live="polite"
 html = rep(html, 'Select a chapter or timeline stop.', 'Choose a period and recording.')
 html = rep(html, 'Recordings play through YouTube. Nothing is downloaded, and the app does not contact YouTube until you press play. When opened as a local HTML file, playback opens on YouTube. Serve the app over HTTP or HTTPS to use the in-page player.',
            'Recordings play through YouTube. Hosted History pages load a paused video preview when you choose a recording; sound starts when you press Play. Downloaded copies load their player on demand. Recordings are streamed, not downloaded.')
-html = rep(html, '</style>', '\n' + open(P('history-layout.css'), encoding='utf-8').read() + '\n</style>')
+html = rep(html, '</style>', '\n' + open(P('history-layout.css'), encoding='utf-8').read() + '\n' + open(P('era-browser.css'), encoding='utf-8').read() + '\n</style>')
+html = rep(html, '<script>/* Resonance: framework-free', '<script>\n' + open(P('era-browser.js'), encoding='utf-8').read() + '</script>\n<script>/* Resonance: framework-free')
 
 history_data_after = {match[1]: match[2] for match in re.finditer(
     r'<script id="([^"]+)" type="application/json">(.*?)</script>', html, re.S)}
