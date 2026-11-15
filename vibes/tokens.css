@@ -1,0 +1,27 @@
+/* Blue futurism · canonical palette and materials for The Future 2050.
+   Run python3 vibes/sync.py from the repository root after editing. */
+:root {
+  --v-space: #030817;
+  --v-navy: #07132b;
+  --v-panel: #0b1b36;
+  --v-panel-hi: #142d52;
+  --v-ink: #edf4ff;
+  --v-muted: #a2b6d4;
+  --v-dim: #8197b8;
+  --v-blue: #4385ff;
+  --v-ice: #9dd8ff;
+  --v-chrome: #dce9fb;
+  --v-chrome-mid: #8faacf;
+  --v-chrome-low: #304e78;
+  --v-line: #2d486d;
+  --v-error: #ff8595;
+  --v-warning: #f4c58d;
+  --v-chrome-surface: linear-gradient(118deg, #f2f7ff 0%, #aec6e8 21%, #edf6ff 42%, #7da2d1 44%, #b8d6f7 68%, #e2efff 100%);
+  --v-chrome-edge: linear-gradient(145deg, #e9f4ff 0%, #82a4d1 17%, #244672 35%, #b8d8ff 48%, #eef8ff 50%, #426a9d 54%, #122d54 78%, #8bb9ec 100%);
+  --v-holo: linear-gradient(115deg, transparent 25%, rgb(67 133 255 / 18%) 40%, rgb(225 242 255 / 28%) 50%, rgb(130 199 255 / 20%) 58%, transparent 72%);
+  --v-ease: cubic-bezier(.2, .7, .2, 1);
+  --v-fast: 180ms;
+  --v-reveal: 800ms;
+  --v-orbit: 12s;
+  color-scheme: dark;
+}

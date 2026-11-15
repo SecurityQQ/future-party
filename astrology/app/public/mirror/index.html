@@ -1,0 +1,1621 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mirror · The Future 2050</title>
+<meta name="description" content="Step into the mirror and open your palm: your Kin lands on your hand. Plus eight camera effects that went viral on X, driven by your hands. The camera stays on your device.">
+<meta name="theme-color" content="#030817">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@400;500;600&family=Martian+Mono:wght@400;500;600&family=Unbounded:wght@500;600;700&display=swap">
+<style>
+/* Mirror · The Future 2050. The palette and materials are the app's blue futurism (vibes/tokens.css). */
+:root{
+  --bg:#030817; --navy:#07132b; --panel:#0b1b36;
+  --fg:#edf4ff; --fg-2:#a2b6d4; --muted:#8197b8; --line:rgba(157,216,255,.18); --line-2:rgba(157,216,255,.36);
+  --blue:#4385ff; --ice:#9dd8ff; --chrome:#dce9fb; --warn:#f4c58d; --glass:rgba(3,8,23,.62);
+  --chrome-surface:linear-gradient(118deg,#f2f7ff 0%,#aec6e8 21%,#edf6ff 42%,#7da2d1 44%,#b8d6f7 68%,#e2efff 100%);
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --font:"Geologica",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Martian Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:var(--font);overflow:hidden;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+#gl,#hud{position:fixed;inset:0;width:100%;height:100%;display:block}
+#hud{pointer-events:none}
+#cam{position:fixed;left:0;top:0;width:2px;height:2px;opacity:0;pointer-events:none}
+
+.chrome{transition:opacity .45s var(--ease)}
+body.idle .chrome{opacity:0}
+body.idle .chrome,body.idle .chrome *{pointer-events:none!important}
+body.idle{cursor:none}
+
+#top{position:fixed;top:max(14px,env(safe-area-inset-top));left:max(14px,env(safe-area-inset-left));right:max(14px,env(safe-area-inset-right));display:flex;justify-content:space-between;align-items:flex-start;gap:12px;pointer-events:none}
+.lead{display:flex;flex-direction:column;gap:10px;align-items:flex-start;pointer-events:auto;min-width:0}
+.brandrow{display:flex;align-items:center;gap:10px}
+.back{display:inline-grid;place-items:center;flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--line-2);background:var(--glass);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--chrome)}
+.back svg{width:18px;height:18px}
+.brand{white-space:nowrap;font:700 14px/1.05 var(--display);letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:var(--fg);text-shadow:0 1px 12px rgba(0,0,0,.6)}
+.brand i{font-style:normal;color:var(--ice);margin-left:.35em}
+.brand small{display:block;font:500 9px/1.6 var(--mono);letter-spacing:.16em;color:var(--fg-2);margin-top:3px}
+.kinchip{display:flex;align-items:center;gap:8px;padding:4px 12px 4px 4px;border:1px solid var(--line);border-radius:999px;background:var(--glass);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font:500 10px/1.25 var(--mono);letter-spacing:.06em;color:var(--fg-2);max-width:min(340px,58vw)}
+.kinchip img{width:28px;height:28px;flex:none;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px var(--line-2)}
+.kinchip span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kinchip b{color:var(--fg);font-weight:500}
+.pills{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:56vw}
+.pill{font:500 10px/1 var(--mono);padding:7px 9px;border:1px solid var(--line);border-radius:999px;background:var(--glass);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--muted);letter-spacing:.05em;white-space:nowrap}
+.pill.ok{color:var(--ice);border-color:rgba(157,216,255,.4)}
+.pill.warn{color:var(--warn);border-color:rgba(244,197,141,.4)}
+.pill.hot{color:var(--navy);background:var(--chrome-surface);border-color:transparent}
+
+#dock{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;gap:4px;padding:5px;border:1px solid var(--line);border-radius:14px;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);max-width:calc(100vw - 28px);overflow-x:auto;scrollbar-width:none}
+#dock::-webkit-scrollbar{display:none}
+#dock button{all:unset;cursor:pointer;display:flex;align-items:baseline;gap:6px;padding:9px 11px;border-radius:10px;white-space:nowrap;font:500 13px/1 var(--font);color:var(--fg-2)}
+#dock button i{font:500 9px/1 var(--mono);font-style:normal;color:var(--muted)}
+#dock button:hover{background:rgba(157,216,255,.08);color:var(--fg)}
+#dock button.on{background:var(--chrome-surface);color:var(--navy)}
+#dock button.on i{color:var(--navy)}
+#dock button.kin:not(.on){color:var(--ice)}
+#dock button:focus-visible,#tools button:focus-visible,.cta:focus-visible,.ghost:focus-visible,.back:focus-visible,.brand:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+#tools{position:fixed;right:max(16px,env(safe-area-inset-right));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px}
+#tools button{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;min-width:108px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--glass);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font:500 12px/1 var(--font);color:var(--fg-2)}
+#tools button kbd{font:500 9px/1 var(--mono);color:var(--muted)}
+#tools button:hover{color:var(--fg);border-color:var(--line-2)}
+#tools button.on{color:var(--ice);border-color:rgba(157,216,255,.5)}
+#tools button.primary{background:var(--chrome-surface);color:var(--navy);border-color:transparent;font-weight:600}
+#tools button.primary kbd{color:var(--navy);opacity:.7}
+
+#title{position:fixed;left:24px;bottom:88px;max-width:min(640px,calc(100vw - 48px));pointer-events:none;opacity:0;transform:translateY(10px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+#title.show{opacity:1;transform:none}
+#title .num{font:500 11px/1 var(--mono);letter-spacing:.16em;color:var(--ice)}
+#title h1{font:600 clamp(34px,6.2vw,88px)/1 var(--display);letter-spacing:-.01em;margin:8px 0 0;text-shadow:0 2px 40px rgba(0,0,0,.55)}
+#title .hint{margin:12px 0 0;font-size:17px;line-height:1.45;color:var(--fg);text-shadow:0 1px 10px rgba(0,0,0,.9)}
+#title .credit{margin:8px 0 0;font:11px/1.5 var(--mono);color:var(--fg-2);text-shadow:0 1px 8px rgba(0,0,0,.9)}
+#note{position:fixed;left:50%;top:max(84px,calc(env(safe-area-inset-top) + 70px));transform:translateX(-50%);font:500 11px/1.4 var(--mono);color:var(--warn);background:var(--glass);border:1px solid rgba(244,197,141,.35);padding:8px 12px;border-radius:10px;pointer-events:none;opacity:0;transition:opacity .4s;max-width:calc(100vw - 32px);text-align:center;z-index:6}
+#note.show{opacity:1}
+
+#gate{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:max(24px,env(safe-area-inset-top)) 22px max(24px,env(safe-area-inset-bottom));overflow:auto;background:radial-gradient(1100px 700px at 78% 12%,rgba(67,133,255,.24),transparent 60%),radial-gradient(900px 600px at 8% 92%,rgba(157,216,255,.10),transparent 60%),var(--bg)}
+#gate.gone{display:none}
+.gate-in{max-width:620px;width:100%}
+.gate-top{display:flex;align-items:center;gap:10px;margin-bottom:34px}
+.kicker{font:500 10px/1 var(--mono);letter-spacing:.18em;color:var(--ice)}
+#gate h1{font:700 clamp(54px,13vw,128px)/.92 var(--display);letter-spacing:-.02em;margin:14px 0 0}
+#gate h1 i{font-style:normal;color:transparent;background:var(--chrome-surface);-webkit-background-clip:text;background-clip:text}
+#gate p{font-size:17px;line-height:1.55;color:var(--fg-2);margin:18px 0 0;max-width:52ch}
+.gatekin{display:flex;gap:14px;align-items:center;margin-top:24px;padding:10px 16px 10px 10px;border:1px solid var(--line);border-radius:16px;background:rgba(11,27,54,.62);max-width:460px}
+.faces{display:flex;flex:none}
+.faces img{width:44px;height:44px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--panel),0 0 0 3px var(--line-2)}
+.faces img+img{margin-left:-12px}
+.faces.one img{width:76px;height:76px;border-radius:14px;box-shadow:0 0 0 1px var(--line-2),0 0 26px rgba(67,133,255,.35)}
+.gatekin b{display:block;font:600 14px/1.3 var(--display)}
+.gatekin span{display:block;font-size:14px;color:var(--fg-2);margin-top:4px;line-height:1.45}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px;align-items:center}
+.cta{all:unset;cursor:pointer;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 22px;border-radius:12px;background:var(--chrome-surface);color:var(--navy);font:600 12px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;box-shadow:0 0 0 1px rgba(255,255,255,.4) inset,0 8px 30px rgba(67,133,255,.25)}
+.cta:hover{filter:brightness(1.06)}
+.ghost{all:unset;cursor:pointer;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;padding:15px 18px;border-radius:12px;border:1px solid var(--line-2);color:var(--chrome);font:600 11px/1 var(--display);letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.ghost:hover{border-color:var(--chrome)}
+#gate .small{font:10px/1.9 var(--mono);color:var(--muted);margin-top:22px}
+#gate .err{color:var(--warn);font:500 13px/1.5 var(--mono)}
+
+#info{position:fixed;top:0;right:0;bottom:0;z-index:15;width:min(440px,100vw);overflow:auto;background:rgba(3,8,23,.95);border-left:1px solid var(--line);padding:max(24px,env(safe-area-inset-top)) 22px 40px;transform:translateX(102%);transition:transform .35s var(--ease)}
+#info.open{transform:none}
+#info h2{font:700 30px/1 var(--display);margin:0;letter-spacing:-.01em}
+#info h3{font:500 10px/1 var(--mono);letter-spacing:.16em;color:var(--ice);margin:26px 0 10px;text-transform:uppercase}
+#info p{color:var(--fg-2);font-size:14px;line-height:1.55;margin:10px 0 0}
+#info ol,#info ul{list-style:none;margin:0;padding:0}
+#info li{padding:12px 0;border-top:1px solid var(--line)}
+#info li b{display:block;font-weight:600;font-size:15px}
+#info li span{display:block;font-size:13px;color:var(--fg-2);line-height:1.45;margin-top:3px}
+#info li em{display:block;font:normal 10px/1.6 var(--mono);color:var(--muted);margin-top:4px}
+#info a{color:var(--ice);text-decoration:none}
+#info a:hover{text-decoration:underline}
+#info .close{all:unset;cursor:pointer;position:absolute;top:max(18px,env(safe-area-inset-top));right:18px;font:500 11px var(--mono);color:var(--muted);padding:6px 8px;border:1px solid var(--line);border-radius:8px}
+#info kbd{font:500 10px var(--mono);padding:2px 5px;border:1px solid var(--line);border-radius:5px;color:var(--fg-2)}
+
+#flash{position:fixed;inset:0;pointer-events:none;background:radial-gradient(closest-side at 50% 50%,rgba(67,133,255,0),rgba(67,133,255,.32));opacity:0;z-index:5}
+#flash.go{animation:flash .6s var(--ease)}
+@keyframes flash{0%{opacity:1}100%{opacity:0}}
+
+#shot{position:fixed;inset:0;z-index:25;display:grid;place-items:center;padding:max(20px,env(safe-area-inset-top)) 18px max(20px,env(safe-area-inset-bottom));background:rgba(3,8,23,.78);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.shot-in{width:min(560px,100%);display:flex;flex-direction:column;gap:14px}
+.shot-in img{width:100%;max-height:64vh;object-fit:contain;border-radius:14px;box-shadow:0 0 0 1px var(--line-2),0 20px 60px rgba(0,0,0,.5);background:#000}
+.shot-in .row{display:flex;gap:10px}
+.shot-in .row>*{flex:1 1 0}
+
+@media (max-width:640px){
+  .brand{font-size:12px}
+  #tools{top:auto;bottom:calc(68px + env(safe-area-inset-bottom));transform:none;flex-direction:row;flex-wrap:wrap;justify-content:flex-end;left:16px}
+  #tools button{min-width:0}
+  #tools button kbd{display:none}
+  #tools .wide,.pill.wide{display:none}
+  #title{bottom:calc(122px + env(safe-area-inset-bottom));left:16px}
+  #title .hint{font-size:15px}
+  .pills{max-width:42vw}
+}
+@media (prefers-reduced-motion:reduce){#title,#flash.go,.chrome{transition:none;animation:none}}
+</style>
+</head>
+<body>
+<canvas id="gl"></canvas>
+<canvas id="hud"></canvas>
+<video id="cam" playsinline muted autoplay></video>
+
+<header id="top" class="chrome">
+  <div class="lead">
+    <div class="brandrow">
+      <a class="back" href="/" aria-label="Back to the Station"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+      <a class="brand" href="/">The Future<i>2050</i><small>MIRROR · LIVE CAMERA</small></a>
+    </div>
+    <div class="kinchip" id="kinchip" hidden><img id="kinchipImg" alt=""><span id="kinchipText"></span></div>
+  </div>
+  <div class="pills">
+    <span id="pCam" class="pill wide">CAM —</span>
+    <span id="pHands" class="pill">HANDS —</span>
+    <span id="pMask" class="pill wide">BODY —</span>
+    <span id="pParty" class="pill" hidden>PARTY</span>
+    <span id="pFps" class="pill wide">— FPS</span>
+  </div>
+</header>
+
+<div id="title" aria-live="polite">
+  <div class="num" id="tNum">01 / 09</div>
+  <h1 id="tName">Your Kin</h1>
+  <p class="hint" id="tHint"></p>
+  <p class="credit" id="tCredit"></p>
+</div>
+<div id="note" role="status"></div>
+
+<nav id="dock" class="chrome" aria-label="Effects"></nav>
+
+<div id="tools" class="chrome">
+  <button data-act="snap" class="primary">Snapshot <kbd>S</kbd></button>
+  <button data-act="camera">Camera <kbd>C</kbd></button>
+  <button data-act="hud" id="bHud">Hand HUD <kbd>H</kbd></button>
+  <button data-act="party" id="bParty" class="wide">Party mode <kbd>A</kbd></button>
+  <button data-act="full" id="bFull" class="wide">Fullscreen <kbd>F</kbd></button>
+  <button data-act="info">Sources <kbd>I</kbd></button>
+</div>
+
+<aside id="info" aria-label="Sources">
+  <button class="close" data-act="info">Close · I</button>
+  <h2>In the mirror</h2>
+  <p>The first effect is yours: your Kin from the Arrival Station, carried on your hand. The other eight are rebuilt from camera filters that went viral on X in 2025–2026. Most of them are a webcam, Google's MediaPipe hand tracking (21 points per hand) and a shader. Numbers are likes and views on 14 November 2026.</p>
+  <h3>Effects</h3>
+  <ol id="srcList"></ol>
+  <h3>Also trending, not rebuilt here</h3>
+  <ul>
+    <li><b>Chrome silk on your hands</b><span>A sheet of liquid-metal cloth rigged to the hand skeleton in TouchDesigner. The most-viewed piece in this search.</span><em><a href="https://x.com/defileo/status/2050261337906016505" target="_blank" rel="noopener">@defileo</a> · 3.0k likes · 3.0M views · <a href="https://x.com/SoyAmanii/status/2090731157344125323" target="_blank" rel="noopener">repost</a> 8.4k likes · 2.8M views</em></li>
+    <li><b>Projector balls that bounce off sticky notes</b><span>A webcam watches a wall; a projector throws balls that collide with real paper.</span><em><a href="https://x.com/anulagarwal/status/2037765879589679385" target="_blank" rel="noopener">@anulagarwal</a> · 13.6k likes · 874k views</em></li>
+    <li><b>Gum-gum stretch</b><span>Pinch your cheek and pull: the face stretches like rubber. MediaPipe + Python.</span><em><a href="https://x.com/ErenChenAI/status/2066548785090576857" target="_blank" rel="noopener">@ErenChenAI</a> · 5.2k likes · 417k views</em></li>
+    <li><b>Laptop screen as a window</b><span>Head tracking drives an off-axis 3D view of a Gaussian splat.</span><em><a href="https://x.com/willeastcott/status/2085729138904608785" target="_blank" rel="noopener">@willeastcott</a> · 3.1k likes · 199k views</em></li>
+  </ul>
+  <h3>Keys</h3>
+  <p><kbd>1</kbd>–<kbd>9</kbd> effects · <kbd>←</kbd> <kbd>→</kbd> previous / next · <kbd>H</kbd> hand HUD · <kbd>A</kbd> party mode (cycles every 25 s) · <kbd>S</kbd> snapshot · <kbd>C</kbd> next camera · <kbd>M</kbd> mirror · <kbd>B</kbd> relearn the room (Cloak) · <kbd>F</kbd> fullscreen · <kbd>Space</kbd> hide the controls.</p>
+  <p>The camera stays on this device: frames go to the GPU and to MediaPipe running in this tab, and nothing is uploaded. Only your Kin's picture comes from the Station.</p>
+</aside>
+
+<div id="gate">
+  <div class="gate-in">
+    <div class="gate-top">
+      <a class="back" href="/" aria-label="Back to the Station"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>
+      <a class="brand" href="/">The Future<i>2050</i><small>ARRIVAL STATION</small></a>
+    </div>
+    <div class="kicker">LIVE CAMERA · 9 EFFECTS</div>
+    <h1>The <i>Mirror</i></h1>
+    <p>Step in front of the camera and open your palm: your Kin crosses over and lands on your hand. Then eight camera effects that went viral on X, all driven by your hands.</p>
+    <div class="gatekin" id="gateKin" hidden><div class="faces" id="gateFaces"></div><div><b id="gateKinName"></b><span id="gateKinText"></span></div></div>
+    <div class="actions"><button id="go" class="cta">Start camera</button><a class="ghost" href="/">Back to the Station</a></div>
+    <p class="small">The camera stays on this device: nothing is uploaded.<br>Keys: 1–9 effects · H hand HUD · S snapshot · I sources</p>
+    <p id="err" class="err"></p>
+  </div>
+</div>
+<div id="flash"></div>
+
+<div id="shot" hidden>
+  <div class="shot-in">
+    <img id="shotImg" alt="Your snapshot from the mirror">
+    <div class="row">
+      <button id="shotShare" class="cta" hidden>Share</button>
+      <a id="shotSave" class="ghost" href="#" download>Save</a>
+      <button id="shotClose" class="ghost">Close</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+// ============================================================================
+// The Mirror of The Future 2050 (/mirror): live camera effects. WebGL2 shaders + MediaPipe Tasks
+// (hands, body). Effect 1 brings the traveler's Kin from the app (/api/mirror); effects 2–9 are the
+// viral webcam effects of Mirror 2050 (mirror/ in the repository root).
+// ============================================================================
+const MP_VER = '0.10.21';
+const CDN = `https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@${MP_VER}`;
+const MODEL = {
+  hand: 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task',
+  seg: 'https://storage.googleapis.com/mediapipe-models/image_segmenter/selfie_segmenter/float16/latest/selfie_segmenter.tflite',
+};
+const $ = s => document.querySelector(s);
+const Q = new URLSearchParams(location.search);
+const video = $('#cam'), glc = $('#gl'), hud = $('#hud'), hx = hud.getContext('2d');
+const gl = glc.getContext('webgl2', {antialias:false, alpha:false, depth:false, stencil:false, preserveDrawingBuffer:true, powerPreference:'high-performance'});
+
+// ---------------------------------------------------------------- shared state
+const S = {
+  W:1, H:1, aspect:1, dpr:1, scale:1, time:0, camAspect:16/9, camFresh:false,
+  camXf:new Float32Array([1,1,0,0]), mirror: Q.get('mirror') === '0' ? 0 : 1,
+  lm:new Float32Array(126), handOn:new Float32Array(2), palm:new Float32Array(8), pinch:new Float32Array(8),
+  pointer:new Float32Array(3), hasMask:0, lastHand:-1e9,
+};
+let hudOn = Q.get('hud') !== '0', party = Q.has('party'), cur = 0;
+
+// ---------------------------------------------------------------- GL helpers
+const VS = `#version 300 es
+out vec2 v_uv;
+void main(){vec2 p=vec2(float((gl_VertexID<<1)&2),float(gl_VertexID&2));v_uv=p;gl_Position=vec4(p*2.-1.,0.,1.);}`;
+
+const HEAD = `#version 300 es
+precision highp float;
+precision highp sampler2DArray;
+in vec2 v_uv; out vec4 o;
+uniform vec2 u_res; uniform float u_time; uniform float u_aspect;
+uniform sampler2D u_cam; uniform sampler2D u_mask; uniform float u_hasMask;
+uniform vec4 u_camXf; uniform float u_mirror;
+uniform vec3 u_lm[42]; uniform float u_handOn[2]; uniform vec4 u_palm[2]; uniform vec4 u_pinch[2];
+uniform vec3 u_pointer;
+vec2 camUV(vec2 s){vec2 c=s*u_camXf.xy+u_camXf.zw; if(u_mirror>.5) c.x=1.-c.x; return c;}
+vec3 cam(vec2 s){return texture(u_cam,camUV(s)).rgb;}
+float maskAt(vec2 s){return texture(u_mask,camUV(s)).r;}
+vec2 asp(vec2 s){return vec2(s.x*u_aspect,s.y);}
+float luma(vec3 c){return dot(c,vec3(.299,.587,.114));}
+float hash(float n){return fract(sin(n)*43758.5453123);}
+float hash2(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453123);}
+float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
+  return mix(mix(hash2(i),hash2(i+vec2(1.,0.)),f.x),mix(hash2(i+vec2(0.,1.)),hash2(i+vec2(1.,1.)),f.x),f.y);}
+float fbm(vec2 p){float a=.5,s=0.;for(int i=0;i<5;i++){s+=a*noise(p);p=p*2.03+vec2(1.7,9.2);a*=.5;}return s;}
+vec3 lmk(int h,int j){return u_lm[h*21+j];}
+`;
+
+function compile(type, src){
+  const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+  if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+    const log = gl.getShaderInfoLog(s);
+    console.error(log + '\n' + src.split('\n').map((l,i)=>`${i+1}: ${l}`).join('\n'));
+    throw new Error('shader: ' + log);
+  }
+  return s;
+}
+function program(fs, vs = VS){
+  const p = gl.createProgram();
+  gl.attachShader(p, compile(gl.VERTEX_SHADER, vs)); gl.attachShader(p, compile(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(p);
+  if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error('link: ' + gl.getProgramInfoLog(p));
+  const u = {};
+  for (let i = 0, n = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS); i < n; i++) {
+    const info = gl.getActiveUniform(p, i);
+    u[info.name.replace(/\[0\]$/, '')] = {loc: gl.getUniformLocation(p, info.name), type: info.type, size: info.size};
+  }
+  return {p, u};
+}
+let curProg = null, unit = 0;
+function use(prog){ gl.useProgram(prog.p); curProg = prog; unit = 0; }
+function set(name, v){
+  const u = curProg.u[name]; if (!u) return;
+  switch (u.type) {
+    case gl.FLOAT: u.size > 1 ? gl.uniform1fv(u.loc, v) : gl.uniform1f(u.loc, v); break;
+    case gl.FLOAT_VEC2: gl.uniform2fv(u.loc, v); break;
+    case gl.FLOAT_VEC3: gl.uniform3fv(u.loc, v); break;
+    case gl.FLOAT_VEC4: gl.uniform4fv(u.loc, v); break;
+    case gl.FLOAT_MAT3: gl.uniformMatrix3fv(u.loc, false, v); break;
+    case gl.INT: case gl.BOOL: gl.uniform1i(u.loc, v); break;
+    case gl.SAMPLER_2D: gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, v); gl.uniform1i(u.loc, unit++); break;
+    case gl.SAMPLER_2D_ARRAY: gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D_ARRAY, v); gl.uniform1i(u.loc, unit++); break;
+  }
+}
+function common(){
+  set('u_res', [S.W, S.H]); set('u_time', S.time); set('u_aspect', S.aspect);
+  set('u_cam', camTex); set('u_mask', maskTex); set('u_hasMask', S.hasMask);
+  set('u_camXf', S.camXf); set('u_mirror', S.mirror);
+  set('u_lm', S.lm); set('u_handOn', S.handOn); set('u_palm', S.palm); set('u_pinch', S.pinch); set('u_pointer', S.pointer);
+}
+const vao0 = gl && gl.createVertexArray();
+function quad(){ gl.bindVertexArray(vao0); gl.drawArrays(gl.TRIANGLES, 0, 3); }
+const floatRT = !!(gl && gl.getExtension('EXT_color_buffer_float'));
+function texParams(target = gl.TEXTURE_2D, filter = gl.LINEAR){
+  gl.texParameteri(target, gl.TEXTURE_MIN_FILTER, filter); gl.texParameteri(target, gl.TEXTURE_MAG_FILTER, filter);
+  gl.texParameteri(target, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(target, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+}
+function target(w, h, float = false){
+  const tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
+  const f = float && floatRT;
+  gl.texImage2D(gl.TEXTURE_2D, 0, f ? gl.RGBA16F : gl.RGBA8, w, h, 0, gl.RGBA, f ? gl.HALF_FLOAT : gl.UNSIGNED_BYTE, null);
+  texParams();
+  const fbo = gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER, fbo);
+  gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+  gl.clearColor(0,0,0,0); gl.viewport(0,0,w,h); gl.clear(gl.COLOR_BUFFER_BIT);
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  return {tex, fbo, w, h};
+}
+function freeTarget(t){ if (t) { gl.deleteTexture(t.tex); gl.deleteFramebuffer(t.fbo); } }
+function bindTarget(t){ gl.bindFramebuffer(gl.FRAMEBUFFER, t ? t.fbo : null); gl.viewport(0, 0, t ? t.w : S.W, t ? t.h : S.H); }
+
+let camTex, maskTex;
+if (gl) {
+  camTex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, camTex); texParams();
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([0,0,0,255]));
+  maskTex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, maskTex); texParams();
+  gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.R8, 1, 1, 0, gl.RED, gl.UNSIGNED_BYTE, new Uint8Array([0]));
+}
+let camW = 0, camH = 0;
+function uploadCam(){
+  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, camTex);
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+  if (video.videoWidth !== camW || video.videoHeight !== camH) {
+    camW = video.videoWidth; camH = video.videoHeight;
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
+  } else gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, gl.RGBA, gl.UNSIGNED_BYTE, video);
+  gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+}
+
+// ---------------------------------------------------------------- hands
+const BONES = [0,1,1,2,2,3,3,4, 0,5,5,6,6,7,7,8, 5,9,9,10,10,11,11,12, 9,13,13,14,14,15,15,16, 13,17,17,18,18,19,19,20, 0,17];
+const TIPS = [4,8,12,16,20];
+function mkHand(){ return {on:0, seen:-1e9, lm:new Float32Array(63), label:'', open:0, count:0, fingers:-1, cand:-1, candN:0,
+  pinch:0, pm:[0,0], palm:[.5,.5], size:.2, speed:0, prev:null}; }
+const hands = [mkHand(), mkHand()];
+const A = p => [p[0]*S.aspect, p[1]];
+const D = (a, b) => Math.hypot(a[0]-b[0], a[1]-b[1]);
+function L(h, j){ return [h.lm[j*3]*S.aspect, h.lm[j*3+1]]; }
+function toScreen(lx, ly){
+  const tx = S.mirror ? 1 - lx : lx, ty = 1 - ly;
+  return [(tx - S.camXf[2]) / S.camXf[0], (ty - S.camXf[3]) / S.camXf[1]];
+}
+function applyHands(r, now){
+  const lms = r.landmarks || [], hd = r.handedness || r.handednesses || [];
+  const used = [false, false];
+  // the model now and then reports one hand twice; drop the copy
+  if (lms.length > 1 && Math.hypot(lms[0][9].x - lms[1][9].x, lms[0][9].y - lms[1][9].y) < .5*Math.hypot(lms[0][0].x - lms[0][9].x, lms[0][0].y - lms[0][9].y)) lms.length = 1;
+  for (let i = 0; i < Math.min(2, lms.length); i++) {
+    const label = hd[i] && hd[i][0] ? hd[i][0].categoryName : '';
+    let slot = label === 'Left' ? 1 : 0; if (used[slot]) slot = 1 - slot; used[slot] = true;
+    const h = hands[slot], fresh = now - h.seen > 300;
+    for (let j = 0; j < 21; j++) {
+      const s = toScreen(lms[i][j].x, lms[i][j].y), k = j*3;
+      if (fresh) { h.lm[k] = s[0]; h.lm[k+1] = s[1]; }
+      else { h.lm[k] += (s[0]-h.lm[k])*.65; h.lm[k+1] += (s[1]-h.lm[k+1])*.65; }
+      h.lm[k+2] = lms[i][j].z;
+    }
+    h.seen = now; h.label = label; S.lastHand = now;
+    derive(h, now, fresh);
+  }
+}
+function derive(h, now, fresh){
+  const w = L(h,0), size = Math.max(.02, D(w, L(h,9)));
+  let c = 0;
+  [[8,6],[12,10],[16,14],[20,18]].forEach(([t,p]) => { if (D(L(h,t), w) > D(L(h,p), w) * 1.12) c++; });
+  if (D(L(h,4), L(h,17)) > D(L(h,2), L(h,17)) * 1.22) c++;
+  h.count = c;
+  if (c === h.cand) h.candN++; else { h.cand = c; h.candN = 0; }
+  if (h.candN >= 4 || fresh) h.fingers = c;
+  h.open += (c/5 - h.open) * (fresh ? 1 : .3);
+  h.size = fresh ? size : h.size + (size - h.size)*.3;
+  const pd = D(L(h,4), L(h,8)) / size;
+  h.pinch = Math.min(1, Math.max(0, (.62 - pd) / .3));
+  h.pm = [(h.lm[12]+h.lm[24])/2, (h.lm[13]+h.lm[25])/2];
+  const px = (h.lm[0]+h.lm[15]+h.lm[27]+h.lm[39]+h.lm[51])/5, py = (h.lm[1]+h.lm[16]+h.lm[28]+h.lm[40]+h.lm[52])/5;
+  if (h.prev && !fresh) {
+    const dt = Math.max(1, now - h.prev.t) / 1000;
+    const v = Math.hypot((px - h.prev.x)*S.aspect, py - h.prev.y) / dt;
+    h.speed += (v - h.speed) * .3;
+  } else h.speed = 0;
+  h.prev = {x:px, y:py, t:now}; h.palm = [px, py];
+}
+function updateHands(now){
+  for (let s = 0; s < 2; s++) {
+    const h = hands[s], tgt = now - h.seen < 160 ? 1 : 0;
+    h.on += (tgt - h.on) * .3; if (h.on < .01) h.on = 0;
+    S.handOn[s] = h.on;
+    S.lm.set(h.lm, s*63);
+    S.palm.set([h.palm[0], h.palm[1], h.open, h.size], s*4);
+    S.pinch.set([h.pm[0], h.pm[1], h.pinch, h.speed], s*4);
+  }
+}
+const live = () => hands.filter(h => h.on > .5);
+
+// ---------------------------------------------------------------- pointer (mouse / touch as a stand-in hand)
+const ptr = {x:.5, y:.5, down:false, moved:0};
+addEventListener('pointerdown', e => { wake(); if (e.target === glc || e.target === document.body) { ptr.down = true; movePtr(e); } });
+addEventListener('pointermove', e => { wake(); if (ptr.down) movePtr(e); });
+addEventListener('pointerup', () => { ptr.down = false; });
+function movePtr(e){ ptr.x = e.clientX / innerWidth; ptr.y = 1 - e.clientY / innerHeight; ptr.moved = performance.now(); }
+
+// ============================================================================
+// Effects
+// ============================================================================
+
+// 1 · LIQUID AIR ---------------------------------------------------------------
+const LIQ_SIM = HEAD + `
+uniform sampler2D u_prev; uniform vec2 u_texel; uniform vec3 u_drop;
+float sdSeg(vec2 p,vec2 a,vec2 b){vec2 pa=p-a,ba=b-a;float h=clamp(dot(pa,ba)/max(dot(ba,ba),1e-7),0.,1.);return length(pa-ba*h);}
+const int BONES[46]=int[46](0,1,1,2,2,3,3,4,0,5,5,6,6,7,7,8,5,9,9,10,10,11,11,12,9,13,13,14,14,15,15,16,13,17,17,18,18,19,19,20,0,17,0,9,0,13);
+float handShape(vec2 p){
+  float s=0.;
+  for(int h=0;h<2;h++){
+    if(u_handOn[h]<.02) continue;
+    float sz=u_palm[h].w;
+    if(length(p-asp(u_palm[h].xy))>sz*2.8) continue;
+    float d=1e3;
+    for(int i=0;i<23;i++){
+      vec2 a=asp(lmk(h,BONES[2*i]).xy), b=asp(lmk(h,BONES[2*i+1]).xy);
+      d=min(d,sdSeg(p,a,b)-(i>=20?sz*.27:sz*.095));
+    }
+    s=max(s,smoothstep(sz*.05,-sz*.03,d)*u_handOn[h]);
+  }
+  return s;
+}
+void main(){
+  vec4 c=texture(u_prev,v_uv);
+  vec4 L=texture(u_prev,v_uv-vec2(u_texel.x,0.)),R=texture(u_prev,v_uv+vec2(u_texel.x,0.));
+  vec4 D=texture(u_prev,v_uv-vec2(0.,u_texel.y)),U=texture(u_prev,v_uv+vec2(0.,u_texel.y));
+  float hn=((L.r+R.r+D.r+U.r)*.5-c.g)*.976;
+  float s=mix(c.b,(L.b+R.b+D.b+U.b)*.25,.6)*.965;
+  vec2 p=asp(v_uv);
+  float shape=handShape(p);
+  hn+=(shape-c.a)*.3;
+  s=max(s,shape);
+  if(u_pointer.z>.5) hn+=smoothstep(.03,.0,length(p-asp(u_pointer.xy)))*.3;
+  if(u_drop.z>0.) hn+=smoothstep(.016,.0,length(p-asp(u_drop.xy)))*u_drop.z;
+  vec2 e=min(v_uv,1.-v_uv); hn*=smoothstep(0.,.015,min(e.x,e.y));
+  o=vec4(clamp(hn,-4.,4.),c.r,s,shape);
+}`;
+const LIQ_REN = HEAD + `
+uniform sampler2D u_sim; uniform vec2 u_texel;
+void main(){
+  vec2 e=u_texel*1.5;
+  vec4 C=texture(u_sim,v_uv);
+  vec4 L=texture(u_sim,v_uv-vec2(e.x,0.)),R=texture(u_sim,v_uv+vec2(e.x,0.)),D=texture(u_sim,v_uv-vec2(0.,e.y)),U=texture(u_sim,v_uv+vec2(0.,e.y));
+  vec2 gW=vec2(R.r-L.r,U.r-D.r), gS=vec2(R.b-L.b,U.b-D.b);
+  vec2 n2=gW*.8+gS*.9;
+  vec2 off=n2*.035;
+  vec3 col=vec3(cam(v_uv+off).r,cam(v_uv+off*1.15).g,cam(v_uv+off*1.3).b);
+  float edge=clamp(length(gS)*4.,0.,1.);
+  float ang=atan(gS.y,gS.x+1e-6);
+  vec3 irid=.5+.5*cos(6.2831*(vec3(0.,.33,.67)+ang*.16+C.b*.8+u_time*.12));
+  col=mix(col,col*.55+irid*.75,edge*.6);
+  vec3 N=normalize(vec3(-n2*7.,1.));
+  float spec=pow(max(dot(reflect(-normalize(vec3(-.45,.55,.9)),N),vec3(0.,0.,1.)),0.),48.);
+  col+=spec*clamp(edge+length(gW)*5.,0.,1.)*.8;
+  col+=vec3(.75,.9,1.)*smoothstep(.15,.6,C.b)*(1.-edge)*.05;
+  o=vec4(col,1.);
+}`;
+const Liquid = {
+  id:'liquid', name:'Liquid Air',
+  hint:'Move your hands through the air: it turns to glass and ripples. Click and drag to make waves.',
+  credit:'After @xbh_artist, “what if air had a surface” · 9.3k likes · 2.6M views',
+  url:'https://x.com/xbh_artist/status/2057426589932236948',
+  src:'WebGL shaders + MediaPipe hand tracking in one HTML file.',
+  init(){ this.sim = program(LIQ_SIM); this.ren = program(LIQ_REN); this.dropT = 0; },
+  resize(){
+    freeTarget(this.a); freeTarget(this.b);
+    const w = Math.min(720, Math.round(S.W/2)), h = Math.max(2, Math.round(w / S.aspect));
+    this.a = target(w, h, true); this.b = target(w, h, true);
+  },
+  render(dt, now){
+    let drop = [0,0,0];
+    this.dropT -= dt;
+    if (this.dropT <= 0) { this.dropT = (live().length ? 4 : 1.1) + Math.random()*1.5; drop = [.1+.8*Math.random(), .1+.8*Math.random(), .35]; }
+    for (let i = 0; i < 2; i++) {
+      use(this.sim); bindTarget(this.b); common();
+      set('u_prev', this.a.tex); set('u_texel', [1/this.a.w, 1/this.a.h]); set('u_drop', i ? [0,0,0] : drop);
+      quad(); [this.a, this.b] = [this.b, this.a];
+    }
+    use(this.ren); bindTarget(null); common(); set('u_sim', this.a.tex); set('u_texel', [1/this.a.w, 1/this.a.h]); quad();
+  },
+};
+
+// 2 · NEON SWARM ---------------------------------------------------------------
+const SWARM_BG = HEAD + `
+void main(){
+  vec3 c=cam(v_uv); float l=luma(c);
+  vec3 col=mix(vec3(l),c,.3)*.42*vec3(.55,.75,1.);
+  vec2 q=abs(fract(asp(v_uv)*14.)-.5);
+  col+=vec3(0.,.35,.45)*step(.485,max(q.x,q.y))*.10;
+  col*=.88+.12*sin(v_uv.y*u_res.y*1.7);
+  float v=length((v_uv-.5)*vec2(u_aspect,1.)); col*=1.-.5*v*v;
+  o=vec4(col,1.);
+}`;
+const PT_VS = `#version 300 es
+in vec3 a_p; uniform vec2 u_res; uniform float u_size; out float v_b;
+void main(){vec2 c=a_p.xy/u_res*2.-1.;c.y=-c.y;gl_Position=vec4(c,0.,1.);gl_PointSize=u_size*(.55+a_p.z*.9);v_b=a_p.z;}`;
+const PT_FS = `#version 300 es
+precision highp float; in float v_b; out vec4 o; uniform vec3 u_col;
+void main(){vec2 d=gl_PointCoord-.5;float r=length(d);float a=smoothstep(.5,0.,r);a*=a;o=vec4(u_col*a*v_b*1.25+vec3(pow(a,6.))*.35*v_b,1.);}`;
+const WORDS = ['HELLO', '2050', 'FUTURE', 'PARTY'];
+const IDLE_WORDS = ['2050', 'FUTURE', 'PARTY', 'MIRROR'];
+const WCOL = {HELLO:[0,.94,1], '2050':[1,.9,.05], FUTURE:[1,.17,.84], PARTY:[.17,1,.53], MIRROR:[1,.33,.08]};
+const Swarm = {
+  id:'swarm', name:'Neon Swarm',
+  hint:'Show 1, 2, 3 or 4 fingers to write a word. Your fingertip scatters it. Open palm: nebula. Fist: catch an orb.',
+  credit:'After @V7700SN, “three.js + mediapipe = Absolute Cinema” · 8.6k likes · 607k views',
+  url:'https://x.com/V7700SN/status/2009923828932313461',
+  src:'12,000 particles that spell words; finger count picks the word.',
+  N: 12000,
+  init(){
+    this.bg = program(SWARM_BG); this.pt = program(PT_FS, PT_VS);
+    const N = this.N;
+    this.pos = new Float32Array(N*3); this.vel = new Float32Array(N*2); this.tgt = new Float32Array(N*2);
+    this.scat = new Float32Array(N*2); this.sph = new Float32Array(N*3); this.rnd = new Float32Array(N);
+    for (let i = 0; i < N; i++) {
+      const y = 1 - (i + .5) / N * 2, r = Math.sqrt(1 - y*y), th = i * 2.399963;
+      this.sph.set([Math.cos(th)*r, y, Math.sin(th)*r], i*3); this.rnd[i] = Math.random();
+    }
+    this.buf = gl.createBuffer(); this.vao = gl.createVertexArray();
+    gl.bindVertexArray(this.vao); gl.bindBuffer(gl.ARRAY_BUFFER, this.buf);
+    gl.bufferData(gl.ARRAY_BUFFER, this.pos.byteLength, gl.DYNAMIC_DRAW);
+    const loc = gl.getAttribLocation(this.pt.p, 'a_p'); gl.enableVertexAttribArray(loc);
+    gl.vertexAttribPointer(loc, 3, gl.FLOAT, false, 0, 0); gl.bindVertexArray(null);
+    this.col = [0,.94,1]; this.word = ''; this.mode = 'text'; this.idleT = 0; this.idleI = 0; this.texts = {};
+    this.orb = [S.W/2, S.H/2];
+  },
+  resize(){
+    this.texts = {};
+    for (let i = 0; i < this.N; i++) {
+      this.scat[i*2] = Math.random()*S.W; this.scat[i*2+1] = Math.random()*S.H;
+      if (!this.seeded) { this.pos[i*3] = this.scat[i*2]; this.pos[i*3+1] = this.scat[i*2+1]; }
+    }
+    this.seeded = true; const w = this.word; this.word = ''; if (w) this.setWord(w);
+  },
+  points(word){
+    if (this.texts[word]) return this.texts[word];
+    const sc = 3, cw = Math.ceil(S.W/sc), ch = Math.ceil(S.H/sc);
+    const c = document.createElement('canvas'); c.width = cw; c.height = ch;
+    const x = c.getContext('2d', {willReadFrequently:true});
+    let fs = ch * .46; x.font = `700 ${fs}px Unbounded, "Arial Black", sans-serif`;
+    const m = x.measureText(word).width; if (m > cw * .8) { fs *= cw * .8 / m; x.font = `700 ${fs}px Unbounded, "Arial Black", sans-serif`; }
+    x.fillStyle = '#fff'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(word, cw/2, ch*.47);
+    const d = x.getImageData(0, 0, cw, ch).data, pts = [];
+    for (let y = 0; y < ch; y++) for (let i = 0; i < cw; i++) if (d[(y*cw+i)*4+3] > 140) pts.push(i*sc, y*sc);
+    return this.texts[word] = new Float32Array(pts);
+  },
+  setWord(w){
+    if (this.word === w) return; this.word = w;
+    const p = this.points(w), n = p.length/2; if (!n) return;
+    for (let i = 0; i < this.N; i++) { const k = (Math.random()*n)|0; this.tgt[i*2] = p[k*2] + Math.random()*3; this.tgt[i*2+1] = p[k*2+1] + Math.random()*3; }
+  },
+  update(dt, now){
+    const hs = live(), t = S.time;
+    let mode = 'text', want = null, cmd = hs[0];
+    if (!cmd) {
+      this.idleT -= dt; if (this.idleT <= 0) { this.idleT = 4.5; want = IDLE_WORDS[this.idleI++ % IDLE_WORDS.length]; } else want = this.word || IDLE_WORDS[0];
+    } else {
+      const f = cmd.fingers;
+      if (f >= 1 && f <= 4) want = WORDS[f-1];
+      else if (f === 5) mode = 'nebula';
+      else if (f === 0) mode = 'orb';
+      else want = this.word || WORDS[1];
+    }
+    this.mode = mode; if (want) this.setWord(want);
+    const tc = mode === 'nebula' ? [.55,.8,1] : mode === 'orb' ? [1,.33,.08] : (WCOL[this.word] || [0,.94,1]);
+    for (let i = 0; i < 3; i++) this.col[i] += (tc[i] - this.col[i]) * Math.min(1, dt*5);
+    if (mode === 'orb' && cmd) { this.orb[0] += (cmd.palm[0]*S.W - this.orb[0])*.35; this.orb[1] += ((1-cmd.palm[1])*S.H - this.orb[1])*.35; }
+    // repellers: index fingertips + pointer (canvas px)
+    const rep = [];
+    for (const h of hs) rep.push([h.lm[24]*S.W, (1-h.lm[25])*S.H]);
+    if (ptr.down) rep.push([ptr.x*S.W, (1-ptr.y)*S.H]);
+    const palms = mode === 'nebula' ? hs.map(h => [h.palm[0]*S.W, (1-h.palm[1])*S.H, (h.prev ? h.speed : 0)]) : [];
+    const R = S.H*.11, R2 = R*R, F = 7*S.dpr, k = mode === 'text' ? .075 : mode === 'orb' ? .055 : .03;
+    const damp = mode === 'nebula' ? .9 : .82, step = Math.min(2, dt*60);
+    const P = this.pos, V = this.vel, T = this.tgt, orbR = S.H*.16, ca = Math.cos(t*1.3), sa = Math.sin(t*1.3);
+    for (let i = 0; i < this.N; i++) {
+      let x = P[i*3], y = P[i*3+1], tx, ty, b;
+      if (mode === 'text') { tx = T[i*2]; ty = T[i*2+1]; b = .75 + .25*Math.sin(t*3 + this.rnd[i]*40); }
+      else if (mode === 'nebula') {
+        tx = this.scat[i*2] + Math.sin(t*.4 + i*.37)*40*S.dpr; ty = this.scat[i*2+1] + Math.cos(t*.33 + i*.71)*40*S.dpr; b = .45 + .75*this.rnd[i];
+      } else {
+        const sx = this.sph[i*3], sy = this.sph[i*3+1], sz = this.sph[i*3+2];
+        const rx = sx*ca - sz*sa, rz = sx*sa + sz*ca;
+        tx = this.orb[0] + rx*orbR; ty = this.orb[1] - sy*orbR; b = .25 + .75*(rz+1)/2;
+      }
+      let ax = (tx - x)*k, ay = (ty - y)*k;
+      for (let r = 0; r < rep.length; r++) {
+        const dx = x - rep[r][0], dy = y - rep[r][1], d2 = dx*dx + dy*dy;
+        if (d2 < R2) { const d = Math.sqrt(d2) + 1e-3, f = (1 - d/R)*F; ax += dx/d*f; ay += dy/d*f; }
+      }
+      for (let q = 0; q < palms.length; q++) {
+        const dx = x - palms[q][0], dy = y - palms[q][1], d2 = dx*dx + dy*dy, RR = R2*4;
+        if (d2 < RR) { const d = Math.sqrt(d2) + 1e-3, f = (1 - d2/RR) * Math.min(3, palms[q][2]*3) * F; ax += dx/d*f + Math.sin(d*.05 - t*8)*f*.5; ay += dy/d*f; }
+      }
+      V[i*2] = (V[i*2] + ax*step)*damp; V[i*2+1] = (V[i*2+1] + ay*step)*damp;
+      P[i*3] = x + V[i*2]*step; P[i*3+1] = y + V[i*2+1]*step; P[i*3+2] = b;
+    }
+  },
+  render(){
+    use(this.bg); bindTarget(null); common(); quad();
+    use(this.pt); set('u_res', [S.W, S.H]); set('u_size', (this.mode === 'nebula' ? 3.2 : 2.6)*S.dpr); set('u_col', this.col);
+    gl.bindVertexArray(this.vao); gl.bindBuffer(gl.ARRAY_BUFFER, this.buf); gl.bufferSubData(gl.ARRAY_BUFFER, 0, this.pos);
+    gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE); gl.drawArrays(gl.POINTS, 0, this.N); gl.disable(gl.BLEND);
+    gl.bindVertexArray(null);
+  },
+  status(){ return this.mode === 'text' ? `WORD ${this.word}` : this.mode.toUpperCase(); },
+};
+
+// 3 · HOLO CUBE ----------------------------------------------------------------
+const HOLO = HEAD + `
+uniform mat3 u_rot; uniform vec4 u_cube; uniform vec4 u_cubeFx; uniform float u_energy;
+bool boxHit(vec3 ro,vec3 rd,vec3 b,out float tN,out float tF){
+  vec3 m=1./rd; vec3 n=m*ro; vec3 k=abs(m)*b; vec3 t1=-n-k, t2=-n+k;
+  tN=max(max(t1.x,t1.y),t1.z); tF=min(min(t2.x,t2.y),t2.z); return tN<tF&&tF>0.;
+}
+float edgeAt(vec3 p,vec3 b,float w){vec3 e=smoothstep(b-w,b,abs(p));return max(max(e.x*e.y,e.y*e.z),e.z*e.x);}
+vec4 cube(vec2 p){
+  if(u_cube.w<.01) return vec4(0.);
+  float sz=u_cube.z; vec2 q=p-u_cube.xy;
+  float row=floor(p.y*90.), tg=floor(u_time*24.);
+  q.x+=(hash(row+tg)-.5)*u_cubeFx.z*.08*step(.55,hash(row*3.1+tg));
+  q+=(vec2(noise(q*14.+u_time*2.),noise(q*14.-u_time*2.+7.))-.5)*u_cubeFx.x*.06;
+  if(length(q)>sz*2.8) return vec4(0.);
+  mat3 Rt=transpose(u_rot);
+  vec3 ro=Rt*vec3(q,-4.), rd=Rt*vec3(0.,0.,1.)+vec3(1e-6,2e-6,3e-6);
+  vec3 hue=.5+.5*cos(6.2831*(u_cubeFx.y+vec3(.55,.62,.72)));
+  vec3 col=vec3(0.); float a=0., tN, tF; vec3 b=vec3(sz);
+  if(boxHit(ro,rd,b,tN,tF)){
+    vec3 pe=ro+rd*tN, px=ro+rd*tF;
+    float thick=(tF-tN)/(2.*sz);
+    float eF=edgeAt(pe,b,sz*.07), eB=edgeAt(px,b,sz*.05);
+    vec3 ap=abs(pe); vec2 fc=ap.x>ap.y&&ap.x>ap.z?pe.yz:(ap.y>ap.z?pe.xz:pe.xy);
+    float tx=fbm(fc/sz*2.5+u_time*.35);
+    col=hue*(.2+tx*1.1)+vec3(.7,.85,1.)*pow(tx,3.)*1.2+hue*thick*.3+vec3(.85,.95,1.)*(eF*1.3+eB*.45);
+    a=clamp(.6+eF+thick*.2,0.,1.);
+  }
+  vec3 bo=b*1.5; float oN,oF;
+  if(boxHit(ro,rd,bo,oN,oF)){
+    float e=edgeAt(ro+rd*oN,bo,sz*.03)+edgeAt(ro+rd*oF,bo,sz*.03);
+    col+=vec3(.85,.92,1.)*e*.5; a=max(a,e*.5);
+  }
+  col+=hue*exp(-max(length(q)-sz*1.25,0.)/(sz*.5))*.22;
+  return vec4(col,a)*u_cube.w;
+}
+vec3 holoBg(vec2 uv){
+  vec3 col=vec3(.008,.02,.045);
+  float hz=.3;
+  if(uv.y<hz){
+    float d=hz-uv.y, z=.08/d;
+    vec2 g=vec2((uv.x-.5)*z*6.,z*3.+u_time*.5);
+    vec2 f=abs(fract(g-.5)-.5)/max(fwidth(g),vec2(1e-4));
+    col+=vec3(.1,.55,.9)*(1.-min(min(f.x,f.y),1.))*smoothstep(0.,.25,d)*.5;
+  }
+  col+=vec3(.05,.3,.5)*exp(-abs(uv.y-hz)*40.)*.4;
+  float w=.04+uv.y*.42; col+=vec3(.3,.8,1.)*smoothstep(w,w*.4,abs(uv.x-.5))*(1.-uv.y)*.16;
+  return col;
+}
+void main(){
+  vec2 uv=v_uv;
+  float rowG=floor(uv.y*48.), tg=floor(u_time*14.);
+  float gl=step(.94-u_energy*.3,hash(rowG*1.7+tg))*(hash(rowG+tg*3.)-.5)*(.02+u_energy*.07);
+  vec2 guv=uv+vec2(gl,0.);
+  vec3 c=cam(guv); float l=luma(c);
+  float m=u_hasMask>.5?smoothstep(.3,.7,maskAt(guv)):smoothstep(.12,.5,l);
+  float flick=.88+.12*hash(floor(u_time*20.));
+  vec3 holo=vec3(.25,.85,1.)*(pow(l,.85)*1.35+.07);
+  holo*=.68+.32*sin(uv.y*u_res.y*.85-u_time*28.);
+  holo+=vec3(.5,1.,1.)*smoothstep(.035,0.,abs(fract(uv.y*.6-u_time*.3)-.5))*.35;
+  vec3 col=holoBg(uv);
+  col=mix(col,holo*flick,m*.88);
+  if(u_hasMask>.5){
+    float mr=maskAt(guv+vec2(.007,0.)), mb=maskAt(guv-vec2(.007,0.));
+    vec2 e=vec2(.004,.004*u_aspect);
+    float mE=abs(maskAt(guv+vec2(e.x,0.))-maskAt(guv-vec2(e.x,0.)))+abs(maskAt(guv+vec2(0.,e.y))-maskAt(guv-vec2(0.,e.y)));
+    col+=vec3(1.,.25,.6)*max(mr-m,0.)*.35+vec3(.2,.6,1.)*max(mb-m,0.)*.35+vec3(.55,1.,1.)*clamp(mE*2.,0.,1.)*.7;
+  }
+  vec4 cb=cube(asp(uv));
+  col=col*(1.-clamp(cb.a,0.,1.)*.55)+cb.rgb;
+  o=vec4(col,1.);
+}`;
+function rotMat(yaw, pitch, roll){
+  const cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch), cr = Math.cos(roll), sr = Math.sin(roll);
+  // R = Rz(roll) * Ry(yaw) * Rx(pitch), column-major
+  const Rx = [1,0,0, 0,cp,sp, 0,-sp,cp], Ry = [cy,0,-sy, 0,1,0, sy,0,cy], Rz = [cr,sr,0, -sr,cr,0, 0,0,1];
+  const mul = (a, b) => { const r = new Array(9); for (let c = 0; c < 3; c++) for (let rr = 0; rr < 3; rr++) r[c*3+rr] = a[rr]*b[c*3] + a[3+rr]*b[c*3+1] + a[6+rr]*b[c*3+2]; return r; };
+  return new Float32Array(mul(Rz, mul(Ry, Rx)));
+}
+const Holo = {
+  id:'holo', name:'Holo Cube', needsMask:true, maskNote:'Body tracking did not load, so the hologram keys on brightness instead.',
+  hint:'You become a hologram. Hold up both hands: a glitching cube floats between them. Spread to scale, tilt to turn, pinch to distort or recolour, move fast to glitch.',
+  credit:'After the TouchDesigner “glitchy cube between two hands” · @BayardXBT · 280k views',
+  url:'https://x.com/BayardXBT/status/2064384972857737505',
+  src:'Hand midpoint moves it, hand distance scales it, hand angle turns it.',
+  init(){ this.prog = program(HOLO); this.c = {x:.8*S.aspect, y:.68, s:.08, a:0}; this.spin = 0; this.yaw = 0; this.pitch = .5; this.noise = 0; this.hue = 0; this.energy = 0; },
+  update(dt){
+    const [h0, h1] = hands, on0 = h0.on > .5, on1 = h1.on > .5, c = this.c;
+    let tx, ty, ts, yaw = null, pitch = .45;
+    if (on0 && on1) {
+      const a = A(h0.palm), b = A(h1.palm);
+      tx = (a[0]+b[0])/2; ty = (a[1]+b[1])/2; ts = Math.max(.04, D(a,b)*.26);
+      yaw = Math.atan2(b[1]-a[1], b[0]-a[0]); pitch = .45 + (b[1]-a[1])*2;
+    } else if (on0 || on1) {
+      const h = on0 ? h0 : h1, p = A(h.palm); tx = p[0]; ty = p[1] + h.size*1.15; ts = h.size*.5;
+    } else { tx = .78*S.aspect; ty = .66; ts = .085; }
+    const k = Math.min(1, dt*8);
+    c.x += (tx-c.x)*k; c.y += (ty-c.y)*k; c.s += (ts-c.s)*k; c.a += (1-c.a)*Math.min(1, dt*3);
+    this.spin += dt*.55;
+    if (yaw !== null) this.yaw += (yaw*1.6 - this.yaw)*k; else this.yaw += (this.spin - this.yaw)*Math.min(1, dt*.6);
+    this.pitch += (pitch - this.pitch)*k;
+    this.noise += ((on0 ? h0.pinch : 0) - this.noise)*Math.min(1, dt*6);
+    if (on1 && h1.pinch > .6) this.hue += dt*.5;
+    const sp = Math.max(on0 ? h0.speed : 0, on1 ? h1.speed : 0);
+    this.energy += (Math.min(1, Math.max(0, (sp - .6)/1.6)) - this.energy)*Math.min(1, dt*(sp > 1 ? 12 : 3));
+  },
+  render(){
+    use(this.prog); bindTarget(null); common();
+    set('u_rot', rotMat(this.yaw + this.spin*.35, this.pitch, this.spin*.2));
+    set('u_cube', [this.c.x, this.c.y, this.c.s, this.c.a]);
+    set('u_cubeFx', [this.noise, this.hue, this.energy, 0]); set('u_energy', this.energy);
+    quad();
+  },
+};
+
+// 4 · PORTAL --------------------------------------------------------------------
+const PORTAL = HEAD + `
+uniform vec4 u_por[2]; uniform vec4 u_rect; uniform float u_rectA;
+vec3 tunnel(vec2 d,float t){
+  float r=length(d), a=atan(d.y,d.x);
+  float z=.12/max(r,.002)+t*1.3, u=a/6.2831;
+  float stripes=pow(.5+.5*sin(u*6.2831*12.+z*2.),8.);
+  vec2 sg=vec2(u*90.,z*10.);
+  float stars=step(.975,hash2(floor(sg)))*smoothstep(.4,.05,length(fract(sg)-.5));
+  vec3 col=mix(vec3(.3,.05,.65),vec3(0.,.8,1.),.5+.5*sin(z*.6));
+  col=col*(stripes*.85+.12)+stars;
+  return col+vec3(1.,.65,.35)*exp(-r*16.)*.9;
+}
+vec3 synth(vec2 q,float t){
+  float hz=-.12; vec3 col;
+  if(q.y>hz){
+    col=mix(vec3(1.,.25,.45),vec3(.07,.02,.2),pow(clamp((q.y-hz)/(1.-hz),0.,1.),.55));
+    vec2 sc=q-vec2(0.,.22); float sr=length(sc);
+    float band=q.y<.2?step(.33,fract(q.y*15.-t*.35)):1.;
+    vec3 sun=mix(vec3(1.,.85,.25),vec3(1.,.2,.55),clamp((.62-q.y)*1.1,0.,1.));
+    col=mix(col,sun,smoothstep(.43,.41,sr)*band);
+    col+=vec3(1.,.3,.6)*exp(-sr*3.)*.22;
+    col+=step(.996,hash2(floor(q*130.)))*.8;
+  } else {
+    float d=hz-q.y, z=.22/d;
+    vec2 g=vec2(q.x*z*1.2,z+t*1.4);
+    vec2 f=abs(fract(g-.5)-.5)/max(fwidth(g),vec2(1e-4));
+    float line=1.-min(min(f.x,f.y),1.);
+    col=mix(vec3(.04,0.,.09),vec3(1.,.2,.85),line*smoothstep(0.,.08,d));
+    col+=vec3(1.,.3,.7)*exp(-d*14.)*.5;
+  }
+  return col;
+}
+void main(){
+  vec2 p=asp(v_uv); vec3 col=cam(v_uv), add=vec3(0.);
+  for(int i=0;i<2;i++){
+    vec4 P=u_por[i]; if(P.w<.01) continue;
+    vec2 c=asp(P.xy); float R=P.z*P.w; vec2 d=p-c; float r=length(d), a=atan(d.y,d.x);
+    if(r>R*2.4+.05) continue;
+    float wob=(fbm(vec2(a*2.5+float(i)*7.,u_time*1.4))-.5)*.28*R;
+    float edge=r-(R+wob);
+    float inside=smoothstep(.004,-.004,edge);
+    col=mix(col,tunnel(d,u_time+float(i)*3.),inside);
+    float ringN=fbm(vec2(a*7.+u_time*4.,r*28.-u_time*7.));
+    add+=vec3(1.,.42,.12)*exp(-abs(edge)*95.)*(.5+ringN*1.4)*2.;
+    float st=pow(noise(vec2(a*42.,(r-R)*9.-u_time*11.)),10.)*smoothstep(R*1.7,R,r)*step(R+wob,r)*7.;
+    add+=vec3(1.,.62,.25)*st*P.w;
+    add+=vec3(1.,.4,.15)*exp(-max(edge,0.)*13.)*.22*P.w;
+  }
+  if(u_rectA>.01){
+    vec2 a0=asp(u_rect.xy),a1=asp(u_rect.zw),mn=min(a0,a1),mx=max(a0,a1),cen=(mn+mx)*.5,hs=max((mx-mn)*.5,vec2(.01))*u_rectA;
+    vec2 q=abs(p-cen)-hs; float sd=length(max(q,0.))+min(max(q.x,q.y),0.);
+    col=mix(col,synth((p-cen)/max(hs.x,hs.y),u_time),smoothstep(.003,-.003,sd));
+    add+=vec3(.4,.9,1.)*exp(-abs(sd)*130.)*1.3*u_rectA;
+  }
+  o=vec4(col+add,1.);
+}`;
+const Portal = {
+  id:'portal', name:'Portal',
+  hint:'Open your palm to open a portal. Pinch with both hands and pull apart to tear a window into 2050.',
+  credit:'After @xbh_artist, “hid the ocean inside reality” · 1k likes · 59k views',
+  url:'https://x.com/xbh_artist/status/2058066555892826284',
+  src:'Your hand tears the camera image open to show another world.',
+  init(){ this.prog = program(PORTAL); this.p = [{x:.5,y:.55,r:.14,o:0},{x:.5,y:.55,r:.14,o:0}]; this.rect = [.3,.3,.7,.7]; this.ra = 0; },
+  update(dt, now){
+    const any = live().length > 0, k = Math.min(1, dt*10);
+    for (let s = 0; s < 2; s++) {
+      const h = hands[s], st = this.p[s];
+      let to = 0, tx = st.x, ty = st.y, tr = st.r;
+      if (h.on > .5 && h.open > .72) { to = 1; tx = h.palm[0]; ty = h.palm[1]; tr = h.size*1.25; }
+      if (s === 0 && !any) {
+        if (ptr.down) { to = 1; tx = ptr.x; ty = ptr.y; tr = .15; }
+        else if (now - S.lastHand > 1500) { to = .85; tx = .5; ty = .56; tr = .13 + .015*Math.sin(S.time*1.3); }
+      }
+      st.o += (to - st.o)*Math.min(1, dt*(to > st.o ? 5 : 3));
+      st.x += (tx - st.x)*k; st.y += (ty - st.y)*k; st.r += (tr - st.r)*k;
+    }
+    const [h0, h1] = hands;
+    if (h0.on > .5 && h1.on > .5 && h0.pinch > .6 && h1.pinch > .6) { this.rect = [h0.pm[0], h0.pm[1], h1.pm[0], h1.pm[1]]; this.ra += (1 - this.ra)*Math.min(1, dt*8); }
+    else this.ra += (0 - this.ra)*Math.min(1, dt*4);
+  },
+  render(){
+    use(this.prog); bindTarget(null); common();
+    set('u_por', this.p.flatMap(q => [q.x, q.y, q.r, q.o])); set('u_rect', this.rect); set('u_rectA', this.ra); quad();
+  },
+};
+
+// 5 · SHATTER -------------------------------------------------------------------
+const SHATTER = HEAD + `
+uniform vec4 u_sh; uniform vec2 u_grid; uniform float u_rand[128];
+vec3 shBg(vec2 uv){
+  vec3 c=(cam(uv+vec2(.012,0.))+cam(uv-vec2(.012,0.))+cam(uv+vec2(0.,.012))+cam(uv-vec2(0.,.012)))*.25;
+  vec3 col=c*.12+vec3(.01,.012,.02);
+  vec2 q=abs(fract(asp(uv)*24.)-.5); col+=vec3(.2,.5,.6)*step(.46,max(q.x,q.y))*.06;
+  return col;
+}
+void main(){
+  vec2 q=asp(v_uv), P=asp(u_sh.xy); float s=u_sh.z, ex=clamp((s-1.)*3.,0.,1.);
+  vec2 tile=vec2(u_aspect/u_grid.x,1./u_grid.y);
+  vec2 id0=floor((P+(q-P)/s)/tile);
+  vec3 col=shBg(v_uv); float best=-1.;
+  for(int j=-1;j<=1;j++) for(int i=-1;i<=1;i++){
+    vec2 id=id0+vec2(float(i),float(j));
+    if(id.x<0.||id.y<0.||id.x>=u_grid.x||id.y>=u_grid.y) continue;
+    float r=u_rand[int(id.y*u_grid.x+id.x)];
+    vec2 c=(id+.5)*tile;
+    float si=1.+(s-1.)*(.65+.7*r);
+    vec2 d=P+(c-P)*si+vec2(sin(u_time*.7+r*40.),cos(u_time*.6+r*30.))*.006*ex;
+    float sc=1.-.07*ex*(.5+r);
+    vec2 lp=(q-d)/sc;
+    if(abs(lp.x)<tile.x*.5&&abs(lp.y)<tile.y*.5&&r>best){
+      best=r;
+      vec2 src=c+lp; vec3 cc=cam(vec2(src.x/u_aspect,src.y));
+      vec2 bd=tile*.5-abs(lp); float e=min(bd.x,bd.y);
+      cc=mix(cc,vec3(.45,.95,1.),smoothstep(.003,0.,e)*.85*ex);
+      cc+=.07*smoothstep(.2,1.,lp.x/tile.x+lp.y/tile.y+.9)*ex;
+      cc*=1.-.12*ex*r;
+      col=cc;
+    }
+  }
+  o=vec4(col,1.);
+}`;
+const Shatter = {
+  id:'shatter', name:'Shatter',
+  hint:'Open your hand to blow the picture apart into floating panels. Make a fist to pull it back together. Two hands: spread them.',
+  credit:'After @berto_bau, MediaPipe panels · 1.8k likes · 174k views',
+  url:'https://x.com/berto_bau/status/2028577952154165474',
+  src:'The camera image splits into glass tiles that follow your hand.',
+  init(){ this.prog = program(SHATTER); this.rand = new Float32Array(128).map(() => Math.random()); this.s = 1; this.c = [.5,.5]; this.labels = [3,17,26,38,44,51,9,58]; },
+  grid(){ const cols = S.aspect >= 1 ? 10 : 6; return [cols, Math.max(3, Math.round(cols / S.aspect))]; },
+  update(dt){
+    const hs = live(); let ts, c;
+    if (hs.length === 2) { c = [(hs[0].palm[0]+hs[1].palm[0])/2, (hs[0].palm[1]+hs[1].palm[1])/2]; ts = 1 + Math.max(0, D(A(hs[0].palm), A(hs[1].palm)) - .25)*1.6; }
+    else if (hs.length === 1) { c = hs[0].palm; ts = 1 + Math.pow(Math.max(0, hs[0].open - .2)/.8, 1.4)*.9; }
+    else if (ptr.down) { c = [ptr.x, ptr.y]; ts = 1.55; }
+    else { c = [.5, .5]; ts = 1.1 + .1*Math.sin(S.time*.8); }
+    const k = Math.min(1, dt*6); this.s += (ts - this.s)*k; this.c[0] += (c[0]-this.c[0])*k; this.c[1] += (c[1]-this.c[1])*k;
+  },
+  render(){ use(this.prog); bindTarget(null); common(); set('u_sh', [this.c[0], this.c[1], this.s, 0]); set('u_grid', this.grid()); set('u_rand', this.rand); quad(); },
+  hud(x){
+    const ex = Math.min(1, Math.max(0, (this.s - 1.08)*4)); if (ex <= 0) return;
+    const [cols, rows] = this.grid(), tw = S.aspect/cols, th = 1/rows, P = [this.c[0]*S.aspect, this.c[1]];
+    x.font = `${10*S.dpr}px "Martian Mono", ui-monospace, monospace`; x.fillStyle = `rgba(157,216,255,${.85*ex})`;
+    for (const id of this.labels) {
+      if (id >= cols*rows) continue;
+      const ix = id % cols, iy = Math.floor(id / cols), r = this.rand[id];
+      const c = [(ix+.5)*tw, (iy+.5)*th], si = 1 + (this.s-1)*(.65+.7*r);
+      const dx = P[0] + (c[0]-P[0])*si + Math.sin(S.time*.7 + r*40)*.006*ex, dy = P[1] + (c[1]-P[1])*si + Math.cos(S.time*.6 + r*30)*.006*ex;
+      const sc = 1 - .07*ex*(.5+r), px = (dx - tw*.5*sc)*S.H + 6*S.dpr, py = (1 - (dy + th*.5*sc))*S.H + 14*S.dpr;
+      x.fillText(`x:${(c[0]/S.aspect).toFixed(2)} y:${(1-c[1]).toFixed(2)}`, px, py);
+    }
+  },
+};
+
+// 6 · TIME WARP -------------------------------------------------------------------
+const DOWN = `#version 300 es
+precision highp float; in vec2 v_uv; out vec4 o; uniform sampler2D u_cam; void main(){o=texture(u_cam,v_uv);}`;
+const TIME = HEAD + `
+uniform highp sampler2DArray u_hist; uniform float u_head,u_L,u_filled; uniform vec4 u_tc;
+vec3 hist(vec2 cuv,float dl){
+  dl=clamp(dl,0.,u_filled-1.); float f=u_head-dl, i0=floor(f), fr=f-i0;
+  return mix(texture(u_hist,vec3(cuv,mod(i0,u_L))).rgb,texture(u_hist,vec3(cuv,mod(i0+1.,u_L))).rgb,fr);
+}
+void main(){
+  vec2 cuv=camUV(v_uv); float dl;
+  if(u_tc.z>.5) dl=length(asp(v_uv)-asp(u_tc.xy))*u_tc.w*(u_L-1.);
+  else dl=(1.-v_uv.y)*(u_L-1.)*u_tc.w;
+  vec3 col=vec3(hist(cuv,dl+2.5).r,hist(cuv,dl).g,hist(cuv,dl-2.5).b);
+  float x=dl/12., dd=abs(fract(x+.5)-.5);
+  col+=vec3(.3,.9,1.)*(1.-smoothstep(0.,fwidth(x)*1.3,dd))*step(1.,dl)*.13;
+  o=vec4(col,1.);
+}`;
+const TimeWarp = {
+  id:'time', name:'Time Warp',
+  hint:'Slit-scan: every row of the picture is a few frames older than the one above. Point a finger and time ripples out from it. Fist: freeze time.',
+  credit:'After slit-scan, the trick behind the 2001: A Space Odyssey Stargate and the TikTok time-warp scan',
+  url:'https://x.com/StanleyKubrick/status/1907461761504346601',
+  src:'90 frames of history on the GPU; each pixel picks how far back to look.',
+  L: 90,
+  init(){ this.prog = program(TIME); this.down = program(DOWN); this.tex = null; this.mode = 'scan'; },
+  alloc(){
+    if (this.tex) gl.deleteTexture(this.tex); freeTarget(this.small);
+    const w = 384, h = Math.round(384 / S.camAspect);
+    this.tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D_ARRAY, this.tex);
+    gl.texStorage3D(gl.TEXTURE_2D_ARRAY, 1, gl.RGBA8, w, h, this.L); texParams(gl.TEXTURE_2D_ARRAY);
+    this.small = target(w, h); this.head = 0; this.filled = 0; this.forAspect = S.camAspect;
+  },
+  update(){
+    if (!this.tex || this.forAspect !== S.camAspect) this.alloc();
+    const h = live()[0];
+    this.freeze = !!(h && h.fingers === 0);
+    if (S.camFresh && !this.freeze) {
+      bindTarget(this.small); use(this.down); set('u_cam', camTex); quad();
+      gl.bindTexture(gl.TEXTURE_2D_ARRAY, this.tex); this.head = (this.head + 1) % this.L;
+      gl.copyTexSubImage3D(gl.TEXTURE_2D_ARRAY, 0, 0, 0, this.head, 0, 0, this.small.w, this.small.h);
+      this.filled = Math.min(this.L, this.filled + 1);
+    }
+    if (h) { this.tc = [h.lm[24], h.lm[25], 1, h.fingers === 5 ? 1.9 : 1.4]; this.mode = this.freeze ? 'frozen' : 'ripple'; }
+    else if (ptr.down) { this.tc = [ptr.x, ptr.y, 1, 1.5]; this.mode = 'ripple'; }
+    else { this.tc = [0, 0, 0, 1]; this.mode = 'scan'; }
+  },
+  render(){
+    use(this.prog); bindTarget(null); common();
+    set('u_hist', this.tex); set('u_head', this.head); set('u_L', this.L); set('u_filled', Math.max(1, this.filled)); set('u_tc', this.tc); quad();
+  },
+  status(){ return this.mode.toUpperCase(); },
+};
+
+// 7 · MATRIX ----------------------------------------------------------------------
+const MATRIX = HEAD + `
+uniform sampler2D u_gl; uniform float u_n, u_cell;
+void main(){
+  vec2 px=v_uv*u_res, id=floor(px/u_cell), f=fract(px/u_cell), cuv=(id+.5)*u_cell/u_res;
+  vec3 c=cam(cuv); float l=smoothstep(.06,.85,luma(c));
+  float rows=u_res.y/u_cell, sp=.35+hash(id.x)*.9, ph=hash(id.x*3.7);
+  float head=1.-fract(u_time*.12*sp+ph), tail=fract(id.y/rows-head), rain=pow(1.-tail,10.);
+  float lens=0.;
+  for(int h=0;h<2;h++){
+    if(u_handOn[h]<.05) continue;
+    lens=max(lens,smoothstep(u_palm[h].w*1.25,u_palm[h].w*.7,length(asp(cuv)-asp(u_palm[h].xy)))*u_handOn[h]);
+    for(int j=4;j<=20;j+=4) lens=max(lens,smoothstep(.07,.03,length(asp(cuv)-asp(lmk(h,j).xy)))*u_handOn[h]);
+  }
+  if(u_pointer.z>.5) lens=max(lens,smoothstep(.16,.08,length(asp(cuv)-asp(u_pointer.xy))));
+  float g=floor(clamp(l+rain*.2,0.,.999)*u_n);
+  if(rain>.55) g=floor(hash(id.x*13.+id.y*7.+floor(u_time*12.))*u_n);
+  float a=texture(u_gl,vec2((g+f.x)/u_n,f.y)).r;
+  vec3 tint=mix(vec3(.15,1.,.45)*(.3+l*1.15),vec3(.85,1.,.9),rain*.8);
+  tint=mix(tint,c*1.6+.08,lens);
+  o=vec4(tint*a+vec3(0.,.035,.02)*(1.-a)*(1.-lens)+c*.25*lens*(1.-a),1.);
+}`;
+const Matrix = {
+  id:'matrix', name:'Matrix',
+  hint:'You are made of falling code. Hold up a hand: it becomes a lens that shows the real colours underneath.',
+  credit:'After @jh3yy, “ASCII Webcam?” · 3.7k likes · 220k views',
+  url:'https://x.com/jh3yy/status/1832147365714915779',
+  src:'Brightness picks a glyph per cell; columns of digital rain run through it.',
+  init(){
+    this.prog = program(MATRIX);
+    const chars = ' .·:-=+*xo%#@&ｱｲｳｴｵｶｷｸｺｻｼｾﾀﾅﾊﾑ01'.split('');
+    const cs = 32, c = document.createElement('canvas'), x = c.getContext('2d', {willReadFrequently:true});
+    c.width = cs; c.height = cs;
+    const ink = ch => { x.clearRect(0,0,cs,cs); x.fillStyle = '#fff'; x.font = `600 ${cs*.8}px "Martian Mono", ui-monospace, monospace`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(ch, cs/2, cs/2+1); let s = 0; const d = x.getImageData(0,0,cs,cs).data; for (let i = 3; i < d.length; i += 4) s += d[i]; return s; };
+    const sorted = chars.map(ch => [ch, ink(ch)]).sort((a,b) => a[1]-b[1]).map(a => a[0]);
+    this.n = sorted.length; c.width = cs*this.n;
+    x.fillStyle = '#000'; x.fillRect(0,0,c.width,cs); x.fillStyle = '#fff';
+    x.font = `600 ${cs*.8}px "Martian Mono", ui-monospace, monospace`; x.textAlign = 'center'; x.textBaseline = 'middle';
+    sorted.forEach((ch, i) => x.fillText(ch, i*cs + cs/2, cs/2+1));
+    this.tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, this.tex);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, c); gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+    gl.generateMipmap(gl.TEXTURE_2D);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  },
+  render(){ use(this.prog); bindTarget(null); common(); set('u_gl', this.tex); set('u_n', this.n); set('u_cell', Math.round(11*S.dpr)); quad(); },
+};
+
+// 8 · CLOAK -----------------------------------------------------------------------
+// The plate is the empty room: alpha 1 = background seen, .5 = filled in from the neighbours, 0 = unknown.
+const PLATE = `#version 300 es
+precision highp float; in vec2 v_uv; out vec4 o; uniform sampler2D u_cam,u_mask,u_plate; uniform float u_init,u_hasMask; uniform vec2 u_texel;
+void main(){
+  vec3 c=texture(u_cam,v_uv).rgb; vec4 p=texture(u_plate,v_uv);
+  float m=u_hasMask>.5?texture(u_mask,v_uv).r:1., bg=1.-smoothstep(.04,.2,m);
+  if(u_init>.5){o=vec4(c*bg,bg);return;}
+  if(bg>.5){o=vec4(mix(p.rgb,c,p.a>.9?.14:1.),1.);return;}
+  if(p.a>.9){o=p;return;}
+  vec4 acc=vec4(0.);
+  for(int r=1;r<=3;r++) for(int i=0;i<8;i++){
+    float a=float(i)*.7854+float(r)*.39; vec4 q=texture(u_plate,v_uv+vec2(cos(a),sin(a))*u_texel*float(r)*6.);
+    acc+=vec4(q.rgb,1.)*q.a;
+  }
+  o=acc.a>.02?vec4(acc.rgb/acc.a,max(p.a,.5)):p;
+}`;
+const CLOAK = HEAD + `
+uniform sampler2D u_plate; uniform float u_cloak;
+vec3 plate(vec2 s){vec4 p=texture(u_plate,camUV(s));return mix(cam(s+vec2(.03,0.)),p.rgb,clamp(p.a*2.,0.,1.));}
+void main(){
+  vec2 uv=v_uv;
+  float m=u_hasMask>.5?smoothstep(.3,.7,maskAt(uv)):0.;
+  vec2 e=vec2(.008/u_aspect,.008);
+  vec2 g=u_hasMask>.5?vec2(maskAt(uv+vec2(e.x,0.))-maskAt(uv-vec2(e.x,0.)),maskAt(uv+vec2(0.,e.y))-maskAt(uv-vec2(0.,e.y))):vec2(0.);
+  float n=noise(uv*vec2(18.,10.)+u_time*.8)-.5;
+  vec2 off=g*.035+vec2(n,-n)*.007;
+  vec3 bg=vec3(plate(uv+off).r,plate(uv+off*1.25).g,plate(uv+off*1.5).b);
+  vec3 c=cam(uv);
+  float edge=clamp(length(g)*5.,0.,1.), k=m*u_cloak;
+  vec3 col=mix(c,bg*1.03,k);
+  col+=vec3(.6,.9,1.)*edge*u_cloak*(.2+.55*noise(uv*70.+u_time*5.));
+  float tr=4.*u_cloak*(1.-u_cloak);
+  col+=vec3(.3,.75,1.)*step(.9,noise(uv*vec2(90.,40.)+u_time*22.))*m*tr*2.2;
+  o=vec4(col,1.);
+}`;
+const Cloak = {
+  id:'cloak', name:'Cloak', needsMask:true, maskNote:'Cloak needs body tracking, which did not load (it comes from the internet). You see the plain camera.',
+  hint:'Active camouflage: your body turns into the room behind you. Step out of frame for a second so it learns the room. Make a fist to decloak.',
+  credit:'After the OpenCV invisibility cloak (@erRaghavKhanna, 1.5k likes) and @youtoy’s MediaPipe cloak (1.8k likes)',
+  url:'https://x.com/youtoy/status/1558731638783492099',
+  src:'Body segmentation + a background plate that keeps learning the empty room.',
+  init(){ this.prog = program(CLOAK); this.upd = program(PLATE); this.cloak = 1; this.reset = true; },
+  alloc(){
+    freeTarget(this.a); freeTarget(this.b);
+    const w = 512, h = Math.round(512 / S.camAspect); this.a = target(w, h); this.b = target(w, h); this.forAspect = S.camAspect; this.reset = true;
+  },
+  update(dt){
+    if (!this.a || this.forAspect !== S.camAspect) this.alloc();
+    if (S.camFresh && (S.hasMask || this.reset)) {
+      use(this.upd); bindTarget(this.b); set('u_cam', camTex); set('u_mask', maskTex); set('u_plate', this.a.tex);
+      set('u_init', this.reset ? 1 : 0); set('u_hasMask', S.hasMask); set('u_texel', [1/this.a.w, 1/this.a.h]);
+      quad(); [this.a, this.b] = [this.b, this.a]; this.reset = false;
+    }
+    const fist = live().some(h => h.fingers === 0);
+    this.cloak += ((fist ? 0 : 1) - this.cloak)*Math.min(1, dt*2.5);
+  },
+  render(){ use(this.prog); bindTarget(null); common(); set('u_plate', this.a.tex); set('u_cloak', this.cloak); quad(); },
+  status(){ return this.cloak > .5 ? 'CLOAKED' : 'VISIBLE'; },
+};
+
+// 1 · YOUR KIN -------------------------------------------------------------------
+// The traveler's Kin from the app rides on an open palm as a hologram; the Kin in their orbit circle
+// around their head and pass behind them (the body mask fades the ones at the back). Signed out (the
+// projector, a guest without a pass), tonight's Kin circle instead and each new open palm catches the
+// next one. The data comes from /api/mirror: first names, card numbers, Kin names and pictures.
+const KIN = {me:null, orbit:[], party:[], signedIn:false, loaded:false};
+const pad3 = n => String(n).padStart(3, '0');
+const KIN_FX = HEAD + `
+uniform vec4 u_kin;
+void main(){
+  vec3 c=cam(v_uv); float l=luma(c);
+  vec3 col=mix(vec3(l),c,.8)*vec3(.9,.96,1.06);
+  float v=length((v_uv-.5)*vec2(u_aspect,1.)); col*=1.-.4*v*v;
+  col+=vec3(.26,.52,1.)*pow(max(0.,1.-v_uv.y*1.7),3.)*.14;
+  if(u_kin.w>.01){float d=length(asp(v_uv)-asp(u_kin.xy)); col+=vec3(.3,.56,1.)*exp(-d/max(u_kin.z,.02))*.38*u_kin.w;}
+  o=vec4(col,1.);
+}`;
+function rrect(x, a, b, w, h, r){
+  x.beginPath(); x.moveTo(a+r, b); x.arcTo(a+w, b, a+w, b+h, r); x.arcTo(a+w, b+h, a, b+h, r);
+  x.arcTo(a, b+h, a, b, r); x.arcTo(a, b, a+w, b, r); x.closePath();
+}
+// A Kin picture cut once into a card (or a disc) with the app's chrome edge, then drawn scaled every frame.
+function kinSprite(img, size, round){
+  const c = document.createElement('canvas'); c.width = c.height = size; const x = c.getContext('2d');
+  const p = Math.round(size*.035), w = size - 2*p, r = round ? w/2 : w*.15, s = Math.min(img.naturalWidth, img.naturalHeight);
+  x.save(); rrect(x, p, p, w, w, r); x.clip(); x.imageSmoothingQuality = 'high';
+  x.drawImage(img, (img.naturalWidth - s)/2, (img.naturalHeight - s)/2, s, s, p, p, w, w); x.restore();
+  const g = x.createLinearGradient(0, 0, size, size);
+  [[0,'#e9f4ff'],[.17,'#82a4d1'],[.35,'#244672'],[.48,'#b8d8ff'],[.5,'#eef8ff'],[.54,'#426a9d'],[.78,'#122d54'],[1,'#8bb9ec']].forEach(([o, col]) => g.addColorStop(o, col));
+  x.lineWidth = p*1.1; x.strokeStyle = g; rrect(x, p, p, w, w, r); x.stroke();
+  return c;
+}
+// The body mask (1 = person) at a screen point, uv with y up.
+function maskAtScreen(u, v){
+  if (!S.hasMask || !maskBuf || !maskW) return 0;
+  let cu = u*S.camXf[0] + S.camXf[2]; const cv = v*S.camXf[1] + S.camXf[3]; if (S.mirror) cu = 1 - cu;
+  const h = maskBuf.length / maskW, ix = Math.min(maskW-1, Math.max(0, cu*maskW|0)), iy = Math.min(h-1, Math.max(0, cv*h|0));
+  return maskBuf[iy*maskW + ix] / 255;
+}
+const Kin = {
+  id:'kin', name:'Your Kin', needsMask:true,
+  hint:'Open your palm: your Kin crosses over and lands on it.',
+  credit:'Your Kin from the Arrival Station · The Future 2050',
+  url:'/',
+  src:'Your Kin from the app rides on your hand: MediaPipe finds the palm, and the body mask lets your orbit pass behind you.',
+  init(){
+    this.prog = program(KIN_FX);
+    this.p = [.78, .64]; this.side = .24; this.a = 0; this.tilt = 0; this.beam = 0; this.from = [.5, .3];
+    this.pick = 0; this.wasOpen = false; this.state = 'WAITING'; this.glow = new Float32Array(4);
+  },
+  // The Kin on the palm: yours, or (signed out) one of tonight's.
+  carried(){
+    if (KIN.me) return KIN.me.big ? KIN.me : null;
+    if (KIN.signedIn) return null;
+    const pool = KIN.party.filter(k => k.big);
+    return pool.length ? pool[this.pick % pool.length] : null;
+  },
+  ring(){
+    const on = this.carried();
+    return (KIN.signedIn ? KIN.orbit : KIN.party).filter(k => k.small && k !== on);
+  },
+  update(dt){
+    const hs = live().slice().sort((a, b) => b.open - a.open), h = hs[0];
+    const open = !!h && h.fingers >= 4 && h.open > .6, fist = !!h && h.fingers === 0;
+    if (open && !this.wasOpen) this.pick++;
+    this.wasOpen = open;
+    const wide = S.aspect >= 1;
+    let tp = wide ? [.77, .64] : [.7, .72], ts = wide ? .24 : .16, ta = 1, tt = Math.sin(S.time*.7)*.06, beam = 0, k = 3;
+    if (open) {
+      ts = Math.min(.55, Math.max(.16, h.size*2.2));
+      tp = [h.palm[0], h.palm[1] + h.size*.4 + ts/2];
+      const vx = (h.lm[27] - h.lm[0])*S.aspect, vy = h.lm[28] - h.lm[1]; // wrist to middle knuckle
+      tt = Math.max(-.5, Math.min(.5, Math.atan2(vx, vy)*.7)); beam = 1; k = 9;
+      this.from = [h.palm[0], h.palm[1]];
+    } else if (ptr.down) { tp = [ptr.x, ptr.y]; ts = wide ? .3 : .24; k = 10; }
+    else if (fist) { tp = [h.palm[0], h.palm[1]]; ts = .06; ta = 0; k = 5; }
+    const e = Math.min(1, dt*k);
+    this.p[0] += (tp[0] - this.p[0])*e; this.p[1] += (tp[1] - this.p[1])*e; this.side += (ts - this.side)*e;
+    this.tilt += (tt - this.tilt)*Math.min(1, dt*6);
+    this.a += (ta - this.a)*Math.min(1, dt*(ta ? 4 : 8));
+    this.beam += (beam - this.beam)*Math.min(1, dt*6);
+    const k0 = this.carried();
+    this.state = !KIN.loaded ? 'LOADING' : !k0 ? 'NO KIN' : open ? 'ON YOUR PALM' : fist ? 'HIDING' : 'OPEN YOUR PALM';
+    this.glow.set([this.p[0], this.p[1], this.side*.75, this.a*(k0 ? .35 + .65*this.beam : .3)]);
+  },
+  render(){ use(this.prog); bindTarget(null); common(); set('u_kin', this.glow); quad(); },
+  hud(x){
+    const W = S.W, H = S.H, t = S.time, ring = this.ring();
+    const n = ring.length || (KIN.signedIn ? 5 : 0), items = [];
+    if (n) {
+      const cx = W*.5, cy = H*(S.aspect >= 1 ? .4 : .36), rx = Math.min(W*.44, H*.62), ry = rx*.2;
+      x.lineWidth = S.dpr; x.strokeStyle = 'rgba(157,216,255,.22)'; x.beginPath(); x.ellipse(cx, cy, rx, ry, 0, 0, Math.PI*2); x.stroke();
+      for (let i = 0; i < n; i++) { const ang = t*.3 + i*Math.PI*2/n, z = Math.sin(ang); items.push({k:ring[i] || null, x:cx + Math.cos(ang)*rx, y:cy + z*ry, z}); }
+      items.sort((a, b) => a.z - b.z);
+    }
+    for (const it of items) this.orbiter(x, it);
+  },
+  hudTop(x){ this.carry(x); },
+  orbiter(x, it){
+    const d = S.dpr, s = Math.min(S.H*.095, S.W*.15)*(.72 + .28*(it.z + 1)/2);
+    let a = .55 + .45*(it.z + 1)/2;
+    if (it.z < 0) { // behind you: the body mask hides it
+      const u = it.x/S.W, v = 1 - it.y/S.H, o = s*.3/S.H;
+      const m = (maskAtScreen(u, v)*2 + maskAtScreen(u - o/S.aspect, v) + maskAtScreen(u + o/S.aspect, v) + maskAtScreen(u, v - o) + maskAtScreen(u, v + o))/6;
+      a *= 1 - .94*Math.min(1, m*1.4);
+    }
+    if (a < .02) return;
+    x.save(); x.globalAlpha = a;
+    if (it.k) x.drawImage(it.k.small, it.x - s/2, it.y - s/2, s, s);
+    else { // an empty place in your orbit
+      x.strokeStyle = 'rgba(157,216,255,.55)'; x.lineWidth = d; x.setLineDash([3*d, 3*d]); x.beginPath(); x.arc(it.x, it.y, s*.4, 0, 7); x.stroke(); x.setLineDash([]);
+      x.fillStyle = 'rgba(157,216,255,.75)'; x.font = `500 ${s*.3}px "Martian Mono", monospace`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('?', it.x, it.y);
+    }
+    x.restore();
+  },
+  carry(x){
+    if (this.a < .02) return;
+    const W = S.W, H = S.H, d = S.dpr, t = S.time, k = this.carried(), a = this.a;
+    const side = this.side*H, cx = this.p[0]*W, cy = (1 - this.p[1])*H + Math.sin(t*2.1)*side*.03;
+    if (this.beam > .02) { // the projection from the palm
+      const fx = this.from[0]*W, fy = (1 - this.from[1])*H, bw = side*.42, by = cy + side*.42;
+      const g = x.createLinearGradient(0, fy, 0, by);
+      g.addColorStop(0, 'rgba(157,216,255,0)'); g.addColorStop(1, `rgba(120,180,255,${.3*this.beam*a})`);
+      x.fillStyle = g; x.beginPath(); x.moveTo(fx - bw*.1, fy); x.lineTo(fx + bw*.1, fy); x.lineTo(cx + bw, by); x.lineTo(cx - bw, by); x.closePath(); x.fill();
+    }
+    x.save(); x.translate(cx, cy); x.rotate(this.tilt);
+    const halo = x.createRadialGradient(0, 0, side*.25, 0, 0, side*.9);
+    halo.addColorStop(0, `rgba(67,133,255,${.42*a})`); halo.addColorStop(1, 'rgba(67,133,255,0)');
+    x.fillStyle = halo; x.fillRect(-side, -side, side*2, side*2);
+    const sc = .7 + .3*a; x.scale(sc, sc); x.globalAlpha = a;
+    if (k) {
+      x.drawImage(k.big, -side/2, -side/2, side, side);
+      const sy = ((t*.28) % 1.6 - .3)*side - side/2; // a slow chrome sweep
+      const sg = x.createLinearGradient(0, sy - side*.14, 0, sy + side*.14);
+      sg.addColorStop(0, 'rgba(157,216,255,0)'); sg.addColorStop(.5, `rgba(190,225,255,${.2*a})`); sg.addColorStop(1, 'rgba(157,216,255,0)');
+      x.globalCompositeOperation = 'lighter'; x.fillStyle = sg; rrect(x, -side*.465, -side*.465, side*.93, side*.93, side*.14); x.fill();
+      x.globalCompositeOperation = 'source-over';
+    } else { // no Kin yet: an empty orb
+      x.strokeStyle = 'rgba(157,216,255,.9)'; x.lineWidth = 1.5*d; x.beginPath(); x.arc(0, 0, side*.3, 0, 7); x.stroke();
+      x.setLineDash([4*d, 6*d]); x.beginPath(); x.arc(0, 0, side*.38, t*.6, t*.6 + 5); x.stroke(); x.setLineDash([]);
+      x.fillStyle = '#edf4ff'; x.font = `600 ${side*.2}px Unbounded, sans-serif`; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('?', 0, side*.01);
+    }
+    x.restore();
+    if (a < .3) return;
+    const coming = !KIN.loaded || !!KIN.me || (!KIN.signedIn && KIN.party.length > 0); // there is a Kin, its picture is loading
+    const top = k ? k.character : coming ? 'Kin incoming' : KIN.signedIn ? 'Your Kin is on its way' : 'No Kin yet';
+    const sub = k ? (KIN.me ? `YOUR KIN · № ${pad3(k.card_no)}` : `${k.name.toUpperCase()}’S KIN · № ${pad3(k.card_no)}`)
+      : coming ? 'CROSSING OVER' : KIN.signedIn ? 'IT IS STILL CROSSING OVER AT THE STATION' : 'TAP YOUR PASS AT THE STATION';
+    x.save(); x.globalAlpha = Math.min(1, (a - .3)/.5); x.textAlign = 'center'; x.textBaseline = 'alphabetic'; x.shadowColor = 'rgba(0,0,0,.75)'; x.shadowBlur = 10*d;
+    let fs = Math.max(13*d, Math.min(22*d, side*.07)); x.font = `600 ${fs}px Unbounded, sans-serif`;
+    const mw = x.measureText(top).width, max = Math.max(side*1.3, 220*d); if (mw > max) { fs *= max/mw; x.font = `600 ${fs}px Unbounded, sans-serif`; }
+    // on a palm the name goes above the card, clear of the fingers; otherwise below it
+    const ly = this.beam > .5 ? cy - side/2*sc - 14*d - fs*1.15 : cy + side/2*sc + 20*d;
+    x.fillStyle = '#edf4ff'; x.fillText(top, cx, ly);
+    x.font = `500 ${Math.max(8.5*d, fs*.48)}px "Martian Mono", monospace`; x.fillStyle = '#9dd8ff'; x.fillText(sub, cx, ly + fs*1.15);
+    x.restore();
+  },
+  status(){ return this.state; },
+};
+
+// What the Kin effect says, which depends on who is looking.
+function kinText(){
+  Kin.hint = KIN.me ? 'Open your palm: your Kin crosses over and lands on it. Make a fist and it hides. The Kin in your orbit circle around you.'
+    : KIN.signedIn ? 'Your Kin is still crossing over at the Station. Meanwhile the Kin in your orbit circle around you.'
+    : KIN.party.length ? 'Open your palm to catch one of tonight’s Kin; open it again for the next. Tap your pass at the Station to bring your own.'
+    : 'Tap your pass at the Station and your Kin appears here, on your open palm.';
+}
+function kinImage(k){
+  return new Promise(done => {
+    const img = new Image(); img.crossOrigin = 'anonymous'; img.decoding = 'async';
+    img.onload = () => { try { k.big = kinSprite(img, 512, false); k.small = kinSprite(img, 176, true); } catch (e) { console.warn('kin sprite', e); } done(); };
+    img.onerror = () => { console.warn('kin picture did not load', k.image_url); done(); };
+    img.src = k.image_url;
+  });
+}
+async function loadKin(){
+  try {
+    const r = await fetch('/api/mirror', {cache:'no-store', credentials:'same-origin'});
+    const j = await r.json();
+    KIN.me = j.me || null; KIN.orbit = j.orbit || []; KIN.party = j.party || []; KIN.signedIn = !!j.signedIn;
+  } catch (e) { console.warn('kin unavailable', e); }
+  KIN.loaded = true; kinText(); kinUI();
+  await Promise.all([KIN.me, ...KIN.orbit, ...KIN.party].filter(Boolean).map(kinImage));
+}
+
+const FX = [Kin, Liquid, Swarm, Holo, Portal, Shatter, TimeWarp, Matrix, Cloak];
+
+// ============================================================================
+// MediaPipe: hands always, body segmentation only for effects that need it
+// ============================================================================
+let vision = null, visionState = 'loading', hl = null, seg = null, segState = 'off';
+let tsH = 0, tsS = 0, handMs = 0;
+const segCanvas = document.createElement('canvas'); segCanvas.width = 256; segCanvas.height = 144;
+const segCtx = segCanvas.getContext('2d', {willReadFrequently:true});
+let maskBuf = null, maskW = 0, maskPrev = null, maskFlip = 0, polarity = {n:0, inv:false};
+
+// The app always loads MediaPipe from the CDN (the standalone mirror/ folder can also run it offline from vendor/).
+async function loadVision(){
+  return {mod: await import(`${CDN}/vision_bundle.mjs`), wasm:`${CDN}/wasm`, hand:MODEL.hand, seg:MODEL.seg, where:'cdn'};
+}
+async function withDelegate(make){
+  const order = Q.get('delegate') === 'cpu' ? ['CPU'] : ['GPU', 'CPU'];
+  let err; for (const d of order) { try { return await make(d); } catch (e) { err = e; console.warn('MediaPipe', d, e); } }
+  throw err;
+}
+async function initVision(){
+  try {
+    const v = await loadVision();
+    v.fs = await v.mod.FilesetResolver.forVisionTasks(v.wasm); vision = v;
+    hl = await withDelegate(d => v.mod.HandLandmarker.createFromOptions(v.fs, {
+      baseOptions:{modelAssetPath:v.hand, delegate:d}, runningMode:'VIDEO', numHands:2,
+      minHandDetectionConfidence:.5, minHandPresenceConfidence:.5, minTrackingConfidence:.5}));
+    visionState = 'ready';
+  } catch (e) { console.warn('hand tracking unavailable', e); visionState = 'offline'; }
+}
+async function initSeg(){
+  if (segState !== 'off' || !vision) return; segState = 'loading';
+  try {
+    seg = await withDelegate(d => vision.mod.ImageSegmenter.createFromOptions(vision.fs, {
+      baseOptions:{modelAssetPath:vision.seg, delegate:d}, runningMode:'VIDEO', outputCategoryMask:false, outputConfidenceMasks:true}));
+    segState = 'ready';
+  } catch (e) { console.warn('segmentation unavailable', e); segState = 'failed'; }
+}
+function onMask(res){
+  const ms = res && res.confidenceMasks; if (!ms || !ms.length) return;
+  const mk = ms.length > 1 ? ms[1] : ms[0], w = mk.width, h = mk.height, f = mk.getAsFloat32Array();
+  if (ms.length === 1 && polarity.n < 30) {
+    // the top corners are almost always background; if the model says "person" there and not in the middle, flip it
+    let corner = 0, mid = 0, cn = 0, mn = 0;
+    for (let y = 0; y < h*.2; y++) for (let x = 0; x < w*.15; x++) { corner += f[y*w+x] + f[y*w+(w-1-x)]; cn += 2; }
+    for (let y = h*.35|0; y < h*.75; y++) for (let x = w*.4|0; x < w*.6; x++) { mid += f[y*w+x]; mn++; }
+    polarity.n++; if (corner/cn > .6 && mid/mn < .4) polarity.inv = true;
+  }
+  if (!maskBuf || maskBuf.length !== w*h) { maskBuf = new Uint8Array(w*h); maskPrev = new Float32Array(w*h); }
+  maskW = w;
+  for (let y = 0; y < h; y++) {
+    const ri = y*w, ro = (h-1-y)*w;
+    for (let x = 0; x < w; x++) {
+      let v = f[ri+x]; if (polarity.inv) v = 1 - v;
+      v = maskPrev[ri+x] = maskPrev[ri+x]*.35 + v*.65; maskBuf[ro+x] = v*255;
+    }
+  }
+  gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, maskTex);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.R8, w, h, 0, gl.RED, gl.UNSIGNED_BYTE, maskBuf);
+  S.hasMask = 1;
+}
+function track(now){
+  if (hl) {
+    const t0 = performance.now();
+    try { tsH = Math.max(tsH + 1, now); applyHands(hl.detectForVideo(video, tsH), now); } catch (e) { console.warn(e); }
+    handMs += (performance.now() - t0 - handMs)*.1;
+  }
+  if (FX[cur].needsMask) {
+    if (segState === 'off' && visionState === 'ready') initSeg();
+    if (seg) {
+      segCanvas.height = Math.round(256 / S.camAspect);
+      segCtx.drawImage(video, 0, 0, segCanvas.width, segCanvas.height);
+      try { tsS = Math.max(tsS + 1, now); seg.segmentForVideo(segCanvas, tsS, onMask); } catch (e) { console.warn(e); }
+    }
+  }
+}
+
+// ============================================================================
+// HUD (2D canvas over the GL canvas)
+// ============================================================================
+function drawHUD(now){
+  const W = S.W, H = S.H, d = S.dpr; hx.clearRect(0, 0, W, H);
+  const fx = FX[cur];
+  if (fx.hud) fx.hud(hx);
+  if (hudOn) drawHands(now);
+  if (fx.hudTop) fx.hudTop(hx); // drawn over the hand HUD
+}
+function drawHands(now){
+  const W = S.W, H = S.H, d = S.dpr, fx = FX[cur];
+  const X = x => x*W, Y = y => (1-y)*H;
+  hx.font = `500 ${10.5*d}px "Martian Mono", ui-monospace, monospace`; hx.lineWidth = d;
+  // frame corners
+  const m = 18*d, c = 22*d; hx.strokeStyle = 'rgba(255,255,255,.35)'; hx.beginPath();
+  [[m,m,1,1],[W-m,m,-1,1],[m,H-m,1,-1],[W-m,H-m,-1,-1]].forEach(([x,y,sx,sy]) => { hx.moveTo(x, y+sy*c); hx.lineTo(x, y); hx.lineTo(x+sx*c, y); });
+  hx.stroke();
+  const blink = Math.floor(now/600) % 2 === 0;
+  hx.fillStyle = 'rgba(67,133,255,.95)'; if (blink) { hx.beginPath(); hx.arc(m + 10*d, H - m - 30*d, 4*d, 0, 7); hx.fill(); }
+  hx.fillStyle = 'rgba(255,255,255,.75)';
+  const tc = new Date(); const hh = String(tc.getHours()).padStart(2,'0'), mi = String(tc.getMinutes()).padStart(2,'0'), ss = String(tc.getSeconds()).padStart(2,'0');
+  hx.fillText(`LIVE ${hh}:${mi}:${ss} · ${fx.name.toUpperCase()}${fx.status ? ' · ' + fx.status() : ''}`, m + 20*d, H - m - 26*d);
+  const hs = hands.filter(h => h.on > .05);
+  for (const h of hs) {
+    const a = h.on, P = j => [X(h.lm[j*3]), Y(h.lm[j*3+1])];
+    hx.strokeStyle = `rgba(157,216,255,${.55*a})`; hx.beginPath();
+    for (let i = 0; i < BONES.length; i += 2) { const p = P(BONES[i]), q = P(BONES[i+1]); hx.moveTo(p[0], p[1]); hx.lineTo(q[0], q[1]); }
+    hx.stroke();
+    hx.fillStyle = `rgba(157,216,255,${.8*a})`;
+    for (let j = 0; j < 21; j++) { if (TIPS.includes(j)) continue; const p = P(j); hx.fillRect(p[0]-1.5*d, p[1]-1.5*d, 3*d, 3*d); }
+    hx.strokeStyle = `rgba(255,255,255,${.9*a})`;
+    for (const j of TIPS) {
+      const p = P(j), r = 6*d; hx.beginPath(); hx.arc(p[0], p[1], r, 0, 7);
+      hx.moveTo(p[0]-r-4*d, p[1]); hx.lineTo(p[0]-r, p[1]); hx.moveTo(p[0]+r, p[1]); hx.lineTo(p[0]+r+4*d, p[1]);
+      hx.moveTo(p[0], p[1]-r-4*d); hx.lineTo(p[0], p[1]-r); hx.stroke();
+    }
+    const pc = [X(h.palm[0]), Y(h.palm[1])], pr = h.size*H*.62, rot = S.time*1.4;
+    hx.strokeStyle = `rgba(67,133,255,${.85*a})`; hx.lineWidth = 2*d;
+    for (let i = 0; i < 3; i++) { hx.beginPath(); hx.arc(pc[0], pc[1], pr, rot + i*2.09, rot + i*2.09 + 1.2 + h.open*.7); hx.stroke(); }
+    hx.lineWidth = d; hx.strokeStyle = `rgba(157,216,255,${.35*a})`; hx.beginPath(); hx.arc(pc[0], pc[1], pr*1.18, -rot*.7, -rot*.7 + 4.5); hx.stroke();
+    const side = h.label === 'Left' ? 'RIGHT' : h.label === 'Right' ? 'LEFT' : 'HAND';
+    const tx = pc[0] + pr*1.3, ty = pc[1] - pr*.6;
+    hx.fillStyle = `rgba(67,133,255,${a})`; hx.fillText(`${side} HAND`, tx, ty);
+    hx.fillStyle = `rgba(255,255,255,${.85*a})`;
+    hx.fillText(`OPEN ${String(Math.round(h.open*100)).padStart(3,' ')}%  ${h.fingers < 0 ? '-' : h.fingers} FNG`, tx, ty + 14*d);
+    hx.fillText(`PINCH ${Math.round(h.pinch*100)}%  V ${h.speed.toFixed(2)}`, tx, ty + 28*d);
+    if (h.pinch > .15) {
+      const p4 = P(4), p8 = P(8), mm = Math.round(D(L(h,4), L(h,8)) / h.size * 95);
+      hx.strokeStyle = `rgba(255,255,255,${.7*a})`; hx.setLineDash([4*d, 3*d]); hx.beginPath(); hx.moveTo(p4[0], p4[1]); hx.lineTo(p8[0], p8[1]); hx.stroke(); hx.setLineDash([]);
+      hx.fillStyle = `rgba(255,255,255,${.9*a})`; hx.fillText(`${mm} mm`, (p4[0]+p8[0])/2 + 8*d, (p4[1]+p8[1])/2);
+    }
+  }
+  if (hs.length === 2 && hs[0].on > .5 && hs[1].on > .5) {
+    const [h0, h1] = hs, p =[X(h0.lm[24]), Y(h0.lm[25])], q = [X(h1.lm[24]), Y(h1.lm[25])];
+    const mm = Math.round(D(L(h0,8), L(h1,8)) / ((h0.size + h1.size)/2) * 95);
+    hx.strokeStyle = 'rgba(157,216,255,.5)'; hx.setLineDash([2*d, 5*d]); hx.beginPath(); hx.moveTo(p[0], p[1]); hx.lineTo(q[0], q[1]); hx.stroke(); hx.setLineDash([]);
+    hx.fillStyle = 'rgba(157,216,255,.95)'; hx.fillText(`SPAN ${mm} mm`, (p[0]+q[0])/2 - 30*d, (p[1]+q[1])/2 - 10*d);
+  }
+}
+
+// ============================================================================
+// Loop, UI, camera
+// ============================================================================
+const dock = $('#dock');
+FX.forEach((f, i) => {
+  const b = document.createElement('button'); b.innerHTML = `<i>${i+1}</i>${f.name}`; b.title = f.hint;
+  if (f === Kin) b.className = 'kin';
+  b.addEventListener('click', () => select(i)); dock.appendChild(b);
+});
+function sources(){
+  $('#srcList').innerHTML = FX.map((f, i) => `<li><b>${String(i+1).padStart(2,'0')} · ${f.name}</b><span>${f.src} ${f.hint}</span><em><a href="${f.url}"${f.url.startsWith('http') ? ' target="_blank" rel="noopener"' : ''}>${f.credit}</a></em></li>`).join('');
+}
+sources();
+
+// The traveler's Kin on the start screen and in the top bar. Names go in as text, never as HTML.
+function kinUI(){
+  const face = c => { const i = new Image(); i.crossOrigin = 'anonymous'; i.alt = ''; i.src = c.image_url; return i; };
+  const me = KIN.me, faces = $('#gateFaces');
+  if (me) {
+    faces.className = 'faces one'; faces.replaceChildren(face(me));
+    $('#gateKinName').textContent = me.character;
+    $('#gateKinText').textContent = `${me.name}’s Kin is waiting on the other side. Open your palm in front of the camera and it lands on your hand.`;
+    $('#kinchipImg').crossOrigin = 'anonymous'; $('#kinchipImg').src = me.image_url;
+    $('#kinchipText').replaceChildren(Object.assign(document.createElement('b'), {textContent:me.character}), ` · № ${pad3(me.card_no)}`);
+    $('#kinchip').hidden = false;
+  } else if (KIN.signedIn) {
+    faces.className = 'faces'; faces.replaceChildren(...KIN.orbit.slice(0, 4).map(face));
+    $('#gateKinName').textContent = 'Your Kin is still crossing over';
+    $('#gateKinText').textContent = KIN.orbit.length ? 'Meanwhile the Kin in your orbit are in the mirror with you.' : 'Come back once it has arrived at the Station.';
+  } else if (KIN.party.length) {
+    faces.className = 'faces'; faces.replaceChildren(...KIN.party.slice(0, 4).map(face));
+    $('#gateKinName').textContent = 'Tonight’s Kin are in the mirror';
+    $('#gateKinText').textContent = 'Open your palm to catch one. Tap your pass at the Station to bring your own.';
+  }
+  $('#gateKin').hidden = !(me || KIN.signedIn || KIN.party.length);
+  dock.children[FX.indexOf(Kin)].title = Kin.hint;
+  sources();
+  if (FX[cur] === Kin) $('#tHint').textContent = Kin.hint;
+}
+
+let titleTimer = 0, noteTimer = 0;
+function showTitle(){
+  const f = FX[cur];
+  $('#tNum').textContent = `${String(cur+1).padStart(2,'0')} / ${String(FX.length).padStart(2,'0')}`;
+  $('#tName').textContent = f.name; $('#tHint').textContent = f.hint; $('#tCredit').textContent = f.credit;
+  $('#title').classList.add('show'); clearTimeout(titleTimer);
+  titleTimer = setTimeout(() => $('#title').classList.remove('show'), 6000);
+}
+function note(msg, ms = 3500){ const n = $('#note'); n.textContent = msg; n.classList.add('show'); clearTimeout(noteTimer); noteTimer = setTimeout(() => n.classList.remove('show'), ms); }
+function ready(f){ if (!f.ready) { f.init(); f.ready = true; if (f.resize) f.resize(); } }
+let partyT = 0;
+function select(i){
+  cur = (i + FX.length) % FX.length; partyT = 0;
+  [...dock.children].forEach((b, k) => b.classList.toggle('on', k === cur));
+  dock.children[cur].scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+  const fl = $('#flash'); fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
+  try { ready(FX[cur]); } catch (e) { console.error(e); note(`${FX[cur].name} failed to start: ${e.message}`); }
+  showTitle();
+  if (FX[cur].maskNote && (visionState === 'offline' || segState === 'failed')) note(FX[cur].maskNote, 6000);
+  try { history.replaceState(null, '', `?${new URLSearchParams({...Object.fromEntries(Q), fx: FX[cur].id})}`); } catch (e) {}
+}
+
+function resize(){
+  const d = Math.min(devicePixelRatio || 1, 1.5) * S.scale;
+  const W = Math.max(2, Math.round(innerWidth*d)), H = Math.max(2, Math.round(innerHeight*d));
+  if (W === S.W && H === S.H) return;
+  S.W = glc.width = hud.width = W; S.H = glc.height = hud.height = H; S.dpr = d; S.aspect = W/H;
+  FX.forEach(f => f.ready && f.resize && f.resize());
+}
+function updateCamXf(){
+  const vw = video.videoWidth, vh = video.videoHeight, C = vw/vh, Asp = S.aspect;
+  let fx = 1, fy = 1; if (Asp > C) fy = C/Asp; else fx = Asp/C;
+  S.camXf.set([fx, fy, (1-fx)/2, (1-fy)/2]); S.camAspect = C;
+}
+
+let last = performance.now(), newFrame = true, lastVT = -1, fps = 0, slow = 0, statT = 0;
+const rvfc = 'requestVideoFrameCallback' in HTMLVideoElement.prototype;
+function onVideoFrame(){ newFrame = true; video.requestVideoFrameCallback(onVideoFrame); }
+function loop(now){
+  requestAnimationFrame(loop);
+  const dt = Math.min(.1, Math.max(.001, (now - last)/1000)); last = now; S.time += dt;
+  resize();
+  if (video.readyState < 2 || !video.videoWidth) return;
+  updateCamXf();
+  if (!rvfc && video.currentTime !== lastVT) { lastVT = video.currentTime; newFrame = true; }
+  S.camFresh = newFrame;
+  if (newFrame) { uploadCam(); track(now); newFrame = false; }
+  updateHands(now);
+  S.pointer.set([ptr.x, ptr.y, ptr.down && now - ptr.moved < 80 ? 1 : 0]);
+  const f = FX[cur];
+  try { ready(f); if (f.update) f.update(dt, now); f.render(dt, now); } catch (e) { console.error(e); }
+  drawHUD(now);
+  // stats + adaptive resolution
+  fps += (1/dt - fps)*.05;
+  if (fps < 34 && S.scale > .6) { slow += dt; if (slow > 3) { S.scale = Math.max(.6, S.scale*.85); slow = 0; } } else slow = 0;
+  if (party) { partyT += dt; if (partyT > 25) select(cur + 1); }
+  if ((statT += dt) > .25) { statT = 0; status(); }
+}
+function pill(id, text, cls){ const el = $(id); el.textContent = text; el.className = 'pill' + (el.classList.contains('wide') ? ' wide' : '') + (cls ? ' ' + cls : ''); }
+function status(){
+  const hs = live().length;
+  pill('#pCam', `CAM ${video.videoWidth}×${video.videoHeight}`, 'ok');
+  pill('#pHands', visionState === 'ready' ? `HANDS ${hs}/2 · ${handMs.toFixed(0)}ms` : visionState === 'loading' ? 'HANDS loading…' : 'HANDS offline', visionState === 'ready' ? (hs ? 'ok' : '') : 'warn');
+  const needs = FX[cur].needsMask;
+  pill('#pMask', segState === 'ready' ? 'BODY on' : segState === 'loading' ? 'BODY loading…' : segState === 'failed' ? 'BODY failed' : 'BODY off', segState === 'ready' ? 'ok' : (needs && segState !== 'off') ? 'warn' : '');
+  pill('#pFps', `${Math.round(fps)} FPS${S.scale < 1 ? ` · ${Math.round(S.scale*100)}%` : ''}`, fps < 30 ? 'warn' : '');
+  $('#pParty').hidden = !party; $('#pParty').className = 'pill hot';
+  $('#bHud').classList.toggle('on', hudOn); $('#bParty').classList.toggle('on', party);
+}
+
+let stream = null, devices = [], devIdx = 0;
+async function openCamera(deviceId){
+  if (stream) stream.getTracks().forEach(t => t.stop());
+  const v = {width:{ideal:1280}, height:{ideal:720}, frameRate:{ideal:30}};
+  stream = await navigator.mediaDevices.getUserMedia({audio:false, video: deviceId ? {...v, deviceId:{exact:deviceId}} : {...v, facingMode:'user'}});
+  video.srcObject = stream; await video.play();
+  devices = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === 'videoinput');
+  const st = stream.getVideoTracks()[0].getSettings(); devIdx = Math.max(0, devices.findIndex(d => d.deviceId === st.deviceId));
+  if (!Q.has('mirror')) S.mirror = st.facingMode === 'environment' ? 0 : 1;
+}
+let started = false;
+async function start(){
+  if (started) return; started = true;
+  $('#err').textContent = '';
+  try {
+    if (!gl) throw new Error('This browser has no WebGL2. Try a recent Chrome, Edge, Firefox or Safari.');
+    if (Q.get('src')) { video.src = Q.get('src'); video.loop = true; video.crossOrigin = 'anonymous'; await video.play(); }
+    else {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error('No camera API here. Open the page over http://localhost or https.');
+      await openCamera();
+    }
+  } catch (e) {
+    started = false; $('#gate').classList.remove('gone');
+    $('#err').textContent = e.name === 'NotAllowedError' ? 'Camera permission was denied. Allow the camera for this page and press Start again.' : `Camera did not start: ${e.message || e}`;
+    return;
+  }
+  $('#gate').classList.add('gone');
+  if (rvfc) video.requestVideoFrameCallback(onVideoFrame);
+  requestAnimationFrame(loop);
+  await Promise.all(['700 40px Unbounded', '600 40px Unbounded', '500 12px "Martian Mono"', '600 40px "Martian Mono"'].map(f => document.fonts.load(f))).catch(() => {});
+  if (FX[cur].ready && FX[cur].resize) FX[cur].resize();
+  select(cur); wake();
+  if (Q.get('hands') === '0') visionState = 'offline'; else initVision();
+}
+
+// idle: hide the controls after a few seconds without the mouse
+let idleTimer = 0;
+function wake(){ document.body.classList.remove('idle'); clearTimeout(idleTimer); idleTimer = setTimeout(() => { if (!$('#info').classList.contains('open')) document.body.classList.add('idle'); }, party ? 2000 : 3500); }
+
+let shot = {url:'', file:null};
+function snapshot(){
+  const c = document.createElement('canvas'); c.width = S.W; c.height = S.H; const x = c.getContext('2d');
+  x.drawImage(glc, 0, 0); x.drawImage(hud, 0, 0);
+  const d = S.dpr, m = 22*d;
+  x.textAlign = 'right'; x.shadowColor = 'rgba(0,0,0,.6)'; x.shadowBlur = 12*d;
+  x.font = `700 ${18*d}px Unbounded, "Arial Black", sans-serif`; x.fillStyle = '#edf4ff'; x.fillText('THE FUTURE 2050', S.W - m, S.H - m);
+  const who = KIN.me ? ` · № ${pad3(KIN.me.card_no)} ${KIN.me.name.toUpperCase()}` : '';
+  x.font = `500 ${9*d}px "Martian Mono", monospace`; x.fillStyle = '#9dd8ff'; x.fillText(`MIRROR · ${FX[cur].name.toUpperCase()}${who}`, S.W - m, S.H - m - 26*d);
+  const name = `the-future-2050-mirror-${FX[cur].id}-${Date.now()}.jpg`;
+  c.toBlob(b => {
+    if (!b) return note('The snapshot did not work. Try again.');
+    if (shot.url) URL.revokeObjectURL(shot.url);
+    shot = {url:URL.createObjectURL(b), file:new File([b], name, {type:'image/jpeg'})};
+    $('#shotImg').src = shot.url; $('#shotSave').href = shot.url; $('#shotSave').download = name;
+    $('#shotShare').hidden = !(navigator.canShare && navigator.canShare({files:[shot.file]}));
+    $('#shot').hidden = false;
+  }, 'image/jpeg', .92);
+  const fl = $('#flash'); fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
+}
+$('#shotShare').addEventListener('click', async () => {
+  try { await navigator.share({files:[shot.file], title:'The Future 2050 · Mirror'}); }
+  catch (e) { if (e.name !== 'AbortError') note('Sharing did not work here. Use Save instead.'); }
+});
+$('#shotClose').addEventListener('click', () => { $('#shot').hidden = true; });
+async function nextCamera(){
+  if (Q.get('src')) return note('Playing a video file (?src=…), not a camera.');
+  if (devices.length < 2) return note('Only one camera found.');
+  devIdx = (devIdx + 1) % devices.length;
+  try { await openCamera(devices[devIdx].deviceId); note(`Camera: ${devices[devIdx].label || 'camera ' + (devIdx+1)}`); } catch (e) { note(`Could not switch camera: ${e.message}`); }
+}
+function act(a){
+  if (a === 'hud') { hudOn = !hudOn; note(`Hand HUD ${hudOn ? 'on' : 'off'}`, 1200); }
+  else if (a === 'party') { party = !party; partyT = 0; note(party ? 'Party mode: next effect every 25 s' : 'Party mode off', 1800); wake(); }
+  else if (a === 'snap') snapshot();
+  else if (a === 'camera') nextCamera();
+  else if (a === 'full') { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {}); }
+  else if (a === 'info') { $('#info').classList.toggle('open'); wake(); }
+  status();
+}
+document.querySelectorAll('[data-act]').forEach(b => b.addEventListener('click', () => act(b.dataset.act)));
+$('#go').addEventListener('click', start);
+addEventListener('keydown', e => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const k = e.key.toLowerCase();
+  if (k >= '1' && k <= '9') select(+k - 1);
+  else if (k === 'arrowright') select(cur + 1);
+  else if (k === 'arrowleft') select(cur - 1);
+  else if (k === 'h') act('hud'); else if (k === 'a') act('party'); else if (k === 's') act('snap');
+  else if (k === 'c') act('camera'); else if (k === 'f') act('full'); else if (k === 'i') act('info');
+  else if (k === 'm') { S.mirror = 1 - S.mirror; note(`Mirror ${S.mirror ? 'on' : 'off'}`, 1200); }
+  else if (k === 'b') { if (Cloak.ready) Cloak.reset = true; note('Cloak: relearning the room', 1500); }
+  else if (k === 'escape') { $('#info').classList.remove('open'); $('#shot').hidden = true; }
+  else if (k === ' ') { e.preventDefault(); document.body.classList.toggle('idle'); return; }
+  else return;
+  wake();
+});
+
+// boot
+const want = FX.findIndex(f => f.id === Q.get('fx')); if (want >= 0) cur = want;
+window.__mirror = {S, hands, FX, KIN, select, get cur(){ return cur; }, get vision(){ return visionState; }, get seg(){ return segState; }};
+if (!document.fullscreenEnabled) $('#bFull').hidden = true;
+kinText(); loadKin();
+if (!gl) $('#err').textContent = 'This browser has no WebGL2. Try a recent Chrome, Edge, Firefox or Safari.';
+else if (Q.get('src') || Q.has('party') || Q.has('auto')) start();
+else if (navigator.permissions) navigator.permissions.query({name:'camera'}).then(p => { if (p.state === 'granted') start(); }).catch(() => {});
+</script>
+</body>
+</html>

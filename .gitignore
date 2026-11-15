@@ -32,6 +32,13 @@ soundboard/dist/contact2050-offline.html
 site/
 .vercel/
 
+# Imagined Futures (concept-art/): original-size pictures and the fxtwitter cache are re-fetchable
+# with python3 -I concept-art/fetch.py; thumbs/ and tweets.json are committed
+concept-art/images/
+concept-art/.cache/
+# the 11 MB single-file copy: python3 -I concept-art/build.py writes it from thumbs/
+concept-art/dist/
+
 # Six Facts, the show reel (HyperFrames project): renders and QA frames, same rules as video/.
 # The NASA footage and the Further slide cuts are re-fetchable: python3 -I showreel/tools/fetch_footage.py
 # and python3 -I showreel/tools/prepare_assets.py. The trimmed score (CC BY 4.0) is committed.
@@ -43,3 +50,7 @@ showreel/snapshots/
 showreel/assets/footage/
 showreel/assets/further/
 showreel/assets/music/_call-to-adventure-full.mp3
+
+# Mars in 3D: the original pictures, the Viking map and the MOLA grid are re-fetchable with
+# python3 -I mars3d/tools/fetch.py; img/, globe/textures.js and slides.js are committed
+mars3d/raw/

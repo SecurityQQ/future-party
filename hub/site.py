@@ -2,10 +2,12 @@
 
 The site keeps the repo's paths, so every relative link works the same as in the folder:
 - index.html is the front page in web mode: the 720p films, the 1080p masters on the GitHub releases, no claude.ai links;
+- admin.html is the host's page (pre-flight, short addresses, the pieces off the front page), linked from nowhere;
+  /admin forwards to it, so it keeps the front page's relative links;
 - every page in build.PAGES, the two walls and the Resonance player are copied. A page saved as a claude.ai
   fragment (no <!doctype>) gets the same document shell the books and tweets builds use for their wall pages;
 - every claude.ai link to one of these pages points at the copy on the site instead;
-- the 720p films and posters in video/dist/media are copied, and the folders of pictures pages load (ASSET_DIRS);
+- the 720p films and posters in video/dist/media are copied, and the photos the Big Wall loads (wall/dist/manifest.json);
 - each short address in build.SHORT gets a page that forwards to it: /quotes, /tweets, /programme ...
 
 Run from anywhere: python3 -I hub/site.py, then serve site/ (python3 -m http.server -d site).
@@ -26,8 +28,14 @@ _spec.loader.exec_module(B)
 PAGES = sorted(set(B.PAGES.values()) | {
     "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html"})
 MEDIA = "video/dist/media"
-# Folders of pictures the pages load: the party slides' pictures
-ASSET_DIRS = ["slides/assets"]
+# Other files the pages load from the repo: the Mirror 2050 preview, the Blue futurism chrome texture, Mars in 3D's
+# slides and preview, and every file the Big Wall lists in its manifest (Further's photos; its films are in MEDIA)
+ASSETS = (["mirror/preview.jpg", "vibes/assets/chrome-orbit.webp", "mars3d/slides.js", "mars3d/preview.jpg"]
+          + B.load("wall/dist/manifest.json")["files"])
+# Folders the pages load from: the Imagined Futures pictures (concept-art/images/, the originals, stay off the site)
+# and Mars in 3D's pictures, globe maps and three.js (mars3d/raw/, the originals, stay off the site),
+# and the party slides' pictures
+ASSET_DIRS = ["concept-art/thumbs", "mars3d/img", "mars3d/globe", "mars3d/vendor", "slides/assets"]
 SHELL = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
          '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
          '<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>\n')
@@ -50,8 +58,8 @@ def forward(target):
     return ('<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Future Party 2050</title>'
             f'<meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url={url}">'
             f'<script>location.replace({url!r})</script></head>'
-            '<body style="margin:0;padding:24px 16px;background:#070708;color:#fff;font:16px/1.5 system-ui,sans-serif">'
-            f'<a href="{url}" style="color:#ff6a33">Open {target.split("#")[0].rsplit("/", 1)[-1]}</a></body></html>\n')
+            '<body style="margin:0;padding:24px 16px;background:#030817;color:#edf4ff;font:16px/1.5 system-ui,sans-serif">'
+            f'<a href="{url}" style="color:#9dd8ff">Open {target.split("#")[0].rsplit("/", 1)[-1]}</a></body></html>\n')
 
 
 def main():
@@ -62,6 +70,9 @@ def main():
         shutil.rmtree(OUT)
     OUT.mkdir()
     (OUT / "index.html").write_text(B.build(web=True), encoding="utf8")
+    (OUT / "admin.html").write_text(B.admin(web=True), encoding="utf8")
+    (OUT / "admin").mkdir()
+    (OUT / "admin" / "index.html").write_text(forward("admin.html"), encoding="utf8")
     for rel in PAGES:
         dst = OUT / rel
         dst.parent.mkdir(parents=True, exist_ok=True)
@@ -69,6 +80,11 @@ def main():
     shutil.copytree(ROOT / MEDIA, OUT / MEDIA, ignore=shutil.ignore_patterns(".*"))
     for rel in ASSET_DIRS:
         shutil.copytree(ROOT / rel, OUT / rel, ignore=shutil.ignore_patterns(".*"))
+    for rel in ASSETS:
+        if (OUT / rel).exists():
+            continue
+        (OUT / rel).parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(ROOT / rel, OUT / rel)
     for name, target in B.SHORT.items():
         # /programme, /books and /tweets are also folders of the site: the forward becomes their index page
         if (OUT / name / "index.html").exists() or (OUT / name).is_file():

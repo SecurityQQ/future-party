@@ -2,7 +2,7 @@
 
 The host's deck for Future Party 2050, 26 slides: the vision, the goal, the three rules, the NFC game, one mini demo for each of the six things on the walls and the nine stations, then predicting the future and the question for the room. Every slide has speaker notes that say how to run its demo.
 
-**Online:** [future-party-2050.vercel.app/slides](https://future-party-2050.vercel.app/slides). From the folder, open `slides/dist/party-deck.html`.
+**Online:** [future-party-2050.vercel.app/slides](https://future-party-2050.vercel.app/slides), or the Slides tab on the front page. From the folder, open `slides/dist/party-deck.html`.
 
 ## Presenting
 
@@ -27,7 +27,7 @@ The fonts (League Gothic, Instrument Serif, Inter) come from Google Fonts. Witho
 | `deck/deck.json` | Title, slide order, sections and typefaces |
 | `deck/deck.css` | The look all slides share: the party's colours and type scale, the arrival motion, the click steps |
 | `deck/slides/<id>.html` | One `<section id="<id>">` per slide, notes in its `<aside>` |
-| `assets/` | The pictures: the soundboard screenshot, three Kin from the party app, the Mirror 2050 effects, NASA's red-blue Mars picture (PIA24688, NASA/JPL-Caltech), six concept-art pictures at thumbnail size, the futurists' avatars, the Naval post |
+| `assets/` | The pictures: the soundboard screenshot, three Kin from the party app, the Mirror 2050 effects, NASA's red-blue Mars picture (PIA24688, NASA/JPL-Caltech), six concept-art pictures at thumbnail size, the futurists' avatars, the Naval post, and `preview.jpg` (the Tonight slide, for the front page) |
 | `template.html` | The player: scales the 1920×1080 slides to the window, steps through clicks, plays the clip, loads YouTube on its slide |
 | `build.py` | Joins the deck and the player into `dist/party-deck.html`, and checks every picture and film a slide points at |
 | `dist/party-deck.html` | The built page (committed, like the other pages) |
@@ -40,7 +40,7 @@ Edit a slide in `deck/slides/`, or the look in `deck/deck.css`, then:
 
 ```bash
 python3 -I slides/build.py   # writes slides/dist/party-deck.html
-python3 -I hub/build.py      # the front page lists it under The evening
+python3 -I hub/build.py      # the front page: the Slides tab and its preview
 ```
 
-The deck was made as a claude.ai Slides artifact, [Future Party 2050](https://claude.ai/artifact/BkSJQMeXHfnDBZJaYmezXP) (private), and saved here on 15 November 2026 in the same format. The two now differ in two slides: here the show reel slide plays the repo's own preview film, and the Clarke slide embeds YouTube's player instead of a still from the BBC video. A change made in one is not copied to the other.
+The deck was made as a claude.ai Slides artifact, [Future Party 2050](https://claude.ai/artifact/BkSJQMeXHfnDBZJaYmezXP) (private), and saved here on 15 November 2026 in the same format. The two now differ in three slides: here the show reel slide plays the repo's own preview film, the Clarke slide embeds YouTube's player instead of a still from the BBC video, and the 3D glasses slide points at Mars in 3D (`/mars`). A change made in one is not copied to the other.

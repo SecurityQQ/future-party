@@ -1,0 +1,99 @@
+{
+  "id": "20261114-144554-a-foal",
+  "created": "2026-11-14T22:45:54.977Z",
+  "subject": "a foal",
+  "sign": "Sagittarius",
+  "traits": "free-spirited, adventurous, endlessly optimistic",
+  "palette": "ember orange, gold and crimson",
+  "tone": "mid",
+  "master": {
+    "id": "v5",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}.\nFigure and ground, more important than the scene description: {backdrop} The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "aspect": "3:4",
+  "refs": [],
+  "refMode": "match",
+  "autoRefs": {
+    "style": true,
+    "scene": false
+  },
+  "ab": false,
+  "compare": false,
+  "vary": {
+    "style": true,
+    "scene": true,
+    "model": false
+  },
+  "note": "",
+  "images": [
+    {
+      "i": 0,
+      "prompt": "a foal as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: free-spirited, adventurous, endlessly optimistic. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: transparent iridescent glass body with glowing fiber-optic veins and soft inner light, holographic sheen, faint technical blueprint annotations floating around it.\nColor accents: ember orange, gold and crimson.\nSetting: an endless corridor of tall trees at deep blue twilight, a faint starry horizon glowing at the end of a tiny winding path.\nFigure and ground, more important than the scene description: the creature glows, so the scene around it is dark and quiet: night tones, deep shadow and only faint background detail. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "hologlass",
+      "scene": "forest",
+      "refs": [
+        "character ideas/54deea09727aab1618809d6e42dfb05e.jpg"
+      ],
+      "status": "done",
+      "started": 1794696354977,
+      "jobId": "job_8598fff5e0e1",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_f693b819a18f.png",
+      "cost": 7,
+      "file": "00.png",
+      "contrast": {
+        "dL": 30,
+        "dE": 33
+      },
+      "finished": 1794696423081,
+      "transparent": false
+    },
+    {
+      "i": 1,
+      "prompt": "a foal as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: free-spirited, adventurous, endlessly optimistic. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: entirely encrusted with thousands of tiny silver rhinestones and diamonds, glittering macro detail, luxurious fashion editorial.\nColor accents: ember orange, gold and crimson.\nSetting: a vast desert under a giant ringed sphere and drifting spaceships, painted like a 1970s sci-fi paperback cover.\nFigure and ground, more important than the scene description: the background is muted and desaturated in a hue complementary to the creature's main color, with a soft pool of brighter light directly behind it. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "rhinestone",
+      "scene": "paperback",
+      "refs": [
+        "character ideas/c9b0f22a74a634b491b9c3db3eac55ed.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.38 AM.png"
+      ],
+      "status": "done",
+      "started": 1794696354977,
+      "jobId": "job_6d2516f1f341",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_b54d5cdb01c6.png",
+      "cost": 8,
+      "file": "01.png",
+      "contrast": {
+        "dL": 7,
+        "dE": 10
+      },
+      "finished": 1794696421851,
+      "transparent": false
+    },
+    {
+      "i": 2,
+      "prompt": "a foal as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: free-spirited, adventurous, endlessly optimistic. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: ember orange, gold and crimson.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure.\nFigure and ground, more important than the scene description: the background is muted and desaturated in a hue complementary to the creature's main color, with a soft pool of brighter light directly behind it. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "plush",
+      "scene": "portal",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "status": "done",
+      "started": 1794696354977,
+      "jobId": "job_196a5cfa6028",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_3cdb920fe217.png",
+      "cost": 8,
+      "file": "02.png",
+      "contrast": {
+        "dL": 11,
+        "dE": 24
+      },
+      "finished": 1794696415593,
+      "transparent": false
+    }
+  ]
+}

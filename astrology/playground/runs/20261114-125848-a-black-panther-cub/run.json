@@ -1,0 +1,80 @@
+{
+  "id": "20261114-125848-a-black-panther-cub",
+  "created": "2026-11-14T20:58:48.913Z",
+  "subject": "a black panther cub",
+  "sign": "Leo",
+  "traits": "proud, dramatic, generous, loves the spotlight",
+  "palette": "ember orange, gold and crimson",
+  "tone": "dark",
+  "master": {
+    "id": "v5",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}.\nFigure and ground, more important than the scene description: {backdrop} The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "masterB": {
+    "id": "v4",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}.\nFigure and ground: the creature pops off the background at a glance, even as a tiny thumbnail. Opposite values: a light creature sits against a deeper, darker part of the scene, a dark creature against a brighter one. Opposite hues: the background leans toward colors complementary to the creature's main color and is calmer, less saturated, less detailed and softly out of focus. The creature is the most brightly lit and most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear space around it keeps every part from merging with background shapes.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "aspect": "3:4",
+  "refs": [],
+  "refMode": "match",
+  "autoRefs": {
+    "style": false,
+    "scene": false
+  },
+  "ab": false,
+  "compare": false,
+  "vary": {
+    "style": false,
+    "scene": false,
+    "model": false
+  },
+  "note": "",
+  "images": [
+    {
+      "i": 0,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a realistic young animal with some parts replaced by exposed precision mechanics, tiny circuit boards, brass gears and neat cables, photoreal wildlife photography meets sci-fi.\nColor accents: ember orange, gold and crimson.\nSetting: an endless corridor of tall trees at deep blue twilight, a faint starry horizon glowing at the end of a tiny winding path.\nFigure and ground, more important than the scene description: the creature is dark, so the scene behind it is bright and airy: pale haze, soft high-key daylight and a luminous glow directly behind its head and body, background values much lighter than the creature. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "cyborg",
+      "scene": "forest",
+      "refs": [],
+      "master": "v5",
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689928914,
+      "jobId": "job_51fd0e09f704",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_e92844c4b018.png",
+      "cost": 6,
+      "file": "00.png",
+      "contrast": {
+        "dL": 18,
+        "dE": 23
+      },
+      "finished": 1794689947381,
+      "transparent": false
+    },
+    {
+      "i": 1,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a realistic young animal with some parts replaced by exposed precision mechanics, tiny circuit boards, brass gears and neat cables, photoreal wildlife photography meets sci-fi.\nColor accents: ember orange, gold and crimson.\nSetting: an endless corridor of tall trees at deep blue twilight, a faint starry horizon glowing at the end of a tiny winding path.\nFigure and ground: the creature pops off the background at a glance, even as a tiny thumbnail. Opposite values: a light creature sits against a deeper, darker part of the scene, a dark creature against a brighter one. Opposite hues: the background leans toward colors complementary to the creature's main color and is calmer, less saturated, less detailed and softly out of focus. The creature is the most brightly lit and most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear space around it keeps every part from merging with background shapes.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "cyborg",
+      "scene": "forest",
+      "refs": [],
+      "master": "v4",
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689928914,
+      "jobId": "job_f21f702cfb5e",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_218a4b228784.png",
+      "cost": 6,
+      "file": "01.png",
+      "contrast": {
+        "dL": 3,
+        "dE": 9
+      },
+      "finished": 1794689947130,
+      "transparent": false
+    }
+  ]
+}

@@ -1,0 +1,242 @@
+{
+  "id": "20261114-120935-a-whale-calf",
+  "created": "2026-11-14T20:09:35.478Z",
+  "subject": "a whale calf",
+  "sign": "Aquarius",
+  "traits": "visionary, eccentric, kind to everyone",
+  "palette": "lilac, sky blue and pearl white",
+  "master": {
+    "id": "v3",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "aspect": "3:4",
+  "refs": [],
+  "refMode": "match",
+  "autoRefs": {
+    "style": true,
+    "scene": false
+  },
+  "ab": true,
+  "vary": {
+    "style": true,
+    "scene": true,
+    "model": true
+  },
+  "note": "",
+  "images": [
+    {
+      "i": 0,
+      "prompt": "a whale calf as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: visionary, eccentric, kind to everyone. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: formed from a glowing blue wireframe mesh and a point cloud of tiny dots, digital hologram aesthetic with thin coordinate lines, 1980s computer graphics.\nColor accents: lilac, sky blue and pearl white.\nSetting: a seamless studio backdrop in one bold harmonious color with a soft floor reflection, clean product-shot lighting. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "seedream_5_5",
+      "style": "wireframe",
+      "scene": "studio",
+      "refs": [
+        "character ideas/f907589d93c1df86bb44fbc6ca34aa31.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.20.39 AM.png"
+      ],
+      "status": "done",
+      "started": 1794686975482,
+      "jobId": "job_2dbb8f2356f8",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_50337c8a3760.png",
+      "cost": 6,
+      "file": "00.png",
+      "finished": 1794687017982,
+      "contrast": {
+        "dL": 19,
+        "dE": 19
+      },
+      "transparent": false
+    },
+    {
+      "i": 1,
+      "prompt": "a whale calf as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: visionary, eccentric, kind to everyone. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: formed from a glowing blue wireframe mesh and a point cloud of tiny dots, digital hologram aesthetic with thin coordinate lines, 1980s computer graphics.\nColor accents: lilac, sky blue and pearl white.\nSetting: a seamless studio backdrop in one bold harmonious color with a soft floor reflection, clean product-shot lighting. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "seedream_5_5",
+      "style": "wireframe",
+      "scene": "studio",
+      "refs": [],
+      "status": "done",
+      "started": 1794686975482,
+      "jobId": "job_d71db0d21f51",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_9431c5abc141.png",
+      "cost": 3,
+      "file": "01.png",
+      "finished": 1794687006685,
+      "contrast": {
+        "dL": 26,
+        "dE": 28
+      },
+      "transparent": false
+    },
+    {
+      "i": 2,
+      "prompt": "a whale calf as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: visionary, eccentric, kind to everyone. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: lilac, sky blue and pearl white.\nSetting: rolling velvet hills covered in glowing violet flowers under a deep blue twilight sky with two thin crescent moons. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "nano_banana_2_1",
+      "style": "porcelain",
+      "scene": "vapor_hills",
+      "refs": [
+        "character ideas/13969f9c58bcb10a78fc7d0848f4e6c9.jpg",
+        "character ideas/4033d1b946aa55bdf4b6c2e81f01a2aa.jpg"
+      ],
+      "status": "done",
+      "started": 1794686975482,
+      "jobId": "job_c84d055d179d",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_4830674d4ab0.png",
+      "cost": 5,
+      "file": "02.png",
+      "finished": 1794687006840,
+      "contrast": {
+        "dL": 13,
+        "dE": 14
+      },
+      "transparent": false
+    },
+    {
+      "i": 3,
+      "prompt": "a whale calf as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: visionary, eccentric, kind to everyone. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: lilac, sky blue and pearl white.\nSetting: rolling velvet hills covered in glowing violet flowers under a deep blue twilight sky with two thin crescent moons. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "nano_banana_2_1",
+      "style": "porcelain",
+      "scene": "vapor_hills",
+      "refs": [],
+      "status": "done",
+      "started": 1794686975482,
+      "jobId": "job_b5d3f3432d76",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_3721ed8fc5e1.png",
+      "cost": 5,
+      "file": "03.png",
+      "finished": 1794687002643,
+      "contrast": {
+        "dL": 21,
+        "dE": 21
+      },
+      "transparent": false
+    },
+    {
+      "i": 4,
+      "prompt": "a whale calf as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: visionary, eccentric, kind to everyone. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: styled in neon magenta and electric teal, chunky reflective goggles, a metallic armor collar with glowing details, playful cyberpunk attitude.\nColor accents: lilac, sky blue and pearl white.\nSetting: a terracotta Mars desert colony with a white dome city and launch towers, a pale moon in a dusty sky. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "flux_3_image",
+      "style": "neonpunk",
+      "scene": "mars",
+      "refs": [
+        "character ideas/a37ecf50b2c2d19bfff8d8d25a835596.jpg"
+      ],
+      "status": "done",
+      "started": 1794686975482,
+      "jobId": "job_0017015e9279",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_57e381923068.jpg",
+      "cost": 6,
+      "file": "04.jpg",
+      "finished": 1794687016532,
+      "contrast": {
+        "dL": 2,
+        "dE": 20
+      },
+      "transparent": false
+    },
+    {
+      "i": 5,
+      "prompt": "a whale calf as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: visionary, eccentric, kind to everyone. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: styled in neon magenta and electric teal, chunky reflective goggles, a metallic armor collar with glowing details, playful cyberpunk attitude.\nColor accents: lilac, sky blue and pearl white.\nSetting: a terracotta Mars desert colony with a white dome city and launch towers, a pale moon in a dusty sky. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "flux_3_image",
+      "style": "neonpunk",
+      "scene": "mars",
+      "refs": [],
+      "status": "done",
+      "started": 1794686975482,
+      "jobId": "job_1390112822d8",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_5c182baba528.jpg",
+      "cost": 6,
+      "file": "05.jpg",
+      "finished": 1794687009825,
+      "contrast": {
+        "dL": 0,
+        "dE": 16
+      },
+      "transparent": false
+    },
+    {
+      "i": 6,
+      "prompt": "a whale calf as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: visionary, eccentric, kind to everyone. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate.\nColor accents: lilac, sky blue and pearl white.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "flux_3_image",
+      "style": "crystal",
+      "scene": "portal",
+      "refs": [
+        "character ideas/fdb022571d4f32d3f115e49ecec27f47.jpg"
+      ],
+      "status": "done",
+      "started": 1794686975482,
+      "jobId": "job_f360d6ab2e7b",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_11f6f530c54a.jpg",
+      "cost": 6,
+      "file": "06.jpg",
+      "finished": 1794687013558,
+      "contrast": {
+        "dL": 12,
+        "dE": 14
+      },
+      "transparent": false
+    },
+    {
+      "i": 7,
+      "prompt": "a whale calf as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: visionary, eccentric, kind to everyone. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate.\nColor accents: lilac, sky blue and pearl white.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "flux_3_image",
+      "style": "crystal",
+      "scene": "portal",
+      "refs": [],
+      "status": "done",
+      "started": 1794686975482,
+      "jobId": "job_4cade6e8b0b5",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_695f1685c27f.jpg",
+      "cost": 6,
+      "file": "07.jpg",
+      "finished": 1794687001306,
+      "contrast": {
+        "dL": 4,
+        "dE": 5
+      },
+      "transparent": false
+    },
+    {
+      "i": 8,
+      "prompt": "a whale calf as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: visionary, eccentric, kind to everyone. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a realistic young animal with some parts replaced by exposed precision mechanics, tiny circuit boards, brass gears and neat cables, photoreal wildlife photography meets sci-fi.\nColor accents: lilac, sky blue and pearl white.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "nano_banana_2_1",
+      "style": "cyborg",
+      "scene": "solarpunk",
+      "refs": [
+        "character ideas/7c64e0a4e002517b533679d51a9b0cb6.jpg",
+        "character ideas/34e32f258a0f0f1b7a4e4287be03e457.jpg"
+      ],
+      "status": "done",
+      "started": 1794686975482,
+      "jobId": "job_8c7d203b860b",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_9be0fb4db78d.png",
+      "cost": 5,
+      "file": "08.png",
+      "finished": 1794687008212,
+      "contrast": {
+        "dL": 2,
+        "dE": 2
+      },
+      "transparent": false
+    },
+    {
+      "i": 9,
+      "prompt": "a whale calf as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: visionary, eccentric, kind to everyone. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a realistic young animal with some parts replaced by exposed precision mechanics, tiny circuit boards, brass gears and neat cables, photoreal wildlife photography meets sci-fi.\nColor accents: lilac, sky blue and pearl white.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "nano_banana_2_1",
+      "style": "cyborg",
+      "scene": "solarpunk",
+      "refs": [],
+      "status": "done",
+      "started": 1794686975482,
+      "jobId": "job_94703b73bfab",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_c80eebdca825.png",
+      "cost": 5,
+      "file": "09.png",
+      "finished": 1794687001932,
+      "contrast": {
+        "dL": 8,
+        "dE": 11
+      },
+      "transparent": false
+    }
+  ]
+}

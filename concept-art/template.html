@@ -1,0 +1,462 @@
+<title>Imagined Futures</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a dark picture wall. Header and filters on top, a masonry of every picture, a viewer that shows one picture with its post. */
+:root{
+  --bg:#070708; --raised:#111114; --fg:#ffffff; --fg-2:#d4d4d8; --muted:#a1a1a6;
+  --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.22);
+  --accent:#ff5315; --accent-ink:#ff6a33; --on-accent:#070708; --scrim:rgba(7,7,8,.94);
+  --display:"League Gothic","Impact","Arial Narrow",sans-serif;
+  --font:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --r:8px;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#ffffff; --raised:#f4f4f5; --fg:#070708; --fg-2:#2a2a2e; --muted:#6e6e73;
+    --line:#e5e5e7; --line-2:#c9c9cf; --accent:#ff5315; --accent-ink:#c2410c; --on-accent:#070708; --scrim:rgba(255,255,255,.96);
+    color-scheme:light;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#ffffff; --raised:#f4f4f5; --fg:#070708; --fg-2:#2a2a2e; --muted:#6e6e73;
+  --line:#e5e5e7; --line-2:#c9c9cf; --accent:#ff5315; --accent-ink:#c2410c; --on-accent:#070708; --scrim:rgba(255,255,255,.96);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--font);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1680px;margin:0 auto}
+
+header{display:grid;gap:14px;padding-block:40px 20px}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink)}
+h1{font:400 clamp(56px,9vw,120px)/.86 var(--display);letter-spacing:.01em;margin:0;text-transform:uppercase;text-wrap:balance}
+.lede{max-width:64ch;color:var(--fg-2);margin:0;font-size:16px}
+.stats{display:flex;flex-wrap:wrap;gap:6px 22px;font:500 13px/1.4 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.stats b{color:var(--fg);font-weight:500}
+
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding-block:12px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.group{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.group-label{font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+.chip{border:1px solid var(--line-2);background:transparent;border-radius:999px;padding:5px 11px;font-size:13px;cursor:pointer;
+  display:inline-flex;gap:6px;align-items:baseline;white-space:nowrap}
+.chip small{font:12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.chip[aria-pressed="true"] small{color:var(--on-accent);opacity:.75}
+.chip:hover{border-color:var(--fg-2)}
+.search{flex:1 1 200px;min-width:0;max-width:320px;background:var(--raised);border:1px solid var(--line);border-radius:999px;
+  padding:7px 14px;font:14px var(--font);color:var(--fg)}
+.search::placeholder{color:var(--muted)}
+.right{margin-left:auto;display:flex;gap:8px;align-items:center}
+select{background:var(--raised);color:var(--fg);border:1px solid var(--line);border-radius:999px;padding:6px 10px;font:13px var(--font)}
+.play{background:var(--fg);color:var(--bg);border:0;border-radius:999px;padding:7px 14px;font-weight:600;font-size:13px;cursor:pointer}
+
+.count{font:13px var(--mono);color:var(--muted);padding-block:14px 10px;font-variant-numeric:tabular-nums}
+.grid{columns:4 300px;column-gap:12px}
+.tile{display:block;width:100%;break-inside:avoid;margin:0 0 12px;padding:0;border:0;background:none;text-align:left;cursor:zoom-in}
+.tile img{display:block;width:100%;height:auto;max-width:100%;border-radius:var(--r);background:var(--raised)}
+.cap{display:flex;justify-content:space-between;gap:10px;padding:6px 2px 0;font-size:13px;line-height:1.35}
+.cap .who{font-weight:600;min-width:0;overflow-wrap:anywhere}
+.cap .meta{font:12px var(--mono);color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tile:hover img{outline:2px solid var(--accent);outline-offset:-2px}
+.empty{color:var(--muted);padding:40px 0}
+
+.tag{font:500 10px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line-2);border-radius:4px;padding:3px 5px;color:var(--muted)}
+
+.jump{color:var(--accent-ink);font:500 13px var(--mono);text-decoration:none;justify-self:start}
+.jump:hover{text-decoration:underline}
+.findings{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-block:4px 22px}
+.finding{background:var(--bg);padding:14px 16px 16px;display:grid;gap:6px;align-content:start;min-width:0}
+.finding .num{font:400 46px/1 var(--display);letter-spacing:.01em;font-variant-numeric:tabular-nums}
+.finding .num.key{color:var(--accent)}
+.finding .num small{font-size:24px;color:var(--muted)}
+.finding p{margin:0;font-size:13.5px;line-height:1.45;color:var(--fg-2)}
+
+.about{margin-top:48px;padding-top:22px;border-top:1px solid var(--line);display:grid;gap:12px;max-width:900px}
+.about h2{font:400 44px/1 var(--display);text-transform:uppercase;letter-spacing:.01em;margin:0}
+.about h3{font:500 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:14px 0 0}
+.about p,.about li{color:var(--fg-2);max-width:72ch;margin:0}
+.about a{color:var(--accent-ink)}
+.about ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.accounts{display:flex;flex-wrap:wrap;gap:6px}
+.about .accounts a{font:12px var(--mono);text-decoration:none;border:1px solid var(--line-2);border-radius:6px;padding:4px 8px;color:var(--fg-2);
+  font-variant-numeric:tabular-nums}
+.about .accounts a:hover{border-color:var(--fg-2)}
+
+footer{margin-top:32px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;max-width:80ch}
+
+/* viewer */
+.viewer{position:fixed;inset:0;z-index:20;background:var(--scrim);display:grid;grid-template-columns:minmax(0,1fr) 380px;
+  padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+.stage{position:relative;display:grid;place-items:center;min-height:0;padding:20px}
+.stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:64px;border:0;border-radius:6px;background:var(--raised);
+  color:var(--fg);font-size:24px;cursor:pointer;opacity:.85}
+.nav.prev{left:12px}.nav.next{right:12px}
+.side{border-left:1px solid var(--line);background:var(--bg);overflow-y:auto;padding:20px 20px 28px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.side-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.icon-btn{border:1px solid var(--line-2);background:transparent;border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer}
+.artist{font:400 34px/1 var(--display);text-transform:uppercase;letter-spacing:.01em;margin:0;overflow-wrap:anywhere}
+.poster{font-size:14px;color:var(--fg-2)}
+.poster a{text-decoration:none;border-bottom:1px solid var(--line-2)}
+.text{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;line-height:1.55;color:var(--fg);margin:0;
+  border-left:2px solid var(--accent);padding-left:12px}
+.text a{color:var(--accent-ink)}
+.facts{display:flex;flex-wrap:wrap;gap:6px 16px;font:12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.links{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;
+  background:var(--accent);color:var(--on-accent)}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line-2);font-weight:500}
+.strip{display:flex;gap:6px;flex-wrap:wrap}
+.strip button{padding:0;border:2px solid transparent;border-radius:5px;background:none;cursor:pointer;line-height:0}
+.strip button[aria-current="true"]{border-color:var(--accent)}
+.strip img{width:64px;height:48px;object-fit:cover;border-radius:3px}
+.pos{font:12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.viewer.wall{grid-template-columns:1fr;background:#000}
+.viewer.wall .side,.viewer.wall .nav{display:none}
+.wall-cap{display:none}
+/* the wall is always black, so its caption is always white on a dark band */
+.viewer.wall .wall-cap{display:grid;gap:8px;position:absolute;left:0;right:0;bottom:0;pointer-events:none;color:#fff;
+  padding:64px max(32px,env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(32px,env(safe-area-inset-left,0px));
+  background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,.6) 55%,rgba(0,0,0,0))}
+.wc-desc{font:600 clamp(22px,2.6vw,40px)/1.15 var(--font);max-width:36ch;text-wrap:balance}
+.wc-credit{font:500 clamp(13px,1.15vw,17px)/1.3 var(--mono);color:rgba(255,255,255,.75)}.viewer.wall .stage{padding:0}
+.viewer.wall .stage img{border-radius:0}
+.wall-exit{display:none}
+.viewer.wall .wall-exit{display:block;position:absolute;top:calc(16px + env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));
+  background:rgba(0,0,0,.6);color:#fff;border:1px solid rgba(255,255,255,.3)}
+
+@media (max-width:860px){
+  .viewer{grid-template-columns:1fr;grid-template-rows:minmax(0,55vh) minmax(0,1fr)}
+  .side{border-left:0;border-top:1px solid var(--line)}
+  .stage{padding:10px}
+  .right{margin-left:0}
+}
+@media (prefers-reduced-motion: no-preference){
+  .stage img{animation:fade .25s ease-out}
+  @keyframes fade{from{opacity:.4}to{opacity:1}}
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Future Party 2050 · inspiration</div>
+    <h1>Imagined Futures</h1>
+    <p class="lede">Concept art of the future, collected from X: space colonies, cities, machines and the people in them, from 1970s paperback covers to today’s film and game design. Every picture opens with the post it came from and names the artist where the post does.</p>
+    <div class="stats" id="stats"></div>
+    <a class="jump" href="#about">How this was collected, the sources and what was not checked ↓</a>
+  </header>
+
+  <section class="findings" id="findings" aria-label="The collection in numbers"></section>
+
+  <div class="bar" role="toolbar" aria-label="Filters">
+    <div class="group" id="themes"><span class="group-label">Subject</span></div>
+    <div class="group" id="eras"><span class="group-label">Era</span></div>
+    <input class="search" id="q" type="search" placeholder="Artist, account or word" aria-label="Search artist, account or text">
+    <div class="right">
+      <label class="group-label" for="sort">Sort</label>
+      <select id="sort">
+        <option value="mix">Mixed</option>
+        <option value="likes">Most liked</option>
+        <option value="new">Newest post</option>
+        <option value="old">Oldest post</option>
+      </select>
+      <button class="play" id="play" type="button">Play as wall</button>
+    </div>
+  </div>
+
+  <div class="count" id="count" aria-live="polite"></div>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty" hidden>No pictures match. Clear the search or pick another subject.</p>
+
+  <section class="about" id="about">
+    <h2>How this was collected</h2>
+    <p id="method"></p>
+    <h3>Sources</h3>
+    <p>Every picture opens its own post on X. The post text, word for word, and the original-size photos come from <a href="https://github.com/FixTweet/FxTwitter" target="_blank" rel="noopener">api.fxtwitter.com</a>, a public mirror of X. Likes and views are as of the collection date. The posts come from these accounts:</p>
+    <div class="accounts" id="accounts"></div>
+    <h3>What is uncertain or was not checked</h3>
+    <ul id="gaps"></ul>
+  </section>
+
+  <footer>
+    Each picture belongs to its artist and to the account that posted it. This wall is a private moodboard for the party; credit the artist and link the post when you reuse anything. Collected <span id="collected"></span> from public posts on X.
+  </footer>
+</div>
+
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Picture" hidden>
+  <div class="stage">
+    <img id="v-img" alt="">
+    <button class="nav prev" id="v-prev" type="button" aria-label="Previous picture">‹</button>
+    <button class="nav next" id="v-next" type="button" aria-label="Next picture">›</button>
+    <div class="wall-cap" id="v-wallcap"><div class="wc-desc" id="v-wcdesc"></div><div class="wc-credit" id="v-wccredit"></div></div>
+    <button class="icon-btn wall-exit" id="v-wallexit" type="button">Stop wall</button>
+  </div>
+  <aside class="side">
+    <div class="side-top">
+      <span class="pos" id="v-pos"></span>
+      <button class="icon-btn" id="v-close" type="button">Close</button>
+    </div>
+    <h2 class="artist" id="v-artist"></h2>
+    <div class="poster" id="v-poster"></div>
+    <div class="tags" id="v-tags"></div>
+    <p class="text" id="v-text"></p>
+    <div class="facts" id="v-facts"></div>
+    <div class="links">
+      <a class="btn" id="v-post" target="_blank" rel="noopener">Open the post on X ↗</a>
+      <a class="btn ghost" id="v-full" target="_blank" rel="noopener">Full size ↗</a>
+    </div>
+    <div>
+      <div class="pos" id="v-striplabel"></div>
+      <div class="strip" id="v-strip"></div>
+    </div>
+  </aside>
+</div>
+
+<script>
+const ART = /*ART*/null;
+const FULL = /*FULL*/"orig"; // "orig": link full size on pbs.twimg.com; "remote": also show it in the viewer; "local": images/ next to this page
+
+const THEMES = [["all","All"],["space","Space"],["city","Cities"],["architecture","Architecture"],["vehicle","Vehicles"],["robot","Robots"],["people","People"],["interior","Interiors"],["other","Other"]];
+const ERAS = [["all","All"],["retro","Retro"],["contemporary","Contemporary"]];
+const themeOf = p => ["nature","abstract"].includes(p.theme) ? "other" : p.theme;
+const label = Object.fromEntries(THEMES);
+const nf = new Intl.NumberFormat("en", {notation:"compact", maximumFractionDigits:1});
+const df = d => d ? new Date(d + "T00:00:00Z").toLocaleDateString("en-GB", {day:"numeric", month:"short", year:"numeric", timeZone:"UTC"}) : "";
+
+// one entry per picture
+const items = [];
+ART.posts.forEach((p, pi) => p.photos.forEach((ph, i) => items.push({p, ph, i, pi, key: p.id + "-" + i})));
+const mixOrder = new Map(items.map((it, n) => [it.key, (n * 2654435761 % 4294967296)]));
+
+const state = {theme:"all", era:"all", q:"", sort:"mix"};
+let shown = [], cur = -1, timer = null;
+const $ = id => document.getElementById(id);
+
+function stats(){
+  const s = ART.stats;
+  $("stats").innerHTML = `<span><b>${s.photos}</b> pictures</span><span><b>${s.posts}</b> posts</span><span><b>${s.accounts}</b> accounts</span><span><b>${s.artists}</b> credited artists</span>`;
+  $("collected").textContent = df(s.collected);
+}
+
+function about(){
+  const s = ART.stats, m = ART.summary, c = m.curation;
+  const th = m.themes, n = k => (th.find(t => t[0] === k) || [k, 0])[1];
+  const findings = [
+    [`${s.photos}`, `pictures from ${s.posts} original posts by ${s.accounts} accounts, with ${s.artists} artists named in the posts`, true],
+    [`${th[0][1]}`, `${label[th[0][0]].toLowerCase()} pictures, the biggest subject, then ${label[th[1][0]].toLowerCase()} (${th[1][1]}) and ${label[th[2][0]].toLowerCase()} (${th[2][1]})`],
+    [`${m.eras.retro}<small> / ${m.eras.contemporary}</small>`, `older visions of the future (paintings, paperback and magazine covers, NASA art) against contemporary film, game and independent concept art`],
+    [`${c.reposts}`, `reposts folded: when several accounts posted the same picture, it is kept once, on the earliest post`],
+    [`${n("people") + n("interior")}`, `pictures of people, fashion and interiors, the thinnest part of the collection`],
+  ];
+  $("findings").innerHTML = findings.map(([num, text, key]) =>
+    `<div class="finding"><div class="num${key ? " key" : ""}">${num}</div><p>${text}</p></div>`).join("");
+  $("method").textContent =
+    `On ${df(s.collected)}, four searches on X (retro space art, future cities and architecture, vehicles and robots, film and game production art) ` +
+    `found ${c.candidates} posts with pictures. Each post was then read from the public mirror below. Every picture was looked at: ` +
+    `${c.dropped_posts} posts and ${c.dropped_photos} single pictures were left out (weapons, photos of real things or people, fan art of existing characters, ` +
+    `logos, film stills, repeated crops), and ${c.reposts} reposts were folded into the earliest post.` +
+    (c.unavailable ? ` ${c.unavailable} posts could not be read and are missing.` : "");
+  const acc = $("accounts");
+  for (const a of m.accounts){
+    const el = document.createElement("a");
+    el.href = "https://x.com/" + a.handle; el.target = "_blank"; el.rel = "noopener";
+    el.textContent = `@${a.handle} · ${a.posts}`;
+    el.title = `${a.name}: ${a.posts} posts, ${a.photos} pictures`;
+    acc.append(el);
+  }
+  const gaps = [
+    `Subject and era tags were given from each post’s text when it was found and only spot-checked against the pictures, so some pictures sit under a neighbouring subject.`,
+    `Artist names come from the posts. Where a post names nobody, the account is shown instead. No credit was checked against the artist’s own portfolio, and ${m.uncredited} posts name no artist.`,
+    `${m.ai_posts} posts carry the AI-made tag: ${m.ai_said} say so themselves, the other ${m.ai_posts - m.ai_said} were judged AI-made from the account and the picture. Other pictures may be AI-made without saying so.`,
+    `${m.top4_share}% of the posts come from four accounts that repost other people’s art: ${m.accounts.slice(0, 4).map(a => "@" + a.handle).join(", ")}. They name the artist in ${m.top4_credited} of their ${m.top4_posts} posts, but they are the source on X, not always the first place the art appeared.`,
+    `Repost detection compares the pictures themselves. A heavily cropped or recoloured repost can slip through; two were found by eye and removed.`,
+    `People, fashion and nightlife of the future are thin: searches for future fashion, techwear and futuristic clubs found nothing usable, only empty results or posts about real products.`,
+    `Posts can be deleted. This page links to them; the original files are kept only in the project folder.`,
+  ];
+  $("gaps").innerHTML = "";
+  for (const g of gaps){ const li = document.createElement("li"); li.textContent = g; $("gaps").append(li); }
+}
+
+function chips(el, list, key){
+  for (const [v, name] of list){
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.dataset.v = v;
+    b.innerHTML = `<span></span><small></small>`;
+    b.firstChild.textContent = name;
+    b.onclick = () => { state[key] = v; render(); };
+    el.appendChild(b);
+  }
+}
+
+function matches(it, ignore){
+  const p = it.p;
+  if (ignore !== "theme" && state.theme !== "all" && themeOf(p) !== state.theme) return false;
+  if (ignore !== "era" && state.era !== "all" && p.era !== state.era) return false;
+  if (state.q){
+    const hay = (p.artist || "") + " " + p.handle + " " + p.name + " " + p.text + " " + p.desc;
+    if (!hay.toLowerCase().includes(state.q)) return false;
+  }
+  return true;
+}
+
+function updateChips(id, key, list){
+  for (const b of $(id).querySelectorAll(".chip")){
+    const v = b.dataset.v;
+    b.setAttribute("aria-pressed", String(state[key] === v));
+    const n = items.filter(it => matches(it, key) && (v === "all" || (key === "theme" ? themeOf(it.p) : it.p.era) === v)).length;
+    b.lastChild.textContent = n;
+  }
+}
+
+function sorted(list){
+  const by = {
+    likes: (a, b) => b.p.likes - a.p.likes || a.i - b.i,
+    new: (a, b) => (b.p.date > a.p.date) - (b.p.date < a.p.date) || a.i - b.i,
+    old: (a, b) => (a.p.date > b.p.date) - (a.p.date < b.p.date) || a.i - b.i,
+    mix: (a, b) => mixOrder.get(a.key) - mixOrder.get(b.key),
+  }[state.sort];
+  return list.slice().sort(by);
+}
+
+function who(p){ return p.artist || "@" + p.handle; }
+
+function render(){
+  shown = sorted(items.filter(it => matches(it)));
+  updateChips("themes", "theme", THEMES);
+  updateChips("eras", "era", ERAS);
+  const grid = $("grid");
+  grid.textContent = "";
+  const frag = document.createDocumentFragment();
+  shown.forEach((it, n) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "tile";
+    const img = document.createElement("img");
+    img.loading = "lazy"; img.decoding = "async";
+    img.src = it.ph.t; img.width = it.ph.w; img.height = it.ph.h;
+    img.style.aspectRatio = it.ph.w + " / " + it.ph.h;
+    img.alt = (it.p.desc || label[themeOf(it.p)]) + (it.p.artist ? ", by " + it.p.artist : "");
+    const cap = document.createElement("div"); cap.className = "cap";
+    const w = document.createElement("span"); w.className = "who"; w.textContent = who(it.p);
+    const m = document.createElement("span"); m.className = "meta"; m.textContent = it.p.date.slice(0, 4) + " · ♥ " + nf.format(it.p.likes);
+    cap.append(w, m);
+    b.append(img, cap);
+    b.onclick = () => open(n);
+    frag.appendChild(b);
+  });
+  grid.appendChild(frag);
+  $("empty").hidden = shown.length > 0;
+  const posts = new Set(shown.map(it => it.p.id)).size;
+  $("count").textContent = `${shown.length} pictures from ${posts} posts`;
+}
+
+function linkify(el, text){
+  el.textContent = "";
+  const re = /(https?:\/\/[^\s]+)/g;
+  let last = 0, m;
+  while ((m = re.exec(text))){
+    el.append(text.slice(last, m.index));
+    const a = document.createElement("a");
+    a.href = m[0]; a.target = "_blank"; a.rel = "noopener"; a.textContent = m[0].replace(/^https?:\/\/(www\.)?/, "");
+    el.append(a); last = m.index + m[0].length;
+  }
+  el.append(text.slice(last));
+}
+
+function open(n){
+  cur = (n + shown.length) % shown.length;
+  const it = shown[cur], p = it.p;
+  const v = $("viewer");
+  if (v.hidden){ v.hidden = false; document.body.style.overflow = "hidden"; $("v-close").focus(); }
+  const img = $("v-img");
+  img.src = it.ph.t;
+  img.alt = $("grid").children[cur]?.querySelector("img")?.alt || "";
+  if (FULL !== "orig") {  // "local": images/ beside the page; "remote": a large copy from X when online
+    const hi = new Image(); hi.onload = () => { if (shown[cur] === it) img.src = hi.src; };
+    hi.src = FULL === "remote" ? it.ph.f.replace("name=orig", "name=large") : it.ph.f;
+  }
+  $("v-pos").textContent = `${cur + 1} / ${shown.length}`;
+  $("v-artist").textContent = who(p);
+  const poster = $("v-poster"); poster.textContent = (p.artist ? "Posted by " : "") + p.name + " ";
+  const ha = document.createElement("a"); ha.href = "https://x.com/" + p.handle; ha.target = "_blank"; ha.rel = "noopener"; ha.textContent = "@" + p.handle;
+  poster.append(ha, " · " + df(p.date));
+  const tags = $("v-tags"); tags.textContent = "";
+  for (const t of [label[themeOf(p)], p.era === "retro" ? "Retro" : "Contemporary", p.ai ? "AI-made" : null]){
+    if (!t) continue; const s = document.createElement("span"); s.className = "tag"; s.textContent = t; tags.append(s);
+  }
+  linkify($("v-text"), p.text || "(no text, picture only)");
+  const facts = [`♥ ${p.likes.toLocaleString("en")}`, `${p.reposts.toLocaleString("en")} reposts`];
+  if (p.views) facts.push(`${nf.format(p.views)} views`);
+  facts.push(`${it.ph.w}×${it.ph.h}`);
+  $("v-facts").innerHTML = facts.map(f => `<span>${f}</span>`).join("");
+  $("v-post").href = p.url;
+  $("v-full").href = it.ph.f;
+  const strip = $("v-strip"); strip.textContent = "";
+  $("v-striplabel").textContent = p.photos.length > 1 ? `Picture ${it.i + 1} of ${p.photos.length} in this post` : "";
+  if (p.photos.length > 1) p.photos.forEach((ph, i) => {
+    const b = document.createElement("button"); b.type = "button";
+    b.setAttribute("aria-current", String(i === it.i)); b.setAttribute("aria-label", `Picture ${i + 1}`);
+    const im = document.createElement("img"); im.src = ph.t; im.alt = ""; b.append(im);
+    b.onclick = () => { const k = shown.findIndex(s => s.p === p && s.i === i); if (k >= 0) open(k); };
+    strip.append(b);
+  });
+  $("v-wcdesc").textContent = p.desc || label[themeOf(p)];
+  $("v-wccredit").textContent = p.artist ? `${p.artist} · via @${p.handle} on X` : `@${p.handle} on X`;
+  for (const k of [1, -1]){ const nx = shown[(cur + k + shown.length) % shown.length]; if (nx) new Image().src = nx.ph.t; }
+}
+
+function close(){
+  stopWall();
+  $("viewer").hidden = true; document.body.style.overflow = "";
+  const t = $("grid").children[cur]; if (t) t.focus({preventScroll:false});
+}
+
+function startWall(){
+  if (!shown.length) return;
+  open(cur < 0 ? 0 : cur);
+  $("viewer").classList.add("wall");
+  const el = document.documentElement;
+  if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
+  clearInterval(timer);
+  timer = setInterval(() => open(cur + 1), 8000);
+}
+function stopWall(){
+  clearInterval(timer); timer = null;
+  $("viewer").classList.remove("wall");
+  if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {});
+}
+
+chips($("themes"), THEMES, "theme");
+chips($("eras"), ERAS, "era");
+$("q").oninput = e => { state.q = e.target.value.trim().toLowerCase(); render(); };
+$("sort").onchange = e => { state.sort = e.target.value; render(); };
+$("play").onclick = () => { cur = -1; startWall(); };
+$("v-close").onclick = close;
+$("v-prev").onclick = () => open(cur - 1);
+$("v-next").onclick = () => open(cur + 1);
+$("v-wallexit").onclick = stopWall;
+$("v-img").onclick = () => { if (!timer) open(cur + 1); };
+document.addEventListener("keydown", e => {
+  if ($("viewer").hidden) return;
+  if (e.key === "Escape") { timer ? stopWall() : close(); }
+  else if (e.key === "ArrowRight") open(cur + 1);
+  else if (e.key === "ArrowLeft") open(cur - 1);
+});
+document.addEventListener("fullscreenchange", () => { if (!document.fullscreenElement && timer) stopWall(); });
+
+stats();
+about();
+render();
+if (location.hash === "#wall") startWall();
+</script>

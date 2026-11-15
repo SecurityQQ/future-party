@@ -31,7 +31,12 @@
       "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_eb7372c8dc91.png",
       "cost": 5,
       "file": "00.png",
-      "finished": 1794685720726
+      "finished": 1794685720726,
+      "contrast": {
+        "dL": 11,
+        "dE": 22
+      },
+      "transparent": false
     },
     {
       "i": 1,
@@ -45,7 +50,12 @@
       "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_2a446b732091.png",
       "cost": 5,
       "file": "01.png",
-      "finished": 1794685720062
+      "finished": 1794685720062,
+      "contrast": {
+        "dL": 15,
+        "dE": 19
+      },
+      "transparent": false
     },
     {
       "i": 2,
@@ -59,7 +69,12 @@
       "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_36133ea0d6fb.png",
       "cost": 5,
       "file": "02.png",
-      "finished": 1794685720737
+      "finished": 1794685720737,
+      "contrast": {
+        "dL": 12,
+        "dE": 12
+      },
+      "transparent": false
     },
     {
       "i": 3,
@@ -73,7 +88,12 @@
       "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_0880b06d1f01.png",
       "cost": 5,
       "file": "03.png",
-      "finished": 1794685717975
+      "finished": 1794685717975,
+      "contrast": {
+        "dL": 6,
+        "dE": 7
+      },
+      "transparent": false
     },
     {
       "i": 4,
@@ -87,7 +107,12 @@
       "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_3c806784ca23.png",
       "cost": 5,
       "file": "04.png",
-      "finished": 1794685720443
+      "finished": 1794685720443,
+      "contrast": {
+        "dL": 30,
+        "dE": 32
+      },
+      "transparent": false
     },
     {
       "i": 5,
@@ -101,7 +126,12 @@
       "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_2b740056fff2.png",
       "cost": 5,
       "file": "05.png",
-      "finished": 1794685717963
+      "finished": 1794685717963,
+      "contrast": {
+        "dL": 29,
+        "dE": 29
+      },
+      "transparent": false
     },
     {
       "i": 6,
@@ -115,7 +145,12 @@
       "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_869b35ff682e.png",
       "cost": 5,
       "file": "06.png",
-      "finished": 1794685718471
+      "finished": 1794685718471,
+      "contrast": {
+        "dL": 23,
+        "dE": 23
+      },
+      "transparent": false
     },
     {
       "i": 7,
@@ -129,7 +164,12 @@
       "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_669073aea06c.png",
       "cost": 5,
       "file": "07.png",
-      "finished": 1794685718433
+      "finished": 1794685718433,
+      "contrast": {
+        "dL": 7,
+        "dE": 16
+      },
+      "transparent": false
     },
     {
       "i": 8,
@@ -143,7 +183,12 @@
       "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_12c0cba526b9.png",
       "cost": 5,
       "file": "08.png",
-      "finished": 1794685719882
+      "finished": 1794685719882,
+      "contrast": {
+        "dL": 7,
+        "dE": 11
+      },
+      "transparent": false
     },
     {
       "i": 9,
@@ -157,7 +202,12 @@
       "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_17963bdec0ef.png",
       "cost": 5,
       "file": "09.png",
-      "finished": 1794685721373
+      "finished": 1794685721373,
+      "contrast": {
+        "dL": 7,
+        "dE": 9
+      },
+      "transparent": false
     }
   ]
 }

@@ -11,6 +11,30 @@
       "created": "2026-11-14",
       "note": "Sign name out of the image prompt (v1 gave every Taurus otter bull horns and a glyph)",
       "text": "{subject} as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature."
+    },
+    {
+      "id": "v3",
+      "created": "2026-11-14",
+      "note": "Moderation-safe wording: 'baby' + 'lovable' + 'full body' + 'never childish' got Flux and Seedream refusals",
+      "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature."
+    },
+    {
+      "id": "v4",
+      "created": "2026-11-14",
+      "note": "Figure/ground contrast rule: opposite values and complementary hues, calmer background, rim light, space around the silhouette",
+      "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}.\nFigure and ground: the creature pops off the background at a glance, even as a tiny thumbnail. Opposite values: a light creature sits against a deeper, darker part of the scene, a dark creature against a brighter one. Opposite hues: the background leans toward colors complementary to the creature's main color and is calmer, less saturated, less detailed and softly out of focus. The creature is the most brightly lit and most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear space around it keeps every part from merging with background shapes.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature."
+    },
+    {
+      "id": "v5",
+      "created": "2026-11-14",
+      "note": "Concrete tone-aware backdrop ({backdrop}): dark creature → bright airy scene, light → dusk and vignette, glowing → night",
+      "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}.\nFigure and ground, more important than the scene description: {backdrop} The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature."
+    },
+    {
+      "id": "v6",
+      "created": "2026-11-14",
+      "note": "Party app (astrology/app): the subject is a guest's totem from the guest list, so the animal keeps its own horns or antlers (deer, tur, yak, bison) and may be any size (whale); otherwise v5.",
+      "text": "{subject} as a collectible companion creature from the year 2050.\nOne charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It stays true to its own species: no features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}.\nFigure and ground, more important than the scene description: {backdrop} The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature."
     }
   ],
   "refModes": [
@@ -31,10 +55,14 @@
     }
   ],
   "defaults": {
-    "subject": "a baby otter",
+    "subject": "an otter pup",
     "sign": "2050 zodiac",
     "traits": "curious, playful, a little mischievous",
-    "palette": "harmonious accents that suit the scene"
+    "palette": "harmonious accents that suit the scene",
+    "models": [
+      "gpt_image_2_6"
+    ],
+    "tone": "mid"
   },
   "styles": [
     {
@@ -84,6 +112,7 @@
       "id": "hologlass",
       "label": "Holographic glass",
       "text": "transparent iridescent glass body with glowing fiber-optic veins and soft inner light, holographic sheen, faint technical blueprint annotations floating around it",
+      "tone": "glow",
       "refs": [
         "character ideas/54deea09727aab1618809d6e42dfb05e.jpg"
       ]
@@ -92,6 +121,7 @@
       "id": "wireframe",
       "label": "Data wireframe",
       "text": "formed from a glowing blue wireframe mesh and a point cloud of tiny dots, digital hologram aesthetic with thin coordinate lines, 1980s computer graphics",
+      "tone": "glow",
       "refs": [
         "character ideas/f907589d93c1df86bb44fbc6ca34aa31.jpg",
         "character ideas/Screenshot 2026-11-14 at 11.20.39 AM.png"
@@ -228,32 +258,36 @@
       "from": "03-21",
       "to": "04-19",
       "element": "fire",
-      "animal": "a baby woodpecker",
-      "traits": "fiery, brave, impatient, always first to act"
+      "animal": "a woodpecker chick",
+      "traits": "fiery, brave, impatient, always first to act",
+      "tone": "mid"
     },
     {
       "sign": "Taurus",
       "from": "04-20",
       "to": "05-20",
       "element": "earth",
-      "animal": "a baby otter",
-      "traits": "cozy, loyal, stubborn, loves comfort and snacks"
+      "animal": "an otter pup",
+      "traits": "cozy, loyal, stubborn, loves comfort and snacks",
+      "tone": "mid"
     },
     {
       "sign": "Gemini",
       "from": "05-21",
       "to": "06-20",
       "element": "air",
-      "animal": "a baby parrot",
-      "traits": "chatty, witty, curious, two moods at once"
+      "animal": "a parrot chick",
+      "traits": "chatty, witty, curious, two moods at once",
+      "tone": "mid"
     },
     {
       "sign": "Cancer",
       "from": "06-21",
       "to": "07-22",
       "element": "water",
-      "animal": "a baby crab",
-      "traits": "protective, sensitive, a homebody behind a hard shell"
+      "animal": "a little crab",
+      "traits": "protective, sensitive, a homebody behind a hard shell",
+      "tone": "mid"
     },
     {
       "sign": "Leo",
@@ -261,7 +295,8 @@
       "to": "08-22",
       "element": "fire",
       "animal": "a black panther cub",
-      "traits": "proud, dramatic, generous, loves the spotlight"
+      "traits": "proud, dramatic, generous, loves the spotlight",
+      "tone": "dark"
     },
     {
       "sign": "Virgo",
@@ -269,23 +304,26 @@
       "to": "09-22",
       "element": "earth",
       "animal": "a bumblebee",
-      "traits": "diligent, precise, helpful, quietly perfectionist"
+      "traits": "diligent, precise, helpful, quietly perfectionist",
+      "tone": "mid"
     },
     {
       "sign": "Libra",
       "from": "09-23",
       "to": "10-22",
       "element": "air",
-      "animal": "a baby rabbit",
-      "traits": "charming, stylish, easygoing, seeks harmony"
+      "animal": "a bunny",
+      "traits": "charming, stylish, easygoing, seeks harmony",
+      "tone": "light"
     },
     {
       "sign": "Scorpio",
       "from": "10-23",
       "to": "11-21",
       "element": "water",
-      "animal": "a baby snake",
-      "traits": "mysterious, intense, magnetic, fiercely loyal"
+      "animal": "a little snake",
+      "traits": "mysterious, intense, magnetic, fiercely loyal",
+      "tone": "mid"
     },
     {
       "sign": "Sagittarius",
@@ -293,7 +331,8 @@
       "to": "12-21",
       "element": "fire",
       "animal": "a foal",
-      "traits": "free-spirited, adventurous, endlessly optimistic"
+      "traits": "free-spirited, adventurous, endlessly optimistic",
+      "tone": "mid"
     },
     {
       "sign": "Capricorn",
@@ -301,23 +340,26 @@
       "to": "01-19",
       "element": "earth",
       "animal": "a fawn",
-      "traits": "ambitious, patient, a steady climber"
+      "traits": "ambitious, patient, a steady climber",
+      "tone": "mid"
     },
     {
       "sign": "Aquarius",
       "from": "01-20",
       "to": "02-18",
       "element": "air",
-      "animal": "a baby whale",
-      "traits": "visionary, eccentric, kind to everyone"
+      "animal": "a whale calf",
+      "traits": "visionary, eccentric, kind to everyone",
+      "tone": "mid"
     },
     {
       "sign": "Pisces",
       "from": "02-19",
       "to": "03-20",
       "element": "water",
-      "animal": "a baby octopus",
-      "traits": "dreamy, intuitive, artistic, a shape-shifter"
+      "animal": "a little octopus",
+      "traits": "dreamy, intuitive, artistic, a shape-shifter",
+      "tone": "mid"
     }
   ],
   "elements": {
@@ -327,23 +369,28 @@
     "water": "deep teal, aquamarine and silver"
   },
   "extraAnimals": [
-    "a baby hamster",
-    "a baby gecko",
+    "a hamster",
+    "a little gecko",
     "a fluffy puppy",
     "a tiny spider",
     "a fox kit",
-    "a baby axolotl",
-    "a baby penguin",
+    "an axolotl",
+    "a penguin chick",
     "a kitten"
   ],
   "models": [
     {
-      "id": "nano_banana_2_1",
-      "label": "Nano Banana 2.1"
+      "id": "gpt_image_2_6",
+      "label": "GPT Image 2.6",
+      "providerOptions": {
+        "fal": {
+          "background": "opaque"
+        }
+      }
     },
     {
-      "id": "gpt_image_2_6",
-      "label": "GPT Image 2.6"
+      "id": "nano_banana_2_1",
+      "label": "Nano Banana 2.1"
     },
     {
       "id": "seedream_5_5",
@@ -363,7 +410,8 @@
     },
     {
       "id": "mai_image_2_5",
-      "label": "MAI Image 2.5"
+      "label": "MAI Image 2.5",
+      "maxRefs": 1
     },
     {
       "id": "seedream_5_pro",
@@ -377,5 +425,11 @@
       "id": "grok_imagine_image_2",
       "label": "Grok Imagine 2"
     }
-  ]
+  ],
+  "backdrops": {
+    "light": "the creature is light, so the scene around it is deep and dim: dusk shadow, darker values everywhere behind it and a dark vignette toward the edges of the frame.",
+    "dark": "the creature is dark, so the scene behind it is bright and airy: pale haze, soft high-key daylight and a luminous glow directly behind its head and body, background values much lighter than the creature.",
+    "glow": "the creature glows, so the scene around it is dark and quiet: night tones, deep shadow and only faint background detail.",
+    "mid": "the background is muted and desaturated in a hue complementary to the creature's main color, with a soft pool of brighter light directly behind it."
+  }
 }

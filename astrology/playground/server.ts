@@ -43,6 +43,10 @@ type Img = {
   promptNote?: string;
   parent?: number;
   refs?: string[];
+  group?: string;
+  master?: string;
+  contrast?: { dL: number; dE: number };
+  transparent?: boolean;
   started: number;
   finished?: number;
 };
@@ -53,12 +57,15 @@ type Run = {
   sign: string;
   traits: string;
   palette: string;
+  tone?: string;
   master: { id: string; text: string; edited: boolean };
+  masterB?: { id: string; text: string; edited: boolean };
   aspect: string;
   refs: string[];
   refMode?: string;
   autoRefs?: { style: boolean; scene: boolean };
   ab?: boolean;
+  compare?: boolean;
   vary: { style: boolean; scene: boolean; model: boolean };
   note: string;
   images: Img[];
@@ -165,12 +172,16 @@ async function refUrl(rel: string): Promise<string> {
 const MODERATION = /nudity|sexual|moderation|safety|content policy|flagged/i;
 async function generate(run: Run, img: Img, attempt = 0) {
   try {
-    const files = await Promise.all((img.refs ?? run.refs).map(async (r) => ({ url: await refUrl(r) })));
+    // Some models take fewer reference images (MAI Image: 1); send the first ones they accept.
+    const spec = readPresets().models.find((x: any) => x.id === img.model);
+    const maxRefs = spec?.maxRefs ?? 6;
+    const files = await Promise.all((img.refs ?? run.refs).slice(0, maxRefs).map(async (r) => ({ url: await refUrl(r) })));
     const job = await varg("/image", {
       model: img.model,
       prompt: img.prompt,
       aspect_ratio: run.aspect,
       ...(files.length ? { files } : {}),
+      ...(spec?.providerOptions ? { provider_options: spec.providerOptions } : {}),
       options: { cache: false },
     });
     img.jobId = job.id;
@@ -191,6 +202,35 @@ async function generate(run: Run, img: Img, attempt = 0) {
   }
 }
 
+// Rough figure/ground contrast: mean Lab colour of the centre box (where the creature sits)
+// against the rest of the frame, on a 200x200 thumbnail. dL is the lightness gap, dE the colour gap.
+async function measure(file: string): Promise<{ dL: number; dE: number } | undefined> {
+  const mean = async (extra: string[]) => {
+    const p = Bun.spawn(["magick", file, "-resize", "200x200!", ...extra, "-colorspace", "Lab", "-format", "%[fx:mean.r] %[fx:mean.g] %[fx:mean.b]", "info:"], { stdout: "pipe", stderr: "ignore" });
+    const out = await new Response(p.stdout).text();
+    await p.exited;
+    return out.trim().split(/\s+/).map(Number);
+  };
+  try {
+    const [f, c] = await Promise.all([mean([]), mean(["-crop", "100x120+50+50", "+repage"])]);
+    if (f.length !== 3 || c.length !== 3 || [...f, ...c].some(isNaN)) return undefined;
+    const A = 200 * 200, a = 100 * 120;
+    const r = f.map((v, k) => (v * A - c[k] * a) / (A - a));
+    const dL = Math.abs(c[0] - r[0]) * 100, da = (c[1] - r[1]) * 255, db = (c[2] - r[2]) * 255;
+    return { dL: Math.round(dL), dE: Math.round(Math.hypot(dL, da, db)) };
+  } catch {
+    return undefined;
+  }
+}
+
+// True when the file has any transparent pixels (GPT Image did this before background was forced opaque).
+async function isTransparent(file: string): Promise<boolean> {
+  const p = Bun.spawn(["magick", file, "-format", "%[opaque]", "info:"], { stdout: "pipe", stderr: "ignore" });
+  const out = (await new Response(p.stdout).text()).trim().toLowerCase();
+  await p.exited;
+  return out === "false";
+}
+
 async function poll(run: Run, img: Img) {
   const deadline = Date.now() + 8 * 60_000;
   while (Date.now() < deadline) {
@@ -205,6 +245,8 @@ async function poll(run: Run, img: Img) {
       const bytes = await (await fetch(out.url)).arrayBuffer();
       writeFileSync(join(RUNS, run.id, name), Buffer.from(bytes));
       img.file = name;
+      img.contrast = await measure(join(RUNS, run.id, name));
+      img.transparent = (await isTransparent(join(RUNS, run.id, name))) || undefined;
       img.status = "done";
       img.finished = Date.now();
       save(run);
@@ -225,6 +267,20 @@ async function startImages(run: Run, imgs: Img[]) {
   await Promise.all(imgs.map((img) => generate(run, img)));
 }
 
+// Measure images made before the contrast check existed.
+(async () => {
+  for (const run of runs.values()) {
+    let changed = false;
+    for (const img of run.images)
+      if (img.status === "done" && img.file && (!img.contrast || img.transparent === undefined)) {
+        img.contrast ??= await measure(join(RUNS, run.id, img.file));
+        img.transparent = await isTransparent(join(RUNS, run.id, img.file));
+        changed = true;
+      }
+    if (changed) save(run);
+  }
+})();
+
 // Resume anything that was in flight when the server stopped.
 for (const run of runs.values()) {
   const pending = run.images.filter((i) => i.status === "running" && i.jobId);
@@ -240,7 +296,8 @@ for (const run of runs.values()) {
 
 function createRun(body: any): Run {
   const p = readPresets();
-  const n = Math.max(1, Math.min(24, Number(body.n) || 10));
+  const compare = !!body.compare && (body.models?.length || 0) > 1;
+  const n = Math.max(1, Math.min(compare ? 80 : 24, Number(body.n) || 10));
   const styles: string[] = body.styles?.length ? body.styles : [];
   const scenes: string[] = body.scenes?.length ? body.scenes : [];
   const models: string[] = body.models?.length ? body.models : ["nano_banana_2_1"];
@@ -250,7 +307,10 @@ function createRun(body: any): Run {
   const manual: string[] = (body.refs || []).slice(0, 6);
   const refMode = p.refModes.find((m: any) => m.id === body.refMode) ?? p.refModes[0];
   // A/B: every combination is made twice, once with references and once without.
-  const k = ab ? Math.ceil(n / 2) : n;
+  // Compare: every combination goes to every selected model with the identical prompt.
+  // Versions: every combination is also drawn with a second master prompt (masterB).
+  const masterB = body.masterB?.text ? { id: body.masterB.id, text: body.masterB.text, edited: !!body.masterB.edited } : null;
+  const k = Math.ceil(n / ((ab ? 2 : 1) * (compare ? models.length : 1) * (masterB ? 2 : 1)));
   const styleSeq = vary.style ? spread(styles, k) : Array(k).fill(styles[0] ?? null);
   const sceneSeq = vary.scene ? spread(scenes, k) : Array(k).fill(scenes[0] ?? null);
   const modelSeq = vary.model ? spread(models, k) : Array(k).fill(models[0]);
@@ -258,19 +318,25 @@ function createRun(body: any): Run {
   const created = new Date();
   const pad = (x: number) => String(x).padStart(2, "0");
   const stamp = `${created.getFullYear()}${pad(created.getMonth() + 1)}${pad(created.getDate())}-${pad(created.getHours())}${pad(created.getMinutes())}${pad(created.getSeconds())}`;
+  // Batches started in the same second for the same subject must not share a folder.
+  let id = `${stamp}-${slug(body.subject || "subject")}`;
+  for (let k = 2; runs.has(id) || existsSync(join(RUNS, id)); k++) id = `${stamp}-${slug(body.subject || "subject")}-${k}`;
   const run: Run = {
-    id: `${stamp}-${slug(body.subject || "subject")}`,
+    id,
     created: created.toISOString(),
     subject: body.subject || p.defaults.subject,
     sign: body.sign || p.defaults.sign,
     traits: body.traits || p.defaults.traits,
     palette: body.palette || p.defaults.palette,
+    tone: p.backdrops?.[body.tone] ? body.tone : p.defaults.tone ?? "mid",
     master: { id: master.id, text: master.text, edited: !!master.edited },
+    ...(masterB ? { masterB } : {}),
     aspect: body.aspect || "3:4",
     refs: manual,
     refMode: refMode.id,
     autoRefs,
     ab,
+    compare,
     vary,
     note: "",
     images: [],
@@ -285,28 +351,37 @@ function createRun(body: any): Run {
         ...(autoRefs.scene ? find("scenes", scene)?.refs ?? [] : []),
       ]),
     ].slice(0, 6) as string[];
-    const base = fill(run.master.text, {
+    const vars = {
       subject: run.subject,
       sign: run.sign,
       traits: run.traits,
       palette: find("styles", style)?.palette === false ? "" : run.palette,
       style: find("styles", style)?.text ?? "",
       scene: find("scenes", scene)?.text ?? "",
-    });
+      // Glowing materials want night; otherwise the creature's own tone picks the backdrop.
+      backdrop: p.backdrops?.[find("styles", style)?.tone === "glow" ? "glow" : run.tone!] ?? "",
+    };
     const variants = ab ? [refs, []] : [refs];
-    for (const r of variants) {
-      if (run.images.length >= n) break;
-      run.images.push({
-        i: run.images.length,
-        prompt: (r.length ? base + "\n" + refMode.text : base).slice(0, 2000),
-        model,
-        style,
-        scene,
-        refs: r,
-        status: "queued",
-        started: Date.now(),
-      });
-    }
+    const versions = masterB ? [run.master, masterB] : [run.master];
+    const grouped = compare || !!masterB;
+    for (const r of variants)
+      for (const mst of versions)
+        for (const mdl of compare ? models : [model]) {
+          if (run.images.length >= n) break;
+          const base = fill(mst.text, vars);
+          run.images.push({
+            i: run.images.length,
+            prompt: (r.length ? base + "\n" + refMode.text : base).slice(0, 2000),
+            model: mdl,
+            style,
+            scene,
+            refs: r,
+            ...(masterB ? { master: mst.id + (mst.edited ? "*" : "") } : {}),
+            ...(grouped ? { group: `Prompt ${c + 1}${ab ? (r.length ? " · with refs" : " · no refs") : ""}` } : {}),
+            status: "queued",
+            started: Date.now(),
+          });
+        }
   }
   mkdirSync(join(RUNS, run.id), { recursive: true });
   runs.set(run.id, run);
@@ -323,7 +398,7 @@ function summary(run: Run) {
     created: run.created,
     subject: run.subject,
     sign: run.sign,
-    master: run.master.id + (run.master.edited ? "*" : ""),
+    master: run.master.id + (run.master.edited ? "*" : "") + (run.masterB ? ` vs ${run.masterB.id}${run.masterB.edited ? "*" : ""}` : ""),
     n: run.images.length,
     done: done.length,
     rated: rated.length,
@@ -342,7 +417,7 @@ function stats() {
         scene: img.scene ?? "(none)",
         model: img.model,
         refs: (img.refs ?? run.refs).length ? `with refs · ${run.refMode ?? "mood"}` : "no refs",
-        master: run.master.id + (run.master.edited ? "*" : ""),
+        master: img.master ?? run.master.id + (run.master.edited ? "*" : ""),
         subject: run.subject,
       };
       for (const [g, k] of Object.entries(keys)) (groups[g][k] ??= []).push(img.stars);
@@ -353,6 +428,43 @@ function stats() {
       .map(([key, s]) => ({ key, n: s.length, avg: s.reduce((a, b) => a + b, 0) / s.length, top: s.filter((x) => x >= 4).length }))
       .sort((a, b) => b.avg - a.avg || b.n - a.n);
   return out;
+}
+
+// Average automatic contrast by master version, style, scene and model (all images, rated or not).
+function contrastStats() {
+  const groups: Record<string, Record<string, number[]>> = { master: {}, style: {}, scene: {}, model: {} };
+  for (const run of runs.values())
+    for (const img of run.images) {
+      if (!img.contrast) continue;
+      const keys: Record<string, string> = {
+        master: img.master ?? run.master.id + (run.master.edited ? "*" : ""),
+        style: img.style ?? "(none)",
+        scene: img.scene ?? "(none)",
+        model: img.model,
+      };
+      for (const [g, k] of Object.entries(keys)) (groups[g][k] ??= []).push(img.contrast.dE);
+    }
+  const out: Record<string, any[]> = {};
+  for (const [g, m] of Object.entries(groups))
+    out[g] = Object.entries(m)
+      .map(([key, s]) => ({ key, n: s.length, avg: s.reduce((a, b) => a + b, 0) / s.length }))
+      .sort((a, b) => b.avg - a.avg);
+  return out;
+}
+
+// The zodiac set: for each sign, its images ranked (rated first, then newest), plus counts.
+function zodiacSet() {
+  const p = readPresets();
+  return p.zodiac.map((z: any) => {
+    const imgs: any[] = [];
+    for (const run of runs.values())
+      if (run.sign === z.sign)
+        for (const img of run.images)
+          if (img.status === "done" && img.file)
+            imgs.push({ run: run.id, i: img.i, file: img.file, transparent: !!img.transparent, stars: img.stars ?? 0, style: img.style, scene: img.scene, model: img.model, master: img.master ?? run.master.id, contrast: img.contrast?.dE, started: img.started });
+    imgs.sort((a, b) => Number(a.transparent) - Number(b.transparent) || b.stars - a.stars || b.started - a.started);
+    return { ...z, count: imgs.length, rated: imgs.filter((x) => x.stars).length, top: imgs.slice(0, 4) };
+  });
 }
 
 function best(min = 4) {
@@ -382,7 +494,7 @@ function feedback(): string {
     lines.push(`## ${run.id} · ${run.subject} · ${run.sign} · master ${run.master.id}${run.master.edited ? " (edited)" : ""} · ${run.aspect}${run.refs.length ? ` · own refs: ${run.refs.join(", ")}` : ""}${run.autoRefs?.style || run.autoRefs?.scene ? ` · auto refs: ${[run.autoRefs.style && "style", run.autoRefs.scene && "scene"].filter(Boolean).join("+")}` : ""}${run.ab ? " · A/B" : ""}`);
     if (run.note) lines.push(`Run note: ${run.note}`);
     for (const img of [...rated].sort((a, b) => (b.stars || 0) - (a.stars || 0)))
-      lines.push(`- #${img.i + 1} ${img.stars ? "★".repeat(img.stars) : "unrated"} · ${label("styles", img.style)} · ${label("scenes", img.scene)} · ${img.model} · ${(img.refs ?? run.refs).length ? `${(img.refs ?? run.refs).length} refs (${run.refMode ?? "mood"})` : "no refs"}${img.note ? ` · "${img.note}"` : ""}${img.promptNote ? `\n    prompt feedback: "${img.promptNote}"` : ""}`);
+      lines.push(`- #${img.i + 1} ${img.stars ? "★".repeat(img.stars) : "unrated"} · ${label("styles", img.style)} · ${label("scenes", img.scene)} · ${img.model} · ${(img.refs ?? run.refs).length ? `${(img.refs ?? run.refs).length} refs (${run.refMode ?? "mood"})` : "no refs"}${img.master ? ` · master ${img.master}` : ""}${img.contrast ? ` · contrast dE ${img.contrast.dE}` : ""}${img.transparent ? " · TRANSPARENT BACKGROUND (broken)" : ""}${img.group ? ` · ${img.group}` : ""}${img.note ? ` · "${img.note}"` : ""}${img.promptNote ? `\n    prompt feedback: "${img.promptNote}"` : ""}`);
     const unrated = run.images.filter((i) => i.status === "done" && !i.stars).length;
     if (unrated) lines.push(`- ${unrated} more unrated`);
     lines.push("");
@@ -506,6 +618,8 @@ Bun.serve({
       if (path === "/api/runs")
         return json([...runs.values()].sort((a, b) => b.created.localeCompare(a.created)).map(summary));
       if (path === "/api/stats") return json(stats());
+      if (path === "/api/contrast") return json(contrastStats());
+      if (path === "/api/set") return json(zodiacSet());
       if (path === "/api/feedback") return new Response(feedback(), { headers: { "Content-Type": "text/plain; charset=utf-8" } });
       if (path === "/api/best") return json(best(Number(url.searchParams.get("min") || 4)));
 
@@ -552,13 +666,20 @@ Bun.serve({
         if (!run) return json({ error: "no such run" }, 404);
         const body: any = await req.json();
         const src = run.images[body.i];
-        const count = Math.max(1, Math.min(8, Number(body.count) || 4));
+        if (!src) return json({ error: "no such image" }, 404);
+        // body.models: the same prompt on each of these models; otherwise `count` more on the same model.
+        const targets: string[] = Array.isArray(body.models)
+          ? body.models.filter((x: string) => x !== src.model)
+          : Array(Math.max(1, Math.min(8, Number(body.count) || 4))).fill(src.model);
+        const group = Array.isArray(body.models) ? `#${src.i + 1} on every model` : undefined;
+        if (group && !src.group) src.group = group;
         const fresh: Img[] = [];
-        for (let k = 0; k < count; k++) {
+        for (const model of targets) {
           const img: Img = {
             i: run.images.length,
             prompt: src.prompt,
-            model: src.model,
+            model,
+            ...(group ? { group } : {}),
             style: src.style,
             scene: src.scene,
             refs: src.refs,
