@@ -39,6 +39,7 @@ ONLINE = {
     "tea": "https://claude.ai/artifact/JSq3U75PR1zGnLmkPea8Yz",
     "mirror_research": "https://claude.ai/artifact/EQ2izi4He8XwvMRmsknaqs",
     "concept": "https://claude.ai/artifact/Dqk9BpYrVUoFXQaiyfHKBD",
+    "deck": "https://claude.ai/artifact/BkSJQMeXHfnDBZJaYmezXP",
 }
 # Where each of those pages lives in this repo. hub/site.py points every claude.ai link at these copies.
 # "tea" (a claude.ai sheet) has no copy here.
@@ -65,6 +66,8 @@ PAGES = {
     "bigwall": "wall/dist/big-wall.html",
     # Mars in 3D is served from its own folder (/mars3d); site.py copies its pictures, globe maps and three.js
     "mars3d": "mars3d/index.html",
+    # The host's slides, built by slides/build.py; site.py copies its pictures in slides/assets
+    "deck": "slides/dist/party-deck.html",
 }
 # Earlier claude.ai copies of the same pages.
 ALIASES = {"https://claude.ai/artifact/65pctWFWHMQZ3ezNrrA7P1": "futurists_ru"}
@@ -88,7 +91,10 @@ SHORT = {
     "films": PAGES["films"],
     "futurists": PAGES["futurists"],
     "programme": PAGES["program"],
+    "slides": PAGES["deck"],
 }
+# The picture in the Slides section: the deck's "Tonight at the party" slide
+DECK_SHOT = "slides/assets/preview.jpg"
 # The party app, The Future 2050 (app/ in this repo), is served at /app on the same site; link its home page, never /app/admin.
 APPS = {"party": SITE + "/app"}
 PLAYLISTS = {
@@ -256,7 +262,8 @@ def build(web=False):
         "books": b, "tweets": t, "sound": s, "art": c, "wall": w, "mars": mars3d_numbers(),
         "exists": {p: (ROOT / p).exists() for p in [
             "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html",
-            "reel/links.md", "mirror/preview.jpg", "mars3d/preview.jpg", ART_TILE, WALL_TILE, *PAGES.values()]},
+            "reel/links.md", "mirror/preview.jpg", "mars3d/preview.jpg", DECK_SHOT, ART_TILE, WALL_TILE, *PAGES.values()]},
+        "deck": {"shot": DECK_SHOT, "slides": len(load("slides/deck/deck.json")["order"])},
     })
     missing = [p for p, ok in data["exists"].items() if not ok]
     page = fill("template.html", data)

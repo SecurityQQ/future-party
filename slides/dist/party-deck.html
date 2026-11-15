@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Future Party 2050 · Slides</title>
+<meta name="description" content="The host's deck for Future Party 2050: the vision, the goal, the three rules, a mini demo for every station, and the question for the room.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* The player: one 1920×1080 slide at a time, scaled to the window, black around it. */
+html,body{margin:0;height:100%;background:#000000;overflow:hidden}
+*{margin:0}
+body{font:32px/1.2 'Inter',Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+#stage{position:fixed;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
+#stage>section{position:absolute;left:0;top:0;width:1920px;height:1080px;box-sizing:border-box;overflow:hidden;isolation:isolate}
+#stage>section:not(.on){display:none!important}
+#stage>section.on{animation:deckIn .35s ease both}
+@keyframes deckIn{from{opacity:0}}
+/* A full-bleed picture or drawing listed first stays behind the slide's text */
+#stage>section>svg:first-child,#stage>section>img:first-child{z-index:-1}
+h1{font-size:96px;font-weight:600}h2{font-size:64px;font-weight:600}h3{font-size:44px;font-weight:600}
+img,video,iframe{display:block;border:0}
+aside{display:none}
+/* Host helpers: N shows the speaker notes, the hint shows once on open */
+#notes{position:fixed;left:16px;right:16px;bottom:16px;max-width:1100px;margin:0 auto;padding:14px 18px;border-radius:14px;background:rgba(14,14,16,.94);color:#F2EFE8;font:16px/1.5 'Inter',system-ui,sans-serif;border:1px solid rgba(242,239,232,.16);display:none;z-index:10}
+#notes.show{display:block}
+#notes b{display:block;margin-bottom:4px;color:#FF5315;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+#hint{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);padding:8px 14px;border-radius:999px;background:rgba(14,14,16,.88);color:#C9C6BF;font:13px/1.4 'Inter',system-ui,sans-serif;letter-spacing:.02em;white-space:nowrap;z-index:9;transition:opacity .6s ease;pointer-events:none}
+#hint.gone{opacity:0}
+body.idle,body.idle *{cursor:none!important}
+/* Future Party 2050 — the party's look: black sky, one orange, League Gothic over Inter, Instrument Serif for words people said. */
+body { font-family: 'Inter', Arial, sans-serif; color: #F2EFE8; }
+
+/* Slide grounds */
+.dark { background: #070708; color: #F2EFE8; padding: 128px; display: flex; flex-direction: column; gap: 48px; }
+.paper { background: #F2EFE8; color: #070708; padding: 128px; display: flex; flex-direction: column; gap: 48px; }
+.accent { background: #FF5315; color: #070708; padding: 128px; display: flex; flex-direction: column; gap: 48px; }
+.center { justify-content: center; }
+.spread { justify-content: space-between; }
+
+/* Type scale: 320 / 200 / 120 / 72 / 32 / 24 */
+.eyebrow { font-size: 24px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; line-height: 1.3; color: #FF5315; }
+.paper .eyebrow { color: #B83A0A; }
+.accent .eyebrow { color: #070708; }
+.mega { font-family: 'League Gothic', 'Arial Narrow', Arial, sans-serif; font-size: 320px; font-weight: 400; line-height: 0.9; text-transform: uppercase; }
+.big { font-family: 'League Gothic', 'Arial Narrow', Arial, sans-serif; font-size: 200px; font-weight: 400; line-height: 0.95; text-transform: uppercase; }
+.h { font-family: 'League Gothic', 'Arial Narrow', Arial, sans-serif; font-size: 120px; font-weight: 400; line-height: 1; letter-spacing: 1px; text-transform: uppercase; }
+.serif { font-family: 'Instrument Serif', Georgia, serif; font-size: 72px; font-weight: 400; line-height: 1.1; }
+.serif-xl { font-family: 'Instrument Serif', Georgia, serif; font-size: 120px; font-weight: 400; line-height: 1.05; letter-spacing: -1px; }
+.body { font-size: 32px; line-height: 1.4; color: #C9C6BF; }
+.paper .body { color: #3D3B37; }
+.small { font-size: 24px; line-height: 1.4; color: #9B9893; }
+.paper .small { color: #5E5B55; }
+.strong { font-weight: 600; color: #F2EFE8; }
+.paper .strong { color: #070708; }
+.orange { color: #FF5315; }
+.paper .orange { color: #D9420C; }
+.lemon { color: #F2D34A; }
+a { color: #FF5315; text-decoration: underline; }
+
+/* Layout pieces */
+.head { display: flex; flex-direction: column; gap: 16px; }
+.row { display: flex; gap: 64px; }
+.col { width: 520px; display: flex; flex-direction: column; gap: 24px; }
+.shot { border-radius: 16px; border: 1px solid rgba(242,239,232,.14); }
+.card { background: #121215; border: 1px solid rgba(242,239,232,.12); border-radius: 20px; padding: 32px; display: flex; flex-direction: column; gap: 12px; }
+.paper .card { background: #FBF9F4; border: 1px solid #DCD6CA; }
+
+/* Rules */
+.rules { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+.rule { border-top: 3px solid #070708; padding-top: 32px; display: flex; flex-direction: column; gap: 24px; }
+
+/* NFC game */
+.steps { display: flex; flex-direction: column; gap: 12px; }
+.kin { display: flex; gap: 24px; }
+.kin img { width: 280px; height: 560px; object-fit: cover; border-radius: 20px; border: 1px solid rgba(242,239,232,.14); }
+
+/* Posters */
+.poster { display: flex; flex-wrap: wrap; column-gap: 40px; row-gap: 8px; }
+
+/* Topics and ideas */
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 1fr 1fr; gap: 24px; flex: 1; }
+.grid2 { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: 1fr 1fr; gap: 24px; flex: 1; }
+.tile { justify-content: space-between; }
+.art { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.art img { width: 544px; height: 264px; object-fit: cover; border-radius: 12px; }
+
+/* Tweet card and avatars */
+.tweet { width: 1320px; background: #121215; border: 1px solid rgba(242,239,232,.12); border-radius: 24px; padding: 48px; display: flex; flex-direction: column; gap: 32px; }
+.who { display: flex; gap: 24px; align-items: center; }
+.who-text { display: flex; flex-direction: column; gap: 4px; }
+.avs { display: flex; gap: 24px; }
+.av { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(242,239,232,.18); }
+.tw-av { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+
+/* Tea */
+.teas { display: flex; flex-direction: column; }
+.tea { display: flex; gap: 32px; align-items: center; padding: 14px 0; border-bottom: 1px solid #DCD6CA; }
+.swatch { width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(7,7,8,.18); }
+.tea-name { width: 360px; font-size: 32px; font-weight: 600; line-height: 1.3; color: #070708; }
+.tea-what { font-size: 32px; line-height: 1.3; color: #3D3B37; }
+
+/* Demos */
+.stage { position: relative; width: 1080px; height: 608px; }
+.disc { border-radius: 50%; border: 18px solid #E9E4DA; }
+.disc-blue { background: radial-gradient(#4A78FF, #1B2D9A); }
+.disc-purple { background: radial-gradient(#B45CF0, #5A1C8C); }
+.strike { background: #F2EFE8; border-radius: 8px; }
+.panel { background: rgba(7,7,8,.8); border: 1px solid rgba(242,239,232,.14); border-radius: 24px; padding: 48px; display: flex; flex-direction: column; gap: 20px; }
+.anaglyph { color: #F2EFE8; text-shadow: -6px 0 0 #FF2A2A, 6px 0 0 #00E1FF; }
+
+/* Motion: everything arrives within a second; clicks are for the host */
+@keyframes rise { from { opacity: 0; transform: translateY(32px); } }
+@keyframes fade { from { opacity: 0; } }
+.in { --i: 0; animation: rise .8s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i) * 140ms); }
+.fadein { --i: 0; animation: fade 1.2s ease both; animation-delay: calc(var(--i) * 140ms); }
+@property --n { syntax: '<integer>'; inherits: false; initial-value: 0 }
+@keyframes count { from { --n: 0 } }
+.n { animation: count 1.6s ease-out both; }
+.fragment { opacity: 0; transition: opacity .8s ease; }
+.fragment.visible { opacity: 1; }
+.slow.fragment { transition: opacity 2.6s ease; }
+</style>
+</head>
+<body>
+<main id="stage">
+<section id="cover" class="dark center" data-transition="fade">
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" style="position:absolute; left:0; top:0; width:1920px; height:1080px"><defs><filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="22"/></filter><linearGradient id="planet" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22110B"/><stop offset="0.06" stop-color="#0B0B0E"/><stop offset="1" stop-color="#070708"/></linearGradient></defs><g fill="#F2EFE8"><circle cx="120" cy="90" r="1.5" opacity=".5"/><circle cx="260" cy="210" r="1" opacity=".4"/><circle cx="410" cy="60" r="2" opacity=".7"/><circle cx="530" cy="330" r="1.2" opacity=".35"/><circle cx="690" cy="140" r="1.6" opacity=".6"/><circle cx="820" cy="260" r="1" opacity=".4"/><circle cx="980" cy="70" r="1.4" opacity=".5"/><circle cx="1110" cy="190" r="2.2" opacity=".8"/><circle cx="1240" cy="320" r="1" opacity=".35"/><circle cx="1370" cy="110" r="1.5" opacity=".55"/><circle cx="1500" cy="240" r="1.2" opacity=".45"/><circle cx="1650" cy="80" r="1.8" opacity=".7"/><circle cx="1790" cy="200" r="1" opacity=".4"/><circle cx="1860" cy="360" r="1.4" opacity=".5"/><circle cx="70" cy="420" r="1.2" opacity=".4"/><circle cx="1180" cy="560" r="1.6" opacity=".6"/><circle cx="1440" cy="470" r="1" opacity=".4"/><circle cx="1700" cy="580" r="2" opacity=".7"/><circle cx="1580" cy="730" r="1.1" opacity=".4"/><circle cx="1820" cy="820" r="1.5" opacity=".55"/><circle cx="1320" cy="780" r="1.4" opacity=".5"/><circle cx="40" cy="880" r="1" opacity=".35"/><circle cx="200" cy="760" r="1.2" opacity=".4"/></g><circle cx="960" cy="3500" r="2600" fill="none" stroke="#FF5315" stroke-width="34" opacity=".5" filter="url(#glow)"/><circle cx="960" cy="3500" r="2600" fill="url(#planet)" stroke="#FF7A45" stroke-width="2"/></svg>
+<p class="eyebrow in">Future Party</p>
+<p class="mega in" style="--i:1">2050</p>
+<p class="serif in" style="--i:2"><i>The future is who you meet</i></p>
+<aside>Welcome everyone. This is Future Party 2050. Tonight everything here is about the future, and the future is who you meet.</aside>
+</section>
+<section id="vision" class="dark spread" data-transition="fade">
+<div class="head">
+<p class="eyebrow in">Vision</p>
+<p class="serif in" style="--i:1; width:1400px">If you put the 20 smartest people in the room, you can change the world.</p>
+</div>
+<div style="display:flex; align-items:flex-end; gap:64px">
+<p class="mega orange n">50</p>
+<div style="display:flex; flex-direction:column; gap:16px; padding-bottom:24px">
+<p class="h in" style="--i:4">We have 50.</p>
+<p class="serif in" style="--i:5; width:1100px">It’s enough to change the world at least twice.</p>
+</div>
+</div>
+<aside>They say if you put the twenty smartest people in one room, you can change the world. Tonight we have fifty. That is enough to change the world at least twice.</aside>
+</section>
+<section id="goal" class="accent center" data-transition="fade">
+<p class="eyebrow in">Goal</p>
+<p class="big in" style="--i:1; width:1664px"><u>Make 2050 real with people in this room</u></p>
+<aside>Our goal for tonight: make 2050 real, with the people in this room.</aside>
+</section>
+<section id="rules" class="paper" data-transition="fade">
+<div class="head">
+<p class="eyebrow in">Rules</p>
+<h2 class="h in" style="--i:1">Three rules of the future party</h2>
+</div>
+<div class="rules">
+<div class="rule in" style="--i:2">
+<p class="big orange">1</p>
+<p class="serif">No past.</p>
+</div>
+<div class="rule in" style="--i:3">
+<p class="big orange">2</p>
+<p class="serif">Help others unleash creativity.</p>
+</div>
+<div class="rule in" style="--i:4">
+<p class="big orange">3</p>
+<p class="serif">Meet new people.</p>
+</div>
+</div>
+<aside>Three rules. One: no past, tonight we only talk about what comes next. Two: help others unleash their creativity. Three: meet new people.</aside>
+</section>
+<section id="nfc" class="dark" data-transition="fade">
+<div class="head">
+<p class="eyebrow in">What we have</p>
+<h2 class="h in" style="--i:1">NFC chip game: scan other people</h2>
+</div>
+<div class="row">
+<div class="col" style="width:712px; gap:40px">
+<p class="body in" style="--i:2">Tap someone’s card with your phone. You meet their Kin, a creature drawn from their birthday, and it joins your collection.</p>
+<div class="steps in" style="--i:3">
+<p class="body strong"><span class="orange">01</span>  Tap a card</p>
+<p class="body strong"><span class="orange">02</span>  Meet their Kin</p>
+<p class="body strong"><span class="orange">03</span>  Collect everyone in the room</p>
+</div>
+<p class="small in" style="--i:4">vargafutureparty.com/app</p>
+</div>
+<div class="kin">
+<img class="in" style="--i:2" src="../assets/kin-grumm.jpg" alt="A Kin: a toad-like creature in a brass space helmet holding a crystal">
+<img class="in" style="--i:3" src="../assets/kin-ilu.jpg" alt="A Kin: a glowing blue figure made of nebula light inside a glass helmet">
+<img class="in" style="--i:4" src="../assets/kin-vexa.jpg" alt="A Kin: a violet alien woman with golden eyes and a star-map cloak">
+</div>
+</div>
+<aside>Demo: take your phone, tap my card, and show my Kin on screen. Everyone has a card. Tap each other, meet each other's Kin, and collect the whole room.</aside>
+</section>
+<section id="walls" class="dark" data-transition="fade">
+<div class="head">
+<p class="eyebrow in">On the walls tonight</p>
+<h2 class="h in" style="--i:1">Topics for inspiration</h2>
+</div>
+<div class="grid3">
+<div class="card in" style="--i:2">
+<p class="body strong">Future 2050: the show reel</p>
+<p class="small">Six facts about how books guess the future</p>
+<div style="flex:1"></div><p class="small orange">/films</p>
+</div>
+<div class="card in" style="--i:3">
+<p class="body strong">Quotes from the best books</p>
+<p class="small">50 quotes from 18 books about the future</p>
+<div style="flex:1"></div><p class="small orange">/quotes</p>
+</div>
+<div class="card in" style="--i:4">
+<p class="body strong">Ideas of 2050</p>
+<p class="small">25 ideas from the books, and what exists today</p>
+<div style="flex:1"></div><p class="small orange">/ideas</p>
+</div>
+<div class="card in" style="--i:5">
+<p class="body strong">2050 in 78 tweets</p>
+<p class="small">What people wrote on X about 2050</p>
+<div style="flex:1"></div><p class="small orange">/tweets</p>
+</div>
+<div class="card in" style="--i:6">
+<p class="body strong">Futurists on 2050</p>
+<p class="small">12 futurists, 43 quotes, where they agree</p>
+<div style="flex:1"></div><p class="small orange">/futurists</p>
+</div>
+<div class="card in" style="--i:7">
+<p class="body strong">Futuristic concept art</p>
+<p class="small">377 pictures of the future from X</p>
+<div style="flex:1"></div><p class="small orange">/art</p>
+</div>
+</div>
+<aside>Six things play on the walls tonight. Every one has a short address on vargafutureparty.com, so you can open it on your phone too. The next six slides show one piece of each.</aside>
+</section>
+<section id="showreel" class="dark" data-transition="fade">
+<div class="head">
+<p class="eyebrow in">Inspiration 1 of 6</p>
+<h2 class="h in" style="--i:1">Future 2050: the show reel</h2>
+</div>
+<div class="row">
+<div class="col">
+<p class="body in" style="--i:2">Six facts about how books guess the future, in two and a half minutes: quotes from the books, posts from X, and NASA footage.</p>
+<p class="small in" style="--i:3">The full film plays on the wall · /films</p>
+</div>
+<video class="shot in" style="--i:2; width:1080px; height:608px; object-fit:cover" src="../../video/dist/media/six-facts-720p.mp4" poster="../assets/reel-still.jpg" data-clip="0,14" muted loop playsinline preload="metadata" aria-label="Opening of the Six Facts show reel: a rocket launch under the title Six facts about how books guess the future"></video>
+</div>
+<aside>This is the first fourteen seconds of the show reel. The whole film is two and a half minutes and loops on the wall all night.</aside>
+</section>
+<section id="quotes" class="paper" data-transition="fade">
+<div class="head">
+<p class="eyebrow in">Inspiration 2 of 6</p>
+<h2 class="h in" style="--i:1">Quotes from the best books</h2>
+</div>
+<div style="display:flex; flex-direction:column; gap:32px; border-left:4px solid #D9420C; padding-left:48px">
+<p class="serif-xl in" style="--i:2; width:1500px">“There has never been a better day in the whole history of the world to invent something.”</p>
+<p class="body in" style="--i:3">Kevin Kelly, <i>The Inevitable</i> (2016)</p>
+</div>
+<p class="small in" style="--i:4">One of 50 quotes from 18 books, each checked against the book · /quotes</p>
+<aside>Fifty quotes from eighteen books about the future, each one checked word for word against the book. This one is from Kevin Kelly. It is a good line for a party like this one.</aside>
+</section>
+<section id="ideas" class="dark" data-transition="fade">
+<div class="head">
+<p class="eyebrow in">Inspiration 3 of 6</p>
+<h2 class="h in" style="--i:1">Ideas of 2050</h2>
+</div>
+<div class="grid2">
+<div class="card tile in" style="--i:2; padding:40px; gap:16px">
+<p class="small orange">AI 2041</p>
+<p class="serif">Every child has an AI tutor</p>
+</div>
+<div class="card tile in" style="--i:3; padding:40px; gap:16px">
+<p class="small orange">Summa Technologiae</p>
+<p class="serif">You can wear reality</p>
+</div>
+<div class="card tile in" style="--i:4; padding:40px; gap:16px">
+<p class="small orange">The Singularity Is Nearer</p>
+<p class="serif">The brain connects to the cloud</p>
+</div>
+<div class="card tile in" style="--i:5; padding:40px; gap:16px">
+<p class="small orange">A City on Mars</p>
+<p class="serif">The Moon first, Mars later</p>
+</div>
+</div>
+<aside>Four of the twenty-five ideas from the books. On the wall each one also says what already exists today. Full list at /ideas.</aside>
+</section>
+<section id="tweets" class="dark" data-transition="fade">
+<div class="head">
+<p class="eyebrow in">Inspiration 4 of 6</p>
+<h2 class="h in" style="--i:1">2050 in 78 tweets</h2>
+</div>
+<div class="tweet in" style="--i:2">
+<div class="who">
+<img class="tw-av" src="../assets/av-elonmusk.jpg" alt="Elon Musk">
+<div class="who-text">
+<p class="body strong">Elon Musk</p>
+<p class="small">CEO of Tesla and SpaceX · @elonmusk</p>
+</div>
+</div>
+<p class="serif">It’s possible to make a self-sustaining city on Mars by 2050, if we start in 5 years &amp; take 10 orbital synchronizations</p>
+<p class="small">25 March 2019 · 27,750 likes · one of 78 posts on the tweet wall, /tweets</p>
+</div>
+<aside>Seventy-eight posts about 2050, word for word. This one is from 2019. Five years later was 2024. Make your own call on how it is going.</aside>
+</section>
+<section id="futurists" class="dark" data-transition="fade">
+<div class="head">
+<p class="eyebrow in">Inspiration 5 of 6</p>
+<h2 class="h in" style="--i:1">Futurists on 2050</h2>
+</div>
+<div style="display:flex; flex-direction:column; gap:24px">
+<div class="avs fadein" style="--i:2">
+<img class="av" src="../assets/av-vkhosla.jpg" alt="Vinod Khosla">
+<img class="av" src="../assets/av-elonmusk.jpg" alt="Elon Musk">
+<img class="av" src="../assets/av-peterdiamandis.jpg" alt="Peter H. Diamandis">
+<img class="av" src="../assets/av-kevin2kelly.jpg" alt="Kevin Kelly">
+<img class="av" src="../assets/av-ramez.jpg" alt="Ramez Naam">
+<img class="av" src="../assets/av-balajis.jpg" alt="Balaji Srinivasan">
+<img class="av" src="../assets/av-noahpinion.jpg" alt="Noah Smith">
+<img class="av" src="../assets/av-harari_yuval.jpg" alt="Yuval Noah Harari">
+<img class="av" src="../assets/av-naval.jpg" alt="Naval Ravikant">
+<img class="av" src="../assets/av-dkokotajlo.jpg" alt="Daniel Kokotajlo">
+<img class="av" src="../assets/av-hannahritchie.jpg" alt="Hannah Ritchie">
+<img class="av" src="../assets/av-futuryst.jpg" alt="Stuart Candy">
+</div>
+<p class="small fadein" style="--i:3">Vinod Khosla · Elon Musk · Peter H. Diamandis · Kevin Kelly · Ramez Naam · Balaji Srinivasan · Noah Smith · Yuval Noah Harari · Naval · Daniel Kokotajlo · Hannah Ritchie · Stuart Candy</p>
+</div>
+<div style="display:flex; flex-direction:column; gap:16px">
+<p class="eyebrow in" style="--i:4">Where at least three of the twelve agree</p>
+<div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:24px">
+<div class="card in" style="--i:5"><p class="body strong">Strong AI arrives before 2050</p></div>
+<div class="card in" style="--i:6"><p class="body strong">Energy moves off fossil fuels</p></div>
+<div class="card in" style="--i:7"><p class="body strong">The world gets older</p></div>
+<div class="card in" style="--i:8"><p class="body strong">Climate damage can be limited, under conditions</p></div>
+</div>
+</div>
+<aside>Twelve futurists and technologists, forty-three quotes about 2050 from their own posts. Four views come up in at least three of them. The full page is at /futurists.</aside>
+</section>
+<section id="concept" class="dark" data-transition="fade" style="gap:40px">
+<div class="head">
+<p class="eyebrow in">Inspiration 6 of 6</p>
+<h2 class="h in" style="--i:1">2050 futuristic concept ideas</h2>
+</div>
+<div class="art">
+<img class="in" style="--i:2" src="../assets/art-1.jpg" alt="Syd Mead: a rainy city street at night with glowing towers">
+<img class="in" style="--i:3" src="../assets/art-2.jpg" alt="Inside a ring-shaped space colony with a river and terraced homes, 1982">
+<img class="in" style="--i:4" src="../assets/art-3.jpg" alt="Andrei Sokolov: two people inside a lunar cosmodrome looking at a rocket, 1973">
+<img class="in" style="--i:5" src="../assets/art-4.jpg" alt="BIG: a floating city of hexagonal islands seen from above">
+<img class="in" style="--i:6" src="../assets/art-5.jpg" alt="Uzoma Dunkwu: Afrofuturist fashion character sketch">
+<img class="in" style="--i:7" src="../assets/art-6.jpg" alt="Simon Roy: a domed arcology among green fields">
+</div>
+<p class="small in" style="--i:8">Syd Mead · space colony via 70s Sci-Fi Art · Andrei Sokolov · BIG · Uzoma Dunkwu · Simon Roy. Six of 377 pictures from X · /art</p>
+<aside>Three hundred seventy-seven pictures of the future from concept artists on X: cities, colonies, vehicles, people. Use them for ideas tonight. The wall is at /art.</aside>
+</section>
+<section id="tonight" class="dark" data-transition="fade">
+<p class="eyebrow in">Tonight at the party</p>
+<div class="poster">
+<p class="h in" style="--i:1">NFC game <span class="orange">·</span></p>
+<p class="h in" style="--i:2">Contact 2050 soundboard <span class="orange">·</span></p>
+<p class="h in" style="--i:3">Visual effect camera <span class="orange">·</span></p>
+<p class="h in" style="--i:4">Tea ceremony <span class="orange">·</span></p>
+<p class="h in" style="--i:5">Miracle berries <span class="orange">·</span></p>
+<p class="h in" style="--i:6">Dumplings <span class="orange">·</span></p>
+<p class="h in" style="--i:7">Robot <span class="orange">·</span></p>
+<p class="h in" style="--i:8">Mini-printer <span class="orange">·</span></p>
+<p class="h in" style="--i:9">3D glasses <span class="orange">·</span></p>
+<p class="h in" style="--i:10">Diffraction glasses</p>
+</div>
+<p class="serif in" style="--i:11"><i>Try every one of them tonight.</i></p>
+<aside>Here is everything we have at the party tonight. The next slides show each one with a small demo.</aside>
+</section>
+<section id="soundboard" class="dark" data-transition="fade">
+<div class="head">
+<p class="eyebrow in">Station 1 of 9</p>
+<h2 class="h in" style="--i:1">Contact 2050: play with fruits</h2>
+</div>
+<div class="row">
+<div class="col">
+<p class="body in" style="--i:2">Fruit is wired into a Makey Makey. Hold EARTH, touch a fruit, and it plays.</p>
+<p class="body in" style="--i:3">Eight kits, from Liftoff to Magic Keys. Jam mode keeps everyone in time and in key.</p>
+<p class="small in" style="--i:4">/soundboard · Enter for stage mode</p>
+</div>
+<img class="shot in" style="--i:2; width:1080px; height:608px; object-fit:cover" src="../assets/soundboard.jpg" alt="The Contact 2050 soundboard: twelve pads such as Air Horn, Laser Sword, UFO and Warp Drive over a dark sky with a planet rim">
+</div>
+<aside>Demo: hold the earth wire, touch a lemon, then an orange. Switch to Rave 2050 and play two fruits at once. Jam mode keeps it on the beat, so nobody can play it wrong.</aside>
+</section>
+<section id="mirror" class="dark" data-transition="fade">
+<div class="head">
+<p class="eyebrow in">Station 2 of 9</p>
+<h2 class="h in" style="--i:1">Visual effect camera: Mirror 2050</h2>
+</div>
+<img class="shot in" style="--i:2; width:1664px; height:469px; object-fit:cover" src="../assets/mirror-effects.jpg" alt="Eight camera effects: rainbow glass hands, a particle swarm that writes HELLO, a hologram cube, a portal, glass panels, a time ripple, falling glyphs and a cloak">
+<p class="body in" style="--i:3; width:1500px">Stand in front of the camera and use your hands: liquid air, a particle swarm, a hologram cube, portals and four more effects that went viral on X.</p>
+<aside>Demo: open /mirror/ and wave. Keys 1 to 8 switch effects, A starts party mode, S saves a picture for the mini-printer. The preview frames come from the original posts on X.</aside>
+</section>
+<section id="tea" class="paper" data-transition="fade">
+<div class="head">
+<p class="eyebrow in">Station 3 of 9</p>
+<h2 class="h in" style="--i:1">Tea ceremony</h2>
+</div>
+<div class="teas">
+<div class="tea in" style="--i:2"><div class="swatch" style="background:#B8863B"></div><p class="tea-name">Adaptogen tea</p><p class="tea-what">Anti-stress</p></div>
+<div class="tea in" style="--i:3"><div class="swatch" style="background:#C8242F"></div><p class="tea-name">Red tea</p><p class="tea-what">Lychee, pineapple and hibiscus</p></div>
+<div class="tea in" style="--i:4"><div class="swatch" style="background:#2E4FD8"></div><p class="tea-name">Blue tea</p><p class="tea-what">Butterfly pea flower</p></div>
+<div class="tea in" style="--i:5"><div class="swatch" style="background:#8A3FC4"></div><p class="tea-name">Purple tea</p><p class="tea-what">Add lemon to the blue tea and see the magic</p></div>
+<div class="tea in" style="--i:6"><div class="swatch" style="background:#EADFA6"></div><p class="tea-name">Jasmine tea</p><p class="tea-what">Jasmine flowers</p></div>
+<div class="tea in" style="--i:7"><div class="swatch" style="background:#5E7D3A"></div><p class="tea-name">Gymnema leaf</p><p class="tea-what">After this tea you can’t taste sugar for 30–60 minutes</p></div>
+<div class="tea in" style="--i:8"><div class="swatch" style="background:#5A3A24"></div><p class="tea-name">Dandy tea</p><p class="tea-what">Looks and tastes like coffee, with no caffeine</p></div>
+</div>
+<aside>Seven teas. Adaptogen against stress. Red: lychee, pineapple, hibiscus. Blue: butterfly pea. Purple is the blue one with lemon, next slide. Jasmine. Gymnema: after it you can't taste sugar for half an hour to an hour. Dandy tea looks and tastes like coffee but has no caffeine.</aside>
+</section>
+<section id="purple" class="dark" data-transition="fade">
+<div class="head">
+<p class="eyebrow in">Tea ceremony · Mini demo</p>
+<h2 class="h in" style="--i:1">Blue tea + lemon = purple</h2>
+</div>
+<div class="row">
+<div class="col">
+<p class="body in" style="--i:2">Blue tea is butterfly pea flower. It changes colour with acid.</p>
+<p class="body strong in" style="--i:3">Add lemon and watch.</p>
+<p class="serif orange fragment slow" data-fragment-index="1"><i>Purple.</i></p>
+</div>
+<div class="stage" style="height:600px">
+<div class="disc disc-blue" style="position:absolute; left:250px; top:20px; width:560px; height:560px; box-sizing:border-box"></div>
+<div class="disc disc-purple fragment slow" data-fragment-index="1" style="position:absolute; left:250px; top:20px; width:560px; height:560px; box-sizing:border-box"></div>
+</div>
+</div>
+<aside>Demo: pour the blue tea in a clear glass. Squeeze in lemon, then click: the cup on screen turns purple with the real one.</aside>
+</section>
+<section id="berries" class="dark" data-transition="fade">
+<div class="head">
+<p class="eyebrow in">Station 4 of 9</p>
+<h2 class="h in" style="--i:1">Miracle berries</h2>
+</div>
+<div class="row">
+<div class="col">
+<p class="body in" style="--i:2">Let a berry melt on your tongue, then bite into a lemon.</p>
+<p class="body strong in" style="--i:3">The lemon tastes sweet.</p>
+</div>
+<div class="stage" style="height:600px">
+<p class="mega lemon" style="position:absolute; left:0; top:0; width:1080px">Sour</p>
+<div class="strike fragment" data-fragment-index="1" style="position:absolute; left:-16px; top:128px; width:560px; height:20px"></div>
+<p class="mega orange fragment slow" data-fragment-index="1" style="position:absolute; left:0; top:304px; width:1080px">Sweet</p>
+</div>
+</div>
+<aside>Demo: give one person a berry, wait a minute, hand them a lemon slice. Click when they bite: sour is crossed out and sweet comes up.</aside>
+</section>
+<section id="food" class="dark center" data-transition="fade">
+<p class="eyebrow in">Station 5 of 9 · Food</p>
+<p class="mega in" style="--i:1">Dumplings</p>
+<p class="serif in" style="--i:2"><i>Fuel for the future.</i></p>
+<aside>Food tonight: dumplings.</aside>
+</section>
+<section id="robot" class="dark center" data-transition="fade">
+<p class="eyebrow in">Station 6 of 9 · Robot</p>
+<p class="serif-xl in" style="--i:1; width:1500px">What’s a future with no robots?</p>
+<p class="body in" style="--i:2">We have one here tonight. Go say hi.</p>
+<aside>Bring the robot in front of the screen for this one.</aside>
+</section>
+<section id="printer" class="paper center" data-transition="fade">
+<p class="eyebrow in">Station 7 of 9 · Mini-printer</p>
+<p class="mega in" style="--i:1">Print it</p>
+<p class="serif in" style="--i:2; width:1300px"><i>A mini-printer for your pictures. Take a piece of 2050 home.</i></p>
+<aside>Demo: take a picture of someone here, print it on the spot, and hand it to them.</aside>
+</section>
+<section id="mars3d" class="dark" data-transition="fade">
+<img src="../assets/mars-3d.jpg" alt="Red-blue 3D anaglyph of raised rock ridges in Jezero Crater on Mars, seen from NASA’s Ingenuity helicopter" style="position:absolute; left:0; top:0; width:1920px; height:1080px; object-fit:cover">
+<div class="panel in" style="position:absolute; left:128px; top:128px; width:840px; box-sizing:border-box">
+<p class="eyebrow">Station 8 of 9 · 3D glasses</p>
+<p class="h anaglyph">Put on the glasses: Mars in 3D</p>
+<p class="body">Raised ridges in Jezero Crater, seen from NASA’s Ingenuity helicopter. More of Mars in 3D all night at /mars.</p>
+<p class="small">Red-blue anaglyph · NASA/JPL-Caltech</p>
+</div>
+<aside>Demo: hand out the red-blue glasses and keep this slide up. The rocks pop out of the screen. Then start Mars in 3D at /mars: real stereo pictures from the rovers and a 3D globe.</aside>
+</section>
+<section id="diffraction" class="dark" style="background:#040405" data-transition="fade">
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" style="position:absolute; left:0; top:0; width:1920px; height:1080px"><defs><filter id="halo" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="9"/></filter></defs><g fill="#FFFFFF" opacity=".55" filter="url(#halo)"><circle cx="160" cy="560" r="12"/><circle cx="254" cy="548" r="12"/><circle cx="348" cy="538" r="12"/><circle cx="442" cy="530" r="12"/><circle cx="536" cy="524" r="12"/><circle cx="630" cy="520" r="12"/><circle cx="724" cy="518" r="12"/><circle cx="818" cy="518" r="12"/><circle cx="912" cy="520" r="12"/><circle cx="1006" cy="524" r="12"/><circle cx="1100" cy="530" r="12"/><circle cx="1194" cy="538" r="12"/><circle cx="1288" cy="548" r="12"/><circle cx="1382" cy="560" r="12"/><circle cx="1476" cy="574" r="12"/><circle cx="1570" cy="590" r="12"/><circle cx="1664" cy="608" r="12"/><circle cx="1758" cy="628" r="12"/><circle cx="220" cy="760" r="18"/><circle cx="610" cy="720" r="20"/><circle cx="960" cy="790" r="24"/><circle cx="1290" cy="700" r="16"/><circle cx="1460" cy="850" r="20"/><circle cx="1780" cy="920" r="18"/></g><g fill="#FFFFFF"><circle cx="160" cy="560" r="6"/><circle cx="254" cy="548" r="6"/><circle cx="348" cy="538" r="6"/><circle cx="442" cy="530" r="6"/><circle cx="536" cy="524" r="6"/><circle cx="630" cy="520" r="6"/><circle cx="724" cy="518" r="6"/><circle cx="818" cy="518" r="6"/><circle cx="912" cy="520" r="6"/><circle cx="1006" cy="524" r="6"/><circle cx="1100" cy="530" r="6"/><circle cx="1194" cy="538" r="6"/><circle cx="1288" cy="548" r="6"/><circle cx="1382" cy="560" r="6"/><circle cx="1476" cy="574" r="6"/><circle cx="1570" cy="590" r="6"/><circle cx="1664" cy="608" r="6"/><circle cx="1758" cy="628" r="6"/><circle cx="220" cy="760" r="10"/><circle cx="420" cy="880" r="6"/><circle cx="610" cy="720" r="12"/><circle cx="790" cy="930" r="8"/><circle cx="960" cy="790" r="14"/><circle cx="1130" cy="900" r="7"/><circle cx="1290" cy="700" r="9"/><circle cx="1460" cy="850" r="12"/><circle cx="1640" cy="760" r="6"/><circle cx="1780" cy="920" r="10"/><circle cx="330" cy="960" r="8"/><circle cx="1020" cy="980" r="6"/><circle cx="1560" cy="980" r="8"/><circle cx="700" cy="830" r="5"/><circle cx="1220" cy="820" r="5"/><circle cx="1380" cy="960" r="6"/><circle cx="500" cy="700" r="6"/><circle cx="880" cy="660" r="7"/></g></svg>
+<div class="head">
+<p class="eyebrow in">Station 9 of 9</p>
+<h2 class="h in" style="--i:1">Diffraction glasses</h2>
+</div>
+<p class="body in" style="--i:2; width:1100px">Put them on and look at the dots. Every point of light turns into a rainbow.</p>
+<aside>Demo: hand out the diffraction glasses, dim the room and leave this slide up. Every white dot on the screen splits into rainbows. Then look at the lights in the room.</aside>
+</section>
+<section id="predict" class="dark" data-transition="fade">
+<div class="head">
+<p class="eyebrow in">Predicting the future</p>
+<h2 class="h in" style="--i:1">We can predict the future</h2>
+</div>
+<div class="row">
+<div class="col">
+<p class="body in" style="--i:2">Naval on X, 25 September 2018.</p>
+<p class="serif in" style="--i:3"><i>Read it again in 2026.</i></p>
+</div>
+<img class="shot in" style="--i:2; width:1000px; height:600px; object-fit:contain; background:#000000" src="../assets/naval-2050.png" alt="Post by Naval, 25 September 2018: [In 2050] artificial intelligence can code software far better than humans. That’s like saying an AI can write fiction, create art, and think better than humans. An AI that can create better software is an AI that runs the world, which makes the entire article irrelevant.">
+</div>
+<aside>In 2018 Naval wrote that an AI that codes better than humans is an AI that runs the world. Eight years later, look at how we write software. Some people do see the future.</aside>
+</section>
+<section id="clarke" class="dark" data-transition="fade">
+<div class="head">
+<p class="eyebrow in">Predicting the future</p>
+<h2 class="h in" style="--i:1">Arthur C. Clarke</h2>
+</div>
+<div class="row">
+<div class="col">
+<p class="body in" style="--i:2">BBC Horizon, 1964. Clarke predicts working from anywhere and machines that think.</p>
+<p class="body strong in" style="--i:3"><a href="https://www.youtube.com/watch?v=YwELr8ir9qM&amp;t=61s" target="_blank" rel="noopener">Watch from 1:01 on YouTube</a></p>
+</div>
+<iframe class="shot in" style="--i:2; width:1080px; height:608px; background:#000000" data-src="https://www.youtube-nocookie.com/embed/YwELr8ir9qM?start=61&amp;rel=0" title="1964: Arthur C. Clarke predicts the future, BBC Horizon (BBC Archive on YouTube)" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+</div>
+<aside>Play the clip from one minute in. Clarke in 1964, sixty-two years ago, describing the world we live in now.</aside>
+</section>
+<section id="question" class="dark center" data-transition="fade">
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" style="position:absolute; left:0; top:0; width:1920px; height:1080px"><defs><filter id="glow2" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="22"/></filter><linearGradient id="planet2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#22110B"/><stop offset="0.06" stop-color="#0B0B0E"/><stop offset="1" stop-color="#070708"/></linearGradient></defs><g fill="#F2EFE8"><circle cx="120" cy="90" r="1.5" opacity=".5"/><circle cx="410" cy="60" r="2" opacity=".7"/><circle cx="690" cy="140" r="1.6" opacity=".6"/><circle cx="980" cy="70" r="1.4" opacity=".5"/><circle cx="1110" cy="190" r="2.2" opacity=".8"/><circle cx="1370" cy="110" r="1.5" opacity=".55"/><circle cx="1650" cy="80" r="1.8" opacity=".7"/><circle cx="1860" cy="360" r="1.4" opacity=".5"/><circle cx="70" cy="420" r="1.2" opacity=".4"/><circle cx="1790" cy="200" r="1" opacity=".4"/><circle cx="1820" cy="820" r="1.5" opacity=".55"/><circle cx="40" cy="880" r="1" opacity=".35"/><circle cx="1880" cy="600" r="1.2" opacity=".45"/><circle cx="60" cy="640" r="1.4" opacity=".5"/></g><circle cx="960" cy="3500" r="2600" fill="none" stroke="#FF5315" stroke-width="34" opacity=".5" filter="url(#glow2)"/><circle cx="960" cy="3500" r="2600" fill="url(#planet2)" stroke="#FF7A45" stroke-width="2"/></svg>
+<p class="eyebrow in">Question for the room</p>
+<p class="serif-xl in" style="--i:1; width:1600px">It’s a Tuesday in San Francisco in 2050. What would a teenager find absurd about something we do every day in 2026?</p>
+<aside>Talk to the people next to you. Find one thing we all do every day that a teenager in 2050 would laugh at. Then share the best ones with the room.</aside>
+</section>
+</main>
+<div id="notes" role="note" aria-live="polite"></div>
+<div id="hint">→ or click: next · ← back · F full screen · N notes</div>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const slides = Array.from(stage.children).filter(e => e.tagName === 'SECTION');
+  const notes = document.getElementById('notes');
+  const hint = document.getElementById('hint');
+  let cur = -1, step = 0;
+
+  // Fit the 1920×1080 canvas to the window
+  function fit() {
+    const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = 'translate(' + (innerWidth - 1920 * k) / 2 + 'px,' + (innerHeight - 1080 * k) / 2 + 'px) scale(' + k + ')';
+  }
+
+  // Click steps on a slide: fragments with data-fragment-index first (lowest first, one index = one click), then the rest in order
+  function groups(s) {
+    const all = Array.from(s.querySelectorAll('.fragment'));
+    const byIndex = new Map(), out = [];
+    all.filter(f => f.hasAttribute('data-fragment-index'))
+       .sort((a, b) => a.dataset.fragmentIndex - b.dataset.fragmentIndex)
+       .forEach(f => { const k = f.dataset.fragmentIndex; if (!byIndex.has(k)) { byIndex.set(k, []); out.push(byIndex.get(k)); } byIndex.get(k).push(f); });
+    all.filter(f => !f.hasAttribute('data-fragment-index')).forEach(f => out.push([f]));
+    return out;
+  }
+  function setStep(n) {
+    const g = groups(slides[cur]);
+    step = Math.max(0, Math.min(n, g.length));
+    g.forEach((grp, i) => grp.forEach(f => { f.classList.toggle('visible', i < step); f.classList.toggle('current-fragment', i === step - 1); }));
+  }
+
+  // The show reel clip loops its first seconds; YouTube loads only on its slide and stops when you leave it
+  document.querySelectorAll('video[data-clip]').forEach(v => {
+    const [a, b] = v.dataset.clip.split(',').map(Number);
+    v.addEventListener('timeupdate', () => { if (v.currentTime >= b) v.currentTime = a; });
+  });
+  // A number marked .n counts up from 0 when its slide arrives (Slides does this with @property; a browser needs a nudge)
+  function countUp(el) {
+    const end = Number(el.dataset.n || (el.dataset.n = el.textContent.trim()));
+    if (!Number.isFinite(end)) return;
+    const t0 = performance.now(), dur = 1600;
+    const tick = t => { const p = Math.min(1, (t - t0) / dur); el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))); if (p < 1 && el.closest('section.on')) requestAnimationFrame(tick); else el.textContent = end; };
+    requestAnimationFrame(tick);
+  }
+  function media(s, on) {
+    if (on) s.querySelectorAll('.n').forEach(countUp);
+    s.querySelectorAll('video').forEach(v => {
+      if (on) { if (v.dataset.clip) v.currentTime = Number(v.dataset.clip.split(',')[0]); v.play().catch(() => {}); }
+      else v.pause();
+    });
+    s.querySelectorAll('iframe[data-src]').forEach(f => {
+      if (on) { if (f.getAttribute('src') !== f.dataset.src) f.setAttribute('src', f.dataset.src); }
+      else if (f.hasAttribute('src')) f.setAttribute('src', 'about:blank');
+    });
+  }
+
+  function writeNotes() {
+    const a = slides[cur].querySelector('aside');
+    notes.innerHTML = '<b>Slide ' + (cur + 1) + ' of ' + slides.length + '</b>';
+    notes.appendChild(document.createTextNode(a ? a.textContent.trim() : 'No notes on this slide.'));
+  }
+
+  function show(i, atEnd) {
+    i = Math.max(0, Math.min(i, slides.length - 1));
+    if (i !== cur) {
+      if (cur >= 0) { slides[cur].classList.remove('on'); media(slides[cur], false); }
+      cur = i;
+      slides[cur].classList.add('on');
+      media(slides[cur], true);
+    }
+    setStep(atEnd ? Infinity : 0);
+    const h = '#' + (cur + 1);
+    if (location.hash !== h) history.replaceState(null, '', h);
+    writeNotes();
+  }
+  function next() { if (step < groups(slides[cur]).length) setStep(step + 1); else if (cur < slides.length - 1) show(cur + 1); }
+  function prev() { if (step > 0) setStep(step - 1); else if (cur > 0) show(cur - 1, true); }
+
+  // #12 opens slide 12, #tonight opens the slide with that id
+  function fromHash() {
+    const h = decodeURIComponent(location.hash.slice(1));
+    if (/^\d+$/.test(h)) return Number(h) - 1;
+    const m = /^slide-(\d+)$/.exec(h);
+    if (m) return Number(m[1]) - 1;
+    const i = slides.findIndex(s => s.id === h);
+    return i < 0 ? 0 : i;
+  }
+
+  function fullscreen() {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen().catch(() => {});
+  }
+
+  addEventListener('keydown', e => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const k = e.key;
+    if (['ArrowRight', 'ArrowDown', 'PageDown', ' ', 'Enter'].includes(k)) { e.preventDefault(); next(); }
+    else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(k)) { e.preventDefault(); prev(); }
+    else if (k === 'Home') show(0);
+    else if (k === 'End') show(slides.length - 1, true);
+    else if (k === 'f' || k === 'F') fullscreen();
+    else if (k === 'n' || k === 'N') notes.classList.toggle('show');
+    else return;
+    hint.classList.add('gone');
+  });
+  // Click: left third goes back, the rest goes forward. Links, videos and the YouTube player keep their own clicks.
+  addEventListener('click', e => {
+    if (e.button !== 0 || e.target.closest('a,iframe,video,#notes')) return;
+    if (e.clientX < innerWidth / 3) prev(); else next();
+    hint.classList.add('gone');
+  });
+  let tx = null, ty = null;
+  addEventListener('touchstart', e => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, {passive: true});
+  addEventListener('touchend', e => {
+    if (tx === null) return;
+    const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+    tx = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) { dx < 0 ? next() : prev(); hint.classList.add('gone'); }
+  }, {passive: true});
+  addEventListener('hashchange', () => { const i = fromHash(); if (i !== cur) show(i); });
+  addEventListener('resize', fit);
+  let idle;
+  addEventListener('mousemove', () => { document.body.classList.remove('idle'); clearTimeout(idle); idle = setTimeout(() => document.body.classList.add('idle'), 2500); });
+
+  fit();
+  show(fromHash());
+  setTimeout(() => hint.classList.add('gone'), 4000);
+})();
+</script>
+</body>
+</html>

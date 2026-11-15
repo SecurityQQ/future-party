@@ -34,8 +34,9 @@ MEDIA = "video/dist/media"
 ASSETS = (["mirror/preview.jpg", "vibes/assets/chrome-orbit.webp", "mars3d/slides.js", "mars3d/preview.jpg"]
           + B.load("wall/dist/manifest.json")["files"])
 # Folders the pages load from: the Imagined Futures pictures (concept-art/images/, the originals, stay off the site)
-# and Mars in 3D's pictures, globe maps and three.js (mars3d/raw/, the originals, stay off the site)
-ASSET_DIRS = ["concept-art/thumbs", "mars3d/img", "mars3d/globe", "mars3d/vendor"]
+# and Mars in 3D's pictures, globe maps and three.js (mars3d/raw/, the originals, stay off the site),
+# and the party slides' pictures
+ASSET_DIRS = ["concept-art/thumbs", "mars3d/img", "mars3d/globe", "mars3d/vendor", "slides/assets"]
 SHELL = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
          '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
          '<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>\n')
