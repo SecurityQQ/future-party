@@ -1,0 +1,1644 @@
+{
+ "blocks": [
+  {
+   "id": "machines",
+   "title": "Machines",
+   "sub": "When strong AI arrives, what it does to work, and whether we survive it",
+   "color": "#ff5315"
+  },
+  {
+   "id": "planet",
+   "title": "Planet",
+   "sub": "Energy, nuclear, climate, food and water",
+   "color": "#2fbf71"
+  },
+  {
+   "id": "people",
+   "title": "People",
+   "sub": "How many of us, how long we live, where we move and what for",
+   "color": "#f2b134"
+  },
+  {
+   "id": "power",
+   "title": "Power",
+   "sub": "Countries, war, democracy and money",
+   "color": "#8b7cff"
+  },
+  {
+   "id": "beyond",
+   "title": "Beyond",
+   "sub": "Getting around the planet and leaving it",
+   "color": "#3aa0ff"
+  }
+ ],
+ "topics": [
+  {
+   "id": "topic-ai",
+   "title": "AI and work",
+   "group": "main",
+   "block": "machines"
+  },
+  {
+   "id": "topic-energy",
+   "title": "Energy",
+   "group": "main",
+   "block": "planet"
+  },
+  {
+   "id": "topic-population",
+   "title": "Population, ageing and cities",
+   "group": "main",
+   "block": "people"
+  },
+  {
+   "id": "topic-climate",
+   "title": "Climate, food and nature",
+   "group": "main",
+   "block": "planet"
+  },
+  {
+   "id": "topic-transport",
+   "title": "Transport and space",
+   "group": "main",
+   "block": "beyond"
+  },
+  {
+   "id": "topic-health",
+   "title": "Health and education",
+   "group": "main",
+   "block": "people"
+  },
+  {
+   "id": "topic-economy",
+   "title": "Economy and abundance",
+   "group": "main",
+   "block": "power"
+  },
+  {
+   "id": "topic-society",
+   "title": "Web, media and society",
+   "group": "main",
+   "block": "power"
+  },
+  {
+   "id": "gap-0",
+   "title": "Fertility and birth rates",
+   "group": "missing",
+   "block": "people"
+  },
+  {
+   "id": "gap-1",
+   "title": "Geopolitics: China, India, Africa",
+   "group": "missing",
+   "block": "power"
+  },
+  {
+   "id": "gap-2",
+   "title": "Migration and climate refugees",
+   "group": "missing",
+   "block": "people"
+  },
+  {
+   "id": "gap-3",
+   "title": "Money and crypto",
+   "group": "missing",
+   "block": "power"
+  },
+  {
+   "id": "gap-4",
+   "title": "AI risk and extinction",
+   "group": "missing",
+   "block": "machines"
+  },
+  {
+   "id": "gap-5",
+   "title": "Longevity and biotech",
+   "group": "missing",
+   "block": "people"
+  },
+  {
+   "id": "gap-6",
+   "title": "Nuclear fission",
+   "group": "missing",
+   "block": "planet"
+  },
+  {
+   "id": "gap-7",
+   "title": "War, peace and nuclear weapons",
+   "group": "missing",
+   "block": "power"
+  },
+  {
+   "id": "gap-8",
+   "title": "Democracy and governance",
+   "group": "missing",
+   "block": "power"
+  },
+  {
+   "id": "gap-9",
+   "title": "Inequality and basic income",
+   "group": "missing",
+   "block": "power"
+  },
+  {
+   "id": "gap-10",
+   "title": "Pandemics and biosecurity",
+   "group": "missing",
+   "block": "people"
+  },
+  {
+   "id": "gap-11",
+   "title": "Water",
+   "group": "missing",
+   "block": "planet"
+  },
+  {
+   "id": "gap-12",
+   "title": "Space beyond Mars",
+   "group": "missing",
+   "block": "beyond"
+  },
+  {
+   "id": "gap-13",
+   "title": "Status of women",
+   "group": "missing",
+   "block": "people"
+  },
+  {
+   "id": "gap-14",
+   "title": "Meaning and purpose",
+   "group": "missing",
+   "block": "people"
+  },
+  {
+   "id": "gap-15",
+   "title": "Housing",
+   "group": "missing",
+   "block": "people"
+  }
+ ],
+ "types": {
+  "own": "Own forecast",
+  "cond": "Conditional or goal",
+  "cite": "Cites others"
+ },
+ "authors": {
+  "vkhosla": {
+   "h": "vkhosla",
+   "name": "Vinod Khosla",
+   "role": "Venture investor, Khosla Ventures",
+   "core": true,
+   "followers": 780701
+  },
+  "ramez": {
+   "h": "ramez",
+   "name": "Ramez Naam",
+   "role": "Clean energy investor and author",
+   "core": true,
+   "followers": 62645
+  },
+  "peterdiamandis": {
+   "h": "PeterDiamandis",
+   "name": "Peter H. Diamandis",
+   "role": "Executive chairman, XPRIZE",
+   "core": true,
+   "followers": 423267
+  },
+  "elonmusk": {
+   "h": "elonmusk",
+   "name": "Elon Musk",
+   "role": "CEO of Tesla and SpaceX",
+   "core": true,
+   "followers": 241039468
+  },
+  "_hannahritchie": {
+   "h": "_HannahRitchie",
+   "name": "Hannah Ritchie",
+   "role": "Deputy editor, Our World in Data",
+   "core": true,
+   "followers": 79084
+  },
+  "dkokotajlo": {
+   "h": "DKokotajlo",
+   "name": "Daniel Kokotajlo",
+   "role": "AI forecaster, AI Futures Project",
+   "core": true,
+   "followers": 60229
+  },
+  "naval": {
+   "h": "naval",
+   "name": "Naval Ravikant",
+   "role": "Investor, AngelList co-founder",
+   "core": true,
+   "followers": 4158755
+  },
+  "kevin2kelly": {
+   "h": "kevin2kelly",
+   "name": "Kevin Kelly",
+   "role": "Senior Maverick at Wired, author of The Inevitable",
+   "core": true,
+   "followers": 137017
+  },
+  "balajis": {
+   "h": "balajis",
+   "name": "Balaji Srinivasan",
+   "role": "Author of The Network State",
+   "core": true,
+   "followers": 2267775
+  },
+  "noahpinion": {
+   "h": "Noahpinion",
+   "name": "Noah Smith",
+   "role": "Economics writer, Noahpinion",
+   "core": true,
+   "followers": 956877
+  },
+  "harari_yuval": {
+   "h": "harari_yuval",
+   "name": "Yuval Noah Harari",
+   "role": "Historian, author of Sapiens",
+   "core": true,
+   "followers": 664514
+  },
+  "futuryst": {
+   "h": "futuryst",
+   "name": "Stuart Candy",
+   "role": "Experiential futurist",
+   "core": true,
+   "followers": 11271
+  },
+  "jesusferna7026": {
+   "h": "JesusFerna7026",
+   "name": "Jesús Fernández-Villaverde",
+   "role": "Economics professor, University of Pennsylvania",
+   "core": false,
+   "followers": 88082
+  },
+  "peterzeihan": {
+   "h": "PeterZeihan",
+   "name": "Peter Zeihan",
+   "role": "Geopolitical strategist and author",
+   "core": false,
+   "followers": 304402
+  },
+  "brettking": {
+   "h": "BrettKing",
+   "name": "Brett King",
+   "role": "Author, founder of The Futurists podcast",
+   "core": false,
+   "followers": 70317
+  },
+  "lymanstoneky": {
+   "h": "lymanstoneky",
+   "name": "Lyman Stone",
+   "role": "Demographer, Institute for Family Studies",
+   "core": false,
+   "followers": 41221
+  },
+  "ianbremmer": {
+   "h": "ianbremmer",
+   "name": "Ian Bremmer",
+   "role": "Political scientist, Eurasia Group",
+   "core": false,
+   "followers": 1484622
+  },
+  "matthew_sigel": {
+   "h": "matthew_sigel",
+   "name": "Matthew Sigel",
+   "role": "Head of digital assets research, VanEck",
+   "core": false,
+   "followers": 67152
+  },
+  "lynaldencontact": {
+   "h": "LynAldenContact",
+   "name": "Lyn Alden",
+   "role": "Investor, author of Broken Money",
+   "core": false,
+   "followers": 1139467
+  },
+  "esyudkowsky": {
+   "h": "ESYudkowsky",
+   "name": "Eliezer Yudkowsky",
+   "role": "AI alignment researcher, MIRI",
+   "core": false,
+   "followers": 245058
+  },
+  "liron": {
+   "h": "liron",
+   "name": "Liron Shapira",
+   "role": "Host of Doom Debates",
+   "core": false,
+   "followers": 41187
+  },
+  "robbensinger": {
+   "h": "robbensinger",
+   "name": "Rob Bensinger",
+   "role": "Machine Intelligence Research Institute",
+   "core": false,
+   "followers": 20793
+  },
+  "gleonhard": {
+   "h": "gleonhard",
+   "name": "Gerd Leonhard",
+   "role": "Futurist, author of Technology vs. Humanity",
+   "core": false,
+   "followers": 44862
+  },
+  "deryatr_": {
+   "h": "DeryaTR_",
+   "name": "Derya Unutmaz",
+   "role": "Immunologist and biomedical engineer",
+   "core": false,
+   "followers": 344991
+  },
+  "dwarkesh_sp": {
+   "h": "dwarkesh_sp",
+   "name": "Dwarkesh Patel",
+   "role": "Host of the Dwarkesh Podcast",
+   "core": false,
+   "followers": 286400
+  },
+  "energybants": {
+   "h": "energybants",
+   "name": "Mark Nelson",
+   "role": "Nuclear energy, The Nuclear Company",
+   "core": false,
+   "followers": 90344
+  },
+  "briangitt": {
+   "h": "BrianGitt",
+   "name": "Brian Gitt",
+   "role": "Writes on energy, AI and development",
+   "core": false,
+   "followers": 36900
+  },
+  "ben_j_todd": {
+   "h": "ben_j_todd",
+   "name": "Benjamin Todd",
+   "role": "Founder of 80,000 Hours",
+   "core": false,
+   "followers": 20916
+  },
+  "robert_zubrin": {
+   "h": "robert_zubrin",
+   "name": "Robert Zubrin",
+   "role": "Aerospace engineer, space exploration author",
+   "core": false,
+   "followers": 24605
+  },
+  "umairh": {
+   "h": "umairh",
+   "name": "Umair Haque",
+   "role": "Author and essayist",
+   "core": false,
+   "followers": 210711
+  },
+  "marek_rosa": {
+   "h": "marek_rosa",
+   "name": "Marek Rosa",
+   "role": "CEO of GoodAI and Keen Software House",
+   "core": false,
+   "followers": 12326
+  },
+  "scottsantens": {
+   "h": "scottsantens",
+   "name": "Scott Santens",
+   "role": "Universal basic income researcher",
+   "core": false,
+   "followers": 143424
+  },
+  "erictopol": {
+   "h": "EricTopol",
+   "name": "Eric Topol",
+   "role": "Physician-scientist and author",
+   "core": false,
+   "followers": 832846
+  },
+  "profstrachan": {
+   "h": "ProfStrachan",
+   "name": "Peter Strachan",
+   "role": "Professor, energy and climate policy",
+   "core": false,
+   "followers": 24219
+  },
+  "andiwagner": {
+   "h": "andiwagner",
+   "name": "Andreas Wagner",
+   "role": "Chemical industry decarbonisation, Radical Dot",
+   "core": false,
+   "followers": 626
+  },
+  "nextbigfuture": {
+   "h": "nextbigfuture",
+   "name": "Brian Wang",
+   "role": "Deep tech writer, NextBigFuture",
+   "core": false,
+   "followers": 21919
+  },
+  "drcraigemerson": {
+   "h": "DrCraigEmerson",
+   "name": "Craig Emerson",
+   "role": "Economist, former Australian trade minister",
+   "core": false,
+   "followers": 51486
+  },
+  "thomasfrey": {
+   "h": "ThomasFrey",
+   "name": "Thomas Frey",
+   "role": "Futurist speaker, DaVinci Institute",
+   "core": false,
+   "followers": 16186
+  },
+  "theelongwave": {
+   "h": "TheELongWave",
+   "name": "Joseph E. Barbuto",
+   "role": "Fund manager, economic long waves",
+   "core": false,
+   "followers": 18809
+  }
+ },
+ "tweets": [
+  {
+   "id": "2008225808637374847",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-economy",
+   "type": "own",
+   "text": "Here are my predictions for 2050 (the world we can create) two years ago at TED and at our CEO conference:",
+   "replyTo": [],
+   "date": "5 Jan 2026",
+   "iso": "2026-01-05",
+   "likes": 1106,
+   "views": 265170,
+   "note": "Opening tweet of a thread posted on 5 January 2026. The predictions follow as #1 to #14 and appear under their topics."
+  },
+  {
+   "id": "2008225810071875924",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-health",
+   "type": "own",
+   "text": "#1: Expertise will be near free: We will be capable of having near free AI doctors for every person & AI tutors for every child, 24x7",
+   "replyTo": [],
+   "date": "5 Jan 2026",
+   "iso": "2026-01-05",
+   "likes": 207,
+   "views": 30383,
+   "note": "Part of Khosla’s thread that opens “Here are my predictions for 2050”, posted 5 Jan 2026.",
+   "thread": "2008225808637374847"
+  },
+  {
+   "id": "2008225811414007865",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-ai",
+   "type": "own",
+   "text": "#2: Labor will be near free: We will have a billion bipedal (and other) robots freeing humans from the servitude of undesirable jobs",
+   "replyTo": [],
+   "date": "5 Jan 2026",
+   "iso": "2026-01-05",
+   "likes": 150,
+   "views": 27006,
+   "note": "Part of Khosla’s thread that opens “Here are my predictions for 2050”, posted 5 Jan 2026.",
+   "thread": "2008225808637374847"
+  },
+  {
+   "id": "2008225812693311533",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-ai",
+   "type": "own",
+   "text": "#3: Computer use will grow expansively: here will be a billion+ programmers all “programming” in human language, dramatically increasing the scope of computers. Computers will adapt to humans, not humans to computers",
+   "replyTo": [],
+   "date": "5 Jan 2026",
+   "iso": "2026-01-05",
+   "likes": 132,
+   "views": 23855,
+   "note": "Part of Khosla’s thread that opens “Here are my predictions for 2050”, posted 5 Jan 2026.",
+   "thread": "2008225808637374847"
+  },
+  {
+   "id": "2008225814127772024",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-society",
+   "type": "own",
+   "text": "#4: AI will play a large role in entertainment & design: Music and entertainment will be plentiful & personalized for you & your mood! Diversity of content & creativity will increase The celebrity-fan relationship won’t change",
+   "replyTo": [],
+   "date": "5 Jan 2026",
+   "iso": "2026-01-05",
+   "likes": 97,
+   "views": 21248,
+   "note": "Part of Khosla’s thread that opens “Here are my predictions for 2050”, posted 5 Jan 2026.",
+   "thread": "2008225808637374847"
+  },
+  {
+   "id": "2008225815520309718",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-ai",
+   "type": "own",
+   "text": "#5: Scientists will be supercharged: AI scientists, working alone or with humans, will become super scientists, able to 10x or 100x their capability, creativity, and volume of research",
+   "replyTo": [],
+   "date": "5 Jan 2026",
+   "iso": "2026-01-05",
+   "likes": 111,
+   "views": 23165,
+   "note": "Part of Khosla’s thread that opens “Here are my predictions for 2050”, posted 5 Jan 2026.",
+   "thread": "2008225808637374847"
+  },
+  {
+   "id": "2008225817030250946",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-ai",
+   "type": "own",
+   "text": "#6: Internet access will be mostly by agents: Most consumer access of the internet will be agents acting for consumers doing tasks and fending off marketers and bots. Tens of billions of agents on the internet will be normal",
+   "replyTo": [],
+   "date": "5 Jan 2026",
+   "iso": "2026-01-05",
+   "likes": 102,
+   "views": 19379,
+   "note": "Part of Khosla’s thread that opens “Here are my predictions for 2050”, posted 5 Jan 2026.",
+   "thread": "2008225808637374847"
+  },
+  {
+   "id": "2008225818552750467",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-health",
+   "type": "own",
+   "text": "#7: From the practice to the science of medicine: We will be capable of providing precision care based on patients’ -omics, as well as AI models for each individual, enabling simulation of each body for therapeutics, dosages, etc",
+   "replyTo": [],
+   "date": "5 Jan 2026",
+   "iso": "2026-01-05",
+   "likes": 80,
+   "views": 18378,
+   "note": "Part of Khosla’s thread that opens “Here are my predictions for 2050”, posted 5 Jan 2026.",
+   "thread": "2008225808637374847"
+  },
+  {
+   "id": "2008225819987243296",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-climate",
+   "type": "own",
+   "text": "#8: We will have new food & fertilizers: We will have much better alternate protein production to replace traditional animal protein, & “green” fertilizer. And taste will far exceed that of traditional cows!",
+   "replyTo": [],
+   "date": "5 Jan 2026",
+   "iso": "2026-01-05",
+   "likes": 74,
+   "views": 17221,
+   "note": "Part of Khosla’s thread that opens “Here are my predictions for 2050”, posted 5 Jan 2026.",
+   "thread": "2008225808637374847"
+  },
+  {
+   "id": "2008225821459444160",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-economy",
+   "type": "own",
+   "text": "#9: Manufacturing and bio manufacturing: We will have text to product manufacturing capability enabling hyper-personalization and democratization Manufacturing and bio manufacturing will be intelligent",
+   "replyTo": [],
+   "date": "5 Jan 2026",
+   "iso": "2026-01-05",
+   "likes": 76,
+   "views": 17701,
+   "note": "Part of Khosla’s thread that opens “Here are my predictions for 2050”, posted 5 Jan 2026.",
+   "thread": "2008225808637374847"
+  },
+  {
+   "id": "2008225822751289796",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-transport",
+   "type": "cond",
+   "text": "#10: Cars could be displaced in cities: We could replace majority of cars in cities with personal autonomous transit as on-demand, affordable, public transit, increasing street throughput dramatically",
+   "replyTo": [],
+   "date": "5 Jan 2026",
+   "iso": "2026-01-05",
+   "likes": 73,
+   "views": 16993,
+   "note": "Part of Khosla’s thread that opens “Here are my predictions for 2050”, posted 5 Jan 2026.",
+   "thread": "2008225808637374847"
+  },
+  {
+   "id": "2008225824051429868",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-transport",
+   "type": "own",
+   "text": "#11: Flying will be faster: We will have Mach 5 planes that get us from NYC to London in 90 minutes – on sustainable aviation fuel, making the world closer!",
+   "replyTo": [],
+   "date": "5 Jan 2026",
+   "iso": "2026-01-05",
+   "likes": 73,
+   "views": 15637,
+   "note": "Part of Khosla’s thread that opens “Here are my predictions for 2050”, posted 5 Jan 2026.",
+   "thread": "2008225808637374847"
+  },
+  {
+   "id": "2008225825485975631",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-energy",
+   "type": "own",
+   "text": "#12: There will be clean, dispatchable electric power: By 2050, fusion boilers will retrofit and replace coal and natural gas boilers reducing the need to build whole new fusion plants. Superhot geothermal >400C is also a real alternative",
+   "replyTo": [],
+   "date": "5 Jan 2026",
+   "iso": "2026-01-05",
+   "likes": 59,
+   "views": 15123,
+   "note": ""
+  },
+  {
+   "id": "2008225827159441623",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-economy",
+   "type": "own",
+   "text": "#13: Resources will be plentiful: We will discover more natural resources than we consume & prove resource doomers wrong on lithium, cobalt, copper…",
+   "replyTo": [],
+   "date": "5 Jan 2026",
+   "iso": "2026-01-05",
+   "likes": 62,
+   "views": 15105,
+   "note": "Part of Khosla’s thread that opens “Here are my predictions for 2050”, posted 5 Jan 2026.",
+   "thread": "2008225808637374847"
+  },
+  {
+   "id": "2008225828476514788",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-climate",
+   "type": "cond",
+   "text": "#14: Carbon will have solutions … if we have time: Carbon emissions could be a smaller issue because entrepreneurs will develop & scale better technologies for cement, steel, agriculture, transportation, power production, DAC, etc",
+   "replyTo": [],
+   "date": "5 Jan 2026",
+   "iso": "2026-01-05",
+   "likes": 75,
+   "views": 20550,
+   "note": "Part of Khosla’s thread that opens “Here are my predictions for 2050”, posted 5 Jan 2026.",
+   "thread": "2008225808637374847"
+  },
+  {
+   "id": "1954370807553200168",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-economy",
+   "type": "own",
+   "text": "I hope to retire by 2050, health permitting! Hopefully the world will be better place thru technology benefiting humanity! Lowest income brackets will make more progress by then in lifestyle & resources than they have made from 1950 to today! Free healthcare, free education, free legal services so they can access their rights, cheaper food ....What we are working on today:\n[link] and\n[link]",
+   "replyTo": [],
+   "date": "10 Aug 2025",
+   "iso": "2025-08-10",
+   "likes": 782,
+   "views": 102147,
+   "note": ""
+  },
+  {
+   "id": "1593366144391315456",
+   "h": "ramez",
+   "group": "core",
+   "topic": "topic-energy",
+   "type": "own",
+   "text": "I was answering the question asked, which was more about global demand increase than the US.\n\nA more reasonable forecast is 2-3x global electricity demand by 2050, and ~5x by 2100.",
+   "replyTo": [
+    "@OrmeStephan",
+    "@GunjitSingh13",
+    "@cornoisseur"
+   ],
+   "date": "17 Nov 2022",
+   "iso": "2022-11-17",
+   "likes": 0,
+   "views": null,
+   "note": ""
+  },
+  {
+   "id": "1215612795447734273",
+   "h": "ramez",
+   "group": "core",
+   "topic": "topic-energy",
+   "type": "cite",
+   "text": "I do think we could see a new peak in the first half of this decade, a bit higher than 2013.\n\nI also expect a very meaningful global decline by 2040, inline with BNEF's forecast of 50% coal demand reduction by 2050.",
+   "replyTo": [
+    "@RichardMeyerDC"
+   ],
+   "date": "10 Jan 2020",
+   "iso": "2020-01-10",
+   "likes": 0,
+   "views": null,
+   "note": "BNEF is BloombergNEF."
+  },
+  {
+   "id": "1227900125248286720",
+   "h": "ramez",
+   "group": "core",
+   "topic": "topic-energy",
+   "type": "own",
+   "text": "Solar is already cheaper than most climate models think it will be by 2050. Great thread.",
+   "replyTo": [],
+   "date": "13 Feb 2020",
+   "iso": "2020-02-13",
+   "likes": 361,
+   "views": null,
+   "note": ""
+  },
+  {
+   "id": "1989361113046327793",
+   "h": "ramez",
+   "group": "core",
+   "topic": "topic-energy",
+   "type": "own",
+   "text": "The IEA isn't even trying any more. The CPS scenario is just silly. EVs stop growing outside China and Europe. Solar growth is (once again) pretty much flat through 2050. This is not a serious assessment. @skdh [link]",
+   "replyTo": [],
+   "date": "14 Nov 2025",
+   "iso": "2025-11-14",
+   "likes": 73,
+   "views": 16534,
+   "note": "CPS is the IEA's Current Policies Scenario."
+  },
+  {
+   "id": "1843758648067047496",
+   "h": "peterdiamandis",
+   "group": "core",
+   "topic": "topic-energy",
+   "type": "own",
+   "text": "At the speed at which we’re developing new energy projects, I agree with @sama that we won’t be burning many fossil fuels by 2050!",
+   "replyTo": [],
+   "date": "8 Oct 2024",
+   "iso": "2024-10-08",
+   "likes": 100,
+   "views": 7727,
+   "note": "@sama is Sam Altman."
+  },
+  {
+   "id": "1730320854796710179",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-energy",
+   "type": "cond",
+   "text": "Fusion is too consequential to not try. @CFS_energy is the case study on how to invest in tough tech – patience, risk mitigation, talent. Goal is to replace all coal and natural gas boilers with fusion “boilers” by 2050! By replacing instead of building new plants, very fast scaling is possible including >1000 per year in the US alone! Try & fail but don’t fail to try.",
+   "replyTo": [],
+   "date": "30 Nov 2023",
+   "iso": "2023-11-30",
+   "likes": 35,
+   "views": 10963,
+   "note": "",
+   "wall": [
+    "Fusion is too consequential to not try.",
+    "Goal is to replace all coal and natural gas boilers with fusion “boilers” by 2050! By replacing instead of building new plants, very fast scaling is possible including >1000 per year in the US alone!"
+   ]
+  },
+  {
+   "id": "1276221517932552192",
+   "h": "elonmusk",
+   "group": "core",
+   "topic": "topic-transport",
+   "type": "cond",
+   "text": "Exactly! A carbon tax is needed to correct the unpriced externality & market will do the rest. The consequences of slow action are serious. In my opinion, we need to convert >80% of the global road, sea & air fleet to renewables by 2050.",
+   "replyTo": [
+    "@flcnhvy",
+    "@Ford"
+   ],
+   "date": "25 Jun 2020",
+   "iso": "2020-06-25",
+   "likes": 3445,
+   "views": null,
+   "note": ""
+  },
+  {
+   "id": "1321098819627552768",
+   "h": "_hannahritchie",
+   "group": "core",
+   "topic": "topic-energy",
+   "type": "cite",
+   "text": "The @BloombergNEF Energy Outlook 2020 is out. This is how global electricity looks to 2050 in its transition scenario.\n\n→ Wind & solar PV increase from 9% to 56%\n→ Nuclear, hydro & other renewables supply 20%\n→ Fossil fuels supply 24%\n\n[link] [link]",
+   "replyTo": [],
+   "date": "27 Oct 2020",
+   "iso": "2020-10-27",
+   "likes": 22,
+   "views": null,
+   "note": "Summarises BloombergNEF's transition scenario."
+  },
+  {
+   "id": "1843665423075815526",
+   "h": "dkokotajlo",
+   "group": "core",
+   "topic": "topic-ai",
+   "type": "own",
+   "text": "Yes, in 2020, when my AGI timelines collapsed from ~2050 to 2030, due to seeing the scaling laws and GPT3 and the Bio Anchors report.",
+   "replyTo": [
+    "@ps5_expert_play",
+    "@davidmanheim"
+   ],
+   "date": "8 Oct 2024",
+   "iso": "2024-10-08",
+   "likes": 4,
+   "views": 111,
+   "note": ""
+  },
+  {
+   "id": "2013740311214706720",
+   "h": "peterdiamandis",
+   "group": "core",
+   "topic": "topic-ai",
+   "type": "cite",
+   "text": "Ray Kurzweil has been predicting this moment for 30 years, and we're at the cusp of it: AGI by 2029, followed by a singularity in the 2040s where machine–human hybrids trigger a post‑human intelligence explosion.\n\n-- Robotics finally crosses the real-world barrier in 2026–27\n\n-- 1000× intelligence jump by 2045, driven by human–AI integration\n\n-- Longevity escape velocity by ~2032\n\n-- Biology becomes computable",
+   "replyTo": [],
+   "date": "20 Jan 2026",
+   "iso": "2026-01-20",
+   "likes": 2419,
+   "views": 270265,
+   "note": "Diamandis summarising Ray Kurzweil's predictions."
+  },
+  {
+   "id": "1639774163413127170",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-ai",
+   "type": "cond",
+   "text": "Anyone certain where this leads is delusional: [link] . But no question much of economically valuable human jobs will be able to be done by an AI, if we allow them to be done. Maybe 80% of 80% of all jobs by 2050 or much earlier? Nations that allow this will win",
+   "replyTo": [],
+   "date": "25 Mar 2023",
+   "iso": "2023-03-25",
+   "likes": 28,
+   "views": 26201,
+   "note": ""
+  },
+  {
+   "id": "1720502568806416756",
+   "h": "vkhosla",
+   "group": "core",
+   "topic": "topic-ai",
+   "type": "own",
+   "text": "It bears mentioning that most medical professionals are not AI experts, and they cannot predict what AI will do by 2030-35. I have found them to be mostly wrong since I first wrote about AI in medicine in 2012 (link below). The nature of technology’s exponential curve is non-intuitive for humans; the capabilities of smart technologies in 2050 (hardware, software, tests) are hard to imagine, just as today’s smartphones were unimaginable 20 years ago.\n\n[link]",
+   "replyTo": [],
+   "date": "3 Nov 2023",
+   "iso": "2023-11-03",
+   "likes": 29,
+   "views": 28123,
+   "note": "",
+   "wall": [
+    "The nature of technology’s exponential curve is non-intuitive for humans; the capabilities of smart technologies in 2050 (hardware, software, tests) are hard to imagine, just as today’s smartphones were unimaginable 20 years ago."
+   ]
+  },
+  {
+   "id": "1044622979974410240",
+   "h": "naval",
+   "group": "core",
+   "topic": "topic-ai",
+   "type": "own",
+   "text": "[In 2050] “artificial intelligence can code software far better than humans”\n\nThat’s like saying an AI can write fiction, create art, and think better than humans.\n\nAn AI that can create better software is an AI that runs the world, which makes the entire article irrelevant.",
+   "replyTo": [
+    "@simondlr",
+    "@harari_yuval"
+   ],
+   "date": "25 Sep 2018",
+   "iso": "2018-09-25",
+   "likes": 192,
+   "views": null,
+   "note": "The words in quotation marks are from the article Naval is arguing with."
+  },
+  {
+   "id": "1141977875567919104",
+   "h": "elonmusk",
+   "group": "core",
+   "topic": "topic-population",
+   "type": "own",
+   "text": "Real issue will an aging & declining world population by 2050, *not* overpopulation. Randers estimate far more accurate than UN imo: [link]",
+   "replyTo": [
+    "@engineers_feed"
+   ],
+   "date": "21 Jun 2019",
+   "iso": "2019-06-21",
+   "likes": 5604,
+   "views": null,
+   "note": ""
+  },
+  {
+   "id": "1790163780032155850",
+   "h": "peterdiamandis",
+   "group": "core",
+   "topic": "topic-population",
+   "type": "cite",
+   "text": "By 2050, 1 in 5 people will be over 60. We need breakthroughs for healthy aging. Read about this week’s Abundance Blog to see how @xprize is leading the charge!: [link]",
+   "replyTo": [],
+   "date": "13 May 2024",
+   "iso": "2024-05-13",
+   "likes": 84,
+   "views": 7797,
+   "note": ""
+  },
+  {
+   "id": "942528329818693632",
+   "h": "peterdiamandis",
+   "group": "core",
+   "topic": "topic-population",
+   "type": "cite",
+   "text": "By 2050, two-thirds of the population, more than 6 billion people, are expected to live in urbanized areas. To me, one thing is crystal clear: the future of cities is an exciting place for innovation and disruption. [link] [link]",
+   "replyTo": [],
+   "date": "17 Dec 2017",
+   "iso": "2017-12-17",
+   "likes": 174,
+   "views": null,
+   "note": ""
+  },
+  {
+   "id": "1614661104780836868",
+   "h": "kevin2kelly",
+   "group": "core",
+   "topic": "topic-population",
+   "type": "cite",
+   "text": "\"There are 1.5 billion grandparents in the world, up from 0.5 billion in 1960. As a share of the population they have risen from 17% to 20%. By 2050 there will be 2.1 billion grandparents (making up 22% of humanity).\" Grandparents make better children. [link]",
+   "replyTo": [],
+   "date": "15 Jan 2023",
+   "iso": "2023-01-15",
+   "likes": 71,
+   "views": 10740,
+   "note": "The part in quotation marks is from The Economist."
+  },
+  {
+   "id": "1413911893316603908",
+   "h": "elonmusk",
+   "group": "core",
+   "topic": "topic-transport",
+   "type": "cond",
+   "text": "Roughly 800 to 1000 per year. That’s about what’s needed over ten years to create the fleet to build a self-sustaining city on Mars. City itself probably takes roughly 20 years, so hopefully it is built by ~2050.",
+   "replyTo": [
+    "@GokuAurelius",
+    "@Erdayastronaut"
+   ],
+   "date": "10 Jul 2021",
+   "iso": "2021-07-10",
+   "likes": 4623,
+   "views": null,
+   "note": "Reply in a thread about Raptor engine production: “800 to 1000 per year” refers to engines."
+  },
+  {
+   "id": "1110329210332053504",
+   "h": "elonmusk",
+   "group": "core",
+   "topic": "topic-transport",
+   "type": "cond",
+   "text": "It’s possible to make a self-sustaining city on Mars by 2050, if we start in 5 years & take 10 orbital synchronizations",
+   "replyTo": [
+    "@WorldAndScience"
+   ],
+   "date": "25 Mar 2019",
+   "iso": "2019-03-25",
+   "likes": 27750,
+   "views": null,
+   "note": ""
+  },
+  {
+   "id": "716656523762466817",
+   "h": "kevin2kelly",
+   "group": "core",
+   "topic": "topic-society",
+   "type": "own",
+   "text": "By 2050 we’ll come to think of the web as an ever-present type of conversation. #theinevitable [link]",
+   "replyTo": [],
+   "date": "3 Apr 2016",
+   "iso": "2016-04-03",
+   "likes": 19,
+   "views": null,
+   "note": ""
+  },
+  {
+   "id": "715992156771643392",
+   "h": "kevin2kelly",
+   "group": "core",
+   "topic": "topic-society",
+   "type": "own",
+   "text": "The web in 2050 won’t be a better web, just as the first version of the web was not better TV with more channels. #theinevitable",
+   "replyTo": [],
+   "date": "1 Apr 2016",
+   "iso": "2016-04-01",
+   "likes": 18,
+   "views": null,
+   "note": ""
+  },
+  {
+   "id": "1297613412957003776",
+   "h": "balajis",
+   "group": "core",
+   "topic": "topic-society",
+   "type": "cond",
+   "text": "Thesis: we are in an intermediate era where you can easily google strangers and find out what they look like.\n\nWhat’s coming is a hall-of-mirrors of AI avatars and virtual reality. On the other side, by 2050 or so, you may not know what distant people look like anymore.",
+   "replyTo": [],
+   "date": "23 Aug 2020",
+   "iso": "2020-08-23",
+   "likes": 232,
+   "views": null,
+   "note": ""
+  },
+  {
+   "id": "1548188654308274178",
+   "h": "noahpinion",
+   "group": "core",
+   "topic": "topic-society",
+   "type": "own",
+   "text": "I think by 2050, America will be a really nice country and a great place to live, and people will largely have forgotten the current era.",
+   "replyTo": [],
+   "date": "16 Jul 2022",
+   "iso": "2022-07-16",
+   "likes": 1770,
+   "views": null,
+   "note": ""
+  },
+  {
+   "id": "1483751636048744449",
+   "h": "harari_yuval",
+   "group": "core",
+   "topic": "topic-climate",
+   "type": "cond",
+   "text": "…this would be enough to prevent catastrophic climate change. That’s less than what politicians spent on the military in 2020. And it’s the annual investment that can get us to a carbon-neutral economy by 2050.",
+   "replyTo": [],
+   "date": "19 Jan 2022",
+   "iso": "2022-01-19",
+   "likes": 105,
+   "views": null,
+   "note": "Continues a tweet with 1,096 likes; “this” is investing 2% of global GDP a year in green technology."
+  },
+  {
+   "id": "1463982122704773125",
+   "h": "_hannahritchie",
+   "group": "core",
+   "topic": "topic-climate",
+   "type": "cond",
+   "text": "If we were able to close yield gaps we would prevent almost all habitat loss in 2050.\n\n[not to mention the massive socioeconomic benefits]\n\n[link] [link]",
+   "replyTo": [],
+   "date": "25 Nov 2021",
+   "iso": "2021-11-25",
+   "likes": 30,
+   "views": null,
+   "note": ""
+  },
+  {
+   "id": "1330187922511945736",
+   "h": "kevin2kelly",
+   "group": "core",
+   "topic": "topic-society",
+   "type": "cite",
+   "text": "My former Wired colleague @peteleyden is launching a bold vision of what a desirable future in 2050 might look like. I find it plausible and inspiring. [link]",
+   "replyTo": [],
+   "date": "21 Nov 2020",
+   "iso": "2020-11-21",
+   "likes": 81,
+   "views": null,
+   "note": ""
+  },
+  {
+   "id": "692445340302184448",
+   "h": "futuryst",
+   "group": "core",
+   "topic": "topic-climate",
+   "type": "cite",
+   "text": "In this 2050, broccoli, bananas and coffee are no longer readily available @OCAD #TimeMachine #FoodFutures [link]",
+   "replyTo": [],
+   "date": "27 Jan 2016",
+   "iso": "2016-01-27",
+   "likes": 11,
+   "views": null,
+   "note": "Caption from an experiential futures scenario at OCAD University. A scenario, not a forecast."
+  },
+  {
+   "id": "2064716360027185164",
+   "h": "jesusferna7026",
+   "group": "more",
+   "topic": "gap-0",
+   "type": "own",
+   "text": "You are missing the point.\n\nBudget crises are already hitting Europe today because of ultra-low fertility in the 1990s, and they will hit most emerging economies by 2050 because of ultra-low fertility today.\n\nAnd guess what? It is already too late to do anything, since a child born in 2026 will not enter the labor force until around 2048 (assuming they attend college).\n\nSo, yes, I DO worry about 2050, not about 2200. That is why I have this feed.\n\nIf you don't worry about 2050, what can I say?",
+   "replyTo": [],
+   "date": "10 Jun 2026",
+   "iso": "2026-06-10",
+   "likes": 32,
+   "views": 1559,
+   "note": "",
+   "wall": [
+    "Budget crises are already hitting Europe today because of ultra-low fertility in the 1990s, and they will hit most emerging economies by 2050 because of ultra-low fertility today.",
+    "So, yes, I DO worry about 2050, not about 2200."
+   ]
+  },
+  {
+   "id": "1803479661168697556",
+   "h": "noahpinion",
+   "group": "core",
+   "topic": "gap-0",
+   "type": "own",
+   "text": "This is correct. China has one more baby boom generation who are now 5-20 years old. That generation will keep China's demographics looking OK until around 2050, when the big Millennial generation starts to age out of the workforce.\n\nChina's demographics are fine for 25 years. [link]",
+   "replyTo": [],
+   "date": "19 Jun 2024",
+   "iso": "2024-06-19",
+   "likes": 209,
+   "views": 63715,
+   "note": ""
+  },
+  {
+   "id": "1444295095738585095",
+   "h": "peterzeihan",
+   "group": "more",
+   "topic": "gap-1",
+   "type": "cite",
+   "text": "Ive not had a chance to study the new report from Xi’an U, but just this YEAR we have gone from China's population halving by 2100, to 2070, to now 2050.\nChina is DONE as a major power. The question now is what happens as it collapses. (W a working link)\n[link]",
+   "replyTo": [],
+   "date": "2 Oct 2021",
+   "iso": "2021-10-02",
+   "likes": 294,
+   "views": null,
+   "note": "The 2050 figure is from a Xi'an University report; the conclusion is Zeihan's."
+  },
+  {
+   "id": "1994594382251688379",
+   "h": "noahpinion",
+   "group": "core",
+   "topic": "gap-1",
+   "type": "own",
+   "text": "Oh, I wrote another post assessing whether macroeconomic problems (including deflation) and/or demographic problems will put an end to the Chinese Century.\n\nMy answer: Not before 2050, they won't. Maybe after that.\n\n[link]",
+   "replyTo": [
+    "@A_Meda_519",
+    "@ellisislandsup"
+   ],
+   "date": "29 Nov 2025",
+   "iso": "2025-11-29",
+   "likes": 14,
+   "views": 10771,
+   "note": ""
+  },
+  {
+   "id": "1405941366253834243",
+   "h": "brettking",
+   "group": "more",
+   "topic": "gap-1",
+   "type": "own",
+   "text": "2027-8 China will surpass the US on GDP basis\n2050 Chinese economy will be 2x US\nBy end of this decade 25% of the world’s middle class will be in China - driving consumption and growth",
+   "replyTo": [
+    "@MissTrade"
+   ],
+   "date": "18 Jun 2021",
+   "iso": "2021-06-18",
+   "likes": 0,
+   "views": null,
+   "note": "A reply with no likes from a professional futurist."
+  },
+  {
+   "id": "1548331486989787138",
+   "h": "noahpinion",
+   "group": "core",
+   "topic": "gap-2",
+   "type": "own",
+   "text": "Good question. I think the big changes here have got to be A) the internet, which is socially integrating Black people with the rest of the nation as they never were before, and B) African immigration, which by 2050 will be our main source of immigration!",
+   "replyTo": [
+    "@csilverandgold"
+   ],
+   "date": "16 Jul 2022",
+   "iso": "2022-07-16",
+   "likes": 60,
+   "views": null,
+   "note": ""
+  },
+  {
+   "id": "999664901030383616",
+   "h": "lymanstoneky",
+   "group": "more",
+   "topic": "gap-2",
+   "type": "own",
+   "text": "6. If you think the politics around boosting fertility are hard, wait until you see the politics needed to get immigrants in 2050: we'll need special Africa-focused recruitment programs. Good luck with that.",
+   "replyTo": [
+    "@olgakhazan",
+    "@mattyglesias",
+    "@sarahkliff"
+   ],
+   "date": "24 May 2018",
+   "iso": "2018-05-24",
+   "likes": 0,
+   "views": null,
+   "note": ""
+  },
+  {
+   "id": "1228734226956275712",
+   "h": "ianbremmer",
+   "group": "more",
+   "topic": "gap-2",
+   "type": "cite",
+   "text": "By 2050, more than 140m people in just three regions of the world will be made climate migrants:\n\n86m in sub-Saharan Africa\n40m in South Asia\n17m in LatAm\n\n-World Bank #MSC2020",
+   "replyTo": [],
+   "date": "15 Feb 2020",
+   "iso": "2020-02-15",
+   "likes": 78,
+   "views": null,
+   "note": "Figures from the World Bank."
+  },
+  {
+   "id": "1861424783386145093",
+   "h": "matthew_sigel",
+   "group": "more",
+   "topic": "gap-3",
+   "type": "own",
+   "text": "Please don't get Bitcoin's all-time high keep you from starting a small position. In order to manage the volatility, consider a small weekly or monthly auto-purchase.\nWe expect Bitcoin to hit $3M by 2050, though of course that could be wrong.\n[link]",
+   "replyTo": [
+    "@don_274"
+   ],
+   "date": "26 Nov 2024",
+   "iso": "2024-11-26",
+   "likes": 4,
+   "views": 126,
+   "note": ""
+  },
+  {
+   "id": "1856118462294147518",
+   "h": "matthew_sigel",
+   "group": "more",
+   "topic": "gap-3",
+   "type": "cond",
+   "text": "If the U.S. had a Strategic Bitcoin reserve of 1M coins, 1 BTC would need to hit $14.4M each by 2050 to match 1/3 of projected US GDP (assuming 3% real GDP growth).\n\n$14M is roughly Half Way between the Base & Bull cases in our Recent Research and would make #Bitcoin roughly 14% of global financial assets, compared to US Federal Debt, which is currently ~7% of global financial assets and Gold which is ~3%.",
+   "replyTo": [],
+   "date": "11 Nov 2024",
+   "iso": "2024-11-11",
+   "likes": 294,
+   "views": 200556,
+   "note": "A conditional calculation, not the base forecast.",
+   "wall": [
+    "If the U.S. had a Strategic Bitcoin reserve of 1M coins, 1 BTC would need to hit $14.4M each by 2050 to match 1/3 of projected US GDP (assuming 3% real GDP growth)."
+   ]
+  },
+  {
+   "id": "1551060462317477890",
+   "h": "lynaldencontact",
+   "group": "more",
+   "topic": "gap-3",
+   "type": "cond",
+   "text": "Imagine the year is 2050.\n\nIn your view, can a user realistically sync an Ethereum node from genesis?\n\nAnd how concentrated will validators be, which require no ongoing capex to maintain unlike miners, and instead can accrue coins exponentially?",
+   "replyTo": [
+    "@ercwl"
+   ],
+   "date": "24 Jul 2022",
+   "iso": "2022-07-24",
+   "likes": 100,
+   "views": null,
+   "note": "A question, not a forecast."
+  },
+  {
+   "id": "1744780244438106195",
+   "h": "esyudkowsky",
+   "group": "more",
+   "topic": "gap-4",
+   "type": "own",
+   "text": "I disagree with both of your statements on the grounds that they are false. The exact events in Terminator are fiction, the normality of current everyday life is nonfiction. Extrapolating everyday life out to 2050 is a stupid prediction, extrapolating extinction in 2050 seems a more reasonable prediction than that though not certain. The people who think they can glance at any prediction and dismiss some as \"fiction\" without bothering to analyze or bet, because their brains don't notice the difference between observation and inference, are the Bad Guys With Bad Epistemology. Let's not copy their bad practices.",
+   "replyTo": [],
+   "date": "9 Jan 2024",
+   "iso": "2024-01-09",
+   "likes": 32,
+   "views": 2940,
+   "note": "",
+   "wall": [
+    "Extrapolating everyday life out to 2050 is a stupid prediction, extrapolating extinction in 2050 seems a more reasonable prediction than that though not certain."
+   ]
+  },
+  {
+   "id": "2108275937397584217",
+   "h": "liron",
+   "group": "more",
+   "topic": "gap-4",
+   "type": "own",
+   "text": "Alex, I agree that public debates are helpful. You're invited on Doom Debates to talk me down from my P(AI Doom) of 50% by 2050!\n\nPrevious debaters on the show include Gary Marcus, Vitalik Buterin, Max Tegmark, Emad Mostaque, as well as Nobel Prize and Turing Award winners. [link]",
+   "replyTo": [],
+   "date": "8 Oct 2026",
+   "iso": "2026-10-08",
+   "likes": 61,
+   "views": 1798,
+   "note": ""
+  },
+  {
+   "id": "2108298050418708794",
+   "h": "robbensinger",
+   "group": "more",
+   "topic": "gap-4",
+   "type": "cite",
+   "text": "In 2023, Paul Christiano's median ASI year was something like 2050. In 2017, he put 70% on \"slow takeoff\", meaning 'we see an 8-year doubling in world output before a 4-year doubling, before 2, before 1'.\n\nHe now thinks all-time AI takeover risk is ~20-30%, three-year risk 15%. [link]",
+   "replyTo": [],
+   "date": "8 Oct 2026",
+   "iso": "2026-10-08",
+   "likes": 9,
+   "views": 864,
+   "note": "Reports Paul Christiano's estimates."
+  },
+  {
+   "id": "1974405492790145222",
+   "h": "gleonhard",
+   "group": "more",
+   "topic": "gap-4",
+   "type": "cond",
+   "text": "Here is a first snippet from my keynote at SIBOS Frankfurt on October 2, 2025, at Sibos Frankfurt - we should have the full video available soon: [link]\n\nWe live in an age of permanent anxiety: AI everywhere, looming technological unemployment (a huge debate on that:), the accelerating climate emergency, rising autocracies (look West:) and never-ending wars. Every single negative factor seems to be accelerating. Why? I think it's because we’re stuck in an old economic paradigm: “whatever makes money is good”, driving us to compete rather than to collaborate, and to use our best inventions and ideas to MONETIZE ... or to build weapons.\n\nWe could use AI to build #thegoodfuture but what we are doing it to re-kindle the bad past. If this mindset is applied to AI (or rather, #artificialgeneralintelligence AGI), humanity as we know it may not last beyond 2050.\n\nAn \"AI Manhattan project\" would very likely be the last thing we do. We urgently need a new mindset: A shift from techno-optimism and AI Gold-Rush-thinking toward what I call the #androrhythms and the 5Ps see #peopleplanetpurposeprosperity —the uniquely human capacities that define us: emotional, musical, kinesthetic, creative, ethical intelligence (and many more)\n\n⚡ The choice is ours. AI could be 'heaven' or hell. Future or failure. It all depends on if we finally manage to collaborate globally, and to trust each other again.\n\n👉 Join me as we dive deep into what kind of future we are creating—and why it’s time to reset for the Good Future.\n\n#futurist #artificialintelligence",
+   "replyTo": [],
+   "date": "4 Oct 2025",
+   "iso": "2025-10-04",
+   "likes": 5,
+   "views": 2226,
+   "note": "From a keynote by a professional futurist; conditional on the current mindset.",
+   "wall": [
+    "If this mindset is applied to AI (or rather, #artificialgeneralintelligence AGI), humanity as we know it may not last beyond 2050.",
+    "AI could be 'heaven' or hell. Future or failure."
+   ]
+  },
+  {
+   "id": "1885506647822332076",
+   "h": "deryatr_",
+   "group": "more",
+   "topic": "gap-5",
+   "type": "own",
+   "text": "I am so excited right now that I feel comfortable revising my prediction for reversing aging from 2045 to 2040, or within the next 15 years! In fact, 20 years ago, I’d predicted that we would achieve this by 2045–2050 with AI, but for the first time, I am shortening the timeline!",
+   "replyTo": [],
+   "date": "1 Feb 2025",
+   "iso": "2025-02-01",
+   "likes": 633,
+   "views": 54497,
+   "note": ""
+  },
+  {
+   "id": "1938271893406310818",
+   "h": "dwarkesh_sp",
+   "group": "more",
+   "topic": "gap-5",
+   "type": "cite",
+   "text": ".@geochurch is the godfather of modern synthetic biology.\n\nHe thinks that the last few decades of progress have put us on the verge of the big payoffs:\n\ndeaging, deextinction, biobots that combine the best of human & natural engineering, and (unfortunately) weaponized mirror life.\n\n0:00:00 – Aging solved by 2050\n0:07:37 – Finding the master switch for any trait\n0:19:50 – Weaponized mirror life\n0:30:40 – Why hasn’t sequencing/synthesis led to biotech revolution?\n0:50:26 – Impact of AGI on biology research progress\n1:00:35 – Biobots that use the best of biological and human engineering\n1:05:09 – Odds of life in universe\n1:09:57 – Is DNA the ultimate data storage?\n1:13:55 – Curing rare diseases with genetic counseling\n1:22:23 – NIH & NSF budget cuts\n1:25:26 – How one lab spawned 100 biotech companies\n\nWatch full episode on YouTube, Spotify, Apple Podcasts, etc. Transcript at my website dwarkesh dot com. Enjoy!",
+   "replyTo": [],
+   "date": "26 Jun 2025",
+   "iso": "2025-06-26",
+   "likes": 531,
+   "views": 86199,
+   "note": "A chapter title from Dwarkesh Patel's interview with George Church.",
+   "wall": [
+    "@geochurch is the godfather of modern synthetic biology.",
+    "Aging solved by 2050"
+   ]
+  },
+  {
+   "id": "1796578141797789794",
+   "h": "energybants",
+   "group": "more",
+   "topic": "gap-6",
+   "type": "cite",
+   "text": "VOGTLE, GEORGIA: US SECRETARY OF ENERGY CALLS FOR \"HUNDREDS\" MORE LARGE NUCLEAR REACTORS\n\n\"We need two hundred of these by 2050. Two down, one hundred and ninety-eight to go.\"\n\nUS Secretary of Energy Jennifer Granholm, speaking now in front of the flawlessly-operating Vogtle 3 & 4 nuclear reactors.\n\nIt's extraordinary that this is what Democrats now sound like on nuclear.\n\nIt's truly a bipartisan consensus that America needs to build way more nuclear power.",
+   "replyTo": [],
+   "date": "31 May 2024",
+   "iso": "2024-05-31",
+   "likes": 3191,
+   "views": 535792,
+   "note": "Quotes US Energy Secretary Jennifer Granholm.",
+   "wall": [
+    "\"We need two hundred of these by 2050. Two down, one hundred and ninety-eight to go.\"",
+    "US Secretary of Energy Jennifer Granholm, speaking now in front of the flawlessly-operating Vogtle 3 & 4 nuclear reactors."
+   ]
+  },
+  {
+   "id": "1560309429152583680",
+   "h": "briangitt",
+   "group": "more",
+   "topic": "gap-6",
+   "type": "cite",
+   "text": "300 small nuclear reactors are projected to provide 90 GW of nuclear power to the US grid by 2050—enough energy to power 50% of homes.\n\n[link]",
+   "replyTo": [],
+   "date": "18 Aug 2022",
+   "iso": "2022-08-18",
+   "likes": 424,
+   "views": null,
+   "note": "Cites a projection."
+  },
+  {
+   "id": "1675267731879497729",
+   "h": "ramez",
+   "group": "core",
+   "topic": "gap-6",
+   "type": "own",
+   "text": "Ahhh. I'm somewhat skeptical of nuclear fission, and was thinking more of 2050 and later.",
+   "replyTo": [
+    "@JigarShahDC",
+    "@duncancampbell"
+   ],
+   "date": "1 Jul 2023",
+   "iso": "2023-07-01",
+   "likes": 1,
+   "views": 472,
+   "note": "A reply with one like."
+  },
+  {
+   "id": "1497201455782150148",
+   "h": "ben_j_todd",
+   "group": "more",
+   "topic": "gap-7",
+   "type": "cite",
+   "text": "What's the risk of a US-Russia nuclear war? Some estimates:\n\nMy colleague did a survey of surveys: 0.4% per year\n[link]\n\n135 forecasters: 10% chance of large nuclear war by 2050.\n[link]\n\n8% chance of WW3 by 2100.\n[link]\n\n/2 [link]",
+   "replyTo": [],
+   "date": "25 Feb 2022",
+   "iso": "2022-02-25",
+   "likes": 81,
+   "views": null,
+   "note": "Cites a survey of 135 forecasters."
+  },
+  {
+   "id": "1127692819521400832",
+   "h": "robert_zubrin",
+   "group": "more",
+   "topic": "gap-7",
+   "type": "own",
+   "text": "There is zero chance that the world as we will know it will be destroyed by climate change by 2050.\nThere is some chance that the world as we know it will be destroyed by 2050 by nuclear war - caused by the false belief that there isn’t enough for everyone [link]",
+   "replyTo": [],
+   "date": "12 May 2019",
+   "iso": "2019-05-12",
+   "likes": 60,
+   "views": null,
+   "note": ""
+  },
+  {
+   "id": "239406927065522176",
+   "h": "ianbremmer",
+   "group": "more",
+   "topic": "gap-8",
+   "type": "own",
+   "text": "“@AchimMuellers: Q: Will we call them 'countries' -> future of nation state?” in 2050? Primary affiliations may be to smaller units for many",
+   "replyTo": [],
+   "date": "25 Aug 2012",
+   "iso": "2012-08-25",
+   "likes": 0,
+   "views": null,
+   "note": "A reply with no likes."
+  },
+  {
+   "id": "1330226788270821378",
+   "h": "umairh",
+   "group": "more",
+   "topic": "gap-8",
+   "type": "own",
+   "text": "By 2050, this world will be unrecognizable. Countries like America will have collapsed totally, climate change will have reshaped much of it, inequality will be staggering, loss of life endemic. Only social democracies will survive this age of catastrophe",
+   "replyTo": [],
+   "date": "21 Nov 2020",
+   "iso": "2020-11-21",
+   "likes": 92,
+   "views": null,
+   "note": ""
+  },
+  {
+   "id": "1968368651230195797",
+   "h": "marek_rosa",
+   "group": "more",
+   "topic": "gap-9",
+   "type": "cond",
+   "text": "In 2023 I wrote an essay for LEVEL about what law, order, and UBI might look like in 2050.\n\nIn short: In 2050, citizens are not servants of the state but its shareholders—entitled to dividends in the form of UBI, powered by AI and natural resources.\n\nNow on my blog:\n[link]\n\nWhat do you think?",
+   "replyTo": [],
+   "date": "17 Sep 2025",
+   "iso": "2025-09-17",
+   "likes": 20,
+   "views": 1286,
+   "note": "Summary of an essay about what 2050 “might look like”."
+  },
+  {
+   "id": "1186350076572123136",
+   "h": "scottsantens",
+   "group": "more",
+   "topic": "gap-9",
+   "type": "cond",
+   "text": "So many people respond to the idea of $1k/mo UBI right now as not being enough of a response to automation in 2050 and beyond. It's like responding to the concept of universal healthcare that it's not enough to cure cancer. It's confusing what we need immediately with end goals.",
+   "replyTo": [],
+   "date": "21 Oct 2019",
+   "iso": "2019-10-21",
+   "likes": 480,
+   "views": null,
+   "note": "An argument for UBI now, not a forecast."
+  },
+  {
+   "id": "1835833331780620558",
+   "h": "erictopol",
+   "group": "more",
+   "topic": "gap-10",
+   "type": "cite",
+   "text": "Bacterial antimicrobial resistance, which is steadily increasing, looms as a major threat. This new @IHME_UW report @TheLancet comprehensively reviews the past 3 decades and forecasts out to 2050.\n[link] open-access\nMuch more needs to be done to avert tens of millions of deaths",
+   "replyTo": [],
+   "date": "17 Sep 2024",
+   "iso": "2024-09-17",
+   "likes": 319,
+   "views": 50128,
+   "note": "Cites the Lancet/IHME forecast on antimicrobial resistance."
+  },
+  {
+   "id": "1186028751311777793",
+   "h": "profstrachan",
+   "group": "more",
+   "topic": "gap-11",
+   "type": "cite",
+   "text": "New research in 'Science' pinpoints the places most at risk on a warming planet\n\n\"As many as 5 billion people will face hunger & a lack of clean water by 2050 as the #ClimateEmergency disrupts pollination, freshwater, & coastal habitats\"\n\n#ClimateChange\n[link]",
+   "replyTo": [],
+   "date": "20 Oct 2019",
+   "iso": "2019-10-20",
+   "likes": 261,
+   "views": null,
+   "note": "Quotes a study in Science."
+  },
+  {
+   "id": "1379731891801231360",
+   "h": "andiwagner",
+   "group": "more",
+   "topic": "gap-11",
+   "type": "own",
+   "text": "I was asked about our work on water availability for green #Hydrogen (Handelsblatt article in German): Water desalination costs only c. $0.02/kg hydrogen and today's O&G production requires more water than required for green #Hydrogen in 2050. [link]",
+   "replyTo": [],
+   "date": "7 Apr 2021",
+   "iso": "2021-04-07",
+   "likes": 23,
+   "views": null,
+   "note": "Water for green hydrogen only."
+  },
+  {
+   "id": "2020715138811396181",
+   "h": "nextbigfuture",
+   "group": "more",
+   "topic": "gap-12",
+   "type": "own",
+   "text": "Main focus is building massive amounts of AI in Space. Moon mining and using regolith can increase AI satellite production to ten terawatts per year by making the satellite body and the solar panels on the moon. Mass launcher can increase satellite production to 100 million satellites per year by about 2040 and then billions per year by 2050. This would be worth about $100 trillion per year and then thousands of trillions. This will fund millions of SpaceX starships and the colonization of Mars in the 2040s. @elonmusk @RandyWKirk1 @Erdayastronaut @WR4NYGov",
+   "replyTo": [],
+   "date": "9 Feb 2026",
+   "iso": "2026-02-09",
+   "likes": 213,
+   "views": 10471,
+   "note": "",
+   "wall": [
+    "Mass launcher can increase satellite production to 100 million satellites per year by about 2040 and then billions per year by 2050."
+   ]
+  },
+  {
+   "id": "1536776807034363905",
+   "h": "brettking",
+   "group": "more",
+   "topic": "gap-12",
+   "type": "own",
+   "text": "What is the world of 2050 going to be like? There’s two broad paths economically speaking, one utopian and one dystopian. And crypto, digital assets, asteroids and AI all play a part\n\n[link]",
+   "replyTo": [],
+   "date": "14 Jun 2022",
+   "iso": "2022-06-14",
+   "likes": 21,
+   "views": null,
+   "note": "Vague; names asteroids without a forecast."
+  },
+  {
+   "id": "949904579340062721",
+   "h": "drcraigemerson",
+   "group": "more",
+   "topic": "gap-13",
+   "type": "cond",
+   "text": "The gender pay gap in Australia is wide and closing at a glacial rate. At current trends & policies it will take till 2050 to achieve equality for women in the workforce. [link]",
+   "replyTo": [],
+   "date": "7 Jan 2018",
+   "iso": "2018-01-07",
+   "likes": 56,
+   "views": null,
+   "note": "“At current trends & policies”."
+  },
+  {
+   "id": "2015905128566386997",
+   "h": "thomasfrey",
+   "group": "more",
+   "topic": "gap-14",
+   "type": "own",
+   "text": "9/ Phase 4: The Abundance Paradox (2042–2050)\nProduction needs almost no labor → abundance.\nChallenge flips from scarcity to distribution, purpose, and meaning.\nSome societies distribute widely and invent new contribution paths → cohesion.\nOthers concentrate wealth → inequality + social corrosion.\nThe answer is cultural/philosophical, not tech.",
+   "replyTo": [],
+   "date": "26 Jan 2026",
+   "iso": "2026-01-26",
+   "likes": 1,
+   "views": 20,
+   "note": ""
+  },
+  {
+   "id": "2015905132979085569",
+   "h": "thomasfrey",
+   "group": "more",
+   "topic": "gap-14",
+   "type": "own",
+   "text": "10/ Phase 5: The New Dawn (2050+)\nSurvival no longer demands most of our time on economic production.\nIdentity shifts: from “What do you do?” to “What do you care for?”\nWork becomes chosen. Contribution intentional.\nNot utopia—new complexities around meaning, stewardship, collective flourishing.",
+   "replyTo": [],
+   "date": "26 Jan 2026",
+   "iso": "2026-01-26",
+   "likes": 1,
+   "views": 17,
+   "note": ""
+  },
+  {
+   "id": "2049861216026108383",
+   "h": "theelongwave",
+   "group": "more",
+   "topic": "gap-15",
+   "type": "own",
+   "text": "The Grey Flood is coming..\n\nThis unknown Quiet Liquidation accelerates into 2050.\n\nThis is the wave of homes that will hit the market as Baby Boomers age, die, and pass property to the next generation.\n\nBoomers own a massive share of Canada’s housing stock: primary homes, cottages, second homes, and rental properties.\n\nBut here is the problem.\n\nMany heirs do not want the properties.\n\nMany cannot afford to maintain them.\n\nMany live somewhere else.\n\nMany will simply sell.\n\nThat turns inheritance into supply.\n\nAnd not a little supply.\n\nA slow-moving, demographic wave of supply 🌊\n\nCanadian deaths followed a smooth exponential trend for roughly 170 years.\n\nThat is normal.\n\nThe Population grows, people age, and annual deaths rise.\n\nDeaths are now rising faster than the historical model would predict.\n\nThat is the Baby Boom generation moving through the mortality curve.\n\nAnd it does not stop in 2025.\n\nIt accelerates toward 2050.\n\nThis is why Canadian real estate is not just facing an affordability problem.\n\nIt is facing a demographic supply problem.\n\nThe Grey Flood has begun.",
+   "replyTo": [],
+   "date": "30 Apr 2026",
+   "iso": "2026-04-30",
+   "likes": 47,
+   "views": 8088,
+   "note": "Canada only.",
+   "wall": [
+    "The Grey Flood is coming..",
+    "This is the wave of homes that will hit the market as Baby Boomers age, die, and pass property to the next generation.",
+    "It accelerates toward 2050."
+   ]
+  }
+ ]
+}

@@ -223,5 +223,257 @@
   "artist": "Apollo 8 crewmember Bill Anders",
   "credit": "NASA: old link, new link",
   "attribution_required": "false"
+ },
+ "nif": {
+  "title": "File:National Ignition Facility's target chamber.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:National_Ignition_Facility%27s_target_chamber.jpg",
+  "license": "CC BY-SA 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+  "artist": "Lawrence Livermore National Security",
+  "credit": "Own work",
+  "attribution_required": "true"
+ },
+ "nifworker": {
+  "title": "File:Worker inside the target chamber of the National Ignition Facility.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Worker_inside_the_target_chamber_of_the_National_Ignition_Facility.jpg",
+  "license": "CC BY-SA 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+  "artist": "Lawrence Livermore National Security",
+  "credit": "Own work",
+  "attribution_required": "true"
+ },
+ "mammoth": {
+  "title": "File:Ice age fauna of northern Spain - Mauricio Antón.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Ice_age_fauna_of_northern_Spain_-_Mauricio_Ant%C3%B3n.jpg",
+  "license": "CC BY 2.5",
+  "license_url": "https://creativecommons.org/licenses/by/2.5",
+  "artist": "Mauricio Antón",
+  "credit": "from Caitlin Sedwick (1 April 2008). \"What Killed the Woolly Mammoth?\". PLoS Biology 6 (4): e99. DOI:10.1371/journal.pbio.0060099.",
+  "attribution_required": "true"
+ },
+ "mammothrbc": {
+  "title": "File:Woolly Mammoth-RBC.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Woolly_Mammoth-RBC.jpg",
+  "license": "CC BY-SA 3.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+  "artist": "WolfmanSF",
+  "credit": "Own work",
+  "attribution_required": "true"
+ },
+ "jewel": {
+  "title": "File:At Jewel Changi, Singapore 2023 44.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:At_Jewel_Changi,_Singapore_2023_44.jpg",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "artist": "Photograph by Mike Peel (www.mikepeel.net).",
+  "credit": "Own work",
+  "attribution_required": "true"
+ },
+ "jewelwide": {
+  "title": "File:Rain Vortex Jewel Changi Airport.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Rain_Vortex_Jewel_Changi_Airport.jpg",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "artist": "kallerna",
+  "credit": "Own work",
+  "attribution_required": "true"
+ },
+ "atlas": {
+  "title": "File:CERN LHC ATLAS Detector.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:CERN_LHC_ATLAS_Detector.jpg",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "artist": "SimonWaldherr",
+  "credit": "Own work",
+  "attribution_required": "true"
+ },
+ "supernight": {
+  "title": "File:Supertree Grove, Singapore, augusti 2023 02.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Supertree_Grove,_Singapore,_augusti_2023_02.jpg",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "artist": "Johan Jönsson (Julle)",
+  "credit": "Own work",
+  "attribution_required": "true"
+ },
+ "aurora": {
+  "title": "File:Iss072e147641 (Nov 9, 2024) -- A green and red aurora streaks through Earth's atmosphere as the International Space Station orbited 258 miles above Winnipeg.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Iss072e147641_(Nov_9,_2024)_--_A_green_and_red_aurora_streaks_through_Earth%27s_atmosphere_as_the_International_Space_Station_orbited_258_miles_above_Winnipeg.jpg",
+  "license": "Public domain",
+  "license_url": "",
+  "artist": "NASA Johnson Space Center",
+  "credit": "This image or video was catalogued by Lyndon B. Johnson Space Center of the United States National Aeronautics and Space Administration (NASA) under Photo ID: i",
+  "attribution_required": "false"
+ },
+ "aurora2": {
+  "title": "File:Aurora Seen From Space by NASA.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Aurora_Seen_From_Space_by_NASA.jpg",
+  "license": "Public domain",
+  "license_url": "",
+  "artist": "NASA -- US government agency",
+  "credit": "https://www.flickr.com/photos/gsfc/6189010331/in/photostream http://www.dailymail.co.uk/sciencetech/article-2042428/Best-auroras-seen-Britain-thanks-huge-solar-",
+  "attribution_required": "false"
+ },
+ "startrails": {
+  "title": "File:International Space Station star trails - JSC2012E039800.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:International_Space_Station_star_trails_-_JSC2012E039800.jpg",
+  "license": "Public domain",
+  "license_url": "",
+  "artist": "NASA/Don Pettit",
+  "credit": "NASA JSC Flickr account",
+  "attribution_required": "false"
+ },
+ "starship": {
+  "title": "File:Starship SN9 Evening Rays.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Starship_SN9_Evening_Rays.jpg",
+  "license": "CC BY-SA 4.0",
+  "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+  "artist": "Jared Krahn",
+  "credit": "Own work",
+  "attribution_required": "true"
+ },
+ "moon": {
+  "title": "File:Earthset (art002e009288).jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Earthset_(art002e009288).jpg",
+  "license": "Public domain",
+  "license_url": "",
+  "artist": "NASA",
+  "credit": "https://images.nasa.gov/details/art002e009288",
+  "attribution_required": "false"
+ },
+ "elevator": {
+  "title": "File:International Space Elevator (Ace Combat 7).png",
+  "page": "https://commons.wikimedia.org/wiki/File:International_Space_Elevator_(Ace_Combat_7).png",
+  "license": "CC BY 3.0",
+  "license_url": "https://creativecommons.org/licenses/by/3.0",
+  "artist": "Bandai Namco Entertainment America",
+  "credit": "https://youtube.com/watch/6KVyY0Su4JY&t=55",
+  "attribution_required": "true"
+ },
+ "bennu": {
+  "title": "File:Bennu mosaic OSIRIS-REx.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Bennu_mosaic_OSIRIS-REx.jpg",
+  "license": "Public domain",
+  "license_url": "",
+  "artist": "NASA/Goddard/University of Arizona",
+  "credit": "https://www.nasa.gov/press-release/nasa-spacecraft-provides-insight-into-asteroid-bennu-s-future-orbit",
+  "attribution_required": "false"
+ },
+ "jwstmirror": {
+  "title": "File:James Webb Primary Mirror.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:James_Webb_Primary_Mirror.jpg",
+  "license": "Public domain",
+  "license_url": "",
+  "artist": "NASA/MSFC/David Higginbotham",
+  "credit": "NASA Image of the Day",
+  "attribution_required": "false"
+ },
+ "fheavy": {
+  "title": "File:Falcon Heavy Side Boosters landing on LZ1 and LZ2 - 2018 (25254688767).jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Falcon_Heavy_Side_Boosters_landing_on_LZ1_and_LZ2_-_2018_(25254688767).jpg",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "artist": "SpaceX",
+  "credit": "Falcon Heavy Demo Mission",
+  "attribution_required": "false"
+ },
+ "cylinder": {
+  "title": "File:Spacecolony3edit.jpeg",
+  "page": "https://commons.wikimedia.org/wiki/File:Spacecolony3edit.jpeg",
+  "license": "Public domain",
+  "license_url": "",
+  "artist": "NASA/Rick Guidice",
+  "credit": "https://space.nss.org/settlement/nasa/70sArtHiRes/70sArt/art.html (image link)",
+  "attribution_required": "false"
+ },
+ "bernal": {
+  "title": "File:Bernal sphere interior.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Bernal_sphere_interior.jpg",
+  "license": "Public domain",
+  "license_url": "",
+  "artist": "NASA/Rick Guidice",
+  "credit": "NASA Ames Research Center http://settlement.arc.nasa.gov/70sArtHiRes/70sArt/art.html",
+  "attribution_required": "false"
+ },
+ "marsbase": {
+  "title": "File:Concept Mars colony.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Concept_Mars_colony.jpg",
+  "license": "Public domain",
+  "license_url": "",
+  "artist": "NASA Ames Research Center",
+  "credit": "NASA Ames featured images",
+  "attribution_required": "false"
+ },
+ "havoc": {
+  "title": "File:NASA Cloud City on Venus.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:NASA_Cloud_City_on_Venus.jpg",
+  "license": "Public domain",
+  "license_url": "",
+  "artist": "NASA",
+  "credit": "http://sacd.larc.nasa.gov/branches/space-mission-analysis-branch-smab/smab-projects/havoc/",
+  "attribution_required": "false"
+ },
+ "europa": {
+  "title": "File:PIA19048 realistic color Europa mosaic edited.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:PIA19048_realistic_color_Europa_mosaic_edited.jpg",
+  "license": "Public domain",
+  "license_url": "",
+  "artist": "NASA / Jet Propulsion Lab-Caltech / SETI Institute",
+  "credit": "http://photojournal.jpl.nasa.gov/catalog/PIA19048 Also described here: http://www.jpl.nasa.gov/news/news.php?release=2014-406",
+  "attribution_required": "false"
+ },
+ "elt": {
+  "title": "File:Artist’s impression of the European Extremely Large Telescope deploying lasers for adaptive optics.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Artist%E2%80%99s_impression_of_the_European_Extremely_Large_Telescope_deploying_lasers_for_adaptive_optics.jpg",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0",
+  "artist": "ESO/L. Calçada/N. Risinger (skysurvey.org)",
+  "credit": "http://www.eso.org/public/images/ann14012a/",
+  "attribution_required": "true"
+ },
+ "sail": {
+  "title": "File:Advanced Composite Solar Sail System Artist’s Concept 1 (ACS3 SolarSailTurntableWithSun).png",
+  "page": "https://commons.wikimedia.org/wiki/File:Advanced_Composite_Solar_Sail_System_Artist%E2%80%99s_Concept_1_(ACS3_SolarSailTurntableWithSun).png",
+  "license": "Public domain",
+  "license_url": "",
+  "artist": "NASA Ames Research Center / NASA/Aero Animation/Ben Schweighart",
+  "credit": "This image or video was catalogued by Ames Research Center of the United States National Aeronautics and Space Administration (NASA) under Photo ID: ACS3_SolarS",
+  "attribution_required": "false"
+ },
+ "smiled": {
+  "title": "File:The Day the Earth Smiled - PIA17172.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:The_Day_the_Earth_Smiled_-_PIA17172.jpg",
+  "license": "Public domain",
+  "license_url": "",
+  "artist": "NASA/JPL-Caltech/SSI",
+  "credit": "http://www.jpl.nasa.gov/spaceimages/details.php?id=PIA17172",
+  "attribution_required": "false"
+ },
+ "alma": {
+  "title": "File:The Milky Way above the antennas of ALMA.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:The_Milky_Way_above_the_antennas_of_ALMA.jpg",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0",
+  "artist": "ESO/Y.Beletsky",
+  "credit": "http://www.eso.org/public/images/uhd_yuri_alma_ant_cc/",
+  "attribution_required": "true"
+ },
+ "vltlaser": {
+  "title": "File:Laser Guide Star at the VLT (dsc1792-cc).tiff",
+  "page": "https://commons.wikimedia.org/wiki/File:Laser_Guide_Star_at_the_VLT_(dsc1792-cc).tiff",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0",
+  "artist": "ESO/A. Ghizzi Panizza (www.albertoghizzipanizza.com)",
+  "credit": "This media was produced by the European Southern Observatory (ESO), under the identifier dsc1792-cc This tag does not indicate the copyright status of the attac",
+  "attribution_required": "true"
+ },
+ "vltlaser2": {
+  "title": "File:The VLT´s Laser Guide Star.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:The_VLT%C2%B4s_Laser_Guide_Star.jpg",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0",
+  "artist": "G. Hüdepohl/ESO",
+  "credit": "http://www.eso.org/public/images/gerd_huedepohl_2/",
+  "attribution_required": "true"
  }
 }

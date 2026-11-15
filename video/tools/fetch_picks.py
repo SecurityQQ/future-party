@@ -34,7 +34,8 @@ def clean(s):
 
 
 def main():
-    picks = json.load(open(os.path.join(ROOT, "assets", "picks.json")))
+    SET = os.environ.get("SET", "")
+    picks = json.load(open(os.path.join(ROOT, "assets", "picks" + ("-" + SET if SET else "") + ".json")))
     os.makedirs(RAW, exist_ok=True)
     os.makedirs(OUT, exist_ok=True)
     titles = [p["title"] for p in picks.values()]
@@ -47,7 +48,8 @@ def main():
         norm = {n["to"]: n["from"] for n in d["query"].get("normalized", [])}
         for p in d["query"]["pages"].values():
             info[norm.get(p["title"], p["title"])] = p
-    credits = {}
+    cpath = os.path.join(OUT, "credits.json")
+    credits = json.load(open(cpath)) if os.path.exists(cpath) else {}  # merge: v1 and v2 keys live side by side
     for key, pick in picks.items():
         p = info.get(pick["title"])
         if not p or "imageinfo" not in p:
@@ -65,7 +67,8 @@ def main():
             vf = (f"scale={W}:{H}:force_original_aspect_ratio=decrease,"
                   f"pad={W}:{H}:(ow-iw)/2:(oh-ih)*{fy}:black")
         else:
-            vf = (f"scale={W}:{H}:force_original_aspect_ratio=increase,"
+            z = float(pick.get("zoom", 1))  # >1 crops tighter around the focus (a small subject on black)
+            vf = (f"scale={round(W * z)}:{round(H * z)}:force_original_aspect_ratio=increase,"
                   f"crop={W}:{H}:(iw-{W})*{fx}:(ih-{H})*{fy}")
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", raw, "-vf", vf, "-q:v", "2",
                         os.path.join(OUT, key + ".jpg")], check=True)
@@ -76,7 +79,7 @@ def main():
                         "credit": clean(md.get("Credit", {}).get("value"))[:160],
                         "attribution_required": clean(md.get("AttributionRequired", {}).get("value"))}
         print(f"{key:12s} ok  {credits[key]['license']:<14s} {credits[key]['artist'][:60]}", flush=True)
-    json.dump(credits, open(os.path.join(OUT, "credits.json"), "w"), indent=1, ensure_ascii=False)
+    json.dump(credits, open(cpath, "w"), indent=1, ensure_ascii=False)
 
 
 if __name__ == "__main__":

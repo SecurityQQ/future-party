@@ -1,0 +1,187 @@
+{
+  "id": "20261114-120342-a-baby-parrot",
+  "created": "2026-11-14T20:03:42.762Z",
+  "subject": "a baby parrot",
+  "sign": "Gemini",
+  "traits": "chatty, witty, curious, two moods at once",
+  "palette": "lilac, sky blue and pearl white",
+  "master": {
+    "id": "v2",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "aspect": "3:4",
+  "refs": [],
+  "refMode": "match",
+  "autoRefs": {
+    "style": true,
+    "scene": false
+  },
+  "ab": true,
+  "vary": {
+    "style": true,
+    "scene": true,
+    "model": true
+  },
+  "note": "",
+  "images": [
+    {
+      "i": 0,
+      "prompt": "a baby parrot as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: chatty, witty, curious, two moods at once. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: deadpan cool attitude with tiny black sunglasses, shot on black-and-white 35mm film with direct on-camera flash, grainy ironic fashion photography.\nColor accents: lilac, sky blue and pearl white.\nSetting: a seamless studio backdrop in one bold harmonious color with a soft floor reflection, clean product-shot lighting. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "flux_3_image",
+      "style": "deadpan",
+      "scene": "studio",
+      "refs": [
+        "character ideas/Screenshot 2026-11-14 at 11.26.30 AM.png"
+      ],
+      "status": "done",
+      "started": 1794686622762,
+      "jobId": "job_daf94f33d0f0",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_125fa259ee70.jpg",
+      "cost": 6,
+      "file": "00.jpg",
+      "finished": 1794686668713
+    },
+    {
+      "i": 1,
+      "prompt": "a baby parrot as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: chatty, witty, curious, two moods at once. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: deadpan cool attitude with tiny black sunglasses, shot on black-and-white 35mm film with direct on-camera flash, grainy ironic fashion photography.\nColor accents: lilac, sky blue and pearl white.\nSetting: a seamless studio backdrop in one bold harmonious color with a soft floor reflection, clean product-shot lighting. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "flux_3_image",
+      "style": "deadpan",
+      "scene": "studio",
+      "refs": [],
+      "status": "failed",
+      "started": 1794686738898,
+      "error": "This prompt or image contains nudity or sexual content. Please revise it.",
+      "finished": 1794686741030
+    },
+    {
+      "i": 2,
+      "prompt": "a baby parrot as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: chatty, witty, curious, two moods at once. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: lilac, sky blue and pearl white.\nSetting: inside a cosmic hyperspace tunnel of rainbow light streaks, swirling stars and prismatic flares. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "seedream_5_5",
+      "style": "porcelain",
+      "scene": "hyperspace",
+      "refs": [
+        "character ideas/13969f9c58bcb10a78fc7d0848f4e6c9.jpg",
+        "character ideas/4033d1b946aa55bdf4b6c2e81f01a2aa.jpg"
+      ],
+      "status": "done",
+      "started": 1794686622762,
+      "jobId": "job_ad86d2cd2175",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_fe1eb4d56deb.png",
+      "cost": 6,
+      "file": "02.png",
+      "finished": 1794686681077
+    },
+    {
+      "i": 3,
+      "prompt": "a baby parrot as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: chatty, witty, curious, two moods at once. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: lilac, sky blue and pearl white.\nSetting: inside a cosmic hyperspace tunnel of rainbow light streaks, swirling stars and prismatic flares. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "seedream_5_5",
+      "style": "porcelain",
+      "scene": "hyperspace",
+      "refs": [],
+      "status": "done",
+      "started": 1794686622762,
+      "jobId": "job_fd002b175597",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_ff3c481e9bda.png",
+      "cost": 3,
+      "file": "03.png",
+      "finished": 1794686664985
+    },
+    {
+      "i": 4,
+      "prompt": "a baby parrot as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: chatty, witty, curious, two moods at once. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a realistic young animal with some parts replaced by exposed precision mechanics, tiny circuit boards, brass gears and neat cables, photoreal wildlife photography meets sci-fi.\nColor accents: lilac, sky blue and pearl white.\nSetting: a green canyon floor beneath giant carved stone rings receding into a blue sky. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "nano_banana_2_1",
+      "style": "cyborg",
+      "scene": "rings",
+      "refs": [
+        "character ideas/7c64e0a4e002517b533679d51a9b0cb6.jpg",
+        "character ideas/34e32f258a0f0f1b7a4e4287be03e457.jpg"
+      ],
+      "status": "done",
+      "started": 1794686622762,
+      "jobId": "job_f09b258d52e0",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_376ae89996e7.png",
+      "cost": 5,
+      "file": "04.png",
+      "finished": 1794686670696
+    },
+    {
+      "i": 5,
+      "prompt": "a baby parrot as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: chatty, witty, curious, two moods at once. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a realistic young animal with some parts replaced by exposed precision mechanics, tiny circuit boards, brass gears and neat cables, photoreal wildlife photography meets sci-fi.\nColor accents: lilac, sky blue and pearl white.\nSetting: a green canyon floor beneath giant carved stone rings receding into a blue sky. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "nano_banana_2_1",
+      "style": "cyborg",
+      "scene": "rings",
+      "refs": [],
+      "status": "done",
+      "started": 1794686622762,
+      "jobId": "job_a86b6a22aefa",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_a6f6ce54d103.png",
+      "cost": 5,
+      "file": "05.png",
+      "finished": 1794686652448
+    },
+    {
+      "i": 6,
+      "prompt": "a baby parrot as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: chatty, witty, curious, two moods at once. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: formed from a glowing blue wireframe mesh and a point cloud of tiny dots, digital hologram aesthetic with thin coordinate lines, 1980s computer graphics.\nColor accents: lilac, sky blue and pearl white.\nSetting: a vast desert under a giant ringed sphere and drifting spaceships, painted like a 1970s sci-fi paperback cover. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "nano_banana_2_1",
+      "style": "wireframe",
+      "scene": "paperback",
+      "refs": [
+        "character ideas/f907589d93c1df86bb44fbc6ca34aa31.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.20.39 AM.png"
+      ],
+      "status": "done",
+      "started": 1794686622762,
+      "jobId": "job_82a627934ea3",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_13f9ff70d8d4.png",
+      "cost": 5,
+      "file": "06.png",
+      "finished": 1794686664866
+    },
+    {
+      "i": 7,
+      "prompt": "a baby parrot as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: chatty, witty, curious, two moods at once. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: formed from a glowing blue wireframe mesh and a point cloud of tiny dots, digital hologram aesthetic with thin coordinate lines, 1980s computer graphics.\nColor accents: lilac, sky blue and pearl white.\nSetting: a vast desert under a giant ringed sphere and drifting spaceships, painted like a 1970s sci-fi paperback cover. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "nano_banana_2_1",
+      "style": "wireframe",
+      "scene": "paperback",
+      "refs": [],
+      "status": "done",
+      "started": 1794686622762,
+      "jobId": "job_e30c7f7c1f9f",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_48a8c10cc19b.png",
+      "cost": 5,
+      "file": "07.png",
+      "finished": 1794686647209
+    },
+    {
+      "i": 8,
+      "prompt": "a baby parrot as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: chatty, witty, curious, two moods at once. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: painted in 1980s airbrush sci-fi illustration style, chrome highlights, rainbow light beams and a glowing laser grid, retro-futurist album cover.\nColor accents: lilac, sky blue and pearl white.\nSetting: an endless corridor of tall trees at deep blue twilight, a faint starry horizon glowing at the end of a tiny winding path. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "seedream_5_5",
+      "style": "airbrush",
+      "scene": "forest",
+      "refs": [
+        "style/36bcb842d45eecaad465887d6dc0a4f9.jpg",
+        "style/90a671da53d764ee787db1d13ad2d07b.jpg"
+      ],
+      "status": "failed",
+      "started": 1794686738909,
+      "error": "This prompt or image contains nudity or sexual content. Please revise it.",
+      "finished": 1794686743649
+    },
+    {
+      "i": 9,
+      "prompt": "a baby parrot as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: chatty, witty, curious, two moods at once. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: painted in 1980s airbrush sci-fi illustration style, chrome highlights, rainbow light beams and a glowing laser grid, retro-futurist album cover.\nColor accents: lilac, sky blue and pearl white.\nSetting: an endless corridor of tall trees at deep blue twilight, a faint starry horizon glowing at the end of a tiny winding path. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "seedream_5_5",
+      "style": "airbrush",
+      "scene": "forest",
+      "refs": [],
+      "status": "done",
+      "started": 1794686622762,
+      "jobId": "job_340cd4876a40",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_5cc0582212b2.png",
+      "cost": 3,
+      "file": "09.png",
+      "finished": 1794686667914
+    }
+  ]
+}

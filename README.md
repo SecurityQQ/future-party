@@ -1,21 +1,34 @@
 # Future Party 2050
 
-Material for a party set in 2050: a looping wall film, the soundtrack, and the research behind them.
+Material for a party set in 2050: the wall films, the slide walls, the programme, the soundtrack, a soundboard for the guests, and the research behind them. Everything for the night lives in this one repo.
+
+**Online:** [future-party-2050.vercel.app](https://future-party-2050.vercel.app) lists every resource and opens each one, with no login.
 
 ## What is here
 
+Start at **`index.html`**, the front page: an index of every resource, the films on a loop, each slide wall, the programme, the soundtrack, the research pages and the pre-flight list for the projector laptop. It works offline from this folder. Rebuild it with `python3 -I hub/build.py` after any other piece changes. The website is the same page in web mode (see [The website](#the-website)).
+
 | Folder | What it is |
 | --- | --- |
-| `video/` | **Already Here**, a 95-second silent loop for a projector (1920×1080, 30 fps). Every shot pairs an idea a film imagined with a real photograph of it existing today, in three chapters: The City, The Machines, Beyond. Built with [HyperFrames](https://hyperframes.heygen.com). See `SPEC.md` for the design and `REVIEW.md` for the QA pass. |
-| `music/` | **Soundtrack 2050** and **Why Music Changes**: data (`soundtrack.json`, `history.json`, `eras.json`) and the templates that build the two pages in `dist/`. |
-| `reel/` | Research for a film-clip reel: the brief, candidate scenes, links and the rules for rejecting clips. |
+| `video/` | **Further** (v2), a 75-second silent loop for a projector (1920×1080, 30 fps): 16 bold claims for 2030–2050, each with a dated real seed and a film that imagined it, over 37 free images. The first cut, **Already Here** (v1), is kept and can be rebuilt. Built with [HyperFrames](https://hyperframes.heygen.com). See `ROAST.md` for the scene-by-scene roast of v1, `SPEC.md` and `REVIEW.md` for design and QA, and `CREDITS.md` for every image. |
+| `video/dist/further-2050.html` | **The Further page**: both films (720p previews in `video/dist/media/`), the roast with a frame from every v1 slide, the 16 new claims with their sources, and how far to trust them. Opens from disk in any browser. |
+| `roast/` | **The Roast**, a 63-second film with sound that tells how v1 became v2: 11 v1 slides stamped CUT or KEEP, the tally, then the recut. Its own HyperFrames project (`SPEC.md`, `REVIEW.md`). |
+| `programme/` | **Tea With Tomorrow**, the programme for the evening: a three-hour Futures Literacy Lab (the UNESCO method) with tea on the tables, in two lengths, with a party clock for the host. |
+| `music/` | **Soundtrack 2050** and **Why Music Changes**: data (`soundtrack.json`, `history.json`, `eras.json`) and the templates that build the two pages in `dist/`. `music/resonance/` is **Resonance**, music history and what comes next, with an in-page YouTube player. |
 | `soundboard/` | **Contact 2050**, a Makey Makey soundboard: twelve pins, eight kits, and 2,038 sounds from TidalCycles' [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) library. Jam mode keeps everything in time and in key; stage mode is for the projector. A sub-project with its own [README](soundboard/README.md). |
+| `books/` | **Book Projection 2050**: 18 books about the world around 2050, 25 idea slides and 50 verified verbatim quotes, with a fullscreen wall projection. `quotes.json` is the quote list in play order; `template.html` holds the books and ideas. |
+| `tweets/` | **2050 in 78 Tweets**: what futurists and others wrote on X about 2050, word for word, with each author's photo, name and role. A fullscreen tweet wall plays them in five blocks (Machines, Planet, People, Power, Beyond); the page also lists and filters every tweet. `tweets.json` is the source. `tweets/research/` holds the research behind it: **Futurists on 2050** (the full version) and **2050 in Futurists' Tweets** (the short one, in English and the Russian original). |
+| `reel/` | Research for a film-clip reel: the brief, candidate scenes, links and the rules for rejecting clips, and **Projection 2050** (`projection-2050.html`), eighteen films about 2050 scored for plausibility and beauty. |
+| `astrology/playground/` | **Zodiac Creatures**, a local tool for tuning the prompt behind the zodiac companion characters. Needs a local server; see its [README](astrology/playground/README.md). |
+| `hub/` | The front page and the website: `template.html`, `build.py` (reads the counts and film lengths from the other folders and writes `index.html`) and `site.py` (writes `site/` for Vercel). |
 
-## The film
+The programme, the two futurist research pages and Projection 2050 were made as claude.ai pages. The files here are saved copies of them (14 November 2026), and they have no build: to change one, save the page again.
 
-The rendered MP4 is attached to the [latest release](../../releases/latest).
+## The films
 
-To preview or re-render it yourself (Node.js and ffmpeg):
+The 1080p masters are on the releases: **Already Here** on [v1.0](../../releases/tag/v1.0), **Further** and **The Roast** on [v2.0](../../releases/tag/v2.0). The repo keeps 720p previews of all three in `video/dist/media/`, which the front page plays when the masters are not in `video/renders/` and `roast/renders/`, and which the website always plays.
+
+To preview or re-render the wall film yourself (Node.js and ffmpeg):
 
 ```bash
 cd video
@@ -26,11 +39,27 @@ npm run render    # render to renders/
 
 `tools/build.py` regenerates the chapter compositions from `slides.json`. `tools/fetch_picks.py` re-downloads the chosen photos from Wikimedia Commons into `assets/raw/` and prepares them in `assets/photos/`.
 
+## The Further page and the roast film
+
+```bash
+cd video
+python3 -I tools/page.py --frames   # takes frames from the v2 render, writes dist/further-2050.html
+
+cd ../roast
+python3 -I tools/build.py   # writes the compositions from tools/build.py
+npm run check && npm run render
+```
+
+The page plays the two films from `video/dist/media/` (720p, in the repo).
+
 ## The music pages
 
 ```bash
 cd music
 python3 -I build.py   # writes dist/soundtrack2050.html and history.csv
+
+cd resonance
+python3 -I build_resonance.py   # writes dist/local/index.html, the Resonance page
 ```
 
 ## The soundboard
@@ -46,6 +75,41 @@ cd soundboard
 python3 -I build.py             # writes dist/contact2050.html, which streams sounds from the jsDelivr CDN
 python3 -I build.py --offline   # also writes dist/contact2050-offline.html with the sounds built in, for a venue without wifi
 ```
+
+## The book page
+
+```bash
+cd books
+python3 -I build.py   # writes dist/book-projection-2050.html (the published page) and dist/quote-wall.html
+```
+
+`dist/quote-wall.html` opens in any browser without signing in. Add `#quote-wall`, `#projection` or `#mix-wall` to its address to start the quotes, the ideas or both, then press F for fullscreen. Each quote in `quotes.json` records how it was checked (`conf` 3 = against the book text, 2 = two or more matching sources) and its source links.
+
+## The tweet wall
+
+```bash
+cd tweets
+python3 -I build.py   # writes dist/tweets-2050.html (the published page) and dist/tweet-wall.html
+```
+
+`dist/tweet-wall.html` opens in any browser without signing in. Add `#tweet-wall` (all 78, about 18 minutes per loop) or `#short-wall` (the 40 short ones, about 8 minutes) to its address, then press F. Tweet texts in `tweets.json` are verbatim from the X API; a long tweet can carry `wall`, word-for-word excerpts that the build checks against the full text. Profile pictures are in `avatars/`.
+
+## The website
+
+[future-party-2050.vercel.app](https://future-party-2050.vercel.app) is built from this repo by Vercel. `vercel.json` runs `python3 -I hub/site.py`, which writes `site/`:
+
+- `index.html` is the front page in web mode: it plays the 720p previews, links the 1080p masters on the releases, and opens Markdown files on GitHub.
+- Every page keeps its path from the repo, so `/books/dist/quote-wall.html#quote-wall` is the quote wall. A page saved as a claude.ai fragment gets a full document shell, and every link to a claude.ai copy of one of these pages points at the copy on the site. The one left on claude.ai is the tea comparison sheet.
+- Short addresses for typing on the projector laptop: `/quotes`, `/ideas`, `/mix`, `/tweets`, `/tweets-short`, `/programme`, `/soundboard`, `/soundtrack`, `/resonance`, `/music-history`, `/books`, `/further`, `/films`, `/futurists`. They are listed in `SHORT` in `hub/build.py`.
+
+To check it locally:
+
+```bash
+python3 -I hub/site.py                 # writes site/ (git-ignored)
+python3 -m http.server 4610 -d site    # then open http://localhost:4610
+```
+
+To add a resource, put its page in the repo, add it to `PAGES` (and, for a claude.ai page, to `ONLINE`) and to `resources()` in `hub/build.py`, then rebuild. `.vercelignore` limits a `vercel deploy` from this folder to the folders `site.py` reads.
 
 ## Credits and licences
 

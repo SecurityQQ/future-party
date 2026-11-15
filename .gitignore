@@ -14,8 +14,20 @@ video/snapshots/
 # Re-fetchable from Wikimedia Commons: tools/fetch_picks.py and tools/commons_candidates.py
 video/assets/raw/
 video/assets/candidates/
+video/assets/candidates-v2/
+video/assets/candidates-v2b/
+
+# The Roast (HyperFrames project): renders and QA frames, same rules as video/
+roast/.hyperframes/
+roast/.thumbnails/
+roast/renders/
+roast/snapshots/
 
 # Soundboard: downloaded Dirt-Samples audio and the offline build that embeds it.
 # Dirt-Samples has no licence file, so its audio is streamed, never committed: python3 -I soundboard/build.py --offline
 soundboard/.cache/
 soundboard/dist/contact2050-offline.html
+
+# The website: hub/site.py writes it, Vercel builds it from the repo on every deploy
+site/
+.vercel/

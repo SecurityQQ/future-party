@@ -8,8 +8,8 @@
   </style>
   <div id="root" data-composition-id="intro" data-width="1920" data-height="1080">
     <div id="intro-tw" class="tw"><div class="big" id="intro-big">2050</div></div>
-    <div id="intro-l1" class="line clip" data-start="0" data-duration="3.5"><span id="intro-l1-w0">The</span><span id="intro-l1-w1">films</span><span id="intro-l1-w2">imagined</span><span id="intro-l1-w3">it.</span></div>
-    <div id="intro-l2" class="line clip" data-start="0" data-duration="3.5"><span id="intro-l2-w0">Here</span><span id="intro-l2-w1">is</span><span id="intro-l2-w2">what</span><span id="intro-l2-w3">already</span><span id="intro-l2-w4">exists.</span></div>
+    <div id="intro-l1" class="line clip" data-start="0" data-duration="3.5"><span id="intro-l1-w0">The</span><span id="intro-l1-w1">films</span><span id="intro-l1-w2">dreamed</span><span id="intro-l1-w3">it.</span></div>
+    <div id="intro-l2" class="line clip" data-start="0" data-duration="3.5"><span id="intro-l2-w0">Here</span><span id="intro-l2-w1">is</span><span id="intro-l2-w2">how</span><span id="intro-l2-w3">far</span><span id="intro-l2-w4">it</span><span id="intro-l2-w5">goes.</span></div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
@@ -23,6 +23,7 @@
     tl.fromTo('#intro-l2-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},2.034);
     tl.fromTo('#intro-l2-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},2.101);
     tl.fromTo('#intro-l2-w4',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},2.168);
+    tl.fromTo('#intro-l2-w5',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},2.235);
     tl.fromTo('#intro-l2',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},2.98);
     tl.fromTo('#intro-tw',{scale:1},{scale:6,duration:0.35,ease:'power3.in',immediateRender:false},3.15);
     window.__timelines["intro"] = tl;

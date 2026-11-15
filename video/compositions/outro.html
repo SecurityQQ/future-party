@@ -8,7 +8,7 @@
   </style>
   <div id="root" data-composition-id="outro" data-width="1920" data-height="1080">
     <div id="outro-tw" class="tw"><div class="big" id="outro-big">2050</div></div>
-    <div id="outro-l" class="line clip" data-start="0" data-duration="4.0"><span id="outro-l-w0">is</span><span id="outro-l-w1">being</span><span id="outro-l-w2">built</span><span id="outro-l-w3">now</span></div>
+    <div id="outro-l" class="line clip" data-start="0" data-duration="4.0"><span id="outro-l-w0">Which</span><span id="outro-l-w1">one</span><span id="outro-l-w2">will</span><span id="outro-l-w3">you</span><span id="outro-l-w4">build?</span></div>
   </div>
   <script>
     const tl = gsap.timeline({ paused: true });
@@ -17,6 +17,7 @@
     tl.fromTo('#outro-l-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.667);
     tl.fromTo('#outro-l-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.734);
     tl.fromTo('#outro-l-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.801);
+    tl.fromTo('#outro-l-w4',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.868);
     tl.fromTo('#outro-l',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.2,ease:'power2.in',immediateRender:false},3.4);
     window.__timelines["outro"] = tl;
   </script>

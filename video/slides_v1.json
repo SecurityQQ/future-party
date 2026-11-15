@@ -1,0 +1,43 @@
+{
+ "intro": {"title": "2050", "lines": ["The films imagined it.", "Here is what already exists."]},
+ "outro": {"title": "2050", "line": "is being built now"},
+ "chapters": [
+  {"id": "city", "num": "1 / 3", "word": "The city", "dir": "left",
+   "burst": ["supertrees", "skywalk", "solar", "maglev", "waymo", "barrier", "eden", "wind"],
+   "slides": [
+    {"key": "supertrees", "film": "Black Panther imagined", "hero": "Towers that grow gardens", "now": "Supertree Grove, Singapore", "credit": "Photo: CEphoto, Uwe Aranas · CC BY-SA 3.0"},
+    {"key": "skywalk", "film": "Her imagined", "hero": "The city of tomorrow", "now": "Lujiazui, Shanghai, where Her was filmed", "credit": "Photo: Larry Qian · CC0"},
+    {"key": "solar", "film": "Gattaca imagined", "hero": "Solar fields to the horizon", "now": "Noor Ouarzazate, Morocco", "credit": "Photo: Richard Allaway · CC BY 2.0"},
+    {"key": "maglev", "film": "Minority Report imagined", "hero": "Trains that float", "now": "Shanghai Maglev, running since 2004", "credit": "Photo: Alex Needham · public domain"},
+    {"key": "waymo", "film": "Minority Report imagined", "hero": "Cars that drive themselves", "now": "Waymo, San Francisco", "credit": "Photo: Dllu · CC BY 4.0"},
+    {"key": "barrier", "film": "Blade Runner 2049 imagined", "hero": "A wall against the sea", "now": "Thames Barrier, London", "credit": "Photo: Diliff · CC BY-SA 3.0"},
+    {"key": "eden", "film": "The Wild Robot imagined", "hero": "Gardens under domes", "now": "Eden Project, Cornwall", "credit": "Photo: Rob Young · CC BY 2.0"},
+    {"key": "wind", "film": "2040 imagined", "hero": "Power from the open sea", "now": "Block Island Wind Farm, USA", "credit": "Photo: Ionna22 · CC BY-SA 4.0"}
+   ]},
+  {"id": "machines", "num": "2 / 3", "word": "The machines", "dir": "right",
+   "burst": ["sophia", "valkyrie", "headset", "frontier", "sequencer", "vfarm", "ingenuity"],
+   "slides": [
+    {"key": "sophia", "film": "Ex Machina imagined", "hero": "A machine with a face", "now": "Sophia, Hanson Robotics", "credit": "Photo: ITU Pictures · CC BY 2.0"},
+    {"key": "valkyrie", "film": "The Creator imagined", "hero": "Robots working beside us", "now": "Robonaut 2, International Space Station", "credit": "Photo: NASA"},
+    {"key": "headset", "film": "Minority Report imagined", "hero": "Screens you move by hand", "now": "Apple Vision Pro", "credit": "Photo: AzureSaturn · CC0"},
+    {"key": "frontier", "film": "2001 imagined", "hero": "A mind made of machines", "now": "Frontier, the first exascale computer", "credit": "Photo: OLCF at ORNL · CC BY 2.0"},
+    {"key": "sequencer", "film": "Gattaca imagined", "hero": "Reading the genome", "now": "Sequencers at BGI, Shenzhen", "credit": "Photo: Scotted400 · CC BY 3.0"},
+    {"key": "vfarm", "film": "Blade Runner 2049 imagined", "hero": "Farms without fields", "now": "A vertical farm in Finland", "credit": "Photo: iFarm.fi · CC BY-SA 4.0"},
+    {"key": "ingenuity", "film": "The Wild Robot imagined", "hero": "A robot alone in the wild", "now": "Ingenuity, the first aircraft on Mars", "credit": "Image: NASA/JPL-Caltech/ASU, Simeon Schmauß · CC BY 2.0"}
+   ]},
+  {"id": "space", "num": "3 / 3", "word": "Beyond", "dir": "left",
+   "burst": ["launch", "iss", "veggie", "perseverance", "torus", "saturn", "cliffs", "orion"],
+   "slides": [
+    {"key": "launch", "film": "Interstellar imagined", "hero": "Leaving Earth again", "now": "Artemis I launch, 2022", "credit": "Photo: NASA, Joel Kowsky"},
+    {"key": "iss", "film": "2001 imagined", "hero": "Docking with a station", "now": "Crew Dragon meets the ISS", "credit": "Photo: NASA"},
+    {"key": "veggie", "film": "The Martian imagined", "hero": "Food grown in space", "now": "Lettuce grown aboard the ISS", "credit": "Photo: NASA"},
+    {"key": "perseverance", "film": "The Martian imagined", "hero": "Working on Mars", "now": "Perseverance, Jezero crater", "credit": "Image: NASA/JPL-Caltech/MSSS"},
+    {"key": "torus", "film": "Elysium imagined", "hero": "A ring-shaped home in orbit", "label": "Then", "now": "NASA drew it in 1975", "credit": "Painting: Donald Davis for NASA Ames, 1975"},
+    {"key": "saturn", "film": "Wanderers imagined", "hero": "Saturn's rings up close", "now": "Cassini, 2004–2017", "credit": "Image: NASA/JPL-Caltech/SSI, Gordan Ugarković"},
+    {"key": "blackhole", "film": "Interstellar imagined", "hero": "Seeing a black hole", "now": "M87*, Event Horizon Telescope, 2019", "credit": "Image: EHT Collaboration · CC BY 4.0"},
+    {"key": "cliffs", "film": "2001 imagined", "hero": "A window on deep space", "now": "James Webb Space Telescope, 2022", "credit": "Image: NASA, ESA, CSA, STScI"},
+    {"key": "orion", "film": "2001 imagined", "hero": "A ship between Earth and Moon", "now": "Orion, Artemis I, 2022", "credit": "Image: NASA"},
+    {"key": "earthrise", "film": "1968, the year 2001 came out", "hero": "We saw home", "now": "Earthrise, Apollo 8", "credit": "Photo: Bill Anders, Apollo 8, NASA", "hold": 4.0}
+   ]}
+ ]
+}

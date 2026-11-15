@@ -1,0 +1,82 @@
+{
+  "id": "20261114-114928-a-baby-snake",
+  "created": "2026-11-14T19:49:28.843Z",
+  "subject": "a baby snake",
+  "sign": "Scorpio",
+  "traits": "mysterious, intense, magnetic, fiercely loyal",
+  "palette": "deep teal, aquamarine and silver",
+  "master": {
+    "id": "v2",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "aspect": "3:4",
+  "refs": [
+    "character ideas/f907589d93c1df86bb44fbc6ca34aa31.jpg",
+    "style/2ebd13d131f4560329d13280a6cf2166.jpg"
+  ],
+  "vary": {
+    "style": false,
+    "scene": false,
+    "model": true
+  },
+  "note": "",
+  "images": [
+    {
+      "i": 0,
+      "prompt": "a baby snake as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: entirely encrusted with thousands of tiny silver rhinestones and diamonds, glittering macro detail, luxurious fashion editorial.\nColor accents: deep teal, aquamarine and silver.\nSetting: a seamless studio backdrop in one bold harmonious color with a soft floor reflection, clean product-shot lighting. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images are mood and material inspiration only: borrow their light, palette and finish, never copy their subjects or composition.",
+      "model": "gpt_image_2_6",
+      "style": "rhinestone",
+      "scene": "studio",
+      "status": "done",
+      "started": 1794685768844,
+      "jobId": "job_1d2316a2f9b6",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_b9cea185098c.png",
+      "cost": 8,
+      "file": "00.png",
+      "finished": 1794685799928
+    },
+    {
+      "i": 1,
+      "prompt": "a baby snake as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: entirely encrusted with thousands of tiny silver rhinestones and diamonds, glittering macro detail, luxurious fashion editorial.\nColor accents: deep teal, aquamarine and silver.\nSetting: a seamless studio backdrop in one bold harmonious color with a soft floor reflection, clean product-shot lighting. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images are mood and material inspiration only: borrow their light, palette and finish, never copy their subjects or composition.",
+      "model": "seedream_5_5",
+      "style": "rhinestone",
+      "scene": "studio",
+      "status": "done",
+      "started": 1794685768844,
+      "jobId": "job_77cca73d03dd",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_c4945f37c8c8.png",
+      "cost": 6,
+      "file": "01.png",
+      "finished": 1794685809936
+    },
+    {
+      "i": 2,
+      "prompt": "a baby snake as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: entirely encrusted with thousands of tiny silver rhinestones and diamonds, glittering macro detail, luxurious fashion editorial.\nColor accents: deep teal, aquamarine and silver.\nSetting: a seamless studio backdrop in one bold harmonious color with a soft floor reflection, clean product-shot lighting. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images are mood and material inspiration only: borrow their light, palette and finish, never copy their subjects or composition.",
+      "model": "nano_banana_2_1",
+      "style": "rhinestone",
+      "scene": "studio",
+      "status": "done",
+      "started": 1794685768844,
+      "jobId": "job_6a990cfe9930",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_f5c2dcbb4c97.png",
+      "cost": 5,
+      "file": "02.png",
+      "finished": 1794685806213
+    },
+    {
+      "i": 3,
+      "prompt": "a baby snake as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: entirely encrusted with thousands of tiny silver rhinestones and diamonds, glittering macro detail, luxurious fashion editorial.\nColor accents: deep teal, aquamarine and silver.\nSetting: a seamless studio backdrop in one bold harmonious color with a soft floor reflection, clean product-shot lighting. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images are mood and material inspiration only: borrow their light, palette and finish, never copy their subjects or composition.",
+      "model": "flux_3_image",
+      "style": "rhinestone",
+      "scene": "studio",
+      "status": "done",
+      "started": 1794685768844,
+      "jobId": "job_c846b8a5f943",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_a532eda7428c.jpg",
+      "cost": 6,
+      "file": "03.jpg",
+      "finished": 1794685817513
+    }
+  ]
+}

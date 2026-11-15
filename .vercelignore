@@ -1,0 +1,16 @@
+# Upload only what hub/site.py reads to write the website
+/*
+!/vercel.json
+!/hub
+!/books
+!/tweets
+!/music
+!/video
+!/soundboard
+!/programme
+!/reel
+/video/*
+!/video/dist
+/tweets/avatars
+/soundboard/.cache
+/soundboard/dist/contact2050-offline.html

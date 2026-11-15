@@ -1,43 +1,234 @@
 {
- "intro": {"title": "2050", "lines": ["The films imagined it.", "Here is what already exists."]},
- "outro": {"title": "2050", "line": "is being built now"},
+ "title": "Further · Projection 2050",
+ "intro": {
+  "title": "2050",
+  "lines": [
+   "The films dreamed it.",
+   "Here is how far it goes."
+  ]
+ },
+ "outro": {
+  "title": "2050",
+  "line": "Which one will you build?"
+ },
+ "credits": {
+  "supernight": "Photo: Johan Jönsson · CC BY-SA 4.0",
+  "nifworker": "Photo: Lawrence Livermore National Security · CC BY-SA 3.0",
+  "aurora2": "Photo: NASA",
+  "jewelwide": "Photo: kallerna · CC BY-SA 4.0",
+  "startrails": "Photo: NASA, Don Pettit",
+  "mammothrbc": "Photo: WolfmanSF · CC BY-SA 3.0",
+  "skywalk": "Photo: Larry Qian · CC0",
+  "jwstmirror": "Photo: NASA/MSFC, David Higginbotham",
+  "fheavy": "Photo: SpaceX · CC0",
+  "cylinder": "Painting: Rick Guidice for NASA Ames",
+  "launch": "Photo: NASA, Joel Kowsky",
+  "bernal": "Painting: Rick Guidice for NASA Ames",
+  "orion": "Image: NASA",
+  "iss": "Photo: NASA",
+  "cliffs": "Image: NASA, ESA, CSA, STScI",
+  "alma": "Photo: ESO/Y. Beletsky · CC BY 4.0",
+  "vltlaser": "Photo: ESO/A. Ghizzi Panizza · CC BY 4.0",
+  "perseverance": "Image: NASA/JPL-Caltech/MSSS",
+  "vltlaser2": "Photo: G. Hüdepohl/ESO · CC BY 4.0",
+  "saturn": "Image: NASA/JPL-Caltech/SSI, Gordan Ugarković",
+  "earthrise": "Photo: Bill Anders, Apollo 8, NASA"
+ },
  "chapters": [
-  {"id": "city", "num": "1 / 3", "word": "The city", "dir": "left",
-   "burst": ["supertrees", "skywalk", "solar", "maglev", "waymo", "barrier", "eden", "wind"],
+  {
+   "id": "planet",
+   "num": "1 / 3",
+   "word": "The planet",
+   "dir": "left",
+   "burst": [
+    "supernight",
+    "nifworker",
+    "aurora2",
+    "jewelwide",
+    "startrails",
+    "mammothrbc",
+    "skywalk"
+   ],
    "slides": [
-    {"key": "supertrees", "film": "Black Panther imagined", "hero": "Towers that grow gardens", "now": "Supertree Grove, Singapore", "credit": "Photo: CEphoto, Uwe Aranas · CC BY-SA 3.0"},
-    {"key": "skywalk", "film": "Her imagined", "hero": "The city of tomorrow", "now": "Lujiazui, Shanghai, where Her was filmed", "credit": "Photo: Larry Qian · CC0"},
-    {"key": "solar", "film": "Gattaca imagined", "hero": "Solar fields to the horizon", "now": "Noor Ouarzazate, Morocco", "credit": "Photo: Richard Allaway · CC BY 2.0"},
-    {"key": "maglev", "film": "Minority Report imagined", "hero": "Trains that float", "now": "Shanghai Maglev, running since 2004", "credit": "Photo: Alex Needham · public domain"},
-    {"key": "waymo", "film": "Minority Report imagined", "hero": "Cars that drive themselves", "now": "Waymo, San Francisco", "credit": "Photo: Dllu · CC BY 4.0"},
-    {"key": "barrier", "film": "Blade Runner 2049 imagined", "hero": "A wall against the sea", "now": "Thames Barrier, London", "credit": "Photo: Diliff · CC BY-SA 3.0"},
-    {"key": "eden", "film": "The Wild Robot imagined", "hero": "Gardens under domes", "now": "Eden Project, Cornwall", "credit": "Photo: Rob Young · CC BY 2.0"},
-    {"key": "wind", "film": "2040 imagined", "hero": "Power from the open sea", "now": "Block Island Wind Farm, USA", "credit": "Photo: Ionna22 · CC BY-SA 4.0"}
-   ]},
-  {"id": "machines", "num": "2 / 3", "word": "The machines", "dir": "right",
-   "burst": ["sophia", "valkyrie", "headset", "frontier", "sequencer", "vfarm", "ingenuity"],
+    {
+     "key": "nif",
+     "year": "By 2035",
+     "film": "Spider-Man 2",
+     "hero": "Power from a star in a bottle",
+     "seed_year": "2022",
+     "seed": "NIF's lasers got more fusion energy out than they put in",
+     "credit": "Photo: Lawrence Livermore National Security · CC BY-SA 3.0"
+    },
+    {
+     "key": "mammoth",
+     "year": "By 2030",
+     "film": "Jurassic Park",
+     "hero": "Mammoths walk again",
+     "seed_year": "2025",
+     "seed": "Colossal made woolly mice, step one toward a mammoth calf",
+     "credit": "Painting: Mauricio Antón · CC BY 2.5",
+     "scrim": "strong"
+    },
+    {
+     "key": "jewel",
+     "year": "By 2050",
+     "film": "Black Panther",
+     "hero": "Cities that grow like forests",
+     "seed_year": "2019",
+     "seed": "Singapore's airport grew a rainforest with a 40 m waterfall",
+     "credit": "Photo: Mike Peel · CC BY-SA 4.0"
+    },
+    {
+     "key": "atlas",
+     "year": "By 2045",
+     "hero": "A 91 km ring to see past the Higgs",
+     "seed_year": "2026",
+     "seed": "CERN named a 91 km collider its preferred next machine",
+     "credit": "Photo: SimonWaldherr · CC BY-SA 4.0"
+    },
+    {
+     "key": "aurora",
+     "year": "By 2040",
+     "hero": "We heal the sky",
+     "seed_year": "2023",
+     "seed": "A UN panel found the ozone layer on track to recover",
+     "credit": "Photo: NASA, ISS Expedition 72"
+    }
+   ]
+  },
+  {
+   "id": "orbit",
+   "num": "2 / 3",
+   "word": "Orbit",
+   "dir": "right",
+   "burst": [
+    "jwstmirror",
+    "fheavy",
+    "cylinder",
+    "launch",
+    "bernal",
+    "orion",
+    "iss"
+   ],
    "slides": [
-    {"key": "sophia", "film": "Ex Machina imagined", "hero": "A machine with a face", "now": "Sophia, Hanson Robotics", "credit": "Photo: ITU Pictures · CC BY 2.0"},
-    {"key": "valkyrie", "film": "The Creator imagined", "hero": "Robots working beside us", "now": "Robonaut 2, International Space Station", "credit": "Photo: NASA"},
-    {"key": "headset", "film": "Minority Report imagined", "hero": "Screens you move by hand", "now": "Apple Vision Pro", "credit": "Photo: AzureSaturn · CC0"},
-    {"key": "frontier", "film": "2001 imagined", "hero": "A mind made of machines", "now": "Frontier, the first exascale computer", "credit": "Photo: OLCF at ORNL · CC BY 2.0"},
-    {"key": "sequencer", "film": "Gattaca imagined", "hero": "Reading the genome", "now": "Sequencers at BGI, Shenzhen", "credit": "Photo: Scotted400 · CC BY 3.0"},
-    {"key": "vfarm", "film": "Blade Runner 2049 imagined", "hero": "Farms without fields", "now": "A vertical farm in Finland", "credit": "Photo: iFarm.fi · CC BY-SA 4.0"},
-    {"key": "ingenuity", "film": "The Wild Robot imagined", "hero": "A robot alone in the wild", "now": "Ingenuity, the first aircraft on Mars", "credit": "Image: NASA/JPL-Caltech/ASU, Simeon Schmauß · CC BY 2.0"}
-   ]},
-  {"id": "space", "num": "3 / 3", "word": "Beyond", "dir": "left",
-   "burst": ["launch", "iss", "veggie", "perseverance", "torus", "saturn", "cliffs", "orion"],
+    {
+     "key": "starship",
+     "year": "By 2035",
+     "film": "Destination Moon",
+     "hero": "Orbit for the price of a flight",
+     "seed_year": "2024",
+     "seed": "A Starship booster was caught by the tower that launched it",
+     "credit": "Photo: Jared Krahn · CC BY-SA 4.0",
+     "scrim": "strong"
+    },
+    {
+     "key": "moon",
+     "year": "By 2035",
+     "film": "2001",
+     "hero": "People living on the Moon",
+     "seed_year": "2026",
+     "seed": "Artemis II flew four people around the Moon and took this",
+     "credit": "Photo: NASA, Artemis II crew"
+    },
+    {
+     "key": "torus",
+     "year": "By 2050",
+     "film": "Elysium",
+     "hero": "Towns that orbit Earth",
+     "seed_year": "1975",
+     "seed": "NASA designed this ring for 10,000 people",
+     "credit": "Painting: Donald Davis for NASA Ames, 1975"
+    },
+    {
+     "key": "elevator",
+     "year": "By 2050",
+     "film": "Ace Combat 7",
+     "hero": "An elevator to space",
+     "seed_year": "2012",
+     "seed": "Obayashi set out a plan to open one by 2050",
+     "credit": "Image: Bandai Namco, Ace Combat 7 · CC BY 3.0"
+    },
+    {
+     "key": "bennu",
+     "year": "By 2045",
+     "film": "The Expanse",
+     "hero": "Mining the asteroids",
+     "seed_year": "2023",
+     "seed": "OSIRIS-REx brought a piece of asteroid Bennu home",
+     "credit": "Image: NASA/Goddard/University of Arizona"
+    }
+   ]
+  },
+  {
+   "id": "beyond",
+   "num": "3 / 3",
+   "word": "Beyond",
+   "dir": "left",
+   "burst": [
+    "cliffs",
+    "alma",
+    "vltlaser",
+    "perseverance",
+    "vltlaser2",
+    "saturn",
+    "earthrise"
+   ],
    "slides": [
-    {"key": "launch", "film": "Interstellar imagined", "hero": "Leaving Earth again", "now": "Artemis I launch, 2022", "credit": "Photo: NASA, Joel Kowsky"},
-    {"key": "iss", "film": "2001 imagined", "hero": "Docking with a station", "now": "Crew Dragon meets the ISS", "credit": "Photo: NASA"},
-    {"key": "veggie", "film": "The Martian imagined", "hero": "Food grown in space", "now": "Lettuce grown aboard the ISS", "credit": "Photo: NASA"},
-    {"key": "perseverance", "film": "The Martian imagined", "hero": "Working on Mars", "now": "Perseverance, Jezero crater", "credit": "Image: NASA/JPL-Caltech/MSSS"},
-    {"key": "torus", "film": "Elysium imagined", "hero": "A ring-shaped home in orbit", "label": "Then", "now": "NASA drew it in 1975", "credit": "Painting: Donald Davis for NASA Ames, 1975"},
-    {"key": "saturn", "film": "Wanderers imagined", "hero": "Saturn's rings up close", "now": "Cassini, 2004–2017", "credit": "Image: NASA/JPL-Caltech/SSI, Gordan Ugarković"},
-    {"key": "blackhole", "film": "Interstellar imagined", "hero": "Seeing a black hole", "now": "M87*, Event Horizon Telescope, 2019", "credit": "Image: EHT Collaboration · CC BY 4.0"},
-    {"key": "cliffs", "film": "2001 imagined", "hero": "A window on deep space", "now": "James Webb Space Telescope, 2022", "credit": "Image: NASA, ESA, CSA, STScI"},
-    {"key": "orion", "film": "2001 imagined", "hero": "A ship between Earth and Moon", "now": "Orion, Artemis I, 2022", "credit": "Image: NASA"},
-    {"key": "earthrise", "film": "1968, the year 2001 came out", "hero": "We saw home", "now": "Earthrise, Apollo 8", "credit": "Photo: Bill Anders, Apollo 8, NASA", "hold": 4.0}
-   ]}
+    {
+     "key": "marsbase",
+     "year": "By 2050",
+     "film": "The Martian",
+     "hero": "A child born on Mars",
+     "seed_year": "2021",
+     "seed": "Perseverance made oxygen out of Martian air",
+     "credit": "Painting: NASA Ames Research Center"
+    },
+    {
+     "key": "havoc",
+     "year": "By 2050",
+     "hero": "Airships over Venus",
+     "seed_year": "2015",
+     "seed": "NASA Langley drew up crewed airships for Venus",
+     "credit": "Image: NASA Langley",
+     "scrim": "strong"
+    },
+    {
+     "key": "europa",
+     "year": "By 2040",
+     "film": "Europa Report",
+     "hero": "Life in an alien ocean",
+     "seed_year": "2024",
+     "seed": "Europa Clipper left for the ocean under Europa's ice",
+     "credit": "Image: NASA/JPL-Caltech/SETI Institute"
+    },
+    {
+     "key": "elt",
+     "year": "By 2040",
+     "film": "Contact",
+     "hero": "Signs of life on another Earth",
+     "label": "Now",
+     "seed": "Europe is building a 39 m telescope to look for them",
+     "credit": "Image: ESO/L. Calçada/N. Risinger · CC BY 4.0"
+    },
+    {
+     "key": "sail",
+     "year": "By 2050",
+     "film": "Avatar",
+     "hero": "Sailing to another star",
+     "seed_year": "2016",
+     "seed": "Breakthrough Starshot began work on light sails to Alpha Centauri",
+     "credit": "Image: NASA Ames, Aero Animation, Ben Schweighart"
+    },
+    {
+     "key": "smiled",
+     "year": "2050",
+     "hero": "Every future starts here",
+     "seed_year": "2013",
+     "seed": "Cassini looked back through Saturn's rings and found us",
+     "credit": "Image: NASA/JPL-Caltech/SSI",
+     "hold": 4.0
+    }
+   ]
+  }
  ]
 }

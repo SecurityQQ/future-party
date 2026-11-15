@@ -1,0 +1,192 @@
+{
+  "id": "20261114-120341-a-black-panther-cub",
+  "created": "2026-11-14T20:03:41.761Z",
+  "subject": "a black panther cub",
+  "sign": "Leo",
+  "traits": "proud, dramatic, generous, loves the spotlight",
+  "palette": "ember orange, gold and crimson",
+  "master": {
+    "id": "v2",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "aspect": "3:4",
+  "refs": [],
+  "refMode": "match",
+  "autoRefs": {
+    "style": true,
+    "scene": false
+  },
+  "ab": true,
+  "vary": {
+    "style": true,
+    "scene": true,
+    "model": false
+  },
+  "note": "",
+  "images": [
+    {
+      "i": 0,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: formed from a glowing blue wireframe mesh and a point cloud of tiny dots, digital hologram aesthetic with thin coordinate lines, 1980s computer graphics.\nColor accents: ember orange, gold and crimson.\nSetting: an endless corridor of tall trees at deep blue twilight, a faint starry horizon glowing at the end of a tiny winding path. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "nano_banana_2_1",
+      "style": "wireframe",
+      "scene": "forest",
+      "refs": [
+        "character ideas/f907589d93c1df86bb44fbc6ca34aa31.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.20.39 AM.png"
+      ],
+      "status": "done",
+      "started": 1794686621763,
+      "jobId": "job_f8bd7db2b556",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_7ca6327ff01c.png",
+      "cost": 5,
+      "file": "00.png",
+      "finished": 1794686674242
+    },
+    {
+      "i": 1,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: formed from a glowing blue wireframe mesh and a point cloud of tiny dots, digital hologram aesthetic with thin coordinate lines, 1980s computer graphics.\nColor accents: ember orange, gold and crimson.\nSetting: an endless corridor of tall trees at deep blue twilight, a faint starry horizon glowing at the end of a tiny winding path. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "nano_banana_2_1",
+      "style": "wireframe",
+      "scene": "forest",
+      "refs": [],
+      "status": "done",
+      "started": 1794686621763,
+      "jobId": "job_b30679235ad1",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_b246e7a1f366.png",
+      "cost": 5,
+      "file": "01.png",
+      "finished": 1794686656783
+    },
+    {
+      "i": 2,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: entirely encrusted with thousands of tiny silver rhinestones and diamonds, glittering macro detail, luxurious fashion editorial.\nColor accents: ember orange, gold and crimson.\nSetting: high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "nano_banana_2_1",
+      "style": "rhinestone",
+      "scene": "citylights",
+      "refs": [
+        "character ideas/c9b0f22a74a634b491b9c3db3eac55ed.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.38 AM.png"
+      ],
+      "status": "done",
+      "started": 1794686621763,
+      "jobId": "job_469202344ec7",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_bfcf4ba22d2c.png",
+      "cost": 5,
+      "file": "02.png",
+      "finished": 1794686679374
+    },
+    {
+      "i": 3,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: entirely encrusted with thousands of tiny silver rhinestones and diamonds, glittering macro detail, luxurious fashion editorial.\nColor accents: ember orange, gold and crimson.\nSetting: high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "nano_banana_2_1",
+      "style": "rhinestone",
+      "scene": "citylights",
+      "refs": [],
+      "status": "done",
+      "started": 1794686621763,
+      "jobId": "job_ca6eac3e904e",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_c5ea25e8ffdf.png",
+      "cost": 5,
+      "file": "03.png",
+      "finished": 1794686657103
+    },
+    {
+      "i": 4,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: transparent iridescent glass body with glowing fiber-optic veins and soft inner light, holographic sheen, faint technical blueprint annotations floating around it.\nColor accents: ember orange, gold and crimson.\nSetting: a vast desert under a giant ringed sphere and drifting spaceships, painted like a 1970s sci-fi paperback cover. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "nano_banana_2_1",
+      "style": "hologlass",
+      "scene": "paperback",
+      "refs": [
+        "character ideas/54deea09727aab1618809d6e42dfb05e.jpg"
+      ],
+      "status": "done",
+      "started": 1794686621763,
+      "jobId": "job_1cb97599e49f",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_f8b3acfc992e.png",
+      "cost": 5,
+      "file": "04.png",
+      "finished": 1794686659215
+    },
+    {
+      "i": 5,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: transparent iridescent glass body with glowing fiber-optic veins and soft inner light, holographic sheen, faint technical blueprint annotations floating around it.\nColor accents: ember orange, gold and crimson.\nSetting: a vast desert under a giant ringed sphere and drifting spaceships, painted like a 1970s sci-fi paperback cover. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "nano_banana_2_1",
+      "style": "hologlass",
+      "scene": "paperback",
+      "refs": [],
+      "status": "done",
+      "started": 1794686621763,
+      "jobId": "job_cd127daefe28",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_a110a4c11c9a.png",
+      "cost": 5,
+      "file": "05.png",
+      "finished": 1794686661791
+    },
+    {
+      "i": 6,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate.\nColor accents: ember orange, gold and crimson.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "nano_banana_2_1",
+      "style": "crystal",
+      "scene": "solarpunk",
+      "refs": [
+        "character ideas/fdb022571d4f32d3f115e49ecec27f47.jpg"
+      ],
+      "status": "done",
+      "started": 1794686621763,
+      "jobId": "job_a07b3e64317b",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_b0bf7359ed14.png",
+      "cost": 5,
+      "file": "06.png",
+      "finished": 1794686668186
+    },
+    {
+      "i": 7,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate.\nColor accents: ember orange, gold and crimson.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "nano_banana_2_1",
+      "style": "crystal",
+      "scene": "solarpunk",
+      "refs": [],
+      "status": "done",
+      "started": 1794686621763,
+      "jobId": "job_ed94d5e9317c",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_9786579c02ff.png",
+      "cost": 5,
+      "file": "07.png",
+      "finished": 1794686657137
+    },
+    {
+      "i": 8,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: painted in 1980s airbrush sci-fi illustration style, chrome highlights, rainbow light beams and a glowing laser grid, retro-futurist album cover.\nColor accents: ember orange, gold and crimson.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "nano_banana_2_1",
+      "style": "airbrush",
+      "scene": "portal",
+      "refs": [
+        "style/36bcb842d45eecaad465887d6dc0a4f9.jpg",
+        "style/90a671da53d764ee787db1d13ad2d07b.jpg"
+      ],
+      "status": "done",
+      "started": 1794686621763,
+      "jobId": "job_7df42a1c5e31",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_cf0beb2b0238.png",
+      "cost": 5,
+      "file": "08.png",
+      "finished": 1794686677478
+    },
+    {
+      "i": 9,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small lovable creature, full body in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish, never childish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: painted in 1980s airbrush sci-fi illustration style, chrome highlights, rainbow light beams and a glowing laser grid, retro-futurist album cover.\nColor accents: ember orange, gold and crimson.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "nano_banana_2_1",
+      "style": "airbrush",
+      "scene": "portal",
+      "refs": [],
+      "status": "done",
+      "started": 1794686621763,
+      "jobId": "job_b3e645e0ec87",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_7d173755a642.png",
+      "cost": 5,
+      "file": "09.png",
+      "finished": 1794686656245
+    }
+  ]
+}

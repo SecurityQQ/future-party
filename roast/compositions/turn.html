@@ -1,0 +1,33 @@
+<template>
+  <style>
+    #root{position:absolute;inset:0;overflow:hidden;background:#0b0b0d;font-family:Inter,sans-serif;color:#fff}
+    .line{position:absolute;left:192px;right:192px;text-align:center;font:600 60px/1.2 Inter,sans-serif}
+    .line span{display:inline-block;margin:0 .13em}
+    .big{font-family:'League Gothic',sans-serif;text-transform:uppercase;line-height:.9;letter-spacing:.02em}
+
+    .tw{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+    .ttl{font-size:420px;color:#fff}
+  </style>
+  <div id="root" data-composition-id="turn" data-width="1920" data-height="1080">
+    <div id="turn-l1" class="line clip" data-start="0" data-duration="3.5" style="top:470px"><span id="turn-l1-w0">The</span><span id="turn-l1-w1">future</span><span id="turn-l1-w2">isn’t</span><span id="turn-l1-w3">what</span><span id="turn-l1-w4">already</span><span id="turn-l1-w5">exists.</span></div>
+    <div id="turn-l2" class="line clip" data-start="0" data-duration="3.5" style="top:470px;color:#ff5315"><span id="turn-l2-w0">It’s</span><span id="turn-l2-w1">what’s</span><span id="turn-l2-w2">next.</span></div>
+    <div id="turn-tw" class="tw clip" data-start="0" data-duration="3.5"><div class="big ttl" id="turn-t">Further</div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo('#turn-l1-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.15);
+    tl.fromTo('#turn-l1-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.217);
+    tl.fromTo('#turn-l1-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.284);
+    tl.fromTo('#turn-l1-w3',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.351);
+    tl.fromTo('#turn-l1-w4',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.418);
+    tl.fromTo('#turn-l1-w5',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},0.485);
+    tl.fromTo('#turn-l1',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},1.45);
+    tl.fromTo('#turn-l2-w0',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},1.6);
+    tl.fromTo('#turn-l2-w1',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},1.667);
+    tl.fromTo('#turn-l2-w2',{opacity:0,filter:'blur(6px)'},{opacity:1,filter:'blur(0px)',duration:0.13,ease:'power4.out'},1.734);
+    tl.fromTo('#turn-l2',{opacity:1,filter:'blur(0px)'},{opacity:0,filter:'blur(8px)',duration:0.15,ease:'power2.in',immediateRender:false},2.45);
+    tl.fromTo('#turn-t',{opacity:0,filter:'blur(12px)'},{opacity:1,filter:'blur(0px)',duration:0.2,ease:'power4.out'},2.6);
+    tl.fromTo('#turn-tw',{scale:1},{scale:6,duration:0.35,ease:'power3.in',immediateRender:false},3.15);
+    window.__timelines["turn"] = tl;
+  </script>
+</template>

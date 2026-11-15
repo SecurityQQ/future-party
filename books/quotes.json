@@ -1,0 +1,521 @@
+[
+ {
+  "b": "figueres",
+  "q": "It is 2050. We have been successful at halving emissions every decade since 2020. We are heading for a world that will be no more than 1.5 degrees Celsius warmer by 2100.",
+  "where": "ch. 3, The World We Must Create (opening)",
+  "conf": 3,
+  "src": [
+   "https://www.unccd.int/sites/default/files/library/1649_The_Future_We_Choose_Surviving_the_Climate_Crisis.pdf",
+   "https://atmos.earth/climate-solutions/climate-change-two-futures-book/"
+  ]
+ },
+ {
+  "b": "kelly",
+  "q": "…most of the greatest products running the lives of citizens in 2050 were not invented until after 2016.",
+  "where": "ch. 1, Becoming",
+  "conf": 3,
+  "src": [
+   "https://books.google.com/books?id=zUzNDgAAQBAJ",
+   "https://www.soundandvision.com/content/internet-you-ain%E2%80%99t-seen-nothing-yet",
+   "https://www.huffpost.com/entry/the-internet-is-still-at-the-beginning_b_10321958"
+  ],
+  "note": "The start of a 43-word sentence is cut, marked with the ellipsis."
+ },
+ {
+  "b": "megachange",
+  "by": "Daniel Franklin",
+  "q": "Despite the many perils ahead and the undoubted difficulties of adjusting to megachange, the world in 2050 may not be such a bad place.",
+  "where": "Introduction, p. xiii",
+  "conf": 2,
+  "src": [
+   "https://profilebooks.com/wp-content/uploads/wpallimport/files/PDFs/9781847658050_preview.pdf",
+   "https://archive.org/details/megachangeworldi0000unse_h4i3"
+  ]
+ },
+ {
+  "b": "figueres",
+  "q": "The air is cleaner than it has been since before the Industrial Revolution.",
+  "where": "ch. 3, The World We Must Create",
+  "conf": 3,
+  "src": [
+   "https://www.unccd.int/sites/default/files/library/1649_The_Future_We_Choose_Surviving_the_Climate_Crisis.pdf",
+   "https://atmos.earth/climate-solutions/climate-change-two-futures-book/"
+  ]
+ },
+ {
+  "b": "clarke",
+  "q": "Any sufficiently advanced technology is indistinguishable from magic.",
+  "where": "Clarke’s Third Law, revised edition (1973)",
+  "conf": 2,
+  "src": [
+   "https://archive.org/details/profilesoffuture0000clar_a7l1?q=%22indistinguishable+from+magic%22",
+   "https://en.wikipedia.org/wiki/Clarke%27s_three_laws"
+  ]
+ },
+ {
+  "b": "ritchie",
+  "q": "We have the opportunity to be the first generation that leaves the environment in a better state than we found it. The first generation in human history to achieve sustainability.",
+  "where": "Introduction",
+  "conf": 3,
+  "src": [
+   "https://cdn.penguin.co.uk/dam-assets/books/9781784745004/9781784745004-sample.pdf",
+   "https://time.com/6552329/urgent-optimism-climate-action-essay/"
+  ]
+ },
+ {
+  "b": "kaku",
+  "q": "The lesson here is that it is very dangerous to bet against the future.",
+  "where": "Introduction",
+  "conf": 3,
+  "src": [
+   "https://www.npr.org/2011/03/18/134653544/excerpt-physics-of-the-future",
+   "https://books.google.com/books?id=UaRlfPLLiakC"
+  ]
+ },
+ {
+  "b": "porritt",
+  "q": "…there’s never been a generation more focused on doing the right thing for people today and for people tomorrow. This thought fills me with hope.",
+  "where": "in the voice of Alex McKay, writing in 2050",
+  "conf": 3,
+  "src": [
+   "https://archive.org/details/worldwemadealexm0000porr?q=%22fills+me+with+hope%22"
+  ],
+  "note": "Opens “In working on this project with my Research Team, I’m convinced that” in the book."
+ },
+ {
+  "b": "drawdown",
+  "by": "Paul Hawken",
+  "q": "We see global warming not as an inevitability but as an invitation to build, innovate, and effect change, a pathway that awakens creativity, compassion, and genius.",
+  "where": "Hawken’s opening essay",
+  "conf": 2,
+  "src": [
+   "https://brainstation.io/magazine/answers-to-global-warming-are-already-here",
+   "https://global.penguinrandomhouse.com/announcements/how-can-we-help-save-the-earth-paul-hawken-has-a-plan-in-drawdown/",
+   "https://www.goodreads.com/work/quotes/52301752"
+  ]
+ },
+ {
+  "b": "lem",
+  "q": "We can fly, but not by flapping our arms.",
+  "where": "ch. 4, Intelectronics, p. 91 (trans. Joanna Zylinska, 2013)",
+  "conf": 2,
+  "src": [
+   "https://archive.org/details/oapen-20.500.12657-45753",
+   "https://gizmodo.com/stanisaw-lems-summa-technologiae-portrays-a-grim-and-s-1498640982"
+  ]
+ },
+ {
+  "b": "ai2041",
+  "by": "Kai-Fu Lee",
+  "q": "We will not be passive spectators in the story of AI—we are the authors of it.",
+  "where": "closing pages",
+  "conf": 3,
+  "src": [
+   "https://books.google.com/books?id=cw0PEAAAQBAJ",
+   "https://books.google.com/books?id=GTs-EQAAQBAJ"
+  ]
+ },
+ {
+  "b": "earth4all",
+  "q": "…it is possible, desirable, and even essential to be optimistic about our collective future. Our analysis indicates it’s fully doable.",
+  "where": "ch. 1",
+  "conf": 3,
+  "src": [
+   "https://newsociety.com/wp-content/uploads/woocommerce_uploads/toc-excerpt/Earth-for-All_excerpt.pdf",
+   "https://creativelyunited.org/earth-for-all-not-just-for-some/"
+  ],
+  "note": "Opens “And our final conclusion is that, despite these warnings,” in the book."
+ },
+ {
+  "b": "randers",
+  "q": "In 2052 there will be, beyond doubt, great consolation prizes for couch potatoes in the form of absolute first-class virtual nature and museums.",
+  "where": "ch. 12, What Should You Do?",
+  "conf": 3,
+  "src": [
+   "https://archive.org/details/2052globalforeca0000rand?q=%22couch+potatoes%22"
+  ]
+ },
+ {
+  "b": "chiang",
+  "q": "Experience isn't merely the best teacher; it's the only teacher.",
+  "where": "Exhalation (2019) text",
+  "conf": 3,
+  "src": [
+   "https://books.google.com/books?id=L61oDwAAQBAJ",
+   "https://web.archive.org/web/20121019120536/http://subterraneanpress.com/magazine/fall_2010/fiction_the_lifecycle_of_software_objects_by_ted_chiang"
+  ],
+  "note": "Follows a colon in the book, so “experience” is lowercase there. The 2010 edition uses a comma instead of the semicolon."
+ },
+ {
+  "b": "ministry",
+  "q": "Enough should be a human right, a floor below which no one can fall; also a ceiling above which no one can rise. Enough is as good as a feast—or better.",
+  "where": "",
+  "conf": 2,
+  "src": [
+   "https://www.goodreads.com/work/quotes/75844661",
+   "https://twincitiesdsa.org/2021/01/on-ministry-for-the-future-by-kim-stanley-robinson/",
+   "https://shelflove.wordpress.com/2021/06/20/the-ministry-for-the-future/"
+  ]
+ },
+ {
+  "b": "smith",
+  "q": "We will all be potential rivals, but also all potential friends.",
+  "where": "",
+  "conf": 3,
+  "src": [
+   "https://archive.org/details/worldin2050fourf0000smit",
+   "https://archive.org/details/newnorthworldin20000smit"
+  ]
+ },
+ {
+  "b": "kurzweil",
+  "q": "Belief that a better world is genuinely possible is a powerful motivator to work hard on creating it.",
+  "where": "",
+  "conf": 3,
+  "src": [
+   "https://books.google.com/books?id=V-e8EQAAQBAJ",
+   "https://www.goodreads.com/work/quotes/90653605"
+  ]
+ },
+ {
+  "b": "megachange",
+  "by": "Daniel Franklin",
+  "q": "Science fiction could even become 2050 fact: the rebirth of an extinct species is a distinct possibility.",
+  "where": "Introduction, p. xii",
+  "conf": 2,
+  "src": [
+   "https://profilebooks.com/wp-content/uploads/wpallimport/files/PDFs/9781847658050_preview.pdf",
+   "https://archive.org/details/megachangeworldi0000unse_h4i3"
+  ]
+ },
+ {
+  "b": "limits",
+  "q": "If there is cause for deep concern, there is also cause for hope. Deliberately limiting growth would be difficult, but not impossible.",
+  "where": "ch. V, p. 183",
+  "conf": 3,
+  "src": [
+   "https://www.donellameadows.org/wp-content/userfiles/Limits-to-Growth-digital-scan-version.pdf"
+  ]
+ },
+ {
+  "b": "klara",
+  "q": "There *was* something very special, but it wasn't inside Josie. It was inside those who loved her.",
+  "where": "final section",
+  "conf": 2,
+  "src": [
+   "https://books.google.com/books?id=Ev-xEAAAQBAJ",
+   "https://books.google.com/books?id=HCXTEAAAQBAJ",
+   "https://mindmatters.ai/2023/02/klara-and-the-sun-a-review/"
+  ],
+  "note": "The first “was” is italic in print."
+ },
+ {
+  "b": "kelly",
+  "q": "There has never been a better day in the whole history of the world to invent something.",
+  "where": "ch. 1, Becoming",
+  "conf": 3,
+  "src": [
+   "https://books.google.com/books?id=zUzNDgAAQBAJ",
+   "https://www.soundandvision.com/content/internet-you-ain%E2%80%99t-seen-nothing-yet"
+  ]
+ },
+ {
+  "b": "cityonmars",
+  "q": "We aren’t saying you should give up on the hope for a life off-world—that’s too pretty a dream to part with.",
+  "where": "",
+  "conf": 2,
+  "src": [
+   "https://www.goodreads.com/author/quotes/16534466.Kelly_Weinersmith",
+   "https://archive.org/search?query=%22too+pretty+a+dream+to+part+with%22&sin=TXT"
+  ]
+ },
+ {
+  "b": "earth4all",
+  "q": "Rapid economic development following these five extraordinary turnarounds could remove absolute poverty by 2050.",
+  "where": "ch. 1",
+  "conf": 3,
+  "src": [
+   "https://newsociety.com/wp-content/uploads/woocommerce_uploads/toc-excerpt/Earth-for-All_excerpt.pdf"
+  ]
+ },
+ {
+  "b": "kaku",
+  "q": "History, we are told over and over again, is written by the optimists, not the pessimists.",
+  "where": "Introduction",
+  "conf": 3,
+  "src": [
+   "https://www.npr.org/2011/03/18/134653544/excerpt-physics-of-the-future",
+   "https://books.google.com/books?id=UaRlfPLLiakC"
+  ]
+ },
+ {
+  "b": "clarke",
+  "q": "But the only way of discovering the limits of the possible is to venture a little way past them into the impossible.",
+  "where": "ch. 2, Hazards of Prophecy",
+  "conf": 2,
+  "src": [
+   "https://archive.org/details/profilesoffuture00clar?q=%22limits+of+the+possible%22",
+   "https://archive.org/details/profilesoffuture0000clar_a7l1?q=%22limits+of+the+possible%22"
+  ]
+ },
+ {
+  "b": "ai2041",
+  "by": "Chen Qiufan",
+  "q": "But if we stop helping people—stop loving people—because of fear, then what makes us different from machines?",
+  "where": "story “Contactless Love”",
+  "conf": 3,
+  "src": [
+   "https://books.google.com/books?id=JR_jEAAAQBAJ",
+   "https://www.goodreads.com/work/quotes/87846162"
+  ]
+ },
+ {
+  "b": "porritt",
+  "q": "Step changes in practically every area of our life are available to us right now.",
+  "where": "Looking Forward",
+  "conf": 3,
+  "src": [
+   "https://archive.org/details/worldwemadealexm0000porr?q=%22step+changes%22"
+  ]
+ },
+ {
+  "b": "drawdown",
+  "by": "Paul Hawken",
+  "q": "This is not a liberal agenda, nor is it a conservative one. This is the human agenda.",
+  "where": "Hawken’s opening essay",
+  "conf": 2,
+  "src": [
+   "https://brainstation.io/magazine/answers-to-global-warming-are-already-here",
+   "https://global.penguinrandomhouse.com/announcements/how-can-we-help-save-the-earth-paul-hawken-has-a-plan-in-drawdown/"
+  ]
+ },
+ {
+  "b": "kurzweil",
+  "q": "A key capability in the 2030s will be to connect the upper ranges of our neocortices to the cloud, which will directly extend our thinking.",
+  "where": "ch. 1",
+  "conf": 3,
+  "src": [
+   "https://books.google.com/books?id=V-e8EQAAQBAJ",
+   "https://books.google.com/books?id=153OEQAAQBAJ",
+   "https://www.goodreads.com/work/quotes/90653605"
+  ]
+ },
+ {
+  "b": "sagan",
+  "q": "Look again at that dot. That's here. That's home. That's us. On it everyone you love, everyone you know, everyone you ever heard of, every human being who ever was, lived out their lives.",
+  "where": "ch. 1, You Are Here",
+  "conf": 2,
+  "src": [
+   "https://archive.org/details/palebluedot00carl?q=%22Look+again+at+that+dot%22",
+   "https://www.planetary.org/worlds/pale-blue-dot"
+  ]
+ },
+ {
+  "b": "ritchie",
+  "q": "We can shape the future, and we can build a great one if we want to.",
+  "where": "Introduction",
+  "conf": 3,
+  "src": [
+   "https://cdn.penguin.co.uk/dam-assets/books/9781784745004/9781784745004-sample.pdf",
+   "https://time.com/6552329/urgent-optimism-climate-action-essay/"
+  ]
+ },
+ {
+  "b": "megachange",
+  "by": "Adrian Wooldridge",
+  "q": "The storms of creative destruction are blowing us to a better place.",
+  "where": "end of ch. 14, Schumpeter Inc",
+  "conf": 2,
+  "src": [
+   "https://archive.org/details/megachangeworldi0000unse_h4i3",
+   "https://profilebooks.com/wp-content/uploads/wpallimport/files/PDFs/9781847658050_preview.pdf"
+  ]
+ },
+ {
+  "b": "chiang",
+  "q": "For a mind to even approach its full potential, it needs cultivation by other minds.",
+  "where": "",
+  "conf": 3,
+  "src": [
+   "https://web.archive.org/web/20121019120536/http://subterraneanpress.com/magazine/fall_2010/fiction_the_lifecycle_of_software_objects_by_ted_chiang",
+   "https://books.google.com/books?id=L61oDwAAQBAJ"
+  ]
+ },
+ {
+  "b": "limits",
+  "q": "Man possesses, for a small moment in his history, the most powerful combination of knowledge, tools, and resources the world has ever known.",
+  "where": "ch. V, pp. 183–184",
+  "conf": 3,
+  "src": [
+   "https://www.donellameadows.org/wp-content/userfiles/Limits-to-Growth-digital-scan-version.pdf"
+  ],
+  "note": "The 1972 text uses “Man”; it is kept as printed."
+ },
+ {
+  "b": "lem",
+  "q": "Perhaps we will eventually gain a kind of longevity that will practically amount to immortality, but to do this, we will have to give up on the bodily form that nature gave us.",
+  "where": "ch. 4, Intelectronics, p. 91 (trans. Joanna Zylinska, 2013)",
+  "conf": 2,
+  "src": [
+   "https://archive.org/details/oapen-20.500.12657-45753",
+   "https://gizmodo.com/stanisaw-lems-summa-technologiae-portrays-a-grim-and-s-1498640982"
+  ]
+ },
+ {
+  "b": "klara",
+  "q": "I believe I have many feelings. The more I observe, the more feelings become available to me.",
+  "where": "",
+  "conf": 3,
+  "src": [
+   "https://books.google.com/books?id=S7jrDwAAQBAJ",
+   "https://books.google.com/books?id=hZEVEQAAQBAJ"
+  ]
+ },
+ {
+  "b": "kurzweil",
+  "q": "…we will extend our minds many millions-fold by 2045.",
+  "where": "ch. 1",
+  "conf": 3,
+  "src": [
+   "https://books.google.com/books?id=V-e8EQAAQBAJ",
+   "https://books.google.com/books?id=153OEQAAQBAJ",
+   "https://books.google.com/books?id=qpJIEQAAQBAJ"
+  ],
+  "note": "The sentence opens “As this progresses exponentially,” in the book."
+ },
+ {
+  "b": "smith",
+  "q": "To me, the more important question is not of capacity, but of desire: What kind of world do we want?",
+  "where": "the book’s closing lines",
+  "conf": 3,
+  "src": [
+   "https://archive.org/details/worldin2050fourf0000smit",
+   "https://archive.org/details/newnorthworldin20000smit"
+  ]
+ },
+ {
+  "b": "figueres",
+  "q": "In the face of climate change, we all have to be optimistic, not because success is guaranteed but because failure is unthinkable.",
+  "where": "ch. 5, Stubborn Optimism",
+  "conf": 3,
+  "src": [
+   "https://www.unccd.int/sites/default/files/library/1649_The_Future_We_Choose_Surviving_the_Climate_Crisis.pdf",
+   "https://www.climatecouncil.org.au/wp-content/uploads/2020/04/The-Future-We-Choose-Extract-Chapter-5-Stubborn-Optimism.pdf"
+  ]
+ },
+ {
+  "b": "porritt",
+  "q": "The bottom line is this: should we so wish, we can still move to address today’s converging crises faster than the speed at which those crises threaten to overwhelm us.",
+  "where": "Looking Forward",
+  "conf": 2,
+  "src": [
+   "https://archive.org/details/worldwemadealexm0000porr?q=%22converging+crises%22",
+   "https://www.eco-business.com/opinion/world-we-made-hopeful-note-2050"
+  ]
+ },
+ {
+  "b": "ai2041",
+  "by": "Kai-Fu Lee",
+  "q": "In the story of AI and humans, if we get the dance between artificial intelligence and human society right, it would unquestionably be the single greatest achievement in human history.",
+  "where": "closing pages",
+  "conf": 3,
+  "src": [
+   "https://books.google.com/books?id=cw0PEAAAQBAJ",
+   "https://books.google.com/books?id=e9PQEAAAQBAJ",
+   "https://www.goodreads.com/work/quotes/87846162"
+  ]
+ },
+ {
+  "b": "cityonmars",
+  "q": "Going to the stars will not make us wise. We have to become wise if we want to go to the stars.",
+  "where": "the book’s closing lines",
+  "conf": 2,
+  "src": [
+   "https://www.goodreads.com/notes/96177619-a-city-on-mars/160464994-victor-hugo-py",
+   "https://archive.org/search?query=%22Going+to+the+stars+will+not+make+us+wise%22&sin=TXT"
+  ]
+ },
+ {
+  "b": "chiang",
+  "q": "…if you want to create the common sense that comes from twenty years of being in the world, you need to devote twenty years to the task.",
+  "where": "",
+  "conf": 3,
+  "src": [
+   "https://web.archive.org/web/20121019120536/http://subterraneanpress.com/magazine/fall_2010/fiction_the_lifecycle_of_software_objects_by_ted_chiang",
+   "https://books.google.com/books?id=L61oDwAAQBAJ",
+   "https://books.google.com/books?id=s_XPCgAAQBAJ"
+  ],
+  "note": "Opens “If she's learned anything raising Jax, it's that there are no shortcuts;” in the book."
+ },
+ {
+  "b": "kaku",
+  "q": "By 2100, our destiny is to become like the gods we once worshipped and feared.",
+  "where": "Introduction",
+  "conf": 3,
+  "src": [
+   "https://books.google.com/books?id=UaRlfPLLiakC",
+   "https://www.goodreads.com/work/quotes/13358451"
+  ]
+ },
+ {
+  "b": "klara",
+  "q": "Do you believe in the human heart?",
+  "where": "Josie’s father to Klara",
+  "conf": 3,
+  "src": [
+   "https://books.google.com/books?id=S7jrDwAAQBAJ",
+   "https://books.google.com/books?id=LXqAEAAAQBAJ"
+  ],
+  "note": "The first sentence of a longer speech."
+ },
+ {
+  "b": "sagan",
+  "q": "Maybe it's a little early. Maybe the time is not quite yet. But those other worlds—promising untold opportunities—beckon.",
+  "where": "the passage read in the short film Wanderers",
+  "conf": 3,
+  "src": [
+   "https://archive.org/details/palebluedot00carl?q=%22little+early%22"
+  ]
+ },
+ {
+  "b": "kelly",
+  "q": "Today truly is a wide-open frontier. We are all becoming. It is the best time ever in human history to begin. You are not late.",
+  "where": "end of ch. 1, Becoming",
+  "conf": 3,
+  "src": [
+   "https://books.google.com/books?id=zUzNDgAAQBAJ",
+   "https://www.soundandvision.com/content/internet-you-ain%E2%80%99t-seen-nothing-yet"
+  ],
+  "note": "Book wording. The 2014 blog post that preceded it is worded differently."
+ },
+ {
+  "b": "randers",
+  "q": "There is only one more thing for me to say: Please help make my forecast wrong. Together we could create a much better world.",
+  "where": "Closing Words",
+  "conf": 3,
+  "src": [
+   "https://archive.org/details/2052globalforeca0000rand?q=%22forecast+wrong%22"
+  ]
+ },
+ {
+  "b": "figueres",
+  "q": "Our future is unwritten. It will be shaped by who we choose to be now.",
+  "where": "ch. 4, Who We Choose to Be (opening)",
+  "conf": 3,
+  "src": [
+   "https://www.unccd.int/sites/default/files/library/1649_The_Future_We_Choose_Surviving_the_Climate_Crisis.pdf",
+   "https://www.cnbc.com/2021/05/14/what-2050-could-look-like-if-we-dont-do-anything-about-climate-change.html"
+  ]
+ },
+ {
+  "b": "ministry",
+  "q": "…we will keep going, we will keep going, because there is no such thing as fate. Because we never really come to the end.",
+  "where": "the novel’s closing words",
+  "conf": 2,
+  "src": [
+   "https://www.goodreads.com/work/quotes/75844661",
+   "https://onlinelibrary.wiley.com/doi/10.1002/fhu2.70018"
+  ],
+  "note": "The sentence starts earlier; the ellipsis marks the cut."
+ }
+]
