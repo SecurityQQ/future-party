@@ -9,13 +9,24 @@ avatars/<handle>.jpg are the profile pictures (256 px), embedded as data URIs.
 
 Run: python3 -I build.py
 Writes dist/tweets-2050.html (publish to the artifact) and dist/tweet-wall.html
-(a standalone copy that opens in any browser, for the projector).
+(a standalone copy that opens in any browser, for the projector), both in the website's Blue futurism
+(vibes/restyle.py).
 """
 import base64, json, re, sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 MAX_WALL_WORDS = 70  # longer tweets must carry a wall excerpt
+
+
+def blue(path):
+    """Dress a written page in the website's Blue futurism (vibes/restyle.py), like every other page of the site."""
+    import importlib.util
+    sys.dont_write_bytecode = True
+    spec = importlib.util.spec_from_file_location("vibes_restyle", Path(__file__).resolve().parents[1] / "vibes" / "restyle.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    mod.restyle_file(path)
 
 
 def words(s):
@@ -68,6 +79,7 @@ def main():
              '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
              '<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>\n')
     (out / "tweet-wall.html").write_text(shell + page + "\n</html>\n", encoding="utf8")
+    blue(out / "tweets-2050.html"); blue(out / "tweet-wall.html")
     n = len(W["tweets"])
     print(f"{n} tweets, {len(W['authors'])} authors, {sum(1 for t in W['tweets'] if t.get('wall'))} wall excerpts, "
           f"{len(page) // 1024} KB -> dist/")

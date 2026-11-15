@@ -40,6 +40,25 @@ view live in `patch_history_layout.py` / `history-layout.css` and
 `patch_future_layout.py` / `future-layout.css`. Edit these sources, then regenerate
 the HTML.
 
+The pages first made in the earlier orange look (Inter, JetBrains Mono, `#ff5315`):
+Book Projection and the quote wall, the tweets and the tweet wall, the futurists research, Soundtrack 2050,
+Why Music Changes, Projection 2050, Further, the Mirror research, Tea With Tomorrow, Mirror 2050 and Play 2050,
+wear Blue futurism through `restyle.py`. It puts `tokens.css` and `pages.css` (the old variable names pointed
+at the tokens, the page title in Unbounded with a chrome word, chrome primary buttons, dark only) into each page,
+swaps the fonts and the old orange and near-black literals, and puts the party's mark (FUTURE PARTY / 2050) at
+the top left, linking back to the page's section on the front page. The builds of `books/`, `tweets/`, `music/`,
+`soundboard/` and `video/tools/page.py` call it on what they write, `hub/site.py` calls it on every page it
+publishes, and the hand-made pages are kept restyled in the repo:
+
+```sh
+python3 -I vibes/restyle.py          # restyle every page in its PAGES list
+python3 -I vibes/restyle.py --check  # exit 1 if a page is not restyled
+```
+
+A new page made in the old look goes in `PAGES` in `restyle.py`. Page-specific fixes go in `pages.css` under
+`:root[data-vibe="<name>"]`. Mars in 3D keeps its red/cyan accents on black (they are for the 3D glasses), and the
+Big Wall and Further keep League Gothic for titles on the projector.
+
 After editing tokens or the optimized texture, run from the repository root:
 
 ```sh

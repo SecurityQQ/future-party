@@ -7,6 +7,8 @@ The site keeps the repo's paths, so every relative link works the same as in the
   /admin forwards to it, so it keeps the front page's relative links;
 - every page in build.PAGES, the two walls and the Resonance player are copied. A page saved as a claude.ai
   fragment (no <!doctype>) gets the same document shell the books and tweets builds use for their wall pages;
+- every page first made in the orange look is dressed in the site's Blue futurism (vibes/restyle.py), so the whole
+  site looks like the front page even if a build wrote one of them in the old look;
 - every claude.ai link to one of these pages points at the copy on the site instead;
 - the 720p films and posters in video/dist/media are copied, and the photos the Big Wall loads (wall/dist/manifest.json);
 - each short address in build.SHORT gets a page that forwards to it: /quotes, /tweets, /programme ...;
@@ -30,6 +32,9 @@ _spec.loader.exec_module(B)
 _spec = importlib.util.spec_from_file_location("hub_seo", HUB / "seo.py")
 SEO = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(SEO)
+_spec = importlib.util.spec_from_file_location("vibes_restyle", ROOT / "vibes" / "restyle.py")
+VIBES = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(VIBES)
 
 PAGES = sorted(set(B.PAGES.values()) | {
     "books/dist/quote-wall.html", "tweets/dist/tweet-wall.html", "music/resonance/dist/local/player.html"})
@@ -57,6 +62,10 @@ def html_page(rel):
     s = (ROOT / rel).read_text(encoding="utf8")
     if not s.lstrip()[:15].lower().startswith("<!doctype"):
         s = SHELL + s + "\n</html>\n"
+    if rel in VIBES.PAGES:
+        # Pages first made in the orange look wear the site's Blue futurism (vibes/restyle.py), even if a build
+        # rewrote them in the old look
+        s = VIBES.restyle(s, rel)
     return CLAUDE.sub(lambda m: TO_SITE.get(m.group(0), m.group(0)), s)
 
 

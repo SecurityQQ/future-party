@@ -1,23 +1,121 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html data-vibe="research"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><!--vibes:start--><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&family=Geologica:wght@300;400;500;600;700&family=Martian+Mono:wght@400;500&display=swap"><script>document.documentElement.setAttribute("data-vibe","research")</script><meta name="theme-color" content="#030817"><style>
+/* Blue futurism: vibes/tokens.css and vibes/pages.css, put here by vibes/restyle.py */
+/* Blue futurism · canonical palette and materials for The Future 2050.
+   Run python3 vibes/sync.py from the repository root after editing. */
+:root {
+  --v-space: #030817;
+  --v-navy: #07132b;
+  --v-panel: #0b1b36;
+  --v-panel-hi: #142d52;
+  --v-ink: #edf4ff;
+  --v-muted: #a2b6d4;
+  --v-dim: #8197b8;
+  --v-blue: #4385ff;
+  --v-ice: #9dd8ff;
+  --v-chrome: #dce9fb;
+  --v-chrome-mid: #8faacf;
+  --v-chrome-low: #304e78;
+  --v-line: #2d486d;
+  --v-error: #ff8595;
+  --v-warning: #f4c58d;
+  --v-chrome-surface: linear-gradient(118deg, #f2f7ff 0%, #aec6e8 21%, #edf6ff 42%, #7da2d1 44%, #b8d6f7 68%, #e2efff 100%);
+  --v-chrome-edge: linear-gradient(145deg, #e9f4ff 0%, #82a4d1 17%, #244672 35%, #b8d8ff 48%, #eef8ff 50%, #426a9d 54%, #122d54 78%, #8bb9ec 100%);
+  --v-holo: linear-gradient(115deg, transparent 25%, rgb(67 133 255 / 18%) 40%, rgb(225 242 255 / 28%) 50%, rgb(130 199 255 / 20%) 58%, transparent 72%);
+  --v-ease: cubic-bezier(.2, .7, .2, 1);
+  --v-fast: 180ms;
+  --v-reveal: 800ms;
+  --v-orbit: 12s;
+  color-scheme: dark;
+}
+
+/* Blue futurism for the pages first made in the earlier orange look (orange on near-black, Inter and a mono face):
+   the research pages, the books, the tweets, the playlists, Further, Projection, Mirror 2050 and Play 2050.
+   vibes/restyle.py puts tokens.css and this file after each page's own style, so the page keeps its layout and takes
+   the front page's palette, type and materials. Dark only, like the front page: the pages' light themes are overruled.
+   Everything is scoped to :root[data-vibe], which restyle.py sets, so it outranks the pages' own rules. */
+
+/* The palette: the old names, pointed at the tokens (the same mapping as hub/template.html) */
+:root:root[data-vibe]{
+  --bg:var(--v-space); --raised:var(--v-navy); --raise:var(--v-panel); --raised-2:var(--v-panel); --panel:var(--v-navy); --wall:var(--v-space);
+  --fg:var(--v-ink); --ink:var(--v-ink); --fg-2:#c4d4ec; --muted:var(--v-muted); --idle:var(--v-muted); --dot:var(--v-chrome-low);
+  --line:rgb(143 170 207 / 20%); --line-2:rgb(143 170 207 / 42%);
+  --accent:var(--v-ice); --accent-hot:#cce9ff; --accent-ink:var(--v-ice); --accent-text:var(--v-ice);
+  --accent-soft:rgb(67 133 255 / 16%); --accent-mid:rgb(67 133 255 / 45%); --on-accent:var(--v-navy);
+  --pos:var(--v-ice); --warn:var(--v-warning); --bad:var(--v-error); --cyan:var(--v-ice); --glass:rgb(3 8 23 / 66%);
+  --tea:#5fc8b4; --listen:var(--v-chrome-low); --frame:var(--v-line);
+  --font:"Geologica",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --text:var(--font);
+  --mono:"Martian Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --vb-display:"Unbounded",system-ui,sans-serif;
+  color-scheme:dark;
+}
+:root[data-vibe] body{background:var(--v-space) radial-gradient(ellipse at 88% 5%,rgb(30 75 151 / 24%),transparent 35%) no-repeat;color:var(--fg);-webkit-font-smoothing:antialiased}
+:root[data-vibe] ::selection{color:var(--v-navy);background:var(--v-ice)}
+:root[data-vibe] :focus-visible{outline:2px solid var(--v-ice);outline-offset:3px}
+
+/* Headings: the page title in Unbounded at the size of Music of the Future's, its highlighted word in chrome, like the
+   front page. Mirror 2050 keeps its own (the effect names over the camera are in League Gothic, like the Big Wall's). */
+:root[data-vibe]:not([data-vibe="mirror"]) h1{font-family:var(--vb-display);font-weight:500;text-transform:uppercase;letter-spacing:-.055em;line-height:1.06}
+:root[data-vibe]:not([data-vibe="mirror"],[data-vibe="play"]) h1{font-size:clamp(36px,5.6vw,72px)}
+:root[data-vibe]:is([data-vibe="research"],[data-vibe="mirror-research"]) h1{font-size:clamp(28px,3.9vw,50px);line-height:1.1}
+:root[data-vibe]:not([data-vibe="mirror"]) h1 :is(span,em,b,i){background:var(--v-chrome-surface);background-clip:text;-webkit-background-clip:text;color:transparent;font-style:normal;font-weight:600}
+:root[data-vibe] h1 .dim{opacity:.72}
+:root[data-vibe]:not([data-vibe="mirror"],[data-vibe="play"]) h2{font-family:var(--vb-display);font-weight:500;font-size:clamp(22px,2.6vw,34px);line-height:1.2;letter-spacing:-.035em;text-transform:none}
+:root[data-vibe] .eyebrow,:root[data-vibe] .kicker{font-family:var(--mono);color:var(--v-ice)}
+
+/* Primary buttons: liquid chrome with navy ink, the way the front page's Start buttons look */
+:root[data-vibe] :is(.btn.primary,.hero-cta .btn:first-child,.s-copy,.yt-btn,.open,#go){color:var(--v-navy);background:var(--v-chrome-surface);background-size:130% 100%;border-color:#c8ddf7;box-shadow:inset 0 1px 0 #fff,0 4px 16px rgb(67 133 255 / 12%);transition:background-position var(--v-fast),box-shadow var(--v-fast)}
+:root[data-vibe] :is(.btn.primary,.hero-cta .btn:first-child,.s-copy,.yt-btn,.open,#go):hover{background-position:100% 50%;box-shadow:inset 0 1px 0 #fff,0 0 24px rgb(67 133 255 / 25%);color:var(--v-navy)}
+
+/* The way home: the party's mark at the top left of every page, pointing back to the page's section on the front page */
+:root[data-vibe] .vb-brand{display:inline-flex;align-items:center;gap:10px;color:var(--v-chrome);font:500 12px/1.4 var(--vb-display);letter-spacing:-.02em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+:root[data-vibe] .vb-brand svg{width:26px;height:26px;flex:none;color:var(--v-ice)}
+:root[data-vibe] .vb-brand:hover{color:#fff}
+:root[data-vibe] nav.top .vb-brand{margin-right:auto}
+:root[data-vibe] .vb-bar{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;padding-block:20px;border-bottom:1px solid var(--line);font:400 11px/1.4 var(--mono);letter-spacing:.03em}
+:root[data-vibe] .vb-bar .vb-brand{margin-right:auto}
+:root[data-vibe] .vb-bar .vb-back{color:var(--muted);text-decoration:none}
+:root[data-vibe] .vb-bar .vb-back:hover{color:var(--fg)}
+@media print{:root[data-vibe] .vb-bar{display:none}}
+
+/* Phones: wide tables scroll inside their frame instead of widening the page, and long source links wrap
+   (Martian Mono is wider than the mono face these pages were laid out in) */
+:root[data-vibe] :is(.table-wrap,.table-scroll){overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch}
+:root[data-vibe] .table-wrap{border:1px solid var(--line);border-radius:var(--r,10px)}
+:root[data-vibe] .sig a{white-space:normal;overflow-wrap:anywhere}
+
+/* Mirror 2050: the titles of the app's own Mirror (app/public/app/mirror/index.html), Unbounded with a chrome 2050,
+   so /mirror and /app/mirror look like one app */
+:root[data-vibe="mirror"]{--display:"Unbounded","Arial Black",system-ui,sans-serif}
+:root[data-vibe="mirror"] .brand{font:700 14px/1.05 var(--display);letter-spacing:.05em}
+:root[data-vibe="mirror"] .brand b{color:var(--v-ice);font-weight:700;margin-left:.2em}
+:root[data-vibe="mirror"] .brand small{font-size:9px;letter-spacing:.16em;margin-top:3px}
+:root[data-vibe="mirror"] #title .num{font-size:11px;letter-spacing:.16em;color:var(--v-ice)}
+:root[data-vibe="mirror"] #title h1{font:600 clamp(34px,6.2vw,88px)/1 var(--display);letter-spacing:-.01em;margin-top:8px;text-transform:none}
+:root[data-vibe="mirror"] #gate h1{font:700 clamp(54px,13vw,128px)/.92 var(--display);letter-spacing:-.02em;text-transform:none}
+:root[data-vibe="mirror"] #gate h1 b{color:transparent;background:var(--v-chrome-surface);-webkit-background-clip:text;background-clip:text;font-weight:700}
+:root[data-vibe="mirror"] #info h2{font:700 30px/1 var(--display);letter-spacing:-.01em;text-transform:none}
+@media (max-width:640px){:root[data-vibe="mirror"] .brand{font-size:12px}}
+</style>
+<!--vibes:end--></head><body>
 <title>Futurists on 2050</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
 <style>
 /* Layout: answer first, then People, Consensus, Topics (every quote, filterable), Particular ideas; limits and the X queries at the end. */
 :root {
-  --bg: #070708; --panel: #0e0e10; --fg: #ffffff; --fg-2: #d4d4d4; --muted: #a1a1a1;
+  --bg: #030817; --panel: #07132b; --fg: #ffffff; --fg-2: #d4d4d4; --muted: #a1a1a1;
   --line: rgba(255,255,255,0.10); --line-2: rgba(255,255,255,0.20);
-  --accent: #ff5315; --accent-text: #ff6a33; --on-accent: #070708;
-  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --accent: #4385ff; --accent-text: #9dd8ff; --on-accent: #030817;
+  --font: "Geologica", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Martian Mono", ui-monospace, "SF Mono", Menlo, monospace;
   color-scheme: dark;
 }
 @media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) { --bg: #ffffff; --panel: #f6f6f7; --fg: #070708; --fg-2: #262628; --muted: #737373; --line: #e5e5e5; --line-2: #cfcfd3; --accent: #ff5315; --accent-text: #c2410c; --on-accent: #070708; color-scheme: light; }
+  :root:not([data-theme="dark"]) { --bg: #ffffff; --panel: #f6f6f7; --fg: #030817; --fg-2: #262628; --muted: #737373; --line: #e5e5e5; --line-2: #cfcfd3; --accent: #4385ff; --accent-text: #9dd8ff; --on-accent: #030817; color-scheme: light; }
 }
-:root[data-theme="light"] { --bg: #ffffff; --panel: #f6f6f7; --fg: #070708; --fg-2: #262628; --muted: #737373; --line: #e5e5e5; --line-2: #cfcfd3; --accent: #ff5315; --accent-text: #c2410c; --on-accent: #070708; color-scheme: light; }
+:root[data-theme="light"] { --bg: #ffffff; --panel: #f6f6f7; --fg: #030817; --fg-2: #262628; --muted: #737373; --line: #e5e5e5; --line-2: #cfcfd3; --accent: #4385ff; --accent-text: #9dd8ff; --on-accent: #030817; color-scheme: light; }
 * { box-sizing: border-box; }
 body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
 a { color: inherit; text-decoration-color: var(--line-2); text-underline-offset: 3px; }
@@ -163,7 +261,8 @@ footer { padding-block: 28px 60px; border-top: 1px solid var(--line); font-size:
 @media (prefers-reduced-motion: no-preference) { .seg, .btn, .ghost { transition: background-color .15s, color .15s, border-color .15s; } .tw { transition: background-color .6s; } }
 </style>
 
-<header class="hero">
+<!--vibes:bar--><div class="wrap"><nav class="vb-bar" aria-label="Future Party 2050"><a class="brand vb-brand" href="../../index.html#research" title="Back to 2050 Research on the party’s front page"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="16" cy="16" r="7"/><ellipse cx="16" cy="16" rx="15" ry="5" transform="rotate(-25 16 16)"/></svg>FUTURE PARTY / 2050</a><a class="vb-back" href="../../index.html#research">← 2050 Research</a></nav></div>
+<!--/vibes:bar--><header class="hero">
   <div class="wrap hero-grid">
     <span class="eyebrow">Research · X (Twitter) · collected 12–13 November 2026</span>
     <h1>2050, in futurists'<br>own <span>words</span></h1>

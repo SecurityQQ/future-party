@@ -1,11 +1,20 @@
 """Build the music pages: Soundtrack 2050 (Fable 5.2's playlist about the future: soundtrack.json and history.json
 into template.html -> dist/soundtrack2050.html and history.csv), Why Music Changes (eras.json, route.json ->
 dist/why-music-changes.html) and Music of the Future, the host's own picks (future_music.json ->
-dist/music-of-the-future.html).
+dist/music-of-the-future.html). The first two were made in the earlier orange look and are dressed in the
+site's Blue futurism by vibes/restyle.py; Music of the Future carries the tokens itself.
 Run: python3 -I build.py   (from this folder)"""
 import csv, json, os, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 def load(name): return json.load(open(os.path.join(HERE, name), encoding='utf-8'))
+def blue(path):
+    """Dress a written page in the website's Blue futurism (vibes/restyle.py), like every other page of the site."""
+    import importlib.util
+    sys.dont_write_bytecode = True
+    spec = importlib.util.spec_from_file_location("vibes_restyle", os.path.join(HERE, '..', 'vibes', 'restyle.py'))
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    mod.restyle_file(path)
 st, hist = load('soundtrack.json'), load('history.json')
 tpl = open(os.path.join(HERE, 'template.html'), encoding='utf-8').read()
 for key in ('__SOUNDTRACK_JSON__', '__HISTORY_JSON__'):
@@ -14,6 +23,7 @@ js = lambda o: json.dumps(o, ensure_ascii=False, separators=(',', ':')).replace(
 page = tpl.replace('__SOUNDTRACK_JSON__', js(st)).replace('__HISTORY_JSON__', js(hist))
 os.makedirs(os.path.join(HERE, 'dist'), exist_ok=True)
 open(os.path.join(HERE, 'dist', 'soundtrack2050.html'), 'w', encoding='utf-8').write(page)
+blue(os.path.join(HERE, 'dist', 'soundtrack2050.html'))
 
 # Integrity checks
 ids = {t['id'] for t in st['tracks']}
@@ -51,6 +61,7 @@ route = load('route.json')
 assert wt.count('__ROUTE_JSON__') == 1 and all(i.get('yt') for i in route['items'])
 why = wt.replace('__ERAS_JSON__', js(eras)).replace('__ROUTE_JSON__', js(route))
 open(os.path.join(HERE, 'dist', 'why-music-changes.html'), 'w', encoding='utf-8').write(why)
+blue(os.path.join(HERE, 'dist', 'why-music-changes.html'))
 print(f"built dist/why-music-changes.html ({len(why.encode())} bytes); {len(eras['eras'])} eras, {len(eras.get('scenarios', []))} scenarios")
 
 # Page 3: Music of the Future, the host's own picks (future_music.json -> future_template.html)
