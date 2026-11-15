@@ -26,7 +26,7 @@ const icons = {
 };
 
 // The site's address. On the app's old addresses / is the app itself (next.config.ts), so the Party knob goes here.
-const MAIN = "https://www.vargafutureparty.com/";
+const MAIN = "https://vargafutureparty.com/";
 const OLD_HOST = /^(?:zodiac-rangers|the-future-2050)\.vercel\.app$/;
 
 // The fixed control deck at the bottom: round knobs like a cockpit console. The party's front page (/) shows the

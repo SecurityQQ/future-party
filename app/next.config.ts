@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
-// One site at www.vargafutureparty.com. The party's front page and every page it links are static files that
+// One site at vargafutureparty.com. The party's front page and every page it links are static files that
 // `npm run site` writes into public/ from the repo (hub/site.py); the app lives under /app, its API under /api.
-const MAIN = "https://www.vargafutureparty.com";
+const MAIN = "https://vargafutureparty.com";
 // The app's first addresses: the NFC passes were written as zodiac-rangers.vercel.app/t/<code>.
 const oldHost = [{ type: "host" as const, value: "(?:zodiac-rangers|the-future-2050)\\.vercel\\.app" }];
 // A phone with a traveler on an old address keeps its session there; every other phone moves to the main address.

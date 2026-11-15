@@ -223,7 +223,7 @@ exec(open(P('patch_future_eras.py'), encoding='utf-8').read())
 
 # The way back to the party, as on every page of the site: the party's mark in the header, pointing at this app's
 # card on the front page (an absolute address, so the standalone file and the resonance-2050 copy lead there too)
-PARTY = ('<a class="quiet-button party-link" href="https://www.vargafutureparty.com/#history-of-music" '
+PARTY = ('<a class="quiet-button party-link" href="https://vargafutureparty.com/#history-of-music" '
          'title="Varga Future Party 2050: back to the party&#8217;s apps"><svg viewBox="0 0 32 32" aria-hidden="true">'
          '<circle cx="16" cy="16" r="7"/><ellipse cx="16" cy="16" rx="15" ry="5" transform="rotate(-25 16 16)"/></svg>'
          '<span>Varga Future Party</span></a>')
