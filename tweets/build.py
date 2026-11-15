@@ -15,6 +15,8 @@ import base64, json, re, sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+# The timeline every wall shares (drag, click or scroll through the loop), inlined so the page works from a folder
+TIMELINE = HERE.parent / "vibes" / "timeline.js"
 MAX_WALL_WORDS = 70  # longer tweets must carry a wall excerpt
 
 
@@ -61,6 +63,9 @@ def main():
     tpl = (HERE / "template.html").read_text(encoding="utf8")
     if tpl.count("/*WALL*/null") != 1:
         print("template.html needs exactly one /*WALL*/null slot"); sys.exit(1)
+    if tpl.count("/*WALL_TIMELINE*/") != 1:
+        print("template.html needs exactly one /*WALL_TIMELINE*/ slot"); sys.exit(1)
+    tpl = tpl.replace("/*WALL_TIMELINE*/", TIMELINE.read_text(encoding="utf8"), 1)
     page = tpl.replace("/*WALL*/null", json.dumps(W, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"), 1)
     out = HERE / "dist"; out.mkdir(exist_ok=True)
     (out / "tweets-2050.html").write_text(page, encoding="utf8")

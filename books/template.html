@@ -271,6 +271,7 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12px/1.
 .pj-count{font:400 12.5px var(--mono);color:#a1a1a1;min-width:72px;text-align:center;font-variant-numeric:tabular-nums}
 .pj-prog{position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(255,255,255,.08)}
 .pj-prog i{display:block;height:100%;width:0;background:#ff5315}
+.pj{--wtl-mono:var(--mono);--wtl-fg:#ffffff;--wtl-muted:#a1a1a1;--wtl-line:rgba(255,255,255,.22)}
 .pj-paused{position:absolute;top:calc(18px + env(safe-area-inset-top,0px));right:max(20px,env(safe-area-inset-right,0px));font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#a1a1a1}
 
 @media (prefers-reduced-motion: reduce){
@@ -426,6 +427,7 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12px/1.
       <dl class="keys">
         <dt>Space</dt><dd>pause and resume</dd>
         <dt>← →</dt><dd>previous and next slide; clicking a slide also moves forward</dd>
+        <dt>Scroll</dt><dd>move through the loop in time; drag the time line at the bottom, or Shift+← → for ten seconds</dd>
         <dt>F</dt><dd>fullscreen</dd>
         <dt>Esc</dt><dd>leave the projection</dd>
       </dl>
@@ -527,6 +529,7 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12px/1.
   <div class="pj-prog" aria-hidden="true"><i id="pjProg"></i></div>
 </div>
 
+<script>/*WALL_TIMELINE*/</script>
 <script>
 (function(){
 const B=[
@@ -936,7 +939,7 @@ const segBtns=(wrap,list,cur,onPick)=>list.forEach(o=>{
   wrap.appendChild(bt);
 });
 const spWrap=document.getElementById('speed'),mdWrap=document.getElementById('modeSeg');
-segBtns(spWrap,SPEEDS,speedId,id=>{speedId=id;try{localStorage.setItem('kp2050-speed',id)}catch(e){};updTotals();if(P.open)P.dur=durOf(PL[P.i])});
+segBtns(spWrap,SPEEDS,speedId,id=>{speedId=id;try{localStorage.setItem('kp2050-speed',id)}catch(e){};updTotals();if(P.open){P.dur=durOf(PL[P.i]);TL.refresh()}});
 segBtns(mdWrap,MODES,modeId,id=>{modeId=id;try{localStorage.setItem('kp2050-mode',id)}catch(e){}});
 function updTotals(){
   const t=m=>buildPL(m).reduce((s,it)=>s+durOf(it),0);
@@ -980,12 +983,29 @@ function render(pos){
 function go(pos){
   P.i=(pos+PL.length)%PL.length;P.elapsed=0;P.dur=durOf(PL[P.i]);render(P.i);progI.style.width='0%';
 }
+/* The timeline: the whole loop on one rail (the idea blocks as segments); a move swaps the slide at once, at the
+   point it would have reached */
+function seekTo(i,t){
+  if(!P.open||!PL[i])return;
+  if(i!==P.i||!stage.querySelector('.pj-slide:not(.out)')){stage.innerHTML='';P.i=i;P.dur=durOf(PL[i]);render(i)}
+  P.elapsed=t;WallTimeline.at(stage.querySelector('.pj-slide:not(.out)'),t);
+  progI.style.width=Math.min(100,t/P.dur*100)+'%';
+}
+const TL=WallTimeline({
+  bar:document.getElementById('pjBar'),host:pj,active:()=>P.open,poke:()=>poke(),accent:'#ff5315',
+  items:()=>PL.map(durOf),
+  marks:()=>{const out=[];let prev=null;PL.forEach((it,i)=>{if(it.k!=='i')return;const bl=I[it.i].bl;if(bl!==prev){prev=bl;out.push({i:i,label:blockName(bl),color:'#ff5315'})}});if(out.length)out[0].i=0;return out},
+  label:i=>{const it=PL[i];if(!it)return '';if(it.k==='i')return I[it.i].h;const x=Q[it.i];return 'Quote: '+(x.by||bookOf(x.b).au)},
+  pos:()=>({i:P.i,t:P.elapsed}),
+  seek:seekTo
+});
 function tick(ts){
   if(!P.open)return;
   if(!P.last)P.last=ts;
   const dt=ts-P.last;P.last=ts;
-  if(P.playing){P.elapsed+=dt;if(P.elapsed>=P.dur)go(P.i+1)}
+  if(P.playing){P.elapsed+=Math.min(dt,250);if(P.elapsed>=P.dur)go(P.i+1)}
   progI.style.width=Math.min(100,P.elapsed/P.dur*100)+'%';
+  TL.update();
   P.raf=requestAnimationFrame(tick);
 }
 function setPlaying(on){
@@ -1005,6 +1025,7 @@ function openPj(mode,pos){
   if(!P.open)P.prevFocus=document.activeElement;
   PL=buildPL(mode);
   pj.hidden=false;document.documentElement.style.overflow='hidden';
+  TL.refresh();
   P.open=true;stage.innerHTML='';setPlaying(true);go(pos||0);P.last=0;
   cancelAnimationFrame(P.raf);P.raf=requestAnimationFrame(tick);
   poke();wake(true);

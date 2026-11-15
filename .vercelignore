@@ -28,6 +28,8 @@
 !/vibes
 /vibes/*
 !/vibes/tokens.css
+# the wall timeline, inlined into the Big Wall and the front page's film player when the site is built
+!/vibes/timeline.js
 !/vibes/assets
 /video/*
 !/video/dist

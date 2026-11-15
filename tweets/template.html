@@ -191,6 +191,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; max-width: 7
 .pj-count { font: 400 12.5px var(--mono); color: #a1a1a1; min-width: 72px; text-align: center; font-variant-numeric: tabular-nums; }
 .pj-prog { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,.08); }
 .pj-prog i { display: block; height: 100%; width: 0; background: #ff5315; }
+.pj { --wtl-mono: var(--mono); --wtl-fg: #ffffff; --wtl-muted: #a1a1a1; --wtl-line: rgba(255,255,255,.22); }
 .pj-paused { position: absolute; top: calc(18px + env(safe-area-inset-top, 0px)); right: max(20px, env(safe-area-inset-right, 0px)); font: 500 12px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: #a1a1a1; }
 @media (max-aspect-ratio: 1/1) {
   .pj-tw.xl { font-size: 8.4vw; } .pj-tw.l { font-size: 6.6vw; } .pj-tw.m { font-size: 5.2vw; } .pj-tw.s { font-size: 4.2vw; } .pj-tw.xs { font-size: 3.5vw; }
@@ -233,6 +234,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; max-width: 7
     <dl class="keys">
       <dt>Space</dt><dd>pause and resume</dd>
       <dt>← →</dt><dd>previous and next slide; clicking a slide also moves forward</dd>
+      <dt>Scroll</dt><dd>move through the loop in time; drag the time line at the bottom, or Shift+← → for ten seconds</dd>
       <dt>F</dt><dd>fullscreen</dd>
       <dt>Esc</dt><dd>leave the wall</dd>
     </dl>
@@ -299,7 +301,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; max-width: 7
 <div class="pj" id="pj" role="dialog" aria-modal="true" aria-label="Tweet wall" hidden>
   <div class="pj-stage" id="pj-stage"></div>
   <div class="pj-paused" id="pj-paused" hidden>paused</div>
-  <div class="pj-bar">
+  <div class="pj-bar" id="pj-bar">
     <button type="button" id="pj-prev" aria-label="Previous slide">←</button>
     <button type="button" id="pj-play">Pause</button>
     <button type="button" id="pj-next" aria-label="Next slide">→</button>
@@ -310,6 +312,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; max-width: 7
   <div class="pj-prog" aria-hidden="true"><i id="pj-prog"></i></div>
 </div>
 
+<script>/*WALL_TIMELINE*/</script>
 <script>
 (function () {
   var W = /*WALL*/null;
@@ -548,12 +551,29 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; max-width: 7
     cnt.textContent = (pos + 1) + " / " + PL.length;
   }
   function go(pos) { P.i = (pos + PL.length) % PL.length; P.elapsed = 0; P.dur = durOf(PL[P.i]) * 1000; show(P.i); progI.style.width = "0%"; }
+  // The timeline: the whole loop on one rail, each block a segment in its colour; a move swaps the slide at once,
+  // at the point it would have reached
+  function seekTo(i, t) {
+    if (!P.open || !PL[i]) return;
+    if (i !== P.i || !stage.querySelector(".pj-slide:not(.out)")) { stage.innerHTML = ""; P.i = i; P.dur = durOf(PL[i]) * 1000; show(i); }
+    P.elapsed = t; WallTimeline.at(stage.querySelector(".pj-slide:not(.out)"), t);
+    progI.style.width = Math.min(100, t / P.dur * 100) + "%";
+  }
+  var TL = WallTimeline({
+    bar: $("pj-bar"), host: pj, active: function () { return P.open; }, poke: function () { poke(); }, accent: "#ff5315",
+    items: function () { return PL.map(function (it) { return durOf(it) * 1000; }); },
+    marks: function () { var out = []; PL.forEach(function (it, i) { if (it.k === "b") out.push({ i: i, label: it.b.title, color: it.b.color }); }); return out; },
+    label: function (i) { var it = PL[i]; return !it ? "" : it.k === "b" ? "Block " + it.b.n : A[it.t.h].name; },
+    pos: function () { return { i: P.i, t: P.elapsed }; },
+    seek: seekTo
+  });
   function tick(ts) {
     if (!P.open) return;
     if (!P.last) P.last = ts;
     var dt = ts - P.last; P.last = ts;
-    if (P.playing) { P.elapsed += dt; if (P.elapsed >= P.dur) go(P.i + 1); }
+    if (P.playing) { P.elapsed += Math.min(dt, 250); if (P.elapsed >= P.dur) go(P.i + 1); }
     progI.style.width = Math.min(100, P.elapsed / P.dur * 100) + "%";
+    TL.update();
     P.raf = requestAnimationFrame(tick);
   }
   function setPlaying(on) { P.playing = on; btnPlay.textContent = on ? "Pause" : "Resume"; pausedTag.hidden = on; }
@@ -569,6 +589,7 @@ footer ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; max-width: 7
     if (!pl.length) { toast("Nothing to play. Clear the list filters first."); return; }
     if (!P.open) P.prevFocus = document.activeElement;
     PL = pl; pj.hidden = false; document.documentElement.style.overflow = "hidden";
+    TL.refresh();
     P.open = true; stage.innerHTML = ""; setPlaying(true); go(pos || 0); P.last = 0;
     cancelAnimationFrame(P.raf); P.raf = requestAnimationFrame(tick);
     poke(); wake(true);

@@ -165,9 +165,12 @@ footer a{color:var(--v-ice)}
 .viewer.wall .wall-exit{display:inline-flex;align-items:center;gap:8px;position:absolute;z-index:1;top:calc(16px + env(safe-area-inset-top,0px));right:max(16px,env(safe-area-inset-right,0px));
   background:rgb(3 8 23 / 62%);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-color:var(--edge);color:var(--fg);transition:opacity .35s,border-color var(--v-fast)}
 .wall-exit kbd{font:400 10px/1 var(--mono);color:var(--muted)}
+/* The timeline at the foot of the wall: drag it, or scroll anywhere, to move through the pictures in time */
+.wall-bar{display:none}
+.viewer.wall .wall-bar{display:flex;flex-wrap:wrap;position:absolute;z-index:1;left:0;right:0;bottom:0;padding:0 max(16px,env(safe-area-inset-right,0px)) calc(6px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));transition:opacity .35s;--wtl-mono:var(--mono);--wtl-fg:var(--fg);--wtl-muted:var(--muted);--wtl-line:var(--edge)}
 /* Still mouse on the wall: the button and the pointer step aside */
 .viewer.wall.idle{cursor:none}
-.viewer.wall.idle .wall-exit{opacity:0;pointer-events:none}
+.viewer.wall.idle .wall-exit,.viewer.wall.idle .wall-bar{opacity:0;pointer-events:none}
 
 @media (max-width:860px){
   .viewer{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,55vh) minmax(0,1fr)}
@@ -259,6 +262,7 @@ footer a{color:var(--v-ice)}
     <button class="nav next" id="v-next" type="button" aria-label="Next picture"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
     <div class="wall-cap" id="v-wallcap"><div class="wc-desc" id="v-wcdesc"></div><div class="wc-credit" id="v-wccredit"></div></div>
     <button class="icon-btn wall-exit" id="v-wallexit" type="button">Stop wall <kbd>Esc</kbd></button>
+    <div class="wall-bar" id="v-wallbar"></div>
   </div>
   <aside class="side">
     <div class="side-top">
@@ -281,6 +285,7 @@ footer a{color:var(--v-ice)}
   </aside>
 </div>
 
+<script>/*WALL_TIMELINE*/</script>
 <script>
 const ART = /*ART*/null;
 const FULL = /*FULL*/"orig"; // "orig": link full size on pbs.twimg.com; "remote": also show it in the viewer; "local": images/ next to this page
@@ -299,6 +304,9 @@ const mixOrder = new Map(items.map((it, n) => [it.key, (n * 2654435761 % 4294967
 
 const state = {theme:"all", era:"all", q:"", sort:"mix"};
 let shown = [], cur = -1, timer = null, idle = null;
+// The wall's clock: each picture stays WALL_MS; wallT is how long the one on screen has been up
+const WALL_MS = 8000;
+let wallT = 0, wallLast = 0;
 const $ = id => document.getElementById(id);
 
 function stats(){
@@ -436,6 +444,7 @@ function replay(el){ el.classList.remove("in"); void el.offsetWidth; el.classLis
 
 function open(n){
   cur = (n + shown.length) % shown.length;
+  wallT = 0;
   const it = shown[cur], p = it.p;
   const v = $("viewer");
   if (v.hidden){ v.hidden = false; document.body.style.overflow = "hidden"; $("v-close").focus(); }
@@ -500,16 +509,41 @@ function startWall(){
   replay($("v-img"));
   const el = document.documentElement;
   if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
-  clearInterval(timer);
-  timer = setInterval(() => open(cur + 1), 8000);
+  cancelAnimationFrame(timer);
+  wallT = 0; wallLast = 0;
+  timer = requestAnimationFrame(wallTick);
+  TL.refresh();
   wake();
 }
+function wallTick(ts){
+  if (!timer) return;
+  if (!wallLast) wallLast = ts;
+  wallT += Math.min(ts - wallLast, 250); wallLast = ts;
+  if (wallT >= WALL_MS && !TL.busy) open(cur + 1);
+  TL.update();
+  timer = requestAnimationFrame(wallTick);
+}
 function stopWall(){
-  clearInterval(timer); timer = null;
+  cancelAnimationFrame(timer); timer = null;
   clearTimeout(idle);
   $("viewer").classList.remove("wall", "idle");
   if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {});
 }
+
+// The timeline: every picture in the order the wall shows them; a move puts up the picture under the time at once,
+// partway through its slow push
+const TL = WallTimeline({
+  bar: $("v-wallbar"), host: $("viewer"), active: () => !!timer, poke: () => wake(), accent: "#9dd8ff", wheelMs: WALL_MS,
+  items: () => shown.map(() => WALL_MS),
+  label: i => shown[i] ? (shown[i].p.desc || label[themeOf(shown[i].p)]) : "",
+  pos: () => ({i: Math.max(0, cur), t: wallT}),
+  seek: (i, t) => {
+    if (!timer || !shown[i]) return;
+    if (i !== cur) open(i);
+    wallT = t;
+    WallTimeline.at($("v-img"), t); WallTimeline.at($("v-wallcap"), t);
+  }
+});
 
 chips($("themes"), THEMES, "theme");
 chips($("eras"), ERAS, "era");

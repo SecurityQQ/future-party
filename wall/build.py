@@ -25,6 +25,8 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
 OUT = HERE / "dist"
 UP = "../../"  # from wall/dist/ to the repo root
+# The timeline every wall shares (drag, click or scroll through the loop), inlined so the page works from a folder
+TIMELINE = ROOT / "vibes" / "timeline.js"
 
 # Seconds on screen. Text slides use the same reading times as their own walls.
 CARD, FACT, FURTHER, PICTURE = 6, 10, 9, 6
@@ -368,6 +370,9 @@ def main():
     slot = "const D=/*DATA*/{};"
     if slot not in tpl:
         sys.exit("template.html is missing the const D=/*DATA*/{}; slot")
+    if tpl.count("/*WALL_TIMELINE*/") != 1:
+        sys.exit("template.html needs exactly one /*WALL_TIMELINE*/ slot")
+    tpl = tpl.replace("/*WALL_TIMELINE*/", TIMELINE.read_text(encoding="utf8"), 1)
     page = tpl.replace(slot, "const D=/*DATA*/" + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + ";", 1)
     OUT.mkdir(exist_ok=True)
     (OUT / "big-wall.html").write_text(page, encoding="utf8")

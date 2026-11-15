@@ -257,6 +257,11 @@ def fill(template, data):
         tpl = tpl.replace(theme_slot, (ROOT / "vibes" / "tokens.css").read_text(encoding="utf8"), 1)
     elif template == "template.html":
         sys.exit("template.html is missing the shared vibe token slot")
+    # The timeline the walls share, here for the film player (drag, click or scroll through a film)
+    if "/*WALL_TIMELINE*/" in tpl:
+        tpl = tpl.replace("/*WALL_TIMELINE*/", (ROOT / "vibes" / "timeline.js").read_text(encoding="utf8"), 1)
+    elif template == "template.html":
+        sys.exit("template.html is missing the /*WALL_TIMELINE*/ slot")
     slot = "const D=/*DATA*/{};"
     if slot not in tpl:
         sys.exit(f"{template} is missing the const D=/*DATA*/{{}}; slot")
