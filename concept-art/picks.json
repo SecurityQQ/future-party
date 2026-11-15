@@ -1,0 +1,1961 @@
+{
+ "collected": "2026-11-14",
+ "about": "Curated tweet ids for the concept-art wall. drop: true leaves a post out; drop_photos lists 1-based photo numbers to leave out. fetch.py reads this file.",
+ "picks": [
+  {
+   "id": "1582134227906473985",
+   "theme": "vehicle",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Blender-built sci-fi spaceship concept renders",
+   "artist": "noax.design",
+   "found": "machines"
+  },
+  {
+   "id": "2047394108214247610",
+   "theme": "vehicle",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Commissioned spaceship concept art",
+   "artist": "Nox",
+   "found": "machines"
+  },
+  {
+   "id": "1441013048144183296",
+   "theme": "vehicle",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Spaceship concept art series",
+   "artist": "Jon Dunham",
+   "found": "machines"
+  },
+  {
+   "id": "1903748557481336990",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Nuclear thermal container transporter spaceship, hard sci-fi",
+   "artist": "Real_AFCM",
+   "found": "machines"
+  },
+  {
+   "id": "1872583203048825205",
+   "theme": "vehicle",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Futuristic tank with spinchamber launcher",
+   "artist": "William Bang",
+   "found": "machines",
+   "drop": true
+  },
+  {
+   "id": "2118267091262333357",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Prometheus Ring spinning habitat orbiting Saturn",
+   "artist": "Vadim Sadovski",
+   "found": "machines"
+  },
+  {
+   "id": "2073586358384218415",
+   "theme": "vehicle",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Avpro futuristic aerospace concept art",
+   "artist": "Avpro",
+   "found": "machines",
+   "drop": true
+  },
+  {
+   "id": "1851202325831979176",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Balloon colony in Venus stratosphere",
+   "artist": "Erik van Helvoirt",
+   "found": "machines"
+  },
+  {
+   "id": "1997591915936837826",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "X-33 Venture Star spaceplane renders",
+   "artist": "Ijsz23",
+   "found": "machines"
+  },
+  {
+   "id": "2103756466708451491",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Fusion-powered space warship design",
+   "artist": "Spm1082",
+   "found": "machines"
+  },
+  {
+   "id": "2002665354712261064",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Fighter launching anti-satellite missile, Lunar War",
+   "artist": "voubi1",
+   "found": "machines"
+  },
+  {
+   "id": "1855188591258775582",
+   "theme": "vehicle",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "VTOL spaceplane on an alien planet",
+   "artist": "帝政ミサギ",
+   "found": "machines"
+  },
+  {
+   "id": "2046499176616481006",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Crewed interstellar starship with debris shield",
+   "artist": "Louis_Rtr",
+   "found": "machines"
+  },
+  {
+   "id": "1608402578848489474",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Gigantic generation ship Tallinn",
+   "artist": "teeteegone",
+   "found": "machines"
+  },
+  {
+   "id": "1431179688207134721",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Alcubierre warp-drive mining ship",
+   "artist": "Josheua",
+   "found": "machines"
+  },
+  {
+   "id": "2103394076972208322",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Daedalus Watching, Expanse-style ship scene",
+   "artist": "Alex Jessup",
+   "found": "machines"
+  },
+  {
+   "id": "1916137137935937789",
+   "theme": "vehicle",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Orbital stealth bomber spaceplane in NASA colours",
+   "artist": "Javi",
+   "found": "machines"
+  },
+  {
+   "id": "1627609008952451073",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Nuclear warship with laser turrets, hard sci-fi",
+   "artist": "voubi1",
+   "found": "machines"
+  },
+  {
+   "id": "2117179930341490803",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Shuttle refit and launch, For All Mankind concept",
+   "artist": "Sean Hargreaves",
+   "found": "machines"
+  },
+  {
+   "id": "1958801317108867477",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Orbital laser beam glowing plasma channel over Earth",
+   "artist": "Agatha Mallett",
+   "found": "machines"
+  },
+  {
+   "id": "2064167428787941585",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Infinite Warfare combat robot concept art",
+   "artist": "Aaron Beck",
+   "found": "machines",
+   "drop": true
+  },
+  {
+   "id": "2105206015335465013",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Hail Mary relativistic interstellar spaceship",
+   "artist": "Chris Kuhn",
+   "found": "machines"
+  },
+  {
+   "id": "1743210737781096707",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Solar sail ships exploring planets",
+   "artist": "Graham Tg",
+   "found": "machines"
+  },
+  {
+   "id": "2085274683226591409",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Ranger One asteroid tug concept art",
+   "artist": "Kit Stølen",
+   "found": "machines"
+  },
+  {
+   "id": "1741761185102332257",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Altair-class European frigate, hard sci-fi",
+   "artist": "voubi1",
+   "found": "machines"
+  },
+  {
+   "id": "1638843032761139200",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Realistic spaceship with radiators and hull shuttle",
+   "artist": "Lucas Green",
+   "found": "machines"
+  },
+  {
+   "id": "1777260101369311559",
+   "theme": "vehicle",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Ride-on-the-outside spaceship with laser cannon",
+   "artist": "aidelank",
+   "found": "machines"
+  },
+  {
+   "id": "1891427379400126606",
+   "theme": "vehicle",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Atomic lunar landship with hexapod robot",
+   "artist": "Melanovis",
+   "found": "machines"
+  },
+  {
+   "id": "1609127349995315200",
+   "theme": "architecture",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Lunar base concepts for Moon Man film",
+   "artist": "Allen wei",
+   "found": "machines"
+  },
+  {
+   "id": "1956264599382090239",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Retro-futuristic robot concept art, Fallout London",
+   "artist": null,
+   "found": "machines",
+   "drop": true
+  },
+  {
+   "id": "1261349643801124864",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Original mech design concept",
+   "artist": "Jan Buragay",
+   "found": "machines"
+  },
+  {
+   "id": "2099108959911309378",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Original mech design sheet",
+   "artist": "xino",
+   "found": "machines"
+  },
+  {
+   "id": "2089311539396554923",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Sniper mech design concept",
+   "artist": null,
+   "found": "machines"
+  },
+  {
+   "id": "1399291259978588164",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Quadrupedal dieselpunk heavy mech design",
+   "artist": "Lewis RK",
+   "found": "machines",
+   "drop": true
+  },
+  {
+   "id": "1368678249866334213",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Mech design for DOOM Eternal poster",
+   "artist": "Emerson Tung",
+   "found": "machines",
+   "drop": true
+  },
+  {
+   "id": "1647525243227963392",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Lizard-shaped strange spaceship with tanks and panels",
+   "artist": "Longque Chen",
+   "found": "machines"
+  },
+  {
+   "id": "1538808876438634498",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Conical armored nuclear space warship",
+   "artist": "Patrick Riley",
+   "found": "machines",
+   "drop": true
+  },
+  {
+   "id": "1761738186055627097",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Matumaini starship bound for TRAPPIST system",
+   "artist": "Sean Samuels",
+   "found": "machines"
+  },
+  {
+   "id": "2120441411241943054",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Fusion spaceship with rotating habitat arms and beam",
+   "artist": "geometrian",
+   "found": "machines"
+  },
+  {
+   "id": "2029482060964880604",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Kitbashed industrial-equipment spaceships",
+   "artist": "Stanislav Verbitsky",
+   "found": "machines"
+  },
+  {
+   "id": "2118629467518390741",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Expanse Gathering Storm warship inside and out",
+   "artist": "Dorde Kovacevic",
+   "found": "machines"
+  },
+  {
+   "id": "1968585793250934978",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Modular bunker barge anti-piracy ship, Weta Workshop",
+   "artist": "Weta Workshop",
+   "found": "machines",
+   "drop_photos": [
+    4
+   ]
+  },
+  {
+   "id": "2054834098519298438",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "3D realistic spaceship concepts",
+   "artist": "aidelank",
+   "found": "machines"
+  },
+  {
+   "id": "1885991552029450530",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Ranger-1 asteroid mining ship, For All Mankind",
+   "artist": "Sean Hargreaves",
+   "found": "machines"
+  },
+  {
+   "id": "1921128085623021607",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Cargo dropping from orbit, Avatar-style ships",
+   "artist": "Sergi Iranzo",
+   "found": "machines"
+  },
+  {
+   "id": "1310867914904535043",
+   "theme": "vehicle",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Planetary research rover concept, crewed and autonomous",
+   "artist": "Till Freitag",
+   "found": "machines"
+  },
+  {
+   "id": "1360166759966343177",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Ron Cobb plausible spaceship sketches",
+   "artist": "Ron Cobb",
+   "found": "machines"
+  },
+  {
+   "id": "1393212683617513476",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Digital mech sketch",
+   "artist": "Thomas Chamberlain-Keen",
+   "found": "machines"
+  },
+  {
+   "id": "1309955626534084608",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Mech digital painting",
+   "artist": "Esther Wu",
+   "found": "machines"
+  },
+  {
+   "id": "2121290794300481863",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Moebius flying machine over the desert",
+   "artist": "Moebius",
+   "found": "retro"
+  },
+  {
+   "id": "2120928370233909510",
+   "theme": "city",
+   "era": "retro",
+   "ai": false,
+   "desc": "Syd Mead futuristic cityscape painting",
+   "artist": "Syd Mead",
+   "found": "retro"
+  },
+  {
+   "id": "2120188505011724349",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Colony ship in space painting, 1980",
+   "artist": "Dexter Dickinson",
+   "found": "retro"
+  },
+  {
+   "id": "2119475079427809301",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Psychedelic 70s sci-fi cover art collection",
+   "artist": "Peter Elson",
+   "found": "retro",
+   "drop_photos": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "2118029289081712946",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Attack on Orion space battle painting, 1980",
+   "artist": "Gianni Maiotti",
+   "found": "retro"
+  },
+  {
+   "id": "2116940351596298704",
+   "theme": "nature",
+   "era": "retro",
+   "ai": false,
+   "desc": "Alien flora and fauna 70s illustrations",
+   "artist": "Tim White",
+   "found": "retro",
+   "drop_photos": [
+    2,
+    4
+   ]
+  },
+  {
+   "id": "2115839862406357459",
+   "theme": "vehicle",
+   "era": "retro",
+   "ai": false,
+   "desc": "Retro UFO and flying saucer illustrations",
+   "artist": "Walter Molino",
+   "found": "retro",
+   "drop": true
+  },
+  {
+   "id": "2115099976904716666",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Exile-themed sci-fi book cover, 1978",
+   "artist": "Stephen Fabian",
+   "found": "retro",
+   "drop": true
+  },
+  {
+   "id": "2114752700558496152",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Dramatic sci-fi fantasy painting",
+   "artist": "Melvyn Grant",
+   "found": "retro",
+   "drop": true
+  },
+  {
+   "id": "2114386545390027106",
+   "theme": "architecture",
+   "era": "retro",
+   "ai": false,
+   "desc": "Skull-shaped architecture sci-fi paintings",
+   "artist": "David A Hardy",
+   "found": "retro",
+   "drop": true
+  },
+  {
+   "id": "2113665512332800047",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Space Patrol retro cover illustration, 1983",
+   "artist": "Ralph Reese",
+   "found": "retro"
+  },
+  {
+   "id": "2119120893431406992",
+   "theme": "architecture",
+   "era": "retro",
+   "ai": false,
+   "desc": "Cutaway cross-section of Vehicle Assembly Building",
+   "artist": null,
+   "found": "retro",
+   "drop": true
+  },
+  {
+   "id": "2078506375919902775",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Toroidal space colony cutaway",
+   "artist": "Rick Guidice",
+   "found": "retro"
+  },
+  {
+   "id": "1477369051491958790",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "NASA space settlement seen in helmet visor",
+   "artist": "Rick Guidice",
+   "found": "retro"
+  },
+  {
+   "id": "1573105613839777792",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Asteroid striking the Earth",
+   "artist": "Don Davis",
+   "found": "retro"
+  },
+  {
+   "id": "1532738888640434179",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Stanford torus space colony cutaway",
+   "artist": "Rick Guidice",
+   "found": "retro"
+  },
+  {
+   "id": "1639114463340109831",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Stanford torus cutaway for NASA",
+   "artist": "Rick Guidice",
+   "found": "retro"
+  },
+  {
+   "id": "1889618119544451470",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "O'Neill cylinder space habitat NASA paintings",
+   "artist": null,
+   "found": "retro"
+  },
+  {
+   "id": "2013948205025694109",
+   "theme": "city",
+   "era": "retro",
+   "ai": false,
+   "desc": "Cliff community above urban riverfront, Alcoa ad",
+   "artist": "Syd Mead",
+   "found": "retro"
+  },
+  {
+   "id": "2011379125265772920",
+   "theme": "vehicle",
+   "era": "retro",
+   "ai": false,
+   "desc": "Giant walker vehicles concept for U.S. Steel",
+   "artist": "Syd Mead",
+   "found": "retro"
+  },
+  {
+   "id": "2112955130987565206",
+   "theme": "city",
+   "era": "retro",
+   "ai": false,
+   "desc": "Silver cars at dawn on elevated roadway",
+   "artist": "Syd Mead",
+   "found": "retro"
+  },
+  {
+   "id": "1764426755144663297",
+   "theme": "vehicle",
+   "era": "retro",
+   "ai": false,
+   "desc": "Chris Foss spaceship designs for Jodorowsky's Dune",
+   "artist": "Chris Foss",
+   "found": "retro"
+  },
+  {
+   "id": "2104062395912266083",
+   "theme": "vehicle",
+   "era": "retro",
+   "ai": false,
+   "desc": "Turn A Gundam mecha concept art",
+   "artist": "Syd Mead",
+   "found": "retro"
+  },
+  {
+   "id": "2011558190757056808",
+   "theme": "vehicle",
+   "era": "retro",
+   "ai": false,
+   "desc": "Aliens concept art spacecraft",
+   "artist": "Syd Mead",
+   "found": "retro"
+  },
+  {
+   "id": "2014844630215323727",
+   "theme": "vehicle",
+   "era": "retro",
+   "ai": false,
+   "desc": "Turn A Gundam mecha concept paintings",
+   "artist": "Syd Mead",
+   "found": "retro"
+  },
+  {
+   "id": "1966324619935166780",
+   "theme": "vehicle",
+   "era": "retro",
+   "ai": false,
+   "desc": "Light cycle sketches for TRON (1982)",
+   "artist": "Syd Mead",
+   "found": "retro",
+   "drop_photos": [
+    1
+   ]
+  },
+  {
+   "id": "1984051727243608193",
+   "theme": "vehicle",
+   "era": "retro",
+   "ai": false,
+   "desc": "TRON (1982) costume designs",
+   "artist": "Syd Mead and Moebius",
+   "found": "retro"
+  },
+  {
+   "id": "2058034308804424025",
+   "theme": "city",
+   "era": "retro",
+   "ai": false,
+   "desc": "Syd Mead futuristic city paintings",
+   "artist": "Syd Mead",
+   "found": "retro"
+  },
+  {
+   "id": "1922540132340580859",
+   "theme": "vehicle",
+   "era": "retro",
+   "ai": false,
+   "desc": "Giant mechanized dogs racing in mega-coliseum poster",
+   "artist": "Syd Mead",
+   "found": "retro"
+  },
+  {
+   "id": "2003948143377809831",
+   "theme": "city",
+   "era": "retro",
+   "ai": false,
+   "desc": "Syd Mead Christmas Arrival futuristic scene",
+   "artist": "Syd Mead",
+   "found": "retro"
+  },
+  {
+   "id": "1741504507194835361",
+   "theme": "city",
+   "era": "retro",
+   "ai": false,
+   "desc": "Syd Mead futuristic concept painting",
+   "artist": "Syd Mead",
+   "found": "retro"
+  },
+  {
+   "id": "1818105597734105471",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Megastructures and giant spacecraft paintings",
+   "artist": "John Harris",
+   "found": "retro"
+  },
+  {
+   "id": "1685425631704543232",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Vast cosmic megastructure and starship paintings",
+   "artist": "John Harris",
+   "found": "retro"
+  },
+  {
+   "id": "2107954621935170016",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Space colony under construction, 1975",
+   "artist": "Syd Mead",
+   "found": "retro"
+  },
+  {
+   "id": "2106054668308586855",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Rolling hills and river inside giant space colony",
+   "artist": "Rick Guidice",
+   "found": "retro"
+  },
+  {
+   "id": "2107881640202498290",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "NASA Gemini concept art, 1965",
+   "artist": null,
+   "found": "retro",
+   "drop": true
+  },
+  {
+   "id": "1674971255986962432",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Japanese 1980s sci-fi spaceship illustration",
+   "artist": "Tatsushi Morimoto",
+   "found": "retro"
+  },
+  {
+   "id": "2055651224624545842",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Soviet Tekhnika Molodezhi futuristic magazine covers",
+   "artist": null,
+   "found": "retro"
+  },
+  {
+   "id": "1396404537007693827",
+   "theme": "vehicle",
+   "era": "retro",
+   "ai": false,
+   "desc": "Turbojet train Soviet magazine cover, 1971",
+   "artist": null,
+   "found": "retro"
+  },
+  {
+   "id": "1286904012328112129",
+   "theme": "vehicle",
+   "era": "retro",
+   "ai": false,
+   "desc": "Steel arms-wings Soviet magazine cover, 1972",
+   "artist": null,
+   "found": "retro"
+  },
+  {
+   "id": "1706813807258185756",
+   "theme": "robot",
+   "era": "retro",
+   "ai": false,
+   "desc": "Robot Dreams cover painting, 1986",
+   "artist": "Ralph McQuarrie",
+   "found": "retro"
+  },
+  {
+   "id": "1934038232506978338",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Women fused with machines, Japanese sci-fi illustration",
+   "artist": "Naoyuki Kato",
+   "found": "retro"
+  },
+  {
+   "id": "1771314753530695719",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Gather, Darkness cover painting, 1979",
+   "artist": "Tim White",
+   "found": "retro"
+  },
+  {
+   "id": "1570566107467223040",
+   "theme": "robot",
+   "era": "retro",
+   "ai": false,
+   "desc": "Giant robots in retro sci-fi paintings",
+   "artist": "Angus McKie",
+   "found": "retro"
+  },
+  {
+   "id": "1909758913643528657",
+   "theme": "vehicle",
+   "era": "retro",
+   "ai": false,
+   "desc": "Turn A Gundam mecha concept art",
+   "artist": "Syd Mead",
+   "found": "retro"
+  },
+  {
+   "id": "1793426214029607228",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Moebius illustration for A Tale From The War",
+   "artist": "Moebius",
+   "found": "retro"
+  },
+  {
+   "id": "1585939812003229697",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Space colony paintings collection",
+   "artist": "Syd Mead, Roy Scarfo, Rick Guidice, Don Davis",
+   "found": "retro"
+  },
+  {
+   "id": "1583593072738603008",
+   "theme": "vehicle",
+   "era": "retro",
+   "ai": false,
+   "desc": "Alien (1979) spacecraft concept art",
+   "artist": "Ron Cobb",
+   "found": "retro"
+  },
+  {
+   "id": "1959405993496076326",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "NASA space colony interiors concept art, 1975",
+   "artist": "Rick Guidice",
+   "found": "retro"
+  },
+  {
+   "id": "1595523084727246848",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "The Visitors cover painting, 1980",
+   "artist": "Martin Hoffman",
+   "found": "retro"
+  },
+  {
+   "id": "1770944506348896629",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Splinter of the Mind's Eye cover art, 1978",
+   "artist": "Ralph McQuarrie",
+   "found": "retro",
+   "drop": true
+  },
+  {
+   "id": "1626743626587082753",
+   "theme": "abstract",
+   "era": "retro",
+   "ai": false,
+   "desc": "1984 early computer graphics art",
+   "artist": null,
+   "found": "retro"
+  },
+  {
+   "id": "1538677444349247489",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Angus McKie space painting",
+   "artist": "Angus McKie",
+   "found": "retro"
+  },
+  {
+   "id": "1564650180024176640",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Floating World space painting",
+   "artist": "Angus McKie",
+   "found": "retro"
+  },
+  {
+   "id": "1642281288869761025",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Angus McKie spaceship paintings",
+   "artist": "Angus McKie",
+   "found": "retro"
+  },
+  {
+   "id": "1752742562337595791",
+   "theme": "interior",
+   "era": "retro",
+   "ai": false,
+   "desc": "Inside the Lunar Cosmodrome, 1973",
+   "artist": "Andrei Sokolov",
+   "found": "retro"
+  },
+  {
+   "id": "1637655820702736385",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Rocket launch in Soviet space art",
+   "artist": "Andrei Sokolov",
+   "found": "retro"
+  },
+  {
+   "id": "1319177779561353216",
+   "theme": "city",
+   "era": "retro",
+   "ai": false,
+   "desc": "First colony on Mars painting",
+   "artist": "Klaus Bürgle",
+   "found": "retro"
+  },
+  {
+   "id": "1338584861792235521",
+   "theme": "city",
+   "era": "retro",
+   "ai": false,
+   "desc": "Retro-futuristic worlds, 1955-69",
+   "artist": "Klaus Bürgle",
+   "found": "retro"
+  },
+  {
+   "id": "1520536494003613696",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Machines, aliens and starships in Angus McKie's paintings",
+   "artist": "Angus McKie",
+   "found": "retro"
+  },
+  {
+   "id": "1596255043908702208",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "So Beautiful and So Dangerous comic art, 1978",
+   "artist": "Angus McKie",
+   "found": "retro",
+   "drop_photos": [
+    3
+   ]
+  },
+  {
+   "id": "2107596763096100879",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Blade Runner 2049 concept art of neon dystopian city",
+   "artist": "Paul Chadeisson",
+   "found": "screen"
+  },
+  {
+   "id": "1633128451577380864",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Police spinner sketches, Blade Runner 2049",
+   "artist": "George Hull",
+   "found": "screen"
+  },
+  {
+   "id": "1412071772602605568",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Blade Runner 2049 concept art cityscapes",
+   "artist": "Paul Chadeisson",
+   "found": "screen"
+  },
+  {
+   "id": "1311612315888910336",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Blade Runner 2049 concept art environments",
+   "artist": "Victor Martinez",
+   "found": "screen"
+  },
+  {
+   "id": "1914597794482151897",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Blade Runner 2049 concept art of megacity scenes",
+   "artist": "Paul Chadeisson",
+   "found": "screen"
+  },
+  {
+   "id": "1934675669340082354",
+   "theme": "vehicle",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Police spinner flying car concept art Blade Runner 2049",
+   "artist": "George Hull",
+   "found": "screen"
+  },
+  {
+   "id": "1366371532084305920",
+   "theme": "people",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Afrofuturist fashionista character concept sketches",
+   "artist": "Uzoma Dunkwu",
+   "found": "screen",
+   "drop_photos": [
+    4
+   ]
+  },
+  {
+   "id": "1381301961430077442",
+   "theme": "people",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Afrofuturistic character concepts with futuristic costume",
+   "artist": "Uzoma Dunkwu",
+   "found": "screen",
+   "drop_photos": [
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "1365655910845136898",
+   "theme": "people",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Afrofuturism character design sketches",
+   "artist": "Uzoma Dunkwu",
+   "found": "screen",
+   "drop_photos": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "1763201034581623207",
+   "theme": "people",
+   "era": "retro",
+   "ai": false,
+   "desc": "1980s Afrofuturist sci-fi paintings collage",
+   "artist": "Noriyoshi Ohrai",
+   "found": "screen"
+  },
+  {
+   "id": "2120426310401237027",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Cyberpunk 2077 concept art of Night City scenes",
+   "artist": null,
+   "found": "screen"
+  },
+  {
+   "id": "1293194169188405250",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Art of Cyberpunk 2077 concept art gallery",
+   "artist": null,
+   "found": "screen",
+   "drop_photos": [
+    1,
+    2
+   ]
+  },
+  {
+   "id": "1667909655996006401",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Cyberpunk 2077 environment concept art",
+   "artist": null,
+   "found": "screen"
+  },
+  {
+   "id": "1339848554727223296",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Cyberpunk 2077 environment concept art update",
+   "artist": null,
+   "found": "screen"
+  },
+  {
+   "id": "2115827092009140732",
+   "theme": "vehicle",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Makigai MaiMai city car, Cyberpunk 2077",
+   "artist": "Pawel Breshke-Czyzewski",
+   "found": "screen"
+  },
+  {
+   "id": "1723346390334476352",
+   "theme": "vehicle",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Makigai MaiMai city car, Cyberpunk 2077",
+   "artist": "Pawel Breshke-Czyzewski",
+   "found": "screen"
+  },
+  {
+   "id": "1698365140691980318",
+   "theme": "vehicle",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Trauma Team medic armour, Cyberpunk 2077",
+   "artist": null,
+   "found": "screen"
+  },
+  {
+   "id": "2022267081123590197",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Arasaka spider tank concept art",
+   "artist": "Furio Tedeschi",
+   "found": "screen"
+  },
+  {
+   "id": "1721603354520961305",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Cyberpunk 2077 concept art street scene",
+   "artist": null,
+   "found": "screen"
+  },
+  {
+   "id": "1283285171236724736",
+   "theme": "architecture",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Santo Domingo crowded megabuildings concept art",
+   "artist": null,
+   "found": "screen"
+  },
+  {
+   "id": "1285786712094932992",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Heywood gang-controlled district concept art",
+   "artist": null,
+   "found": "screen"
+  },
+  {
+   "id": "2120707905573761468",
+   "theme": "interior",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Spaceship crew living quarters interior concept art",
+   "artist": "Bamarni Zana",
+   "found": "screen"
+  },
+  {
+   "id": "1393334366202470402",
+   "theme": "people",
+   "era": "retro",
+   "ai": false,
+   "desc": "Afrofuturist retro heroine illustrations",
+   "artist": "Adam Spizak",
+   "found": "screen"
+  },
+  {
+   "id": "1783889542505807890",
+   "theme": "vehicle",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Armoured taxi for a cyberpunk city",
+   "artist": "Matt Allsopp",
+   "found": "screen"
+  },
+  {
+   "id": "2121434442967498968",
+   "theme": "people",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Hiroto Ikeuchi's cyberpunk wearable sculptures",
+   "artist": "Hiroto Ikeuchi",
+   "found": "screen"
+  },
+  {
+   "id": "2121252745726566456",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Odyssey sci-fi scene with spacecraft and vast scale",
+   "artist": "Joan Pique Llorens",
+   "found": "screen"
+  },
+  {
+   "id": "2121358694239928589",
+   "theme": "vehicle",
+   "era": "retro",
+   "ai": false,
+   "desc": "Retro sci-fi spacecraft fleet painting",
+   "artist": "Graham Gazzard",
+   "found": "screen"
+  },
+  {
+   "id": "2121018096597008645",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Giant breathing machines on an iron coast",
+   "artist": "David Knapp",
+   "found": "screen"
+  },
+  {
+   "id": "2120607982283075680",
+   "theme": "people",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Armored recon squad in sci-fi landscape",
+   "artist": "Daryl Mandryk",
+   "found": "screen"
+  },
+  {
+   "id": "2120591096006812083",
+   "theme": "people",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Combat astronaut suit design concept",
+   "artist": "Johnson Ting",
+   "found": "screen"
+  },
+  {
+   "id": "2120577755813433619",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Mecha design concept art",
+   "artist": "Y. Jeon",
+   "found": "screen"
+  },
+  {
+   "id": "2120509229781934249",
+   "theme": "people",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Advance team of futuristic soldiers in environment",
+   "artist": "Daryl Mandryk",
+   "found": "screen"
+  },
+  {
+   "id": "2120145117415690538",
+   "theme": "vehicle",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Mobile support platform sci-fi vehicle concept",
+   "artist": "Eduard Groult",
+   "found": "screen"
+  },
+  {
+   "id": "2120075888674951359",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "War machine mech concept renders",
+   "artist": "Alex Senechal",
+   "found": "screen",
+   "drop_photos": [
+    1
+   ]
+  },
+  {
+   "id": "2119880921713148244",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Dense neon cyberpunk city",
+   "artist": "Tarmo Juhola",
+   "found": "screen"
+  },
+  {
+   "id": "2119512356577558925",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Army of robots marching concept art",
+   "artist": "Longque Chen",
+   "found": "screen"
+  },
+  {
+   "id": "2119489600431219005",
+   "theme": "people",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Lunar blade warriors sci-fi concept",
+   "artist": "Mohammad Z. Mukhtar",
+   "found": "screen"
+  },
+  {
+   "id": "2119334502375772173",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Disaster relief exoskeleton suit design",
+   "artist": "Torben Lindstrom",
+   "found": "screen"
+  },
+  {
+   "id": "2014315299638526201",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Air carrier megastructure over futuristic city",
+   "artist": "Paul Chadeisson",
+   "found": "screen"
+  },
+  {
+   "id": "1821894620218831039",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Air carrier hovering above sci-fi skyline",
+   "artist": "Paul Chadeisson",
+   "found": "screen"
+  },
+  {
+   "id": "1646593942098530308",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Flying aircraft carrier above the clouds",
+   "artist": "Paul Chadeisson",
+   "found": "screen"
+  },
+  {
+   "id": "1611606847894470656",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Blade Runner 2049 black out dystopian city",
+   "artist": "Paul Chadeisson",
+   "found": "screen"
+  },
+  {
+   "id": "1651661876499980313",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Abandoned Blade Runner style ruined megacity",
+   "artist": "Paul Chadeisson",
+   "found": "screen"
+  },
+  {
+   "id": "1811715228129800691",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Jama Jurabaev sci-fi concept paintings",
+   "artist": "Jama Jurabaev",
+   "found": "screen"
+  },
+  {
+   "id": "1606732004262924290",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Flying aircraft carrier above the clouds",
+   "artist": "Paul Chadeisson",
+   "found": "screen"
+  },
+  {
+   "id": "1611079218506375168",
+   "theme": "vehicle",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Gravity rider hover vehicle in sci-fi landscape",
+   "artist": "Paul Chadeisson",
+   "found": "screen"
+  },
+  {
+   "id": "2116738248546689175",
+   "theme": "interior",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Muad'dib throne room Dune illustration",
+   "artist": "Marc Simonetti",
+   "found": "screen"
+  },
+  {
+   "id": "2113001947926024244",
+   "theme": "architecture",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Dune Arrakis scene illustration",
+   "artist": "Marc Simonetti",
+   "found": "screen",
+   "drop": true
+  },
+  {
+   "id": "2114107094957695327",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "The mothership from Close Encounters of the Third Kind (1977)",
+   "artist": "Ralph McQuarrie",
+   "found": "screen"
+  },
+  {
+   "id": "2118833116869796316",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "LAPD 2038 futuristic police and city scenes",
+   "artist": "Filippo Ubertino",
+   "found": "screen",
+   "drop": true
+  },
+  {
+   "id": "2118667847517823321",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Lunar mech on moon surface",
+   "artist": "Yeeky Zhang",
+   "found": "screen"
+  },
+  {
+   "id": "2118606575413739671",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Sci-fi construction site with giant machines",
+   "artist": "Maksym Harahulin",
+   "found": "screen"
+  },
+  {
+   "id": "2118358974466498994",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Mech design concept renders",
+   "artist": "Nivanh Chanthara",
+   "found": "screen"
+  },
+  {
+   "id": "2118326494657204584",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Counterattack armor mech concept",
+   "artist": "Heng Z",
+   "found": "screen"
+  },
+  {
+   "id": "2118069551724171339",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Prototype robot concept",
+   "artist": "Dofresh",
+   "found": "screen"
+  },
+  {
+   "id": "2119198356828508557",
+   "theme": "robot",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Mecha illustration",
+   "artist": "Ono",
+   "found": "screen"
+  },
+  {
+   "id": "2114428647327023225",
+   "theme": "people",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Afrofuturism artworks of cosmic Black figures",
+   "artist": null,
+   "found": "screen",
+   "drop": true
+  },
+  {
+   "id": "1698316810121011557",
+   "theme": "architecture",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Stylised solarpunk house with textured roof tiles, 3D environment art",
+   "artist": "Bee",
+   "found": "cities",
+   "drop": true
+  },
+  {
+   "id": "1647641382201245697",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": true,
+   "desc": "Lush solarpunk city towers draped in greenery",
+   "artist": null,
+   "found": "cities"
+  },
+  {
+   "id": "1391831440854294539",
+   "theme": "architecture",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Vertical forest tower covered in trees, solarpunk render",
+   "artist": "Annibale Siconolfi",
+   "found": "cities"
+  },
+  {
+   "id": "1379689224249688064",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Explorers of a fungal solarpunk world",
+   "artist": "Karl Schulschenk",
+   "found": "cities"
+  },
+  {
+   "id": "1892910866363793712",
+   "theme": "architecture",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Vast megastructure concept art",
+   "artist": "SEELE",
+   "found": "cities",
+   "drop": true
+  },
+  {
+   "id": "2028953566338269573",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": true,
+   "desc": "AI solarpunk scene",
+   "artist": null,
+   "found": "cities"
+  },
+  {
+   "id": "2003073043510309035",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": true,
+   "desc": "AI solarpunk cityscape",
+   "artist": null,
+   "found": "cities"
+  },
+  {
+   "id": "1869167607871586315",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Nar Shaddaa streets for the Obi-Wan Kenobi series",
+   "artist": "Matt Allsopp",
+   "found": "cities"
+  },
+  {
+   "id": "1797997951786127517",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Lunar outpost habitat concept art",
+   "artist": "Mac Rebisz",
+   "found": "cities",
+   "drop_photos": [
+    3,
+    4
+   ]
+  },
+  {
+   "id": "1889745913771433991",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Overwatch 2 map concepts: an ocean arcology and a neon city",
+   "artist": null,
+   "found": "cities"
+  },
+  {
+   "id": "2056361785758761327",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Orbiter deploying satellite in low Earth orbit 2042",
+   "artist": "Mac Rebisz",
+   "found": "cities"
+  },
+  {
+   "id": "2044568429458321878",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Kronos 1 space station above aurora",
+   "artist": "Mac Rebisz",
+   "found": "cities"
+  },
+  {
+   "id": "2072041465853747340",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Asteroid mining ship at asteroid Ryugu",
+   "artist": "Mac Rebisz",
+   "found": "cities",
+   "drop_photos": [
+    2
+   ]
+  },
+  {
+   "id": "2037537403246657745",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Tranquility Forge lunar industrial site snapshot 2067",
+   "artist": "Mac Rebisz",
+   "found": "cities",
+   "drop": true
+  },
+  {
+   "id": "2120329411912466785",
+   "theme": "city",
+   "era": "retro",
+   "ai": false,
+   "desc": "Blade Runner dystopian city concept paintings",
+   "artist": "Syd Mead",
+   "found": "cities",
+   "drop": true
+  },
+  {
+   "id": "2104226228404457718",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": true,
+   "desc": "Solarpunk city with greenery and towers",
+   "artist": null,
+   "found": "cities",
+   "drop": true
+  },
+  {
+   "id": "1612125943312666630",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": true,
+   "desc": "Techno-futuristic solarpunk city on a Mediterranean island",
+   "artist": "Alex Recouso",
+   "found": "cities",
+   "drop": true
+  },
+  {
+   "id": "2085697715657203871",
+   "theme": "city",
+   "era": "retro",
+   "ai": false,
+   "desc": "Cyberpunk Night City sourcebook cover painting",
+   "artist": "Doug Anderson",
+   "found": "cities"
+  },
+  {
+   "id": "1722254143170236873",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Polyhedral habitat of spinning O'Neill cylinders",
+   "artist": "Neil Blevins",
+   "found": "cities"
+  },
+  {
+   "id": "1783135521797275804",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Floating sticks megastructures in a distant nebula",
+   "artist": "Neil Blevins",
+   "found": "cities"
+  },
+  {
+   "id": "2105031358905196697",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Mobile asteroid mining megastructure concept",
+   "artist": "Pixel Rice Bowl",
+   "found": "cities"
+  },
+  {
+   "id": "1764360674526830933",
+   "theme": "architecture",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Early megastructure exploration paintings",
+   "artist": "BakaArts",
+   "found": "cities"
+  },
+  {
+   "id": "2039302006020403413",
+   "theme": "architecture",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Massive sci-fi megastructure renders",
+   "artist": "Stefaaan",
+   "found": "cities",
+   "drop_photos": [
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "id": "1533318128192593921",
+   "theme": "interior",
+   "era": "contemporary",
+   "ai": true,
+   "desc": "Concrete megastructure living interiors series",
+   "artist": null,
+   "found": "cities"
+  },
+  {
+   "id": "1945330749638582381",
+   "theme": "architecture",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Montrevic Arcology in color",
+   "artist": "Simon Roy",
+   "found": "cities"
+  },
+  {
+   "id": "2045268996895981869",
+   "theme": "architecture",
+   "era": "contemporary",
+   "ai": true,
+   "desc": "Closed-loop climate arcology scenes",
+   "artist": null,
+   "found": "cities",
+   "drop": true
+  },
+  {
+   "id": "1947286644064715109",
+   "theme": "interior",
+   "era": "contemporary",
+   "ai": true,
+   "desc": "Lower gallery of seaside hyper-arcology",
+   "artist": null,
+   "found": "cities",
+   "drop": true
+  },
+  {
+   "id": "1422669330802688000",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Lockheed Martin Mars Base Camp concept art",
+   "artist": null,
+   "found": "cities"
+  },
+  {
+   "id": "1808693549472309249",
+   "theme": "space",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "JAXA Mars base concept art",
+   "artist": "JAXA",
+   "found": "cities"
+  },
+  {
+   "id": "2004967009692594262",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "NASA space colony cutaway paintings",
+   "artist": "Rick Guidice",
+   "found": "cities"
+  },
+  {
+   "id": "1789599474358059404",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Space colony habitat painting from Futuropolis",
+   "artist": "Rick Guidice",
+   "found": "cities"
+  },
+  {
+   "id": "1776700653361926231",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Solar eclipse inside a space colony valley",
+   "artist": "Don Davis",
+   "found": "cities"
+  },
+  {
+   "id": "1355522273168470016",
+   "theme": "space",
+   "era": "retro",
+   "ai": false,
+   "desc": "Toroidal space colony concept painting 1982",
+   "artist": null,
+   "found": "cities"
+  },
+  {
+   "id": "2062148017818419548",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Freedom Ship floating city renders",
+   "artist": null,
+   "found": "cities",
+   "drop": true
+  },
+  {
+   "id": "1465318028648853512",
+   "theme": "architecture",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "BIG Oceanix floating city concept renders",
+   "artist": "BIG",
+   "found": "cities"
+  },
+  {
+   "id": "1371477594307235841",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Paris Smart City 2050 green towers concept",
+   "artist": "Vincent Callebaut",
+   "found": "cities"
+  },
+  {
+   "id": "1653720582523846657",
+   "theme": "architecture",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Climate-responsive treescraper vertical villages in New York",
+   "artist": "Vincent Callebaut",
+   "found": "cities"
+  },
+  {
+   "id": "1503867492573532162",
+   "theme": "city",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Venus Project circular utopian city design",
+   "artist": "Jacque Fresco",
+   "found": "cities"
+  },
+  {
+   "id": "1613673342099415040",
+   "theme": "city",
+   "era": "retro",
+   "ai": false,
+   "desc": "Blade Runner dystopian cityscape concept paintings",
+   "artist": "Syd Mead",
+   "found": "cities"
+  },
+  {
+   "id": "2115201592253374599",
+   "theme": "city",
+   "era": "retro",
+   "ai": false,
+   "desc": "Blade Runner 1982 city and street concept art",
+   "artist": "Syd Mead",
+   "found": "cities"
+  },
+  {
+   "id": "1903904467981893926",
+   "theme": "city",
+   "era": "retro",
+   "ai": false,
+   "desc": "Syd Mead futuristic cities and vehicles paintings",
+   "artist": "Syd Mead",
+   "found": "cities"
+  },
+  {
+   "id": "1873819050708705419",
+   "theme": "interior",
+   "era": "contemporary",
+   "ai": false,
+   "desc": "Sci-fi environment art scenes",
+   "artist": "James Naughton",
+   "found": "cities"
+  }
+ ]
+}

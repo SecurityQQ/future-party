@@ -1,0 +1,100 @@
+{
+  "id": "20261114-144554-an-otter-pup",
+  "created": "2026-11-14T22:45:54.965Z",
+  "subject": "an otter pup",
+  "sign": "Taurus",
+  "traits": "cozy, loyal, stubborn, loves comfort and snacks",
+  "palette": "moss green, terracotta and warm cream",
+  "tone": "mid",
+  "master": {
+    "id": "v5",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}.\nFigure and ground, more important than the scene description: {backdrop} The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "aspect": "3:4",
+  "refs": [],
+  "refMode": "match",
+  "autoRefs": {
+    "style": true,
+    "scene": false
+  },
+  "ab": false,
+  "compare": false,
+  "vary": {
+    "style": true,
+    "scene": true,
+    "model": false
+  },
+  "note": "",
+  "images": [
+    {
+      "i": 0,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a realistic young animal with some parts replaced by exposed precision mechanics, tiny circuit boards, brass gears and neat cables, photoreal wildlife photography meets sci-fi.\nColor accents: moss green, terracotta and warm cream.\nSetting: high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh.\nFigure and ground, more important than the scene description: the background is muted and desaturated in a hue complementary to the creature's main color, with a soft pool of brighter light directly behind it. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "cyborg",
+      "scene": "citylights",
+      "refs": [
+        "character ideas/7c64e0a4e002517b533679d51a9b0cb6.jpg",
+        "character ideas/34e32f258a0f0f1b7a4e4287be03e457.jpg"
+      ],
+      "status": "done",
+      "started": 1794696354965,
+      "jobId": "job_e464fe1e8669",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_f094699fcd57.png",
+      "cost": 8,
+      "file": "00.png",
+      "contrast": {
+        "dL": 1,
+        "dE": 7
+      },
+      "finished": 1794696422557,
+      "transparent": false
+    },
+    {
+      "i": 1,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: moss green, terracotta and warm cream.\nSetting: an endless corridor of tall trees at deep blue twilight, a faint starry horizon glowing at the end of a tiny winding path.\nFigure and ground, more important than the scene description: the background is muted and desaturated in a hue complementary to the creature's main color, with a soft pool of brighter light directly behind it. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "porcelain",
+      "scene": "forest",
+      "refs": [
+        "character ideas/13969f9c58bcb10a78fc7d0848f4e6c9.jpg",
+        "character ideas/4033d1b946aa55bdf4b6c2e81f01a2aa.jpg"
+      ],
+      "status": "done",
+      "started": 1794696354965,
+      "jobId": "job_132b79c57a80",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_a08c28cb2f5a.png",
+      "cost": 8,
+      "file": "01.png",
+      "contrast": {
+        "dL": 14,
+        "dE": 16
+      },
+      "finished": 1794696418263,
+      "transparent": false
+    },
+    {
+      "i": 2,
+      "prompt": "an otter pup as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: cozy, loyal, stubborn, loves comfort and snacks. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: entirely encrusted with thousands of tiny silver rhinestones and diamonds, glittering macro detail, luxurious fashion editorial.\nColor accents: moss green, terracotta and warm cream.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light.\nFigure and ground, more important than the scene description: the background is muted and desaturated in a hue complementary to the creature's main color, with a soft pool of brighter light directly behind it. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "rhinestone",
+      "scene": "solarpunk",
+      "refs": [
+        "character ideas/c9b0f22a74a634b491b9c3db3eac55ed.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.38 AM.png"
+      ],
+      "status": "done",
+      "started": 1794696354965,
+      "jobId": "job_b01244aafbcc",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_c618502fc4f3.png",
+      "cost": 8,
+      "file": "02.png",
+      "contrast": {
+        "dL": 8,
+        "dE": 10
+      },
+      "finished": 1794696423421,
+      "transparent": false
+    }
+  ]
+}

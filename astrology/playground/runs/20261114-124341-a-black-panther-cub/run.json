@@ -1,0 +1,240 @@
+{
+  "id": "20261114-124341-a-black-panther-cub",
+  "created": "2026-11-14T20:43:41.943Z",
+  "subject": "a black panther cub",
+  "sign": "Leo",
+  "traits": "proud, dramatic, generous, loves the spotlight",
+  "palette": "ember orange, gold and crimson",
+  "master": {
+    "id": "v3",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "aspect": "3:4",
+  "refs": [],
+  "refMode": "match",
+  "autoRefs": {
+    "style": false,
+    "scene": false
+  },
+  "ab": false,
+  "compare": true,
+  "vary": {
+    "style": false,
+    "scene": false,
+    "model": true
+  },
+  "note": "",
+  "images": [
+    {
+      "i": 0,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: ember orange, gold and crimson.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "nano_banana_2_1",
+      "style": "porcelain",
+      "scene": "solarpunk",
+      "refs": [],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689021944,
+      "jobId": "job_3b215dc997a5",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_ae3772aecd9f.png",
+      "cost": 5,
+      "file": "00.png",
+      "finished": 1794689046478,
+      "contrast": {
+        "dL": 13,
+        "dE": 17
+      },
+      "transparent": false
+    },
+    {
+      "i": 1,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: ember orange, gold and crimson.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "porcelain",
+      "scene": "solarpunk",
+      "refs": [],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689021944,
+      "jobId": "job_be061069d531",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_97e162b9d4f1.png",
+      "cost": 6,
+      "file": "01.png",
+      "finished": 1794689038184,
+      "contrast": {
+        "dL": 11,
+        "dE": 12
+      },
+      "transparent": false
+    },
+    {
+      "i": 2,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: ember orange, gold and crimson.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "seedream_5_5",
+      "style": "porcelain",
+      "scene": "solarpunk",
+      "refs": [],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689021944,
+      "jobId": "job_8082f4ecd0b7",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_6d3397b7e6a1.png",
+      "cost": 3,
+      "file": "02.png",
+      "finished": 1794689062160,
+      "contrast": {
+        "dL": 1,
+        "dE": 3
+      },
+      "transparent": false
+    },
+    {
+      "i": 3,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: ember orange, gold and crimson.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "nano_banana_pro",
+      "style": "porcelain",
+      "scene": "solarpunk",
+      "refs": [],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689021944,
+      "jobId": "job_a4aa01bb1d73",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_20edb3b8c933.png",
+      "cost": 15,
+      "file": "03.png",
+      "finished": 1794689052745,
+      "contrast": {
+        "dL": 3,
+        "dE": 8
+      },
+      "transparent": false
+    },
+    {
+      "i": 4,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: ember orange, gold and crimson.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "flux_3_image",
+      "style": "porcelain",
+      "scene": "solarpunk",
+      "refs": [],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689021944,
+      "jobId": "job_4d1ddb13b657",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_105f01dd1cc6.jpg",
+      "cost": 6,
+      "file": "04.jpg",
+      "finished": 1794689049066,
+      "contrast": {
+        "dL": 12,
+        "dE": 12
+      },
+      "transparent": false
+    },
+    {
+      "i": 5,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: ember orange, gold and crimson.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "krea_3",
+      "style": "porcelain",
+      "scene": "solarpunk",
+      "refs": [],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689021944,
+      "jobId": "job_c9448930eba5",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_feef956c772b.png",
+      "cost": 3,
+      "file": "05.png",
+      "finished": 1794689047798,
+      "contrast": {
+        "dL": 10,
+        "dE": 10
+      },
+      "transparent": false
+    },
+    {
+      "i": 6,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: ember orange, gold and crimson.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "mai_image_2_5",
+      "style": "porcelain",
+      "scene": "solarpunk",
+      "refs": [],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689021944,
+      "jobId": "job_956ca31ab854",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_0269aaeaf66d.png",
+      "cost": 5,
+      "file": "06.png",
+      "finished": 1794689066859,
+      "contrast": {
+        "dL": 5,
+        "dE": 8
+      },
+      "transparent": false
+    },
+    {
+      "i": 7,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: ember orange, gold and crimson.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "seedream_5_pro",
+      "style": "porcelain",
+      "scene": "solarpunk",
+      "refs": [],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689021944,
+      "jobId": "job_685fe54623ef",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_8c28189288a4.jpg",
+      "cost": 5,
+      "file": "07.jpg",
+      "finished": 1794689096946,
+      "contrast": {
+        "dL": 1,
+        "dE": 2
+      },
+      "transparent": false
+    },
+    {
+      "i": 8,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: ember orange, gold and crimson.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "qwen_image_3",
+      "style": "porcelain",
+      "scene": "solarpunk",
+      "refs": [],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689021944,
+      "jobId": "job_fd9f1e13f75d",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_1b6de618c039.png",
+      "cost": 4,
+      "file": "08.png",
+      "finished": 1794689105208,
+      "contrast": {
+        "dL": 3,
+        "dE": 5
+      },
+      "transparent": false
+    },
+    {
+      "i": 9,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a companion robot with a glossy white ceramic shell, matte black joints, seam lines and tiny warm amber LED details, minimalist Japanese industrial design like a premium consumer robot.\nColor accents: ember orange, gold and crimson.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "grok_imagine_image_2",
+      "style": "porcelain",
+      "scene": "solarpunk",
+      "refs": [],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689021944,
+      "jobId": "job_cf305b71e82f",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_bff83f114ac7.jpg",
+      "cost": 6,
+      "file": "09.jpg",
+      "finished": 1794689085695,
+      "contrast": {
+        "dL": 10,
+        "dE": 11
+      },
+      "transparent": false
+    }
+  ]
+}

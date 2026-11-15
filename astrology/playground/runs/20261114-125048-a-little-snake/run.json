@@ -1,0 +1,277 @@
+{
+  "id": "20261114-125048-a-little-snake",
+  "created": "2026-11-14T20:50:48.104Z",
+  "subject": "a little snake",
+  "sign": "Scorpio",
+  "traits": "mysterious, intense, magnetic, fiercely loyal",
+  "palette": "deep teal, aquamarine and silver",
+  "master": {
+    "id": "v3",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "aspect": "3:4",
+  "refs": [],
+  "refMode": "match",
+  "autoRefs": {
+    "style": true,
+    "scene": false
+  },
+  "ab": false,
+  "compare": true,
+  "vary": {
+    "style": true,
+    "scene": true,
+    "model": true
+  },
+  "note": "",
+  "images": [
+    {
+      "i": 0,
+      "prompt": "a little snake as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: deep teal, aquamarine and silver.\nSetting: inside a cosmic hyperspace tunnel of rainbow light streaks, swirling stars and prismatic flares. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "plush",
+      "scene": "hyperspace",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689448105,
+      "jobId": "job_450c698324df",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_7a2a949197e6.png",
+      "cost": 8,
+      "file": "00.png",
+      "finished": 1794689482765,
+      "stars": 5,
+      "contrast": {
+        "dL": 2,
+        "dE": 10
+      },
+      "transparent": false
+    },
+    {
+      "i": 1,
+      "prompt": "a little snake as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: deep teal, aquamarine and silver.\nSetting: inside a cosmic hyperspace tunnel of rainbow light streaks, swirling stars and prismatic flares. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "nano_banana_2_1",
+      "style": "plush",
+      "scene": "hyperspace",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689448105,
+      "jobId": "job_1acb3fed43de",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_e0a78f64c4b3.png",
+      "cost": 5,
+      "file": "01.png",
+      "finished": 1794689485907,
+      "stars": 3,
+      "contrast": {
+        "dL": 6,
+        "dE": 13
+      },
+      "transparent": false
+    },
+    {
+      "i": 2,
+      "prompt": "a little snake as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: deep teal, aquamarine and silver.\nSetting: inside a cosmic hyperspace tunnel of rainbow light streaks, swirling stars and prismatic flares. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "seedream_5_5",
+      "style": "plush",
+      "scene": "hyperspace",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689448105,
+      "jobId": "job_77f399c64235",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_f698adcc7368.png",
+      "cost": 6,
+      "file": "02.png",
+      "finished": 1794689485734,
+      "stars": 4,
+      "contrast": {
+        "dL": 1,
+        "dE": 8
+      },
+      "transparent": false
+    },
+    {
+      "i": 3,
+      "prompt": "a little snake as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: deep teal, aquamarine and silver.\nSetting: inside a cosmic hyperspace tunnel of rainbow light streaks, swirling stars and prismatic flares. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "nano_banana_pro",
+      "style": "plush",
+      "scene": "hyperspace",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689448105,
+      "jobId": "job_c5187c85190b",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_57e1acc65a48.jpg",
+      "cost": 14,
+      "file": "03.jpg",
+      "finished": 1794689471046,
+      "stars": 5,
+      "contrast": {
+        "dL": 1,
+        "dE": 10
+      },
+      "transparent": false
+    },
+    {
+      "i": 4,
+      "prompt": "a little snake as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: deep teal, aquamarine and silver.\nSetting: inside a cosmic hyperspace tunnel of rainbow light streaks, swirling stars and prismatic flares. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "flux_3_image",
+      "style": "plush",
+      "scene": "hyperspace",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689448105,
+      "jobId": "job_9bf495c88ccc",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_45cfc0e1d159.jpg",
+      "cost": 6,
+      "file": "04.jpg",
+      "finished": 1794689583832,
+      "contrast": {
+        "dL": 8,
+        "dE": 17
+      },
+      "transparent": false
+    },
+    {
+      "i": 5,
+      "prompt": "a little snake as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: deep teal, aquamarine and silver.\nSetting: inside a cosmic hyperspace tunnel of rainbow light streaks, swirling stars and prismatic flares. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "krea_3",
+      "style": "plush",
+      "scene": "hyperspace",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689448105,
+      "jobId": "job_ffbc7f578e83",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_5017a3d4db44.png",
+      "cost": 7,
+      "file": "05.png",
+      "finished": 1794689466198,
+      "stars": 3,
+      "contrast": {
+        "dL": 10,
+        "dE": 14
+      },
+      "transparent": false
+    },
+    {
+      "i": 6,
+      "prompt": "a little snake as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: deep teal, aquamarine and silver.\nSetting: inside a cosmic hyperspace tunnel of rainbow light streaks, swirling stars and prismatic flares. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "mai_image_2_5",
+      "style": "plush",
+      "scene": "hyperspace",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689448105,
+      "jobId": "job_6d79c2021d03",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_836a9a7b113c.png",
+      "cost": 5,
+      "file": "06.png",
+      "finished": 1794689501078,
+      "stars": 1,
+      "contrast": {
+        "dL": 19,
+        "dE": 25
+      },
+      "transparent": false
+    },
+    {
+      "i": 7,
+      "prompt": "a little snake as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: deep teal, aquamarine and silver.\nSetting: inside a cosmic hyperspace tunnel of rainbow light streaks, swirling stars and prismatic flares. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "seedream_5_pro",
+      "style": "plush",
+      "scene": "hyperspace",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689448105,
+      "jobId": "job_5e6b042829d2",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_ea57543ad215.jpg",
+      "cost": 5,
+      "file": "07.jpg",
+      "finished": 1794689559292,
+      "contrast": {
+        "dL": 4,
+        "dE": 8
+      },
+      "transparent": false
+    },
+    {
+      "i": 8,
+      "prompt": "a little snake as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: deep teal, aquamarine and silver.\nSetting: inside a cosmic hyperspace tunnel of rainbow light streaks, swirling stars and prismatic flares. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "qwen_image_3",
+      "style": "plush",
+      "scene": "hyperspace",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689448105,
+      "jobId": "job_aa089eefd40e",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_9efda6c120b3.png",
+      "cost": 4,
+      "file": "08.png",
+      "finished": 1794689608507,
+      "contrast": {
+        "dL": 19,
+        "dE": 20
+      },
+      "transparent": false
+    },
+    {
+      "i": 9,
+      "prompt": "a little snake as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: deep teal, aquamarine and silver.\nSetting: inside a cosmic hyperspace tunnel of rainbow light streaks, swirling stars and prismatic flares. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "grok_imagine_image_2",
+      "style": "plush",
+      "scene": "hyperspace",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689448105,
+      "jobId": "job_1cd59e4bdfeb",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_2d4a10da8c69.jpg",
+      "cost": 7,
+      "file": "09.jpg",
+      "finished": 1794689481537,
+      "stars": 3,
+      "contrast": {
+        "dL": 9,
+        "dE": 11
+      },
+      "transparent": false
+    }
+  ]
+}

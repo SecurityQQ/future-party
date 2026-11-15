@@ -1,0 +1,122 @@
+{
+  "id": "20261114-144554-a-little-snake",
+  "created": "2026-11-14T22:45:54.976Z",
+  "subject": "a little snake",
+  "sign": "Scorpio",
+  "traits": "mysterious, intense, magnetic, fiercely loyal",
+  "palette": "deep teal, aquamarine and silver",
+  "tone": "mid",
+  "master": {
+    "id": "v5",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}.\nFigure and ground, more important than the scene description: {backdrop} The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "aspect": "3:4",
+  "refs": [],
+  "refMode": "match",
+  "autoRefs": {
+    "style": true,
+    "scene": false
+  },
+  "ab": false,
+  "compare": false,
+  "vary": {
+    "style": true,
+    "scene": true,
+    "model": false
+  },
+  "note": "",
+  "images": [
+    {
+      "i": 0,
+      "prompt": "a little snake as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: transparent iridescent glass body with glowing fiber-optic veins and soft inner light, holographic sheen, faint technical blueprint annotations floating around it.\nColor accents: deep teal, aquamarine and silver.\nSetting: high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh.\nFigure and ground, more important than the scene description: the creature glows, so the scene around it is dark and quiet: night tones, deep shadow and only faint background detail. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "hologlass",
+      "scene": "citylights",
+      "refs": [
+        "character ideas/54deea09727aab1618809d6e42dfb05e.jpg"
+      ],
+      "status": "done",
+      "started": 1794696354976,
+      "jobId": "job_48a3eefa0ab8",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_a0a26b8be584.png",
+      "cost": 7,
+      "file": "00.png",
+      "contrast": {
+        "dL": 27,
+        "dE": 27
+      },
+      "finished": 1794696421971,
+      "transparent": false
+    },
+    {
+      "i": 1,
+      "prompt": "a little snake as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: formed from a glowing blue wireframe mesh and a point cloud of tiny dots, digital hologram aesthetic with thin coordinate lines, 1980s computer graphics.\nColor accents: deep teal, aquamarine and silver.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light.\nFigure and ground, more important than the scene description: the creature glows, so the scene around it is dark and quiet: night tones, deep shadow and only faint background detail. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "wireframe",
+      "scene": "solarpunk",
+      "refs": [
+        "character ideas/f907589d93c1df86bb44fbc6ca34aa31.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.20.39 AM.png"
+      ],
+      "status": "done",
+      "started": 1794696354976,
+      "jobId": "job_79abfa3ef909",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_24275393380f.png",
+      "cost": 8,
+      "file": "01.png",
+      "contrast": {
+        "dL": 12,
+        "dE": 15
+      },
+      "finished": 1794696429627,
+      "transparent": true
+    },
+    {
+      "i": 2,
+      "prompt": "a little snake as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: styled in neon magenta and electric teal, chunky reflective goggles, a metallic armor collar with glowing details, playful cyberpunk attitude.\nColor accents: deep teal, aquamarine and silver.\nSetting: an endless corridor of tall trees at deep blue twilight, a faint starry horizon glowing at the end of a tiny winding path.\nFigure and ground, more important than the scene description: the background is muted and desaturated in a hue complementary to the creature's main color, with a soft pool of brighter light directly behind it. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "neonpunk",
+      "scene": "forest",
+      "refs": [
+        "character ideas/a37ecf50b2c2d19bfff8d8d25a835596.jpg"
+      ],
+      "status": "done",
+      "started": 1794696354976,
+      "jobId": "job_cbea0200a96d",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_8aa2492f6a23.png",
+      "cost": 7,
+      "file": "02.png",
+      "contrast": {
+        "dL": 16,
+        "dE": 17
+      },
+      "finished": 1794696423041,
+      "transparent": false
+    },
+    {
+      "i": 3,
+      "prompt": "a little snake as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: mysterious, intense, magnetic, fiercely loyal. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: formed from a glowing blue wireframe mesh and a point cloud of tiny dots, digital hologram aesthetic with thin coordinate lines, 1980s computer graphics.\nColor accents: deep teal, aquamarine and silver.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light.\nFigure and ground, more important than the scene description: the creature glows, so the scene around it is dark and quiet: night tones, deep shadow and only faint background detail. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "wireframe",
+      "scene": "solarpunk",
+      "refs": [
+        "character ideas/f907589d93c1df86bb44fbc6ca34aa31.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.20.39 AM.png"
+      ],
+      "parent": 1,
+      "status": "done",
+      "started": 1794697174355,
+      "jobId": "job_cc95fc2d2b48",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_c9e45ff7e76c.png",
+      "cost": 8,
+      "file": "03.png",
+      "contrast": {
+        "dL": 10,
+        "dE": 14
+      },
+      "finished": 1794697196936,
+      "transparent": false
+    }
+  ]
+}

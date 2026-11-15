@@ -1,0 +1,146 @@
+{
+  "id": "20261114-144554-a-little-crab",
+  "created": "2026-11-14T22:45:54.969Z",
+  "subject": "a little crab",
+  "sign": "Cancer",
+  "traits": "protective, sensitive, a homebody behind a hard shell",
+  "palette": "deep teal, aquamarine and silver",
+  "tone": "mid",
+  "master": {
+    "id": "v5",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}.\nFigure and ground, more important than the scene description: {backdrop} The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "aspect": "3:4",
+  "refs": [],
+  "refMode": "match",
+  "autoRefs": {
+    "style": true,
+    "scene": false
+  },
+  "ab": false,
+  "compare": false,
+  "vary": {
+    "style": true,
+    "scene": true,
+    "model": false
+  },
+  "note": "",
+  "images": [
+    {
+      "i": 0,
+      "prompt": "a little crab as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: protective, sensitive, a homebody behind a hard shell. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: formed from a glowing blue wireframe mesh and a point cloud of tiny dots, digital hologram aesthetic with thin coordinate lines, 1980s computer graphics.\nColor accents: deep teal, aquamarine and silver.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light.\nFigure and ground, more important than the scene description: the creature glows, so the scene around it is dark and quiet: night tones, deep shadow and only faint background detail. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "wireframe",
+      "scene": "solarpunk",
+      "refs": [
+        "character ideas/f907589d93c1df86bb44fbc6ca34aa31.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.20.39 AM.png"
+      ],
+      "status": "done",
+      "started": 1794696354969,
+      "jobId": "job_610bf35c7660",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_fa94b5ce1ab3.png",
+      "cost": 8,
+      "file": "00.png",
+      "contrast": {
+        "dL": 10,
+        "dE": 11
+      },
+      "finished": 1794696421298,
+      "transparent": true
+    },
+    {
+      "i": 1,
+      "prompt": "a little crab as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: protective, sensitive, a homebody behind a hard shell. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: ultra-soft fluffy fur you want to touch, wearing a tiny handmade outfit with embroidered patches and sequins that glow like fairy lights, Pixar-quality 3D render with subsurface scattering, warm and cozy.\nColor accents: deep teal, aquamarine and silver.\nSetting: a terracotta Mars desert colony with a white dome city and launch towers, a pale moon in a dusty sky.\nFigure and ground, more important than the scene description: the background is muted and desaturated in a hue complementary to the creature's main color, with a soft pool of brighter light directly behind it. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "plush",
+      "scene": "mars",
+      "refs": [
+        "character ideas/33baeeafdf7182dc4c43e1bd97e74ae1.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.26.48 AM.png"
+      ],
+      "status": "done",
+      "started": 1794696354969,
+      "jobId": "job_b94796ac2d8d",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_4df1b0cb9b8e.png",
+      "cost": 8,
+      "file": "01.png",
+      "contrast": {
+        "dL": 9,
+        "dE": 9
+      },
+      "finished": 1794696422658,
+      "transparent": false
+    },
+    {
+      "i": 2,
+      "prompt": "a little crab as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: protective, sensitive, a homebody behind a hard shell. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: transparent iridescent glass body with glowing fiber-optic veins and soft inner light, holographic sheen, faint technical blueprint annotations floating around it.\nColor accents: deep teal, aquamarine and silver.\nSetting: floating above a soft sea of pink and lilac clouds at dusk, a slim crescent moon in a pastel gradient sky.\nFigure and ground, more important than the scene description: the creature glows, so the scene around it is dark and quiet: night tones, deep shadow and only faint background detail. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "hologlass",
+      "scene": "clouds",
+      "refs": [
+        "character ideas/54deea09727aab1618809d6e42dfb05e.jpg"
+      ],
+      "status": "done",
+      "started": 1794696354969,
+      "jobId": "job_0ee0a2dde7b0",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_13955db796f1.png",
+      "cost": 7,
+      "file": "02.png",
+      "contrast": {
+        "dL": 21,
+        "dE": 22
+      },
+      "finished": 1794696405635,
+      "transparent": true
+    },
+    {
+      "i": 3,
+      "prompt": "a little crab as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: protective, sensitive, a homebody behind a hard shell. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: formed from a glowing blue wireframe mesh and a point cloud of tiny dots, digital hologram aesthetic with thin coordinate lines, 1980s computer graphics.\nColor accents: deep teal, aquamarine and silver.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light.\nFigure and ground, more important than the scene description: the creature glows, so the scene around it is dark and quiet: night tones, deep shadow and only faint background detail. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "wireframe",
+      "scene": "solarpunk",
+      "refs": [
+        "character ideas/f907589d93c1df86bb44fbc6ca34aa31.jpg",
+        "character ideas/Screenshot 2026-11-14 at 11.20.39 AM.png"
+      ],
+      "parent": 0,
+      "status": "done",
+      "started": 1794697174353,
+      "jobId": "job_d895ca645d9e",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_ee73e6caf58d.png",
+      "cost": 8,
+      "file": "03.png",
+      "contrast": {
+        "dL": 11,
+        "dE": 12
+      },
+      "finished": 1794697200973,
+      "transparent": false
+    },
+    {
+      "i": 4,
+      "prompt": "a little crab as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: protective, sensitive, a homebody behind a hard shell. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: transparent iridescent glass body with glowing fiber-optic veins and soft inner light, holographic sheen, faint technical blueprint annotations floating around it.\nColor accents: deep teal, aquamarine and silver.\nSetting: floating above a soft sea of pink and lilac clouds at dusk, a slim crescent moon in a pastel gradient sky.\nFigure and ground, more important than the scene description: the creature glows, so the scene around it is dark and quiet: night tones, deep shadow and only faint background detail. The creature is the most brightly lit, most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear empty space around it keeps every part from merging with background shapes. The background is softly out of focus and less detailed.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.\nThe attached images show the target look. Reproduce their material, surface detail, rendering technique, lighting and level of finish as closely as possible on the creature described above. Take the species, pose and setting from this prompt, not from the images.",
+      "model": "gpt_image_2_6",
+      "style": "hologlass",
+      "scene": "clouds",
+      "refs": [
+        "character ideas/54deea09727aab1618809d6e42dfb05e.jpg"
+      ],
+      "parent": 2,
+      "status": "done",
+      "started": 1794697174353,
+      "jobId": "job_11a4de319fc3",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_6758d7316f27.png",
+      "cost": 7,
+      "file": "04.png",
+      "contrast": {
+        "dL": 21,
+        "dE": 22
+      },
+      "finished": 1794697193608,
+      "transparent": false
+    }
+  ]
+}

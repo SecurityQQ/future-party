@@ -8,12 +8,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Instrument+Serif&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: the projectionist's desk for the night. The wall comes first (the films with real frames,
-   three slide walls drawn in their own type), then the programme, the sound, what to read, the
-   pre-flight list and how to rebuild. The display face is League Gothic, the wall films' own type.
-   Dark-first; light supported. Everything is a relative link, so the page works from the folder offline.
-   D.mode is "folder" (index.html, from hub/build.py) or "web" (site/index.html, from hub/site.py): the web mode plays
-   the 720p previews, opens Markdown on GitHub and drops the claude.ai copies, since every page is on the site. */
+/* Layout: the party's front page. Four doors at the top (the wall, the music, the guests' corner, the research),
+   then one section for each. The wall comes first: the Big Wall, the two films and four slide walls.
+   The display face is League Gothic, the wall films' own type. Dark-first; light supported. Everything is a relative
+   link, so the page works from the folder offline. D.mode is "folder" (index.html, from hub/build.py) or "web"
+   (site/index.html, from hub/site.py): the web mode plays the 720p previews, opens Markdown on GitHub and drops the
+   claude.ai copies, since every page is on the site. The host's material is on admin.html (hub/admin.html), which
+   reuses this style block and is linked from nowhere. */
 :root{
   --bg:#070708; --raised:#0e0e10; --fg:#ffffff; --fg-2:#d4d4d8; --muted:#a1a1a6;
   --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.20);
@@ -39,6 +40,8 @@
   --ok:#16883a; --warn:#a35f00; color-scheme:light;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--font);-webkit-font-smoothing:antialiased}
 [hidden]{display:none!important}
 a{color:inherit;text-decoration-color:var(--line-2);text-underline-offset:3px}
@@ -50,7 +53,7 @@ code{font:13px var(--mono);background:var(--raised);border:1px solid var(--line)
 h1,h2,h3{margin:0;text-wrap:balance}
 h2{font-size:clamp(26px,3.4vw,38px);line-height:1.08;letter-spacing:-.03em;font-weight:700;margin-top:8px}
 p{margin:0}
-section{padding-block:56px;border-top:1px solid var(--line)}
+section{padding-block:56px;border-top:1px solid var(--line);scroll-margin-top:8px}
 .sec-head{display:grid;gap:6px;margin-bottom:28px;max-width:760px}
 .sec-head .note{color:var(--muted);font-size:15px;margin-top:6px}
 
@@ -59,34 +62,35 @@ nav.top a{text-decoration:none;color:var(--muted)}
 nav.top a:hover{color:var(--fg)}
 nav.top .brand{color:var(--fg);margin-right:auto}
 
-.hero{padding-block:28px 48px}
+.hero{padding-block:28px 40px}
 .hero h1{font:400 clamp(72px,15vw,200px)/.86 var(--display);text-transform:uppercase;letter-spacing:.005em;margin-top:14px}
 .hero h1 .yr{color:var(--accent)}
 .lead{font-size:clamp(18px,2vw,21px);line-height:1.5;color:var(--fg-2);max-width:62ch;margin-top:22px}
 .lead b{color:var(--fg);font-weight:600}
-.facts{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:22px;font:400 13px var(--mono);color:var(--muted)}
-.facts b{color:var(--fg);font-weight:500;font-variant-numeric:tabular-nums}
 
-/* All resources: one dense list, grouped */
-.index{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,330px),1fr));gap:12px 40px}
-.grp h3{margin:0 0 6px}
-.grp ul{list-style:none;margin:0;padding:0}
-.grp li{display:grid;gap:3px;padding:12px 0;border-top:1px solid var(--line);min-width:0}
-.grp li b{font:600 16px/1.3 var(--font);letter-spacing:-.01em}
-.grp li p{color:var(--muted);font-size:14px;line-height:1.45}
-.grp .links,.shorts{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:14px}
-.grp .links a,.shorts a{color:var(--accent-ink);text-decoration:none}
-.grp .links a:hover,.shorts a:hover{text-decoration:underline}
-.shorts{font:400 13px var(--mono);margin-top:12px}
+/* The doors: one card per section, the way into the page */
+.doors{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:34px}
+@media (max-width:980px){.doors{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.doors{grid-template-columns:1fr}}
+.door{display:flex;flex-direction:column;gap:8px;min-width:0;padding:18px 18px 16px;border:1px solid var(--line);border-radius:var(--r);background:var(--raised);text-decoration:none;transition:border-color .2s,transform .2s}
+.door:hover{border-color:var(--accent);transform:translateY(-2px)}
+@media (prefers-reduced-motion: reduce){.door{transition:none}.door:hover{transform:none}}
+.door .n{font:500 12px var(--mono);color:var(--accent-ink);letter-spacing:.06em}
+.door b{font:400 clamp(34px,3.6vw,44px)/.95 var(--display);text-transform:uppercase;letter-spacing:.01em}
+.door span{font-size:14px;color:var(--muted);line-height:1.45}
+.door i{font-style:normal;margin-top:auto;padding-top:6px;font:500 13px var(--mono);color:var(--fg-2)}
 
 /* Wall tiles */
-.row-label{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 14px}
+.row-label{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 14px;flex-wrap:wrap}
 .row-label h3{font:600 15px var(--font);letter-spacing:.01em}
 .row-label span{font:400 12.5px var(--mono);color:var(--muted)}
 .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.tiles.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.tiles.four{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1100px){.tiles.four{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:980px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){.tiles{grid-template-columns:1fr}}
-.tiles + .row-label{margin-top:40px}
+@media (max-width:640px){.tiles,.tiles.two,.tiles.four{grid-template-columns:1fr}}
+.tiles + .row-label,.feature + .row-label{margin-top:44px}
 .tile{display:flex;flex-direction:column;gap:14px;min-width:0}
 .screen{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:8px;overflow:hidden;background:#0b0b0d;border:1px solid var(--line)}
 .screen video{width:100%;height:100%;object-fit:cover;display:block;background:#0b0b0d}
@@ -94,11 +98,14 @@ nav.top .brand{color:var(--fg);margin-right:auto}
 .screen .missing{position:absolute;inset:0;display:grid;place-content:center;gap:6px;text-align:center;padding:16px;color:#a1a1a6;font:400 13px/1.5 var(--mono)}
 .screen .missing b{color:#ffad31;font-weight:500;letter-spacing:.06em;text-transform:uppercase;font-size:12px}
 .screen.slide{display:flex;flex-direction:column;justify-content:center;padding:7% 8%;gap:8px;color:#fff;background:radial-gradient(circle at 20% 80%,rgba(255,83,21,.18),transparent 55%),#060607}
+.screen.art{background:#060607 center/cover no-repeat;justify-content:flex-end}
+.screen.art::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.85),rgba(0,0,0,.35) 55%,rgba(0,0,0,0))}
+.screen.art > *{position:relative}
 .slide .k{font:500 clamp(8px,.75vw,10px)/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#ff6a33}
-.slide .qt{font:400 clamp(16px,1.9vw,24px)/1.12 var(--serif);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.slide .qt{font:400 clamp(16px,1.9vw,22px)/1.12 var(--serif);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .slide .qt i{color:#ff6a33;font-style:normal}
-.slide .ht{font:800 clamp(17px,2vw,26px)/1.02 var(--font);letter-spacing:-.04em;max-width:16ch}
-.slide .tw{font:500 clamp(13px,1.35vw,17px)/1.35 var(--font);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;max-width:30ch}
+.slide .ht{font:800 clamp(16px,1.8vw,22px)/1.02 var(--font);letter-spacing:-.04em;max-width:16ch}
+.slide .tw{font:500 clamp(12px,1.25vw,15px)/1.35 var(--font);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;max-width:30ch}
 .slide .by{font:400 clamp(8px,.75vw,10px)/1.3 var(--mono);color:#9a9aa3}
 .tile h4{margin:0;font:600 20px/1.2 var(--font);letter-spacing:-.02em}
 .tile h4 small{display:block;font:400 13px/1.5 var(--mono);color:var(--muted);letter-spacing:0;margin-top:3px}
@@ -108,31 +115,67 @@ nav.top .brand{color:var(--fg);margin-right:auto}
 .btn:hover{background:var(--accent-hot)}
 .btn .tri{width:0;height:0;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
 .btn[disabled]{background:var(--line-2);color:var(--muted);cursor:not-allowed}
+.btn.big{font-size:16px;padding:14px 20px}
 .lnk{font-size:14px;color:var(--fg-2);text-decoration:none}
 .lnk:hover{color:var(--accent-ink)}
 .alt{font:400 12.5px var(--mono);color:var(--muted)}
 
-/* Programme */
+/* The Big Wall: the feature tile */
+.feature{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:32px;align-items:center}
+@media (max-width:860px){.feature{grid-template-columns:1fr;gap:22px}}
+.screen.bw{text-decoration:none;background:#000 center/cover no-repeat;display:flex;flex-direction:column;justify-content:flex-end;padding:6% 7%;color:#fff}
+.screen.bw::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.25)),linear-gradient(0deg,rgba(0,0,0,.6),rgba(0,0,0,0) 50%)}
+.screen.bw > *{position:relative}
+.bw .k{font:500 clamp(9px,1vw,12px)/1.2 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#ff6a33}
+.bw .t{font:400 clamp(56px,9vw,120px)/.84 var(--display);color:#ff5315;margin-top:6px}
+.bw .c{font:400 clamp(15px,1.7vw,22px)/1.1 var(--display);text-transform:uppercase;margin-top:6px;color:#e4e4e7}
+.bw .c b{font-weight:400;color:#ff6a33}
+.bw .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.bw .chips span{font:500 clamp(9px,.9vw,11px)/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:5px 7px;border-radius:4px;background:rgba(0,0,0,.55);border-left:3px solid var(--c)}
+.feature h3{font:400 clamp(48px,6vw,76px)/.9 var(--display);text-transform:uppercase}
+.feature h3 span{color:var(--accent)}
+.feature p{color:var(--fg-2);margin-top:14px;max-width:56ch}
+.chlist{list-style:none;margin:18px 0 0;padding:0;border-top:1px solid var(--line)}
+.chlist li{border-bottom:1px solid var(--line)}
+.chlist a{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 2px;text-decoration:none;font-size:15px}
+.chlist a:hover b{color:var(--accent-ink)}
+.chlist i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.chlist b{font-weight:600}
+.chlist span{font:400 12.5px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+
+/* Two columns: a picture or a big name on the left, a list on the right */
 .program{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:start}
 @media (max-width:860px){.program{grid-template-columns:1fr;gap:28px}}
-.program h3{font:400 clamp(44px,6vw,72px)/.92 var(--display);text-transform:uppercase}
-.program p{color:var(--fg-2);margin-top:14px;max-width:60ch}
 .arc{display:grid;gap:10px;border-top:1px solid var(--line);padding-top:16px}
 .arc div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;font-size:14.5px;color:var(--fg-2);padding-bottom:10px;border-bottom:1px solid var(--line)}
 .arc b{font:500 12px/1.9 var(--mono);color:var(--muted);font-weight:500}
 
+/* Mirror 2050 and the party app */
+.mirror-shot{display:block;width:100%;height:auto;border-radius:var(--r);border:1px solid var(--line);background:var(--raised)}
+#guests .arc div{grid-template-columns:128px minmax(0,1fr)}
+#guests .how{color:var(--fg-2);font-size:14.5px;margin-top:14px;max-width:62ch}
+#guests .how a{color:var(--fg);text-decoration:underline;text-underline-offset:2px}
+.app{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 24px;align-items:center;margin-top:36px;padding:20px 22px;border:1px solid var(--line);border-radius:var(--r);background:var(--raised)}
+@media (max-width:640px){.app{grid-template-columns:1fr}}
+.app h3{font:600 20px/1.2 var(--font);letter-spacing:-.02em}
+.app p{color:var(--fg-2);font-size:14.5px;margin-top:4px;max-width:70ch}
+
 /* Lists */
 .list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px}
 @media (max-width:760px){.list{grid-template-columns:1fr}}
-.item{display:grid;gap:6px;padding:18px 0;border-top:1px solid var(--line);min-width:0}
+.item{display:grid;gap:6px;padding:18px 0;border-top:1px solid var(--line);min-width:0;align-content:start}
 .item h4{margin:0;font:600 18px/1.25 var(--font);letter-spacing:-.015em}
+.item h4 .pre{color:var(--muted);font-weight:500}
+.item h4 a{text-decoration:none}
+.item h4 a:hover{color:var(--accent-ink)}
 .item p{color:var(--fg-2);font-size:14.5px}
 .item .links{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;margin-top:4px}
 .item .links a{color:var(--fg-2);text-decoration:none}
-.item .links a:hover{color:var(--accent-ink)}
+.item .links a:first-child{color:var(--accent-ink)}
+.item .links a:hover{color:var(--accent-ink);text-decoration:underline}
 .tag{font:500 10.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 6px;border-radius:4px;border:1px solid var(--line-2);color:var(--muted);vertical-align:2px;margin-left:6px}
 
-/* Checklist */
+/* Admin page: checklist, short addresses and the rebuild table */
 .check{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;counter-reset:c}
 @media (max-width:760px){.check{grid-template-columns:1fr}}
 .check li{border-top:1px solid var(--line);padding:14px 0}
@@ -142,8 +185,11 @@ nav.top .brand{color:var(--fg);margin-right:auto}
 .check input:checked + span{opacity:.5}
 .check-tools{display:flex;gap:12px;align-items:center;margin-top:16px;font:400 13px var(--mono);color:var(--muted)}
 .check-tools button{font:500 13px var(--font);color:var(--fg-2);background:transparent;border:1px solid var(--line-2);border-radius:999px;padding:7px 12px;cursor:pointer}
-
-/* Rebuild table */
+.shorts{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:0 32px;font-size:14px}
+.shorts div{display:grid;grid-template-columns:minmax(110px,auto) minmax(0,1fr);gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.shorts a{font:500 13.5px var(--mono);color:var(--accent-ink);text-decoration:none}
+.shorts a:hover{text-decoration:underline}
+.shorts span{color:var(--muted)}
 .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
 table{border-collapse:collapse;width:100%;min-width:720px;font-size:14.5px}
 th,td{text-align:left;vertical-align:top;padding:13px 16px;border-bottom:1px solid var(--line)}
@@ -169,94 +215,76 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12.5px/
 <div class="wrap">
   <nav class="top" aria-label="Sections">
     <span class="brand">FUTURE PARTY / 2050</span>
-    <a href="#all">All</a><a href="#wall">Wall</a><a href="#programme">Programme</a><a href="#sound">Sound</a><a href="#read">Read</a><a href="#preflight">Before the night</a><a href="#rebuild">Rebuild</a>
+    <a href="#wall">Wall</a><a href="#music">Music</a><a href="#guests">Guests</a><a href="#research">Research</a>
   </nav>
 
   <header class="hero">
-    <p class="eyebrow" id="eyebrow">The front page of this folder</p>
+    <p class="eyebrow" id="eyebrow">Everything for the night</p>
     <h1>Future Party <span class="yr">2050</span></h1>
     <p class="lead" id="lead"></p>
-    <div class="facts" id="facts"></div>
+    <div class="actions" style="margin-top:24px"><a class="btn big" id="heroStart"><span class="tri" aria-hidden="true"></span>Start the Big Wall</a><span class="alt" id="heroAlt"></span></div>
+    <div class="doors" id="doors"></div>
   </header>
-
-  <section id="all">
-    <div class="sec-head">
-      <p class="eyebrow">Everything</p>
-      <h2>All resources</h2>
-      <p class="note" id="allNote"></p>
-      <div class="shorts" id="shorts" hidden></div>
-    </div>
-    <div class="index" id="index"></div>
-  </section>
 
   <section id="wall">
     <div class="sec-head">
       <p class="eyebrow">On the wall</p>
-      <h2>Four films and three slide walls</h2>
-      <p class="note">Films play here on a loop in a fullscreen player. Slide walls open in their own page and run by themselves. Everything goes fullscreen with F, and Esc leaves.</p>
+      <h2>The Big Wall, two films and four slide walls</h2>
+      <p class="note">The Big Wall plays everything below in one loop. Each piece also plays on its own: films loop in a fullscreen player here, and slide walls open in their own page and run by themselves. F goes fullscreen, Esc leaves.</p>
     </div>
+    <div class="feature" id="bigwall"></div>
     <div class="row-label"><h3>Films</h3><span id="filmsLabel"></span></div>
-    <div class="tiles" id="films"></div>
+    <div class="tiles two" id="films"></div>
     <div class="row-label"><h3>Slide walls</h3><span>pages that advance on their own, timed so a slide can be read across the room</span></div>
-    <div class="tiles" id="walls"></div>
+    <div class="tiles four" id="walls"></div>
   </section>
 
-  <section id="programme">
-    <div class="program">
-      <div>
-        <p class="eyebrow">The programme</p>
-        <h3>Tea With Tomorrow</h3>
-        <p>The run of show for the evening: a published three-hour Futures Literacy Lab (the UNESCO method) that opens with the Polak Game and ends with a futurist interviewed in the Celebrity Interview format, with tea on the tables throughout. It comes in two lengths, 3 h 55 min or 3 h 30 min, and has a party clock for the host.</p>
-        <div class="actions" style="margin-top:20px"><a class="btn" id="progLink"><span class="tri" aria-hidden="true"></span>Open the programme</a><span class="alt" id="progAlt"></span></div>
-      </div>
-      <div class="arc" aria-label="Where the wall fits in the evening">
-        <p class="eyebrow" style="margin-bottom:4px">Where the wall fits</p>
-        <div><b>Doors</b><span>Further on a loop, the soundtrack low.</span></div>
-        <div><b>Lab phases</b><span>Quote wall or idea wall in the background, sound off.</span></div>
-        <div><b>Tea breaks</b><span>Tweet wall, or Further again.</span></div>
-        <div><b>Before the futurist</b><span>The Roast once, as a 62-second opener.</span></div>
-        <p class="alt" style="margin-top:4px">A suggestion. The programme page sets the actual times.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="sound">
+  <section id="music">
     <div class="sec-head">
       <p class="eyebrow">Sound</p>
-      <h2>The soundtrack and the music pages</h2>
-      <p class="note">The films are silent apart from The Roast, so the room's sound comes from the playlist.</p>
+      <h2>Music</h2>
+      <p class="note">Further and the slide walls are silent, so the room's sound comes from the playlist. Six Facts has its own music; on the Big Wall it starts muted.</p>
     </div>
     <div class="list" id="soundList"></div>
   </section>
 
-  <section id="read">
+  <section id="guests">
     <div class="sec-head">
-      <p class="eyebrow">Read and explore</p>
-      <h2>The research behind the wall</h2>
+      <p class="eyebrow">For the guests</p>
+      <h2>Mirror 2050</h2>
+      <p class="note">A live camera for the guests: eight effects that went viral on X, rebuilt in one page and played with the hands. Nothing is filmed or uploaded; the camera stays in the browser.</p>
+    </div>
+    <div class="program">
+      <div>
+        <img class="mirror-shot" id="mirrorShot" src="mirror/preview.jpg" width="1932" height="544" loading="lazy" alt="The eight effects: glass hands, particle words, a hologram cube, a portal, shattered tiles, time trails, falling code and a see-through cloak">
+        <div class="actions" style="margin-top:20px"><a class="btn" id="mirrorLink"><span class="tri" aria-hidden="true"></span>Open the mirror</a></div>
+        <p class="how" id="mirrorHow"></p>
+      </div>
+      <div class="arc" aria-label="The eight effects and how to play them">
+        <p class="eyebrow" style="margin-bottom:4px">Keys 1–8, or party mode</p>
+        <div><b>1 Liquid Air</b><span>Your hands turn to glass and the air ripples.</span></div>
+        <div><b>2 Neon Swarm</b><span>Show 1 to 4 fingers to write a word in particles; open palm for a nebula, fist for an orb.</span></div>
+        <div><b>3 Holo Cube</b><span>You become a hologram, with a glitching cube held between your hands.</span></div>
+        <div><b>4 Portal</b><span>An open palm opens a portal; pinch with both hands to tear a window into 2050.</span></div>
+        <div><b>5 Shatter</b><span>An open hand blows the picture into glass tiles; a fist pulls it back.</span></div>
+        <div><b>6 Time Warp</b><span>Lower rows are older frames; point a finger and time ripples from it.</span></div>
+        <div><b>7 Matrix</b><span>You turn into falling code; your hands show the real colours.</span></div>
+        <div><b>8 Cloak</b><span>Your body shows the room behind you. A fist decloaks.</span></div>
+      </div>
+    </div>
+    <div class="app">
+      <div><h3>The Future 2050</h3><p>The party app: guests tap their NFC pass, give a name and birthday, meet their Kin, a zodiac creature, then tap each other's passes to fill their orbit.</p></div>
+      <div class="actions"><a class="btn" id="appLink" target="_blank" rel="noopener">Open the app ↗</a></div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="sec-head">
+      <p class="eyebrow">The research</p>
+      <h2>2050 Research</h2>
+      <p class="note">What the wall is made from: the books, the tweets, the films and the effects, each with its sources.</p>
     </div>
     <div class="list" id="readList"></div>
-  </section>
-
-  <section id="preflight">
-    <div class="sec-head">
-      <p class="eyebrow">Before the night</p>
-      <h2>Pre-flight on the projector laptop</h2>
-      <p class="note">Ticks are kept in this browser only.</p>
-    </div>
-    <ul class="check" id="check"></ul>
-    <div class="check-tools"><button type="button" id="checkReset">Clear ticks</button><span id="checkCount"></span></div>
-  </section>
-
-  <section id="rebuild">
-    <div class="sec-head">
-      <p class="eyebrow">Rebuild</p>
-      <h2>Where each piece comes from</h2>
-      <p class="note">Run each command from the folder root. Every build reads its own data file and writes to its <code>dist/</code> or <code>renders/</code> folder.</p>
-    </div>
-    <div class="table-wrap"><table>
-      <thead><tr><th>Piece</th><th>Source</th><th>Command</th></tr></thead>
-      <tbody id="rebuildBody"></tbody>
-    </table></div>
   </section>
 
   <footer id="foot"></footer>
@@ -269,7 +297,7 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12.5px/
 
 <script>
 (function(){
-const D=/*DATA*/{"mode": "folder", "site": "https://future-party-2050.vercel.app", "repo": "https://github.com/SecurityQQ/future-party", "built": "14 November 2026", "online": {"program": "https://claude.ai/artifact/GTAQtSieprLL7VaHcbwBVC", "futurists": "https://claude.ai/artifact/P2jenFADX1YbeZjJm9eJpW", "futurists_short": "https://claude.ai/artifact/K7mQoafbtuLc9f1NQuMc1X", "futurists_ru": "https://claude.ai/artifact/G2pBtXXsKGaz5rDnuL5Zmn", "films": "https://claude.ai/artifact/EX8V3LEzvAEtW2p2y2NLBu", "further": "https://claude.ai/artifact/8zQjJUnHQXxsWWD1aQKYnx", "books": "https://claude.ai/artifact/1P94dXNkbjwjofDd2DzaUi", "tweets": "https://claude.ai/artifact/M6b8HYpuvdwA4cU4GvEfqG", "soundtrack": "https://claude.ai/artifact/WfgPk8RRF5sTM8spzwC1zp", "why": "https://claude.ai/artifact/Abby2s8iw3xuiJQX9Qwfph", "resonance": "https://claude.ai/artifact/PVooRbA3UqweX19eBy7Q4k", "contact": "https://claude.ai/artifact/AiFrTg6V1BipqTvsJTmkmA", "tea": "https://claude.ai/artifact/JSq3U75PR1zGnLmkPea8Yz"}, "pages": {"program": "programme/tea-with-tomorrow.html", "futurists": "tweets/research/futurists-on-2050.html", "futurists_short": "tweets/research/2050-in-futurists-tweets.html", "futurists_ru": "tweets/research/2050-in-futurists-tweets.ru.html", "films": "reel/projection-2050.html", "further": "video/dist/further-2050.html", "books": "books/dist/book-projection-2050.html", "tweets": "tweets/dist/tweets-2050.html", "soundtrack": "music/dist/soundtrack2050.html", "why": "music/dist/why-music-changes.html", "resonance": "music/resonance/dist/local/index.html", "contact": "soundboard/dist/contact2050.html"}, "short": {"programme": "programme/tea-with-tomorrow.html", "quotes": "books/dist/quote-wall.html#quote-wall", "ideas": "books/dist/quote-wall.html#projection", "mix": "books/dist/quote-wall.html#mix-wall", "tweets": "tweets/dist/tweet-wall.html#tweet-wall", "tweets-short": "tweets/dist/tweet-wall.html#short-wall", "soundboard": "soundboard/dist/contact2050.html", "soundtrack": "music/dist/soundtrack2050.html", "resonance": "music/resonance/dist/local/index.html", "music-history": "music/dist/why-music-changes.html", "books": "books/dist/book-projection-2050.html", "further": "video/dist/further-2050.html", "films": "reel/projection-2050.html", "futurists": "tweets/research/futurists-on-2050.html"}, "playlists": {"soundtrack": "https://www.youtube.com/playlist?list=PLJdg5B9vQ1oA", "history": "https://www.youtube.com/playlist?list=PLeo45sxoQ8gE", "resonance": "https://www.youtube.com/playlist?list=PLSfq0dmq_K78"}, "films": [{"id": "further", "title": "Further", "sub": "the wall film, v2", "t": 8, "file": "video/renders/further-2050-1080p.mp4", "preview": "video/dist/media/further-720p.mp4", "master": "https://github.com/SecurityQQ/future-party/releases/download/v2.0/further-2050-1080p.mp4", "about": "Sixteen bold claims for 2030–2050, each with a dated real seed and a film that imagined it, over 37 public-domain and CC photos. Silent, loops seamlessly.", "page": "video/dist/further-2050.html", "online": "https://claude.ai/artifact/8zQjJUnHQXxsWWD1aQKYnx", "rebuild": "cd video && npm run render", "is_preview": false, "probe": {"mb": 113, "sec": 74.6}}, {"id": "roast", "title": "The Roast", "sub": "how v1 became v2", "t": 12, "file": "roast/renders/the-roast-2050-1080p.mp4", "preview": "video/dist/media/the-roast-720p.mp4", "master": "https://github.com/SecurityQQ/future-party/releases/download/v2.0/the-roast-2050-1080p.mp4", "about": "62 seconds: the weakest v1 slides as exhibits stamped CUT, then the recut. Made for the gap between loops. Has sound effects.", "page": null, "online": null, "rebuild": "cd roast && npm run render", "is_preview": false, "probe": {"mb": 45, "sec": 62.7}}, {"id": "sixfacts", "title": "Six Facts", "sub": "the show reel", "t": 9, "file": "showreel/renders/six-facts-2050-1080p.mp4", "preview": "video/dist/media/six-facts-720p.mp4", "master": null, "about": "Two and a half minutes with music: the six facts about how books guess the future, each answered by a book, a post on X and two predictions from Further, over NASA footage.", "page": null, "online": null, "rebuild": "cd showreel && npm run render", "is_preview": false, "probe": {"mb": 167, "sec": 149.5}}, {"id": "already", "title": "Already Here", "sub": "the wall film, v1", "t": 30, "file": "video/renders/already-here-2050-1080p.mp4", "preview": "video/dist/media/already-here-720p.mp4", "master": "https://github.com/SecurityQQ/future-party/releases/download/v1.0/already-here-2050-1080p.mp4", "about": "Every shot pairs an idea a film imagined with a real photo of it existing today, in three chapters. Silent, loops seamlessly. Kept as the alternate.", "page": null, "online": null, "rebuild": "see video/README and slides_v1.json", "is_preview": false, "probe": {"mb": 131, "sec": 94.8}}], "books": {"quotes": 50, "quote_books": 20, "quote_loop": 499, "first_quote": "It is 2050. We have been successful at halving emissions every decade since 2020. We are heading for a world that will be no more than 1.5 degrees Celsius warmer by 2100.", "ideas": 25, "idea_loop": 261, "first_idea": "City air is cleaner than before the Industrial Revolution"}, "tweets": {"tweets": 78, "authors": 39, "blocks": 5, "sample": "#1: Expertise will be near free: We will be capable of having near free AI doctors for every person & AI tutors for every child, 24x7", "sample_by": "Vinod Khosla"}, "sound": {"tracks": 34, "bench": 14, "sec": 7664}, "resources": [["On the wall", [["Further", "The wall film, v2. 16 claims for 2030–2050, silent loop.", "", [["play", "video/renders/further-2050-1080p.mp4"], ["page", "video/dist/further-2050.html"]]], ["The Roast", "How v1 became v2, 62 seconds with sound.", "", [["play", "roast/renders/the-roast-2050-1080p.mp4"]]], ["Six Facts", "The show reel: six facts, six quotes, six posts and 13 predictions over NASA footage. Two and a half minutes with music.", "", [["play", "showreel/renders/six-facts-2050-1080p.mp4"]]], ["Already Here", "The wall film, v1. Three chapters, silent loop.", "", [["play", "video/renders/already-here-2050-1080p.mp4"]]], ["Quote wall", "50 verbatim quotes from 20 books.", "", [["start", "books/dist/quote-wall.html#quote-wall"]]], ["Idea wall", "25 slides of plausible ideas for 2050.", "", [["start", "books/dist/quote-wall.html#projection"], ["quotes and ideas", "books/dist/quote-wall.html#mix-wall"]]], ["Tweet wall", "78 posts by 39 futurists on X.", "", [["start", "tweets/dist/tweet-wall.html#tweet-wall"], ["short version", "tweets/dist/tweet-wall.html#short-wall"]]]]], ["The evening", [["Tea With Tomorrow", "The programme: a three-hour Futures Literacy Lab over tea, with a party clock.", "", [["open", "programme/tea-with-tomorrow.html"]]], ["Contact 2050", "A Makey Makey soundboard for guests: 12 pins, 8 kits, jam mode, stage mode for the projector.", "", [["open", "soundboard/dist/contact2050.html"], ["README", "soundboard/README.md"]]], ["Zodiac Rangers", "The party app: guests tap their NFC ranger card, give a name and birthday, get a zodiac creature, then scan each other's cards for the ranking.", "", [["open ↗", "https://zodiac-rangers.vercel.app"]]], ["Tea comparison", "The teas for the tables, compared.", "claude.ai", [["open ↗", "https://claude.ai/artifact/JSq3U75PR1zGnLmkPea8Yz"]]]]], ["Sound", [["Soundtrack 2050", "The running order: 34 tracks and voices in three blocks.", "", [["page", "music/dist/soundtrack2050.html"], ["YouTube ↗", "https://www.youtube.com/playlist?list=PLJdg5B9vQ1oA"]]], ["Resonance", "Music history and what comes next: 60 stops, a Future Lab and a radio.", "", [["page", "music/resonance/dist/local/index.html"], ["YouTube ↗", "https://www.youtube.com/playlist?list=PLSfq0dmq_K78"]]], ["Why Music Changes", "Four thousand years in thirteen eras.", "", [["page", "music/dist/why-music-changes.html"], ["YouTube ↗", "https://www.youtube.com/playlist?list=PLeo45sxoQ8gE"]]]]], ["Research", [["Book Projection 2050", "Eighteen books about the world around 2050, with their ideas and quotes.", "", [["page", "books/dist/book-projection-2050.html"]]], ["2050 in 78 Tweets", "Every tweet behind the tweet wall, by topic and author.", "", [["page", "tweets/dist/tweets-2050.html"]]], ["Futurists on 2050", "The full research: what futurists wrote about 2050, in their own words.", "", [["page", "tweets/research/futurists-on-2050.html"]]], ["2050 in Futurists’ Tweets", "The short version: six findings and 43 tweets by theme.", "", [["English", "tweets/research/2050-in-futurists-tweets.html"], ["Russian", "tweets/research/2050-in-futurists-tweets.ru.html"]]], ["Further 2050", "The wall film’s claims with their seeds, dates and films.", "", [["page", "video/dist/further-2050.html"]]], ["Projection 2050", "Eighteen films about 2050, scored, with checked clips for a reel.", "", [["page", "reel/projection-2050.html"], ["reel notes", "reel/links.md"]]]]], ["Tools and source", [["Zodiac Creatures playground", "Tunes the prompt behind the zodiac companion characters. Runs on a local server.", "local", [["README", "astrology/playground/README.md"]]], ["The repository", "Every page, data file and build script, and the film masters on the releases.", "", [["GitHub ↗", "https://github.com/SecurityQQ/future-party"], ["releases ↗", "https://github.com/SecurityQQ/future-party/releases"]]]]]], "exists": {"books/dist/quote-wall.html": true, "books/dist/book-projection-2050.html": true, "tweets/dist/tweet-wall.html": true, "tweets/dist/tweets-2050.html": true, "music/resonance/dist/local/player.html": true, "reel/links.md": true, "programme/tea-with-tomorrow.html": true, "tweets/research/futurists-on-2050.html": true, "tweets/research/2050-in-futurists-tweets.html": true, "tweets/research/2050-in-futurists-tweets.ru.html": true, "reel/projection-2050.html": true, "video/dist/further-2050.html": true, "music/dist/soundtrack2050.html": true, "music/dist/why-music-changes.html": true, "music/resonance/dist/local/index.html": true, "soundboard/dist/contact2050.html": true}};
+const D=/*DATA*/{"mode": "folder", "site": "https://future-party-2050.vercel.app", "repo": "https://github.com/SecurityQQ/future-party", "built": "14 November 2026", "online": {"program": "https://claude.ai/artifact/GTAQtSieprLL7VaHcbwBVC", "futurists": "https://claude.ai/artifact/P2jenFADX1YbeZjJm9eJpW", "futurists_short": "https://claude.ai/artifact/K7mQoafbtuLc9f1NQuMc1X", "futurists_ru": "https://claude.ai/artifact/G2pBtXXsKGaz5rDnuL5Zmn", "films": "https://claude.ai/artifact/EX8V3LEzvAEtW2p2y2NLBu", "further": "https://claude.ai/artifact/8zQjJUnHQXxsWWD1aQKYnx", "books": "https://claude.ai/artifact/1P94dXNkbjwjofDd2DzaUi", "tweets": "https://claude.ai/artifact/M6b8HYpuvdwA4cU4GvEfqG", "soundtrack": "https://claude.ai/artifact/WfgPk8RRF5sTM8spzwC1zp", "why": "https://claude.ai/artifact/Abby2s8iw3xuiJQX9Qwfph", "resonance": "https://claude.ai/artifact/PVooRbA3UqweX19eBy7Q4k", "contact": "https://claude.ai/artifact/AiFrTg6V1BipqTvsJTmkmA", "tea": "https://claude.ai/artifact/JSq3U75PR1zGnLmkPea8Yz", "mirror_research": "https://claude.ai/artifact/EQ2izi4He8XwvMRmsknaqs", "concept": "https://claude.ai/artifact/Dqk9BpYrVUoFXQaiyfHKBD"}, "pages": {"program": "programme/tea-with-tomorrow.html", "futurists": "tweets/research/futurists-on-2050.html", "futurists_short": "tweets/research/2050-in-futurists-tweets.html", "futurists_ru": "tweets/research/2050-in-futurists-tweets.ru.html", "films": "reel/projection-2050.html", "further": "video/dist/further-2050.html", "books": "books/dist/book-projection-2050.html", "tweets": "tweets/dist/tweets-2050.html", "soundtrack": "music/dist/soundtrack2050.html", "why": "music/dist/why-music-changes.html", "resonance": "music/resonance/dist/local/index.html", "contact": "soundboard/dist/contact2050.html", "mirror": "mirror/index.html", "mirror_research": "mirror/viral-webcam-effects.html", "concept": "concept-art/imagined-futures.html", "bigwall": "wall/dist/big-wall.html"}, "short": {"wall": "wall/dist/big-wall.html", "quotes": "books/dist/quote-wall.html#quote-wall", "ideas": "books/dist/quote-wall.html#projection", "mix": "books/dist/quote-wall.html#mix-wall", "tweets": "tweets/dist/tweet-wall.html#tweet-wall", "tweets-short": "tweets/dist/tweet-wall.html#short-wall", "art": "concept-art/imagined-futures.html#wall", "play": "soundboard/dist/contact2050.html", "soundboard": "soundboard/dist/contact2050.html", "soundtrack": "music/dist/soundtrack2050.html", "resonance": "music/resonance/dist/local/index.html", "music-history": "music/dist/why-music-changes.html", "books": "books/dist/book-projection-2050.html", "further": "video/dist/further-2050.html", "films": "reel/projection-2050.html", "futurists": "tweets/research/futurists-on-2050.html", "programme": "programme/tea-with-tomorrow.html"}, "playlists": {"soundtrack": "https://www.youtube.com/playlist?list=PLJdg5B9vQ1oA", "history": "https://www.youtube.com/playlist?list=PLeo45sxoQ8gE", "resonance": "https://www.youtube.com/playlist?list=PLSfq0dmq_K78"}, "apps": {"party": "https://the-future-2050.vercel.app"}, "films": [{"id": "further", "title": "Further", "sub": "the wall film", "t": 8, "front": true, "file": "video/dist/media/further-720p.mp4", "preview": "video/dist/media/further-720p.mp4", "master": "https://github.com/SecurityQQ/future-party/releases/download/v2.0/further-2050-1080p.mp4", "about": "Sixteen bold claims for 2030–2050, each with a dated real seed and a film that imagined it, over 37 public-domain and CC photos. Silent, loops seamlessly.", "page": "video/dist/further-2050.html", "online": "https://claude.ai/artifact/8zQjJUnHQXxsWWD1aQKYnx", "rebuild": "cd video && npm run render", "is_preview": true, "probe": {"mb": 6, "sec": 74.6}}, {"id": "sixfacts", "title": "Six Facts", "sub": "the show reel", "t": 9, "front": true, "file": "video/dist/media/six-facts-720p.mp4", "preview": "video/dist/media/six-facts-720p.mp4", "master": null, "about": "Two and a half minutes with music: the six facts about how books guess the future, each answered by a book, a post on X and two predictions from Further, over NASA footage.", "page": null, "online": null, "rebuild": "cd showreel && npm run render", "is_preview": true, "probe": {"mb": 20, "sec": 149.5}}], "books": {"quotes": 50, "quote_books": 20, "quote_loop": 499, "first_quote": "It is 2050. We have been successful at halving emissions every decade since 2020. We are heading for a world that will be no more than 1.5 degrees Celsius warmer by 2100.", "ideas": 25, "idea_loop": 261, "first_idea": "City air is cleaner than before the Industrial Revolution"}, "tweets": {"tweets": 78, "authors": 39, "blocks": 5, "sample": "#1: Expertise will be near free: We will be capable of having near free AI doctors for every person & AI tutors for every child, 24x7", "sample_by": "Vinod Khosla"}, "sound": {"tracks": 34, "bench": 14, "sec": 7664}, "art": {"pictures": 377, "posts": 171, "tile": "concept-art/thumbs/2118267091262333357-1.jpg"}, "wall": {"total": 2928, "slides": 278, "counts": {"facts": 6, "further": 16, "quotes": 50, "ideas": 25, "tweets": 78, "pictures": 377}, "files": ["video/assets/photos/atlas.jpg", "video/assets/photos/aurora.jpg", "video/assets/photos/bennu.jpg", "video/assets/photos/elevator.jpg", "video/assets/photos/elt.jpg", "video/assets/photos/europa.jpg", "video/assets/photos/havoc.jpg", "video/assets/photos/jewel.jpg", "video/assets/photos/mammoth.jpg", "video/assets/photos/marsbase.jpg", "video/assets/photos/moon.jpg", "video/assets/photos/nif.jpg", "video/assets/photos/sail.jpg", "video/assets/photos/smiled.jpg", "video/assets/photos/starship.jpg", "video/assets/photos/torus.jpg", "video/dist/media/further-720p.mp4", "video/dist/media/six-facts-720p.mp4"], "tile": "video/assets/photos/smiled.jpg", "chapters": [{"id": "planet", "title": "Planet", "color": "#2fbf71", "sec": 606}, {"id": "machines", "title": "Machines", "color": "#ff5315", "sec": 578}, {"id": "people", "title": "People", "color": "#f2b134", "sec": 465}, {"id": "power", "title": "Power", "color": "#8b7cff", "sec": 505}, {"id": "beyond", "title": "Beyond", "color": "#3aa0ff", "sec": 384}, {"id": "finale", "title": "2050", "color": "#ff5315", "sec": 159}]}, "exists": {"books/dist/quote-wall.html": true, "tweets/dist/tweet-wall.html": true, "music/resonance/dist/local/player.html": true, "reel/links.md": true, "mirror/preview.jpg": true, "concept-art/thumbs/2118267091262333357-1.jpg": true, "video/assets/photos/smiled.jpg": true, "programme/tea-with-tomorrow.html": true, "tweets/research/futurists-on-2050.html": true, "tweets/research/2050-in-futurists-tweets.html": true, "tweets/research/2050-in-futurists-tweets.ru.html": true, "reel/projection-2050.html": true, "video/dist/further-2050.html": true, "books/dist/book-projection-2050.html": true, "tweets/dist/tweets-2050.html": true, "music/dist/soundtrack2050.html": true, "music/dist/why-music-changes.html": true, "music/resonance/dist/local/index.html": true, "soundboard/dist/contact2050.html": true, "mirror/index.html": true, "mirror/viral-webcam-effects.html": true, "concept-art/imagined-futures.html": true, "wall/dist/big-wall.html": true}};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const mmss=s=>{s=Math.round(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
@@ -281,34 +309,34 @@ const isClaude=u=>/^https:\/\/claude\.ai\//.test(u);
 /* Markdown opens on GitHub from the website, from disk in the folder */
 const doc=p=>WEB?D.repo+'/blob/main/'+p:p;
 const ext=u=>/^https?:/.test(u)?' target="_blank" rel="noopener"':'';
-const siteName=D.site.replace(/^https?:\/\//,'');
+const P=D.pages,B=D.books,T=D.tweets,S=D.sound,A=D.art,W=D.wall;
 
 /* Hero */
-if(WEB){
-  $('eyebrow').textContent='Every resource for the party';
-  $('lead').innerHTML='Everything for the night in one place: the wall films, the slide walls, the programme, the soundtrack and the research behind them. <b>Nothing here needs a login.</b> The films play here as 720p previews. For the projector, download the 1080p masters, or clone <a href="'+esc(D.repo)+'" target="_blank" rel="noopener">the repo</a> and open its <code>index.html</code> to run the night offline.';
-}else{
-  $('lead').innerHTML='Everything for the night in one place. <b>Open this page on the projector laptop</b>: the films and slide walls below play straight from the folder, without internet or a login. The same pages are online, without a login, at <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(siteName)+'</a>. Links marked <span class="tag" style="margin:0">online</span> are private claude.ai copies.';
-}
+$('lead').innerHTML=WEB
+  ?'The wall, the music, the guests’ corner and the research behind it, in one place. <b>Nothing here needs a login.</b> To run the night, open the Big Wall on the projector and press F.'
+  :'The wall, the music, the guests’ corner and the research behind it, in one place. <b>Open this page on the projector laptop</b>: everything plays straight from the folder, without internet or a login. The same pages are online at <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(D.site.replace(/^https?:\/\//,''))+'</a>.';
 
-/* Facts */
-const B=D.books,T=D.tweets,S=D.sound;
-const filmsOk=D.films.filter(f=>f.probe).length, films1080=D.films.filter(f=>f.probe&&!f.is_preview).length;
-$('facts').innerHTML=[WEB?'<span><b>'+filmsOk+'</b> films</span>':'<span><b>'+films1080+'</b> of '+D.films.length+' films at 1080p'+(filmsOk>films1080?', '+(filmsOk-films1080)+' as 720p previews':'')+'</span>','<span><b>'+B.quotes+'</b> quotes · <b>'+B.ideas+'</b> ideas · <b>'+T.tweets+'</b> tweets</span>','<span><b>'+S.tracks+'</b> soundtrack items · '+Math.floor(S.sec/3600)+' h '+Math.round(S.sec%3600/60)+' min</span>','<span>built '+esc(D.built)+'</span>'].join('');
+$('heroStart').href=P.bigwall+'#play';
+$('heroAlt').textContent=WEB?'or type '+D.site.replace(/^https?:\/\//,'')+'/wall on the projector laptop':'press F on the wall for fullscreen';
 
-/* All resources */
-$('allNote').textContent=WEB?'Every film, wall, page and playlist, on one screen. Each is described in more detail further down.':'Every film, wall, page and playlist, on one screen. Everything opens from this folder; links marked ↗ go online.';
-$('index').innerHTML=D.resources.map(g=>'<div class="grp"><h3 class="eyebrow">'+esc(g[0])+'</h3><ul>'+g[1].map(r=>
-  '<li><b>'+esc(r[0])+(r[2]?'<span class="tag">'+esc(r[2])+'</span>':'')+'</b><p>'+esc(r[1])+'</p><div class="links">'+
-  r[3].map(l=>'<a href="'+esc(l[1])+'"'+ext(l[1])+(/\.mp4$/.test(l[1])?' data-film="'+esc((D.films.find(f=>f.file===l[1])||{}).id)+'"':'')+'>'+esc(l[0])+'</a>').join('')+
-  '</div></li>').join('')+'</ul></div>').join('');
-if(WEB){
-  const sh=$('shorts');sh.hidden=false;
-  sh.innerHTML='<span style="color:var(--muted)">Short addresses:</span>'+Object.keys(D.short).map(k=>'<a href="/'+esc(k)+'">/'+esc(k)+'</a>').join('');
-}
+/* The doors */
+const DOORS=[
+  ['#wall','On the wall','The Big Wall, Further, Six Facts, and the quote, idea, tweet and art walls.','▶ '+mins(W.total)+' a loop'],
+  ['#music','Music','Playlist, Resonance, Why Music Changes, and Play: 2050 for the guests.',S.tracks+' tracks'],
+  ['#guests','Guests','Mirror 2050, the camera played with the hands, and The Future 2050, the party app.','2 things to try'],
+  ['#research','2050 Research','The books, the tweets, the films and the effects behind the wall.','7 pages']
+];
+$('doors').innerHTML=DOORS.map((d,i)=>'<a class="door" href="'+d[0]+'"><span class="n">0'+(i+1)+'</span><b>'+esc(d[1])+'</b><span>'+esc(d[2])+'</span><i>'+esc(d[3])+'</i></a>').join('');
+
+/* The Big Wall */
+const C=W.counts;
+$('bigwall').innerHTML='<a class="screen bw" href="'+esc(P.bigwall)+'#play" style="background-image:url(\''+esc(W.tile)+'\')" aria-label="Start the Big Wall"><span class="k">The Big Wall · one loop</span><span class="t">2050</span><span class="c">'+[[C.facts,'facts'],[C.further,'predictions'],[C.quotes,'quotes'],[C.ideas,'ideas'],[C.tweets,'tweets'],[C.pictures,'pictures']].map(r=>'<b>'+r[0]+'</b> '+r[1]).join(' · ')+'</span><span class="chips">'+W.chapters.map(c=>'<span style="--c:'+esc(c.color)+'">'+esc(c.title)+'</span>').join('')+'</span></a>'+
+  '<div><h3>The Big <span>Wall</span></h3><p>Everything on the wall as one long show reel: '+C.facts+' facts, '+C.further+' predictions from Further over their photos, '+C.quotes+' quotes from the books, '+C.ideas+' ideas, '+C.tweets+' tweets and the concept art, in six chapters. It opens with Six Facts and closes with Further. Each loop shows the next pictures.</p>'+
+  '<ol class="chlist">'+W.chapters.map(c=>'<li><a href="'+esc(P.bigwall)+'#'+esc(c.id)+'" style="--c:'+esc(c.color)+'"><i></i><b>'+esc(c.title)+'</b><span>'+mmss(c.sec)+'</span></a></li>').join('')+'</ol>'+
+  '<div class="actions" style="margin-top:20px"><a class="btn big" href="'+esc(P.bigwall)+'#play"><span class="tri" aria-hidden="true"></span>Start the Big Wall</a><a class="lnk" href="'+esc(P.bigwall)+'">chapters and keys</a><span class="alt">'+mins(W.total)+' a loop</span></div></div>';
 
 /* Films */
-$('filmsLabel').textContent=WEB?'720p previews · 1080p masters on GitHub':'1920×1080 from the renders folders, or the 720p previews in the repo';
+$('filmsLabel').textContent=WEB?'720p previews · 1080p master on GitHub':'1920×1080 from the renders folders, or the 720p previews in the repo';
 const films=$('films');
 D.films.forEach(f=>{
   const p=f.probe;
@@ -327,94 +355,75 @@ D.films.forEach(f=>{
 
 /* Slide walls */
 const walls=[
-  {title:'Quotes from the books',sub:B.quotes+' verbatim quotes from '+B.quote_books+' books · '+mins(B.quote_loop)+' a loop',file:'books/dist/quote-wall.html',hash:'#quote-wall',online:D.online.books,
-   about:'Each quote was checked against the book’s text or two matching sources. Also plays the ideas, or both alternating, from the same page.',
+  {title:'Quote wall',sub:B.quotes+' quotes from '+B.quote_books+' books · '+mins(B.quote_loop),file:'books/dist/quote-wall.html',hash:'#quote-wall',online:D.online.books,
+   about:'Verbatim quotes, each checked against the book’s text or two matching sources.',
    alt:'<a class="lnk" href="books/dist/quote-wall.html#mix-wall">quotes and ideas</a>',
    prev:'<span class="k">From the books · 2050</span><span class="qt"><i>“</i>'+esc(B.first_quote.replace(/\*/g,''))+'<i>”</i></span>'},
-  {title:'Ideas for 2050',sub:B.ideas+' slides in 4 blocks · '+mins(B.idea_loop)+' a loop',file:'books/dist/quote-wall.html',hash:'#projection',online:D.online.books,
-   about:'Plausible ideas from eighteen authoritative books, each with what already exists today.',
+  {title:'Idea wall',sub:B.ideas+' ideas in 4 blocks · '+mins(B.idea_loop),file:'books/dist/quote-wall.html',hash:'#projection',online:D.online.books,
+   about:'Plausible ideas from eighteen books, each with what already exists today.',
    prev:'<span class="k">Clean planet · 2050</span><span class="ht">'+esc(B.first_idea)+'</span>'},
-  {title:'2050 in '+T.tweets+' tweets',sub:T.tweets+' posts by '+T.authors+' futurists · '+T.blocks+' blocks',file:'tweets/dist/tweet-wall.html',hash:'#tweet-wall',online:D.online.tweets,
-   about:'Verbatim posts from futurists on X about 2050, with each author’s photo and role.',
+  {title:'Tweet wall',sub:T.tweets+' posts by '+T.authors+' futurists · '+T.blocks+' blocks',file:'tweets/dist/tweet-wall.html',hash:'#tweet-wall',online:D.online.tweets,
+   about:'Verbatim posts about 2050 from X, with each author’s photo and role.',
    alt:'<a class="lnk" href="tweets/dist/tweet-wall.html#short-wall">short version</a>',
-   prev:'<span class="k">On X · 2050</span><span class="tw">'+esc(T.sample)+'</span><span class="by">'+esc(T.sample_by)+'</span>'}
+   prev:'<span class="k">On X · 2050</span><span class="tw">'+esc(T.sample)+'</span><span class="by">'+esc(T.sample_by)+'</span>'},
+  {title:'Imagined Futures',sub:A.pictures+' pictures from '+A.posts+' posts on X',file:P.concept,hash:'#wall',online:D.online.concept,art:A.tile,
+   about:'Concept art of the future: space colonies, cities, vehicles, robots and people, each with what it shows and who made it.',
+   alt:'<a class="lnk" href="'+esc(P.concept)+'">all pictures</a>',
+   prev:'<span class="k">Imagined Futures</span><span class="by" style="color:#e4e4e7">Prometheus Ring, a habitat orbiting Saturn</span>'}
 ];
 const wallsEl=$('walls');
 walls.forEach(w=>{
   const ok=D.exists[w.file];
   const el=document.createElement('article');el.className='tile';
-  el.innerHTML='<div class="screen slide" aria-hidden="true">'+w.prev+'</div><h4>'+esc(w.title)+'<small>'+esc(w.sub)+'</small></h4><p>'+esc(w.about)+'</p>'+
+  const art=w.art&&D.exists[w.art];
+  el.innerHTML='<div class="screen slide'+(art?' art" style="background-image:url(\''+esc(w.art)+'\')':'')+'" aria-hidden="true">'+w.prev+'</div><h4>'+esc(w.title)+'<small>'+esc(w.sub)+'</small></h4><p>'+esc(w.about)+'</p>'+
     '<div class="actions">'+(ok?'<a class="btn" href="'+esc(w.file+w.hash)+'"><span class="tri" aria-hidden="true"></span>Start</a>':'<button class="btn" disabled>Not built</button>')+(w.alt||'')+on(w.online&&w.online+w.hash)+'</div>';
   wallsEl.appendChild(el);
 });
 
-$('progLink').href=D.pages.program;
-$('progAlt').innerHTML=[on(D.online.program),'<a class="lnk" href="'+esc(D.online.tea)+'" target="_blank" rel="noopener">tea comparison ↗</a> <span class="tag" style="margin:0">claude.ai</span>'].filter(Boolean).join(' ');
-
-/* Sound and read lists */
-const item=(h,p,links,tag)=>'<div class="item"><h4>'+esc(h)+(tag?'<span class="tag">'+esc(tag)+'</span>':'')+'</h4><p>'+p+'</p><div class="links">'+links.filter(l=>l&&l[1]&&!(WEB&&isClaude(l[1]))).map(l=>'<a href="'+esc(l[1])+'"'+ext(l[1])+'>'+esc(l[0])+'</a>').join('')+'</div></div>';
+/* Music and research lists */
+/* The title opens the first link, so each item is one click away */
+const item=(h,p,links,pre)=>{
+  const L=links.filter(l=>l&&l[1]&&!(WEB&&isClaude(l[1])));
+  const t=(pre?'<span class="pre">'+esc(pre)+': </span>':'')+esc(h);
+  return '<div class="item"><h4>'+(L[0]?'<a href="'+esc(L[0][1])+'"'+ext(L[0][1])+'>'+t+'</a>':t)+'</h4><p>'+p+'</p><div class="links">'+L.map(l=>'<a href="'+esc(l[1])+'"'+ext(l[1])+'>'+esc(l[0])+'</a>').join('')+'</div></div>';
+};
 const loc=(t,p)=>D.exists[p]===false?null:[t,/\.md$/.test(p)?doc(p):p];
-const P=D.pages;
 $('soundList').innerHTML=[
-  item('Soundtrack 2050','The party’s running order: '+S.tracks+' tracks and spoken voices in three blocks, each scored for plausibility and inspiration, plus '+S.bench+' spares.',
-    [['YouTube playlist ↗',D.playlists.soundtrack],loc('page',P.soundtrack),['online ↗',D.online.soundtrack]]),
+  item('Playlist','Soundtrack 2050, the party’s running order: '+S.tracks+' tracks and spoken voices in three blocks, each scored for plausibility and inspiration, plus '+S.bench+' spares.',
+    [['YouTube playlist ↗',D.playlists.soundtrack],loc('the running order',P.soundtrack),['online ↗',D.online.soundtrack]]),
   item('Resonance',WEB?'Music history and what comes next: 60 stops from 1400 BCE, a Future Lab and a radio, with a YouTube player in the page.':'Music history and what comes next: 60 stops from 1400 BCE, a Future Lab and a radio. Its built-in YouTube player needs a small local server: double-click <code>music/resonance/dist/local/Open Resonance.command</code>.',
-    [['YouTube playlist ↗',D.playlists.resonance],loc(WEB?'page':'page (no player)',P.resonance),['online ↗',D.online.resonance]]),
+    [loc(WEB?'open':'open (no player)',P.resonance),['YouTube playlist ↗',D.playlists.resonance],['online ↗',D.online.resonance]]),
   item('Why Music Changes','Four thousand years in thirteen eras: who paid, who ruled, what people believed, and the technology and contact that changed the sound.',
-    [['History of Music playlist ↗',D.playlists.history],loc('page',P.why),['online ↗',D.online.why]]),
-  item('Contact 2050','A Makey Makey soundboard for the guests: twelve pins, eight kits and 2,038 sounds, with a jam mode that keeps every touch in time and in key. Enter starts stage mode for the projector. It streams its sounds, so it needs the internet'+(WEB?'.':' unless you build the offline copy with <code>python3 -I soundboard/build.py --offline</code>.'),
-    [loc('open',P.contact),['README',doc('soundboard/README.md')],['online ↗',D.online.contact]])
+    [loc('open',P.why),['History of Music playlist ↗',D.playlists.history],['online ↗',D.online.why]],'Research'),
+  item('2050','A Makey Makey soundboard for the guests: twelve pins, eight kits and 2,038 sounds, with a jam mode that keeps every touch in time and in key. Enter starts stage mode for the projector. It streams its sounds, so it needs the internet'+(WEB?'.':' unless you build the offline copy with <code>python3 -I soundboard/build.py --offline</code>.'),
+    [loc('open',P.contact),['README',doc('soundboard/README.md')],['online ↗',D.online.contact]],'Play')
 ].join('');
 $('readList').innerHTML=[
   item('Book Projection 2050','Eighteen authoritative books about the world around 2050, scored for authority, plausibility and inspiration, with their ideas and verified quotes.',
-    [loc('page',P.books),['online ↗',D.online.books]]),
-  item('2050 in '+T.tweets+' Tweets','The full tweet list behind the tweet wall, by topic and author.',
-    [loc('page',P.tweets),['online ↗',D.online.tweets]]),
+    [loc('open',P.books),['online ↗',D.online.books]]),
+  item('2050 in '+T.tweets+' Tweets','Every tweet behind the tweet wall, by topic and author, with filters.',
+    [loc('open',P.tweets),['online ↗',D.online.tweets]]),
   item('Futurists on 2050','The full research behind the tweet wall: what futurists and others wrote about 2050, in their own words.',
-    [loc('page',P.futurists),['online ↗',D.online.futurists]]),
-  item('2050 in Futurists’ Tweets','The short version of the tweet research: six findings with their numbers (Khosla’s 14 predictions, 2–3× the electricity, AGI around 2030, one in five over 60, a Mars city, the web) and 43 verbatim tweets by theme.',
-    [loc('page',P.futurists_short),['online ↗',D.online.futurists_short],loc('Russian original',P.futurists_ru)]),
+    [loc('open',P.futurists),['online ↗',D.online.futurists]]),
+  item('2050 in Futurists’ Tweets','The short version: six findings with their numbers (Khosla’s 14 predictions, 2–3× the electricity, AGI around 2030, one in five over 60, a Mars city, the web) and 43 verbatim tweets by theme.',
+    [loc('English',P.futurists_short),loc('Russian',P.futurists_ru),['online ↗',D.online.futurists_short]]),
   item('Further 2050','The wall film’s sixteen claims, with the real seed, the date and the film that imagined each one.',
-    [loc('page',P.further),['online ↗',D.online.further]]),
-  item('Projection 2050','The film research: eighteen films about 2050 scored for plausibility and beauty, with checked clips and the Keep/Drop picks for a reel.',
-    [loc('page',P.films),['online ↗',D.online.films],loc('reel notes','reel/links.md')]),
-  item('Zodiac Creatures playground','A local tool for tuning the prompt behind zodiac companion characters. Start it with <code>cd astrology/playground && bun --watch server.ts</code>, then open localhost:4300.',
-    [WEB?null:['http://localhost:4300','http://localhost:4300'],loc('README','astrology/playground/README.md')],'needs a server')
+    [loc('open',P.further),['online ↗',D.online.further]]),
+  item('Projection 2050','Eighteen films about 2050 scored for plausibility and beauty, with checked clips for a reel.',
+    [loc('open',P.films),loc('reel notes','reel/links.md'),['online ↗',D.online.films]]),
+  item('Viral Webcam Effects','Which camera effects went viral on X and how they are built: 18 posts with their numbers, behind Mirror 2050.',
+    [loc('open',P.mirror_research),['online ↗',D.online.mirror_research]])
 ].join('');
 
-/* Pre-flight */
-const CHECK=[
-  ['Get the 1080p films onto that laptop.','A fresh clone of the repo plays the 720p previews. For the wall, download the 1080p masters from the <a href="'+esc(D.repo)+'/releases" target="_blank" rel="noopener">GitHub releases</a> into <code>video/renders</code> and <code>roast/renders</code>, or copy the whole folder with its renders.'],
-  ['Open the front page on that laptop and try every button.','Each film should show a frame. A tile marked 720p is playing the preview; one that says Not rendered here is missing its MP4.'],
-  ['Set the projector to 1920×1080 and mirror the screen.','Every film and wall is made for 16:9. F goes fullscreen.'],
-  ['Turn off sleep, the screen saver and notifications.','The slide walls ask the browser to keep the screen on, but the laptop’s own power settings can override that.'],
-  ['Cue the soundtrack playlist on a separate speaker.','Further and Already Here are silent. The Roast has sound effects, so lower the music while it plays.'],
-  ['Decide between online and offline.','Online, every page is at <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(siteName)+'</a> with no login. Offline, open <code>index.html</code> from the folder: the films, walls and pages play from disk, but the YouTube playlists and the soundboard need the internet (build the soundboard’s offline copy with <code>python3 -I soundboard/build.py --offline</code>).']
-];
-const KEY='fp2050-check';let ticks={};
-try{ticks=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
-const chk=$('check');
-CHECK.forEach((c,i)=>{const li=document.createElement('li');li.innerHTML='<label><input type="checkbox" id="c'+i+'"'+(ticks[i]?' checked':'')+'><span><b>'+esc(c[0])+'</b>'+c[1]+'</span></label>';chk.appendChild(li)});
-const count=()=>{const n=chk.querySelectorAll('input:checked').length;$('checkCount').textContent=n+' of '+CHECK.length+' done'};
-chk.addEventListener('change',e=>{const i=+e.target.id.slice(1);ticks[i]=e.target.checked;try{localStorage.setItem(KEY,JSON.stringify(ticks))}catch(x){};count()});
-$('checkReset').addEventListener('click',()=>{ticks={};try{localStorage.removeItem(KEY)}catch(x){};chk.querySelectorAll('input').forEach(i=>i.checked=false);count()});
-count();
+/* Mirror 2050 and the party app */
+$('mirrorLink').href=P.mirror;
+if(D.exists['mirror/preview.jpg']===false)$('mirrorShot').hidden=true;
+$('mirrorLink').insertAdjacentHTML('afterend','<a class="lnk" href="'+esc(P.mirror)+'?party">party mode</a>');
+$('mirrorHow').innerHTML=WEB?'Works on any laptop or phone with a camera, best in Chrome or Edge: allow the camera, then use your hands. Party mode hides the controls and changes the effect every 25 seconds.':'The camera needs a local server: run <code>python3 -m http.server 8050 -d mirror</code> from this folder, then open <a class="lnk" href="http://localhost:8050">localhost:8050</a> (<a class="lnk" href="http://localhost:8050/?party">party mode</a>).';
+$('appLink').href=D.apps.party;
 
-/* Rebuild */
-const RB=[
-  ['Further (film v2)','<code>video/slides.json</code>, <code>video/compositions/</code>','cd video && npm run render'],
-  ['The Roast','<code>roast/SPEC.md</code>, <code>roast/compositions/</code>','cd roast && npm run render'],
-  ['Book Projection, quote and idea walls','<code>books/quotes.json</code>, <code>books/template.html</code>','cd books && python3 -I build.py'],
-  ['Tweet wall and tweet page','<code>tweets/tweets.json</code>, <code>tweets/avatars/</code>','cd tweets && python3 -I build.py'],
-  ['Soundtrack 2050, Why Music Changes','<code>music/soundtrack.json</code>, <code>music/eras.json</code>','cd music && python3 -I build.py'],
-  ['Resonance','<code>music/resonance/additions.json</code>','cd music/resonance && python3 -I build_resonance.py'],
-  ['Contact 2050 soundboard','<code>soundboard/kits.json</code>, <code>soundboard/template.html</code>','cd soundboard && python3 -I build.py'],
-  ['Programme, Futurists on 2050, Projection 2050','Saved copies of the claude.ai pages, in <code>programme/</code>, <code>tweets/research/</code> and <code>reel/</code>','no build: save the page again'],
-  ['The front page','<code>hub/template.html</code>, plus the numbers above','python3 -I hub/build.py'],
-  ['The website','<code>hub/site.py</code>, <code>vercel.json</code>; Vercel runs it on every deploy','python3 -I hub/site.py']
-];
-$('rebuildBody').innerHTML=RB.map(r=>'<tr><td><b>'+esc(r[0])+'</b></td><td>'+r[1]+'</td><td><code>'+esc(r[2])+'</code></td></tr>').join('');
-$('foot').innerHTML='Future Party 2050 · '+(WEB?'the website':'the front page')+', built '+esc(D.built)+' by '+(WEB?'hub/site.py':'hub/build.py')+' from the data in each folder · <a href="'+esc(D.repo)+'" target="_blank" rel="noopener">source on GitHub</a>'+(WEB?'':' · <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(siteName)+'</a>');
+$('foot').innerHTML='Future Party 2050 · built '+esc(D.built)+' · <a href="'+esc(D.repo)+'" target="_blank" rel="noopener">source on GitHub</a>'+(WEB?'':' · <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(D.site.replace(/^https?:\/\//,''))+'</a>');
 
 /* Film player */
 const player=$('player'),pv=$('pv');let idleT=0,prev=null;

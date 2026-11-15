@@ -1,0 +1,255 @@
+{
+  "id": "20261114-125540-a-black-panther-cub",
+  "created": "2026-11-14T20:55:40.970Z",
+  "subject": "a black panther cub",
+  "sign": "Leo",
+  "traits": "proud, dramatic, generous, loves the spotlight",
+  "palette": "ember orange, gold and crimson",
+  "master": {
+    "id": "v4",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}.\nFigure and ground: the creature pops off the background at a glance, even as a tiny thumbnail. Opposite values: a light creature sits against a deeper, darker part of the scene, a dark creature against a brighter one. Opposite hues: the background leans toward colors complementary to the creature's main color and is calmer, less saturated, less detailed and softly out of focus. The creature is the most brightly lit and most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear space around it keeps every part from merging with background shapes.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "masterB": {
+    "id": "v3",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "aspect": "3:4",
+  "refs": [],
+  "refMode": "match",
+  "autoRefs": {
+    "style": false,
+    "scene": false
+  },
+  "ab": false,
+  "compare": false,
+  "vary": {
+    "style": true,
+    "scene": true,
+    "model": false
+  },
+  "note": "",
+  "images": [
+    {
+      "i": 0,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate.\nColor accents: ember orange, gold and crimson.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light.\nFigure and ground: the creature pops off the background at a glance, even as a tiny thumbnail. Opposite values: a light creature sits against a deeper, darker part of the scene, a dark creature against a brighter one. Opposite hues: the background leans toward colors complementary to the creature's main color and is calmer, less saturated, less detailed and softly out of focus. The creature is the most brightly lit and most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear space around it keeps every part from merging with background shapes.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "crystal",
+      "scene": "solarpunk",
+      "refs": [],
+      "master": "v4",
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689740972,
+      "jobId": "job_7e905377d917",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_05bb90fbff59.png",
+      "cost": 6,
+      "file": "00.png",
+      "contrast": {
+        "dL": 18,
+        "dE": 24
+      },
+      "finished": 1794689763085,
+      "transparent": false
+    },
+    {
+      "i": 1,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: body carved from faceted translucent crystal like a precious jewel, light refracting through it into rainbow caustics and sparkles, luminous and delicate.\nColor accents: ember orange, gold and crimson.\nSetting: a lush green alpine valley with glass bubble pod houses and white wind turbines, golden afternoon light. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "crystal",
+      "scene": "solarpunk",
+      "refs": [],
+      "master": "v3",
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689740972,
+      "jobId": "job_81db8fcbab1b",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_bb23e0badd91.png",
+      "cost": 6,
+      "file": "01.png",
+      "contrast": {
+        "dL": 23,
+        "dE": 24
+      },
+      "finished": 1794689771291,
+      "transparent": false
+    },
+    {
+      "i": 2,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a realistic young animal with some parts replaced by exposed precision mechanics, tiny circuit boards, brass gears and neat cables, photoreal wildlife photography meets sci-fi.\nColor accents: ember orange, gold and crimson.\nSetting: an endless corridor of tall trees at deep blue twilight, a faint starry horizon glowing at the end of a tiny winding path.\nFigure and ground: the creature pops off the background at a glance, even as a tiny thumbnail. Opposite values: a light creature sits against a deeper, darker part of the scene, a dark creature against a brighter one. Opposite hues: the background leans toward colors complementary to the creature's main color and is calmer, less saturated, less detailed and softly out of focus. The creature is the most brightly lit and most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear space around it keeps every part from merging with background shapes.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "cyborg",
+      "scene": "forest",
+      "refs": [],
+      "master": "v4",
+      "group": "Prompt 2",
+      "status": "done",
+      "started": 1794689740972,
+      "jobId": "job_47fbd01c997f",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_dfaf8354a3b4.png",
+      "cost": 6,
+      "file": "02.png",
+      "contrast": {
+        "dL": 2,
+        "dE": 9
+      },
+      "finished": 1794689765027,
+      "transparent": false
+    },
+    {
+      "i": 3,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: a realistic young animal with some parts replaced by exposed precision mechanics, tiny circuit boards, brass gears and neat cables, photoreal wildlife photography meets sci-fi.\nColor accents: ember orange, gold and crimson.\nSetting: an endless corridor of tall trees at deep blue twilight, a faint starry horizon glowing at the end of a tiny winding path. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "cyborg",
+      "scene": "forest",
+      "refs": [],
+      "master": "v3",
+      "group": "Prompt 2",
+      "status": "done",
+      "started": 1794689740972,
+      "jobId": "job_78495d2ed957",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_3eca48b15607.png",
+      "cost": 6,
+      "file": "03.png",
+      "contrast": {
+        "dL": 5,
+        "dE": 6
+      },
+      "finished": 1794689770011,
+      "transparent": false
+    },
+    {
+      "i": 4,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: transparent iridescent glass body with glowing fiber-optic veins and soft inner light, holographic sheen, faint technical blueprint annotations floating around it.\nColor accents: ember orange, gold and crimson.\nSetting: a terracotta Mars desert colony with a white dome city and launch towers, a pale moon in a dusty sky.\nFigure and ground: the creature pops off the background at a glance, even as a tiny thumbnail. Opposite values: a light creature sits against a deeper, darker part of the scene, a dark creature against a brighter one. Opposite hues: the background leans toward colors complementary to the creature's main color and is calmer, less saturated, less detailed and softly out of focus. The creature is the most brightly lit and most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear space around it keeps every part from merging with background shapes.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "hologlass",
+      "scene": "mars",
+      "refs": [],
+      "master": "v4",
+      "group": "Prompt 3",
+      "status": "done",
+      "started": 1794689740972,
+      "jobId": "job_e975b6d1cb04",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_5517463f2c9b.png",
+      "cost": 6,
+      "file": "04.png",
+      "contrast": {
+        "dL": 1,
+        "dE": 4
+      },
+      "finished": 1794689765059,
+      "transparent": true
+    },
+    {
+      "i": 5,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: transparent iridescent glass body with glowing fiber-optic veins and soft inner light, holographic sheen, faint technical blueprint annotations floating around it.\nColor accents: ember orange, gold and crimson.\nSetting: a terracotta Mars desert colony with a white dome city and launch towers, a pale moon in a dusty sky. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "hologlass",
+      "scene": "mars",
+      "refs": [],
+      "master": "v3",
+      "group": "Prompt 3",
+      "status": "done",
+      "started": 1794689740972,
+      "jobId": "job_e343d1f67b5a",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_14b0b4394c18.png",
+      "cost": 6,
+      "file": "05.png",
+      "contrast": {
+        "dL": 12,
+        "dE": 12
+      },
+      "finished": 1794689765117,
+      "transparent": true
+    },
+    {
+      "i": 6,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: painted in 1980s airbrush sci-fi illustration style, chrome highlights, rainbow light beams and a glowing laser grid, retro-futurist album cover.\nColor accents: ember orange, gold and crimson.\nSetting: floating above a soft sea of pink and lilac clouds at dusk, a slim crescent moon in a pastel gradient sky.\nFigure and ground: the creature pops off the background at a glance, even as a tiny thumbnail. Opposite values: a light creature sits against a deeper, darker part of the scene, a dark creature against a brighter one. Opposite hues: the background leans toward colors complementary to the creature's main color and is calmer, less saturated, less detailed and softly out of focus. The creature is the most brightly lit and most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear space around it keeps every part from merging with background shapes.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "airbrush",
+      "scene": "clouds",
+      "refs": [],
+      "master": "v4",
+      "group": "Prompt 4",
+      "status": "done",
+      "started": 1794689740972,
+      "jobId": "job_19ef8af6910e",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_bfbb110603d0.png",
+      "cost": 6,
+      "file": "06.png",
+      "contrast": {
+        "dL": 14,
+        "dE": 23
+      },
+      "finished": 1794689765993,
+      "transparent": false
+    },
+    {
+      "i": 7,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: painted in 1980s airbrush sci-fi illustration style, chrome highlights, rainbow light beams and a glowing laser grid, retro-futurist album cover.\nColor accents: ember orange, gold and crimson.\nSetting: floating above a soft sea of pink and lilac clouds at dusk, a slim crescent moon in a pastel gradient sky. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "airbrush",
+      "scene": "clouds",
+      "refs": [],
+      "master": "v3",
+      "group": "Prompt 4",
+      "status": "done",
+      "started": 1794689740972,
+      "jobId": "job_eb9405b31679",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_6a2cc293fc1d.png",
+      "cost": 6,
+      "file": "07.png",
+      "contrast": {
+        "dL": 19,
+        "dE": 25
+      },
+      "finished": 1794689766059,
+      "transparent": false
+    },
+    {
+      "i": 8,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: the whole photo in black and white: shot on monochrome 35mm film with direct on-camera flash, grainy, deadpan cool attitude with tiny black sunglasses, ironic fashion photography.\nSetting: a vast desert under a giant ringed sphere and drifting spaceships, painted like a 1970s sci-fi paperback cover.\nFigure and ground: the creature pops off the background at a glance, even as a tiny thumbnail. Opposite values: a light creature sits against a deeper, darker part of the scene, a dark creature against a brighter one. Opposite hues: the background leans toward colors complementary to the creature's main color and is calmer, less saturated, less detailed and softly out of focus. The creature is the most brightly lit and most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear space around it keeps every part from merging with background shapes.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "deadpan",
+      "scene": "paperback",
+      "refs": [],
+      "master": "v4",
+      "group": "Prompt 5",
+      "status": "done",
+      "started": 1794689740972,
+      "jobId": "job_776616f679f6",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_71dacd6e8fb5.png",
+      "cost": 6,
+      "file": "08.png",
+      "contrast": {
+        "dL": 15,
+        "dE": 15
+      },
+      "finished": 1794689766016,
+      "transparent": false
+    },
+    {
+      "i": 9,
+      "prompt": "a black panther cub as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: proud, dramatic, generous, loves the spotlight. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: the whole photo in black and white: shot on monochrome 35mm film with direct on-camera flash, grainy, deadpan cool attitude with tiny black sunglasses, ironic fashion photography.\nSetting: a vast desert under a giant ringed sphere and drifting spaceships, painted like a 1970s sci-fi paperback cover. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "deadpan",
+      "scene": "paperback",
+      "refs": [],
+      "master": "v3",
+      "group": "Prompt 5",
+      "status": "done",
+      "started": 1794689740972,
+      "jobId": "job_153aa0599ac3",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_ddd4b6a17a0c.png",
+      "cost": 6,
+      "file": "09.png",
+      "contrast": {
+        "dL": 25,
+        "dE": 25
+      },
+      "finished": 1794689771316,
+      "transparent": false
+    }
+  ]
+}

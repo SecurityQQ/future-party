@@ -1,12 +1,12 @@
 # Future Party 2050
 
-Material for a party set in 2050: the wall films, the slide walls, the programme, the soundtrack, a soundboard for the guests, and the research behind them. Everything for the night lives in this one repo.
+Material for a party set in 2050: the wall films, the slide walls, the Big Wall that plays them all in one loop, the soundtrack, a soundboard and a camera mirror for the guests, and the research behind them. Everything for the night lives in this one repo.
 
 **Online:** [future-party-2050.vercel.app](https://future-party-2050.vercel.app) lists every resource and opens each one, with no login.
 
 ## What is here
 
-Start at **`index.html`**, the front page: an index of every resource, the films on a loop, each slide wall, the programme, the soundtrack, the research pages and the pre-flight list for the projector laptop. It works offline from this folder. Rebuild it with `python3 -I hub/build.py` after any other piece changes. The website is the same page in web mode (see [The website](#the-website)).
+Start at **`index.html`**, the front page: four doors (the wall, the music, the guests, the research), then a section for each, with the Big Wall first. It works offline from this folder. What only the host needs (the pre-flight list for the projector laptop, the short addresses, the programme and the films kept off the front page, and how to rebuild each piece) is on **`admin.html`**, which no page links to. Rebuild both with `python3 -I hub/build.py` after any other piece changes; it rebuilds the Big Wall first. The website is the same pages in web mode (see [The website](#the-website)).
 
 | Folder | What it is |
 | --- | --- |
@@ -14,14 +14,17 @@ Start at **`index.html`**, the front page: an index of every resource, the films
 | `video/dist/further-2050.html` | **The Further page**: both films (720p previews in `video/dist/media/`), the roast with a frame from every v1 slide, the 16 new claims with their sources, and how far to trust them. Opens from disk in any browser. |
 | `roast/` | **The Roast**, a 63-second film with sound that tells how v1 became v2: 11 v1 slides stamped CUT or KEEP, the tally, then the recut. Its own HyperFrames project (`SPEC.md`, `REVIEW.md`). |
 | `showreel/` | **Six Facts**, the show reel: two and a half minutes with music that cut together the six facts about how books guess the future, six quotes from the books, six posts from X, 13 predictions from *Further* and NASA footage (the Artemis I and Saturn V launches, the Sun, Earth and a hurricane from the ISS). Its own HyperFrames project (`SPEC.md`, `STORYLINES.md`, `REVIEW.md`, `CREDITS.md`). |
-| `programme/` | **Tea With Tomorrow**, the programme for the evening: a three-hour Futures Literacy Lab (the UNESCO method) with tea on the tables, in two lengths, with a party clock for the host. |
+| `wall/` | **The Big Wall**: every piece on the wall in one loop, like one long show reel. The six facts, Further's 16 predictions over their photos, the 50 quotes, 25 ideas and 78 tweets, and the concept art, sorted into six chapters (Planet, Machines, People, Power, Beyond, 2050), between the Six Facts film and Further. About 49 minutes a loop. `chapters.json` says what goes where; `build.py` reads the six pieces from their own folders. |
+| `programme/` | **Tea With Tomorrow**, the programme for the evening: a three-hour Futures Literacy Lab (the UNESCO method) with tea on the tables, in two lengths, with a party clock for the host. Off the front page; linked from `admin.html`. |
 | `music/` | **Soundtrack 2050** and **Why Music Changes**: data (`soundtrack.json`, `history.json`, `eras.json`) and the templates that build the two pages in `dist/`. `music/resonance/` is **Resonance**, music history and what comes next, with an in-page YouTube player. |
-| `soundboard/` | **Contact 2050**, a Makey Makey soundboard: twelve pins, eight kits, and 2,038 sounds from TidalCycles' [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) library. Jam mode keeps everything in time and in key; stage mode is for the projector. A sub-project with its own [README](soundboard/README.md). |
+| `soundboard/` | **Play 2050** (formerly Contact 2050), a Makey Makey soundboard: twelve pins, eight kits, and 2,038 sounds from TidalCycles' [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) library. Jam mode keeps everything in time and in key; stage mode is for the projector. A sub-project with its own [README](soundboard/README.md). |
+| `mirror/` | **Mirror 2050**, a live camera mirror for the guests: eight effects that went viral on X (liquid air, a particle swarm, a hologram cube, portals and more), played with the hands through MediaPipe tracking and WebGL shaders, in one HTML file. Party mode cycles them on a screen. `viral-webcam-effects.html` is the research behind it: 18 posts from X with their numbers. Its own [README](mirror/README.md). |
 | `books/` | **Book Projection 2050**: 18 books about the world around 2050, 25 idea slides and 50 verified verbatim quotes, with a fullscreen wall projection. `quotes.json` is the quote list in play order; `template.html` holds the books and ideas. |
 | `tweets/` | **2050 in 78 Tweets**: what futurists and others wrote on X about 2050, word for word, with each author's photo, name and role. A fullscreen tweet wall plays them in five blocks (Machines, Planet, People, Power, Beyond); the page also lists and filters every tweet. `tweets.json` is the source. `tweets/research/` holds the research behind it: **Futurists on 2050** (the full version) and **2050 in Futurists' Tweets** (the short one, in English and the Russian original). |
+| `concept-art/` | **Imagined Futures**: 377 pictures of concept art about the future (space colonies, cities, vehicles, robots, people), collected from 171 public posts on X as inspiration for the party. Each picture links to its original post and names the artist where the post does. `picks.json` is the curated list; `tweets.json` holds each post's verbatim text and photos. |
 | `reel/` | Research for a film-clip reel: the brief, candidate scenes, links and the rules for rejecting clips, and **Projection 2050** (`projection-2050.html`), eighteen films about 2050 scored for plausibility and beauty. |
 | `astrology/playground/` | **Zodiac Creatures**, a local tool for tuning the prompt behind the zodiac companion characters. Needs a local server; see its [README](astrology/playground/README.md). |
-| `hub/` | The front page and the website: `template.html`, `build.py` (reads the counts and film lengths from the other folders and writes `index.html`) and `site.py` (writes `site/` for Vercel). |
+| `hub/` | The front page, the admin page and the website: `template.html` and `admin.html`, `build.py` (rebuilds the Big Wall, reads the counts and film lengths from the other folders and writes `index.html` and `admin.html`) and `site.py` (writes `site/` for Vercel). |
 
 The programme, the two futurist research pages and Projection 2050 were made as claude.ai pages. The files here are saved copies of them (14 November 2026), and they have no build: to change one, save the page again.
 
@@ -79,9 +82,21 @@ cd resonance
 python3 -I build_resonance.py   # writes dist/local/index.html, the Resonance page
 ```
 
+## The Big Wall
+
+```bash
+python3 -I wall/build.py   # writes wall/dist/big-wall.html and wall/dist/manifest.json (hub/build.py runs it too)
+```
+
+`wall/dist/big-wall.html` opens from the folder or at [/wall](https://future-party-2050.vercel.app/wall) on the website. Its start screen lists the six chapters with their lengths; **Start the wall** plays from the top, a chapter starts from that chapter, and F goes fullscreen. Add `#play` to the address to start straight away, or a chapter's id (`#planet`, `#machines`, `#people`, `#power`, `#beyond`, `#finale`). Keys: ← → slides, Space pause, 1 to 6 chapters, M sound, Esc back to the start screen.
+
+The loop opens with **Six Facts** and closes with **Further**, and plays the 1080p renders when they are in `showreel/renders/` and `video/renders/`, otherwise the 720p previews. The films start muted when the wall opens from a link, since a browser lets sound start only after a click; press M. In each chapter the facts, predictions, quotes, tweets and ideas are spread evenly, with a picture from Imagined Futures after every two text slides (after every slide in Beyond). The pictures are dealt in turn by theme, and the page remembers where it stopped, so each loop shows the next ones; it shows the originals from `concept-art/images/` when they are there, otherwise the thumbnails.
+
+`chapters.json` decides what goes where: each Further slide and each fact is named in one chapter, quotes follow their book (or `quote_overrides`, by their first words), ideas their block (or `idea_overrides`, by headline), tweets their block in `tweets/tweets.json`, and pictures their theme. The build stops if anything lands in no chapter or in two.
+
 ## The soundboard
 
-Open `soundboard/dist/contact2050.html` in Chrome, or [/soundboard](https://future-party-2050.vercel.app/soundboard) on the website, plug in the Makey Makey, hold EARTH and touch a pin. Press Enter for stage mode on the projector.
+Open `soundboard/dist/contact2050.html` (**Play 2050**) in Chrome, or [/play](https://future-party-2050.vercel.app/play) on the website, plug in the Makey Makey, hold EARTH and touch a pin. Press Enter for stage mode on the projector.
 
 It has eight kits, from Liftoff and Rave 2050 to Magic Keys, a horn section you can't play wrong. Jam mode keeps every touch in time and in key, and the beat builds and falls with how busy the room is. The look is space, kept minimal: a black sky that follows the music, with a planet's rim in the colour of the chord and an animation for each pin.
 
@@ -92,6 +107,17 @@ cd soundboard
 python3 -I build.py             # writes dist/contact2050.html, which streams sounds from the jsDelivr CDN
 python3 -I build.py --offline   # also writes dist/contact2050-offline.html with the sounds built in, for a venue without wifi
 ```
+
+## The camera mirror
+
+The camera only starts on `localhost` or https, so serve the folder:
+
+```bash
+python3 -m http.server 8050 -d mirror   # then open http://localhost:8050, or http://localhost:8050/?party for the projector
+mirror/tools/vendor.sh                  # once, while online: MediaPipe and its models (26 MB, git-ignored) so hand tracking works offline
+```
+
+Keys 1 to 8 switch effects, A starts party mode (a new effect every 25 seconds, controls hidden), H toggles the hand HUD and S saves a snapshot. On the website it is at `/mirror/`. [`mirror/README.md`](mirror/README.md) lists the effects, their sources on X and the address options.
 
 ## The book page
 
@@ -115,9 +141,11 @@ python3 -I build.py   # writes dist/tweets-2050.html (the published page) and di
 
 [future-party-2050.vercel.app](https://future-party-2050.vercel.app) is built from this repo by Vercel. `vercel.json` runs `python3 -I hub/site.py`, which writes `site/`:
 
-- `index.html` is the front page in web mode: it plays the 720p previews, links the 1080p masters on the releases, and opens Markdown files on GitHub.
+- `index.html` is the front page in web mode: it plays the 720p previews, links the 1080p master on the release, and opens Markdown files on GitHub.
+- `admin.html` is the host's page, linked from nowhere; `/admin` forwards to it. It is unlisted and marked noindex, not locked.
 - Every page keeps its path from the repo, so `/books/dist/quote-wall.html#quote-wall` is the quote wall. A page saved as a claude.ai fragment gets a full document shell, and every link to a claude.ai copy of one of these pages points at the copy on the site. The one left on claude.ai is the tea comparison sheet.
-- Short addresses for typing on the projector laptop: `/quotes`, `/ideas`, `/mix`, `/tweets`, `/tweets-short`, `/programme`, `/soundboard`, `/soundtrack`, `/resonance`, `/music-history`, `/books`, `/further`, `/films`, `/futurists`. They are listed in `SHORT` in `hub/build.py`.
+- Short addresses for typing on the projector laptop: `/wall`, `/quotes`, `/ideas`, `/mix`, `/tweets`, `/tweets-short`, `/art`, `/play` (and the old `/soundboard`), `/soundtrack`, `/resonance`, `/music-history`, `/books`, `/further`, `/films`, `/futurists`, `/programme`. They are listed in `SHORT` in `hub/build.py` and on the admin page.
+- The photos the Big Wall loads are copied from the list in `wall/dist/manifest.json`.
 
 To check it locally:
 
@@ -126,7 +154,18 @@ python3 -I hub/site.py                 # writes site/ (git-ignored)
 python3 -m http.server 4610 -d site    # then open http://localhost:4610
 ```
 
-To add a resource, put its page in the repo, add it to `PAGES` (and, for a claude.ai page, to `ONLINE`) and to `resources()` in `hub/build.py`, then rebuild. `.vercelignore` limits a `vercel deploy` from this folder to the folders `site.py` reads.
+To add a resource, put its page in the repo, add it to `PAGES` (and, for a claude.ai page, to `ONLINE`) in `hub/build.py` and give it a place on the front page in `hub/template.html` (or on the admin page in `hub/admin.html`), then rebuild. `.vercelignore` limits a `vercel deploy` from this folder to the folders `site.py` reads.
+
+## The concept-art wall
+
+```bash
+cd concept-art
+python3 -I fetch.py   # reads picks.json, fetches each post from the public fxtwitter mirror, downloads the photos
+python3 -I build.py   # writes imagined-futures.html (the published page, also on the website), dist/imagined-futures-standalone.html and index.html
+```
+
+`dist/imagined-futures-standalone.html` is one 11 MB file with every picture inside it: send it or open it anywhere. 
+The front page lists it under On the wall; on the website `/art` starts the wall. `index.html` opens in any browser from this folder and shows the original-size pictures from `images/`, which `fetch.py` downloads (about 240 MB, not committed). Add `#wall` to its address, or press **Play as wall**, for a fullscreen slideshow. To add posts, put their ids in `picks.json`; to leave one out after review, set `"drop": true` on it, or list photo numbers in `drop_photos`. The same picture reposted by several accounts is kept once, on its earliest post.
 
 ## Credits and licences
 

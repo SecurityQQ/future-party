@@ -1,0 +1,255 @@
+{
+  "id": "20261114-125540-a-bunny",
+  "created": "2026-11-14T20:55:40.975Z",
+  "subject": "a bunny",
+  "sign": "Libra",
+  "traits": "charming, stylish, easygoing, seeks harmony",
+  "palette": "lilac, sky blue and pearl white",
+  "master": {
+    "id": "v4",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}.\nFigure and ground: the creature pops off the background at a glance, even as a tiny thumbnail. Opposite values: a light creature sits against a deeper, darker part of the scene, a dark creature against a brighter one. Opposite hues: the background leans toward colors complementary to the creature's main color and is calmer, less saturated, less detailed and softly out of focus. The creature is the most brightly lit and most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear space around it keeps every part from merging with background shapes.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "masterB": {
+    "id": "v3",
+    "text": "{subject} as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: {traits}. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: {style}.\nColor accents: {palette}.\nSetting: {scene}. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+    "edited": false
+  },
+  "aspect": "3:4",
+  "refs": [],
+  "refMode": "match",
+  "autoRefs": {
+    "style": false,
+    "scene": false
+  },
+  "ab": false,
+  "compare": false,
+  "vary": {
+    "style": true,
+    "scene": true,
+    "model": false
+  },
+  "note": "",
+  "images": [
+    {
+      "i": 0,
+      "prompt": "a bunny as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: charming, stylish, easygoing, seeks harmony. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: painted in 1980s airbrush sci-fi illustration style, chrome highlights, rainbow light beams and a glowing laser grid, retro-futurist album cover.\nColor accents: lilac, sky blue and pearl white.\nSetting: a terracotta Mars desert colony with a white dome city and launch towers, a pale moon in a dusty sky.\nFigure and ground: the creature pops off the background at a glance, even as a tiny thumbnail. Opposite values: a light creature sits against a deeper, darker part of the scene, a dark creature against a brighter one. Opposite hues: the background leans toward colors complementary to the creature's main color and is calmer, less saturated, less detailed and softly out of focus. The creature is the most brightly lit and most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear space around it keeps every part from merging with background shapes.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "airbrush",
+      "scene": "mars",
+      "refs": [],
+      "master": "v4",
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689740975,
+      "jobId": "job_ff950f975505",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_757fb96428f6.png",
+      "cost": 6,
+      "file": "00.png",
+      "contrast": {
+        "dL": 13,
+        "dE": 18
+      },
+      "finished": 1794689765623,
+      "transparent": false
+    },
+    {
+      "i": 1,
+      "prompt": "a bunny as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: charming, stylish, easygoing, seeks harmony. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: painted in 1980s airbrush sci-fi illustration style, chrome highlights, rainbow light beams and a glowing laser grid, retro-futurist album cover.\nColor accents: lilac, sky blue and pearl white.\nSetting: a terracotta Mars desert colony with a white dome city and launch towers, a pale moon in a dusty sky. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "airbrush",
+      "scene": "mars",
+      "refs": [],
+      "master": "v3",
+      "group": "Prompt 1",
+      "status": "done",
+      "started": 1794689740975,
+      "jobId": "job_0cd13504c6e8",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_66e91b1844ad.png",
+      "cost": 6,
+      "file": "01.png",
+      "contrast": {
+        "dL": 6,
+        "dE": 19
+      },
+      "finished": 1794689764927,
+      "transparent": false
+    },
+    {
+      "i": 2,
+      "prompt": "a bunny as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: charming, stylish, easygoing, seeks harmony. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: made of polished liquid chrome with soft iridescent reflections of pink, teal and gold, smooth sculptural forms, Y2K designer object.\nColor accents: lilac, sky blue and pearl white.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure.\nFigure and ground: the creature pops off the background at a glance, even as a tiny thumbnail. Opposite values: a light creature sits against a deeper, darker part of the scene, a dark creature against a brighter one. Opposite hues: the background leans toward colors complementary to the creature's main color and is calmer, less saturated, less detailed and softly out of focus. The creature is the most brightly lit and most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear space around it keeps every part from merging with background shapes.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "chrome",
+      "scene": "portal",
+      "refs": [],
+      "master": "v4",
+      "group": "Prompt 2",
+      "status": "done",
+      "started": 1794689740975,
+      "jobId": "job_33281e47bb3c",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_d910799b5c66.png",
+      "cost": 6,
+      "file": "02.png",
+      "contrast": {
+        "dL": 3,
+        "dE": 5
+      },
+      "finished": 1794689763493,
+      "transparent": false
+    },
+    {
+      "i": 3,
+      "prompt": "a bunny as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: charming, stylish, easygoing, seeks harmony. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: made of polished liquid chrome with soft iridescent reflections of pink, teal and gold, smooth sculptural forms, Y2K designer object.\nColor accents: lilac, sky blue and pearl white.\nSetting: a monumental white concrete arch opening onto a giant rising planet, a mirror-still reflecting pool, minimal brutalist megastructure. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "chrome",
+      "scene": "portal",
+      "refs": [],
+      "master": "v3",
+      "group": "Prompt 2",
+      "status": "done",
+      "started": 1794689740975,
+      "jobId": "job_164e7e136234",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_1e1823e79fbd.png",
+      "cost": 6,
+      "file": "03.png",
+      "contrast": {
+        "dL": 3,
+        "dE": 4
+      },
+      "finished": 1794689763488,
+      "transparent": false
+    },
+    {
+      "i": 4,
+      "prompt": "a bunny as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: charming, stylish, easygoing, seeks harmony. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: the whole photo in black and white: shot on monochrome 35mm film with direct on-camera flash, grainy, deadpan cool attitude with tiny black sunglasses, ironic fashion photography.\nSetting: an endless corridor of tall trees at deep blue twilight, a faint starry horizon glowing at the end of a tiny winding path.\nFigure and ground: the creature pops off the background at a glance, even as a tiny thumbnail. Opposite values: a light creature sits against a deeper, darker part of the scene, a dark creature against a brighter one. Opposite hues: the background leans toward colors complementary to the creature's main color and is calmer, less saturated, less detailed and softly out of focus. The creature is the most brightly lit and most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear space around it keeps every part from merging with background shapes.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "deadpan",
+      "scene": "forest",
+      "refs": [],
+      "master": "v4",
+      "group": "Prompt 3",
+      "status": "done",
+      "started": 1794689740975,
+      "jobId": "job_36163cef1da4",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_c776ecf9300e.png",
+      "cost": 6,
+      "file": "04.png",
+      "contrast": {
+        "dL": 14,
+        "dE": 14
+      },
+      "finished": 1794689762894,
+      "transparent": false
+    },
+    {
+      "i": 5,
+      "prompt": "a bunny as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: charming, stylish, easygoing, seeks harmony. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: the whole photo in black and white: shot on monochrome 35mm film with direct on-camera flash, grainy, deadpan cool attitude with tiny black sunglasses, ironic fashion photography.\nSetting: an endless corridor of tall trees at deep blue twilight, a faint starry horizon glowing at the end of a tiny winding path. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "deadpan",
+      "scene": "forest",
+      "refs": [],
+      "master": "v3",
+      "group": "Prompt 3",
+      "status": "done",
+      "started": 1794689740975,
+      "jobId": "job_f60f9b9837cd",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_0443e41dea7b.png",
+      "cost": 6,
+      "file": "05.png",
+      "contrast": {
+        "dL": 16,
+        "dE": 16
+      },
+      "finished": 1794689765188,
+      "transparent": false
+    },
+    {
+      "i": 6,
+      "prompt": "a bunny as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: charming, stylish, easygoing, seeks harmony. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: formed from a glowing blue wireframe mesh and a point cloud of tiny dots, digital hologram aesthetic with thin coordinate lines, 1980s computer graphics.\nColor accents: lilac, sky blue and pearl white.\nSetting: a seamless studio backdrop in one bold harmonious color with a soft floor reflection, clean product-shot lighting.\nFigure and ground: the creature pops off the background at a glance, even as a tiny thumbnail. Opposite values: a light creature sits against a deeper, darker part of the scene, a dark creature against a brighter one. Opposite hues: the background leans toward colors complementary to the creature's main color and is calmer, less saturated, less detailed and softly out of focus. The creature is the most brightly lit and most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear space around it keeps every part from merging with background shapes.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "wireframe",
+      "scene": "studio",
+      "refs": [],
+      "master": "v4",
+      "group": "Prompt 4",
+      "status": "done",
+      "started": 1794689740975,
+      "jobId": "job_d215c4af93e8",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_4929d1b3a9e2.png",
+      "cost": 6,
+      "file": "06.png",
+      "contrast": {
+        "dL": 24,
+        "dE": 27
+      },
+      "finished": 1794689770437,
+      "transparent": false
+    },
+    {
+      "i": 7,
+      "prompt": "a bunny as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: charming, stylish, easygoing, seeks harmony. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: formed from a glowing blue wireframe mesh and a point cloud of tiny dots, digital hologram aesthetic with thin coordinate lines, 1980s computer graphics.\nColor accents: lilac, sky blue and pearl white.\nSetting: a seamless studio backdrop in one bold harmonious color with a soft floor reflection, clean product-shot lighting. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "wireframe",
+      "scene": "studio",
+      "refs": [],
+      "master": "v3",
+      "group": "Prompt 4",
+      "status": "done",
+      "started": 1794689740975,
+      "jobId": "job_0f0f21474bd9",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_f9abfc1abf1e.png",
+      "cost": 6,
+      "file": "07.png",
+      "contrast": {
+        "dL": 17,
+        "dE": 27
+      },
+      "finished": 1794689760068,
+      "transparent": false
+    },
+    {
+      "i": 8,
+      "prompt": "a bunny as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: charming, stylish, easygoing, seeks harmony. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: styled in neon magenta and electric teal, chunky reflective goggles, a metallic armor collar with glowing details, playful cyberpunk attitude.\nColor accents: lilac, sky blue and pearl white.\nSetting: high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh.\nFigure and ground: the creature pops off the background at a glance, even as a tiny thumbnail. Opposite values: a light creature sits against a deeper, darker part of the scene, a dark creature against a brighter one. Opposite hues: the background leans toward colors complementary to the creature's main color and is calmer, less saturated, less detailed and softly out of focus. The creature is the most brightly lit and most saturated thing in the frame, a clean rim light traces its whole silhouette, and clear space around it keeps every part from merging with background shapes.\nShot like a high-end collectible art toy campaign: soft cinematic key light, subtle ground reflection, shallow depth of field, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "neonpunk",
+      "scene": "citylights",
+      "refs": [],
+      "master": "v4",
+      "group": "Prompt 5",
+      "status": "done",
+      "started": 1794689740975,
+      "jobId": "job_fd77b1d83f1d",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_f134582cda9c.png",
+      "cost": 6,
+      "file": "08.png",
+      "contrast": {
+        "dL": 13,
+        "dE": 14
+      },
+      "finished": 1794689765803,
+      "transparent": false
+    },
+    {
+      "i": 9,
+      "prompt": "a bunny as a collectible companion creature from the year 2050.\nOne small charming creature, the whole creature visible in frame, centered with breathing room around it, facing the viewer with big glossy expressive eyes. Personality you can read at a glance: charming, stylish, easygoing, seeks harmony. Appealing proportions with soft rounded forms, premium and stylish. It is clearly that animal: no horns, antlers or features borrowed from other animals, no zodiac symbols or glyphs.\nMaterial and finish: styled in neon magenta and electric teal, chunky reflective goggles, a metallic armor collar with glowing details, playful cyberpunk attitude.\nColor accents: lilac, sky blue and pearl white.\nSetting: high above an infinite glittering city at night, a bright four-pointed star in the sky, pointillist bokeh. The background is softer and slightly out of focus so the creature reads instantly.\nShot like a high-end collectible art toy campaign: soft cinematic key light, delicate rim light, subtle ground reflection, shallow depth of field, rich color, ultra detailed.\nNo text, no letters, no logos, no watermark, no people, exactly one creature.",
+      "model": "gpt_image_2_6",
+      "style": "neonpunk",
+      "scene": "citylights",
+      "refs": [],
+      "master": "v3",
+      "group": "Prompt 5",
+      "status": "done",
+      "started": 1794689740975,
+      "jobId": "job_8775b5df3b1b",
+      "url": "https://s3.varg.ai/files/194b94d0-58ff-4e8b-91de-4f1959d04013/file_bf59a44cab3b.png",
+      "cost": 6,
+      "file": "09.png",
+      "contrast": {
+        "dL": 10,
+        "dE": 10
+      },
+      "finished": 1794689763241,
+      "transparent": false
+    }
+  ]
+}
