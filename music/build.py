@@ -45,7 +45,9 @@ for s in eras.get('scenarios', []):
     assert all(g['src'].startswith('https://') for g in s['signals']), s['id']
 for key in ('answer', 'sketch'):
     assert eras.get(key), key
-why = wt.replace('__ERAS_JSON__', js(eras))
+route = load('route.json')
+assert wt.count('__ROUTE_JSON__') == 1 and all(i.get('yt') for i in route['items'])
+why = wt.replace('__ERAS_JSON__', js(eras)).replace('__ROUTE_JSON__', js(route))
 open(os.path.join(HERE, 'dist', 'why-music-changes.html'), 'w', encoding='utf-8').write(why)
 print(f"built dist/why-music-changes.html ({len(why.encode())} bytes); {len(eras['eras'])} eras, {len(eras.get('scenarios', []))} scenarios")
 

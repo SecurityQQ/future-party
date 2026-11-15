@@ -8,7 +8,7 @@
 :root{
   --bg:#070708; --raised:#0e0e10; --fg:#ffffff; --fg-2:#d6d6d6; --muted:#a1a1a1;
   --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.20);
-  --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#ff6a33; --accent-soft:rgba(255,83,21,.13); --accent-mid:rgba(255,83,21,.42);
+  --accent:#ff5315; --accent-hot:#f92f02; --accent-ink:#ff6a33; --accent-soft:rgba(255,83,21,.13); --accent-mid:rgba(255,83,21,.42); --on-accent:#070708;
   --dot:#5c5c62; --pos:#67fc5c; --warn:#ffad31; --idle:#a1a1a1;
   --font:"Aeonik","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
@@ -188,13 +188,35 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12px/1.
 .sketch{max-width:72ch}
 .sketch p{color:var(--fg-2);font-size:17px;margin:14px 0 0}
 .sketch p b{color:var(--fg)}
+
+.listen-top{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-bottom:28px}
+.yt-btn{display:inline-flex;align-items:center;gap:8px;font:600 15px/1 var(--font);background:var(--accent);color:var(--on-accent);border-radius:999px;padding:13px 18px;text-decoration:none}
+.yt-btn:hover{background:var(--accent-hot)}
+.yt-btn[aria-disabled="true"]{opacity:.5;pointer-events:none}
+.listen-meta{font:400 13px/1.5 var(--mono);color:var(--muted)}
+.lch{margin-top:36px;scroll-margin-top:24px}
+.lch:first-of-type{margin-top:0}
+.lch-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;border-top:2px solid var(--fg);padding-top:12px}
+.lch-h h3{font-size:20px;letter-spacing:-.02em}
+.lch-h span{font:500 12.5px var(--mono);color:var(--accent-ink)}
+.lch-h a{font:400 12.5px var(--mono);color:var(--muted);margin-left:auto}
+.lrows{list-style:none;margin:0;padding:0}
+.lrow{display:grid;grid-template-columns:40px 110px minmax(0,1fr);gap:4px 16px;padding:12px 0;border-bottom:1px solid var(--line)}
+@media (max-width:720px){.lrow{grid-template-columns:34px minmax(0,1fr)}.lrow .lw{grid-column:2}}
+.lrow .ln{font:400 12px/1.7 var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.lrow .lw{font:500 12.5px/1.7 var(--mono);color:var(--fg-2)}
+.lrow .lt{min-width:0}
+.lrow .lt a{color:var(--fg);font-weight:600;text-decoration:none}
+.lrow .lt a:hover{color:var(--accent-ink)}
+.lrow .lt p{margin:3px 0 0;color:var(--fg-2);font-size:14.5px;max-width:78ch}
+.lrow .tag{margin-left:8px;vertical-align:2px;padding:3px 6px;font-size:10.5px}
 @media (prefers-reduced-motion: reduce){.era{transition:none}}
 </style>
 
 <div class="wrap">
   <nav class="top" aria-label="Sections">
     <span class="brand">MUSIC / HISTORY</span>
-    <a href="#answer">Answer</a><a href="#eras">Eras</a><a href="#constants">Constants</a><a href="#next">What comes next</a><a href="#sources">Sources</a>
+    <a href="#answer">Answer</a><a href="#eras">Eras</a><a href="#listen">Listen</a><a href="#constants">Constants</a><a href="#next">What comes next</a><a href="#sources">Sources</a>
   </nav>
 
   <header class="hero">
@@ -225,6 +247,16 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12px/1.
       <p class="note">Each era names its context, the reasons music was made, the core idea it carried and three works to hear. The selection leans toward Europe and its descendants because their sources are best documented; it reaches into Mesopotamia, Egypt, India, China, the Islamic world, Africa’s diaspora, Latin America, Korea and the Soviet world where the record allows.</p>
     </div>
     <div class="eras" id="eraList"></div>
+  </section>
+
+  <section id="listen">
+    <div class="sec-head">
+      <p class="eyebrow">Listen through it</p>
+      <h2 id="listenTitle">One route through the eras</h2>
+      <p class="note">The eras above, the 36-track “Bach to the digital voice” guide from your ChatGPT chat, and the future tracks of Soundtrack 2050, merged into one chronological route. Tracks from the ChatGPT guide keep its listening cue; the guide began in 1720, so the first five eras come from this page. Play it in order.</p>
+    </div>
+    <div class="listen-top"><a class="yt-btn" id="ytBtn" target="_blank" rel="noopener">Open the YouTube playlist ↗</a><span class="listen-meta" id="listenMeta"></span></div>
+    <div id="routeList"></div>
   </section>
 
   <section id="constants">
@@ -333,6 +365,19 @@ D.answer.forEach(t=>add(t.src,t.srcLabel));
 E.forEach(e=>e.src.forEach(u=>add(u,e.years+': '+decodeURIComponent(u.split('/').pop()).replace(/_/g,' '))));
 D.scenarios.forEach(s=>s.signals.forEach(g=>add(g.src,s.title+': '+(g.label||host(g.src)))));
 document.getElementById('srcList').innerHTML=src.map(([u,l])=>'<li><a href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(l||host(u))+'</a></li>').join('');
+
+
+/* Listen: the merged route */
+const RT=__ROUTE_JSON__;
+const SRC={chatgpt:'ChatGPT guide',eras:'eras',soundtrack:'soundtrack'};
+const yb=document.getElementById('ytBtn');
+if(RT.playlist){yb.href=RT.playlist}else{yb.setAttribute('aria-disabled','true');yb.textContent='YouTube playlist: being built'}
+document.getElementById('listenTitle').textContent='One route through the eras: '+RT.items.length+' tracks';
+document.getElementById('listenMeta').textContent=RT.items.filter(i=>i.src.includes('chatgpt')).length+' from the ChatGPT guide · '+RT.items.filter(i=>i.src.includes('eras')).length+' from the eras · '+RT.items.filter(i=>i.src.includes('soundtrack')).length+' from Soundtrack 2050';
+const EB=Object.fromEntries(E.map(e=>[e.id,e]));
+document.getElementById('routeList').innerHTML=RT.chapters.map(c=>{const its=RT.items.filter(i=>i.ch===c.id);if(!its.length)return '';const e=EB[c.id];
+ return '<div class="lch" id="l-'+c.id+'"><div class="lch-h"><span>'+(e?esc(e.years):'next')+'</span><h3>'+esc(c.t)+'</h3>'+(e?'<a href="#'+e.id+'">read the era ↑</a>':'<a href="#next">the scenarios ↓</a>')+'</div><ol class="lrows">'+
+  its.map(i=>'<li class="lrow"><span class="ln">'+String(i.n).padStart(2,'0')+'</span><span class="lw">'+esc(i.when)+'</span><div class="lt"><a href="https://www.youtube.com/watch?v='+esc(i.yt)+'" target="_blank" rel="noopener">'+esc(i.a)+' — '+esc(i.t)+' ↗</a>'+(i.src.includes('chatgpt')?'<span class="tag">ChatGPT guide</span>':'')+'<p>'+esc(i.why)+'</p></div></li>').join('')+'</ol></div>'}).join('');
 
 /* Jump + flash */
 document.addEventListener('click',ev=>{

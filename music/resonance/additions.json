@@ -1,0 +1,893 @@
+{
+  "_about": "Additions to the user's Resonance app (Downloads/Resonance_History_and_Future.html). New stops keep the app's own fields; 'sort' orders the merged route; 'layer' marks added stops (before = before 1720, wider = wider world). Original 36 stops are unchanged except for renumbering.",
+  "chapters": [
+    {
+      "key": "ancient",
+      "name": "Gods, kings & cities",
+      "range": "c.1400 BCE—950",
+      "description": "Temple hymns, state bells, civic festivals, an empire’s chant and the Silk Road.",
+      "short": "Gods, kings & cities"
+    },
+    {
+      "key": "medieval",
+      "name": "Cathedrals, print & the stage",
+      "range": "1150—1607",
+      "description": "Polyphony, love songs in local languages, printed hymns and the first operas.",
+      "short": "Cathedrals, print & stage"
+    },
+    {
+      "key": "orig0",
+      "name": "Form, voice & rhythm",
+      "range": "1720—1913",
+      "description": "From inherited forms to new ways of organizing sound.",
+      "short": "Form, voice & rhythm"
+    },
+    {
+      "key": "orig1",
+      "name": "A voice of your own",
+      "range": "1928—1965",
+      "description": "Jazz, blues, rock ’n’ roll and funk, and music under war and segregation.",
+      "short": "A voice of your own"
+    },
+    {
+      "key": "orig2",
+      "name": "The studio becomes an instrument",
+      "range": "1967—1978",
+      "description": "Tape, amplification and synthesizers expand the palette, and pop answers a dictatorship.",
+      "short": "The studio as instrument"
+    },
+    {
+      "key": "orig3",
+      "name": "Cities, scenes & dance floors",
+      "range": "1980—1998",
+      "description": "Post-punk, hip-hop, house, techno and alternative scenes, plus reggae, Soviet rock and the first K-pop.",
+      "short": "Cities & dance floors"
+    },
+    {
+      "key": "orig4",
+      "name": "Sound becomes a material",
+      "range": "1999—2017",
+      "description": "Editing, sampling, and digital textures become part of the composition.",
+      "short": "Sound as material"
+    },
+    {
+      "key": "orig5",
+      "name": "New voices, new authors",
+      "range": "2019—2024",
+      "description": "Tradition, identity and machine learning enter new conversations, alongside Afrobeats and a song from a war.",
+      "short": "New voices, new authors"
+    }
+  ],
+  "stops": [
+    {
+      "key": "hurrian",
+      "chapterKey": "ancient",
+      "sort": -1400,
+      "layer": "before",
+      "artist": "Hurrian hymn, Ugarit",
+      "title": "Hurrian Hymn to Nikkal (h.6)",
+      "shortTitle": "Hymn to Nikkal",
+      "year": "1400 BCE",
+      "date": "c. 1400 BCE",
+      "idea": "Writing music down",
+      "genre": "Ancient Near East · temple hymn",
+      "place": "Ugarit (Ras Shamra), Syria",
+      "lens": "Belief",
+      "headline": "A melody survives on clay.",
+      "context": "Ugarit was a trading city on the Syrian coast where several languages and scripts met. Among its clay tablets, a set of Hurrian hymns preserves lyrics together with instructions for a lyre: the oldest substantially complete notated music known. It was temple music for the moon goddess Nikkal, made by trained specialists for a city whose order depended on ritual.",
+      "change": "Music can be fixed in signs and outlive its performers. How those signs should be read is still debated, so every modern performance is a reconstruction.",
+      "listen": "This is one scholar-musician’s reconstruction on a replica lyre. Listen for a small set of intervals repeated patiently, closer to incantation than to a tune.",
+      "question": "When you hear a reconstruction, how much of it is the past and how much is us?",
+      "version": "Michael Levy’s lyre reconstruction. Other scholars read the notation differently.",
+      "videoId": "64aouN2oohM",
+      "videoCredit": "Michael Levy · lyre reconstruction",
+      "sources": [
+        {
+          "title": "Hurrian songs — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Hurrian_songs"
+        }
+      ]
+    },
+    {
+      "key": "samaveda",
+      "chapterKey": "ancient",
+      "sort": -1000,
+      "layer": "before",
+      "artist": "Vedic chant",
+      "title": "Samaveda chanting",
+      "shortTitle": "Samaveda",
+      "year": "1000 BCE",
+      "date": "c. 1000 BCE",
+      "idea": "Memory as notation",
+      "genre": "Vedic ritual chant",
+      "place": "Ganges plain, India",
+      "lens": "Belief",
+      "headline": "A ritual kept by ear, not on paper.",
+      "context": "The Samaveda, the “Veda of melodies”, sets hymns to music for Vedic rituals. Priests learned the chants by ear with elaborate memory techniques, and lineages of chanters passed them down across many centuries. Getting the sound exactly right was a sacred duty, as important as the words themselves.",
+      "change": "Melody follows ritual rules: a narrow set of pitches and stretched syllables. Precise memory does the work that a written score does elsewhere.",
+      "listen": "Listen for how long the syllables are held and how the melody stays within a narrow range. The repetition is a technique of exactness, not monotony.",
+      "question": "Can a tradition be more stable in memory than on paper?",
+      "version": "A present-day recitation. Lineages and styles of Samavedic chant differ.",
+      "videoId": "vGYqsA3p_zA",
+      "videoCredit": "Ramanathan Jayaraman · Sama Veda chanting",
+      "sources": [
+        {
+          "title": "Samaveda — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Samaveda"
+        }
+      ]
+    },
+    {
+      "key": "bianzhong",
+      "chapterKey": "ancient",
+      "sort": -433,
+      "layer": "before",
+      "artist": "Bianzhong of Marquis Yi of Zeng",
+      "title": "Bronze chime bells",
+      "shortTitle": "Bronze bells",
+      "year": "433 BCE",
+      "date": "433 BCE",
+      "idea": "Tuning as statecraft",
+      "genre": "Zhou-era ritual music",
+      "place": "Suizhou, Hubei, China",
+      "lens": "Power",
+      "headline": "Sixty-five bells, each with two notes.",
+      "context": "In Warring States China, ritual music belonged to statecraft: Confucian thinkers treated the right music as part of good government. Marquis Yi of Zeng was buried in 433 BCE with a set of 65 bronze bells hung on wooden racks. Each bell is cast so that striking it in two places produces two different pitches, a feat of metallurgy and tuning theory.",
+      "change": "Pitch becomes engineered matter. A large, precisely tuned set lets court musicians play melodies across several octaves in bronze.",
+      "listen": "Listen for the long ring and the bright attack of each bell, and for how neighbouring bells form a scale.",
+      "question": "What does it mean when a state owns its tuning?",
+      "version": "A short presentation of the bells’ sound; the original set is held in the Hubei Provincial Museum.",
+      "videoId": "W6kXCZ_n80I",
+      "videoCredit": "Hi China · bianzhong",
+      "sources": [
+        {
+          "title": "Bianzhong of Marquis Yi of Zeng — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Bianzhong_of_Marquis_Yi_of_Zeng"
+        }
+      ]
+    },
+    {
+      "key": "delphic",
+      "chapterKey": "ancient",
+      "sort": -128,
+      "layer": "before",
+      "artist": "Athenaios, son of Athenaios",
+      "title": "First Delphic Hymn to Apollo",
+      "shortTitle": "Delphic Hymn",
+      "year": "128 BCE",
+      "date": "128 BCE",
+      "idea": "Music as a civic act",
+      "genre": "Ancient Greek hymn",
+      "place": "Delphi, Greece",
+      "lens": "Society",
+      "headline": "A city sings to its god, in stone.",
+      "context": "Greek cities competed in festivals where music was a civic act. At Delphi, Athenian performers honoured Apollo, and their hymns were carved into the wall of the Athenian Treasury with musical notation above the words. Greek philosophers argued about music’s effect on character; Plato’s Republic even bans modes it considers softening.",
+      "change": "Notation sits above the text, and the melody follows the pitch accents of the Greek words. Music is public, inscribed and meant to last.",
+      "listen": "Listen for the melody bending with the words. The accompaniment is a modern reconstruction.",
+      "question": "Should a state care which music its citizens hear?",
+      "version": "Petros Tabouris’s reconstruction with replica instruments.",
+      "videoId": "U6QfeG5KH1M",
+      "videoCredit": "Petros Tabouris · licensed recording",
+      "sources": [
+        {
+          "title": "Delphic Hymns — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Delphic_Hymns"
+        },
+        {
+          "title": "Musical system of ancient Greece — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Musical_system_of_ancient_Greece"
+        }
+      ]
+    },
+    {
+      "key": "seikilos",
+      "chapterKey": "ancient",
+      "sort": 100,
+      "layer": "before",
+      "artist": "Seikilos",
+      "title": "Seikilos epitaph",
+      "shortTitle": "Seikilos epitaph",
+      "year": "1st–2nd c.",
+      "date": "1st–2nd c. CE",
+      "idea": "A complete song",
+      "genre": "Greek song",
+      "place": "Tralles, Asia Minor",
+      "lens": "Ideas",
+      "headline": "“While you live, shine.”",
+      "context": "Carved on a grave marker, this short song is the oldest complete piece of music that survives with both its words and its melody. The text is advice to the living: shine while you live, do not grieve, life is short. It shows music outside temple and state, as a personal message meant to outlast its author.",
+      "change": "A whole song, with a beginning, middle and end, survives in notation. Its gentle arc fits a single human voice.",
+      "listen": "Follow the rising first phrase and the falling close. Almost two thousand years later it still sounds like something you could hum.",
+      "question": "What would you carve in stone for strangers to sing?",
+      "version": "A sung performance by an early-music vocal ensemble.",
+      "videoId": "hIFcIE23Su4",
+      "videoCredit": "SAVAE · San Antonio Vocal Arts Ensemble",
+      "sources": [
+        {
+          "title": "Seikilos epitaph — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Seikilos_epitaph"
+        }
+      ]
+    },
+    {
+      "key": "gregorian",
+      "chapterKey": "ancient",
+      "sort": 850,
+      "layer": "before",
+      "artist": "Gregorian chant",
+      "title": "Puer natus est (Introit for Christmas Day)",
+      "shortTitle": "Puer natus est",
+      "year": "9th c.",
+      "date": "9th c.",
+      "idea": "One chant for an empire",
+      "genre": "Plainchant",
+      "place": "Frankish empire, from Rome to Aachen",
+      "lens": "Power",
+      "headline": "One melody to bind an empire.",
+      "context": "Christianity became Rome’s state religion in 380, and after the western empire fell, chant became a tool of political unity. Charlemagne later said his father Pepin replaced the local Gallican rites with Roman chant to strengthen ties with Rome. Monks began writing neumes, signs for the shape of a melody, so the same chant could be sung across a continent.",
+      "change": "A single unaccompanied line follows the Latin text. Neumes start the long road toward written melody.",
+      "listen": "Listen for the flow of the line: no beat and no harmony, just phrases shaped by breath and words.",
+      "question": "What does it sound like when everyone must sing the same thing?",
+      "version": "The Christmas introit, sung in unison.",
+      "videoId": "3wxTA1M8DGo",
+      "videoCredit": "Gregorian Chant – Topic",
+      "sources": [
+        {
+          "title": "Gregorian chant — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Gregorian_chant"
+        },
+        {
+          "title": "Edict of Thessalonica — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Edict_of_Thessalonica"
+        }
+      ]
+    },
+    {
+      "key": "pipa",
+      "chapterKey": "ancient",
+      "sort": 950,
+      "layer": "before",
+      "artist": "Dunhuang pipa scores",
+      "title": "Dunhuang pipa score, No. 1",
+      "shortTitle": "Pipa score No. 1",
+      "year": "10th c.",
+      "date": "10th c.",
+      "idea": "Music travels the Silk Road",
+      "genre": "Tang–Song era lute music",
+      "place": "Dunhuang, on the Silk Road (Gansu, China)",
+      "lens": "Contact",
+      "headline": "A lute that came along the Silk Road.",
+      "context": "Tang China’s court orchestras welcomed musicians and instruments from beyond its borders, and the pear-shaped pipa most likely arrived from Central Asia along the trade routes. In the caves of Dunhuang, a Silk Road oasis, manuscripts preserved pipa tablature from around the 10th century. Trade carried sounds as well as silk.",
+      "change": "Tablature tells the hands where to go rather than which abstract pitch to sound. Reading it today means reconstructing rhythm and tuning.",
+      "listen": "Listen for the plucked attacks and quick ornaments. This is one reconstruction of a short piece from the scores.",
+      "question": "When an instrument crosses a border, whose music is it?",
+      "version": "A reconstruction of the first piece in the Dunhuang pipa scores.",
+      "videoId": "wy9m0rcVuUI",
+      "videoCredit": "古樂尋蹤 HGofACH · reconstruction",
+      "sources": [
+        {
+          "title": "Pipa — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Pipa"
+        },
+        {
+          "title": "Dunhuang manuscripts — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Dunhuang_manuscripts"
+        }
+      ]
+    },
+    {
+      "key": "hildegard",
+      "chapterKey": "medieval",
+      "sort": 1150,
+      "layer": "before",
+      "artist": "Hildegard of Bingen",
+      "title": "O virtus Sapientiae",
+      "shortTitle": "O virtus Sapientiae",
+      "year": "c. 1150",
+      "date": "c. 1150",
+      "idea": "A named composer with a vision",
+      "genre": "Medieval chant",
+      "place": "Rupertsberg, Germany",
+      "lens": "Belief",
+      "headline": "An abbess writes the music she sees.",
+      "context": "Hildegard of Bingen led a Benedictine community, founded the monastery of Rupertsberg in 1150, wrote theology and medicine, and composed chants for her nuns. She described her work as coming from visions. In a church that rarely gave women authority, her music circulated under her own name.",
+      "change": "The melody leaps and soars beyond the usual range of plainchant. Long melismas stretch single syllables into wide arcs.",
+      "listen": "Follow the wide leaps of the line and notice how one syllable can carry a long flight of notes.",
+      "question": "Is this music for the listener, or for God?",
+      "version": "Sequentia’s recording of the antiphon.",
+      "videoId": "77M2pkkdH10",
+      "videoCredit": "Sequentia – Topic",
+      "sources": [
+        {
+          "title": "Hildegard of Bingen — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Hildegard_of_Bingen"
+        }
+      ]
+    },
+    {
+      "key": "bernart",
+      "chapterKey": "medieval",
+      "sort": 1170,
+      "layer": "before",
+      "artist": "Bernart de Ventadorn",
+      "title": "Can vei la lauzeta mover",
+      "shortTitle": "Can vei la lauzeta",
+      "year": "12th c.",
+      "date": "12th c.",
+      "idea": "Love in the local language",
+      "genre": "Troubadour song",
+      "place": "Occitania, southern France",
+      "lens": "Society",
+      "headline": "Love, sung in the language people speak.",
+      "context": "In the courts of Occitania, starting with Duke William IX of Aquitaine, troubadours wrote songs of love in the local language instead of Latin, and noble patrons paid for poetry that entertained and flattered. According to a later account, Bernart de Ventadorn was possibly the son of a baker at the castle of Ventadour; he became one of the most admired voices of courtly love.",
+      "change": "A single melody carries an intricate poem. The singer’s persona and feeling move to the centre.",
+      "listen": "Follow how the melody shapes each line of verse. The image of the lark rising opens the song.",
+      "question": "When did a private feeling become a public song?",
+      "version": "John Potter’s performance.",
+      "videoId": "dGbYYVm7RFE",
+      "videoCredit": "John Potter – Topic",
+      "sources": [
+        {
+          "title": "Bernart de Ventadorn — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Bernart_de_Ventadorn"
+        },
+        {
+          "title": "William IX of Aquitaine — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/William_IX_of_Aquitaine"
+        }
+      ]
+    },
+    {
+      "key": "perotin",
+      "chapterKey": "medieval",
+      "sort": 1198,
+      "layer": "before",
+      "artist": "Pérotin",
+      "title": "Viderunt omnes",
+      "shortTitle": "Viderunt omnes",
+      "year": "c. 1198",
+      "date": "c. 1198",
+      "idea": "Four voices at once",
+      "genre": "Notre-Dame polyphony",
+      "place": "Paris, France",
+      "lens": "Ideas",
+      "headline": "Four voices, one cathedral.",
+      "context": "Paris was growing into a city of scholars, and Notre-Dame was rising stone by stone. Its singers developed organum, adding new voices above a slowed-down chant. Pérotin’s Viderunt omnes, for Christmas, stacks four independent voices over the chant, a sound as ambitious as the Gothic architecture around it.",
+      "change": "Rhythm is organized in repeating patterns so several lines can move together. The chant becomes a slow foundation for the dancing upper voices.",
+      "listen": "Hear the long held notes in the lowest voice and the three voices weaving above them.",
+      "question": "Can a sound be built the way a cathedral is built?",
+      "version": "The Hilliard Ensemble’s recording.",
+      "videoId": "Q2JvIyStzNA",
+      "videoCredit": "The Hilliard Ensemble – Topic",
+      "sources": [
+        {
+          "title": "Pérotin — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/P%C3%A9rotin"
+        }
+      ]
+    },
+    {
+      "key": "machaut",
+      "chapterKey": "medieval",
+      "sort": 1365,
+      "layer": "before",
+      "artist": "Guillaume de Machaut",
+      "title": "Messe de Nostre Dame: Kyrie",
+      "shortTitle": "Messe de Nostre Dame",
+      "year": "c. 1365",
+      "date": "c. 1360s",
+      "idea": "One composer, one whole Mass",
+      "genre": "Ars nova · polyphonic Mass",
+      "place": "Reims, France",
+      "lens": "Ideas",
+      "headline": "A whole Mass from one mind.",
+      "context": "Machaut was a poet and cleric in a Europe shaken by the Black Death, which killed 30–60% of its people. A new notation, the Ars nova, could now write more complex rhythms. His Messe de Nostre Dame is the earliest complete setting of the Mass Ordinary that can be attributed to a single composer.",
+      "change": "Repeating rhythmic patterns hold four voices together across a long work. The Mass becomes one composition rather than a collection of pieces.",
+      "listen": "Listen for the slow chant in one voice and the angular rhythms around it. Some harmonies sound strikingly modern.",
+      "question": "When does a collection of parts become one work?",
+      "version": "The Kyrie only, sung by the Oxford Camerata.",
+      "videoId": "33yR2-vXblo",
+      "videoCredit": "Oxford Camerata – Topic",
+      "sources": [
+        {
+          "title": "Messe de Nostre Dame — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Messe_de_Nostre_Dame"
+        },
+        {
+          "title": "Black Death — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Black_Death"
+        }
+      ]
+    },
+    {
+      "key": "luther",
+      "chapterKey": "medieval",
+      "sort": 1529,
+      "layer": "before",
+      "artist": "Martin Luther",
+      "title": "Ein feste Burg ist unser Gott",
+      "shortTitle": "Ein feste Burg",
+      "year": "c. 1529",
+      "date": "c. 1529",
+      "idea": "Everyone sings",
+      "genre": "Lutheran chorale",
+      "place": "Wittenberg, Germany",
+      "lens": "Belief",
+      "headline": "A church where everyone sings.",
+      "context": "Printing spread Luther’s ideas after 1517, and he wanted congregations to sing in German instead of listening to Latin choirs. The first Lutheran hymnal appeared in 1524; Luther wrote “A Mighty Fortress” around 1529. Hymns became printed, portable and easy to remember: tools of a religious movement.",
+      "change": "Strong, simple melodies carry vernacular verse. The congregation becomes the performer.",
+      "listen": "This is the old, rhythmically lively form of the melody. Notice how easy it is to join in.",
+      "question": "What changes when a song is meant to be sung by everyone in the room?",
+      "version": "The early rhythmic form of the chorale.",
+      "videoId": "8C-gAhcGMP4",
+      "videoCredit": "Intermezzo · old melody",
+      "sources": [
+        {
+          "title": "A Mighty Fortress Is Our God — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/A_Mighty_Fortress_Is_Our_God"
+        },
+        {
+          "title": "First Lutheran hymnal — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/First_Lutheran_hymnal"
+        }
+      ]
+    },
+    {
+      "key": "palestrina",
+      "chapterKey": "medieval",
+      "sort": 1562,
+      "layer": "before",
+      "artist": "Giovanni Pierluigi da Palestrina",
+      "title": "Missa Papae Marcelli: Kyrie",
+      "shortTitle": "Pope Marcellus Mass",
+      "year": "1562",
+      "date": "1562",
+      "idea": "Clarity under pressure",
+      "genre": "Renaissance polyphony",
+      "place": "Rome, Italy",
+      "lens": "Power",
+      "headline": "Polyphony that lets the words through.",
+      "context": "The Catholic Church answered the Reformation at the Council of Trent (1545–63), where critics complained that elaborate polyphony buried the sacred text. Palestrina’s Pope Marcellus Mass became the model of a clear, balanced style. The story that it saved polyphony from being banned is a later legend.",
+      "change": "Voices move in smooth, controlled lines, and dissonance is carefully prepared and resolved. Words and texture stay in balance.",
+      "listen": "Listen for the calm flow between the voices and how often the words line up together.",
+      "question": "Can rules make music more beautiful rather than less?",
+      "version": "The Kyrie, sung by the Choir of Westminster Abbey.",
+      "videoId": "l1vYHfuveiE",
+      "videoCredit": "The Choir of Westminster Abbey",
+      "sources": [
+        {
+          "title": "Missa Papae Marcelli — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Missa_Papae_Marcelli"
+        }
+      ]
+    },
+    {
+      "key": "tallis",
+      "chapterKey": "medieval",
+      "sort": 1570,
+      "layer": "before",
+      "artist": "Thomas Tallis",
+      "title": "Spem in alium",
+      "shortTitle": "Spem in alium",
+      "year": "c. 1570",
+      "date": "c. 1570",
+      "idea": "Forty voices in one space",
+      "genre": "Renaissance motet",
+      "place": "London, England",
+      "lens": "Power",
+      "headline": "Forty voices around one listener.",
+      "context": "Tudor England swung between Catholic and Protestant rule, and Thomas Tallis served monarchs of both. Spem in alium, written for forty separate voices in eight choirs, was a work of display; its obscure origins are linked to the Howard family and Nonsuch Palace.",
+      "change": "Sound travels around the space from choir to choir before all forty voices sing together.",
+      "listen": "With headphones, follow the sound moving between choirs, then listen for the moments when all forty voices enter.",
+      "question": "What does it feel like to be inside the music rather than in front of it?",
+      "version": "A complete live performance.",
+      "videoId": "QmH1nZSGIyY",
+      "videoCredit": "AVROTROS Klassiek · live performance",
+      "sources": [
+        {
+          "title": "Spem in alium — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Spem_in_alium"
+        }
+      ]
+    },
+    {
+      "key": "orfeo",
+      "chapterKey": "medieval",
+      "sort": 1607,
+      "layer": "before",
+      "artist": "Claudio Monteverdi",
+      "title": "L’Orfeo: Toccata",
+      "shortTitle": "L’Orfeo",
+      "year": "1607",
+      "date": "1607",
+      "idea": "Music tells a story",
+      "genre": "Early opera",
+      "place": "Mantua, Italy",
+      "lens": "Power",
+      "headline": "A fanfare opens the age of opera.",
+      "context": "Opera began in Italian courts around 1600 as an attempt to revive ancient drama through music. Monteverdi’s L’Orfeo was staged for the Gonzaga court in Mantua in 1607. Thirty years later Venice opened Teatro San Cassiano, the first public opera house: spectacle could now be sold to anyone with a ticket.",
+      "change": "A brass-led fanfare announces a staged drama; the opera that follows turns speech into song.",
+      "listen": "Hear the toccata as a signal to the audience: the rulers are present, the story begins.",
+      "question": "What changes when a ticket replaces a prince as the person who pays?",
+      "version": "The opening Toccata, conducted by Nikolaus Harnoncourt.",
+      "videoId": "QrR1gYrjn_I",
+      "videoCredit": "Nikolaus Harnoncourt – Topic",
+      "sources": [
+        {
+          "title": "L’Orfeo — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/L%27Orfeo"
+        },
+        {
+          "title": "Teatro San Cassiano — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Teatro_San_Cassiano"
+        }
+      ]
+    },
+    {
+      "key": "fisk",
+      "chapterKey": "orig0",
+      "sort": 1871,
+      "layer": "wider",
+      "artist": "Fisk Jubilee Singers",
+      "title": "Swing Low, Sweet Chariot",
+      "shortTitle": "Swing Low, Sweet Chariot",
+      "year": "1871",
+      "date": "1871",
+      "idea": "Spirituals reach the concert hall",
+      "genre": "Spiritual",
+      "place": "Nashville, Tennessee, United States",
+      "lens": "Society",
+      "headline": "Songs of the enslaved tour the world.",
+      "context": "After emancipation, Fisk University in Nashville was founded to educate formerly enslaved people, and it struggled for money. From 1871 its student singers toured the United States and Europe singing spirituals, songs created by enslaved African Americans, to raise funds. They brought this repertoire to audiences who had never heard it; their 1909 recording of this song is in the US National Recording Registry.",
+      "change": "Communal spirituals are arranged for a trained a cappella ensemble. Close harmony and call and response meet the concert stage.",
+      "listen": "Listen for the blend of voices and the slow, steady pulse under the melody.",
+      "question": "What does a song carry from the people who first sang it?",
+      "version": "An early recording by the Fisk Jubilee Singers.",
+      "videoId": "ASUjzszcRws",
+      "videoCredit": "The Fisk Jubilee Singers – Topic",
+      "sources": [
+        {
+          "title": "Fisk Jubilee Singers — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Fisk_Jubilee_Singers"
+        }
+      ]
+    },
+    {
+      "key": "leningrad",
+      "chapterKey": "orig1",
+      "sort": 1942,
+      "layer": "wider",
+      "artist": "Dmitri Shostakovich",
+      "title": "Symphony No. 7 “Leningrad”: I. Allegretto",
+      "shortTitle": "Leningrad Symphony",
+      "year": "1942",
+      "date": "1941–42",
+      "idea": "Music as defiance and propaganda",
+      "genre": "Soviet symphony",
+      "place": "Leningrad (Saint Petersburg), USSR",
+      "lens": "Power",
+      "headline": "A symphony played inside a siege.",
+      "context": "In 1936 Pravda attacked Shostakovich’s opera as “Muddle instead of music”, a warning from Stalin’s state. In 1941 he began his Seventh Symphony in besieged Leningrad. On 9 August 1942 a depleted orchestra performed it in the starving city, broadcast across it by loudspeaker: music as defiance and as propaganda at once.",
+      "change": "A simple march theme repeats over a snare drum and swells into an overwhelming crescendo.",
+      "listen": "In the first movement, follow the snare drum and the march theme as it returns louder and harsher each time.",
+      "question": "Can the same music be resistance and propaganda at once?",
+      "version": "The first movement only, about 27 minutes. The march episode begins roughly a third of the way in.",
+      "videoId": "fbQsGLML0yQ",
+      "videoCredit": "Czech Philharmonic – Topic",
+      "sources": [
+        {
+          "title": "Leningrad première of the Symphony No. 7 — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Leningrad_premi%C3%A8re_of_Shostakovich%27s_Symphony_No._7"
+        },
+        {
+          "title": "Lady Macbeth of Mtsensk and “Muddle instead of music” — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Lady_Macbeth_of_Mtsensk_(opera)"
+        }
+      ]
+    },
+    {
+      "key": "cooke",
+      "chapterKey": "orig1",
+      "sort": 1964,
+      "layer": "wider",
+      "artist": "Sam Cooke",
+      "title": "A Change Is Gonna Come",
+      "shortTitle": "A Change Is Gonna Come",
+      "year": "1964",
+      "date": "1964",
+      "idea": "A song for a movement",
+      "genre": "Soul",
+      "place": "United States",
+      "lens": "Society",
+      "headline": "A ballad that carried a movement.",
+      "context": "Sam Cooke moved from gospel to pop stardom and ran his own label, rare for a Black artist at the time. After he and his entourage were turned away from a whites-only motel in Louisiana, he wrote a song about his own struggle and that of the people around him. Released in 1964, it became an anthem of the civil-rights movement.",
+      "change": "Gospel phrasing and a lush orchestral arrangement turn a personal statement into a public promise.",
+      "listen": "Listen to how the strings lift the last verse while the voice holds back until it doesn’t.",
+      "question": "Can a ballad carry a political message further than a slogan?",
+      "version": "The original 1964 recording.",
+      "videoId": "Z5zDRtEC0x0",
+      "videoCredit": "Sam Cooke · official audio",
+      "sources": [
+        {
+          "title": "A Change Is Gonna Come — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/A_Change_Is_Gonna_Come"
+        }
+      ]
+    },
+    {
+      "key": "tropicalia",
+      "chapterKey": "orig2",
+      "sort": 1968.5,
+      "layer": "wider",
+      "artist": "Caetano Veloso",
+      "title": "Tropicália",
+      "shortTitle": "Tropicália",
+      "year": "1968",
+      "date": "1968",
+      "idea": "Collage under a dictatorship",
+      "genre": "Tropicália",
+      "place": "São Paulo, Brazil",
+      "lens": "Power",
+      "headline": "Pop collage under a dictatorship.",
+      "context": "Brazil’s military regime tightened censorship in 1968. Caetano Veloso, Gilberto Gil and their circle answered with Tropicália: Brazilian song mixed with psychedelic rock, orchestral arrangement and irony. Late that year Veloso and Gil were arrested, and in 1969 they were forced into exile in London.",
+      "change": "An orchestral arrangement, a spoken opening and abrupt changes of style turn the record into a commentary on the nation itself.",
+      "listen": "Listen for the clash between lush orchestra, percussion and Veloso’s cool voice. The collage is the message.",
+      "question": "How do you criticize a regime in a song that sounds like a carnival?",
+      "version": "The title track from Caetano Veloso’s 1968 album.",
+      "videoId": "1Z1qNsm-NUk",
+      "videoCredit": "Caetano Veloso · official",
+      "sources": [
+        {
+          "title": "Tropicália — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Tropic%C3%A1lia"
+        },
+        {
+          "title": "Caetano Veloso — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Caetano_Veloso"
+        }
+      ]
+    },
+    {
+      "key": "marley",
+      "chapterKey": "orig3",
+      "sort": 1980.5,
+      "layer": "wider",
+      "artist": "Bob Marley & The Wailers",
+      "title": "Redemption Song",
+      "shortTitle": "Redemption Song",
+      "year": "1980",
+      "date": "1980",
+      "idea": "Decolonization in a song",
+      "genre": "Reggae · acoustic",
+      "place": "Kingston, Jamaica",
+      "lens": "Power",
+      "headline": "“Emancipate yourselves from mental slavery.”",
+      "context": "Jamaica won independence in 1962, and reggae carried Rastafari ideas and anti-colonial politics around the world. Redemption Song, the closing track of Uprising (1980), takes key lines from a speech by the Pan-Africanist Marcus Garvey. On the album, Marley sings it alone with an acoustic guitar.",
+      "change": "No band and no studio effects: after years of electric reggae, the message stands almost bare.",
+      "listen": "Listen to the strummed guitar and the plain delivery. The lack of production is a choice.",
+      "question": "Why might the quietest song on an album become its manifesto?",
+      "version": "The solo acoustic version from Uprising.",
+      "videoId": "yv5xonFSC4c",
+      "videoCredit": "Bob Marley · official video",
+      "sources": [
+        {
+          "title": "Redemption Song — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Redemption_Song"
+        }
+      ]
+    },
+    {
+      "key": "kino",
+      "chapterKey": "orig3",
+      "sort": 1986.4,
+      "layer": "wider",
+      "artist": "Kino",
+      "title": "Khochu peremen! (We Want Change!)",
+      "shortTitle": "Khochu peremen!",
+      "year": "1986",
+      "date": "1986",
+      "idea": "A generation asks for change",
+      "genre": "Soviet post-punk",
+      "place": "Leningrad, USSR",
+      "lens": "Power",
+      "headline": "A rock song becomes a demand.",
+      "context": "Soviet rock lived in apartments and in state-supervised venues such as the Leningrad Rock Club, opened in 1981. Under perestroika, the limits loosened. Viktor Tsoi first performed “Khochu peremen!” (“We want change!”) in 1986; when it closed the film Assa in 1987, it became an anthem of a generation.",
+      "change": "A driving post-punk guitar line and a chanted refrain turn the chorus into a crowd’s voice.",
+      "listen": "Listen to the chorus as a chant: it is built to be shouted by thousands.",
+      "question": "When does a song stop belonging to its band and start belonging to a crowd?",
+      "version": "The band’s recording from its official channel.",
+      "videoId": "-vdfEZwPd3M",
+      "videoCredit": "Группа КИНО · official",
+      "sources": [
+        {
+          "title": "Khochu peremen — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Khochu_peremen"
+        },
+        {
+          "title": "Assa (film) — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Assa_(film)"
+        },
+        {
+          "title": "Leningrad Rock Club — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Leningrad_Rock_Club"
+        }
+      ]
+    },
+    {
+      "key": "seotaiji",
+      "chapterKey": "orig3",
+      "sort": 1992,
+      "layer": "wider",
+      "artist": "Seo Taiji and Boys",
+      "title": "Nan Arayo (I Know)",
+      "shortTitle": "Nan Arayo",
+      "year": "1992",
+      "date": "1992",
+      "idea": "The start of modern K-pop",
+      "genre": "K-pop · hip-hop",
+      "place": "Seoul, South Korea",
+      "lens": "Society",
+      "headline": "A debut that started K-pop.",
+      "context": "South Korea moved to democracy in 1987, and a new youth culture wanted its own sound. Seo Taiji and Boys debuted in 1992 with “Nan Arayo”, mixing Korean pop with American hip-hop and new jack swing dance. The industry that followed grew into one of the world’s largest music exports.",
+      "change": "Rapped verses, dance breaks and a pop chorus in Korean: a format K-pop still builds on.",
+      "listen": "Listen for the switch between rapped verses and the sung hook, and for the swing of the drum machine.",
+      "question": "Can a whole industry start with one song?",
+      "version": "The official music video.",
+      "videoId": "OEDHEzs5kyk",
+      "videoCredit": "seotaiji · official music video",
+      "sources": [
+        {
+          "title": "Seo Taiji and Boys — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Seo_Taiji_and_Boys"
+        }
+      ]
+    },
+    {
+      "key": "rema",
+      "chapterKey": "orig5",
+      "sort": 2022.1,
+      "layer": "wider",
+      "artist": "Rema",
+      "title": "Calm Down",
+      "shortTitle": "Calm Down",
+      "year": "2022",
+      "date": "2022",
+      "idea": "Global pop from the young South",
+      "genre": "Afrobeats",
+      "place": "Nigeria",
+      "lens": "Society",
+      "headline": "A Nigerian love song goes global.",
+      "context": "Nigeria’s Afrobeats scene grew through phones, streaming and diaspora clubs. Rema released “Calm Down” in 2022, and a remix with Selena Gomez carried it around the world. The economics are moving too: recorded-music revenue in sub-Saharan Africa grew 22.6% in 2024, among the fastest of any region.",
+      "change": "A relaxed mid-tempo groove and a melodic, half-sung delivery travel easily across languages.",
+      "listen": "Listen to how little the beat needs: percussion, bass and a voice that slides between singing and speaking.",
+      "question": "Who decides what sounds global?",
+      "version": "The original solo version, not the Selena Gomez remix.",
+      "videoId": "CQLsdm1ZYAw",
+      "videoCredit": "Rema · official music video",
+      "sources": [
+        {
+          "title": "Calm Down (Rema song) — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Calm_Down_(Rema_song)"
+        },
+        {
+          "title": "IFPI Global Music Report 2025",
+          "url": "https://www.ifpi.org/?p=13686"
+        }
+      ]
+    },
+    {
+      "key": "kalush",
+      "chapterKey": "orig5",
+      "sort": 2022.2,
+      "layer": "wider",
+      "artist": "Kalush Orchestra",
+      "title": "Stefania",
+      "shortTitle": "Stefania",
+      "year": "2022",
+      "date": "2022",
+      "idea": "A song from a country at war",
+      "genre": "Ukrainian folk-rap",
+      "place": "Kalush, Ukraine",
+      "lens": "Power",
+      "headline": "A song for a mother becomes a song for a country.",
+      "context": "Russia’s full-scale invasion of Ukraine began in February 2022. Kalush Orchestra, who combine rap with Ukrainian folk instruments, had written “Stefania” for the singer’s mother; in wartime it was heard as a song about the homeland. On 14 May 2022 it won Eurovision in Turin with 631 points, carried by the public vote.",
+      "change": "A folk flute line and rapped verses meet a sung refrain; tradition becomes the hook.",
+      "listen": "Listen for the flute line and the switch between rapped verses and the chorus.",
+      "question": "Can a pop contest become a place for a nation’s voice?",
+      "version": "The official video.",
+      "videoId": "Z8Z51no1TD0",
+      "videoCredit": "Kalush Orchestra · official video",
+      "sources": [
+        {
+          "title": "Kalush Orchestra — Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Kalush_Orchestra"
+        },
+        {
+          "title": "Ukrinform: Ukraine wins Eurovision 2022",
+          "url": "https://www.ukrinform.net/rubric-society/3483526-ukraine-wins-eurovision-song-contest-2022.html"
+        }
+      ]
+    }
+  ],
+  "signalLinks": {
+    "s-infinite": {
+      "concepts": [
+        "authorship",
+        "images"
+      ],
+      "history": [
+        "luther",
+        "fisk"
+      ],
+      "question": "If music becomes as cheap as water, what will you still pay for?"
+    },
+    "s-south": {
+      "concepts": [
+        "centers",
+        "three-step"
+      ],
+      "history": [
+        "orig:8",
+        "rema",
+        "seotaiji"
+      ],
+      "question": "Whose dance floor sets the next global beat?"
+    },
+    "s-old": {
+      "concepts": [
+        "restraint"
+      ],
+      "history": [
+        "orig:19",
+        "orig:4"
+      ],
+      "question": "What would music for a long life sound like?"
+    },
+    "s-climate": {
+      "concepts": [
+        "botanica"
+      ],
+      "history": [
+        "orig:5"
+      ],
+      "question": "Can a concert be worth its carbon?"
+    },
+    "s-control": {
+      "concepts": [
+        "authorship",
+        "images"
+      ],
+      "history": [
+        "delphic",
+        "leningrad",
+        "kino"
+      ],
+      "question": "Who should be allowed to sing in your voice?"
+    },
+    "s-worlds": {
+      "concepts": [
+        "worlds"
+      ],
+      "history": [
+        "orfeo",
+        "tallis",
+        "orig:14"
+      ],
+      "question": "At what point does an album become a place?"
+    }
+  },
+  "links": {
+    "routePlaylist": "https://www.youtube.com/playlist?list=PLeo45sxoQ8gE",
+    "soundtrackPlaylist": "https://www.youtube.com/playlist?list=PLJdg5B9vQ1oA",
+    "whyPage": "https://claude.ai/artifact/Abby2s8iw3xuiJQX9Qwfph",
+    "soundtrackPage": "https://claude.ai/artifact/WfgPk8RRF5sTM8spzwC1zp",
+    "web": "https://resonance-2050.vercel.app"
+  },
+  "overrides": {
+    "orig:4": {
+      "videoId": "Gml7G9V5wPI",
+      "videoSource": "https://www.youtube.com/watch?v=Gml7G9V5wPI",
+      "videoCredit": "Dietrich Fischer-Dieskau – Topic · licensed recording",
+      "exampleNote": "The upload chosen in the original guide (1aXXwNGmz9Q) is no longer available on YouTube (checked 14 November 2026). This is Dietrich Fischer-Dieskau’s licensed recording of the same song."
+    }
+  }
+}

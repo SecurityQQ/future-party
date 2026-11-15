@@ -281,7 +281,8 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 12px/1.
         <p class="eyebrow">How to play it</p>
         <h2>A list to import into your player</h2>
         <ol>
-          <li>Copy the list: every track in running order, without the voices. Russian songs stay in Cyrillic so streaming search finds them.</li>
+          <li id="ytStep">The simplest way: play the <a id="stYt" target="_blank" rel="noopener">YouTube playlist</a>, which has all 34 items in order, voices included.</li>
+          <li>For Spotify, Apple Music or Yandex Music, copy the list: every track in running order, without the voices. Russian songs stay in Cyrillic so streaming search finds them.</li>
           <li>Paste it into <a href="https://www.tunemymusic.com/" target="_blank" rel="noopener">TuneMyMusic</a>, which turns a text list into a playlist on Spotify, Apple Music or Yandex Music, or into <a href="https://music.yandex.ru/import" target="_blank" rel="noopener">Yandex Music’s import page</a>.</li>
           <li>Play the voices from YouTube between tracks. Moroder’s monologue is the start of the Daft Punk track, so it is on streaming. Wanderers plays with its own sound.</li>
           <li>Set a 5–8 second crossfade, and turn it off for the voices.</li>
@@ -437,7 +438,7 @@ const ym=q=>'https://music.yandex.ru/search?text='+encodeURIComponent(q);
 const yt=q=>'https://www.youtube.com/results?search_query='+encodeURIComponent(q);
 const isVoice=x=>x.k==='voice';
 const hi=x=>x.p>=9;
-const L=(q,voice,stream)=>'<div class="s-links">'+((!voice||stream)?'<a href="'+sp(q)+'" target="_blank" rel="noopener">Spotify ↗</a><a href="'+ym(q)+'" target="_blank" rel="noopener">Yandex ↗</a>':'')+'<a href="'+yt(q)+'" target="_blank" rel="noopener">YouTube ↗</a></div>';
+const L=(q,voice,stream,vid)=>'<div class="s-links">'+(vid?'<a href="https://www.youtube.com/watch?v='+vid+'" target="_blank" rel="noopener">YouTube ↗</a>':'')+((!voice||stream)?'<a href="'+sp(q)+'" target="_blank" rel="noopener">Spotify ↗</a><a href="'+ym(q)+'" target="_blank" rel="noopener">Yandex ↗</a>':'')+(vid?'':'<a href="'+yt(q)+'" target="_blank" rel="noopener">YouTube ↗</a>')+'</div>';
 const hm=s=>{const m=Math.round(s/60);return m>=60?Math.floor(m/60)+' h '+(m%60)+' min':m+' min'};
 function copyText(text,ta,st,done){
   const fallback=()=>{ta.hidden=false;ta.value=text;ta.focus();ta.select();st.textContent='Selected: press ⌘C or Ctrl+C'};
@@ -455,6 +456,7 @@ const byId=Object.fromEntries(S.map(x=>[x.id,x]));
 document.getElementById('sTop').innerHTML=TOP.map(([id,why])=>{const x=byId[id];
   return '<li><a href="#t-'+id+'">'+esc(x.a)+' — '+esc(x.t)+'</a><span class="pb"><i>P</i> '+x.p+' · <i>I</i> '+x.v+'</span><span class="why">'+esc(why)+' · '+x.y+'</span></li>'}).join('');
 
+const sy=document.getElementById('stYt');if(DATA.playlist){sy.href=DATA.playlist}else{document.getElementById('ytStep').hidden=true}
 const ta=document.getElementById('sImport');
 ta.value=tracks.map(x=>x.imp||(x.a+' — '+x.t)).join('\n');
 document.getElementById('sCopy').addEventListener('click',()=>{
@@ -483,7 +485,7 @@ wrap.innerHTML=B.map(b=>{
      '<div class="s-main"><div class="s-t">'+esc(x.t)+'</div><div class="s-a">'+meta+'</div>'+
      '<p class="s-idea">'+esc(x.idea)+'</p><p class="s-proof">'+tags+esc(x.proof)+'</p></div>'+
      '<div class="s-side"><span class="pb"><i>P</i> '+x.p+' · <i>I</i> '+x.v+'</span>'+
-     '<span class="s-time">'+(x.approx?'≈':'')+mmss(x.d)+' <i>· from '+mmss(rel)+'</i></span>'+L(x.q||(x.a+' '+x.t),v,x.stream)+'</div></li>'}).join('')+'</ol></div>'}).join('')+
+     '<span class="s-time">'+(x.approx?'≈':'')+mmss(x.d)+' <i>· from '+mmss(rel)+'</i></span>'+L(x.q||(x.a+' '+x.t),v,x.stream,x.yt)+'</div></li>'}).join('')+'</ol></div>'}).join('')+
   '<p class="s-empty" id="sEmpty" hidden>Nothing matches this filter.</p>';
 
 document.getElementById('sBenchTitle').textContent=BENCH.length+' substitutes';
