@@ -53,3 +53,25 @@ export async function passCodeOf(p: Pick<Player, "id" | "card_no">): Promise<str
   const { data } = await db().from("tags").select("code").eq("player_id", p.id).maybeSingle();
   return data?.code ?? `kin-${p.card_no}`;
 }
+
+// Everyone in the traveler's orbit, either way (collections), plus old mutual "friends" pairs (since PR #56 a
+// one-way friends row is only a pending orbit request, so it does not count). Whole rows (with birthdays)
+// for the server's pair arithmetic only; never send them to the browser as is.
+export async function circleOf(id: string): Promise<Player[]> {
+  const [out, inc, mine, theirs] = await Promise.all([
+    db().from("friends").select("friend_id").eq("player_id", id),
+    db().from("friends").select("player_id").eq("friend_id", id),
+    db().from("collections").select("owner_id").eq("collector_id", id),
+    db().from("collections").select("collector_id").eq("owner_id", id),
+  ]);
+  const asked = new Set((out.data ?? []).map((r: any) => r.friend_id as string));
+  const ids = new Set<string>([
+    ...(inc.data ?? []).map((r: any) => r.player_id as string).filter((x) => asked.has(x)),
+    ...(mine.data ?? []).map((r: any) => r.owner_id),
+    ...(theirs.data ?? []).map((r: any) => r.collector_id),
+  ]);
+  ids.delete(id);
+  if (!ids.size) return [];
+  const { data } = await db().from("players").select("*").in("id", [...ids]);
+  return (data ?? []) as Player[];
+}
