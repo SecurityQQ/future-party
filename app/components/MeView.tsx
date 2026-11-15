@@ -36,7 +36,7 @@ export default async function MeView({ me }: { me: Player }) {
         </Hull>
       )}
 
-      <SharePanel url={url} qr={qr} title={`${me.character} · ${first}’s Kin`} />
+      <SharePanel url={url} qr={qr} title={`${me.character} · ${first}’s Kin`} character={me.character} />
 
       <Hull title="Mirror" code="CAMERA">
         <p style={{ marginTop: 0 }}>Take your Kin into the mirror: open your palm in front of the camera and it lands on your hand, with your orbit circling around you. Eight more camera effects that went viral on X come with it. The camera stays on your phone.</p>

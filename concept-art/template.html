@@ -396,7 +396,7 @@ function render(){
   grid.appendChild(frag);
   $("empty").hidden = shown.length > 0;
   const posts = new Set(shown.map(it => it.p.id)).size;
-  $("count").textContent = `${shown.length} pictures from ${posts} posts`;
+  $("count").textContent = `${shown.length} picture${shown.length === 1 ? "" : "s"} from ${posts} post${posts === 1 ? "" : "s"}`;
 }
 
 function linkify(el, text){
@@ -520,7 +520,17 @@ const TL = WallTimeline({
 
 chips($("themes"), THEMES, "theme");
 chips($("eras"), ERAS, "era");
-$("q").oninput = e => { state.q = e.target.value.trim().toLowerCase(); render(); };
+// The search lives in the address (?q=), so a link can open one artist's pictures: ?q=@handle, or ?q=@handle#wall
+// to play only theirs on the wall. A leading @ is dropped, since the handle is matched without it.
+const setQ = v => { state.q = v.trim().toLowerCase().replace(/^@/, ""); };
+const urlQ = new URLSearchParams(location.search).get("q");
+if (urlQ) { $("q").value = urlQ; setQ(urlQ); }
+$("q").oninput = e => {
+  setQ(e.target.value); render();
+  const u = new URL(location.href);
+  if (e.target.value.trim()) u.searchParams.set("q", e.target.value.trim()); else u.searchParams.delete("q");
+  history.replaceState(null, "", u);
+};
 $("sort").onchange = e => { state.sort = e.target.value; render(); };
 $("play").onclick = () => { cur = -1; startWall(); };
 $("v-close").onclick = close;

@@ -22,8 +22,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   if (!p) return { title: "The Future 2050" };
   const title = `${p.character} · ${p.name.split(" ")[0]}’s Kin · The Future 2050`;
   const description = p.prophecy ?? "Every traveler at Varga Future Party is met by their Kin. Tap to meet this one.";
-  // A page's openGraph replaces the layout's, so the app's card stays the picture until the Kin is drawn
-  const images = p.image_url ? [{ url: p.image_url, width: 900, height: 1200, alt: p.character }] : [CARD];
+  // A page's openGraph replaces the layout's, so the app's card stays the picture until the Kin is drawn. Then it is
+  // the Kin's own 1200 × 630 card (./card/route.tsx), versioned by the picture so a redrawn Kin gets a fresh card.
+  const ver = p.image_url?.split("/").pop()?.replace(/\.\w+$/, "") ?? "";
+  const alt = `${p.character}, ${p.name.split(" ")[0]}’s Kin at Varga Future Party 2050`;
+  const images = p.image_url ? [{ url: `/app/c/${p.card_no}/card?v=${encodeURIComponent(ver)}`, width: 1200, height: 630, alt }] : [CARD];
   return { title, description, openGraph: { ...OPEN_GRAPH, title, description, images }, twitter: { card: "summary_large_image", site: X, title, description, images } };
 }
 
@@ -48,7 +51,7 @@ export default async function CardPage({ params }: { params: Promise<{ id: strin
       <LiveCard card={card} />
       <ProfileBlock name={p.name} profile={toProfile(p)} />
       {own ? (
-        <SharePanel url={url} qr={await qrSvg(url)} title={`${p.character} · ${p.name.split(" ")[0]}’s Kin`} />
+        <SharePanel url={url} qr={await qrSvg(url)} title={`${p.character} · ${p.name.split(" ")[0]}’s Kin`} character={p.character} />
       ) : (
         <Hull title={inOrbit ? "In your orbit" : "Not in your orbit yet"} led={inOrbit ? "green" : "amber"}>
           <p style={{ marginTop: 0 }}>

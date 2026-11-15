@@ -264,7 +264,8 @@ td b{color:var(--fg);font-weight:600}
 .follow .xmark svg{width:20px;height:20px}
 .follow p{flex:1;min-width:min(100%,260px);display:grid;gap:6px}
 .follow b{font:500 clamp(18px,2vw,24px)/1.25 var(--display);letter-spacing:-.035em;color:var(--v-chrome);text-wrap:balance}
-.follow p span{font:400 11px/1.6 var(--mono);color:var(--muted)}
+.follow p span{font-size:14.5px;line-height:1.5;color:var(--fg-2)}
+.follow-acts{display:flex;align-items:center;flex-wrap:wrap;gap:12px 20px}
 footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 11px/1.8 var(--mono);color:var(--muted)}
 
 /* Player: always dark, like the wall */
@@ -415,11 +416,14 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
     <div class="list" id="readList"></div>
   </section>
 
-  <section id="follow" aria-label="Follow on X">
+  <section id="follow" aria-label="The host on X">
     <div class="follow">
       <span class="xmark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
-      <p><b>Please follow @vargastartup on X</b><span>x.com/vargastartup</span></p>
-      <a class="btn" href="https://x.com/vargastartup" target="_blank" rel="noopener">Follow on X <span aria-hidden="true">↗</span></a>
+      <p><b>Stay in 2050</b><span>The films, apps and experiments that come next land on X first.</span></p>
+      <div class="follow-acts">
+        <a class="btn" href="https://x.com/vargastartup" target="_blank" rel="noopener">Follow @vargastartup <span aria-hidden="true">↗</span></a>
+        <a class="lnk" id="sharePost" href="https://x.com/intent/post" target="_blank" rel="noopener">Post about the party <span aria-hidden="true">↗</span></a>
+      </div>
     </div>
   </section>
 
@@ -856,7 +860,9 @@ $('deckShot').src=D.deck.shot;
 if(D.exists[D.deck.shot]===false)$('deckShot').hidden=true;
 $('deckAbout').textContent+=' '+D.deck.slides+' slides.';
 
-$('foot').innerHTML='Varga Future Party 2050 · <a href="'+esc(D.repo)+'" target="_blank" rel="noopener">source on GitHub</a> · <a href="https://x.com/vargastartup" target="_blank" rel="noopener">follow @vargastartup on X</a>'+(WEB?'':' · <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(D.site.replace(/^https?:\/\//,''))+'</a>');
+/* "Post about the party": a post on X written for the visitor, with the site's address (its card shows the party) */
+$('sharePost').href='https://x.com/intent/post?text='+encodeURIComponent('A whole night set in 2050, built as a website: films, a hand-tracking mirror, Mars in 3D and '+A.pictures+' pictures of the future. By @vargastartup')+'&url='+encodeURIComponent(D.site+'/');
+$('foot').innerHTML='Varga Future Party 2050 · <a href="'+esc(D.repo)+'" target="_blank" rel="noopener">source on GitHub</a> · made by <a href="https://x.com/vargastartup" target="_blank" rel="noopener">@vargastartup</a> on X'+(WEB?'':' · <a href="'+esc(D.site)+'" target="_blank" rel="noopener">'+esc(D.site.replace(/^https?:\/\//,''))+'</a>');
 
 /* Film player */
 const player=$('player'),pv=$('pv');let idleT=0,prev=null;
