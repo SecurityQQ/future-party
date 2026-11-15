@@ -14,8 +14,7 @@
    The display face is League Gothic, the wall films' own type. Dark-first; light supported. Everything is a relative
    link, so the page works from the folder offline. D.mode is "folder" (index.html, from hub/build.py) or "web"
    (site/index.html, from hub/site.py): the web mode plays the 720p previews, opens Markdown on GitHub and drops the
-   claude.ai copies, since every page is on the site. The host's material is on admin.html (hub/admin.html), which
-   reuses this style block and is linked from nowhere. */
+   claude.ai copies, since every page is on the site. */
 :root{
   --bg:#070708; --raised:#0e0e10; --fg:#ffffff; --fg-2:#d4d4d8; --muted:#a1a1a6;
   --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.20);
@@ -176,7 +175,7 @@ nav.top .brand{color:var(--fg);margin-right:auto}
 .item .links a:hover{color:var(--accent-ink);text-decoration:underline}
 .tag{font:500 10.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 6px;border-radius:4px;border:1px solid var(--line-2);color:var(--muted);vertical-align:2px;margin-left:6px}
 
-/* Admin page: checklist, short addresses and the rebuild table */
+/* Checklist, address list and table */
 .check{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;counter-reset:c}
 @media (max-width:760px){.check{grid-template-columns:1fr}}
 .check li{border-top:1px solid var(--line);padding:14px 0}
