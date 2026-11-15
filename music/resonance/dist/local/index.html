@@ -2079,6 +2079,7 @@ void main(){
   }
   function route(initial=false){
     const p=new URLSearchParams(location.hash.slice(1));if(p.has('track')){setMode('history');lastSection='history';return;}if(p.has('research')){setMode('research');window.ResonanceResearch?.show();if(!initial&&lastSection!=='research')window.scrollTo({top:0,behavior:'instant'});lastSection='research';document.title='Research — History of Music 2050';return;}
+    if(!p.has('future')){setMode('history');if(!initial)window.ResonanceHistory?.prepare();lastSection='history';return;}
     setMode('future');const asked=p.get('future')||'atlas',raw=concepts.has(asked)||['library','horizon','signals'].includes(asked)?asked:(lastConcept||data.concepts[0].id);let section=raw==='library'?'library':raw==='horizon'?'horizon':raw==='signals'?'signals':concepts.has(raw)?'detail':'atlas';
     for(const s of ['atlas','detail','library','horizon','signals'])$('future-'+s).hidden=s!==section;$('future-controls').hidden=section!=='detail';
     document.querySelectorAll('[data-future-nav]').forEach(a=>{const active=a.dataset.futureNav===(section==='detail'?'atlas':section);a.classList.toggle('active',active);if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});

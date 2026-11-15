@@ -69,6 +69,10 @@ html = rep(html, "for(const s of ['atlas','detail','library','horizon','signals'
            "for(const s of ['atlas','detail','library','horizon','signals'])$('future-'+s).hidden=s!==section;$('future-controls').hidden=section!=='detail';")
 html = rep(html, "if(!initial&&(section!==lastSection||section==='detail'&&previousConcept!==currentConcept)){",
            "if(!initial&&section!==lastSection){")
+# The page opens on History: an address without #future=… or #research is History's
+# (it used to open on Music of the Future, so the site's "Enter History of Music" landed there).
+html = rep(html, "document.title='Research — History of Music 2050';return;}\n    setMode('future');",
+           "document.title='Research — History of Music 2050';return;}\n    if(!p.has('future')){setMode('history');if(!initial)window.ResonanceHistory?.prepare();lastSection='history';return;}\n    setMode('future');")
 # ← → walk every example in order, as they walk every recording in History
 html = rep(html, "if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();const c=concepts.get(currentConcept),step=e.key==='ArrowRight'?1:-1;const next=data.concepts[(c.number-1+step+data.concepts.length)%data.concepts.length];navigate(next.id);}",
            "if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();stepFuture(e.key==='ArrowRight'?1:-1);}")
