@@ -20,7 +20,7 @@ ROOT = HERE.parents[1]
 W, H = 1280, 720
 NAVY = (3, 8, 23)
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-APP = "https://www.vargafutureparty.com/app"
+APP = "https://vargafutureparty.com/app"
 
 
 def screenshot(url, size, out):

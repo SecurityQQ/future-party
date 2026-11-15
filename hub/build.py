@@ -18,7 +18,7 @@ sys.dont_write_bytecode = True  # loading wall/build.py below would otherwise le
 HUB = Path(__file__).resolve().parent
 ROOT = HUB.parent
 
-SITE = "https://www.vargafutureparty.com"
+SITE = "https://vargafutureparty.com"
 REPO = "https://github.com/SecurityQQ/future-party"
 DOWNLOAD = REPO + "/releases/download"
 

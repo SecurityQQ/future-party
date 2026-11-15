@@ -9,7 +9,7 @@ Pages in HIDDEN get noindex instead and stay out of the sitemap. The party app a
 """
 import html, json, re
 
-SITE = "https://www.vargafutureparty.com"
+SITE = "https://vargafutureparty.com"
 NAME = "Varga Future Party 2050"
 # The host on X, as on the front page's Follow band: X cards name it
 X = "@vargastartup"

@@ -2,7 +2,7 @@
 
 The host's deck for Varga Future Party 2050, 27 slides: the vision (20 people, then 50), the goal, the three rules, the App, the six topics on the walls with one slide each, everything at the party with a picture of each and a mini demo for each of the nine stations, then predicting the future and the question for the room. Every slide has speaker notes that say how to run its demo.
 
-**Online:** [www.vargafutureparty.com/slides](https://www.vargafutureparty.com/slides), or the Slides tab on the front page. From the folder, open `slides/dist/party-deck.html`.
+**Online:** [vargafutureparty.com/slides](https://vargafutureparty.com/slides), or the Slides tab on the front page. From the folder, open `slides/dist/party-deck.html`.
 
 ## Presenting
 
@@ -14,7 +14,7 @@ The host's deck for Varga Future Party 2050, 27 slides: the vision (20 people, t
 | N | speaker notes and the slide number, at the bottom |
 | Home, End | first and last slide |
 
-The App slide (`#app`, "We are all cyborgs") loops a six-second animation: a phone taps a party chip and a Kin appears on its screen, which is the live app's pass scanner. Next to it is a QR code for www.vargafutureparty.com. The six inspiration slides each name their page on the website in the same place, top right (bottom on the quotes slide), and the addresses are links.
+The App slide (`#app`, "We are all cyborgs") loops a six-second animation: a phone taps a party chip and a Kin appears on its screen, which is the live app's pass scanner. Next to it is a QR code for vargafutureparty.com. The six inspiration slides each name their page on the website in the same place, top right (bottom on the quotes slide), and the addresses are links.
 
 A presenter clicker works: it sends PageDown and PageUp. On a phone, swipe. The address keeps the slide number (`#12`), and a slide's id works too: `#tonight` opens the overview of everything at the party, `#walls` the six wall topics.
 
@@ -53,7 +53,7 @@ The deck was made as a claude.ai Slides artifact, [Future Party 2050](https://cl
 
 | Files | What they are |
 | --- | --- |
-| `app-phone.jpg`, `st-app.jpg` | The live app at www.vargafutureparty.com/app on a phone (430 px wide, signed out: the pass scanner), 15 November 2026 |
+| `app-phone.jpg`, `st-app.jpg` | The live app at vargafutureparty.com/app on a phone (430 px wide, signed out: the pass scanner), 15 November 2026 |
 | `soundboard.jpg`, `st-play.jpg` | Play 2050 (`soundboard/dist/contact2050.html`), full page and a square of its pads |
 | `st-mirror.jpg`, `mirror-effects.jpg` | Mirror 2050: the Holo Cube tile of `hub/apps/mirror.jpg`, and the eight effects from the posts on X they come from |
 | `reel-still.jpg` | The Six Facts film at 5 s (`video/dist/media/six-facts-720p.mp4`, the blue cut) |
@@ -62,5 +62,5 @@ The deck was made as a claude.ai Slides artifact, [Future Party 2050](https://cl
 | `art-1.jpg` … `art-6.jpg` | Concept art from the Imagined Futures wall (`concept-art/tweets.json`): Rick Guidice for NASA, Annibale Siconolfi, Erik van Helvoirt, Karl Schulschenk, Paul Chadeisson, Neil Blevins |
 | `idea-*.jpg`, `st-tea.jpg`, `st-berries.jpg`, `st-dumplings.jpg`, `st-printer.jpg`, `st-glasses3d.jpg`, `st-diffraction.jpg` | **Made with AI** for this deck (varg.ai, GPT Image 2.6, 15 November 2026): the four ideas of 2050 and the stations that are things, not apps. The speaker notes of the Ideas and Tonight slides say so |
 | `robot.jpg` | The party's robot, the host's photo |
-| `qr-site.svg` | QR code for https://www.vargafutureparty.com (segno, error level Q) |
+| `qr-site.svg` | QR code for https://vargafutureparty.com (segno, error level Q) |
 | `kin-*.jpg`, `av-*.jpg`, `mars-3d.jpg`, `naval-2050.png` | Three Kin from the party app, the futurists' avatars from X, NASA's red-blue Mars picture (PIA24688, NASA/JPL-Caltech), Naval's post of 25 September 2018 |

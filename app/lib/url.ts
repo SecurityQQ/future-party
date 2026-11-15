@@ -5,7 +5,7 @@ import QRCode from "qrcode";
 // The address this request came in on (the production alias, a preview, or localhost).
 export async function siteOrigin(): Promise<string> {
   const h = await headers();
-  const host = h.get("x-forwarded-host") ?? h.get("host") ?? "www.vargafutureparty.com";
+  const host = h.get("x-forwarded-host") ?? h.get("host") ?? "vargafutureparty.com";
   const proto = h.get("x-forwarded-proto") ?? (/^(localhost|127\.)/.test(host) ? "http" : "https");
   return `${proto}://${host}`;
 }

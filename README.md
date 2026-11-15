@@ -1,14 +1,14 @@
 # Varga Future Party 2050
 
-**Everything for a party set in the year 2050**: a Big Muse that plays films, quotes, futurists' posts and concept art in one loop on the projector, six apps for the guests, the music, and the research behind all of it. Live, with no login, at **[vargafutureparty.com](https://www.vargafutureparty.com)**.
+**Everything for a party set in the year 2050**: a Big Muse that plays films, quotes, futurists' posts and concept art in one loop on the projector, six apps for the guests, the music, and the research behind all of it. Live, with no login, at **[vargafutureparty.com](https://vargafutureparty.com)**.
 
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fwww.vargafutureparty.com&label=vargafutureparty.com&up_message=live&style=flat-square)](https://www.vargafutureparty.com)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fvargafutureparty.com&label=vargafutureparty.com&up_message=live&style=flat-square)](https://vargafutureparty.com)
 [![Release](https://img.shields.io/github/v/release/SecurityQQ/future-party?label=films&style=flat-square)](../../releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-9dd8ff?style=flat-square)](LICENSE)
 
-[![Varga Future Party 2050: Step into 2050. The Big Muse, music, six apps and Mars in 3D for one night.](hub/og/site.jpg)](https://www.vargafutureparty.com)
+[![Varga Future Party 2050: Step into 2050. The Big Muse, music, six apps and Mars in 3D for one night.](hub/og/site.jpg)](https://vargafutureparty.com)
 
-**[Open the site](https://www.vargafutureparty.com)** · **[The party app](https://www.vargafutureparty.com/app)** · [The Big Muse](https://www.vargafutureparty.com/wall) · [Mars in 3D](https://www.vargafutureparty.com/mars3d/index.html) · [Films (1080p)](../../releases)
+**[Open the site](https://vargafutureparty.com)** · **[The party app](https://vargafutureparty.com/app)** · [The Big Muse](https://vargafutureparty.com/wall) · [Mars in 3D](https://vargafutureparty.com/mars3d/index.html) · [Films (1080p)](../../releases)
 
 ## What is Varga Future Party 2050?
 
@@ -18,25 +18,25 @@ A one-night party where the guests step into 2050, and this repository is the wh
 
 | App | What it does | Built with |
 | --- | --- | --- |
-| [The Future 2050](https://www.vargafutureparty.com/app) | The party App: tap your pass, meet your Kin (a zodiac creature from 2050, drawn for you), then tap other guests' passes to collect their Kin and climb a live ranking | Next.js, Supabase, NFC tags, [varg](https://varg.ai) image generation ([`app/`](app/README.md)) |
-| [Mirror 2050](https://www.vargafutureparty.com/mirror/index.html) | Eight camera effects that went viral on X, played with your hands; nothing leaves the browser | MediaPipe hand tracking, WebGL shaders, one HTML file ([`mirror/`](mirror/README.md)) |
-| [History of Music 2050](https://www.vargafutureparty.com/music/resonance/dist/local/index.html) | 60 stops of music history from 1400 BCE, then twelve directions for the music of the future | Python build from JSON, YouTube player (`music/resonance/`) |
-| [Play: 2050](https://www.vargafutureparty.com/soundboard/dist/contact2050.html) | A soundboard you play by touching things: twelve pins, eight kits, a jam mode that keeps every touch in time and in key | Makey Makey, Web Audio, [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) ([`soundboard/`](soundboard/README.md)) |
-| [Mars in 3D](https://www.vargafutureparty.com/mars3d/index.html) | 40 real stereo pictures of Mars from rovers, landers and orbiters, with a live 3D globe | NASA/ESA anaglyphs, three.js ([`mars3d/`](mars3d/README.md)) |
-| [Imagined Futures](https://www.vargafutureparty.com/concept-art/imagined-futures.html) | 377 pictures of concept art about the future, each linked to its post and artist | Python build from public posts on X (`concept-art/`) |
+| [The Future 2050](https://vargafutureparty.com/app) | The party App: tap your pass, meet your Kin (a zodiac creature from 2050, drawn for you), then tap other guests' passes to collect their Kin and climb a live ranking | Next.js, Supabase, NFC tags, [varg](https://varg.ai) image generation ([`app/`](app/README.md)) |
+| [Mirror 2050](https://vargafutureparty.com/mirror/index.html) | Eight camera effects that went viral on X, played with your hands; nothing leaves the browser | MediaPipe hand tracking, WebGL shaders, one HTML file ([`mirror/`](mirror/README.md)) |
+| [History of Music 2050](https://vargafutureparty.com/music/resonance/dist/local/index.html) | 60 stops of music history from 1400 BCE, then twelve directions for the music of the future | Python build from JSON, YouTube player (`music/resonance/`) |
+| [Play: 2050](https://vargafutureparty.com/soundboard/dist/contact2050.html) | A soundboard you play by touching things: twelve pins, eight kits, a jam mode that keeps every touch in time and in key | Makey Makey, Web Audio, [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) ([`soundboard/`](soundboard/README.md)) |
+| [Mars in 3D](https://vargafutureparty.com/mars3d/index.html) | 40 real stereo pictures of Mars from rovers, landers and orbiters, with a live 3D globe | NASA/ESA anaglyphs, three.js ([`mars3d/`](mars3d/README.md)) |
+| [Imagined Futures](https://vargafutureparty.com/concept-art/imagined-futures.html) | 377 pictures of concept art about the future, each linked to its post and artist | Python build from public posts on X (`concept-art/`) |
 
 ### On the wall and behind it
 
-- **[The Big Muse](https://www.vargafutureparty.com/wall)**: every piece below in one loop of about 49 minutes, in six chapters (Planet, Machines, People, Power, Beyond, 2050).
+- **[The Big Muse](https://vargafutureparty.com/wall)**: every piece below in one loop of about 49 minutes, in six chapters (Planet, Machines, People, Power, Beyond, 2050).
 - **Films**: *Further* (16 claims about 2030–2050, each with a dated real seed and the film that imagined it) and *Six Facts* (the show reel), made with [HyperFrames](https://hyperframes.heygen.com), HTML rendered to video. 1080p masters are on the [releases](../../releases).
-- **Slide walls**: the [quote wall](https://www.vargafutureparty.com/quotes), the [idea wall](https://www.vargafutureparty.com/ideas), the [tweet wall](https://www.vargafutureparty.com/tweets) and [Imagined Futures](https://www.vargafutureparty.com/art).
-- **Research**: [Book Projection 2050](https://www.vargafutureparty.com/books/dist/book-projection-2050.html) (18 books), [2050 in 78 Tweets](https://www.vargafutureparty.com/tweets/dist/tweets-2050.html), [Futurists on 2050](https://www.vargafutureparty.com/tweets/research/futurists-on-2050.html), [Projection 2050](https://www.vargafutureparty.com/reel/projection-2050.html) (18 films), [Why Music Changes](https://www.vargafutureparty.com/music/dist/why-music-changes.html).
-- **[Party slides](https://www.vargafutureparty.com/slides)**: the host's 27-slide deck with speaker notes.
+- **Slide walls**: the [quote wall](https://vargafutureparty.com/quotes), the [idea wall](https://vargafutureparty.com/ideas), the [tweet wall](https://vargafutureparty.com/tweets) and [Imagined Futures](https://vargafutureparty.com/art).
+- **Research**: [Book Projection 2050](https://vargafutureparty.com/books/dist/book-projection-2050.html) (18 books), [2050 in 78 Tweets](https://vargafutureparty.com/tweets/dist/tweets-2050.html), [Futurists on 2050](https://vargafutureparty.com/tweets/research/futurists-on-2050.html), [Projection 2050](https://vargafutureparty.com/reel/projection-2050.html) (18 films), [Why Music Changes](https://vargafutureparty.com/music/dist/why-music-changes.html).
+- **[Party slides](https://vargafutureparty.com/slides)**: the host's 27-slide deck with speaker notes.
 
 ## FAQ
 
 **Can I use it for my own party?**
-Yes. Open [vargafutureparty.com](https://www.vargafutureparty.com) on the projector laptop and type `/wall`, or clone the repo and open `index.html`: the front page and most pieces run from the folder without internet. The party app needs its own Supabase project and NFC tags; see [`app/README.md`](app/README.md).
+Yes. Open [vargafutureparty.com](https://vargafutureparty.com) on the projector laptop and type `/wall`, or clone the repo and open `index.html`: the front page and most pieces run from the folder without internet. The party app needs its own Supabase project and NFC tags; see [`app/README.md`](app/README.md).
 
 **Do guests need an account or an app?**
 No. Nothing on the site needs a login, and the party app opens in the phone's browser from an NFC pass.
@@ -147,7 +147,7 @@ python3 -I wall/build.py   # writes wall/dist/big-wall.html and wall/dist/manife
 python3 -I wall/clips.py   # only when highlights.json changes its clips: cuts wall/media/ from the Six Facts footage
 ```
 
-`wall/dist/big-wall.html` opens from the folder or at [/wall](https://www.vargafutureparty.com/wall) or [/muse](https://www.vargafutureparty.com/muse) on the website. It was called the Big Wall until 15 November 2026; the folder, the file and the /wall address keep that name. Its start screen lists the Highlights and the six chapters with their lengths; **Start the Big Muse** plays from the top, a chapter starts from that chapter, and F goes fullscreen. Add `#play` to the address to start straight away, `#highlights` for the opening, or a chapter's id (`#planet`, `#machines`, `#people`, `#power`, `#beyond`, `#finale`). Keys: ← → slides, Space pause, 0 the Highlights, 1 to 6 chapters, M sound, Esc back to the start screen.
+`wall/dist/big-wall.html` opens from the folder or at [/wall](https://vargafutureparty.com/wall) or [/muse](https://vargafutureparty.com/muse) on the website. It was called the Big Wall until 15 November 2026; the folder, the file and the /wall address keep that name. Its start screen lists the Highlights and the six chapters with their lengths; **Start the Big Muse** plays from the top, a chapter starts from that chapter, and F goes fullscreen. Add `#play` to the address to start straight away, `#highlights` for the opening, or a chapter's id (`#planet`, `#machines`, `#people`, `#power`, `#beyond`, `#finale`). Keys: ← → slides, Space pause, 0 the Highlights, 1 to 6 chapters, M sound, Esc back to the start screen.
 
 The loop starts with **the Highlights**, about 40 seconds cut fast and built like the opening of Further: 2050 and its two lines, Further's claims over their photos, the 71% fact over NASA's night lights, four NASA launch clips, a run of twelve concept-art pictures, Clarke's line on magic, and the wall itself as a mosaic. `highlights.json` picks the shots and their order; the build fills them from the same sources as the rest of the wall, so a claim or credit fixed there is fixed here too. The clips in `wall/media/` (5, 4 MB, NASA public domain) are cut from the Six Facts footage by `clips.py`. It is silent, like the slide walls, and has no white flashes; its words never move: each shot cuts in with its text already sharp and in place, and only the photos and the footage move. The page fetches its fonts before it plays, so no line is drawn in a stand-in font and then jumps. The ten pictures marked as AI-made in `concept-art/picks.json` stay on the Imagined Futures wall but are left out of the Big Muse. The wall wears the site's Blue futurism (`vibes/tokens.css`) and the type of Further; each slide carries one thing to read first and only the label it needs.
 
@@ -165,7 +165,7 @@ python3 -I slides/build.py   # writes slides/dist/party-deck.html from slides/de
 
 ## The soundboard
 
-Open `soundboard/dist/contact2050.html` (**Play 2050**) in Chrome, or [/play](https://www.vargafutureparty.com/play) on the website, plug in the Makey Makey, hold EARTH and touch a pin. Press Enter for stage mode on the projector.
+Open `soundboard/dist/contact2050.html` (**Play 2050**) in Chrome, or [/play](https://vargafutureparty.com/play) on the website, plug in the Makey Makey, hold EARTH and touch a pin. Press Enter for stage mode on the projector.
 
 It has eight kits, from Liftoff and Rave 2050 to Magic Keys, a horn section you can't play wrong. Jam mode keeps every touch in time and in key, and the beat builds and falls with how busy the room is. The look is space, kept minimal: a black sky that follows the music, with a planet's rim in the colour of the chord and an animation for each pin.
 
@@ -208,7 +208,7 @@ python3 -I build.py   # writes dist/tweets-2050.html (the published page) and di
 
 ## The website
 
-[vargafutureparty.com](https://www.vargafutureparty.com) is one Vercel project, `the-future-2050`, whose root directory is `app/`: the party app (Next.js) serves the whole site. Its build (`npm run build` in `app/`) first runs `npm run site`: `python3 -I hub/site.py` writes `site/`, which is copied into `app/public/` (git-ignored there, except the app's own `public/app/`). The app is at `/app`, its API at `/api`; every other address is a static page of the site. The same project answers at future-party-2050.vercel.app, the-future-2050.vercel.app and zodiac-rangers.vercel.app (the address on the NFC passes); `app/next.config.ts` sends a phone without a traveler from the two old app addresses to vargafutureparty.com, and the app's old paths (`/t/<code>`, `/c/<n>`, `/login` ...) to `/app/...`. `site/` holds:
+[vargafutureparty.com](https://vargafutureparty.com) is one Vercel project, `the-future-2050`, whose root directory is `app/` (the bare domain is the main address; www.vargafutureparty.com answers with a 308 to it, keeping the path): the party app (Next.js) serves the whole site. Its build (`npm run build` in `app/`) first runs `npm run site`: `python3 -I hub/site.py` writes `site/`, which is copied into `app/public/` (git-ignored there, except the app's own `public/app/`). The app is at `/app`, its API at `/api`; every other address is a static page of the site. The same project answers at future-party-2050.vercel.app, the-future-2050.vercel.app and zodiac-rangers.vercel.app (the address on the NFC passes); `app/next.config.ts` sends a phone without a traveler from the two old app addresses to vargafutureparty.com, and the app's old paths (`/t/<code>`, `/c/<n>`, `/login` ...) to `/app/...`. `site/` holds:
 
 - `index.html` is the front page in web mode: it plays the 720p previews, links the 1080p master on the release, and opens Markdown files on GitHub.
 - `admin.html` is the host's page, linked from nowhere; `/admin` forwards to it (`/admin?key=…` goes to the app's admin, `/app/admin`). It is unlisted and marked noindex, not locked.
