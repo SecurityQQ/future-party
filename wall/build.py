@@ -1,4 +1,4 @@
-"""Build The Big Wall: every piece on the wall in one loop, chapter by chapter, like one long show reel.
+"""Build The Big Muse: every piece on the wall in one loop, chapter by chapter, like one long show reel.
 
 It reads the six pieces from their own folders, so it never drifts from them:
 - Six Facts      showreel/reel.json             the six facts (number, line, source)

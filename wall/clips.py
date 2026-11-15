@@ -1,4 +1,4 @@
-"""Cut the NASA clips the Big Wall's opening reel plays, from the Six Facts footage.
+"""Cut the NASA clips the Big Muse's opening reel plays, from the Six Facts footage.
 
 highlights.json names each clip: which Six Facts shot it comes from (showreel/footage.json), where to start and how
 long. The footage itself is not in the repo (python3 -I showreel/tools/fetch_footage.py fetches it), so the clips are
