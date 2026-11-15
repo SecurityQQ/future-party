@@ -9,7 +9,7 @@ const body = Geologica({ subsets: ["latin", "cyrillic"], variable: "--font-body"
 const mono = Martian_Mono({ subsets: ["latin", "cyrillic"], axes: ["wdth"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
-  title: "Kin 2050 · The Future Party",
+  title: "The Future 2050",
   description: "It is 2050 and nobody arrives alone. Tap your pass, meet your Kin, and collect the Kin of everyone you meet at The Future Party.",
 };
 export const viewport: Viewport = { themeColor: "#03050c", width: "device-width", initialScale: 1, viewportFit: "cover" };

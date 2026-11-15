@@ -45,7 +45,7 @@ export default function NfcScan({ signedIn, compact = false }: { signedIn: boole
             return;
           }
         }
-        setError("That tag is not a Kin 2050 pass.");
+        setError("That tag is not a pass for The Future 2050.");
       };
       reader.onreadingerror = () => setError("Could not read the pass. Hold it still against the back of the phone.");
       await reader.scan({ signal: abort.current.signal });

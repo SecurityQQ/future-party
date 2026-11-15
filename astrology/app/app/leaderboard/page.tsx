@@ -8,7 +8,7 @@ import AutoRefresh from "@/components/AutoRefresh";
 import { MiniCard } from "@/components/CharacterCard";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Ranking · Kin 2050" };
+export const metadata = { title: "Ranking · The Future 2050" };
 
 export default async function LeaderboardPage({ searchParams }: { searchParams: Promise<{ tab?: string }> }) {
   const { tab = "travelers" } = await searchParams;
