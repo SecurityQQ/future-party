@@ -242,6 +242,7 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 11px/1.
 .pbar span{font:500 12px var(--mono);color:#cfcfd4;margin-right:8px}
 .pbar button{font:500 13.5px/1 var(--font);color:#fff;background:#142d52;border:1px solid #617fa6;border-radius:8px;padding:10px 14px;cursor:pointer}
 .pbar button:hover{background:#1b3a66}
+.player{--wtl-mono:var(--mono);--wtl-line:#617fa6}
 
 /* The party app, The Future 2050, is one tap away. On a phone or tablet the page wears the app's own control deck
    (app/components/Deck.tsx, styled in app/app/globals.css) with Party lit, so the site and the app share one bottom bar
@@ -328,7 +329,7 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
     <div class="sec-head">
       <p class="eyebrow">On the wall</p>
       <h2>The Big Wall, two films and four slide walls</h2>
-      <p class="note">The Big Wall plays everything below in one loop. Each piece also plays on its own: films loop in a fullscreen player here, and slide walls open in their own page and run by themselves. F goes fullscreen, Esc leaves.</p>
+      <p class="note">The Big Wall plays everything below in one loop. Each piece also plays on its own: films loop in a fullscreen player here, and slide walls open in their own page and run by themselves. F goes fullscreen, Esc leaves; scroll or drag the time line to move through any of them in time.</p>
     </div>
     <div class="feature" id="bigwall"></div>
     <div class="row-label"><h3>Films</h3><span id="filmsLabel"></span></div>
@@ -411,9 +412,10 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
 
 <div class="player" id="player" role="dialog" aria-modal="true" aria-label="Film player" hidden>
   <video id="pv" playsinline loop></video>
-  <div class="pbar"><span id="ptitle"></span><button type="button" id="pplay">Pause</button><button type="button" id="pfull">Fullscreen</button><button type="button" id="pexit">Exit</button></div>
+  <div class="pbar" id="pbar"><span id="ptitle"></span><button type="button" id="pplay">Pause</button><button type="button" id="pfull">Fullscreen</button><button type="button" id="pexit">Exit</button></div>
 </div>
 
+<script>/*WALL_TIMELINE*/</script>
 <script>
 (function(){
 const D=/*DATA*/{};
@@ -648,13 +650,22 @@ $('foot').innerHTML='Future Party 2050 · built '+esc(D.built)+' · <a href="'+e
 /* Film player */
 const player=$('player'),pv=$('pv');let idleT=0,prev=null;
 const poke=()=>{player.classList.remove('idle');clearTimeout(idleT);idleT=setTimeout(()=>player.classList.add('idle'),2500)};
+/* The film's time line, the same one the walls have: drag it, or scroll anywhere on the film, to move through it */
+let praf=0;
+const TL=WallTimeline({bar:$('pbar'),host:player,active:()=>!player.hidden,poke:poke,accent:'#4385ff',wheelMs:5000,
+  items:()=>pv.duration&&isFinite(pv.duration)?[pv.duration*1000]:[],
+  pos:()=>({i:0,t:pv.currentTime*1000}),
+  seek:(i,t)=>{try{pv.currentTime=t/1000}catch(e){}}});
+pv.addEventListener('loadedmetadata',()=>TL.refresh());
+const ptick=()=>{if(player.hidden)return;TL.update();praf=requestAnimationFrame(ptick)};
 function openFilm(id){
   const f=D.films.find(x=>x.id===id);if(!f)return;
   prev=document.activeElement;pv.src=f.file;$('ptitle').textContent=f.title;player.hidden=false;document.documentElement.style.overflow='hidden';
+  TL.refresh();cancelAnimationFrame(praf);praf=requestAnimationFrame(ptick);
   pv.play().catch(()=>{});$('pplay').textContent='Pause';poke();$('pplay').focus({preventScroll:true});
 }
 function closeFilm(){
-  pv.pause();pv.removeAttribute('src');pv.load();player.hidden=true;document.documentElement.style.overflow='';
+  cancelAnimationFrame(praf);pv.pause();pv.removeAttribute('src');pv.load();player.hidden=true;document.documentElement.style.overflow='';
   try{if(document.fullscreenElement)document.exitFullscreen().catch(()=>{})}catch(e){}
   try{prev&&prev.focus({preventScroll:true})}catch(e){}
 }

@@ -17,6 +17,8 @@ from PIL import Image
 HERE = Path(__file__).resolve().parent
 # Blue futurism, the site's palette and materials (vibes/README.md), inlined so every copy works offline
 TOKENS = HERE.parent / "vibes" / "tokens.css"
+# The timeline every wall shares (drag, click or scroll through the loop)
+TIMELINE = HERE.parent / "vibes" / "timeline.js"
 EMBED_PX, EMBED_Q = 460, 72  # pictures inside the standalone file
 AI_WORDS = r"#?\bai\s?art\b|\bmidjourney\b|\bstable diffusion\b|\bai[- ]generated\b|\bnano banana\b"  # a post saying it is AI-made
 
@@ -99,10 +101,11 @@ def main():
     }
     summ = summary(posts, curation)
     tpl = (HERE / "template.html").read_text(encoding="utf8")
-    for slot in ("/*ART*/null", '/*FULL*/"orig"', "/*VIBES_TOKENS*/"):
+    for slot in ("/*ART*/null", '/*FULL*/"orig"', "/*VIBES_TOKENS*/", "/*WALL_TIMELINE*/"):
         if tpl.count(slot) != 1:
             print(f"template.html needs exactly one {slot} slot"); sys.exit(1)
     tpl = tpl.replace("/*VIBES_TOKENS*/", TOKENS.read_text(encoding="utf8"), 1)
+    tpl = tpl.replace("/*WALL_TIMELINE*/", TIMELINE.read_text(encoding="utf8"), 1)
 
     def page(full):
         art = {"stats": stats, "summary": summ, "posts": data(posts, full)}

@@ -12,6 +12,8 @@ import json, re, sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
+# The timeline every wall shares (drag, click or scroll through the loop), inlined so the page works from a folder
+TIMELINE = HERE.parent / "vibes" / "timeline.js"
 BOOK_IDS = {"figueres", "ritchie", "drawdown", "ministry", "ai2041", "kelly", "earth4all", "lem",
             "porritt", "kaku", "chiang", "kurzweil", "klara", "megachange", "smith", "randers",
             "cityonmars", "limits", "clarke", "sagan"}
@@ -48,6 +50,9 @@ def main():
     tpl = (HERE / "template.html").read_text(encoding="utf8")
     if "const Q=/*QUOTES*/[];" not in tpl:
         print("template.html is missing the const Q=/*QUOTES*/[]; slot"); sys.exit(1)
+    if tpl.count("/*WALL_TIMELINE*/") != 1:
+        print("template.html needs exactly one /*WALL_TIMELINE*/ slot"); sys.exit(1)
+    tpl = tpl.replace("/*WALL_TIMELINE*/", TIMELINE.read_text(encoding="utf8"), 1)
     page = tpl.replace("const Q=/*QUOTES*/[];", "const Q=/*QUOTES*/" + json.dumps(quotes, ensure_ascii=False) + ";", 1)
     out = HERE / "dist"; out.mkdir(exist_ok=True)
     (out / "book-projection-2050.html").write_text(page, encoding="utf8")

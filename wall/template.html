@@ -198,7 +198,7 @@ button{font:inherit;color:inherit}
   <p class="lead" id="lead"></p>
   <div class="go">
     <button type="button" class="btn" id="start"><span class="tri" aria-hidden="true"></span>Start the wall</button>
-    <span class="keys">F fullscreen · Space pause · ← → slides · 0 highlights · 1–6 chapters · M sound · Esc back</span>
+    <span class="keys">F fullscreen · Space pause · ← → slides · scroll or Shift+← → to move in time · 0 highlights · 1–6 chapters · M sound · Esc back</span>
   </div>
   <ol class="chapters" id="chapters"></ol>
 </main>
@@ -221,6 +221,7 @@ button{font:inherit;color:inherit}
   <div class="prog"><i id="prog"></i></div>
 </div>
 
+<script>/*WALL_TIMELINE*/</script>
 <script>
 (function(){
 const D=/*DATA*/{};
@@ -267,11 +268,11 @@ function newLoop(){used={};PL.forEach(it=>{if(it.k==='pic')delete it.pic})}
 /* ---------- numbers: each digit keeps its place while it counts ---------- */
 const digits=s=>esc(s).replace(/\d/g,'<span class="dg">$&</span>');
 function countUp(el,c,delay){
-  if(!c||still)return;
+  if(!el||!c||still)return;
   const f=c.from||0,t=c.to,suf=c.suffix||'',t0=performance.now()+delay;
   const show=v=>{el.innerHTML=digits(String(v)+suf)};
-  show(f);
-  const step=now=>{if(!el.isConnected)return;const p=Math.min(1,Math.max(0,(now-t0)/1300)),e=1-Math.pow(1-p,3);show(Math.round(f+(t-f)*e));if(p<1)requestAnimationFrame(step)};
+  el._cu=t0;show(Math.round(f+(t-f)*(1-Math.pow(1-Math.min(1,Math.max(0,-delay/1300)),3))));
+  const step=now=>{if(!el.isConnected||el._cu!==t0)return;const p=Math.min(1,Math.max(0,(now-t0)/1300)),e=1-Math.pow(1-p,3);show(Math.round(f+(t-f)*e));if(p<1)requestAnimationFrame(step)};
   requestAnimationFrame(step);
 }
 
@@ -282,13 +283,13 @@ function build(it){
   const s=document.createElement('div');
   s.className='s k-'+it.k;s.style.setProperty('--c',colorOf(it.ch));
   if(it.k==='reel'){
-    s.innerHTML='';s._r={i:-1,box:null};reelWarm();reelStep(s,0);
+    s.innerHTML='';s._r={i:-1,box:null};reelWarm();reelStep(s,S.elapsed);
   }else if(it.k==='card'){
     s.innerHTML='<div class="in"><p class="n a1">'+it.n+' / '+it.of+'</p><p class="big a1">'+esc(it.title)+'</p><p class="sub a2">'+esc(it.sub)+'</p></div>';
   }else if(it.k==='fact'){
     const long=String(it.num).length>5;
     s.innerHTML='<div class="in"><p class="num a1'+(long?' long':'')+'">'+digits(it.num)+'</p><p class="txt a2">'+esc(it.text)+'</p><p class="meta a3">'+esc(it.src)+'</p></div>';
-    countUp(s.querySelector('.num'),it.count,250);
+    countUp(s.querySelector('.num'),it.count,250-S.elapsed);
   }else if(it.k==='further'){
     if(it.scrim==='strong')s.classList.add('strong');
     s.style.setProperty('--kb',(it.d+2)+'s');
@@ -350,14 +351,21 @@ function warmOriginals(){
   if(!RV||RV.origDone)return;RV.origDone=true;
   R.shots.forEach(sh=>{if(sh.k!=='art')return;const im=new Image();im.src=UP+sh.pic.file;(im.decode?im.decode():Promise.resolve()).then(()=>{RV.orig[sh.pic.file]=im.src}).catch(()=>{})});
 }
-function reelStep(s,ms){
+/* seek: the timeline moved here, so the shot also catches up with the time inside it */
+function reelStep(s,ms,seek){
   const r=s._r,t=ms/1000;if(!r)return;
   let i=Math.max(0,r.i);
   while(i+1<R.shots.length&&t>=R.shots[i+1].t)i++;
   while(i>0&&t<R.shots[i].t)i--;
-  if(i!==r.i){r.i=i;reelShot(s,i)}
+  const off=Math.max(0,t-R.shots[i].t);
+  if(i!==r.i){r.i=i;reelShot(s,i,off)}
+  else if(seek){
+    if(S.video&&R.shots[i].clip){try{S.video.currentTime=off}catch(e){}}
+    if(R.shots[i].k==='fact')countUp(r.box.querySelector('.num'),R.shots[i].count,150-off*1000);
+  }
+  if(seek)WallTimeline.at(r.box,off*1000);
 }
-function reelShot(s,i){
+function reelShot(s,i,off){
   const sh=R.shots[i],r=s._r,box=document.createElement('div');
   box.className='rs rs-'+sh.k+(sh.keep?' keep':'');
   box.style.setProperty('--sd',sh.d+'s');box.style.setProperty('--kb',(sh.d+1)+'s');
@@ -382,11 +390,11 @@ function reelShot(s,i){
   }
   if(clip){
     const v=RV.v[sh.clip];box.prepend(v);
-    try{v.currentTime=0}catch(e){}
+    try{v.currentTime=off||0}catch(e){}
     if(S.playing)v.play().catch(()=>{});
     S.video=v;
   }else S.video=null;
-  if(sh.k==='fact')countUp(box.querySelector('.num'),sh.count,150);
+  if(sh.k==='fact')countUp(box.querySelector('.num'),sh.count,150-(off||0)*1000);
   const prev=r.box;
   s.appendChild(box);r.box=box;
   if(prev){const pv=prev.querySelector('video');if(pv&&pv.parentNode===prev)pv.pause();prev.remove()}
@@ -397,10 +405,12 @@ const pj=$('pj'),stage=$('stage'),prog=$('prog');
 const S={open:false,i:0,el:null,video:null,playing:true,sound:false,elapsed:0,last:0,raf:0,idleT:0,lock:null,prevFocus:null};
 $('chs').innerHTML=[HL].concat(D.chapters).map((c,i)=>'<button type="button" data-ch="'+esc(c.id)+'" style="--c:'+esc(c.color)+'" title="'+esc(c.title)+' ('+i+')">'+esc(c.title)+'</button>').join('');
 const chapterStart=id=>id==='highlights'?PL.findIndex(it=>it.k==='reel'):PL.findIndex(it=>it.k==='card'&&it.ch===id);
-function render(){
+const drop=old=>{old.querySelectorAll('video').forEach(v=>{v.pause();v.muted=true;if(!v.classList.contains('rv')){v.removeAttribute('src');v.querySelectorAll('source').forEach(x=>x.remove());v.load()}});old.remove()};
+function render(quick){
   const it=PL[S.i];
   const old=stage.querySelector(':scope>.s:not(.out)');
-  if(old){
+  if(quick)stage.querySelectorAll(':scope>.s').forEach(drop);
+  else if(old){
     old.classList.add('out');
     old.querySelectorAll('video').forEach(ov=>{ov.pause();ov.muted=true});
     setTimeout(()=>{old.querySelectorAll('video:not(.rv)').forEach(v=>{v.removeAttribute('src');v.querySelectorAll('source').forEach(x=>x.remove());v.load()});old.remove()},600);
@@ -428,14 +438,41 @@ function tick(ts){
   const dt=ts-S.last;S.last=ts;
   const it=PL[S.i];
   if(it.k==='film'){
-    const v=S.video;prog.style.width=(v&&v.duration?Math.min(100,v.currentTime/v.duration*100):0)+'%';
+    const v=S.video;
+    if(v&&v.readyState>=1&&!v.seeking&&!TL.busy)S.elapsed=v.currentTime*1000;
+    prog.style.width=(v&&v.duration?Math.min(100,v.currentTime/v.duration*100):0)+'%';
   }else{
     if(S.playing){S.elapsed+=Math.min(dt,250);if(S.elapsed>=it.d*1000){go(S.i+1)}}
     if(PL[S.i]===it&&it.k==='reel')reelStep(S.el,S.elapsed);
     prog.style.width=Math.min(100,S.elapsed/(it.d*1000)*100)+'%';
   }
+  TL.update();
   S.raf=requestAnimationFrame(tick);
 }
+/* The timeline: the whole loop on one rail, Highlights, Six Facts, the six chapters and Further each a segment */
+const filmAt=(v,sec)=>{const put=()=>{try{v.currentTime=Math.min(sec,(v.duration||sec+1)-.05)}catch(e){}};v.readyState>=1?put():v.addEventListener('loadedmetadata',put,{once:true})};
+const lenOf=it=>it.k==='film'?D.films[it.film].sec*1000:it.d*1000;
+const groupOf=it=>it.k==='reel'?'highlights':it.k==='film'?'film:'+it.film:it.ch;
+function seek(i,t,live){
+  const it=PL[i];if(!S.open||!it)return;
+  const moved=i!==S.i||!S.el;
+  S.elapsed=t;
+  if(moved){S.i=i;render(true)}
+  if(it.k==='film'){if(S.video)filmAt(S.video,t/1000);WallTimeline.at(S.el,t)}
+  else if(it.k==='reel')reelStep(S.el,t,true);
+  else{WallTimeline.at(S.el,t);if(!moved&&it.k==='fact')countUp(S.el.querySelector('.num'),it.count,250-t)}
+  prog.style.width=Math.min(100,t/lenOf(it)*100)+'%';
+}
+const TL=WallTimeline({
+  bar:$('bar'),host:pj,active:()=>S.open,poke:()=>poke(),accent:'#4385ff',
+  items:()=>PL.map(lenOf),
+  marks:()=>{const out=[];let prev=null;PL.forEach((it,i)=>{const g=groupOf(it);if(g===prev)return;prev=g;
+    out.push(g==='highlights'?{i:i,label:HL.title,color:HL.color}:it.k==='film'?{i:i,label:D.films[it.film].title,color:'#9dd8ff'}:{i:i,label:(CH[it.ch]||{}).title||'',color:colorOf(it.ch)})});return out},
+  label:i=>{const it=PL[i]||{};return {card:'Chapter '+it.n,fact:it.num,further:it.hero,quote:it.by,idea:it.h,tweet:it.name,pic:'A picture'}[it.k]||''},
+  pos:()=>({i:S.i,t:S.elapsed}),
+  seek:seek
+});
+TL.refresh();
 function setPlaying(on){
   S.playing=on;$('bPlay').textContent=on?'Pause':'Resume';$('paused').hidden=on;
   if(S.video){on?S.video.play().catch(()=>{}):S.video.pause()}

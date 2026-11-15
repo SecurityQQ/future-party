@@ -269,6 +269,7 @@ footer{padding-block:28px 48px;border-top:1px solid var(--line);font:400 11px/1.
 .pbar span{font:500 12px var(--mono);color:#cfcfd4;margin-right:8px}
 .pbar button{font:500 13.5px/1 var(--font);color:#fff;background:#142d52;border:1px solid #617fa6;border-radius:8px;padding:10px 14px;cursor:pointer}
 .pbar button:hover{background:#1b3a66}
+.player{--wtl-mono:var(--mono);--wtl-line:#617fa6}
 
 /* The party app, The Future 2050, is one tap away. On a phone or tablet the page wears the app's own control deck
    (app/components/Deck.tsx, styled in app/app/globals.css) with Party lit, so the site and the app share one bottom bar
@@ -355,7 +356,7 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
     <div class="sec-head">
       <p class="eyebrow">On the wall</p>
       <h2>The Big Wall, two films and four slide walls</h2>
-      <p class="note">The Big Wall plays everything below in one loop. Each piece also plays on its own: films loop in a fullscreen player here, and slide walls open in their own page and run by themselves. F goes fullscreen, Esc leaves.</p>
+      <p class="note">The Big Wall plays everything below in one loop. Each piece also plays on its own: films loop in a fullscreen player here, and slide walls open in their own page and run by themselves. F goes fullscreen, Esc leaves; scroll or drag the time line to move through any of them in time.</p>
     </div>
     <div class="feature" id="bigwall"></div>
     <div class="row-label"><h3>Films</h3><span id="filmsLabel"></span></div>
@@ -438,9 +439,203 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
 
 <div class="player" id="player" role="dialog" aria-modal="true" aria-label="Film player" hidden>
   <video id="pv" playsinline loop></video>
-  <div class="pbar"><span id="ptitle"></span><button type="button" id="pplay">Pause</button><button type="button" id="pfull">Fullscreen</button><button type="button" id="pexit">Exit</button></div>
+  <div class="pbar" id="pbar"><span id="ptitle"></span><button type="button" id="pplay">Pause</button><button type="button" id="pfull">Fullscreen</button><button type="button" id="pexit">Exit</button></div>
 </div>
 
+<script>/* The wall timeline: every wall on the site can be moved through in time, like a film.
+   One row above the wall's buttons: the time so far, the whole loop as a rail (each chapter or block a segment in
+   its own colour) and the loop's length. Drag or click the rail; scroll with the mouse wheel or the trackpad anywhere
+   on the wall (one notch is about one slide); Shift+← → moves ten seconds; on the rail itself ← → move five seconds,
+   Page Up/Down a minute, Home/End the ends. The slide under the time shows at once, at the point it would have reached.
+   Nothing on the slides moves because of the timeline: it only changes which slide is up and how far it has run.
+
+   Each wall's build inlines this file where its template says WALL_TIMELINE (in a comment), so every page keeps
+   working from a folder with no server. A wall hands over:
+     bar      the element the row goes into (the wall's button bar; the row takes a line of its own at the top)
+     host     the element that listens to the wheel (the fullscreen player)
+     active() true while the wall is playing, so the wheel scrolls the page as usual otherwise
+     items()  every slide's length in ms, in play order
+     marks()  where chapters begin: [{i, label, color}], optional
+     label(i) a few words for slide i, shown with the time while pointing or scrolling, optional
+     pos()    {i, t}: the slide on screen and the ms it has run
+     seek(i, t, live) show slide i, t ms in; live is true while the person is still dragging or scrolling
+     poke()   wake the wall's controls
+     wheelMs  ms one wheel notch moves (default: the average slide)
+     accent   the colour of the rail without chapters */
+(function(){
+if(window.WallTimeline)return;
+var CSS='.wtl{box-sizing:border-box;flex:1 0 100%;width:100%;padding:0 max(0px,calc((100% - 1180px)/2));margin:0 0 6px;display:flex;align-items:center;gap:14px;font:400 11px/1 var(--wtl-mono,"Martian Mono",ui-monospace,"SF Mono",Menlo,monospace);color:var(--wtl-muted,#a2b6d4);font-variant-numeric:tabular-nums;-webkit-user-select:none;user-select:none}'+
+'.wtl[hidden]{display:none!important}'+
+'.wtl-t{flex:none;min-width:4.6em;letter-spacing:.02em}.wtl-now{text-align:right;color:var(--wtl-fg,#edf4ff)}'+
+'.wtl-track{position:relative;flex:1;min-width:0;height:22px;cursor:pointer;touch-action:none;outline:none;border-radius:6px}'+
+'.wtl-track:focus-visible{box-shadow:0 0 0 2px var(--wtl-accent,#4385ff)}'+
+'.wtl-rail{position:absolute;left:0;right:0;top:50%;height:4px;margin-top:-2px;transition:height .15s,margin .15s}'+
+'.wtl-track:hover .wtl-rail,.wtl.on .wtl-rail{height:8px;margin-top:-4px}'+
+'.wtl-seg{position:absolute;top:0;bottom:0;border-radius:2px;overflow:hidden;background:rgb(237 244 255/.1)}'+
+'.wtl-seg::before{content:"";position:absolute;inset:0;background:var(--c);opacity:.3}'+
+'.wtl-seg b{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--c)}'+
+'.wtl-head{position:absolute;top:50%;left:0;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;background:var(--wtl-fg,#edf4ff);box-shadow:0 0 0 3px rgb(3 8 23/.55);transition:transform .15s;pointer-events:none}'+
+'.wtl-track:hover .wtl-head,.wtl.on .wtl-head{transform:scale(1.25)}'+
+'.wtl-tip{position:absolute;bottom:calc(100% + 10px);left:0;transform:translateX(-50%);white-space:nowrap;max-width:min(60vw,440px);overflow:hidden;text-overflow:ellipsis;padding:7px 10px;border-radius:8px;background:rgb(3 8 23/.92);border:1px solid var(--wtl-line,#2d486d);color:var(--wtl-muted,#a2b6d4);pointer-events:none}'+
+'.wtl-tip b{font-weight:500;color:var(--wtl-fg,#edf4ff);margin-right:.7em}'+
+'@media (max-width:560px){.wtl{gap:8px}.wtl-t{min-width:3.6em;font-size:10px}}';
+function css(){
+  if(document.getElementById('wtl-css'))return;
+  var s=document.createElement('style');s.id='wtl-css';s.textContent=CSS;(document.head||document.documentElement).appendChild(s);
+}
+function clock(ms){
+  var s=Math.max(0,Math.floor(ms/1000)),h=Math.floor(s/3600),m=Math.floor(s%3600/60),r=s%60;
+  return (h?h+':'+String(m).padStart(2,'0'):m)+':'+String(r).padStart(2,'0');
+}
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+function WallTimeline(o){
+  css();
+  var el=document.createElement('div');el.className='wtl';el.hidden=true;
+  if(o.accent)el.style.setProperty('--wtl-accent',o.accent);
+  el.innerHTML='<span class="wtl-t wtl-now">0:00</span><div class="wtl-track" role="slider" tabindex="0" aria-label="Time on the wall" aria-valuemin="0"><div class="wtl-rail"></div><i class="wtl-head"></i><div class="wtl-tip" hidden></div></div><span class="wtl-t wtl-len">0:00</span>';
+  o.bar.insertBefore(el,o.bar.firstChild);
+  var track=el.querySelector('.wtl-track'),rail=el.querySelector('.wtl-rail'),head=el.querySelector('.wtl-head'),tip=el.querySelector('.wtl-tip');
+  var nowEl=el.querySelector('.wtl-now'),lenEl=el.querySelector('.wtl-len');
+  var durs=[],starts=[],total=0,segs=[],shownSec=-1;
+  var scrub=null,drag=false,hover=false,wheelEnd=0,frame=0,want=null,wantLive=false;
+  var active=o.active||function(){return true};
+  var poke=o.poke||function(){};
+
+  function refresh(){
+    durs=(o.items()||[]).map(function(d){return Math.max(1,+d||0)});
+    starts=[];total=0;durs.forEach(function(d){starts.push(total);total+=d});
+    var marks=(o.marks?o.marks():[])||[];
+    marks=marks.filter(function(m){return m&&m.i>=0&&m.i<durs.length}).sort(function(a,b){return a.i-b.i});
+    if(!marks.length||marks[0].i>0)marks.unshift({i:0,label:'',color:o.accent||'#4385ff'});
+    segs=marks.map(function(m,k){var a=starts[m.i],b=k+1<marks.length?starts[marks[k+1].i]:total;return {a:a,b:b,label:m.label||'',color:m.color||o.accent||'#4385ff'}}).filter(function(s){return s.b>s.a});
+    rail.innerHTML=segs.map(function(s,k){
+      var l=s.a/total*100,w=(s.b-s.a)/total*100,gap=k+1<segs.length?' - 2px':'';
+      return '<i class="wtl-seg" style="--c:'+esc(s.color)+';left:'+l.toFixed(4)+'%;width:calc('+w.toFixed(4)+'%'+gap+')"><b></b></i>';
+    }).join('');
+    segs.forEach(function(s,k){s.fill=rail.children[k].firstChild});
+    lenEl.textContent=clock(total);track.setAttribute('aria-valuemax',String(Math.round(total/1000)));
+    el.hidden=!(total>0&&durs.length);
+    shownSec=-1;draw(total?now():0);
+  }
+  function at(t){ // the slide that is on at t ms into the loop
+    var lo=0,hi=starts.length-1;
+    while(lo<hi){var mid=(lo+hi+1)>>1;if(starts[mid]<=t)lo=mid;else hi=mid-1}
+    return lo;
+  }
+  function segOf(t){for(var k=segs.length-1;k>=0;k--)if(t>=segs[k].a)return segs[k];return segs[0]}
+  function now(){
+    if(!durs.length)return 0;
+    var p=o.pos()||{i:0,t:0},i=Math.min(Math.max(0,p.i|0),durs.length-1);
+    return starts[i]+Math.min(Math.max(0,p.t||0),durs[i]);
+  }
+  function draw(t){
+    if(!total)return;
+    var f=Math.min(1,Math.max(0,t/total));
+    head.style.left=(f*100)+'%';
+    segs.forEach(function(s){s.fill.style.width=(t<=s.a?0:t>=s.b?100:(t-s.a)/(s.b-s.a)*100)+'%'});
+    var sec=Math.floor(t/1000);
+    if(sec!==shownSec){
+      shownSec=sec;nowEl.textContent=clock(t);
+      var sg=segOf(t);
+      track.setAttribute('aria-valuenow',String(sec));
+      track.setAttribute('aria-valuetext',clock(t)+' of '+clock(total)+(sg&&sg.label?', '+sg.label:''));
+    }
+  }
+  function describe(t){
+    var i=at(t),sg=segOf(t),bits=[];
+    if(sg&&sg.label)bits.push(sg.label);
+    var l=o.label?o.label(i):'';if(l&&l!==(sg&&sg.label))bits.push(l);
+    return '<b>'+clock(t)+'</b>'+esc(bits.join(' · '));
+  }
+  function showTip(t){
+    tip.innerHTML=describe(t);tip.hidden=false;
+    var w=track.clientWidth||1,x=Math.min(1,Math.max(0,t/total))*w,half=(tip.offsetWidth||0)/2;
+    tip.style.left=Math.min(Math.max(x,half),Math.max(half,w-half))+'px';
+  }
+  function hideTip(){if(!drag&&!hover&&!wheelEnd)tip.hidden=true}
+  // Moves are applied once a frame, so a fast drag or a trackpad flick builds one slide per frame at most
+  function go(t,live){
+    t=Math.min(Math.max(0,t),Math.max(0,total-1));
+    scrub=live?t:null;want=t;wantLive=live;
+    if(!frame)frame=requestAnimationFrame(apply);
+    draw(t);
+  }
+  function apply(){
+    frame=0;if(want==null)return;
+    var t=want,live=wantLive,i=at(t);want=null;
+    o.seek(i,t-starts[i],live);
+  }
+  function fromX(e){var r=track.getBoundingClientRect();return Math.min(1,Math.max(0,(e.clientX-r.left)/(r.width||1)))*total}
+
+  track.addEventListener('pointerdown',function(e){
+    if(!total||e.button>0)return;
+    e.preventDefault();drag=true;el.classList.add('on');
+    try{track.setPointerCapture(e.pointerId)}catch(x){}
+    var t=fromX(e);go(t,true);showTip(t);poke();
+  });
+  track.addEventListener('pointermove',function(e){
+    if(!total)return;
+    var t=fromX(e);
+    if(drag){go(t,true);showTip(t);poke()}
+    else if(e.pointerType==='mouse'){hover=true;showTip(t)}
+  });
+  function up(e){
+    if(!drag)return;
+    drag=false;el.classList.remove('on');
+    go(fromX(e),false);hideTip();
+  }
+  track.addEventListener('pointerup',up);
+  track.addEventListener('pointercancel',function(){drag=false;el.classList.remove('on');if(scrub!=null)go(scrub,false);hideTip()});
+  track.addEventListener('pointerleave',function(){hover=false;hideTip()});
+  track.addEventListener('click',function(e){e.stopPropagation()});
+  track.addEventListener('keydown',function(e){
+    if(!total)return;
+    var k=e.key,t=scrub!=null?scrub:now(),step={ArrowRight:5e3,ArrowUp:5e3,ArrowLeft:-5e3,ArrowDown:-5e3,PageUp:-6e4,PageDown:6e4}[k];
+    if(step!=null)t+=step*(e.shiftKey?2:1);else if(k==='Home')t=0;else if(k==='End')t=total-1;else return;
+    e.preventDefault();e.stopPropagation();go(t,false);poke();
+  });
+
+  function wheel(e){
+    if(!total||!active()||e.ctrlKey)return;
+    var d=Math.abs(e.deltaY)>=Math.abs(e.deltaX)?e.deltaY:e.deltaX;
+    if(!d)return;
+    e.preventDefault();
+    if(e.deltaMode===1)d*=33;else if(e.deltaMode===2)d*=800;
+    var per=(o.wheelMs||total/durs.length)/100;
+    var t=(scrub!=null?scrub:now())+d*per;
+    el.classList.add('on');go(t,true);
+    clearTimeout(wheelEnd);
+    wheelEnd=setTimeout(function(){wheelEnd=0;el.classList.remove('on');if(scrub!=null)go(scrub,false);hideTip()},450);
+    showTip(Math.min(Math.max(0,t),total-1));poke();
+  }
+  (o.host||o.bar).addEventListener('wheel',wheel,{passive:false});
+  // Shift+← → anywhere on the wall: ten seconds back or on (the wall's own ← → still move a slide)
+  window.addEventListener('keydown',function(e){
+    if(!total||!active()||!e.shiftKey||e.metaKey||e.ctrlKey||e.altKey)return;
+    if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;
+    if(e.target===track)return;
+    e.preventDefault();e.stopImmediatePropagation();
+    go((scrub!=null?scrub:now())+(e.key==='ArrowRight'?1e4:-1e4),false);poke();
+  },true);
+
+  return {
+    el:el,
+    refresh:refresh,
+    update:function(){if(total&&scrub==null&&want==null)draw(now())},
+    get busy(){return scrub!=null||want!=null}
+  };
+}
+/* Puts the CSS animations of el and everything in it at ms since they started, so a slide opened in the middle shows
+   the state it would have reached by then (a picture partway through its slow push, the lines already in). */
+WallTimeline.at=function(el,ms){
+  if(!el||!el.getAnimations)return;
+  try{el.getAnimations({subtree:true}).forEach(function(a){try{a.currentTime=Math.max(0,ms)}catch(x){}})}catch(x){}
+};
+WallTimeline.clock=clock;
+window.WallTimeline=WallTimeline;
+})();
+</script>
 <script>
 (function(){
 const D=/*DATA*/{"mode": "folder", "site": "https://www.vargafutureparty.com", "repo": "https://github.com/SecurityQQ/future-party", "built": "15 November 2026", "online": {"program": "https://claude.ai/artifact/GTAQtSieprLL7VaHcbwBVC", "futurists": "https://claude.ai/artifact/P2jenFADX1YbeZjJm9eJpW", "futurists_short": "https://claude.ai/artifact/K7mQoafbtuLc9f1NQuMc1X", "futurists_ru": "https://claude.ai/artifact/G2pBtXXsKGaz5rDnuL5Zmn", "films": "https://claude.ai/artifact/EX8V3LEzvAEtW2p2y2NLBu", "further": "https://claude.ai/artifact/8zQjJUnHQXxsWWD1aQKYnx", "books": "https://claude.ai/artifact/1P94dXNkbjwjofDd2DzaUi", "tweets": "https://claude.ai/artifact/M6b8HYpuvdwA4cU4GvEfqG", "soundtrack": "https://claude.ai/artifact/WfgPk8RRF5sTM8spzwC1zp", "why": "https://claude.ai/artifact/Abby2s8iw3xuiJQX9Qwfph", "resonance": "https://claude.ai/artifact/PVooRbA3UqweX19eBy7Q4k", "contact": "https://claude.ai/artifact/AiFrTg6V1BipqTvsJTmkmA", "tea": "https://claude.ai/artifact/JSq3U75PR1zGnLmkPea8Yz", "mirror_research": "https://claude.ai/artifact/EQ2izi4He8XwvMRmsknaqs", "concept": "https://claude.ai/artifact/Dqk9BpYrVUoFXQaiyfHKBD", "deck": "https://claude.ai/artifact/BkSJQMeXHfnDBZJaYmezXP"}, "pages": {"program": "programme/tea-with-tomorrow.html", "futurists": "tweets/research/futurists-on-2050.html", "futurists_short": "tweets/research/2050-in-futurists-tweets.html", "futurists_ru": "tweets/research/2050-in-futurists-tweets.ru.html", "films": "reel/projection-2050.html", "further": "video/dist/further-2050.html", "books": "books/dist/book-projection-2050.html", "tweets": "tweets/dist/tweets-2050.html", "soundtrack": "music/dist/soundtrack2050.html", "future_music": "music/dist/music-of-the-future.html", "why": "music/dist/why-music-changes.html", "resonance": "music/resonance/dist/local/index.html", "contact": "soundboard/dist/contact2050.html", "mirror": "mirror/index.html", "mirror_research": "mirror/viral-webcam-effects.html", "concept": "concept-art/imagined-futures.html", "bigwall": "wall/dist/big-wall.html", "mars3d": "mars3d/index.html", "deck": "slides/dist/party-deck.html"}, "short": {"wall": "wall/dist/big-wall.html", "apps": "index.html#apps", "quotes": "books/dist/quote-wall.html#quote-wall", "ideas": "books/dist/quote-wall.html#projection", "mix": "books/dist/quote-wall.html#mix-wall", "tweets": "tweets/dist/tweet-wall.html#tweet-wall", "tweets-short": "tweets/dist/tweet-wall.html#short-wall", "art": "concept-art/imagined-futures.html#wall", "mars": "mars3d/index.html", "play": "soundboard/dist/contact2050.html", "soundboard": "soundboard/dist/contact2050.html", "soundtrack": "music/dist/soundtrack2050.html", "future-music": "music/dist/music-of-the-future.html", "resonance": "music/resonance/dist/local/index.html", "music-history": "music/dist/why-music-changes.html", "books": "books/dist/book-projection-2050.html", "further": "video/dist/further-2050.html", "films": "reel/projection-2050.html", "futurists": "tweets/research/futurists-on-2050.html", "programme": "programme/tea-with-tomorrow.html", "slides": "slides/dist/party-deck.html"}, "playlists": {"soundtrack": "https://www.youtube.com/playlist?list=PLJdg5B9vQ1oA", "future": "https://www.youtube.com/playlist?list=PLeCO8iyYgFSo", "history": "https://www.youtube.com/playlist?list=PLeo45sxoQ8gE", "resonance": "https://www.youtube.com/playlist?list=PLSfq0dmq_K78"}, "apps": {"party": "https://www.vargafutureparty.com/app"}, "films": [{"id": "further", "title": "Further", "sub": "the wall film", "t": 8, "front": true, "file": "video/dist/media/further-720p.mp4", "preview": "video/dist/media/further-720p.mp4", "master": "https://github.com/SecurityQQ/future-party/releases/download/v2.0/further-2050-1080p.mp4", "about": "Sixteen bold claims for 2030–2050, each with a dated real seed and a film that imagined it, over 37 public-domain and CC photos. Silent, loops seamlessly.", "page": "video/dist/further-2050.html", "online": "https://claude.ai/artifact/8zQjJUnHQXxsWWD1aQKYnx", "rebuild": "cd video && npm run render", "is_preview": true, "probe": {"mb": 6, "sec": 74.6}}, {"id": "sixfacts", "title": "Six Facts", "sub": "the show reel", "t": 9, "front": true, "file": "video/dist/media/six-facts-720p.mp4", "preview": "video/dist/media/six-facts-720p.mp4", "master": null, "about": "Two and a half minutes with music: the six facts about how books guess the future, each answered by a book, a post on X and two predictions from Further, over NASA footage.", "page": null, "online": null, "rebuild": "cd showreel && npm run render", "is_preview": true, "probe": {"mb": 20, "sec": 149.5}}], "books": {"quotes": 50, "quote_books": 20, "quote_loop": 499, "first_quote": "It is 2050. We have been successful at halving emissions every decade since 2020. We are heading for a world that will be no more than 1.5 degrees Celsius warmer by 2100.", "ideas": 25, "idea_loop": 261, "first_idea": "City air is cleaner than before the Industrial Revolution"}, "tweets": {"tweets": 78, "authors": 39, "blocks": 5, "sample": "#1: Expertise will be near free: We will be capable of having near free AI doctors for every person & AI tutors for every child, 24x7", "sample_by": "Vinod Khosla"}, "sound": {"tracks": 34, "bench": 14, "sec": 7664}, "future": {"tracks": 23, "sec": 17830, "evening": 4994, "late": 12836}, "art": {"pictures": 377, "posts": 171, "tile": "concept-art/thumbs/2118267091262333357-1.jpg"}, "wall": {"total": 2960, "slides": 278, "counts": {"facts": 6, "further": 16, "quotes": 50, "ideas": 25, "tweets": 78, "pictures": 367}, "files": ["video/assets/photos/atlas.jpg", "video/assets/photos/aurora.jpg", "video/assets/photos/bennu.jpg", "video/assets/photos/elevator.jpg", "video/assets/photos/elt.jpg", "video/assets/photos/europa.jpg", "video/assets/photos/havoc.jpg", "video/assets/photos/jewel.jpg", "video/assets/photos/mammoth.jpg", "video/assets/photos/marsbase.jpg", "video/assets/photos/moon.jpg", "video/assets/photos/nif.jpg", "video/assets/photos/sail.jpg", "video/assets/photos/smiled.jpg", "video/assets/photos/starship.jpg", "video/assets/photos/torus.jpg", "video/dist/media/further-720p.mp4", "video/dist/media/six-facts-720p.mp4", "wall/media/climb.jpg", "wall/media/climb.mp4", "wall/media/ignite.jpg", "wall/media/ignite.mp4", "wall/media/liftoff.jpg", "wall/media/liftoff.mp4", "wall/media/night.jpg", "wall/media/night.mp4", "wall/media/plume.jpg", "wall/media/plume.mp4"], "tile": "video/assets/photos/smiled.jpg", "highlights": {"sec": 40, "shots": 28}, "chapters": [{"id": "planet", "title": "Planet", "color": "#9dd8ff", "sec": 606}, {"id": "machines", "title": "Machines", "color": "#4385ff", "sec": 578}, {"id": "people", "title": "People", "color": "#dce9fb", "sec": 465}, {"id": "power", "title": "Power", "color": "#8faacf", "sec": 505}, {"id": "beyond", "title": "Beyond", "color": "#6aa9ff", "sec": 384}, {"id": "finale", "title": "2050", "color": "#4385ff", "sec": 159}]}, "mars": {"pictures": 40, "missions": 7}, "shots": {"party": "hub/apps/app.jpg", "mirror": "hub/apps/mirror.jpg", "music": "hub/apps/music.jpg", "play": "hub/apps/play.jpg", "mars": "mars3d/preview.jpg", "art": "hub/apps/art.jpg"}, "exists": {"books/dist/quote-wall.html": true, "tweets/dist/tweet-wall.html": true, "music/resonance/dist/local/player.html": true, "reel/links.md": true, "slides/assets/preview.jpg": true, "concept-art/thumbs/2118267091262333357-1.jpg": true, "video/assets/photos/smiled.jpg": true, "hub/apps/app.jpg": true, "hub/apps/mirror.jpg": true, "hub/apps/music.jpg": true, "hub/apps/play.jpg": true, "mars3d/preview.jpg": true, "hub/apps/art.jpg": true, "programme/tea-with-tomorrow.html": true, "tweets/research/futurists-on-2050.html": true, "tweets/research/2050-in-futurists-tweets.html": true, "tweets/research/2050-in-futurists-tweets.ru.html": true, "reel/projection-2050.html": true, "video/dist/further-2050.html": true, "books/dist/book-projection-2050.html": true, "tweets/dist/tweets-2050.html": true, "music/dist/soundtrack2050.html": true, "music/dist/music-of-the-future.html": true, "music/dist/why-music-changes.html": true, "music/resonance/dist/local/index.html": true, "soundboard/dist/contact2050.html": true, "mirror/index.html": true, "mirror/viral-webcam-effects.html": true, "concept-art/imagined-futures.html": true, "wall/dist/big-wall.html": true, "mars3d/index.html": true, "slides/dist/party-deck.html": true}, "deck": {"shot": "slides/assets/preview.jpg", "slides": 26}};
@@ -675,13 +870,22 @@ $('foot').innerHTML='Future Party 2050 · built '+esc(D.built)+' · <a href="'+e
 /* Film player */
 const player=$('player'),pv=$('pv');let idleT=0,prev=null;
 const poke=()=>{player.classList.remove('idle');clearTimeout(idleT);idleT=setTimeout(()=>player.classList.add('idle'),2500)};
+/* The film's time line, the same one the walls have: drag it, or scroll anywhere on the film, to move through it */
+let praf=0;
+const TL=WallTimeline({bar:$('pbar'),host:player,active:()=>!player.hidden,poke:poke,accent:'#4385ff',wheelMs:5000,
+  items:()=>pv.duration&&isFinite(pv.duration)?[pv.duration*1000]:[],
+  pos:()=>({i:0,t:pv.currentTime*1000}),
+  seek:(i,t)=>{try{pv.currentTime=t/1000}catch(e){}}});
+pv.addEventListener('loadedmetadata',()=>TL.refresh());
+const ptick=()=>{if(player.hidden)return;TL.update();praf=requestAnimationFrame(ptick)};
 function openFilm(id){
   const f=D.films.find(x=>x.id===id);if(!f)return;
   prev=document.activeElement;pv.src=f.file;$('ptitle').textContent=f.title;player.hidden=false;document.documentElement.style.overflow='hidden';
+  TL.refresh();cancelAnimationFrame(praf);praf=requestAnimationFrame(ptick);
   pv.play().catch(()=>{});$('pplay').textContent='Pause';poke();$('pplay').focus({preventScroll:true});
 }
 function closeFilm(){
-  pv.pause();pv.removeAttribute('src');pv.load();player.hidden=true;document.documentElement.style.overflow='';
+  cancelAnimationFrame(praf);pv.pause();pv.removeAttribute('src');pv.load();player.hidden=true;document.documentElement.style.overflow='';
   try{if(document.fullscreenElement)document.exitFullscreen().catch(()=>{})}catch(e){}
   try{prev&&prev.focus({preventScroll:true})}catch(e){}
 }
