@@ -105,7 +105,7 @@ def spread(queues, first=()):
     return [it for _, _, it in sorted(pos, key=lambda x: (x[0], x[1]))]
 
 
-def highlights(facts, further, quotes, bk, themes, errors):
+def highlights(facts, further, quotes, bk, themes, ai_made, errors):
     """The opening reel: every shot from highlights.json, filled from its source, with its start time t."""
     cfg = load("wall/highlights.json")
     shot_src = {s["id"]: s["src"] for s in load("showreel/footage.json")["shots"]}
@@ -121,6 +121,9 @@ def highlights(facts, further, quotes, bk, themes, errors):
     pics = {Path(p["thumb"]).stem: p for ps in themes.values() for p in ps}
 
     def pic(stem):
+        if stem in ai_made:
+            errors.append(f"highlights: picture {stem!r} is AI-made; the wall shows people's work only")
+            return None
         if stem not in pics:
             errors.append(f"highlights: no picture {stem!r} in concept-art/tweets.json")
             return None
@@ -145,7 +148,8 @@ def highlights(facts, further, quotes, bk, themes, errors):
             if not f:
                 errors.append(f"highlights: no fact {sh['id']!r}")
                 continue
-            shots.append({"k": k, "num": f["num"], "count": f.get("count"), "line": sh["line"], "src": f["src"].split(",")[0],
+            shots.append({"k": k, "num": f["num"], "count": f.get("count"), "line": sh["line"], "since": sh.get("since", ""),
+                          "src": f["src"].split(",")[0],
                           "clip": sh.get("clip"), "d": sh["d"]})
         elif k == "clip":
             shots.append({"k": k, "clip": sh["clip"], "d": sh["d"]})
@@ -277,8 +281,11 @@ def main():
             errors.append(f"tweet {t['id']}: its block {topic_block.get(t['topic'])!r} is in no chapter")
 
     # --- pictures, by theme. The page deals them out in turn, so each loop shows the next ones. ---
-    themes = {}
+    # Pictures marked as AI-made in concept-art/picks.json stay on the Imagined Futures wall but not on this one.
+    themes, ai_made = {}, {Path(ph["thumb"]).stem for p in art if p.get("ai") for ph in p["photos"]}
     for p in art:
+        if p.get("ai"):
+            continue
         for n, ph in enumerate(p["photos"]):
             themes.setdefault(p["theme"], []).append({
                 "thumb": "concept-art/" + ph["thumb"], "file": "concept-art/" + ph["file"], "w": ph["w"], "h": ph["h"],
@@ -288,7 +295,7 @@ def main():
     for t in themes:
         if t not in wanted:
             errors.append(f"picture theme {t!r} is in no chapter")
-    reel = highlights(facts, further, quotes, bk, themes, errors)
+    reel = highlights(facts, further, quotes, bk, themes, ai_made, errors)
     if errors:
         print("\n".join(errors))
         sys.exit(1)
@@ -371,7 +378,7 @@ def main():
     m, s = divmod(round(total), 60)
     print(f"big-wall.html: highlights {reel['total']} s in {len(reel['shots'])} shots, then {len(loop)} slides in {len(chapters)} chapters, {m} min {s:02d} s a loop; "
           + ", ".join(f"{c['title']} {c['sec'] // 60}:{c['sec'] % 60:02d}" for c in summary)
-          + f"; {counts['pictures']} pictures dealt {sum(c['pictures'] for c in summary)} a loop")
+          + f"; {counts['pictures']} pictures ({len(ai_made)} AI-made left out) dealt {sum(c['pictures'] for c in summary)} a loop")
 
 
 if __name__ == "__main__":

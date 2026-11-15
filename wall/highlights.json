@@ -1,33 +1,33 @@
 {
-  "about": "The Highlights: a fast opening reel before the Big Wall's chapters, built like the opening of Further (2050, its two lines, claims over photos), with NASA launches, one fact, the concept art and one quote, ending on the wall itself. build.py fills every shot from its source (Further from video/slides.json, the fact from showreel/reel.json, the quote from books/quotes.json, pictures from concept-art/tweets.json), so only the choice and the order live here. A Further shot holds as long as its claim takes to read once; d sets the others in seconds. Pictures are named by their file in concept-art/thumbs. clips.py cuts the clips from the Six Facts footage into wall/media.",
+  "about": "The Highlights: a fast opening reel before the Big Wall's chapters, built like the opening of Further (2050, its two lines, claims over photos), with NASA launches, one fact, the concept art and one quote, ending on the wall itself. build.py fills every shot from its source (Further from video/slides.json, the fact from showreel/reel.json, the quote from books/quotes.json, pictures from concept-art/tweets.json), so only the choice and the order live here. A Further shot holds as long as its claim takes to read once; d sets the others in seconds. Pictures are named by their file in concept-art/thumbs; pictures marked as AI-made are refused. clips.py cuts the clips from the Six Facts footage into wall/media.",
   "shots": [
     {"k": "title", "big": "2050", "line": "The films dreamed it.", "d": 1.8},
     {"k": "title", "big": "2050", "line": "Here is how far it goes.", "d": 1.6, "keep": true},
     {"k": "further", "key": "mammoth"},
     {"k": "further", "key": "jewel"},
     {"k": "further", "key": "aurora"},
-    {"k": "fact", "id": "c1", "line": "of electricity from sun and wind in 2050", "clip": "night", "d": 2.8},
-    {"k": "clip", "clip": "sls", "d": 1.1},
-    {"k": "clip", "clip": "ignite", "d": 1.1},
+    {"k": "fact", "id": "c1", "line": "of electricity from sun and wind in 2050", "since": "12% in 2022", "clip": "night", "d": 2.8},
+    {"k": "clip", "clip": "ignite", "d": 1.2},
     {"k": "clip", "clip": "liftoff", "d": 1.4},
-    {"k": "clip", "clip": "climb", "d": 1.3},
+    {"k": "clip", "clip": "climb", "d": 1.2},
+    {"k": "clip", "clip": "plume", "d": 1.1},
     {"k": "further", "key": "moon"},
     {"k": "further", "key": "elevator"},
     {"k": "further", "key": "marsbase"},
     {"k": "further", "key": "sail"},
     {"k": "art", "from": 0.6, "to": 0.36, "pics": [
       "1921128085623021607-1", "1743210737781096707-1", "1585939812003229697-4", "1311612315888910336-2",
-      "1647641382201245697-2", "1808693549472309249-1", "2103394076972208322-1", "2120426310401237027-2",
+      "1371477594307235841-1", "1808693549472309249-1", "2103394076972208322-1", "2119880921713148244-1",
       "1309955626534084608-1", "1532738888640434179-1", "1465318028648853512-2", "1743210737781096707-4"]},
     {"k": "quote", "starts": "Any sufficiently advanced technology", "d": 3.2},
     {"k": "wall", "d": 3.9, "pics": [
-      "1585939812003229697-2", "2119880921713148244-1", "1934675669340082354-1", "1393334366202470402-1",
+      "1585939812003229697-2", "1651661876499980313-1", "1934675669340082354-1", "1393334366202470402-1",
       "1997591915936837826-1", "2085274683226591409-2", "1761738186055627097-3", "1596255043908702208-1",
       "1422669330802688000-2", "1789599474358059404-1", "2058034308804424025-1", "1371477594307235841-3"]}
   ],
   "clips": {
     "night": {"shot": "f3b", "ss": 0, "dur": 3.2},
-    "sls": {"shot": "f6a", "ss": 0.2, "dur": 1.6},
+    "plume": {"shot": "t6", "ss": 0.4, "dur": 1.6},
     "ignite": {"shot": "f2a", "ss": 0.3, "dur": 1.6},
     "liftoff": {"shot": "f2b", "ss": 0, "dur": 1.9},
     "climb": {"shot": "q2", "ss": 0.6, "dur": 1.8}
