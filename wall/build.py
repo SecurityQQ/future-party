@@ -9,6 +9,9 @@ It reads the six pieces from their own folders, so it never drifts from them:
 - Imagined Futures concept-art/tweets.json      the pictures (concept-art/thumbs/, or the originals in images/ when present)
 and the two films, Six Facts at the start of the loop and Further at the end.
 
+The loop opens with the Highlights, a fast reel built like the opening of Further: highlights.json picks the shots,
+this build fills them from the same sources, and wall/media holds the NASA clips it plays (cut by clips.py).
+
 chapters.json sorts everything into six chapters by theme. The build stops if anything lands in no chapter or in two.
 Writes dist/big-wall.html (opens from the folder or the website) and dist/manifest.json (the chapters and their
 lengths for the front page, and the files the page loads, which hub/site.py copies to the website).
@@ -24,7 +27,7 @@ OUT = HERE / "dist"
 UP = "../../"  # from wall/dist/ to the repo root
 
 # Seconds on screen. Text slides use the same reading times as their own walls.
-CARD, INTRO, FACT, FURTHER, PICTURE = 6, 8, 10, 9, 6
+CARD, FACT, FURTHER, PICTURE = 6, 10, 9, 6
 FILMS = {
     "sixfacts": {"title": "Six Facts", "sub": "the show reel", "sources": ["showreel/renders/six-facts-2050-1080p.mp4", "video/dist/media/six-facts-720p.mp4"], "sec": 149.5},
     "further": {"title": "Further", "sub": "the wall film", "sources": ["video/renders/further-2050-1080p.mp4", "video/dist/media/further-720p.mp4"], "sec": 75.0},
@@ -100,6 +103,88 @@ def spread(queues, first=()):
             p = (i / n) if kind in first else (i + 0.5) / n
             pos.append((p, rank, it))
     return [it for _, _, it in sorted(pos, key=lambda x: (x[0], x[1]))]
+
+
+def highlights(facts, further, quotes, bk, themes, ai_made, errors):
+    """The opening reel: every shot from highlights.json, filled from its source, with its start time t."""
+    cfg = load("wall/highlights.json")
+    shot_src = {s["id"]: s["src"] for s in load("showreel/footage.json")["shots"]}
+    sources = load("showreel/footage.json")["sources"]
+    clips = {}
+    for name, c in cfg["clips"].items():
+        src = sources.get(shot_src.get(c["shot"]), {})
+        clips[name] = {"src": f"wall/media/{name}.mp4", "poster": f"wall/media/{name}.jpg",
+                       "credit": src.get("credit", "NASA").replace("NASA/", "NASA · ")}
+        for f in (clips[name]["src"], clips[name]["poster"]):
+            if not (ROOT / f).exists():
+                errors.append(f"missing {f}: run python3 -I wall/clips.py")
+    pics = {Path(p["thumb"]).stem: p for ps in themes.values() for p in ps}
+
+    def pic(stem):
+        if stem in ai_made:
+            errors.append(f"highlights: picture {stem!r} is AI-made; the wall shows people's work only")
+            return None
+        if stem not in pics:
+            errors.append(f"highlights: no picture {stem!r} in concept-art/tweets.json")
+            return None
+        p = pics[stem]
+        return {"thumb": p["thumb"], "file": p["file"], "artist": p["artist"], "handle": p["handle"]}
+
+    shots = []
+    for sh in cfg["shots"]:
+        k = sh["k"]
+        if k == "title":
+            shots.append(dict(sh))
+        elif k == "further":
+            f = further.get(sh["key"])
+            if not f:
+                errors.append(f"highlights: no Further slide {sh['key']!r}")
+                continue
+            # one read of the claim: about a third of a second a word, never under 1.7 s
+            shots.append({"k": k, "key": f["key"], "hero": f["hero"], "year": f.get("year") or "", "film": f.get("film") or "",
+                          "credit": f.get("credit") or "", "d": sh.get("d") or round(max(1.7, 0.9 + 0.32 * words(f["hero"])), 1)})
+        elif k == "fact":
+            f = facts.get(sh["id"])
+            if not f:
+                errors.append(f"highlights: no fact {sh['id']!r}")
+                continue
+            shots.append({"k": k, "num": f["num"], "count": f.get("count"), "line": sh["line"], "since": sh.get("since", ""),
+                          "src": f["src"].split(",")[0],
+                          "clip": sh.get("clip"), "d": sh["d"]})
+        elif k == "clip":
+            shots.append({"k": k, "clip": sh["clip"], "d": sh["d"]})
+        elif k == "art":
+            ps = [p for p in (pic(s) for s in sh["pics"]) if p]
+            n = max(1, len(ps) - 1)
+            for i, p in enumerate(ps):
+                shots.append({"k": k, "pic": p, "d": round(sh["from"] + (sh["to"] - sh["from"]) * i / n, 2)})
+        elif k == "quote":
+            hit = [q for q in quotes if q["q"].startswith(sh["starts"])]
+            if len(hit) != 1:
+                errors.append(f"highlights: {len(hit)} quotes start with {sh['starts']!r}")
+                continue
+            q, b = hit[0], bk.get(hit[0]["b"], {})
+            shots.append({"k": k, "q": q["q"], "by": q.get("by") or b.get("au", ""), "book": b.get("t", ""), "y": b.get("y", ""), "d": sh["d"]})
+        elif k == "wall":
+            # The wall itself: Further's photos and the reel's pictures, dealt so neighbours differ
+            photos = [f"video/assets/photos/{key}.jpg" for key in further]
+            art = [s["pic"]["thumb"] for s in shots if s["k"] == "art"] + [p["thumb"] for p in (pic(s) for s in sh["pics"]) if p]
+            tiles, a, b = [], list(photos), list(art)
+            while a or b:
+                for src in (b, a, b):
+                    if src:
+                        tiles.append(src.pop(0))
+            shots.append({"k": k, "tiles": tiles[:40], "d": sh["d"]})
+        else:
+            errors.append(f"highlights: unknown shot kind {k!r}")
+    for s in shots:
+        if s.get("clip") and s["clip"] not in clips:
+            errors.append(f"highlights: no clip {s['clip']!r}")
+    t = 0.0
+    for s in shots:
+        s["t"] = round(t, 2)
+        t += s["d"]
+    return {"shots": shots, "clips": clips, "total": round(t, 1)}
 
 
 def main():
@@ -196,8 +281,11 @@ def main():
             errors.append(f"tweet {t['id']}: its block {topic_block.get(t['topic'])!r} is in no chapter")
 
     # --- pictures, by theme. The page deals them out in turn, so each loop shows the next ones. ---
-    themes = {}
+    # Pictures marked as AI-made in concept-art/picks.json stay on the Imagined Futures wall but not on this one.
+    themes, ai_made = {}, {Path(ph["thumb"]).stem for p in art if p.get("ai") for ph in p["photos"]}
     for p in art:
+        if p.get("ai"):
+            continue
         for n, ph in enumerate(p["photos"]):
             themes.setdefault(p["theme"], []).append({
                 "thumb": "concept-art/" + ph["thumb"], "file": "concept-art/" + ph["file"], "w": ph["w"], "h": ph["h"],
@@ -207,6 +295,7 @@ def main():
     for t in themes:
         if t not in wanted:
             errors.append(f"picture theme {t!r} is in no chapter")
+    reel = highlights(facts, further, quotes, bk, themes, ai_made, errors)
     if errors:
         print("\n".join(errors))
         sys.exit(1)
@@ -221,7 +310,7 @@ def main():
             return max(8, 2.3 + 0.3 * words(it["h"] + " " + it["t"]) + 0.2 * words(it.get("stt") or ""))
         if k == "tweet":
             return max(7, min(22, 3 + 0.3 * words(it["text"])))
-        return {"fact": FACT, "further": FURTHER + further_hold(it), "pic": PICTURE, "card": CARD, "intro": INTRO}[k]
+        return {"fact": FACT, "further": FURTHER + further_hold(it), "pic": PICTURE, "card": CARD, "reel": reel["total"]}[k]
 
     def further_hold(it):
         return float(it.get("hold") or 0)
@@ -229,7 +318,7 @@ def main():
     loop, summary = [], []
     counts = {"facts": len(facts), "further": len(further), "quotes": len(quotes), "ideas": len(ideas),
               "tweets": len(tw["tweets"]), "pictures": sum(len(v) for v in themes.values())}
-    loop.append({"k": "intro", "counts": counts})
+    loop.append({"k": "reel"})
     loop.append({"k": "film", "film": "sixfacts"})
     for n, c in enumerate(chapters):
         b = by[c["id"]]
@@ -266,14 +355,15 @@ def main():
             it["d"] = round(dur(it), 1)
 
     # Files the page loads, relative to the repo root (hub/site.py copies them to the website)
-    files = sorted({f"video/assets/photos/{k}.jpg" for k in further} | {s for f in FILMS.values() for s in f["sources"]})
+    files = sorted({f"video/assets/photos/{k}.jpg" for k in further} | {s for f in FILMS.values() for s in f["sources"]}
+                   | {f for c in reel["clips"].values() for f in (c["src"], c["poster"])})
     for k in further:
         if not (ROOT / f"video/assets/photos/{k}.jpg").exists():
             sys.exit(f"missing video/assets/photos/{k}.jpg")
     total = sum(it.get("d", 0) for it in loop) + sum(f["sec"] for f in FILMS.values())
     data = {"up": UP, "loop": loop, "chapters": [dict(s, **{"color": c["color"]}) for s, c in zip(summary, chapters)],
             "films": FILMS, "themes": themes, "art": {c["id"]: c["art"] for c in chapters}, "avatars": avatars,
-            "counts": counts, "total": round(total)}
+            "counts": counts, "total": round(total), "reel": reel}
     tpl = (HERE / "template.html").read_text(encoding="utf8")
     slot = "const D=/*DATA*/{};"
     if slot not in tpl:
@@ -282,12 +372,13 @@ def main():
     OUT.mkdir(exist_ok=True)
     (OUT / "big-wall.html").write_text(page, encoding="utf8")
     manifest = {"page": "wall/dist/big-wall.html", "total": round(total), "slides": len(loop), "counts": counts,
+                "highlights": {"sec": round(reel["total"]), "shots": len(reel["shots"])},
                 "chapters": summary, "files": [f for f in files if "/renders/" not in f]}
     (OUT / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=1) + "\n", encoding="utf8")
     m, s = divmod(round(total), 60)
-    print(f"big-wall.html: {len(loop)} slides in {len(chapters)} chapters, {m} min {s:02d} s a loop; "
+    print(f"big-wall.html: highlights {reel['total']} s in {len(reel['shots'])} shots, then {len(loop)} slides in {len(chapters)} chapters, {m} min {s:02d} s a loop; "
           + ", ".join(f"{c['title']} {c['sec'] // 60}:{c['sec'] % 60:02d}" for c in summary)
-          + f"; {counts['pictures']} pictures dealt {sum(c['pictures'] for c in summary)} a loop")
+          + f"; {counts['pictures']} pictures ({len(ai_made)} AI-made left out) dealt {sum(c['pictures'] for c in summary)} a loop")
 
 
 if __name__ == "__main__":
