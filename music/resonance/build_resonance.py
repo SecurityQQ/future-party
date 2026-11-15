@@ -191,6 +191,14 @@ exec(open(P('patch_relay.py'), encoding='utf-8').read())
 exec(open(P('patch_research.py'), encoding='utf-8').read())
 exec(open(P('patch_style.py'), encoding='utf-8').read())
 
+# The Future Lab's horizon is the party's year: 2050, not the 2040 of the original page.
+# "2040", Damon Gameau's 2019 film named in the party soundtrack notes, keeps its title.
+FILM = 'Minority Report and 2040'
+assert html.count(FILM) == 1 and '\0' not in html
+html = html.replace(FILM, '\0FILM\0')
+assert html.count('2040') == 12, html.count('2040')
+html = html.replace('2040', '2050').replace('\0FILM\0', FILM)
+
 # ---------- 7. Write ----------
 os.makedirs(P('dist'), exist_ok=True)
 open(P('dist', 'Resonance_History_and_Future.html'), 'w', encoding='utf-8').write(html)
