@@ -22,6 +22,7 @@ export default function LangPicker({ lang, label }: { lang: Lang; label: string 
   const choose = (l: Lang) => {
     document.cookie = `${LANG_COOKIE}=${l}; path=/; max-age=31536000; samesite=lax`;
     setOpen(false);
+    window.dispatchEvent(new Event("zr:lang"));
     if (l !== lang) router.refresh();
   };
   return (

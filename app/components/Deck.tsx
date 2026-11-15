@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { clientLang, DICTS, type Lang } from "@/lib/i18n";
 
 const icons = {
   // The party site's mark: a planet in a tilted orbit, as in the front page's top bar
@@ -37,15 +38,21 @@ const OLD_HOST = /^(?:zodiac-rangers|the-future-2050)\.vercel\.app$/;
 export default function Deck() {
   const path = usePathname();
   const [party, setParty] = useState("/");
+  const [lang, setLang] = useState<Lang>("en");
   useEffect(() => {
     if (OLD_HOST.test(location.hostname)) setParty(MAIN);
+    const sync = () => setLang(clientLang());
+    sync();
+    window.addEventListener("zr:lang", sync);
+    return () => window.removeEventListener("zr:lang", sync);
   }, []);
+  const L = DICTS[lang].deck;
   const items = [
-    { href: party, label: "Party", icon: icons.party, on: false, page: true },
-    { href: "/app", label: "My Kin", icon: icons.hold, on: path === "/app" || path.startsWith("/app/me") },
-    { href: "/app/scan", label: "Scan", icon: icons.scan, on: path.startsWith("/app/scan"), main: true },
-    { href: "/app/fable", label: "Fable", icon: icons.fable, on: path.startsWith("/app/fable") },
-    { href: "/app/leaderboard", label: "Ranking", icon: icons.ranking, on: path.startsWith("/app/leaderboard") },
+    { href: party, label: L[0], icon: icons.party, on: false, page: true },
+    { href: "/app", label: L[1], icon: icons.hold, on: path === "/app" || path.startsWith("/app/me") },
+    { href: "/app/scan", label: L[2], icon: icons.scan, on: path.startsWith("/app/scan"), main: true },
+    { href: "/app/fable", label: L[3], icon: icons.fable, on: path.startsWith("/app/fable") },
+    { href: "/app/leaderboard", label: L[4], icon: icons.ranking, on: path.startsWith("/app/leaderboard") },
   ];
   return (
     <nav className="deck" aria-label="Main">
