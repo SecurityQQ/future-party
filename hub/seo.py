@@ -16,7 +16,7 @@ X = "@vargastartup"
 # Files hub/site.py copies to the root of the site: site path -> repo path
 FILES = {"og.jpg": "hub/og/site.jpg", "og-app.jpg": "hub/og/app.jpg",
          "favicon.ico": "hub/og/favicon.ico", "apple-touch-icon.png": "hub/og/apple-touch-icon.png"}
-CARD = ("og.jpg", 1200, 630, "Varga Future Party 2050: Step into 2050. The Big Muse, music, seven apps and Mars in 3D for one night.")
+CARD = ("og.jpg", 1200, 630, "Varga Future Party 2050: Step into 2050. The Big Muse, music, eight apps and Mars in 3D for one night.")
 WALL = ("video/assets/photos/smiled.jpg", 2304, 1296, "Earth seen through Saturn’s rings")
 
 # The front page and every page in hub/build.py PAGES, by its key there: (title, description, picture).
@@ -181,9 +181,9 @@ def sitemap(pages):
 # /llms.txt (llmstxt.org): the site in a few lines for AI assistants and answer engines, by front-page section
 REPO = "https://github.com/SecurityQQ/future-party"
 SUMMARY = ("Varga Future Party 2050 is a party set in the year 2050, and this site holds everything for the night: the Big "
-           "Muse, the wall that plays every film and slide wall in one loop on the projector, the music, seven apps for the "
+           "Muse, the wall that plays every film and slide wall in one loop on the projector, the music, eight apps for the "
            "guests (the party App, webcam effects played with the hands, a Makey Makey soundboard, Mars for "
-           "red/cyan 3D glasses, a gallery of concept art, a prayer room with an icon that answers) and the research behind it: books, futurists' posts and "
+           "red/cyan 3D glasses, a gallery of concept art, a prayer room with an icon that answers, a light show that moves with the music) and the research behind it: books, futurists' posts and "
            "films about 2050, each with its sources. Nothing needs a login.")
 APP = ("The Future 2050 (party app)", SITE + "/app",
        "The party App. Tap your pass, meet your Kin (a zodiac creature from 2050), and collect the Kin of "

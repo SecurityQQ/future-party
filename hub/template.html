@@ -6,7 +6,7 @@
 <title>Varga Future Party 2050</title>
 <meta name="theme-color" content="#030817">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307132b'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='%23dce9fb' stroke-width='2'/%3E%3Cellipse cx='32' cy='32' rx='28' ry='10' transform='rotate(-30 32 32)' fill='none' stroke='%239dd8ff' stroke-width='2'/%3E%3C/svg%3E">
-<meta name="description" content="Step into 2050 for one night: the Big Muse, a wall of films and ideas, music from 1400 BCE to the future, seven party apps, Mars in 3D and the research behind it.">
+<meta name="description" content="Step into 2050 for one night: the Big Muse, a wall of films and ideas, music from 1400 BCE to the future, eight party apps, Mars in 3D and the research behind it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=League+Gothic&family=Geologica:wght@400;500;600;700&family=Martian+Mono:wght@400;500&display=swap">
@@ -395,7 +395,7 @@ nav.top a.to-app svg{width:16px;height:16px;flex:none}
   <section id="apps">
     <div class="sec-head">
       <p class="eyebrow">Apps</p>
-      <h2>Seven apps for the night</h2>
+      <h2>Eight apps for the night</h2>
       <p class="note">Games and toys for the night, each in its own page.</p>
     </div>
     <nav class="appnav" id="appNav" aria-label="Apps"></nav>
@@ -555,7 +555,20 @@ const APPS=[
         ['A candle','Light one; it stays lit on your phone.'],
         ['Touch','A touch on the icon sends a ripple through it. The more the room prays, the more the colour moves.'],
         ['On the wall','The icon alone on a big screen, turning the verses by itself.']],
-   note:'A party joke. The icon is an AI-made picture and Elon Musk has nothing to do with it. Slow moving colour, no flashing.'}
+   note:'A party joke. The icon is an AI-made picture and Elon Musk has nothing to do with it. Slow moving colour, no flashing.'},
+  /* Trip 2050 is also the Light show row of the Wall section, whose panel has the id "trip" */
+  {id:'light-show',short:'Trip 2050',title:'Trip 2050',kind:'Light show',
+   href:P.trip,open:'Start the light show',shot:SH.trip,
+   about:'A light show that moves with the music: kaleidoscopes of concept art and '+D.trip.people+' innovators as pop-art posters.',
+   links:[['welcome poster',P.trip+'?scene=welcome'],['portraits only',P.trip+'?scene=face']],howTitle:'Seven scenes, keys 1–7',
+   how:[['1 Visual','A MilkDrop preset alone, at full strength.'],
+        ['2 Kaleidoscope','A picture from Imagined Futures folded 6 to 16 times, a new one every 8 beats.'],
+        ['3 Tunnel','A flight down a tunnel whose walls are the picture.'],
+        ['4 Liquid','A picture across the whole screen, stirred like wet paint.'],
+        ['5 Portrait','An innovator with a year and one line, ending as four posters.'],
+        ['6 Title','FUTURE, PARTY, 2050, a word every two beats.'],
+        ['7 Welcome','The front page’s poster in moving chrome.']],
+   note:'Start with the microphone and allow it: it only listens for the beat. B plays to a built-in beat, Space skips a scene, 0 goes back to all scenes, F is full screen. Fast motion and flashing colours.'+(WEB?'':' From this folder it needs a local server for its pictures: run <code>python3 -m http.server 4620</code>, then open <a href="http://localhost:4620/trip/">localhost:4620/trip/</a>.')}
 ];
 
 /* The original four section buttons, with the current counts. */

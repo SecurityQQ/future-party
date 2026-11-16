@@ -1,12 +1,12 @@
 # Varga Future Party 2050
 
-**Everything for a party set in the year 2050**: a Big Muse that plays films, quotes, futurists' posts and concept art in one loop on the projector, seven apps for the guests, the music, and the research behind all of it. Live, with no login, at **[vargafutureparty.com](https://vargafutureparty.com)**.
+**Everything for a party set in the year 2050**: a Big Muse that plays films, quotes, futurists' posts and concept art in one loop on the projector, eight apps for the guests, the music, and the research behind all of it. Live, with no login, at **[vargafutureparty.com](https://vargafutureparty.com)**.
 
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fvargafutureparty.com&label=vargafutureparty.com&up_message=live&style=flat-square)](https://vargafutureparty.com)
 [![Release](https://img.shields.io/github/v/release/SecurityQQ/future-party?label=films&style=flat-square)](../../releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-9dd8ff?style=flat-square)](LICENSE)
 
-[![Varga Future Party 2050: Step into 2050. The Big Muse, music, seven apps and Mars in 3D for one night.](hub/og/site.jpg)](https://vargafutureparty.com)
+[![Varga Future Party 2050: Step into 2050. The Big Muse, music, eight apps and Mars in 3D for one night.](hub/og/site.jpg)](https://vargafutureparty.com)
 
 **[Open the site](https://vargafutureparty.com)** · **[The party app](https://vargafutureparty.com/app)** · [The Big Muse](https://vargafutureparty.com/wall) · [Mars in 3D](https://vargafutureparty.com/mars3d/index.html) · [Films (1080p)](../../releases)
 
@@ -14,7 +14,7 @@
 
 A one-night party where the guests step into 2050, and this repository is the whole night as code and data. Guests tap an NFC pass to meet their Kin, play with webcam effects and a Makey Makey soundboard, look at Mars through red/cyan glasses, and watch the Big Muse: two films, 50 quotes and 25 ideas from books about 2050, 78 posts by futurists and 377 pictures of concept art, sorted into six chapters. Every claim on the wall has a source: quotes are checked against the books, posts are verbatim from X, photos come from NASA, ESA and Wikimedia Commons with their licences.
 
-### Seven apps for the guests
+### Eight apps for the guests
 
 | App | What it does | Built with |
 | --- | --- | --- |
@@ -25,6 +25,7 @@ A one-night party where the guests step into 2050, and this repository is the wh
 | [Mars in 3D](https://vargafutureparty.com/mars3d/index.html) | 40 real stereo pictures of Mars from rovers, landers and orbiters, with a live 3D globe | NASA/ESA anaglyphs, three.js ([`mars3d/`](mars3d/README.md)) |
 | [Imagined Futures](https://vargafutureparty.com/concept-art/imagined-futures.html) | 377 pictures of concept art about the future, each linked to its post and artist | Python build from public posts on X (`concept-art/`) |
 | [Prayer Room](https://vargafutureparty.com/pray) | Ask 2050 for something: an icon of Elon Musk in liquid chrome listens, your words leave on a rocket, and one of his real posts about 2050 comes back. A party joke; the icon is an AI-made picture | WebGL shader, Web Audio, one HTML file ([`prayer/`](prayer/README.md)) |
+| [Trip 2050](https://vargafutureparty.com/trip/index.html) | A light show that moves with the room's music: the concept art as kaleidoscopes, tunnels and liquid paint, 24 innovators as pop-art posters, and the party's welcome poster | Butterchurn (MilkDrop), WebGL shaders, Web Audio ([`trip/`](trip/README.md)) |
 
 ### On the wall and behind it
 
@@ -64,7 +65,7 @@ python3 -m http.server 4610 -d site     # then open http://localhost:4610
 
 ## What is here
 
-Start at **`index.html`**, the front page: four doors (the wall, the music, the apps, the research), then a section for each, with the Big Muse first. Apps holds the seven things guests play with (The Future 2050, the party App; Mirror 2050; History of Music 2050; Play: 2050; Mars in 3D; Imagined Futures; Prayer Room), each with a preview, a link of its own on the page (`#mirror`, `#play`, `#mars` …) and a jump bar. It works offline from this folder. What only the host needs (the pre-flight list for the projector laptop, the short addresses, the programme and the films kept off the front page, and how to rebuild each piece) is on **`admin.html`**, which no page links to. Rebuild both with `python3 -I hub/build.py` after any other piece changes; it rebuilds the Big Muse first. The website is the same pages in web mode (see [The website](#the-website)).
+Start at **`index.html`**, the front page: four doors (the wall, the music, the apps, the research), then a section for each, with the Big Muse first. Apps holds the eight things guests play with (The Future 2050, the party App; Mirror 2050; History of Music 2050; Play: 2050; Mars in 3D; Imagined Futures; Prayer Room; Trip 2050), each with a preview, a link of its own on the page (`#mirror`, `#play`, `#mars` …) and a jump bar. It works offline from this folder. What only the host needs (the pre-flight list for the projector laptop, the short addresses, the programme and the films kept off the front page, and how to rebuild each piece) is on **`admin.html`**, which no page links to. Rebuild both with `python3 -I hub/build.py` after any other piece changes; it rebuilds the Big Muse first. The website is the same pages in web mode (see [The website](#the-website)).
 
 | Folder | What it is |
 | --- | --- |
