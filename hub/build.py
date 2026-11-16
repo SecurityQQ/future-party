@@ -120,7 +120,7 @@ PLAYLISTS = {
 APP_SHOTS = {"party": "hub/apps/app.jpg", "mirror": "hub/apps/mirror.jpg", "music": "hub/apps/music.jpg",
              "play": "hub/apps/play.jpg", "mars": "mars3d/preview.jpg", "art": "hub/apps/art.jpg",
              # Prayer Room's own picture: the room on a wide screen, with a verse beside the icon
-             "prayer": "prayer/preview.jpg"}
+             "prayer": "prayer/preview.jpg", "trip": "trip/preview.jpg"}
 # The picture in the Light show row: four moments of Trip 2050 (a kaleidoscope, four posters, a tunnel, liquid colour)
 TRIP_SHOT = "trip/preview.jpg"
 # The picture on the Imagined Futures tile: the Prometheus Ring, a spinning habitat orbiting Saturn
