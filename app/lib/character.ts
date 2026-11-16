@@ -98,18 +98,37 @@ export async function getPlayer(id: string): Promise<Player | null> {
   return (data as Player) ?? null;
 }
 
-// Start (or restart) the image job for the player's next attempt.
+// Update the row only if it is still the one the caller read (same status, attempts and stamp),
+// so of all the requests that see the same row, exactly one moves it. Null when another was first.
+async function claim(p: Player, fields: Partial<Player>): Promise<Player | null> {
+  const { data } = await db()
+    .from("players")
+    .update({ ...fields, updated_at: new Date().toISOString() })
+    .eq("id", p.id)
+    .eq("status", p.status)
+    .eq("attempts", p.attempts)
+    .eq("updated_at", p.updated_at)
+    .select("*");
+  return (data?.[0] as Player) ?? null;
+}
+
+// A start that claimed the row but never stored its job (the function was stopped in between).
+const START_STALE_MS = 120_000;
+
+// Start (or restart) the image job for the player's next attempt. Every poll of a pending card
+// lands here, so the row is claimed first ("generating" with no job yet): one caller pays for a
+// job, the others get the card as it is.
 export async function startGeneration(p: Player): Promise<Player> {
   const model = MODELS[Math.min(p.attempts, MODELS.length - 1)];
   const spec = presets.models.find((m) => m.id === model) as any;
+  const mine = await claim(p, { status: "generating", job_id: null, model, attempts: p.attempts + 1, error: null });
+  if (!mine) return (await getPlayer(p.id)) ?? p;
   try {
     const jobId = await startImage({ model, prompt: p.prompt!, aspect: ASPECT, providerOptions: spec?.providerOptions });
-    return await update(p.id, { job_id: jobId, model, status: "generating", attempts: p.attempts + 1, error: null });
+    return await update(p.id, { job_id: jobId });
   } catch (e: any) {
-    const attempts = p.attempts + 1;
     return await update(p.id, {
-      status: attempts >= MAX_ATTEMPTS ? "failed" : "pending",
-      attempts,
+      status: mine.attempts >= MAX_ATTEMPTS ? "failed" : "pending",
       error: String(e?.message || e).slice(0, 500),
     });
   }
@@ -139,6 +158,11 @@ export async function refresh(id: string): Promise<Player | null> {
   const age = Date.now() - new Date(p.updated_at).getTime();
   if (p.status === "pending") return startGeneration(p);
   if (p.status === "finalizing" && age > 90_000) p = await update(p.id, { status: "generating" });
+  if (p.status === "generating" && !p.job_id) {
+    if (age < START_STALE_MS) return p; // another request is starting the job right now
+    if (p.attempts >= MAX_ATTEMPTS) return (await claim(p, { status: "failed", error: "the image job did not start" })) ?? p;
+    return startGeneration(p);
+  }
   if (p.status !== "generating" || !p.job_id) return p;
 
   let st;
@@ -189,12 +213,13 @@ export async function pollUntilSettled(id: string, budgetMs = 270_000) {
 }
 
 // A fresh prompt and attempts reset. The owner's retry keeps the finish (no rerolling for a
-// legendary card); the admin page can reroll it.
+// legendary card); the admin page can reroll it. Claimed like a start, so a double tap on Retry
+// (or on the admin's Redraw) pays for one job.
 export async function regenerate(p: Player, guest: Guest | null, reroll = false): Promise<Player> {
   const keep = reroll ? undefined : FINISHES.find((f) => f.style === p.style);
   const plan = planCharacter(p.birthday, guest, keep);
-  const fresh = await update(p.id, { ...plan, status: "pending", attempts: 0, job_id: null, error: null });
-  return startGeneration(fresh);
+  const fresh = await claim(p, { ...plan, status: "pending", attempts: 0, job_id: null, error: null });
+  return fresh ? startGeneration(fresh) : ((await getPlayer(p.id)) ?? p);
 }
 
 // A card by its share-link id: the card number (/c/7) or the player id (older links).
@@ -212,11 +237,12 @@ export const REDRAWS = 1;
 const FEEDBACK_MARK = "\n\nChanges the guest asked for after seeing the first picture:";
 
 // The one redraw during onboarding: the same Kin idea and finish, plus what the guest wants
-// changed. The first picture is kept in prev_image_url so they can switch back.
-export async function redrawWithFeedback(p: Player, feedback: string): Promise<Player> {
+// changed. The first picture is kept in prev_image_url so they can switch back. Null when a
+// parallel request took the redraw first (one redraw means one paid job, however many taps).
+export async function redrawWithFeedback(p: Player, feedback: string): Promise<Player | null> {
   const base = (p.prompt ?? "").split(FEEDBACK_MARK)[0];
   const prompt = `${base}${FEEDBACK_MARK} ${feedback}\nApply these changes; keep whatever else fits the description above.`;
-  const fresh = await update(p.id, {
+  const fresh = await claim(p, {
     prompt,
     feedback,
     redraws: p.redraws + 1,
@@ -228,7 +254,7 @@ export async function redrawWithFeedback(p: Player, feedback: string): Promise<P
     job_id: null,
     error: null,
   });
-  return startGeneration(fresh);
+  return fresh ? startGeneration(fresh) : null;
 }
 
 // Switch between the first picture and the redraw (only once neither is still drawing).

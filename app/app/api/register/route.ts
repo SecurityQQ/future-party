@@ -7,6 +7,7 @@ import { KIN_LINK, loadGuests, recordScan, TAG_RE, takenGuestIds } from "@/lib/g
 import { planCharacter, pollUntilSettled, startGeneration } from "@/lib/character";
 import { normEmail, validEmail } from "@/lib/profile";
 import { emailReady, sendEmail, welcomeEmail } from "@/lib/email";
+import { registerBlocked } from "@/lib/limits";
 
 export const maxDuration = 300;
 
@@ -28,6 +29,11 @@ export async function POST(req: Request) {
 
   const me = await currentPlayer();
   if (me) return NextResponse.json({ playerId: me.id, already: true });
+
+  // Every new traveler is a paid picture and clip (and maybe a welcome email), and this needs no
+  // login, so the whole app takes only so many per hour and per day (lib/limits.ts).
+  const blocked = await registerBlocked();
+  if (blocked) return fail(blocked.error, blocked.status);
 
   if (tag) {
     const { data: t } = await db().from("tags").select("player_id").eq("code", tag).maybeSingle();

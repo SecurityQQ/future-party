@@ -24,8 +24,18 @@ export async function POST(req: Request) {
   if (!row || new Date(row.expires_at).getTime() < Date.now()) return fail("This code has expired. Send a new one.", 410);
   if (row.attempts >= MAX_TRIES) return fail("Too many wrong tries. Send a new code.", 429);
 
+  // Take one try before comparing, and only if nobody took it first: of parallel requests that
+  // read the same count, one goes on and the rest are refused, so a code never gets more than
+  // MAX_TRIES guesses, however many arrive at once.
+  const { data: took } = await db()
+    .from("login_codes")
+    .update({ attempts: row.attempts + 1 })
+    .eq("id", row.id)
+    .eq("attempts", row.attempts)
+    .select("id");
+  if (!took?.length) return fail("One try at a time. Wait a second and enter the code again.", 429);
+
   if (!codeMatches(email, code, row.code_hash)) {
-    await db().from("login_codes").update({ attempts: row.attempts + 1 }).eq("id", row.id);
     const left = MAX_TRIES - row.attempts - 1;
     return fail(left > 0 ? `That code does not match. ${left} ${left === 1 ? "try" : "tries"} left.` : "Too many wrong tries. Send a new code.", 400);
   }

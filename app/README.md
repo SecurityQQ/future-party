@@ -75,6 +75,31 @@ vercel deploy --prod               # vargafutureparty.com and the three .vercel.
 
 `schema.sql` turns on row level security with no policies and revokes the public roles, so the publishable key cannot read anything. The server uses the secret key. Only guest name, aliases, totem, scene and interests are imported from the spreadsheet; notes, sources and social links stay out of the database.
 
+## Rate limits
+
+Signing up needs no login and costs money (a paid picture, a ~30¢ clip, maybe a welcome email), so the app is guarded in three layers (set up 2026-11-15):
+
+1. **Vercel DDoS mitigation**: automatic, on every plan. Blocked traffic is not billed.
+2. **Vercel Firewall rules** on project `the-future-2050`. They count per IP address (per Vercel region), stop a burst before any function runs, and answer 429. Party Wi-Fi puts every guest behind one address, so they are sized for the whole party on one network:
+
+   | Rule | Matches | Per IP |
+   |---|---|---|
+   | Sign-ups | `POST /api/register` | 100 per 10 min |
+   | Logins and pass restores | `POST /api/auth/send`, `/api/auth/verify`, `/api/restore` | 120 per 10 min |
+   | Admin | `/app/admin…`, `/api/admin…` | 30 per 10 min |
+   | API writes | `POST /api/…` | 600 per min |
+   | API reads | `GET /api/…` (card polling, Fable) | 3000 per min |
+   | Passes and card pictures | `/app/t/…`, `/app/c/<n>/card` | 600 per min |
+
+   Change them from a folder linked to the project: `vercel firewall rules list --expand`, `vercel firewall rules edit "<name>" …` (or `disable`), then `vercel firewall publish --yes`. Traffic per rule: Vercel dashboard → the-future-2050 → Firewall.
+3. **In the app** (`lib/limits.ts` and the routes), which hold however many addresses an attacker uses:
+   - new travelers: 30 in any 10 minutes and 150 in any 24 hours, app-wide (`LIMIT_REGISTER_10MIN`, `LIMIT_REGISTER_DAY`);
+   - login codes: one per email per 30 s, 5 per hour, 60 in any 10 minutes app-wide (`LIMIT_LOGIN_CODES_10MIN`); 5 guesses per code;
+   - "This is my card": 5 birthday guesses per pass in 10 minutes, 40 wrong ones app-wide (`LIMIT_RESTORE_FAILS_10MIN`);
+   - one redraw per traveler; a card's picture job, clip and Retry start once however many requests arrive together.
+
+   Every limit writes or claims its row before it counts, so parallel requests cannot slip past it, and a count that fails refuses the request ("lost its link"). To let more people in on the night, set the env var on Vercel and redeploy.
+
 ## Files
 
 | Path | What it is |

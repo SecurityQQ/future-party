@@ -6,12 +6,13 @@ import type { OrbitState } from "@/lib/orbit";
 import { haptic } from "@/lib/haptics";
 import Hull from "./Hull";
 import KinReveal from "./KinReveal";
+import { replyOf } from "@/lib/reply";
 
 type Kin = { image: string | null; character: string; sign: string };
 
 export async function orbitCall(id: string, action: string): Promise<{ state: OrbitState; connected?: boolean }> {
   const res = await fetch("/api/orbit", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id, action }) });
-  const j = await res.json().catch(() => ({}));
+  const j = await replyOf(res);
   if (!res.ok) throw new Error(j.error || "The comm link failed. Try again.");
   return j;
 }
