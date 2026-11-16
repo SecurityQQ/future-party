@@ -67,8 +67,18 @@ body.nocap #cap { display: none; }
 #outro .n { font: 400 clamp(10px, .8vw, 15px)/1.5 var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-top: 1.4em; }
 
 #bar { position: fixed; left: 0; bottom: 0; height: 2px; background: rgb(255 255 255 / 45%); width: 0; pointer-events: none; }
-#hud { position: fixed; top: 2.2vh; right: 2vw; font: 400 11px/1.6 var(--mono); color: var(--dim); text-align: right; opacity: 0; transition: opacity .5s; pointer-events: none; }
+#hud { position: fixed; top: calc(2.2vh + 46px); right: 2vw; font: 400 11px/1.6 var(--mono); color: var(--dim); text-align: right; opacity: 0; transition: opacity .5s; pointer-events: none; }
 body:not(.idle) #hud { opacity: 1; }
+/* autopilot: full screen, a new picture every few seconds. The buttons come and go with the mouse, like the keys. */
+#ctl { position: fixed; top: 2.2vh; right: 2vw; display: flex; gap: 6px; opacity: 0; transition: opacity .5s; pointer-events: none; }
+body:not(.idle) #ctl, #ctl:has(:focus-visible) { opacity: 1; pointer-events: auto; }
+#ctl button { height: 36px; padding: 0 15px; display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  font: 400 12px/1 var(--mono); letter-spacing: .04em; color: var(--ink); background: rgb(0 0 0 / 62%); border: 1px solid #555; border-radius: 999px; }
+#ctl button:hover { border-color: #aaa; }
+#ctl button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+#ctl svg { width: 12px; height: 12px; }
+#auto[aria-pressed="false"] .stop, #auto[aria-pressed="true"] .play { display: none; }
+#secs { min-width: 58px; justify-content: center; color: var(--muted); }
 #hud kbd { font: inherit; color: var(--muted); border: 1px solid #444; border-radius: 3px; padding: 0 .35em; }
 #paused { position: fixed; top: 2.2vh; left: 2vw; font: 400 11px/1.6 var(--mono); color: var(--muted); letter-spacing: .08em; display: none; }
 body.paused #paused { display: block; }
@@ -121,7 +131,15 @@ body.paused #paused { display: block; }
 <div id="cap"><div><div class="meta"></div><h2></h2><p></p></div><div class="credit"></div></div>
 <div id="bar"></div>
 <div id="paused">PAUSED · SPACE TO PLAY</div>
-<div id="hud"><kbd>←</kbd> <kbd>→</kbd> pictures · <kbd>space</kbd> pause · <kbd>F</kbd> full screen · <kbd>G</kbd> globe · <kbd>I</kbd> keys and sources</div>
+<div id="hud"><kbd>A</kbd> autopilot · <kbd>←</kbd> <kbd>→</kbd> pictures · <kbd>space</kbd> pause · <kbd>F</kbd> full screen · <kbd>G</kbd> globe · <kbd>I</kbd> keys and sources</div>
+<div id="ctl">
+  <button id="auto" type="button" aria-pressed="false" title="Autopilot: full screen, a new picture every few seconds (A)">
+    <svg class="play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15L19.5 12z"/></svg>
+    <svg class="stop" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/></svg>
+    <span class="lbl">Autopilot</span>
+  </button>
+  <button id="secs" type="button" title="Seconds per picture on autopilot (+ / −)">8 s</button>
+</div>
 <div id="nogl">This browser could not start WebGL, so the globe is off. The pictures work.</div>
 <div id="panel" role="dialog" aria-label="Keys and sources">
   <button class="close" type="button">Close · I</button>
@@ -129,6 +147,7 @@ body.paused #paused { display: block; }
   <p>Real stereo pictures of Mars, for red/cyan 3D glasses with the red lens on the left eye. Every picture was taken by a spacecraft on or above Mars, by two cameras side by side or by one camera from two places, and published as an anaglyph by NASA or ESA. Between the missions a live globe of Mars, coloured with the Viking mosaic and raised with laser-altimeter heights (ten times higher than real), flies to each landing site. <a href="../index.html#mars">Back to the party’s apps</a></p>
   <h3>Keys</h3>
   <div class="keys">
+    <div><kbd>A</kbd> autopilot: full screen, a new picture every few seconds; <kbd>+</kbd> <kbd>−</kbd> how many</div>
     <div><kbd>→</kbd> or click the right half: next</div>
     <div><kbd>←</kbd> or click the left half: back</div>
     <div><kbd>Space</kbd> pause and play</div>
@@ -140,7 +159,7 @@ body.paused #paused { display: block; }
     <div><kbd>D</kbd> more depth on the globe, <kbd>Shift D</kbd> less</div>
     <div><kbd>I</kbd> this panel</div>
   </div>
-  <p style="color:var(--muted);font-size:13px;margin-top:1em">Addresses: <code>#curiosity</code> opens at a mission (<code>pathfinder</code>, <code>spirit</code>, <code>opportunity</code>, <code>phoenix</code>, <code>curiosity</code>, <code>perseverance</code>, <code>orbit</code>); <code>?globe</code> opens on the globe; <code>?captions=0</code> hides the captions.</p>
+  <p style="color:var(--muted);font-size:13px;margin-top:1em">Addresses: <code>#curiosity</code> opens at a mission (<code>pathfinder</code>, <code>spirit</code>, <code>opportunity</code>, <code>phoenix</code>, <code>curiosity</code>, <code>perseverance</code>, <code>orbit</code>); <code>?globe</code> opens on the globe; <code>?captions=0</code> hides the captions; <code>?auto=8</code> starts on autopilot, a new picture every 8 seconds (press <kbd>F</kbd> for full screen).</p>
   <h3>Sources</h3>
   <table id="sources"></table>
   <p style="color:var(--muted);font-size:13px">Globe: Mars Viking MDIM 2.1 colour mosaic (NASA/JPL/USGS) and MOLA topography (NASA/GSFC), public domain. Drawn with three.js (MIT). NASA pictures are public domain; ESA pictures are CC BY-SA 3.0 IGO.</p>
@@ -180,6 +199,17 @@ function slideDur(s) {
   const screens = Math.max(0, (shown - W) / W);
   return clamp(9 + screens * 10.5, 14, 60);
 }
+// autopilot: every picture stays the same few seconds; a mission card keeps time for the globe to turn, the intro for
+// the glasses test
+items.forEach(i => (i.base = i.dur));
+const AUTO_STEPS = [5, 8, 12, 20];
+let auto = false, autoSecs = 8;
+try { autoSecs = clamp(+localStorage.getItem("mars3d-auto") || 8, 3, 120); } catch (e) {}
+if (+Q.get("auto") > 0) autoSecs = clamp(+Q.get("auto"), 3, 120);
+function durOf(it) {
+  if (!auto) return it.type === "slide" ? slideDur(it.s) : it.base;
+  return it.type === "slide" ? autoSecs : Math.max(autoSecs, it.type === "chapter" ? 6 : 10);
+}
 
 // ---------- pictures ----------
 const slots = [...document.querySelectorAll(".slot")].map(el => ({ el, img: el.querySelector("img"), item: null, t0: 0 }));
@@ -200,7 +230,12 @@ function place(slot, t) {
     const span = Math.max(0, slot.w - W);
     // hold a moment at both ends, then glide
     const p = ease((t / it.dur - 0.06) / 0.88);
-    const x = span > 0 ? -span * p : (W - slot.w) / 2;
+    let x = span > 0 ? -span * p : (W - slot.w) / 2;
+    if (span > 0 && it.win) {
+      // on autopilot there is no time for the whole panorama: a slow look across its middle, at the usual speed
+      const travel = Math.min(span, W / 10.5 * it.dur);
+      x = -(span - travel) / 2 - travel * p;
+    }
     slot.img.style.transform = `translate3d(${x.toFixed(1)}px, ${((H - slot.h) / 2).toFixed(1)}px, 0)`;
   } else {
     const k = reduced ? 1 : 1 + 0.045 * clamp(t / it.dur, 0, 1.2);
@@ -423,8 +458,9 @@ let idx = 0, t = 0, paused = false;
 function go(i) {
   idx = (i + items.length) % items.length; t = 0;
   const it = items[idx];
+  it.dur = durOf(it);
+  it.win = auto && it.type === "slide" && it.s.mode === "pan";
   if (it.type === "slide") {
-    it.dur = slideDur(it.s);
     showSlide(it); caption(it); card(null); setGlobeVisible(false); globeFor(it);
   } else {
     hideSlides(); caption(null); setGlobeVisible(true); globeFor(it);
@@ -465,17 +501,69 @@ function freeGlobe(on) {
   if (on) { G.mode = "free"; hideSlides(); caption(null); card(null); setGlobeVisible(true); pin(null); G.tX = 0; G.tY = 0; G.tDist = 4.4; G.tMoon = 1; }
   else { G.mode = "spin"; go(idx); }
 }
+
+// autopilot: the button (or A) takes the full screen and sets the pace; leaving the full screen ends it
+const fsEl = () => document.fullscreenElement || document.webkitFullscreenElement;
+const quiet = p => { if (p && p.catch) p.catch(() => {}); };
+// the current step takes the new pace without a jump; a panorama keeps its pan, so autopilot starts on the next picture
+function repace(starting) {
+  const it = items[idx];
+  if (it.type === "slide" && it.s.mode === "pan") { if (starting) go(idx + 1); return; }
+  const d = durOf(it); t *= d / it.dur; it.dur = d;
+}
+function setAuto(on) {
+  if (on === auto) return;
+  auto = on;
+  document.body.classList.toggle("auto", on);
+  $("#auto").setAttribute("aria-pressed", String(on));
+  $("#auto .lbl").textContent = on ? "Stop autopilot" : "Autopilot";
+  if (on) { setPaused(false); togglePanel(false); if (G.mode === "free") freeGlobe(false); }
+  repace(on);
+}
+function toggleAuto() {
+  const el = document.documentElement;
+  if (!auto) {
+    setAuto(true);
+    const req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if (req && !fsEl()) { try { quiet(req.call(el, { navigationUI: "hide" })); } catch (e) {} }
+  } else {
+    setAuto(false);
+    const exit = document.exitFullscreen || document.webkitExitFullscreen;
+    if (exit && fsEl()) { try { quiet(exit.call(document)); } catch (e) {} }
+  }
+}
+const fsChange = () => { if (!fsEl() && auto) setAuto(false); };
+document.addEventListener("fullscreenchange", fsChange);
+document.addEventListener("webkitfullscreenchange", fsChange);
+function setSecs(s) {
+  autoSecs = s;
+  try { localStorage.setItem("mars3d-auto", String(s)); } catch (e) {}
+  $("#secs").textContent = s + " s";
+  $("#secs").setAttribute("aria-label", `On autopilot, a new picture every ${s} seconds`);
+  if (auto) repace(false);
+  wake();
+}
+const secsUp = () => AUTO_STEPS.find(s => s > autoSecs), secsDown = () => [...AUTO_STEPS].reverse().find(s => s < autoSecs);
+// on a phone the tap that brings the buttons back must not also press one (the next tap does); keys are never ignored
+let swallow = false;
+addEventListener("pointerdown", () => { swallow = document.body.classList.contains("idle"); wake(); }, true);
+$("#auto").addEventListener("click", e => { if (swallow && e.detail) { swallow = false; return; } toggleAuto(); });
+$("#secs").addEventListener("click", e => { if (swallow && e.detail) { swallow = false; return; } setSecs(secsUp() ?? AUTO_STEPS[0]); });
+
 addEventListener("keydown", e => {
   if (e.metaKey || e.ctrlKey || e.altKey) return;
   const k = e.key;
-  if (k === "ArrowRight" || k === "PageDown") { if (G.mode === "free") freeGlobe(false); go(idx + 1); }
+  if (k === "a" || k === "A") toggleAuto();
+  else if (k === "+" || k === "=") setSecs(secsUp() ?? autoSecs);
+  else if (k === "-" || k === "_" || k === "−") setSecs(secsDown() ?? autoSecs);
+  else if (k === "ArrowRight" || k === "PageDown") { if (G.mode === "free") freeGlobe(false); go(idx + 1); }
   else if (k === "ArrowLeft" || k === "PageUp") { if (G.mode === "free") freeGlobe(false); go(idx - 1); }
   else if (k === " ") setPaused(!paused);
   else if (k === "f" || k === "F") { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.(); }
   else if (k === "c" || k === "C") document.body.classList.toggle("nocap");
   else if (k === "g" || k === "G") freeGlobe(G.mode !== "free");
   else if (k === "i" || k === "I" || k === "?") togglePanel();
-  else if (k === "Escape") togglePanel(false);
+  else if (k === "Escape") { if ($("#panel").classList.contains("show")) togglePanel(false); else if (auto && !fsEl()) setAuto(false); }
   else if (k === "t" || k === "T") { if (G.mode === "free") G.mode = "spin"; go(0); }
   else if (k === "d") G.depth = Math.min(2.5, G.depth * 1.2);
   else if (k === "D") G.depth = Math.max(0.3, G.depth / 1.2);
@@ -493,14 +581,18 @@ $("#globe").addEventListener("pointermove", e => {
 addEventListener("pointerup", () => (drag = null));
 addEventListener("wheel", e => { if (G.mode === "free") G.tDist = clamp(G.tDist * Math.exp(e.deltaY * 0.001), 2.2, 9); }, { passive: true });
 addEventListener("click", e => {
+  if ($("#ctl").contains(e.target)) return;
   if ($("#panel").contains(e.target)) { if (e.target.closest(".close")) togglePanel(false); return; }
   if (G.mode === "free") return;
   go(idx + (e.clientX > innerWidth / 2 ? 1 : -1));
 });
 let idleTimer = 0;
-function wake() { document.body.classList.remove("idle"); clearTimeout(idleTimer); idleTimer = setTimeout(() => document.body.classList.add("idle"), 2600); }
-addEventListener("pointermove", wake); wake();
+// the keys and buttons fade after a moment without the mouse, even with it resting on a button (it stays there after a click)
+function wake(ms = 2600) { document.body.classList.remove("idle"); clearTimeout(idleTimer); idleTimer = setTimeout(() => document.body.classList.add("idle"), ms); }
+addEventListener("pointermove", () => wake()); wake(6000);
 if (Q.get("captions") === "0") document.body.classList.add("nocap");
+$("#secs").textContent = autoSecs + " s";
+$("#secs").setAttribute("aria-label", `On autopilot, a new picture every ${autoSecs} seconds`);
 
 // the sources table
 const rows = [];
@@ -513,6 +605,7 @@ const start = location.hash.slice(1);
 const si = items.findIndex(x => x.type === "chapter" && x.ch.id === start);
 go(si >= 0 ? si : 0);
 if (Q.has("globe")) freeGlobe(true);
+else if (Q.has("auto")) setAuto(true);   // a browser gives the full screen only to a click or a key: F, or the button
 requestAnimationFrame(t0 => { last = t0; requestAnimationFrame(frame); });
 })();
 </script>

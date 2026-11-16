@@ -502,8 +502,8 @@ function peek(e) {
   if (e && e.type === 'pointerdown') swallow = !document.body.classList.contains('peek');
   document.body.classList.add('peek');
   clearTimeout(peekT);
-  const hide = () => { if (full.matches(':hover')) peekT = setTimeout(hide, 1200); else document.body.classList.remove('peek'); };
-  peekT = setTimeout(hide, 2500);
+  // fades even with the mouse resting on the button: a still mouse must not keep it on the icon for good
+  peekT = setTimeout(() => document.body.classList.remove('peek'), 2500);
 }
 addEventListener('pointermove', e => { if (e.pointerType === 'mouse') peek(); });
 addEventListener('pointerdown', peek, true);
