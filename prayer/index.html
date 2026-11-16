@@ -46,10 +46,18 @@ header>*{pointer-events:auto}
 .mark:hover{color:var(--v-ink)}
 .mark b{display:block;font:700 15px/1.3 var(--heading);letter-spacing:-.01em;text-transform:none;color:var(--v-ink);margin-top:3px}
 .mark b span,h1 span{background:var(--v-chrome-surface);-webkit-background-clip:text;background-clip:text;color:transparent}
-#sound{width:40px;height:40px;border-radius:50%;padding:0;display:grid;place-items:center;background:rgb(7 19 43 / 72%);
+.tools{display:flex;gap:8px}
+#sound,#full{width:40px;height:40px;border-radius:50%;padding:0;display:grid;place-items:center;background:rgb(7 19 43 / 72%);
   -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-#sound svg{width:18px;height:18px}
-#sound[aria-pressed="false"] .on,#sound[aria-pressed="true"] .off{display:none}
+#sound svg,#full svg{width:18px;height:18px}
+#sound[aria-pressed="false"] .on,#sound[aria-pressed="true"] .off,#full[aria-pressed="false"] .in,#full[aria-pressed="true"] .out{display:none}
+
+/* Full screen (the corners button, or F): the icon alone. Everything else steps aside; a tap or a moved mouse brings
+   back only the button that leaves, for a moment. */
+body.icon .mark,body.icon #sound,body.icon #panel,body.icon #candles,body.icon #answer,body.icon #rise,body.icon #wallfoot{visibility:hidden}
+body.icon #full{opacity:0;pointer-events:none;transition:opacity .5s var(--v-ease)}
+body.icon.peek #full,body.icon #full:focus-visible{opacity:1;pointer-events:auto}
+body.icon:not(.peek){cursor:none}
 
 button{font:600 15px/1 var(--body);border-radius:999px;padding:14px 20px;cursor:pointer;border:1px solid var(--v-line);
   background:var(--v-panel);color:var(--v-ink);transition:border-color .18s,transform .18s}
@@ -128,10 +136,16 @@ body.wall #answer .x{display:none}
 
 <header>
   <a class="mark" href="../index.html#prayer-room">Varga Future Party 2050<b>Prayer <span>Room</span></b></a>
-  <button id="sound" type="button" aria-pressed="false" aria-label="Sound" title="Sound" hidden>
-    <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
-    <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
-  </button>
+  <div class="tools">
+    <button id="sound" type="button" aria-pressed="false" aria-label="Sound" title="Sound" hidden>
+      <svg class="on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></svg>
+      <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/></svg>
+    </button>
+    <button id="full" type="button" aria-pressed="false" aria-label="Full screen, the icon alone" title="Full screen (F)" hidden>
+      <svg class="out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+      <svg class="in" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>
+    </button>
+  </div>
 </header>
 
 <div id="rise" hidden></div>
@@ -178,6 +192,7 @@ body.wall #answer .x{display:none}
 const Q = new URLSearchParams(location.search);
 const $ = id => document.getElementById(id);
 const WALL = Q.has('wall');
+let ICON = false;                                          // full screen, the icon alone
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
 const rand = (a, b) => a + Math.random() * (b - a);
@@ -205,7 +220,7 @@ let DPR = 1, W = 0, H = 0, rect = {x: 0, y: 0, w: 1, h: 1};
 function layout() {
   DPR = Math.min(window.devicePixelRatio || 1, 2);
   W = window.innerWidth; H = window.innerHeight;
-  const top = WALL ? 20 : 62, bottom = WALL ? 54 : (panel.hidden ? 150 : panel.offsetHeight + 4);
+  const top = ICON ? 12 : WALL ? 20 : 62, bottom = ICON ? 12 : WALL ? 54 : (panel.hidden ? 150 : panel.offsetHeight + 4);
   const availW = W - 24, availH = Math.max(160, H - top - bottom);
   const h = Math.min(availH, availW * IMG_H / IMG_W), w = h * IMG_W / IMG_H;
   rect = {x: (W - w) / 2, y: top + (availH - h) / 2, w, h};
@@ -446,6 +461,58 @@ function startAudio() {
 const bell = (f, v) => { if (audio && audio.on) audio.bell(f, v); };
 $('sound').onclick = () => { const on = !audio.on; audio.mute(!on); $('sound').setAttribute('aria-pressed', String(on)); };
 
+/* ---------- full screen: the icon alone ----------
+   The browser's own full screen where there is one; where there is none (iPhone Safari) the page still clears away
+   everything but the icon. Esc, F, or the button (a tap or a moved mouse brings it back) leave. */
+const full = $('full'), root = document.documentElement;
+const fsEl = () => document.fullscreenElement || document.webkitFullscreenElement;
+const quiet = p => { if (p && p.catch) p.catch(() => {}); };
+let peekT = 0;
+function iconMode(on) {
+  if (on === ICON) return;
+  ICON = on;
+  document.body.classList.toggle('icon', on);
+  document.body.classList.remove('peek');
+  full.setAttribute('aria-pressed', String(on));
+  full.setAttribute('aria-label', on ? 'Leave full screen' : 'Full screen, the icon alone');
+  full.title = on ? 'Leave full screen (F)' : 'Full screen (F)';
+  if (on && document.activeElement && document.activeElement.blur) document.activeElement.blur();   // a focused button would show
+  layout();
+}
+function toggleFull() {
+  if (!ICON) {
+    iconMode(true);
+    const req = root.requestFullscreen || root.webkitRequestFullscreen;
+    if (req && !fsEl()) { try { quiet(req.call(root, {navigationUI: 'hide'})); } catch (e) {} }
+  } else {
+    iconMode(false);
+    const exit = document.exitFullscreen || document.webkitExitFullscreen;
+    if (exit && fsEl()) { try { quiet(exit.call(document)); } catch (e) {} }
+  }
+}
+/* A tap on a phone shows the button before its click arrives; the tap that shows it must not also press it */
+let shownAt = -1e9;
+full.onclick = () => { if (ICON && performance.now() - shownAt < 600) return; toggleFull(); };
+const fsChange = () => { if (!fsEl()) iconMode(false); };   // left by Esc or by the browser's own control
+document.addEventListener('fullscreenchange', fsChange);
+document.addEventListener('webkitfullscreenchange', fsChange);
+function peek(e) {
+  if (!ICON) return;
+  if (e && e.type === 'pointerdown' && !document.body.classList.contains('peek')) shownAt = performance.now();
+  document.body.classList.add('peek');
+  clearTimeout(peekT);
+  const hide = () => { if (full.matches(':hover')) peekT = setTimeout(hide, 1200); else document.body.classList.remove('peek'); };
+  peekT = setTimeout(hide, 2500);
+}
+addEventListener('pointermove', e => { if (e.pointerType === 'mouse') peek(); });
+addEventListener('pointerdown', peek, true);
+addEventListener('keydown', e => {
+  if (e.metaKey || e.ctrlKey || e.altKey || e.target instanceof HTMLInputElement) return;
+  if (!$('start').classList.contains('off')) return;      // not while the door is closed
+  if (e.code === 'KeyF') { e.preventDefault(); toggleFull(); }
+  else if (e.key === 'Escape' && ICON && !fsEl()) iconMode(false);
+});
+
 /* ---------- candles ---------- */
 function showCandles(fresh) {
   const n = Math.min(memo.candles, 9);
@@ -511,6 +578,7 @@ function enter(withSound) {
   if (withSound) { try { startAudio(); } catch (e) {} }
   $('start').classList.add('off');
   setTimeout(() => { $('start').hidden = true; }, 900);
+  full.hidden = false;
   if (WALL) {
     document.body.classList.add('wall'); $('wallfoot').hidden = false;
     const turn = () => { const [x, y] = at(HALO[0], HALO[1]); ripple(x, y, 0.8); lift(0.3); verse('Verse'); };
