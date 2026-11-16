@@ -14,10 +14,15 @@ Open `mars3d/index.html` in Chrome, from disk or from the website (`/mars`, or `
 | `?globe` | Opens on the globe alone: drag to turn it, scroll to zoom |
 | `?captions=0` | No captions |
 | `?relief=10` | How many times the globe's mountains are raised (10 by default) |
+| `?auto=8` | Starts on autopilot, a new picture every 8 seconds (any number from 3 to 120); press `F` or the Autopilot button for the full screen, which a browser only gives to a click or a key |
 
-**Keys:** `→` `←` next and back (or click the right or left half) · `Space` pause · `F` full screen · `C` captions · `G` globe only · `1`–`7` missions · `T` glasses test · `D` / `Shift D` more or less depth on the globe · `I` keys and every source.
+**Keys:** `A` autopilot · `+` `−` its seconds · `→` `←` next and back (or click the right or left half) · `Space` pause · `F` full screen · `C` captions · `G` globe only · `1`–`7` missions · `T` glasses test · `D` / `Shift D` more or less depth on the globe · `I` keys and every source.
 
 ## How it plays
+
+**Autopilot** (the button at the top right, or `A`): the full screen, and a new picture every few seconds, 8 by default. The chip next to the button (or `+` and `−`) picks 5, 8, 12 or 20 seconds, and the page remembers the choice. Mission cards keep at least 6 seconds so the globe can turn to the landing site, the intro and outro at least 10. A panorama has no time for its whole pan, so it shows a slow look across its middle. The buttons and keys come back when the mouse moves or the screen is tapped (that tap does not press a button); `Esc`, the button or `A` leave. On an iPhone, which has no full screen for pages, autopilot only sets the pace.
+
+Without autopilot:
 
 1. **Intro:** the globe turns, with Phobos (much enlarged) passing in front of it, and the glasses test.
 2. **Seven missions**, in order: Mars Pathfinder (1997), Spirit, Opportunity, Phoenix, Curiosity, Perseverance with Ingenuity, then stereo from orbit (Mars Express, Mars Reconnaissance Orbiter, Rosetta's fly-by). For each, the globe turns to the landing site and a pin stands out of the surface, then the mission's pictures follow.
