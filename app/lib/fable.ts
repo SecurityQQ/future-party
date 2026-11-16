@@ -5,6 +5,7 @@ import presets from "./presets.json";
 import { db, type Guest, type Player } from "./db";
 import { chartFor, houseFrom, HOUSE_THEME, pairOf, skyAt, sunLongitude, type Chart, type Pair } from "./astro";
 import { DICTS, LANG_PROMPT, signName, t, type Lang } from "./i18n";
+import { aiPaused } from "./paused";
 
 // Fable's readings, written by Fable (Claude Fable 5.2 through the Vercel AI Gateway; if the gateway refuses
 // it, the next model writes it and the page still says "Fable"): one for each traveler, and one for each
@@ -16,7 +17,7 @@ import { DICTS, LANG_PROMPT, signName, t, type Lang } from "./i18n";
 // How to write them comes from what people love in Co-Star, The Pattern and Chani and from the Barnum
 // effect: guests compare readings, so every line must be anchored in a named reason from their chart,
 // concrete, a gift with its shadow, never hedged, ending on something to do tonight.
-const MODELS = [process.env.FABLE_MODEL, "anthropic/claude-fable-5.2", "google/gemini-2.5-flash", "openai/gpt-5-mini"].filter(Boolean) as string[];
+const MODELS = (aiPaused() ? [] : [process.env.FABLE_MODEL, "anthropic/claude-fable-5.2", "google/gemini-2.5-flash", "openai/gpt-5-mini"]).filter(Boolean) as string[];
 const VERSION = "v4"; // in the hash: a new prompt writes new readings
 
 const VOICE = `You are Fable, the oracle of the year 2050 at Varga Future Party, a party set in 2050 where every traveler is met by their Kin, a companion creature from the future. You talk like a friend who happens to be a brilliant astrologer: short, confident, warm, funny, a little roasting, never mean.
