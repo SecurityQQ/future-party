@@ -490,15 +490,16 @@ function toggleFull() {
     if (exit && fsEl()) { try { quiet(exit.call(document)); } catch (e) {} }
   }
 }
-/* A tap on a phone shows the button before its click arrives; the tap that shows it must not also press it */
-let shownAt = -1e9;
-full.onclick = () => { if (ICON && performance.now() - shownAt < 600) return; toggleFull(); };
+/* A tap on a phone shows the button before its click arrives; the tap that shows it must not also press it (the next
+   tap does, however quick). Keys press it at once (their click has detail 0). */
+let swallow = false;
+full.onclick = e => { if (ICON && swallow && e.detail) { swallow = false; return; } toggleFull(); };
 const fsChange = () => { if (!fsEl()) iconMode(false); };   // left by Esc or by the browser's own control
 document.addEventListener('fullscreenchange', fsChange);
 document.addEventListener('webkitfullscreenchange', fsChange);
 function peek(e) {
   if (!ICON) return;
-  if (e && e.type === 'pointerdown' && !document.body.classList.contains('peek')) shownAt = performance.now();
+  if (e && e.type === 'pointerdown') swallow = !document.body.classList.contains('peek');
   document.body.classList.add('peek');
   clearTimeout(peekT);
   const hide = () => { if (full.matches(':hover')) peekT = setTimeout(hide, 1200); else document.body.classList.remove('peek'); };
