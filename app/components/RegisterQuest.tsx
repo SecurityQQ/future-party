@@ -4,6 +4,7 @@ import { useState } from "react";
 import Hull from "./Hull";
 import { TypedComm } from "./Comm";
 import { haptic } from "@/lib/haptics";
+import { replyOf } from "@/lib/reply";
 
 type Choice = { id: number; name: string; hint: string | null; taken: boolean };
 
@@ -36,7 +37,7 @@ export default function RegisterQuest({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, birthday, email: withEmail.trim(), tag, from, ...(guestId !== undefined ? { guestId } : {}) }),
       });
-      const j = await res.json();
+      const j = await replyOf(res);
       if (j.login) setLoginHint(true);
       if (!res.ok) throw new Error(j.error || "The comm link failed. Try again.");
       if (j.choose) {

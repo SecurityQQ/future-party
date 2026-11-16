@@ -29,6 +29,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
   if (p.redraws >= REDRAWS) return fail("You already used your redraw.", 409);
   if (p.status !== "done") return fail("Wait until your Kin has appeared.", 409);
   const next = await redrawWithFeedback(p, feedback);
+  if (!next) return fail("You already used your redraw.", 409);
   after(() => pollUntilSettled(p.id));
   return NextResponse.json({ status: next.status });
 }

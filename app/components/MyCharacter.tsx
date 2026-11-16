@@ -5,6 +5,7 @@ import AstroLoader from "./AstroLoader";
 import { CharacterCard } from "./CharacterCard";
 import Hull from "./Hull";
 import { type ClipState, useKinClip } from "./KinClip";
+import { replyOf } from "@/lib/reply";
 
 // used: redraws spent (one is allowed); hasPrev: the other version is kept and can be switched back.
 export type RedrawState = { used: number; hasPrev: boolean };
@@ -96,7 +97,7 @@ async function swapCall(id: string, body: unknown): Promise<any> {
     }
     throw new Error("The connection dropped. Check your signal and try again.");
   }
-  const j = await res.json().catch(() => ({}));
+  const j = await replyOf(res);
   if (!res.ok) throw new Error(j.error || "The comm link failed. Try again.");
   return j;
 }

@@ -11,6 +11,7 @@ import RegisterQuest from "./RegisterQuest";
 import EmailLogin from "./EmailLogin";
 import KinReveal from "./KinReveal";
 import { haptic } from "@/lib/haptics";
+import { replyOf } from "@/lib/reply";
 
 export type ScanState = "register" | "claim" | "busy" | "own" | "collected" | "visitor";
 type Me = { id: string; name: string; card: PublicCard; hasTag: boolean } | null;
@@ -64,7 +65,7 @@ export default function ScanScreen({ state, code, link = false, owner, me, newCo
     setError("");
     try {
       const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-      const j = await res.json();
+      const j = await replyOf(res);
       if (!res.ok) throw new Error(j.error || "Comm failure");
       router.refresh();
     } catch (e: any) {

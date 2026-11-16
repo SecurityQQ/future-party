@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Hull from "./Hull";
 import { Comm } from "./Comm";
 import { haptic } from "@/lib/haptics";
+import { replyOf } from "@/lib/reply";
 
 // Log back in on any phone: email -> six-digit code from the email -> signed in. The link in the
 // email opens /login?email=..&code=.. and signs in by itself (the POST runs in the page, so mail
@@ -22,7 +23,7 @@ export default function EmailLogin({
 
   async function call(url: string, body: unknown) {
     const res = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
-    const j = await res.json().catch(() => ({}));
+    const j = await replyOf(res);
     if (!res.ok) throw new Error(j.error || "The comm link failed. Try again.");
     return j;
   }
