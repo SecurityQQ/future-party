@@ -4,11 +4,12 @@ import presets from "./presets.json";
 import type { Guest, Player } from "./db";
 import { styleLabel } from "./character";
 import { parseReading } from "./astrologers";
+import { aiPaused } from "./paused";
 
 // Through the Vercel AI Gateway (OIDC on Vercel, `vercel env pull` locally). Tried in order; the
 // gateway's free tier allows the two defaults. Set READING_MODEL (e.g. anthropic/claude-haiku-5.5)
 // after topping up gateway credits.
-const MODELS = [process.env.READING_MODEL, "google/gemini-2.5-flash", "openai/gpt-5-mini"].filter(Boolean) as string[];
+const MODELS = (aiPaused() ? [] : [process.env.READING_MODEL, "google/gemini-2.5-flash", "openai/gpt-5-mini"]).filter(Boolean) as string[];
 
 const SYSTEM = `You write the lines of three alien oracles at Arrival Station, the first stop of Varga Future Party, a party set in the year 2050. In this 2050 nobody arrives alone: every traveler is met by their Kin, a companion from the future shaped by the sky they were born under and the life they lead. A guest just scanned their pass; while their Kin materializes, the oracles read their stars on a retro starship comms screen.
 
