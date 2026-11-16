@@ -2,6 +2,7 @@ import "server-only";
 import { readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
+import { aiPaused } from "./paused";
 
 const API = "https://api.varg.ai/v2";
 
@@ -16,6 +17,7 @@ function key(): string {
 }
 
 async function call(path: string, body?: unknown, attempt = 0): Promise<any> {
+  if (aiPaused()) throw new Error("image generation is paused");
   const k = key();
   if (!k) throw new Error("VARG_API_KEY is not set");
   const res = await fetch(API + path, {

@@ -7,6 +7,7 @@ import { loadGuests, recordScan, TAG_RE, takenGuestIds } from "@/lib/guests";
 import { planCharacter, pollUntilSettled, startGeneration } from "@/lib/character";
 import { normEmail, validEmail } from "@/lib/profile";
 import { emailReady, sendEmail, welcomeEmail } from "@/lib/email";
+import { aiPaused } from "@/lib/paused";
 
 export const maxDuration = 300;
 
@@ -28,6 +29,7 @@ export async function POST(req: Request) {
 
   const me = await currentPlayer();
   if (me) return NextResponse.json({ playerId: me.id, already: true });
+  if (aiPaused()) return fail("The Arrival Station has closed its gates. Travelers already with us can still log in and revisit their Kin.", 503);
 
   if (tag) {
     const { data: t } = await db().from("tags").select("player_id").eq("code", tag).maybeSingle();

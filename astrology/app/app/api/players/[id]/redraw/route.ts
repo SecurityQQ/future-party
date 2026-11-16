@@ -2,6 +2,7 @@ import { NextResponse, after } from "next/server";
 import { toCard } from "@/lib/db";
 import { REDRAWS, getPlayer, pollUntilSettled, redrawWithFeedback, swapVersion } from "@/lib/character";
 import { currentPlayer } from "@/lib/session";
+import { aiPaused } from "@/lib/paused";
 
 export const maxDuration = 300;
 
@@ -24,6 +25,7 @@ export async function POST(req: Request, { params }: { params: Promise<{ id: str
   }
 
   const feedback = String(body.feedback ?? "").trim().replace(/\s+/g, " ");
+  if (aiPaused()) return fail("The oracles are resting; redraws are closed for now.", 503);
   if (feedback.length < 3) return fail("Tell the oracles what to change.");
   if (feedback.length > 400) return fail("Keep it under 400 characters.");
   if (p.redraws >= REDRAWS) return fail("You already used your redraw.", 409);
