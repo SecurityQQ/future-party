@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { endSession } from "@/lib/session";
 
-// Sign this device out. The traveler can come back with their card or an email code.
+// Sign this device out. Since the party is over, there is no signing back in.
 export async function POST() {
   await endSession();
   return NextResponse.json({ ok: true });

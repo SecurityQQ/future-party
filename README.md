@@ -18,7 +18,7 @@ A one-night party where the guests step into 2050, and this repository is the wh
 
 | App | What it does | Built with |
 | --- | --- | --- |
-| [The Future 2050](https://vargafutureparty.com/app) | The party App: tap your pass, meet your Kin (a zodiac creature from 2050, drawn for you), then tap other guests' passes to collect their Kin and climb a live ranking | Next.js, Supabase, NFC tags, [varg](https://varg.ai) image generation ([`app/`](app/README.md)) |
+| [The Future 2050](https://vargafutureparty.com/app) | The party App: guests tapped their pass to meet their Kin (a zodiac creature from 2050, drawn for them), then tapped other guests' passes to collect their Kin and climb a live ranking. Now the night's archive: every Kin, every orbit, the final ranking | Next.js, NFC tags, [varg](https://varg.ai) image generation ([`app/`](app/README.md)) |
 | [Mirror 2050](https://vargafutureparty.com/mirror/index.html) | Eight camera effects that went viral on X, played with your hands; nothing leaves the browser | MediaPipe hand tracking, WebGL shaders, one HTML file ([`mirror/`](mirror/README.md)) |
 | [History of Music 2050](https://vargafutureparty.com/music/resonance/dist/local/index.html) | 60 stops of music history from 1400 BCE, then twelve directions for the music of the future | Python build from JSON, YouTube player (`music/resonance/`) |
 | [Play: 2050](https://vargafutureparty.com/soundboard/dist/contact2050.html) | A soundboard you play by touching things: twelve pins, eight kits, a jam mode that keeps every touch in time and in key | Makey Makey, Web Audio, [Dirt-Samples](https://github.com/tidalcycles/Dirt-Samples) ([`soundboard/`](soundboard/README.md)) |
@@ -38,13 +38,13 @@ A one-night party where the guests step into 2050, and this repository is the wh
 ## FAQ
 
 **Can I use it for my own party?**
-Yes. Open [vargafutureparty.com](https://vargafutureparty.com) on the projector laptop and type `/wall`, or clone the repo and open `index.html`: the front page and most pieces run from the folder without internet. The party app needs its own Supabase project and NFC tags; see [`app/README.md`](app/README.md).
+Yes. Open [vargafutureparty.com](https://vargafutureparty.com) on the projector laptop and type `/wall`, or clone the repo and open `index.html`: the front page and most pieces run from the folder without internet. The party app is now the night's archive and runs from the snapshot in `app/lib/frozen.json`, with no database; see [`app/README.md`](app/README.md).
 
 **Do guests need an account or an app?**
 No. Nothing on the site needs a login, and the party app opens in the phone's browser from an NFC pass.
 
 **How is it built?**
-Static HTML pages written by small Python scripts from JSON data (`python3 -I hub/build.py`), films in HyperFrames, and the party app in Next.js with Supabase. One Vercel project serves the site and the app; see [The website](#the-website).
+Static HTML pages written by small Python scripts from JSON data (`python3 -I hub/build.py`), films in HyperFrames, and the party app in Next.js (with Supabase during the party; a snapshot in the repo since). One Vercel project serves the site and the app; see [The website](#the-website).
 
 **Can I copy the code?**
 Yes: the code and the original text are under the [MIT licence](LICENSE). Quotes, posts, concept art and photos belong to their authors and keep their own licences; see [Credits and licences](#credits-and-licences).

@@ -22,8 +22,6 @@ const nextConfig: NextConfig = {
     { source: "/mirror", has: oldHost, destination: "/app/mirror", permanent: false },
     // The app's pages before they moved under /app: passes, shared cards, the links in welcome emails
     { source: "/:page(t|c|me|login|scan|leaderboard)/:rest*", destination: "/app/:page/:rest*", permanent: false },
-    // /admin is the host's page; /admin?key=<ADMIN_KEY> was the app's admin
-    { source: "/admin", has: [{ type: "query", key: "key" }], destination: "/app/admin", permanent: false },
   ],
   rewrites: async () => ({
     beforeFiles: [],

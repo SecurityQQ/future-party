@@ -4,7 +4,7 @@ import { currentPlayer } from "@/lib/session";
 import { holdOf, leaderboard } from "@/lib/queries";
 
 // The Kin for the mirror (/mirror). Signed in: your own Kin and the Kin in your orbit. Not signed
-// in (the projector, a guest without a pass): a handful of tonight's Kin. Read-only, and only what
+// in (the projector, a guest without a pass): a handful of the party's Kin. Read-only, and only what
 // the ranking already shows: first name, card number, the Kin's name and picture.
 type MirrorKin ={ card_no: number; name: string; character: string; image_url: string };
 
@@ -20,10 +20,10 @@ export async function GET() {
   try {
     const me = await currentPlayer();
     if (me) {
-      const orbit = (await holdOf(me.id)).filter(drawn).slice(0, MAX).map(kin);
+      const orbit = holdOf(me.id).filter(drawn).slice(0, MAX).map(kin);
       return NextResponse.json({ me: drawn(me) ? kin(me) : null, signedIn: true, orbit, party: [] }, { headers });
     }
-    const all = (await leaderboard()).filter(drawn);
+    const all = leaderboard().filter(drawn);
     for (let i = all.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [all[i], all[j]] = [all[j], all[i]];

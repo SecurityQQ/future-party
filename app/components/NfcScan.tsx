@@ -9,12 +9,12 @@ type Status = "idle" | "scanning" | "found" | "error";
 
 const CODE_RE = /\/t\/([A-Za-z0-9_-]{3,40})(?:[/?#]|$)/;
 
-// The pass scanner. A pass is an NFC tag holding https://…/t/<code>.
+// The pass scanner. A pass is an NFC tag holding https://…/t/<code>, which opens its traveler's Kin.
 // - Android Chrome reads it right here with Web NFC (NDEFReader): press the button once, then any
 //   tap opens that pass on this page. When the permission is already granted, it starts by itself.
 // - iPhone reads NFC tags itself: hold the pass to the top edge and tap the banner that appears.
 // - Anything else: the instructions only.
-export default function NfcScan({ signedIn, compact = false }: { signedIn: boolean; compact?: boolean }) {
+export default function NfcScan({ compact = false }: { compact?: boolean }) {
   const router = useRouter();
   const [platform, setPlatform] = useState<Platform>("other");
   const [status, setStatus] = useState<Status>("idle");
@@ -76,15 +76,15 @@ export default function NfcScan({ signedIn, compact = false }: { signedIn: boole
 
   const how =
     platform === "ios"
-      ? "Hold your pass to the top edge of your iPhone, screen on. Tap the banner that appears."
+      ? "Hold a pass to the top edge of your iPhone, screen on. Tap the banner that appears."
       : platform === "android-nfc"
         ? status === "scanning"
-          ? "Scanner on. Hold your pass flat against the back of your phone."
-          : "Turn on the scanner, then hold your pass to the back of your phone."
-        : "Tap your pass on the back of your phone. It opens the Station by itself.";
+          ? "Scanner on. Hold a pass flat against the back of your phone."
+          : "Turn on the scanner, then hold a pass to the back of your phone."
+        : "Tap a pass on the back of your phone. It opens by itself.";
 
   return (
-    <Hull title={signedIn ? "Pass scanner · meet someone" : "Pass scanner"} code={status === "scanning" ? "LIVE" : platform === "ios" ? "IPHONE" : platform === "android-nfc" ? "NFC" : "READY"} led={status === "error" ? "red" : status === "scanning" ? "green" : "amber"}>
+    <Hull title="Pass scanner" code={status === "scanning" ? "LIVE" : platform === "ios" ? "IPHONE" : platform === "android-nfc" ? "NFC" : "READY"} led={status === "error" ? "red" : status === "scanning" ? "green" : "amber"}>
       <div className={`nfc ${status} ${compact ? "compact" : ""}`}>
         <div className="nfc-anim" aria-hidden>
           <span className="ring r1" />
@@ -93,9 +93,9 @@ export default function NfcScan({ signedIn, compact = false }: { signedIn: boole
           <div className="nfc-phone"><i /></div>
           <div className="nfc-pass">K</div>
         </div>
-        <h2 className="nfc-title">{signedIn ? "Tap their pass" : "Tap your pass"}</h2>
+        <h2 className="nfc-title">Tap a pass</h2>
         <p className="nfc-how">{how}</p>
-        {signedIn && <p className="small muted" style={{ margin: 0 }}>Every pass you tap puts that traveler’s Kin in your orbit.</p>}
+        <p className="small muted" style={{ margin: 0 }}>Every pass from the party opens its traveler’s Kin.</p>
         {platform === "android-nfc" && status !== "scanning" && status !== "found" && (
           <button className="btn glow" onClick={start}>Turn on the scanner</button>
         )}

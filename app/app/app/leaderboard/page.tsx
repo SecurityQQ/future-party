@@ -4,7 +4,6 @@ import { leaderboard, totals } from "@/lib/queries";
 import { rankTitle } from "@/lib/ranks";
 import Hull from "@/components/Hull";
 import TopBar from "@/components/TopBar";
-import AutoRefresh from "@/components/AutoRefresh";
 import { MiniCard } from "@/components/CharacterCard";
 
 export const dynamic = "force-dynamic";
@@ -12,12 +11,11 @@ export const metadata = { title: "Ranking · The Future 2050" };
 
 export default async function LeaderboardPage({ searchParams }: { searchParams: Promise<{ tab?: string }> }) {
   const { tab = "travelers" } = await searchParams;
-  const [me, board, t] = await Promise.all([currentPlayer(), leaderboard(), totals()]);
+  const [me, board, t] = [await currentPlayer(), leaderboard(), totals()];
   const cards = [...board].sort((a, b) => b.collected_by - a.collected_by || a.card_no - b.card_no);
 
   return (
     <main className="shell wide stack">
-      <AutoRefresh />
       <TopBar me={me} />
       <div className="kpis">
         <div className="kpi"><b>{t.players}</b><span>travelers</span></div>
@@ -29,8 +27,8 @@ export default async function LeaderboardPage({ searchParams }: { searchParams: 
         <Link href="/app/leaderboard?tab=cards" aria-current={tab === "cards" ? "page" : undefined}>All Kin</Link>
       </nav>
       {tab !== "cards" ? (
-        <Hull title="Galactic ranking · most cards scanned" code="LIVE">
-          {board.length === 0 && <p className="muted" style={{ marginTop: 0 }}>No travelers yet. Be the first to scan a card.</p>}
+        <Hull title="Galactic ranking · most cards scanned" code="FINAL">
+          {board.length === 0 && <p className="muted" style={{ marginTop: 0 }}>No travelers.</p>}
           <ol className="ranks">
             {board.map((r, i) => (
               <li key={r.id}>

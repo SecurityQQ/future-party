@@ -2,8 +2,8 @@ import "server-only";
 import { createHash } from "node:crypto";
 import { generateText } from "ai";
 import presets from "./presets.json";
-import { db, type Guest, type Player } from "./db";
-import { chartFor, houseFrom, HOUSE_THEME, pairOf, skyAt, sunLongitude, type Chart, type Pair } from "./astro";
+import type { Player } from "./db";
+import { houseFrom, HOUSE_THEME, pairOf, skyAt, type Chart, type Pair } from "./astro";
 import { DICTS, LANG_PROMPT, signName, t, type Lang } from "./i18n";
 import { aiPaused } from "./paused";
 
@@ -11,8 +11,7 @@ import { aiPaused } from "./paused";
 // it, the next model writes it and the page still says "Fable"): one for each traveler, and one for each
 // pair of travelers who are friends or have each other in orbit. Built from the birthday sky (lib/astro.ts:
 // Sun, Moon, the year's animal, tonight's Moon and the house it lights) and what the traveler shared, in the
-// reader's language. Kept as text in the characters bucket (fable/<player>/<lang>-<hash>.txt and
-// fable/pair/<viewer>/<other>/<lang>-<hash>.txt), so each changes only when its inputs do. No new table.
+// reader's language. Kept in memory for as long as the server runs, so each changes only when its inputs do.
 //
 // How to write them comes from what people love in Co-Star, The Pattern and Chani and from the Barnum
 // effect: guests compare readings, so every line must be anchored in a named reason from their chart,
@@ -58,22 +57,17 @@ const PROVIDER_OPTIONS = {
 const first = (name: string) => name.split(/\s+/)[0];
 
 function chartOf(p: Player): Chart {
-  return chartFor(p.birthday, p.sign);
+  return p.chart;
 }
 
-// "early", "middle" or "late" in the sign, by the Sun's degree on the birthday.
-function inSign(birthday: string): string {
-  const [y, m, d] = birthday.split("-").map(Number);
-  const deg = sunLongitude(Date.UTC(y, m - 1, d, 12)) % 30;
-  return deg < 8 ? `early (about ${Math.round(deg)}°), close to the cusp with the sign before` : deg > 22 ? `late (about ${Math.round(deg)}°), close to the cusp with the next sign` : `in the middle (about ${Math.round(deg)}°)`;
-}
+const IN_SIGN = { early: "early, close to the cusp with the sign before", middle: "in the middle", late: "late, close to the cusp with the next sign" };
 
 function chartLines(label: string, p: Player, c: Chart): string[] {
   const z = presets.zodiac.find((x) => x.sign === c.sun);
   const moon = c.moon.other ? `${c.moon.sign} (uncertain: ${c.moon.other} if born at the other end of the day)` : c.moon.sign;
   return [
     `${label}: ${p.name}`,
-    `Sun: ${c.sun}, ${c.element} sign, ${c.modality}, ruled by ${c.ruler}; born ${inSign(p.birthday)}; classic traits: ${z?.traits ?? ""}`,
+    `Sun: ${c.sun}, ${c.element} sign, ${c.modality}, ruled by ${c.ruler}; born ${IN_SIGN[p.cusp]}; classic traits: ${z?.traits ?? ""}`,
     `Moon: ${moon}`,
     `Year animal (Chinese zodiac): ${c.year.element} ${c.year.animal}`,
     `Kin (their companion creature tonight): ${p.character}: ${p.subject}`,
@@ -86,10 +80,9 @@ function tonightLines(c: Chart): string[] {
   return [`Tonight's sky (${sky.date}, transiting, not anyone's birth Moon): the Moon is in ${sky.moon}, ${sky.phase}, in the season of ${sky.sunSign}; for a ${c.sun} it lights house ${h} of their solar chart: ${HOUSE_THEME[h]}`];
 }
 
-export function facts(p: Player, guest: Guest | null, lang: Lang): string {
+export function facts(p: Player, lang: Lang): string {
   const c = chartOf(p);
   const lines = [...chartLines("Traveler", p, c), ...tonightLines(c)];
-  if (guest?.topics?.length) lines.push(`Interests: ${guest.topics.join(", ")}`);
   if (p.bio) lines.push(`About them, in their words: ${p.bio}`);
   if (p.ask_me) lines.push(`Ask them about: ${p.ask_me}`);
   if (p.prophecy) lines.push(`The oracles already told them (do not repeat it): ${p.prophecy}`);
@@ -128,12 +121,6 @@ async function written(path: string, system: string, prompt: string): Promise<st
   const inflight = pending.get(path);
   if (inflight) return inflight;
   const job = (async () => {
-    const bucket = db().storage.from("characters");
-    const { data: stored } = await bucket.download(path);
-    if (stored) {
-      const text = (await stored.text()).trim();
-      if (text) return memo.set(path, text), text;
-    }
     for (const model of MODELS) {
       if ((refused.get(model) ?? 0) > Date.now()) continue;
       try {
@@ -149,7 +136,6 @@ async function written(path: string, system: string, prompt: string): Promise<st
         const text = raw.replace(/[*#"“”«»„]/g, "").replace(/\s+/g, " ").trim().slice(0, 600);
         if (text.length < 20) continue;
         memo.set(path, text);
-        await bucket.upload(path, Buffer.from(text), { contentType: "text/plain; charset=utf-8", upsert: true }).catch(() => {});
         return text;
       } catch (e) {
         const msg = String(e);
@@ -163,8 +149,8 @@ async function written(path: string, system: string, prompt: string): Promise<st
   return job;
 }
 
-export async function fableFor(p: Player, guest: Guest | null, lang: Lang = "en"): Promise<{ text: string; kept: boolean }> {
-  const input = facts(p, guest, lang);
+export async function fableFor(p: Player, lang: Lang = "en"): Promise<{ text: string; kept: boolean }> {
+  const input = facts(p, lang);
   const text = await written(`fable/${p.id}/${lang}-${hash(input)}.txt`, SINGLE, input);
   return text ? { text, kept: true } : { text: fallbackFable(p, lang), kept: false };
 }

@@ -2,19 +2,35 @@
 
 The party app for Varga Future Party 2050: **https://vargafutureparty.com/app**, on the party's own site. One Vercel project, `the-future-2050` (root directory `app/`), serves the app under `/app` and the party site everywhere else (the static pages `npm run site` builds from the repo into `public/`).
 
-Passes written with the first address, `zodiac-rangers.vercel.app/t/<code>`, keep working: that address and the-future-2050.vercel.app still belong to the project. A phone without a traveler is sent from them to vargafutureparty.com; a phone that already has one stays on its address, where its session cookie is. The app's old paths (`/t/<code>`, `/c/<n>`, `/me`, `/login`, `/scan`, `/leaderboard`, `/admin?key=`) redirect to `/app/...` (`next.config.ts`).
+Passes written with the first address, `zodiac-rangers.vercel.app/t/<code>`, keep working: that address and the-future-2050.vercel.app still belong to the project. A phone without a traveler is sent from them to vargafutureparty.com; a phone that already has one stays on its address, where its session cookie is. The app's old paths (`/t/<code>`, `/c/<n>`, `/me`, `/login`, `/scan`, `/leaderboard`) redirect to `/app/...` (`next.config.ts`).
 
 **Files.** Pages are in `app/app/` (the `/app` segment); the API stays at `app/api/` (`/api`). The app's own static files are in `public/app/` (`/app/img`, `/app/vibes`, `/app/mirror`); everything else in `public/` is the party site, git-ignored and rewritten by every build.
 
 **The story.** It is 2050, and nobody arrives alone. Every traveler is met by their Kin: a companion from the future, shaped by the sky they were born under and the life they lead. Three oracles at Arrival Station read your sky while your Kin crosses over. Then you tap the pass of everyone you meet, and their Kin joins your orbit. The future is who you meet.
 
+**Frozen since 25 November 2026.** The party is over, and the app is its archive, with no database. Every traveler, orbit, pass and signed-in phone is in `lib/frozen.json`; every Kin picture is in `public/app/kin/`; the clips stay on varg's CDN. The Supabase project can stay paused. See [The archive](#the-archive).
+
 **The words.** traveler (a guest), pass (the NFC card), Kin (the companion creature), orbit (the Kin you collected), oracles (Vexa, Grumm, Ilu), Arrival Station (the home page). The code keeps the old identifiers (`hold`, `pilot`, `astrologers`).
 
 A guest taps their pass (an RFID/NFC tag) on their phone. The page asks for their name and birthday, three oracles of 2050 read their sky while their Kin materializes, and the card is bound to them. Anyone else who taps that card adds that Kin to their own orbit. The ranking shows who scanned the most cards, plus every Kin at the party.
 
-Next.js 16 on Vercel, Supabase (Postgres + Storage), images from varg with the playground's master prompt, readings through the Vercel AI Gateway.
+Next.js 16 on Vercel. During the party: Supabase (Postgres + Storage), images from varg with the playground's master prompt, readings through the Vercel AI Gateway. Now: a snapshot in the repository.
 
-## The flow
+## The archive
+
+`scripts/freeze.ts` copied the party out of Supabase on 25 November 2026 (`set -a; source .env.local; set +a; bun scripts/freeze.ts`, with the project's secret key). `lib/db.ts` reads the snapshot; nothing writes to it.
+
+| Still works | Gone with the database |
+| --- | --- |
+| Every Kin's public card (`/c/<card number>`), its share picture, the ranking and All Kin, Fable's readings (single and pairs), the Mirror | Registering, collecting a Kin by tapping a pass, orbit requests, binding a pass, redraws, editing a profile, email login, the admin page, new pictures and clips |
+| A phone signed in on the night: My Kin, its orbit, record, profile, Save picture / Save video | Signing in again on a phone that signed out or lost its cookie |
+| Tapping a pass or opening a QR code from the night: it shows whose Kin it is | |
+
+The repository is public, so only what the app already showed is in the snapshot: names, Kin, prophecies, profiles (bio, "ask me about", links), orbits and counts. Left out: emails, birthdays (each traveler's chart is kept instead: Sun, Moon, year animal, and early, middle or late in the sign, which is what Fable reads), image prompts, redraw notes, the oracles' first readings, guest-list rows and unanswered orbit requests. Pass codes and session cookies are kept only as SHA-256 hashes, so a pass and a signed-in phone still find their traveler, and neither can be forged from the file. Unanswered orbit requests were dropped; old mutual "friends" pairs became orbit entries, as the app did on a traveler's next visit.
+
+Fable's readings come from the templates while `AI_PAUSED` is on (the default since the party); with `AI_PAUSED=false` the AI Gateway writes them as before, and they are kept in memory while the server runs (they used to be stored in the bucket).
+
+## How the night worked
 
 | Someone taps card `/app/t/<code>` | What happens |
 | --- | --- |
@@ -24,40 +40,27 @@ Next.js 16 on Vercel, Supabase (Postgres + Storage), images from varg with the p
 | Phone with no pilot, someone's card | Shows the Kin; registering from here also collects it. "This is my card" + birthday restores the owner's session on a new phone. |
 | Registered phone without a card, blank card | Offers to bind the blank card to their existing Kin. |
 
-The session is an httpOnly cookie (one year) tied to a row in `sessions`.
+The session was an httpOnly cookie (one year) tied to a row in `sessions`; the snapshot keeps the hash of each.
 
 ## The character
 
-`lib/character.ts` fills the playground master prompt (`v6` in `../playground/presets.json`, copied to `lib/presets.json` by `bun scripts/sync-presets.ts`):
+During the party, `lib/character.ts` filled the playground master prompt (`v6` in `../playground/presets.json`, copied to `lib/presets.json` by `bun scripts/sync-presets.ts`):
 
 - **subject and scene**: the guest's totem and NFC-card scene from the guest list, translated to English in `data/guests.en.json`. Guests without a totem, and people not on the list, get their zodiac animal and a random scene.
 - **traits and palette**: from the birthday's sign and element.
 - **finish = rarity**: a weighted draw over the playground styles. Common 52% (plush, porcelain, airbrush), rare 28% (neon, cyborg, chrome), epic 15% (crystal, holo glass, wireframe), legendary 5% (diamond pavé). Epic and legendary cards get a holo sheen.
 - **model**: GPT Image 2.6 (`background: opaque`), retried once, then Nano Banana 2.1, then Seedream 5.5. About 6¢ and 15–25 s per image.
 
-The image is copied into the public `characters` bucket as a 900 px WebP. Each poll of `/api/players/<id>` moves the job along, and `after()` keeps polling for 4.5 minutes if the guest closes the page.
+The image was copied into the public `characters` bucket as a 900 px WebP (now `public/app/kin/<card number>.webp`). **The Kin comes alive**: once a picture was stored, MiniMax H3 animated it into a 5-second, 720p loop with the picture as first and last frame. The MP4s stay on varg's CDN (`s3.varg.ai`); the card fades the clip in over the picture once it plays (a phone in Low Power Mode or with reduced motion keeps the still). The owner gets **Save picture** (the file itself) and **Save video** (`/api/players/<id>/clip`, which streams the clip with an attachment header, since varg's CDN cannot be asked for a download).
 
-**The Kin comes alive** (`lib/video.ts`): once a picture is stored, MiniMax H3 (`minimax_h3`, image to video) animates it: 5 s at 720p (768×1024), the picture as both first and last frame so the clip loops without a jump. About 30¢ and 80–90 s a clip, one retry. The MP4 stays on varg's CDN (`s3.varg.ai` behind Cloudflare: `video/mp4`, range requests, edge cache), nothing is copied; one row per picture in `videos` keeps picture, clip, job and status together, so a redraw or a switch between versions never loses or repeats a clip; `players.video_url` is the clip of the picture on the card. The card shows the picture and fades the clip in over it once it plays (a phone in Low Power Mode or with reduced motion keeps the still). The owner gets **Save picture** (Supabase `?download=`) and **Save video** (`/api/players/<id>/clip`, which streams the clip with an attachment header, since varg's CDN cannot be asked for a download) under their card. Pictures stay in Supabase: the Mirror draws them on a canvas, which needs Supabase's CORS header. Cards drawn before clips existed get theirs the first time someone opens them. Clip status is on `/app/admin`. Clips need the `players.video_url` column and the `videos` table from `supabase/schema.sql`; until they exist the app runs exactly as before without clips, and once they do, clips switch on within a minute without a redeploy (`clipsReady()` in `lib/video.ts`).
+The oracles' reading streamed from `google/gemini-2.5-flash`, then `openai/gpt-5-mini`, then a template; its last line is the card's prophecy.
 
-The reading streams from `google/gemini-2.5-flash`, then `openai/gpt-5-mini` (the two models the gateway's free tier allows), then a template, so the loader never stalls. After adding gateway credits, set `READING_MODEL=anthropic/claude-haiku-5.5` on Vercel to try that first.
-
-## Running the party
-
-- **Tags**: open `/app/admin?key=<ADMIN_KEY>` (the key is in `.env.local` and on Vercel), press Generate and write one URL per tag (NFC Tools → Write → URL). The codes are random, so nobody can collect a card by typing an address. Any `/app/t/<code>` (or the old `/t/<code>`) works, so you can also write your own codes.
-- **Fix a bad image**: on `/app/admin`, Redraw (same finish) or Reroll finish.
-- **Start clean** (after testing): `set -a; source .env.local; set +a; bun scripts/reset.ts --yes`. This empties players, tags, scans, images and clips and keeps the guest list.
-- **Wall screen**: `/app/leaderboard` refreshes itself every 15 s.
-
-## Setup from scratch
+## Setup
 
 ```bash
 cd app
 npm install
-cp .env.example .env.local        # fill in; see the comments there
-set -a; source .env.local; set +a
-psql "$DATABASE_URL" -f supabase/schema.sql
-python3 -I scripts/import_guests.py data/guests.en.json "<path to Future_Party_Guests.xlsx>" | psql "$DATABASE_URL"
-vercel link && vercel env pull .env.development.local   # AI Gateway token for local readings
+vercel link && vercel env pull .env.development.local   # AI Gateway token for Fable's readings
 npm run site                       # copies the party site into public/ (optional for app work)
 npm run dev                        # http://localhost:4400/app
 ```
@@ -73,69 +76,35 @@ vercel deploy                      # preview; previews are login-protected, chec
 vercel deploy --prod               # vargafutureparty.com and the three .vercel.app addresses
 ```
 
-`schema.sql` turns on row level security with no policies and revokes the public roles, so the publishable key cannot read anything. The server uses the secret key. Only guest name, aliases, totem, scene and interests are imported from the spreadsheet; notes, sources and social links stay out of the database.
-
 ## Rate limits
 
-Signing up needs no login and costs money (a paid picture, a ~30¢ clip, maybe a welcome email), so the app is guarded in three layers (set up 2026-11-15):
-
-1. **Vercel DDoS mitigation**: automatic, on every plan. Blocked traffic is not billed.
-2. **Vercel Firewall rules** on project `the-future-2050`. They count per IP address (per Vercel region), stop a burst before any function runs, and answer 429. Party Wi-Fi puts every guest behind one address, so they are sized for the whole party on one network:
-
-   | Rule | Matches | Per IP |
-   |---|---|---|
-   | Sign-ups | `POST /api/register` | 100 per 10 min |
-   | Logins and pass restores | `POST /api/auth/send`, `/api/auth/verify`, `/api/restore` | 120 per 10 min |
-   | Admin | `/app/admin…`, `/api/admin…` | 30 per 10 min |
-   | API writes | `POST /api/…` | 600 per min |
-   | API reads | `GET /api/…` (card polling, Fable) | 3000 per min |
-   | Passes and card pictures | `/app/t/…`, `/app/c/<n>/card` | 600 per min |
-
-   Change them from a folder linked to the project: `vercel firewall rules list --expand`, `vercel firewall rules edit "<name>" …` (or `disable`), then `vercel firewall publish --yes`. Traffic per rule: Vercel dashboard → the-future-2050 → Firewall.
-3. **In the app** (`lib/limits.ts` and the routes), which hold however many addresses an attacker uses:
-   - new travelers: 30 in any 10 minutes and 150 in any 24 hours, app-wide (`LIMIT_REGISTER_10MIN`, `LIMIT_REGISTER_DAY`);
-   - login codes: one per email per 30 s, 5 per hour, 60 in any 10 minutes app-wide (`LIMIT_LOGIN_CODES_10MIN`); 5 guesses per code;
-   - "This is my card": 5 birthday guesses per pass in 10 minutes, 40 wrong ones app-wide (`LIMIT_RESTORE_FAILS_10MIN`);
-   - one redraw per traveler; a card's picture job, clip and Retry start once however many requests arrive together.
-
-   Every limit writes or claims its row before it counts, so parallel requests cannot slip past it, and a count that fails refuses the request ("lost its link"). To let more people in on the night, set the env var on Vercel and redeploy.
+Vercel's DDoS mitigation and the Firewall rules set up for the party (2026-11-15) still guard project `the-future-2050`: per IP address, 3000 API reads a minute, 600 API writes a minute, 600 pass and share-picture loads a minute, plus rules for sign-ups, logins and the admin page that now match nothing. List or change them from a folder linked to the project: `vercel firewall rules list --expand`, `vercel firewall rules edit "<name>" …`, then `vercel firewall publish --yes`. The in-app limits went with the database, and so did everything they guarded. Fable's models stay off unless `AI_PAUSED=false` is set (`lib/paused.ts`); its templates answer instead.
 
 ## Files
 
 | Path | What it is |
 | --- | --- |
-| `app/t/[code]/page.tsx` | The scan: decides which of the cases above applies, records the scan, collects. |
-| `components/ScanScreen.tsx` | The screens for each case. |
-| `components/RegisterQuest.tsx` | Registration as a text-quest dialogue. |
-| `components/AstroLoader.tsx` | The streamed reading, star chart, synthesis log, reveal. |
-| `lib/match.ts` | Name → guest: Cyrillic transliteration, nicknames (Dima, Sasha, Katya…), Jaro-Winkler per word. |
-| `lib/character.ts` | Prompt, finish, varg job, retries, storage. |
-| `lib/video.ts` | The H3 step: animates each finished picture, stores the MP4, one `videos` row per picture. |
-| `lib/reading.ts` | The oracles' prompt, model chain, template. |
-| `app/api/*` | register, players/[id] (status), reading, claim, restore, me, admin/regenerate. |
-| `supabase/schema.sql` | Tables, the `leaderboard` view, RLS, the storage bucket. |
-| `scripts/` | Guest import, presets sync, reset. |
+| `lib/frozen.json` | The snapshot: travelers, orbits, hashed passes and sessions, the scan count. |
+| `lib/db.ts` | Reads the snapshot: the types, travelers by id and card number, pass and session lookups. |
+| `lib/queries.ts` | The ranking, orbits, totals and circles worked out from it. |
+| `public/app/kin/` | Every Kin picture (900 px WebP, 4 MB in all). |
+| `scripts/freeze.ts` | Wrote the two above from Supabase. |
+| `app/t/[code]/page.tsx` | A pass or QR code: whose Kin it is. |
+| `lib/fable.ts`, `lib/astro.ts` | Fable's readings and the astrology under them. |
 | `public/img/` | The three oracles and the station (generated with GPT Image 2.6). |
 | `public/mirror/index.html` | The Mirror (`/mirror`): the camera page, its shaders and hand tracking in one file. |
-| `app/api/mirror/route.ts` | The Kin the mirror shows: yours and your orbit, or tonight's when signed out. |
+| `app/api/mirror/route.ts` | The Kin the mirror shows: yours and your orbit, or the party's when signed out. |
 
-## Logging in, profiles, friends, sharing
-
-Added 14 November 2026. They need the additive part of `supabase/schema.sql` (new `players` columns: `email`, `bio`, `ask_me`, `links`, `redraws`, `feedback`, `prev_image_url`; new tables `login_codes` and `friends`). Run the schema file again; it is idempotent.
+## Pages
 
 | Route | What it does |
 | --- | --- |
-| `/` and `/me` | Your Kin when this phone has a traveler: the card, the one redraw, the share link with its QR, your profile, record, friends and orbit. Without a traveler: the pass scanner. |
+| `/` and `/me` | Your Kin when this phone has a traveler: the card with Save picture / Save video, the share link with its QR, your profile, record and orbit. Without a traveler: the night in numbers and the top three. |
 | `/scan` | The pass scanner. Android Chrome reads the pass in the page (Web NFC); an iPhone reads it itself when the pass touches the top edge. |
-| `/login` | Email → six-digit code → signed in. The email's link (`/login?email=…&code=…`) signs in by itself. |
-| `/me/profile` | Optional profile: name, a line about you, "ask me about", Instagram / Telegram / X / LinkedIn / website, and the login email (never shown). |
-| `/c/<card number>` | The public card and the share link. Anyone signed in gets **Become friends** (mutual, instant). Friends do not count on the ranking; only tapping a pass does. |
+| `/login` | Says that logging in closed with the party. |
+| `/me/profile` | Your profile as others saw it, and Sign out (for good). |
+| `/c/<card number>` | The public card and the share link, with Fable's reading, and for a signed-in phone the pair reading and whether this Kin is in your orbit. |
 | `/c/<card number>/card` | The picture a shared card link shows on X and in messengers: 1200 × 630 with the whole Kin, its name, whose Kin it is, the prophecy, rarity and the site's address (`next/og`, fonts in `assets/fonts/`). The owner's share panel has **Post on X**, which writes the post with the link. |
-
-- **Email login** uses Resend: set `RESEND_API_KEY` and `EMAIL_FROM` (an address on a domain verified in Resend). Without a key, preview and local builds show the code on the page so the flow can be tested; production answers that email login is not on yet. Codes are stored as an HMAC (`LOGIN_PEPPER`, falling back to the Supabase secret key), last 15 minutes, allow 5 tries, and at most 5 are sent per email per hour.
-- **Registration** asks for an email after the birthday (it can be skipped and added later in the profile) and sends a welcome email when Resend is set up.
-- **Redraw**: right after the reveal, a traveler can redraw their Kin once with notes on what to change (`/api/players/<id>/redraw`). The notes are added to the image prompt; the first picture is kept, and they can switch between the two versions.
-- **No rarity on screen**: the frame takes the element's color and see-through finishes keep the holo sheen. The `rarity` column is still written but never shown.
 
 ## The Mirror
 
@@ -143,11 +112,11 @@ Added 14 November 2026. **Mirror 2050** (`mirror/` in the repository root, eight
 
 | Effect | What it does |
 | --- | --- |
-| 1 · Your Kin | Open your palm and your Kin lands on it as a hologram; a fist hides it. The Kin in your orbit circle around your head and fade when they pass behind you (body segmentation). Signed out, tonight's Kin circle instead, and each new open palm catches the next one. Mouse or finger drag carries the Kin without hand tracking. |
+| 1 · Your Kin | Open your palm and your Kin lands on it as a hologram; a fist hides it. The Kin in your orbit circle around your head and fade when they pass behind you (body segmentation). Signed out, the party's Kin circle instead, and each new open palm catches the next one. Mouse or finger drag carries the Kin without hand tracking. |
 | 2–9 | Liquid Air, Neon Swarm, Holo Cube, Portal, Shatter, Time Warp, Matrix, Cloak: the effects of Mirror 2050, unchanged except for the app's look (blue futurism, Unbounded / Geologica / Martian Mono). |
 
 - **One static file.** `public/mirror/index.html` is served at `/mirror` by a rewrite in `next.config.ts`. It is a page of its own, outside the React layout, so the camera runs at the top level and the starfield and deck do not draw underneath it. Links to it are plain `<a>` tags, not `<Link>`.
-- **Data.** On load it asks `GET /api/mirror` (no cache): signed in, `{me, orbit}`; signed out, `party` (up to 12 random drawn Kin). Only first name, card number, Kin name and picture, the same as the ranking. The route only reads the database. Pictures come from the public `characters` bucket, which sends `Access-Control-Allow-Origin: *`, so snapshots with a Kin in them can still be saved.
+- **Data.** On load it asks `GET /api/mirror` (no cache): signed in, `{me, orbit}`; signed out, `party` (up to 12 random drawn Kin). Only first name, card number, Kin name and picture, the same as the ranking. The pictures are the app's own files (`/app/kin/`), so a canvas with a Kin on it stays clean and snapshots can still be saved.
 - **Camera and models.** Camera frames stay in the browser. MediaPipe Tasks (hands, selfie segmentation) and its models load from jsDelivr and Google's model storage, so the mirror needs the internet (the standalone `mirror/` can run offline from its `vendor/`).
 - **Snapshot** (`S` or the Snapshot button): a JPEG signed THE FUTURE 2050 and vargafutureparty.com, with the traveler's card number when signed in. A sheet shows it with **Share** (the phone's share sheet, where the browser can share files) and **Save**.
 - **Addresses**: `/mirror?fx=kin` (or `liquid`, `swarm`, `holo`, `portal`, `shatter`, `time`, `matrix`, `cloak`) opens on one effect; `?party` starts at once, hides the controls and changes effect every 25 s (the projector); `?hands=0`, `?hud=0`, `?mirror=0`, `?delegate=cpu` as in Mirror 2050. A phone's rear camera is not mirrored.

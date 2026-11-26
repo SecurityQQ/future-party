@@ -2,7 +2,8 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import sharp from "sharp";
 import { ImageResponse } from "next/og";
-import { findPlayer, styleLabel } from "@/lib/character";
+import { findPlayer } from "@/lib/db";
+import { finishLabel } from "@/lib/finish";
 
 // The picture a shared Kin link shows on X and in messengers: 1200 × 630, the Kin whole (X cuts a 3:4 picture
 // to its middle band, at the eyes), its name, whose Kin it is, its prophecy, and the party's address.
@@ -26,10 +27,10 @@ function clip(s: string, n: number): string {
   return cut.slice(0, cut.lastIndexOf(" ") > n * 0.6 ? cut.lastIndexOf(" ") : n).replace(/[\s,;:.–-]+$/, "") + "…";
 }
 
-export async function GET(_req: Request, { params }: { params: Promise<{ id: string }> }) {
-  const p = await findPlayer((await params).id);
-  if (!p?.image_url) return new Response("No Kin picture yet", { status: 404 });
-  const src = await fetch(p.image_url);
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
+  const p = findPlayer((await params).id);
+  if (!p?.image_url) return new Response("No Kin picture", { status: 404 });
+  const src = await fetch(new URL(p.image_url, req.url)); // public/app/kin/, from this same site
   if (!src.ok) return new Response("The Kin picture did not load", { status: 502 });
   const kin = await sharp(Buffer.from(await src.arrayBuffer())).resize(840, 1120, { fit: "cover" }).jpeg({ quality: 86 }).toBuffer();
   const [unbounded, geo4, geo6, mono] = await Promise.all([
@@ -69,7 +70,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ id: str
           <div style={{ position: "absolute", left: 16, bottom: 16, display: "flex", padding: "8px 14px", borderRadius: 999,
             background: "rgba(3,8,23,.78)", border: `1px solid ${RARITY[p.rarity] ?? FG2}`, color: RARITY[p.rarity] ?? FG2,
             fontFamily: "Martian Mono", fontSize: 15, letterSpacing: 2 }}>
-            {`${p.rarity} · ${styleLabel(p.style)}`.toUpperCase()}
+            {`${p.rarity} · ${finishLabel(p.style)}`.toUpperCase()}
           </div>
         </div>
       </div>

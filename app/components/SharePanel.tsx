@@ -2,9 +2,8 @@
 import { useEffect, useState } from "react";
 import Hull from "./Hull";
 
-// The traveler's QR code and public link. The QR is the same link as their pass (/app/t/<code>): whoever
-// scans it collects this Kin, logging in or joining first. The link (/c/<card number>) shows the Kin and
-// lets people become friends. "Post on X" writes the post for them; the link's card
+// The traveler's QR code and public link (/c/<card number>), which shows their Kin to anyone. (During the
+// party the QR held their pass link and collected the Kin.) "Post on X" writes the post for them; the link's card
 // (app/app/app/c/[id]/card) shows the Kin, so the post needs no picture of its own.
 export default function SharePanel({ url, qr, title, character }: { url: string; qr: string; title: string; character: string }) {
   const [copied, setCopied] = useState(false);
@@ -25,7 +24,7 @@ export default function SharePanel({ url, qr, title, character }: { url: string;
       <div className="share">
         <div className="qr" role="img" aria-label={`QR code for ${url}`} dangerouslySetInnerHTML={{ __html: qr }} />
         <div className="stack" style={{ gap: 10, alignContent: "start" }}>
-          <p style={{ margin: 0 }}>Scanning this code works like tapping your pass: your Kin joins their orbit. Your link shows your Kin to anyone and lets them befriend you.</p>
+          <p style={{ margin: 0 }}>The code and the link open your Kin’s card for anyone.</p>
           <a className="share-url mono" href={url}>{url.replace(/^https?:\/\//, "")}</a>
           <a className="btn" href={post} target="_blank" rel="noopener">Post on X</a>
           <div className="btns two">

@@ -1,17 +1,17 @@
-import { getPlayer } from "@/lib/character";
+import { getPlayer } from "@/lib/db";
 
 export const maxDuration = 60;
 
 // Save video: the Kin's clip as a download. Clips live on varg's CDN, which cannot be asked for a
-// download (Supabase can, with ?download=), so this streams the card's own clip through with an
-// attachment header. Only the clip recorded for this card, only from varg's CDN or our Supabase,
-// so it is no open proxy.
-const HOSTS = new Set(["s3.varg.ai", new URL(process.env.NEXT_PUBLIC_SUPABASE_URL || "https://invalid.local").host]);
+// download, so this streams the card's own clip through with an attachment header. Only the clip
+// recorded for this card, only from varg's CDN, so it is no open proxy. (A clip kept in
+// public/app/kin/ is saved straight from its own address: MyCharacter.)
+const HOSTS = new Set(["s3.varg.ai"]);
 
 export async function GET(_req: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const p = await getPlayer(id);
-  const src = p?.video_url ? new URL(p.video_url) : null;
+  const p = getPlayer(id);
+  const src = URL.canParse(p?.video_url ?? "") ? new URL(p!.video_url!) : null;
   if (!p || !src || src.protocol !== "https:" || !HOSTS.has(src.host)) return new Response("No clip for this Kin yet.", { status: 404 });
 
   const res = await fetch(src, { cache: "no-store" });
