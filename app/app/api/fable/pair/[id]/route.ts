@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { findPlayer } from "@/lib/character";
+import { findPlayer } from "@/lib/db";
 import { currentPlayer } from "@/lib/session";
 import { pairFable } from "@/lib/fable";
 import { pickLang } from "@/lib/i18n";
@@ -11,7 +11,7 @@ export const maxDuration = 60;
 export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
   const me = await currentPlayer();
   if (!me) return NextResponse.json({ error: "Log in first." }, { status: 401 });
-  const other = await findPlayer((await params).id);
+  const other = findPlayer((await params).id);
   if (!other) return NextResponse.json({ error: "No such traveler." }, { status: 404 });
   if (other.id === me.id) return NextResponse.json({ error: "That is you." }, { status: 400 });
   const lang = pickLang(new URL(req.url).searchParams.get("lang"));

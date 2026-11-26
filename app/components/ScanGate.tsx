@@ -3,41 +3,25 @@ import { leaderboard, totals } from "@/lib/queries";
 import { rankTitle } from "@/lib/ranks";
 import Hull from "./Hull";
 import TopBar from "./TopBar";
-import NfcScan from "./NfcScan";
-import EmailLogin from "./EmailLogin";
 
-// The Station for someone with no traveler on this phone: log in with email first (no password, a code by
-// email), then the pass scanner for newcomers, what this is, and how the night is going.
-export default async function ScanGate() {
-  const [t, board] = await Promise.all([totals(), leaderboard()]);
-  const top = board.slice(0, 3);
+// The Station for a phone with no traveler: the party is over, so it shows what the night was and how it ended.
+export default function ScanGate() {
+  const t = totals();
+  const top = leaderboard().slice(0, 3);
   return (
     <main className="shell stack">
       <TopBar me={null} />
-      <div className="stack login-first">
-        <EmailLogin autoFocus={false} />
-        <div className="or">new here?</div>
-      </div>
-      <NfcScan signedIn={false} />
       <div className="hero">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/app/img/station.webp" alt="Arrival Station orbiting a ringed planet" />
         <p className="hero-tag">Arrival Station · 2050</p>
       </div>
       <div className="intro">
-        <h1>Meet your <em>Kin</em></h1>
-        <p>It is 2050, and nobody arrives alone. Every traveler is met by their Kin: a companion from the future, shaped by the sky you were born under and the life you lead. <b>The future is who you meet.</b></p>
+        <h1>Meet the <em>Kin</em></h1>
+        <p>On 20 November 2026 nobody arrived alone. Every traveler at Varga Future Party was met by their Kin: a companion from 2050, shaped by the sky they were born under and the life they lead. The party is over; every Kin is still here. <b>The future is who you meet.</b></p>
       </div>
 
-      <Hull title="How it works">
-        <ol className="steps">
-          <li><div><b>Tap your pass</b>Hold the card to the back of your phone. You have arrived in 2050.</div></li>
-          <li><div><b>Meet the oracles</b>Give your name and birthday. Three oracles of 2050 read your sky while your Kin crosses over.</div></li>
-          <li><div><b>Fill your orbit</b>Tap the pass of everyone you meet, or scan the QR code on their phone, and their Kin joins your orbit. The fullest orbit tops the ranking.</div></li>
-        </ol>
-      </Hull>
-
-      <Hull title="Tonight in 2050" code="LIVE">
+      <Hull title="The night in 2050" code="FINAL">
         <div className="kpis">
           <div className="kpi"><b>{t.players}</b><span>travelers</span></div>
           <div className="kpi"><b>{t.collections}</b><span>collected</span></div>
@@ -60,7 +44,15 @@ export default async function ScanGate() {
             ))}
           </ol>
         )}
-        <div style={{ marginTop: 14 }}><Link className="btn ghost" href="/app/leaderboard">Full ranking</Link></div>
+        <div className="btns two" style={{ marginTop: 14 }}>
+          <Link className="btn ghost" href="/app/leaderboard">Full ranking</Link>
+          <Link className="btn ghost" href="/app/leaderboard?tab=cards">All Kin</Link>
+        </div>
+      </Hull>
+
+      <Hull title="Looking for your Kin?">
+        <p style={{ marginTop: 0 }}>A phone that was signed in at the party still opens its traveler’s Kin here. Logging in closed with the party, but every Kin has its public card: find yours in All Kin, or tap your pass.</p>
+        <Link className="btn ghost" href="/app/scan">Scan a pass</Link>
       </Hull>
     </main>
   );

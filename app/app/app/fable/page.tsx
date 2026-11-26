@@ -2,7 +2,7 @@ import Link from "next/link";
 import { currentPlayer } from "@/lib/session";
 import { circleOf, leaderboard } from "@/lib/queries";
 import { GLYPH } from "@/lib/zodiac";
-import { bestMatches, chartFor, houseFrom, skyAt } from "@/lib/astro";
+import { bestMatches, houseFrom, skyAt } from "@/lib/astro";
 import { pairFor } from "@/lib/fable";
 import { getLang } from "@/lib/lang";
 import { animalName, elementName, houseName, phaseName, signName, t, DICTS } from "@/lib/i18n";
@@ -30,7 +30,7 @@ const ELEMENTS = [
 // first. Party: who is what sign and element tonight, and Fable reading every other traveler. In six languages (lib/i18n.ts, components/LangPicker).
 export default async function FablePage() {
   const [me, board, lang] = await Promise.all([currentPlayer(), leaderboard(), getLang()]);
-  const circle = me ? await circleOf(me.id) : [];
+  const circle = me ? circleOf(me.id) : [];
   const d = DICTS[lang];
   const words = { reading: d.reading, lost: d.lost };
   const people = [...board].sort((a, b) => a.name.localeCompare(b.name));
@@ -45,7 +45,7 @@ export default async function FablePage() {
   const S = (sign: string) => signName(lang, sign);
   const others = me ? people.filter((p) => p.id !== me.id) : people;
 
-  const chart = me ? chartFor(me.birthday, me.sign) : null;
+  const chart = me ? me.chart : null;
   const sky = skyAt();
   const house = chart ? houseFrom(chart.sun, sky.moon) : 0;
   const matches = me ? bestMatches(me.sign) : [];
@@ -77,10 +77,7 @@ export default async function FablePage() {
   ) : (
     <Hull title={t(lang, "yourReading")} led="amber">
       <p style={{ marginTop: 0 }}>{t(lang, "loginFirst")}</p>
-      <div className="btns two">
-        <Link className="btn" href="/app/login?next=/app/fable">{t(lang, "login")}</Link>
-        <Link className="btn ghost" href="/app/scan">{t(lang, "imNew")}</Link>
-      </div>
+      <a className="btn ghost" href="#party">{t(lang, "tabParty")}</a>
     </Hull>
   );
 
@@ -144,10 +141,7 @@ export default async function FablePage() {
   ) : (
     <Hull title={t(lang, "friendsTitle")} led="amber">
       <p style={{ marginTop: 0 }}>{t(lang, "friendsLogin")}</p>
-      <div className="btns two">
-        <Link className="btn" href="/app/login?next=/app/fable%23friends">{t(lang, "login")}</Link>
-        <Link className="btn ghost" href="/app/scan">{t(lang, "imNew")}</Link>
-      </div>
+      <a className="btn ghost" href="#party">{t(lang, "tabParty")}</a>
     </Hull>
   );
 

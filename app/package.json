@@ -11,7 +11,6 @@
     "sync-presets": "bun scripts/sync-presets.ts"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.119.0",
     "ai": "^7.0.173",
     "next": "^16.4.6",
     "qrcode": "^1.5.4",

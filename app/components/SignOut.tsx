@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-// Sign this phone out. The traveler can come back with their pass or an email code.
+// Sign this phone out, for good: logging in closed with the party.
 export default function SignOut() {
   const router = useRouter();
   const [busy, setBusy] = useState(false);

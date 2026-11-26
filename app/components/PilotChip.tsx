@@ -4,7 +4,7 @@ import { GLYPH } from "@/lib/zodiac";
 
 type Pilot = { name: string; sign: string; card_no: number } | null;
 
-// Updates itself when a pilot registers or restores on this page (event "zr:pilot").
+// Updates itself when this phone signs out (event "zr:pilot").
 export default function PilotChip({ initial }: { initial: Pilot }) {
   const [me, setMe] = useState<Pilot>(initial);
   useEffect(() => setMe(initial), [initial]);
@@ -15,8 +15,8 @@ export default function PilotChip({ initial }: { initial: Pilot }) {
   }, []);
   if (!me)
     return (
-      <a className="pilot-chip" href="/app/login">
-        LOG IN<br /><span className="muted">WITH EMAIL</span>
+      <a className="pilot-chip" href="/app/leaderboard">
+        ARCHIVE<br /><span className="muted">20 NOV 2026</span>
       </a>
     );
   // Your name opens your profile.
